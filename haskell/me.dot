@@ -1,0 +1,6 @@
+digraph {
+graph [bgcolor=transparent];
+node [shape=circle, penwidth=0, fillcolor=yellow, style=filled];
+0 [label=Me];
+0 -> 0 [label=""];
+}

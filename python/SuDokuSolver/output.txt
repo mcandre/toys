@@ -1,0 +1,7 @@
+Opening websudoku.txt
+Reading
+Closed
+Parsing
+82263564901416960000 possibilities
+Solving
+Interrupted

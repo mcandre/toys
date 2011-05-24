@@ -1,0 +1,64 @@
+urlTea:
+    short: urltea
+    domain: urltea.com
+    api: /api/text/?url=
+
+TinyURL:
+    short: tinyurl
+    domain: tinyurl.com
+    api: /api-create.php?url=
+
+ArunaURL:
+    short: arunaurl
+    domain: arunaurl.com
+    api: /create_url.php?url=
+
+Snipr:
+    short: snipr
+    domain: snipr.com
+    api: /site/snip?r=simple&link=
+
+Metamark:
+    short: metamark
+    domain: metamark.net
+    api: /api/rest/simple?long_url=
+
+Corp.se:
+    short: corpse
+    domain: www.corp.se
+    api: /index.php?enc=
+
+elfURL:
+    short: elfurl
+    domain: elfurl.com
+    api: /create/?source=
+
+Qurl:
+    short: qurl
+    domain: www.qurl.com
+    api: /automate.php?xprivate=0&url=
+
+TinyLink:
+    short: tinylink
+    domain: tinylink.co.za
+    api: /api/rest.php?url=
+
+url(x):
+    short: urlx
+    domain: urlx.org
+    api: /api.php?x=
+
+urlKiss:
+    short: urlkiss
+    domain: urlkiss.com
+    api: /api/?x=
+
+foo9.net:
+    short: foo9
+    domain: foo9.net
+    api: /api.php?url=
+
+FON Get Simple:
+    short: fongs
+    domain: fon.gs
+    api: /create.php?url=

@@ -1,0 +1,5 @@
+Functional Programming Style
+
+1. You only read variables that are passed into the function or are created by the function (So you don't read any global variables)
+2. You never change the value of a variable that has already been set (So no incrementing variables or other such foolishness)
+3. You never interact with the outside world, besides returning a result value. (So no writing to files, no writing messages for the user)

@@ -1,0 +1,7 @@
+debug: false
+post_domain: api.jaiku.com
+post_api: /json
+view_domain: .jaiku.com
+view_api: /feed/json
+username: mcandre
+key: 0

@@ -1,0 +1,44 @@
+// Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.kpdus.com/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   Keygen.java
+
+import java.io.*;
+import java.util.Date;
+import java.util.Random;
+
+public class Keygen
+{
+
+    public Keygen()
+    {
+    }
+
+    public static void main(String args[])
+    {
+        try
+        {
+            File file = new File("./output.txt");
+            if(file.exists())
+                file.delete();
+            file.createNewFile();
+            BufferedWriter bufferedwriter = new BufferedWriter(new FileWriter(file));
+            Random random = new Random((new Date()).getTime());
+            for(int i = 0; i <= 0x2faf080; i++)
+            {
+                String s = "";
+                for(int j = 0; j < 1; j++)
+                    s = (new StringBuilder()).append(s).append("1").append(String.valueOf(random.nextInt(10))).append("355").append(String.valueOf(random.nextInt(10))).append("0").append(String.valueOf(random.nextInt(10))).append("130").append(String.valueOf(random.nextInt(10))).append(String.valueOf(random.nextInt(10))).toString();
+
+                bufferedwriter.write((new StringBuilder()).append(s).append("\r\n").toString());
+                System.out.println((new StringBuilder()).append("(").append(i + 1).append("/50000000 By HolyBrute Read the Readme)\t").append(s).toString());
+            }
+
+            bufferedwriter.close();
+        }
+        catch(Exception exception)
+        {
+            exception.printStackTrace();
+        }
+    }
+}

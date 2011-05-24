@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+curl --socks5 localhost:1080 -u mcandre -s -o /dev/null http://twitter.com/statuses/update.xml -d status="$1"

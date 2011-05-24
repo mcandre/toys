@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+curl -u mcandre -s -o /dev/null http://twitter.com/statuses/update.xml -d status="$1"

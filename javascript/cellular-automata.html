@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Cellular Automata</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="author" content="Andrew Pennebaker" />
+</head>
+<body style="text-align: center;">
+<h1>Cellular Automata</h1>
+<p>Rule: <input id="rule" onchange="redraw()" value="110" size="4" /> <button id="screenshot" onclick="screenshot()">Screenshot</button></p>
+<p><button id="pause" onclick="playPause()">Pause</button> Steps: <span id="steps">0</span></p>
+<div id="center-canvas" width="512" height="256" style="margin: 0 auto;">
+<canvas id="sketch" data-processing-sources="cellular-automata.pjs"></canvas>
+</div>
+<script src="processing-1.1.0.min.js"></script>
+</body>
+</html>
