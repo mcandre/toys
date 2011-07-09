@@ -1,6 +1,5 @@
 #!/usr/bin/env runhaskell
 
--- dice.hs
 -- Andrew Pennebaker
 
 module Dice where
@@ -54,13 +53,15 @@ formatError = "Format error: dice should be [integer]<d|D><%|F|integer>"
 
 usage :: String -> IO ()
 usage program = do
-	putStrLn $ "Usage: " ++ program ++ " [[n]die]\n"
+	putStrLn $ "Usage: " ++ program ++ " [n]<die>\n"
 
 	putStrLn "d%\tPercent"
 	putStrLn "dF\tFudge"
+	putStrLn "d2\tCoin"
 	putStrLn "d6\tCasino"
-	putStrLn "d20\tD&D"
-	putStrLn "d[m]\tPolyhedral with m sides"
+	putStrLn "d10\tStorytelling System"
+	putStrLn "d20\tDungeons & Dragons"
+	putStrLn "d<m>\tPolyhedral with m sides"
 
 main :: IO ()
 main = do
