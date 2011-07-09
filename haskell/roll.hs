@@ -42,6 +42,7 @@ fromDie die = "d" ++ case die of
 	F -> "F"
 	Poly m -> show m
 
+-- Roll n dice
 d :: Int -> Die -> IO [Int]
 d n die = replicateM n $ (pick . faces) die
 	where
@@ -49,7 +50,7 @@ d n die = replicateM n $ (pick . faces) die
 		faces F = [-1, 0, 1]
 		faces (Poly m) = [1 .. m]
 
--- Roll n dice
+-- Parse and roll n dice
 roll' :: String -> IO (Maybe [Int])
 roll' dice = do
 	let dice' = map toLower dice
@@ -75,7 +76,7 @@ roll' dice = do
 
 		_ -> return Nothing
 
--- Roll groups of dice
+-- Parse and roll groups of dice
 roll :: String -> IO (Maybe [Int])
 roll dice = do
 	let dice' = (filter (/= "") . splitOn "+" . join "" . splitOn " ") dice
