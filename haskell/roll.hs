@@ -2,12 +2,13 @@
 
 -- Andrew Pennebaker
 
-module Dice where
+module Roll where
 
-import GetOptFu (maybeRead)
+import GetOptFu
 import System (getProgName, getArgs)
 import Random (randomRIO)
-import Control.Monad (replicateM)
+import Control.Monad (replicateM, when)
+import Maybe (fromMaybe)
 import Data.Char (toLower)
 import Data.List.Split (splitOn)
 import Data.String.Utils (join)
@@ -42,8 +43,9 @@ d n die = replicateM n $ (pick . faces) die
 		faces F = [-1, 0, 1]
 		faces (Poly m) = [1 .. m]
 
-roll :: String -> IO (Maybe [Int])
-roll dice = do
+-- Roll n dice
+roll' :: String -> IO (Maybe [Int])
+roll' dice = do
 	let dice' = map toLower dice
 
 	case splitOn "d" dice' of
@@ -59,14 +61,30 @@ roll dice = do
 					rs <- n'' `d` die''
 					return $ Just rs
 				_ -> return Nothing
+
+		-- Constant modifier
+		[c] -> case (maybeRead c :: Maybe Int) of
+			Just c' -> return $ Just [c']
+			_ -> return Nothing
+
 		_ -> return Nothing
+
+-- Roll groups of dice
+roll :: String -> IO (Maybe [Int])
+roll dice = do
+	let dice' = (filter (/= "") . splitOn "+" . join "" . splitOn " ") dice
+	rs <- mapM roll' dice'
+	if Nothing `elem` rs then
+		return Nothing
+	else
+		return $ Just $ (concat . map (fromMaybe [])) rs
 
 formatError :: String
 formatError = "Format error: dice should be [integer]<d|D><%|F|integer>"
 
 usage :: String -> IO ()
 usage program = do
-	putStrLn $ "Usage: " ++ program ++ " [n]<die>\n"
+	putStrLn $ "Usage: " ++ program ++ " [n]<die> [+ [n]<die>...]\n"
 
 	putStrLn "d%\tPercent"
 	putStrLn "dF\tFudge"
@@ -75,17 +93,21 @@ usage program = do
 	putStrLn "d10\tStorytelling System"
 	putStrLn "d20\tDungeons & Dragons"
 	putStrLn "d<m>\tPolyhedral with m sides"
+	putStrLn "<c>\tConstant modifier"
+
+	exitSuccess
 
 main :: IO ()
 main = do
 	program <- getProgName
 	args <- getArgs
 
-	case null args of
-		True -> usage program
-		_ -> do
-			rs <- (roll . join " ") args
+	when ((null args) || ("-h" `elem` args) || ("--help" `elem` args))
+		(do
+			usage program)
 
-			putStrLn $ case rs of
-				Just rs' -> "Roll: " ++ show rs' ++ " Sum: " ++ (show . sum) rs'
-				_ -> formatError
+	rs <- (roll . join " ") args
+
+	putStrLn $ case rs of
+		Just rs' -> "Roll: " ++ show rs' ++ " Sum: " ++ (show . sum) rs'
+		_ -> formatError
