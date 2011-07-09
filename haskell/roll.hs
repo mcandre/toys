@@ -4,8 +4,8 @@
 
 module Roll where
 
-import GetOptFu
 import System (getProgName, getArgs)
+import System.Exit (exitSuccess)
 import Random (randomRIO)
 import Control.Monad (replicateM, when)
 import Maybe (fromMaybe)
@@ -15,6 +15,12 @@ import Data.String.Utils (join)
 
 pick :: [a] -> IO a
 pick xs = (randomRIO (0, length xs - 1)) >>= (return . (xs !!))
+
+-- Thanks to aavogt at #haskell
+maybeRead :: Read a => String -> Maybe a
+maybeRead s = case reads s of
+	(r, ""):[] -> Just r
+	_ -> Nothing
 
 data Die
 	= Per
