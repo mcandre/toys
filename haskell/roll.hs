@@ -15,7 +15,25 @@ import Data.String.Utils (join)
 pick :: [a] -> IO a
 pick xs = (randomRIO (0, length xs - 1)) >>= (return . (xs !!))
 
-data Die = Poly Int | Per | F
+data Die
+	= Per
+	| F
+	| Poly Int
+	deriving (Eq, Ord, Show, Read)
+
+toDie :: String -> Maybe Die
+toDie s = case (tail . map toLower) s of
+	"%" -> Just Per
+	"f" -> Just F
+	s -> case (maybeRead s :: Maybe Int) of
+		Just m -> Just $ Poly m
+		_ -> Nothing
+
+fromDie :: Die -> String
+fromDie die = "d" ++ case die of
+	Per -> "%"
+	F -> "F"
+	Poly m -> show m
 
 d :: Int -> Die -> IO [Int]
 d n die = replicateM n $ (pick . faces) die
@@ -34,12 +52,7 @@ roll dice = do
 				"" -> Just 1
 				s -> maybeRead s :: Maybe Int
 
-			let die' = case die of
-				"%" -> Just Per
-				"f" -> Just F
-				m -> case (maybeRead m :: Maybe Int) of
-					Just m' -> Just $ Poly m'
-					_ -> Nothing
+			let die' = toDie ('d':die)
 
 			case (n', die') of
 				(Just n'', Just die'') -> do
