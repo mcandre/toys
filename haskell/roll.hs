@@ -79,9 +79,6 @@ roll dice = do
 	else
 		return $ Just $ (concat . map (fromMaybe [])) rs
 
-formatError :: String
-formatError = "Format error: dice should be [integer]<d|D><%|F|integer>"
-
 usage :: String -> IO ()
 usage program = do
 	putStrLn $ "Usage: " ++ program ++ " [n]<die> [+ [n]<die>...]\n"
@@ -108,6 +105,6 @@ main = do
 
 	rs <- (roll . join " ") args
 
-	putStrLn $ case rs of
-		Just rs' -> "Roll: " ++ show rs' ++ " Sum: " ++ (show . sum) rs'
-		_ -> formatError
+	case rs of
+		Just rs' -> putStrLn $ "Roll: " ++ show rs' ++ " Sum: " ++ (show . sum) rs'
+		_ -> usage program
