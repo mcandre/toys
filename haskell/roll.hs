@@ -4,17 +4,16 @@
 
 module Roll where
 
+import Data.Random
+import Data.Random.Source.DevRandom
+import Data.Random.Extras
 import System (getProgName, getArgs)
 import System.Exit (exitSuccess)
-import Random (randomRIO)
 import Control.Monad (replicateM, when)
 import Maybe (fromMaybe)
 import Data.Char (toLower)
 import Data.List.Split (splitOn)
 import Data.String.Utils (join)
-
-pick :: [a] -> IO a
-pick xs = randomRIO (0, length xs - 1) >>= return . (xs !!)
 
 -- Thanks to aavogt at #haskell
 maybeRead :: Read a => String -> Maybe a
@@ -42,7 +41,7 @@ fromDie die = "d" ++ case die of
 
 -- Roll n dice
 d :: Int -> Die -> IO [Int]
-d n die = replicateM n $ (pick . faces) die
+d n = replicateM n . flip runRVar DevRandom . choice . faces
 	where
 		faces Per = [10, 20 .. 100]
 		faces F = [-1, 0, 1]

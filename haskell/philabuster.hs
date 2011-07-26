@@ -48,10 +48,9 @@ http://www.youtube.com/watch?v=Bh7Nz4bIwss
 
 module Philabuster where
 
-import Random (randomRIO)
-
-pick :: [a] -> IO a
-pick xs = randomRIO (0, length xs - 1) >>= return . (xs !!)
+import Data.Random
+import Data.Random.Source.DevRandom
+import Data.Random.Extras
 
 features = ["head looks like", "eyes look like", "face looks like"]
 animals = ["lizard", "rabbit", "monkey"]
@@ -61,11 +60,11 @@ suffixes = ["bag", "wipe", "muncher", "bomb", "tard", "gobbler", "fucker", "suck
 
 philabuster :: IO String
 philabuster = do
-	feature <- pick features
-	species <- pick animals
-	genital <- pick genitalia
-	excretion <- pick excretions
-	suffix <- pick suffixes
+	feature <- runRVar (choice features) DevRandom
+	species <- runRVar (choice animals) DevRandom
+	genital <- runRVar (choice genitalia) DevRandom
+	excretion <- runRVar (choice excretions) DevRandom
+	suffix <- runRVar (choice suffixes) DevRandom
 
 	return $ "Your " ++ feature ++ " " ++ species ++ " " ++ genital ++ ", you " ++ excretion ++ "-" ++ suffix ++ "!"
 
