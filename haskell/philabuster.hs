@@ -51,7 +51,7 @@ module Philabuster where
 import Random (randomRIO)
 
 pick :: [a] -> IO a
-pick xs = (randomRIO (0, length xs - 1)) >>= (return . (xs !!))
+pick xs = randomRIO (0, length xs - 1) >>= return . (xs !!)
 
 features = ["head looks like", "eyes look like", "face looks like"]
 animals = ["lizard", "rabbit", "monkey"]

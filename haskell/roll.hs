@@ -14,7 +14,7 @@ import Data.List.Split (splitOn)
 import Data.String.Utils (join)
 
 pick :: [a] -> IO a
-pick xs = (randomRIO (0, length xs - 1)) >>= (return . (xs !!))
+pick xs = randomRIO (0, length xs - 1) >>= return . (xs !!)
 
 -- Thanks to aavogt at #haskell
 maybeRead :: Read a => String -> Maybe a
@@ -32,9 +32,7 @@ toDie :: String -> Maybe Die
 toDie s = case (tail . map toLower) s of
 	"%" -> Just Per
 	"f" -> Just F
-	s -> case (maybeRead s :: Maybe Int) of
-		Just m -> Just $ Poly m
-		_ -> Nothing
+	s -> (maybeRead s :: Maybe Int) >>= Just . Poly
 
 fromDie :: Die -> String
 fromDie die = "d" ++ case die of
@@ -64,14 +62,12 @@ roll' dice = do
 			let die' = toDie ('d':die)
 
 			case (n', die') of
-				(Just n'', Just die'') -> do
-					rs <- n'' `d` die''
-					return $ Just rs
+				(Just n'', Just die'') -> n'' `d` die'' >>= return . Just
 				_ -> return Nothing
 
 		-- Constant modifier
 		[c] -> case (maybeRead c :: Maybe Int) of
-			Just c' -> return $ Just [c']
+			Just c' -> (return . Just) [c']
 			_ -> return Nothing
 
 		_ -> return Nothing
@@ -81,10 +77,10 @@ roll :: String -> IO (Maybe [Int])
 roll dice = do
 	let dice' = (filter (/= "") . splitOn "+" . join "" . splitOn " ") dice
 	rs <- mapM roll' dice'
-	if Nothing `elem` rs then
-		return Nothing
-	else
-		return $ Just $ (concat . map (fromMaybe [])) rs
+
+	if Nothing `elem` rs
+		then return Nothing
+		else (return . Just . concat . map (fromMaybe [])) rs
 
 usage :: String -> IO ()
 usage program = do
