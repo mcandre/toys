@@ -3,89 +3,105 @@
 """A Bullshit interpreter"""
 
 __author__="Andrew Pennebaker (andrew.pennebaker@gmail.com)"
-__date__="27 Feb 2006"
+__date__="18 Nov 2005 - 6 Jul 2006"
 __copyright__="Copyright 2006 Andrew Pennebaker"
 __version__="0.5"
+__URL__="http://snippets.dzone.com/posts/show/3536"
 
-from aio import chomp
-
-import sys
-from getopt import getopt
+import sys, os, getopt
 
 tape=[0]*100
 address=0
 
-def sublevel(toplevel):
+def sublevel(level):
 	i=0
 
-	# until a balanced-bracket code block is found, add a character
+	if level.count("[")>level.count("]"):
+		raise Exception("Unmatched Bracket")
 
-	while toplevel[0:i+1].count("[")!=toplevel[0:i+1].count("]"): i+=1
+	while level[0:i+1].count("[")!=level[0:i+1].count("]"):
+		i+=1
 
-	return toplevel[1:i]
+	return level[1:i+1]
 
-def run(instructions):
+def run(code, position=0):
 	global tape
 	global address
 
-	position=0
-	while position<len(instructions):
-		cmd=instructions[position]
+	while position<len(code):
+		cmd=code[position]
 
-		if cmd=="<": address-=1
-		elif cmd==">": address+=1
-		elif cmd=="+": tape[address]+=1
-		elif cmd=="-": tape[address]-=1
-		elif cmd=="!": sys.stdout.write(chr(tape[address]))
+		if cmd=="<":
+			address-=1
+		elif cmd==">":
+			address+=1
+		elif cmd=="+":
+			tape[address]+=1
+		elif cmd=="-":
+			tape[address]-=1
+		elif cmd=="!":
+			sys.stdout.write(chr(tape[address]))
 		elif cmd=="?":
-			try: tape[address]=ord(sys.stdin.read(1))
-			except: tape[address]=-1
+			try:
+				tape[address]=ord(sys.stdin.read(1))
+			except:
+				tape[address]=-1
 		elif cmd=="[":
-			level=sublevel(instructions[position:])
-			while tape[address]!=0: run(level)
+			try:
+				level=sublevel(code[position:])
 
-			position+=len(level)+1
+				while tape[address]!=0:
+					run(level)
+
+				position+=len(level)
+
+			except:
+				return position
+		elif cmd=="]":
+			return position
 
 		position+=1
 
+	return position
+
 def usage():
-	print "Usage: %s [options] <sourcefile>" % (sys.argv[0])
-	print "--help (usage)"
+	print "Usage: %s [options] [<sourcefile>]" % (sys.argv[0])
+	print "-h|--help (usage)"
 
 	sys.exit()
 
 def main():
-	systemArgs=sys.argv[1:] # ignore program name
+	systemArgs=sys.argv[1:]
 
 	live=False
 
-	optlist=[]
-	args=[]
+	optlist, args=[], []
 
 	try:
-		optlist, args=getopt(systemArgs, None, ["help"])
-	except Exception, e:
+		optlist, args=getopt.getopt(systemArgs, "h", ["help"])
+	except Exception:
 		usage()
 
 	live=len(args)<1
 
 	for option, value in optlist:
-		if option=="--help":
+		if option=="-h" or option=="--help":
 			usage()
 
 	if live:
 		print "--BF Interpreter 0.5--"
 		print "  Type exit to exit."
 
+		code=""
+		position=0
+
 		line="not exit"
 		while line!="exit":
 			sys.stdout.write("% ")
-			line=chomp(sys.stdin.readline())
+			line=sys.stdin.readline().rstrip(os.linesep)
+			code+=line
 
-			if line.count("[")!=line.count("]"):
-				raise "Unbalanced brackets"
-			else:
-				run(line)
+			position=run(code, position)
 	else:
 		src=args[0]
 
@@ -94,7 +110,7 @@ def main():
 		srcfile.close()
 
 		if code.count("[")!=code.count("]"):
-			raise "Unbalanced brackets"
+			raise Exception("Unbalanced brackets")
 		else:
 			run(code)
 
