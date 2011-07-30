@@ -2,19 +2,19 @@
 #include <stdio.h>
 #include <string.h>
 
-char* PROGRAM="REPL";
+#define PROGRAM "REPL"
 
-char* VERSION="1.0.0";
+#define VERSION "1.0.0"
 
-char* COPYRIGHT="Copyright 2009 YelloSoft";
+#define COPYRIGHT "Copyright 2009 YelloSoft"
 
-char* WELCOME="Use \'exit\' or Control-C to quit.";
+#define WELCOME "Use \'exit\' or Control-C to quit."
 
-char* PROMPT="> ";
+#define PROMPT "> "
 
-char* EXIT="exit";
+#define EXIT "exit"
 
-void usage(char* program) {
+static void usage(char* program) {
 	printf("Usage: %s <script>\n", program);
 	printf("\n-h --help\tDisplay usage\n");
 	printf("-v --version\tDisplay version\n");
@@ -22,34 +22,34 @@ void usage(char* program) {
 	exit(0);
 }
 
-void version() {
+static void version() {
 	printf("%s %s\n", PROGRAM, VERSION);
 	exit(0);
 }
 
-void welcome() {
+static void welcome() {
 	printf("%s %s - %s\n", PROGRAM, VERSION, COPYRIGHT);
 	printf("%s\n", WELCOME);
 }
 
-void interactive() {
+static void interactive() {
 	char* command;
 
 	welcome();
 
-	printf(PROMPT);
-
 	command=(char*) malloc(1024);
 
-	scanf("%s", command);
-
-	while (strcmp(command, EXIT)!=0) {
-		printf(PROMPT);
-		scanf("%s", command);
+	if (command != NULL) {
+		do {
+			printf(PROMPT);
+			(void) scanf("%s", command);
+		} while (strcmp(command, EXIT) != 0);
 	}
+
+	free(command);
 }
 
-void run(char* script) {
+static void run(char* script) {
 	FILE *f=fopen(script, "rb");
 
 	if (f==NULL) {
@@ -58,11 +58,11 @@ void run(char* script) {
 	else {
 		int c=fgetc(f);
 		while (c!=EOF) {
-			putchar(c);
+			(void) putchar(c);
 			c=fgetc(f);
 		}
 
-		fclose(f);
+		(void) fclose(f);
 	}
 }
 

@@ -29,7 +29,7 @@ ulines cs = prefix : case suffix of
 	where (prefix, suffix) = break isLineTerminator cs
 
 propOnlyNewlines :: String -> Bool
-propOnlyNewlines s = "\r" `isInfixOf` (unlines . ulines) s == False
+propOnlyNewlines s = not $ "\r" `isInfixOf` (unlines . ulines) s
 
 main :: IO ()
 main = quickCheck propOnlyNewlines

@@ -1,7 +1,7 @@
 #!/usr/bin/env runhaskell
 
 -- Allows Flag to derive Typeable and Data
-{-# OPTIONS_GHC -XScopedTypeVariables -XDeriveDataTypeable #-}
+{-# LANGUAGE ScopedTypeVariables, DeriveDataTypeable #-}
 
 -- Andrew Pennebaker
 -- andrew.pennebaker@gmail.com
@@ -12,7 +12,7 @@ module IOS7Crypt where
 import Random (randomRIO)
 import Numeric (showInt, showHex)
 import Data.List (intercalate)
-import Char (ord, chr)
+import Data.Char (ord, chr)
 import Bits (xor)
 import Test.QuickCheck
 import Data.Maybe (fromJust)
@@ -35,18 +35,18 @@ xlat s = (drop s . cycle) xlat'
 -- Based on Martin Grabmueller's Harpy.X86Disassembler
 -- http://hackage.haskell.org/packages/archive/harpy/0.4/doc/html/src/Harpy-X86Disassembler.html
 pad2 :: (Int -> String -> String) -> Int -> String
-pad2 f i = take (2 - length s) ['0'] ++ s
+pad2 f i = take (2 - length s) "0" ++ s
 	where s = f i ""
 
 onlyPairs :: String -> [String]
 onlyPairs text
-	| length text <= 3 = (take 2 text):[]
-	| otherwise = (take 2 text) : (onlyPairs . drop 2) text
+	| length text <= 3 = [take 2 text]
+	| otherwise = take 2 text : (onlyPairs . drop 2) text
 
 encrypt' :: Int -> String -> String
 encrypt' seed password
 	| seed < 0 || seed > 15 = encrypt' 0 password
-	| otherwise = (pad2 showInt seed) ++ (intercalate "" . map (pad2 showHex) . zipWith xor (xlat seed) . map ord) password
+	| otherwise = pad2 showInt seed ++ (intercalate "" . map (pad2 showHex) . zipWith xor (xlat seed) . map ord) password
 
 encrypt :: String -> IO String
 encrypt password = do
@@ -59,7 +59,7 @@ decrypt hash
 	| otherwise = decrypt' s p
 		where
 			s = (read . take 2) hash
-			(p :: [Maybe Int]) = (map maybeRead . map ("0x" ++) . onlyPairs . drop 2) hash
+			(p :: [Maybe Int]) = map (maybeRead . ("0x" ++)) ((onlyPairs . drop 2) hash)
 			decrypt' s p
 				| Nothing `elem` p = Nothing
 				| otherwise = Just $ (map chr . zipWith xor (xlat s) . map fromJust) p
@@ -76,10 +76,10 @@ data Flag
 
 options :: [OptDescr Flag]
 options = [
-	Option ['e'] ["encrypt"] (ReqArg Encrypt "<password>") "Encrypt a password",
-	Option ['d'] ["decrypt"] (ReqArg Decrypt "<hash>") "Decrypt a hash",
-	Option ['t'] ["test"] (NoArg Test) "Unit test IOS7Crypt",
-	Option ['h'] ["help"] (NoArg Help) "Display usage information"
+	Option "e" ["encrypt"] (ReqArg Encrypt "<password>") "Encrypt a password",
+	Option "d" ["decrypt"] (ReqArg Decrypt "<hash>") "Decrypt a hash",
+	Option "t" ["test"] (NoArg Test) "Unit test IOS7Crypt",
+	Option "h" ["help"] (NoArg Help) "Display usage information"
 	]
 
 main :: IO ()
@@ -90,17 +90,15 @@ main = do
 
 	let justTheArgs = fst pArgs
 
-	when (null justTheArgs || getOption pArgs (Help) == Just Help)
+	when (null justTheArgs || getOption pArgs Help == Just Help)
 		(do
 			putStrLn $ usageInfo program options
 			exitSuccess)
 
 	-- Only the first command is observed.
 	case head justTheArgs of
-		(Encrypt password) -> do
-			hash <- encrypt password
-			putStrLn hash
+		(Encrypt password) -> encrypt password >>= putStrLn
 		(Decrypt hash) -> case decrypt hash of
-			Just password -> do putStrLn password
-			_ -> do putStrLn "Invalid hash."
+			Just password -> putStrLn password
+			_ -> putStrLn "Invalid hash."
 		Test -> quickCheck propReversible

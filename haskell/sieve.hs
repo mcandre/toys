@@ -8,6 +8,7 @@
 module Eratosthenes where
 
 import Test.QuickCheck
+import Data.List (isPrefixOf)
 
 sieve :: (Integral a) => [a] -> [a]
 sieve ns = n : sieve ns'
@@ -22,7 +23,7 @@ propFirst :: Bool
 propFirst = head primes == 2
 
 propFirstTen :: Bool
-propFirstTen = take 10 primes == [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
+propFirstTen = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29] `isPrefixOf` primes
 
 propThousandth :: Bool
 propThousandth = primes !! 999 == 7919
@@ -30,10 +31,10 @@ propThousandth = primes !! 999 == 7919
 composite :: (Integral a) => a -> Bool
 composite n
 	| n < 2 = True
-	| otherwise = not $ null $ filter ((== 0) . rem n) [2..n-1]
+	| otherwise = any ((== 0) . rem n) [2..n-1]
 
 propNoCompositesThousand :: Bool
-propNoCompositesThousand = null $ filter composite $ take 1000 primes
+propNoCompositesThousand = (not . any composite . take 1000) primes
 
 -- Computation time demands manual evaluation
 propTenThousandth :: Bool

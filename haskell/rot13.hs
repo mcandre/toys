@@ -2,7 +2,7 @@
 
 module ROT13 where
 
-import Char (ord, chr, isLower, isUpper)
+import Data.Char (ord, chr, isAsciiLower, isAsciiUpper)
 import IO (interact)
 import Test.QuickCheck
 
@@ -13,10 +13,11 @@ bigZ = ord 'Z'
 
 rot13Char :: Char -> Char
 rot13Char c
-	| isLower c = (rot littleA) c
-	| isUpper c = (rot bigA) c
+	| isAsciiLower c = rot littleA c
+	| isAsciiUpper c = rot bigA c
 	| otherwise = c
 	where
+		rot :: Int -> Char -> Char
 		rot r = chr . (r +) . flip mod 26 . (13 +) . flip (-) r . ord
 
 rot13 :: String -> String

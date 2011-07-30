@@ -9,7 +9,7 @@ import Control.Concurrent.STM
 type Account = TVar Integer
 
 newAccount :: Integer -> IO Account
-newAccount amount = newTVarIO amount
+newAccount = newTVarIO
 
 credit :: Integer -> Account -> STM ()
 credit amount account = do

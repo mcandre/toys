@@ -10,15 +10,16 @@
 	Thanks for actual working example of C's time and date libraries. */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <time.h>
 
-float beats(void) {
+static double beats(void) {
 	time_t timer;
 	struct tm *g;
 	int hour, min, sec;
 	int utc;
 	int bmt;
-	float beat;
+	double beat;
 
 	timer=time(NULL);
 
@@ -38,15 +39,23 @@ float beats(void) {
 	return beat;
 }
 
-void swatch(char *result) {
-	sprintf(result, "@%06.2f", beats());
+static void swatch(char *result) {
+	(void) snprintf(result, 8, "@%06.2f", beats());
 }
 
 int main(void) {
-	char result[8];
-	swatch(result);
+	char *result = (char *) malloc(sizeof(char) * 8);
 
-	printf("%s\n", result);
+	if (result != NULL) {
+		swatch(result);
+
+		printf("%s\n", result);
+
+		free(result);
+	}
+	else {
+		printf("error: out of memory\n");
+	}
 
 	return 0;
 }

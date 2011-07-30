@@ -3,19 +3,19 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int IN=1;
-int OUT=0;
+int main() {
+	int IN=1;
+	int OUT=0;
 
-int main(int argc, char **argv) {
 	int characters=0;
 	int words=0;
 	int lines=0;
 
 	int state=OUT;
 
-	char c=getchar();
+	char c = (char) getchar();
 
-	while (c!=EOF) {
+	while ((int) c != EOF) {
 		characters++;
 
 		if (c=='\n') {
@@ -30,7 +30,7 @@ int main(int argc, char **argv) {
 			state=IN;
 		}
 
-		c=getchar();
+		c = (char) getchar();
 	}
 
 	printf("Characters: %d\n", characters);

@@ -1,9 +1,9 @@
 #include <string.h>
 
 char *join(char *a, char *b, char *sep) {
-	int len_a=strlen(a);
-	int len_b=strlen(b);
-	int len_sep=strlen(sep);
+	int len_a=(int) strlen(a);
+	int len_b=(int) strlen(b);
+	int len_sep=(int) strlen(sep);
 
 	if (a==NULL) {
 		len_a=0;

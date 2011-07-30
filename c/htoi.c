@@ -1,5 +1,5 @@
 /* From John Santic (http://johnsantic.com/comp/htoi.html) */
-int htoi(char *hex, int length) {
+int htoi(char *hex) {
 	int value = 0;
 	char ch = *(hex);
 
@@ -9,11 +9,11 @@ int htoi(char *hex, int length) {
 
 	for (;;) {
 		if (ch >= '0' && ch <= '9')
-			value = (value << 4) + (ch - '0');
+			value = (value << 4) + (int) (ch - '0');
 		else if (ch >= 'A' && ch <= 'F')
-			value = (value << 4) + (ch - 'A' + 10);
+			value = (value << 4) + (int ) (ch - 'A') + 10;
 		else if (ch >= 'a' && ch <= 'f')
-			value = (value << 4) + (ch - 'a' + 10);
+			value = (value << 4) + (int) (ch - 'a') + 10;
 		else
 			return value;
 

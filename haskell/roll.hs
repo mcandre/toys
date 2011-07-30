@@ -10,7 +10,7 @@ import Data.Random.Extras
 import System (getProgName, getArgs)
 import System.Exit (exitSuccess)
 import Control.Monad (replicateM, when)
-import Maybe (fromMaybe)
+import Data.Maybe (fromMaybe)
 import Data.Char (toLower)
 import Data.List.Split (splitOn)
 import Data.String.Utils (join)
@@ -34,7 +34,7 @@ toDie s = case (tail . map toLower) s of
 	s -> (maybeRead s :: Maybe Int) >>= Just . Poly
 
 fromDie :: Die -> String
-fromDie die = "d" ++ case die of
+fromDie die = 'd' : case die of
 	Per -> "%"
 	F -> "F"
 	Poly m -> show m
@@ -79,7 +79,7 @@ roll dice = do
 
 	if Nothing `elem` rs
 		then return Nothing
-		else (return . Just . concat . map (fromMaybe [])) rs
+		else (return . Just . concatMap (fromMaybe [])) rs
 
 usage :: String -> IO ()
 usage program = do
@@ -101,9 +101,8 @@ main = do
 	program <- getProgName
 	args <- getArgs
 
-	when ((null args) || ("-h" `elem` args) || ("--help" `elem` args))
-		(do
-			usage program)
+	when (null args || "-h" `elem` args || "--help" `elem` args)
+		(usage program)
 
 	rs <- (roll . join " ") args
 

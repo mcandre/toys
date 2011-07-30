@@ -1,7 +1,7 @@
 #!/usr/bin/env runhaskell
 
 -- Allows Flag to derive Typeable and Data
-{-# OPTIONS_GHC -XScopedTypeVariables -XDeriveDataTypeable #-}
+{-# LANGUAGE ScopedTypeVariables, DeriveDataTypeable #-}
 
 -- Andrew Pennebaker
 -- andrew.penenbaker@gmail.com
@@ -25,14 +25,14 @@ data Flag
 
 options :: [OptDescr Flag]
 options = [
-	Option ['s'] ["store"] (ReqArg Store "<name>") "Specify a store name",
-	Option ['c'] ["customer"] (ReqArg Customer "<name>") "Specify a customer name",
-	Option ['p'] ["peanutbutter"] (NoArg PeanutButter) "Itemize peanut butter",
-	Option ['j'] ["jelly"] (NoArg Jelly) "Itemize jelly",
-	Option ['b'] ["bananas"] (OptArg Bananas "<quantity>") "Itemize one or more bananas",
-	Option ['e'] ["expresslane"] (NoArg ExpressLane) "Use the express lane",
-	Option ['h'] ["help"] (NoArg Help) "Show usage information",
-	Option ['d'] ["debug"] (NoArg Debug) "Show raw and parsed arguments"
+	Option "s" ["store"] (ReqArg Store "<name>") "Specify a store name",
+	Option "c" ["customer"] (ReqArg Customer "<name>") "Specify a customer name",
+	Option "p" ["peanutbutter"] (NoArg PeanutButter) "Itemize peanut butter",
+	Option "j" ["jelly"] (NoArg Jelly) "Itemize jelly",
+	Option "b" ["bananas"] (OptArg Bananas "<quantity>") "Itemize one or more bananas",
+	Option "e" ["expresslane"] (NoArg ExpressLane) "Use the express lane",
+	Option "h" ["help"] (NoArg Help) "Show usage information",
+	Option "d" ["debug"] (NoArg Debug) "Show raw and parsed arguments"
 	]
 
 main :: IO ()
@@ -41,14 +41,14 @@ main = do
 	args <- getArgs
 	pArgs <- parseOpts program args options
 
-	let debugMode = getOption pArgs (Debug) == Just Debug
+	let debugMode = getOption pArgs Debug == Just Debug
 
-	when (debugMode)
+	when debugMode
 		(do
 			putStrLn $ "Raw Args: " ++ show args
 			putStrLn $ "Parsed Args: " ++ show pArgs)
 
-	when (getOption pArgs (Help) == Just Help)
+	when (getOption pArgs Help == Just Help)
 		(do
 			putStrLn $ usageInfo program options
 			exitSuccess)
@@ -61,11 +61,11 @@ main = do
 		Just (Customer x) -> x
 		_ -> "Mr. Derp"
 
-	let thePeanutButter = case getOption pArgs (PeanutButter) of
+	let thePeanutButter = case getOption pArgs PeanutButter of
 		Just PeanutButter -> 1
 		_ -> 0
 
-	let theJelly = case getOption pArgs (Jelly) of
+	let theJelly = case getOption pArgs Jelly of
 		Just Jelly -> 1
 		_ -> 0
 
@@ -77,7 +77,7 @@ main = do
 			_ -> 1
 		_ -> 0
 
-	let theExpressLane = case getOption pArgs (ExpressLane) of
+	let theExpressLane = case getOption pArgs ExpressLane of
 		Just ExpressLane -> True
 		_ -> False
 
@@ -91,8 +91,8 @@ main = do
 
 	putStrLn $ theCustomer ++ " bought " ++ show numItems ++ " items."
 
-	if (theExpressLane)
-		then if (numItems > 10)
-			then putStrLn $ "Too many items for the express lane; items returned."
-			else putStrLn "Whoosh!"
-		else putStrLn "Thank you, come again soon."
+	putStrLn $ if theExpressLane
+		then if numItems > 10
+			then "Too many items for the express lane; items returned."
+			else "Whoosh!"
+		else "Thank you, come again soon."

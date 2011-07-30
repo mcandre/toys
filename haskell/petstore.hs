@@ -13,5 +13,5 @@ main = do
 	let jerry = Cat "Jerry" 5 "Tom"
 	let rover = Dog "Rover" 10 "Col. Husky"
 
-	putStrLn $ show $ Dog.name (blaspheme jerry)
-	putStrLn $ show $ Dog.name rover
+	putStrLn $ Dog.name (blaspheme jerry)
+	putStrLn $ Dog.name rover
