@@ -79,7 +79,7 @@ def main():
 
 	try:
 		optlist, args=getopt.getopt(systemArgs, "h", ["help"])
-	except Exception, e:
+	except Exception:
 		usage()
 
 	live=len(args)<1
@@ -110,7 +110,7 @@ def main():
 		srcfile.close()
 
 		if code.count("[")!=code.count("]"):
-			raise "Unbalanced brackets"
+			raise Exception("Unbalanced brackets")
 		else:
 			run(code)
 

@@ -62,7 +62,9 @@ class VM
 	end
 
 	def run(level, position=0)
-		while (position<level.length)
+		len = level.length
+
+		while (position<len)
 			@step+=1
 
 			if @debug
@@ -88,7 +90,7 @@ class VM
 			when ","
 				@tape[@address]=STDIN.readchar
 			when "["
-				slevel=VM.sublevel(level[position, level.length-position])
+				slevel=VM.sublevel(level[position, len-position])
 
 				while (@tape[@address]!=0)
 					run(slevel)
@@ -124,15 +126,14 @@ class VM
 	def interactive
 		welcome
 
-		line=gets
-		while line!=BF_INTERACTIVE_EXIT
+		begin
+			line=gets
+
 			result=eval(line.chomp)
 			if (result!="")
 				puts result
 			end
-
-			line=gets
-		end
+		end while line!= BF_INTERACTIVE_EXIT
 	end
 
 	def scripted(script)
