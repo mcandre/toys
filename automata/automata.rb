@@ -37,9 +37,11 @@ class Automata
 	end
 
 	def step
-		@record=0.upto(@memory-1).collect { |i|
+		m = @memory - 1
+
+		@record=0.upto(m).collect { |i|
 			left=i-1;
-			left=@memory-1 if left<0
+			left=m if left<0
 
 			right=i+1;
 			right=0 if right==@memory
@@ -89,9 +91,11 @@ def main
 		RDoc::usage("Usage")
 	end
 
-	if ARGV.length == 1
+	a = ARGV.length
+
+	if a == 1
 		rule=ARGV[0].to_i
-	elsif ARGV.length > 1
+	elsif a > 1
 		RDoc::usage("Usage")
 	end
 
