@@ -71,7 +71,7 @@ def main():
 			proxies["http"]=value
 		elif option=="--ftpproxy":
 			proxies["ftp"]=value
-		elif options=="--gopherproxy":
+		elif option=="--gopherproxy":
 			proxies["gopher"]=value
 
 	urls=args

@@ -5,7 +5,7 @@ __date__="11 Jul 2006 - 24 Oct 2006"
 __copyright__="Copyright 2006 Andrew Pennebaker"
 __URL__="http://snippets.dzone.com/posts/show/2890"
 
-import time, os, socket
+import time, os
 
 import downloader
 from Adler32 import Adler32

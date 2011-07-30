@@ -17,25 +17,29 @@ def makerange(s, min=0, max=65536):
 	r=[]
 
 	try:
-		for set in sets:
+		for s in sets:
 			# form: -300
-			if set[0]=="-":
-				r+=range(min, int(set[1:])+1)
+			if s[0]=="-":
+				temp=range(min, int(s[1:])+1)
+				r+=temp
 			# form: 20000-
-			elif set[-1]=="-":
-				r+=range(int(set[:-1]), max+1)
+			elif s[-1]=="-":
+				temp=range(int(s[:-1]), max+1)
+				r+=temp
 			# form: 200-300
-			elif "-" in set:
-				low, high=set.split("-")
-				r+=range(int(low), int(high)+1) # inclusive
+			elif "-" in s:
+				low, high=s.split("-")
+				temp=range(int(low), int(high)+1) # inclusive
+				r+=temp
 			# form: 80
 			else:
-				r.append(int(set))
+				temp=int(s)
+				r.append(temp)
 
 		for e in r:
 			if e<min or e>max:
 				raise e
-	except Exception, e:
+	except Exception:
 		raise makerange.__doc__
 
 	return r

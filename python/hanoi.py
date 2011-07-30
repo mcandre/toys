@@ -21,13 +21,13 @@ def hanoi(n, start, aux, end):
 	)
 
 def main():
-	n=input("N = ")
+	n=int(raw_input("N = "))
 
 	print "Running"
 
 	startt=time.time()
 
-	steps=hanoi(n, START, AUX, END)
+	hanoi(n, START, AUX, END)
 
 	endt=time.time()
 

@@ -1,3 +1,5 @@
+from luhn import luhn
+
 def nextLuhn(n):
     """nextLuhn(int) -> int
     Gets the smallest Luhn number greater than n.

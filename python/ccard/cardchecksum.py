@@ -1,7 +1,7 @@
 def cardLuhnChecksumIsValid(card_number):
     """ checks to make sure that the card passes a luhn mod-10 checksum """
 
-    sum = 0
+    s = 0
     num_digits = len(card_number)
     oddeven = num_digits & 1
 
@@ -13,6 +13,6 @@ def cardLuhnChecksumIsValid(card_number):
         if digit > 9:
             digit = digit - 9
 
-        sum = sum + digit
+        s += digit
 
-    return ( (sum % 10) == 0 )
+    return (s % 10) == 0

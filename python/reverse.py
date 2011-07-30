@@ -12,17 +12,18 @@ def disordered(sequence):
 
 	return False
 
-inp=range(1, 10)
-numbers=[]
-for i in range(len(inp)):
-	numbers.append(inp.pop(random.randint(0, len(inp)-1)))
+if __name__=="__main__":
+	inp=range(1, 10)
+	numbers=[]
+	for i in range(len(inp)):
+		numbers.append(inp.pop(random.randint(0, len(inp)-1)))
 
-count=0
-while disordered(numbers):
-	print " ".join([str(e) for e in numbers])
-	howmany=raw_input("How many to flip? ")
-	howmany=int(howmany)
-	numbers=flip(numbers, howmany)
-	count+=1
+	count=0
+	while disordered(numbers):
+		print " ".join([str(e) for e in numbers])
+		howmany=raw_input("How many to flip? ")
+		howmany=int(howmany)
+		numbers=flip(numbers, howmany)
+		count+=1
 
-print "Done! That took you %d steps." % (count)
+	print "Done! That took you %d steps." % (count)

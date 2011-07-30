@@ -6,16 +6,16 @@ def getSize(file):
 	except Exception, e:
 		raise e
 
-	bytes=0
+	b=0
 
 	c=f.read(1)
 
 	while c!="":
-		bytes+=1
+		b+=1
 		c=f.read(1)
 	f.close()
 
-	return bytes
+	return b
 
 def usage():
 	print "Usage: %s file" % (sys.argv[0])
@@ -28,7 +28,7 @@ def main():
 	size=0
 	try:
 		size=getSize(sys.argv[1])
-	except Exception, e:
+	except Exception:
 		raise "Could not open %s" % (sys.argv[1])
 
 	print "%d bytes" % (size)

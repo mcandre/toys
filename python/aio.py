@@ -32,13 +32,13 @@ def getSize(file):
 	except Exception, e:
 		raise e
 
-	bytes=0
+	b=0
 
 	c=f.read(1)
 
 	while c!="":
-		bytes+=1
+		b+=1
 		c=f.read(1)
 	f.close()
 
-	return bytes
+	return b

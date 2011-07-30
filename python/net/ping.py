@@ -8,6 +8,7 @@ __copyright__="Copyright 2006 Andrew Pennebaker"
 __version__="0.3"
 
 import os
+import string
 import select
 import socket
 import sys
@@ -53,7 +54,7 @@ def decodeLong(s):
 
 	try:
 		return decodeShort(s[0:2])*65536+decodeShort(s[2:4])
-	except OverflowError, e:
+	except OverflowError:
 		return -1
 
 def encodeAddr(dotStr):
@@ -96,8 +97,8 @@ def createICMPPacket(data):
 		data								# data
 	)
 
-	sum=checksum(packet)
-	packet=packet[0:2]+encodeShort(sum)+packet[4:]
+	s=checksum(packet)
+	packet=packet[0:2]+encodeShort(s)+packet[4:]
 
 	return packet
 
@@ -163,7 +164,7 @@ def ping(host, timeout=2, length=56, ttl=128):
 	destInetAddr=None
 	try:
 		destInetAddr=socket.gethostbyname(host)
-	except socket.gaierror, e:
+	except socket.gaierror:
 		return NULL_REPLY
 
 	data="\x00"*length
@@ -206,7 +207,7 @@ def main():
 
 	try:
 		optlist, args=getopt(systemArgs, "w:l:t:n:vi:h", ["help"])
-	except Exception, e:
+	except Exception:
 		usage()
 
 	if len(args)<1:
@@ -221,29 +222,29 @@ def main():
 				timeout=int(value)
 				if timeout<1:
 					raise Exception
-			except Exception, e:
-				raise "Timeout must be positive"
+			except Exception:
+				raise Exception("Timeout must be positive")
 		elif option=="-l":
 			try:
 				length=int(value)
 				if length<1 or (length%2)!=0:
 					raise Exception
-			except Exception, e:
-				raise "Length must be an even number >= 1"
+			except Exception:
+				raise Exception("Length must be an even number >= 1")
 		elif option=="-t":
 			try:
 				ttl=int(value)
 				if ttl<0 or ttl>255:
 					raise Exception
-			except Exception, e:
-				raise "TTL must be >= 1 and <= 255"
+			except Exception:
+				raise Exception("TTL must be >= 1 and <= 255")
 		elif option=="-n":
 			try:
 				number=int(value)
 				if number<0:
 					raise Exception
-			except Exception, e:
-				raise "Number must be >= 0"
+			except Exception:
+				raise Exception("Number must be >= 0")
 		elif option=="-v":
 			verbose=True
 		elif option=="-i":
@@ -251,8 +252,8 @@ def main():
 				interval=int(value)
 				if interval<0:
 					raise Exception
-			except Exception, e:
-				raise "Interval must be >= 0"
+			except Exception:
+				raise Exception("Interval must be >= 0")
 
 	hosts=args
 

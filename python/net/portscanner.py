@@ -33,44 +33,37 @@ TYPES={
 	"raw":3
 }
 
-def scan(family=FAMILIES["inet"], type=TYPES["tcp"], address="localhost", portrange=range(0, 25+1), verbose=False):
+def scan(family=FAMILIES["inet"], t=TYPES["tcp"], address="localhost", portrange=range(0, 25+1), verbose=False):
 	if family==FAMILIES["inet6"]:
 		if not has_ipv6:
-			raise "Platform does not support IPv6"
+			raise Exception("Platform does not support IPv6")
 
 	openports=[]
 
-	try:
-		if verbose:
-			print "Creating socket"
+	if verbose:
+		print "Creating socket"
 
-		client=socket(family, type)
-	except Exception, e:
-		raise e
+	client=socket(family, t)
 
-	try:
-		for port in portrange:
-			try:
-				if verbose:
-					print "Attempting to connect (%s:%d)" % (address, port)
+	for port in portrange:
+		try:
+			if verbose:
+				print "Attempting to connect (%s:%d)" % (address, port)
 
-				client.connect((address, port))
+			client.connect((address, port))
 
-				if verbose:
-					print "Connection made"
+			if verbose:
+				print "Connection made"
 
-				client.close()
+			client.close()
 
-				if verbose:
-					print "Connection closed"
+			if verbose:
+				print "Connection closed"
 
-				openports.append(i)
-			except Exception, e:
-				if verbose:
-					print "Connection not made"
-
-	except Exception, e:
-		raise e
+			openports.append(port)
+		except Exception:
+			if verbose:
+				print "Connection not made"
 
 	return openports
 
@@ -86,7 +79,7 @@ def usage():
 
 def main():
 	family=FAMILIES["inet"]
-	type=TYPES["tcp"]
+	t=TYPES["tcp"]
 	hosts=[]
 	ports=range(0, 300+1)
 	v=False
@@ -113,7 +106,7 @@ def main():
 				raise TypeError, "Family not valid"
 		elif option=="--type":
 			if TYPES.has_key(value):
-				type=TYPES[value]
+				t=TYPES[value]
 			else:
 				raise TypeError, "Type not valid"
 		elif option=="--port":
@@ -132,7 +125,7 @@ def main():
 	for host in hosts:
 		print "%s:" % (host)
 
-		portinfo=scan(family, type, host, ports, v)
+		portinfo=scan(family, t, host, ports, v)
 
 		if len(portinfo)<1:
 			print "no open ports found"

@@ -26,13 +26,13 @@ import sys
 from getopt import getopt
 
 def approxpi(n=1000):
-	sum=Decimal(0)
+	s=Decimal(0)
 	x=0
 	while x<=n:
-		sum+=Decimal((-1)**x)/Decimal(2*x+1)
+		s+=Decimal((-1)**x)/Decimal(2*x+1)
 		x+=1
 
-	pi=Decimal(4)*sum
+	pi=Decimal(4)*s
 
 	remainder=Decimal(4)/Decimal(2*n+3)
 
@@ -49,11 +49,10 @@ def main():
 	n=1000
 
 	optlist=[]
-	args=[]
 
 	try:
 		optlist, args=getopt(systemArgs, None, ["n=", "help"])
-	except Exception, e:
+	except Exception:
 		usage()
 
 	for option, value in optlist:
@@ -65,8 +64,8 @@ def main():
 				n=int(value)
 				if n<0:
 					raise Exception
-			except Exception, e:
-				raise "N must be at least 0"
+			except Exception:
+				raise Exception("N must be at least 0")
 
 	result=approxpi(n)
 

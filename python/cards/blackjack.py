@@ -54,17 +54,17 @@ def total(cards):
 		return normalSum
 	# try to use a high ace
 	else:
-		sum=normalSum+value["High Ace"]
+		s=normalSum+value["High Ace"]
 		for i in range(len(aces)-1):
-			sum+=value["Low Ace"]
+			s+=value["Low Ace"]
 
 		# if high ace, low ace(s), and/or other cards make sum equal 21
-		if sum<=21:
+		if s<=21:
 			return sum
 		# better use low ace(s)
 		else:
-			sum=normalSum+value["Low Ace"]*len(aces)
-			return sum
+			s=normalSum+value["Low Ace"]*len(aces)
+			return s
 
 def main():
 	deck=PokerDeck()
@@ -91,7 +91,7 @@ def main():
 
 		try:
 			response=raw_input()
-		except Exception, e:
+		except Exception:
 			sys.exit()
 
 		if "h" in response.lower():

@@ -42,11 +42,7 @@ def splitFile(name, length, number):
 	j=0
 	c=infile.read(1)
 	while c!="":
-		outfile=None
-		try:
-			outfile=open("%s.%d" % (name, j), "wb")
-		except Exception, e:
-			raise e
+		outfile=open("%s.%d" % (name, j), "wb")
 
 		while i<length and c!="":
 			outfile.write(c)
@@ -137,16 +133,16 @@ def main():
 				if maxlength<1:
 					raise Exception
 				maxfiles=None
-			except Exception, e:
-				raise "Length must be at least one"
+			except Exception:
+				raise Exception("Length must be at least one")
 		elif option=="--maxfiles":
 			try:
 				maxfiles=int(value)
 				if maxfiles<1:
 					raise Exception
 				maxlength=None
-			except Exception, e:
-				raise "Number must be at least one"
+			except Exception:
+				raise Exception("Number must be at least one")
 
 	filenames=args
 
@@ -159,7 +155,7 @@ def main():
 
 	elif mode==JOIN_MODE:
 		for directory in filenames:
-			files=["%s%s%s" % (directory, os.sep, file) for file in os.listdir(directory)]
+			files=["%s%s%s" % (directory, os.sep, f) for f in os.listdir(directory)]
 
 			try:
 				joinFiles(files)

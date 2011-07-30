@@ -31,7 +31,7 @@ class html2txt(SGMLParser):
 	def handle_entityref(self, ref):
 		try:
 			self.pieces.append(htmllib.HTMLParser.entitydefs[ref])
-		except KeyError, e:
+		except KeyError:
 			self.pieces.append("&"+ref)
 
 	def output(self):

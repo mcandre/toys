@@ -18,6 +18,7 @@ class HelloFrame(wx.Frame):
 	def OnHello(self, event):
 		print "Hello World"
 
-app=wx.PySimpleApp()
-frame=HelloFrame(None, ID_ANY, "wxHello")
-app.MainLoop()
+if __name__=="__main__":
+	app=wx.PySimpleApp()
+	frame=HelloFrame(None, ID_ANY, "wxHello")
+	app.MainLoop()

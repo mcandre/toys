@@ -17,17 +17,15 @@ def get_input():
 				break
 			else:
 				yield chomp(line)
-		except EOFError, e:
+		except EOFError:
 			break
 
 def mark(rows, x, y, c):
 	space=" "
 
-	for i in range(y+1-len(rows)):
-		rows.append([])
+	rows += [] * (y + 1 - len(rows))
 
-	for i in range(x+1-len(rows[y])):
-		rows[y].append(space)
+	rows[y] += space * (x + 1 - len(rows[y]))
 
 	rows[y][x]=c
 

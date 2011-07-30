@@ -20,9 +20,6 @@ def usage():
 	sys.exit()
 
 def main():
-	low=1L
-	high=1L
-
 	systemArgs=sys.argv[1:] # ignore program name
 	optlist=[]
 	args=[]
@@ -32,7 +29,7 @@ def main():
 
 	try:
 		optlist, args=getopt(systemArgs, None, ["help"])
-	except Exception, e:
+	except Exception:
 		usage()
 
 	for option, value in optlist:

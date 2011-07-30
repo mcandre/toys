@@ -16,7 +16,7 @@ from echoconstants import *
 def start(host="localhost", port=8000):
 	server=Rot13Socket(AF_INET, SOCK_STREAM)
 
-	if host is not "localhost":
+	if host != "localhost":
 		host=gethostname()
 
 	try:

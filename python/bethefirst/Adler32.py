@@ -21,6 +21,8 @@ class Adler32(HashFunction.HashFunction):
 	TEST_HASH=0x24d0127
 
 	def __init__(self, sum=0x0001):
+		HashFunction.HashFunction.__init__()
+
 		self.sum=sum
 
 	def sumValid(self, sum):

@@ -28,13 +28,13 @@ def update():
 		for option in options:
 			key, value=option.split(":")
 			interpreters[key]=value
-	except Exception, e:
+	except Exception:
 		pass
 
 def getExtension(filename):
 	try:
 		return filename[filename.rindex(".")+1:]
-	except Exception, e:
+	except Exception:
 		return ""
 
 def makeexec(filename, manual=None):
@@ -47,15 +47,15 @@ def makeexec(filename, manual=None):
 	else:
 		try:
 			auto=interpreters[getExtension(filename)]
-		except KeyError, e:
-			raise "Cannot guess interpreter. Specify manual path."
+		except KeyError:
+			raise Exception("Cannot guess interpreter. Specify manual path.")
 
 	f=None
 
 	try:
 		f=open(filename, "r")
-	except IOError, e:
-		raise "Error reading %s" % (filename)
+	except IOError:
+		raise Exception("Error reading %s" % (filename))
 
 	lines=("".join(f.readlines())).split("\n")
 	f.close()
@@ -63,8 +63,8 @@ def makeexec(filename, manual=None):
 	if lines[0]!=auto:
 		try:
 			f=open(filename, "w")
-		except IOError, e:
-			raise "Error writing to %s" % (filename)
+		except IOError:
+			raise Exception("Error writing to %s" % (filename))
 
 		f.write("%s\n\n" % (auto))
 
@@ -90,7 +90,7 @@ def main():
 
 	try:
 		optlist, args=getopt(systemArgs, "", ["manual=", "help"])
-	except Exception, e:
+	except Exception:
 		usage()
 
 	if len(args)<1:

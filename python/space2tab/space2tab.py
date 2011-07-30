@@ -25,7 +25,7 @@ Defaults to tab = 2 spaces."""
 		try:
 			length=len(m.group(1))
 			break
-		except Exception, e:
+		except Exception:
 			pass
 
 	return length
@@ -45,6 +45,7 @@ def space2tab(input, output, length=None):
 
 	if length==None:
 		length=getSpaceLength(text)
+
 	text=replaceSpaces(text, length)
 
 	f=open(output, "w")
@@ -69,7 +70,7 @@ def main():
 
 	try:
 		optlist, args=getopt(systemArgs, "t:h", ["tablength=", "help"])
-	except Exception, e:
+	except Exception:
 		usage()
 
 	if len(args)<2:
@@ -87,8 +88,8 @@ def main():
 				tablength=int(value)
 				if tablength<1:
 					raise Exception
-			except Exception, e:
-				raise "Tablength is at least 1"
+			except Exception:
+				raise Exception("Tablength is at least 1")
 
 	space2tab(inputfile, outputfile, tablength)
 

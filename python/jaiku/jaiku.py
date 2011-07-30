@@ -21,7 +21,7 @@ def set_status(settings, status):
 	try:
 		s.presence.send(calldata)
 	except:
-		raise "Could not connect."
+		raise Exception("Could not connect.")
 
 def view_status(settings):
 	item=settings["itemdelimeter"]
@@ -45,8 +45,8 @@ def view_status(settings):
 
 		return status
 
-	except IOError, e:
-		raise "Could not connect."
+	except IOError:
+		raise Exception("Could not connect.")
 
 def usage():
 	print "Usage: %s [options]" % (sys.argv[0])
@@ -86,7 +86,7 @@ def main():
 
 	try:
 		optlist, args=getopt.getopt(systemArgs, "u:p:l:svc:h", ["username=", "personal-key=", "location=", "status", "view", "config=", "help"])
-	except e:
+	except:
 		usage()
 
 	for option, value in optlist:
@@ -95,7 +95,7 @@ def main():
 
 	try:
 		configreader.load(open(settings["config"], "r"), settings)
-	except IOError, e:
+	except IOError:
 		pass
 
 	for option, value in optlist:

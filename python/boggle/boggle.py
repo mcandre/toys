@@ -68,7 +68,7 @@ def find(board, word):
 		for j in range(len(board[i])):
 			if word.startswith(board[i][j]):
 				t=trace(board, word, [(i, j)])
-				if t!=False:
+				if t:
 					return t
 
 	return False
@@ -95,7 +95,7 @@ def trace(board, word, positions):
 					rest.startswith(board[i][j])
 				):
 					t=trace(board, word, positions+[(i, j)])
-					if t!=False:
+					if t:
 						return t
 	return False
 
@@ -161,7 +161,7 @@ def main():
 
 	print "You found %d words." % (len(wordsfound))
 
-	temp=raw_input("Press enter to find other words.")
+	raw_input("Press enter to find other words.")
 
 	print "Finding words."
 
@@ -178,7 +178,7 @@ def main():
 
 	print "Computer found %d words." % (len(compwords))
 
-	temp=raw_input("Press enter to list words.")
+	raw_input("Press enter to list words.")
 
 	for word in compwords:
 		print word

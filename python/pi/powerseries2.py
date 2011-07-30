@@ -28,13 +28,13 @@ from getopt import getopt
 def approxpi(n=1000, precision=1000):
 	getcontext().prec=precision
 
-	sum=Decimal(0)
+	s=Decimal(0)
 	x=1
 	while x<=n:
-		sum+=((-1)**x)/Decimal(x*x)
+		s+=((-1)**x)/Decimal(x*x)
 		x+=1
 
-	pi=abs(12*sum).sqrt()
+	pi=abs(12*s).sqrt()
 
 	remainder=(12/Decimal((n+1)**2)).sqrt()
 
@@ -55,11 +55,10 @@ def main():
 	p=1000
 
 	optlist=[]
-	args=[]
 
 	try:
 		optlist, args=getopt(systemArgs, None, ["n=", "precision=", "help"])
-	except Exception, e:
+	except Exception:
 		usage()
 
 	for option, value in optlist:
@@ -71,15 +70,15 @@ def main():
 				n=int(value)
 				if n<1:
 					raise Exception
-			except Exception, e:
-				raise "N must be at least 1"
+			except Exception:
+				raise Exception("N must be at least 1")
 		elif option=="--precision":
 			try:
 				p=int(value)
 				if p<1:
 					raise Exception
-			except Exception, e:
-				raise "Precision must be at least 1"
+			except Exception:
+				raise Exception("Precision must be at least 1")
 
 	result=approxpi(n, p)
 

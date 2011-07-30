@@ -71,8 +71,8 @@ class HashFunction:
 	def test(self):
 		self.reset()
 		self.update(self.TEST_DATA)
-		hash=self.digest()
-		formattedHash=self.format(hash)
+		h=self.digest()
+		formattedHash=self.format(h)
 		unformattedHash=self.unformat(formattedHash)
 
 		if unformattedHash==self.TEST_HASH:

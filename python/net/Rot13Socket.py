@@ -5,10 +5,9 @@ __date__="11 Nov 2005 - 12 Nov 2005"
 __copyright__="Copyright 2005 Andrew Pennebaker"
 __version__="0.2"
 
-from socket import socket as Socket
 from socket import *
 
-class Rot13Socket(Socket):
+class Rot13Socket(socket):
 	def crypt(self, plain):
 		cipher=[]
 		c=0

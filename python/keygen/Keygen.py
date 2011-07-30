@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import sys
 from getopt import getopt
 
@@ -57,7 +59,8 @@ class Keygen:
 		key="0"
 		static=True
 
-		optlist, args=[], []
+		optlist = []
+
 		try:
 			optlist, args=getopt(systemArgs, "gnv:th", ["generate", "no-static", "verify=", "test", "help"])
 		except:

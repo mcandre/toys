@@ -27,8 +27,8 @@ def tiny(url, settings):
 				tinyurl+=settings["description delimeter"]+settings["description"]
 
 		return tinyurl
-	except IOError, e:
-		raise "Could not connect."
+	except IOError:
+		raise Exception("Could not connect.")
 
 def usage():
 	print "Usage: %s [options] <url1> <url2> <url3> ..." % (sys.argv[0])
@@ -43,7 +43,7 @@ def usage():
 
 def main():
 	systemArgs=sys.argv[1:]
-	oplist, args=[], []
+	args=[]
 
 	settings={
 		"config":"tiny.conf",
@@ -65,7 +65,7 @@ def main():
 
 	try:
 		configreader.load(open(settings["config"], "r"), settings)
-	except IOError, e:
+	except IOError:
 		pass
 
 	for option, value in optlist:
@@ -97,5 +97,5 @@ def main():
 if __name__=="__main__":
 	try:
 		main()
-	except KeyboardInterrupt, e:
+	except KeyboardInterrupt:
 		pass

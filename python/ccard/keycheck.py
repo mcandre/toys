@@ -1,5 +1,5 @@
-def sum(number):
-	sum=0
+def cs(number):
+	s=0
 
 	alternate=True
 	while number>0:
@@ -11,11 +11,11 @@ def sum(number):
 			if digit>9:
 				digit-=9
 
-		sum+=digit
+		s+=digit
 
 		alternate=not alternate
 
-	return sum
+	return s
 
 def check(number):
-	return sum(number)%10==0
+	return cs(number)%10==0

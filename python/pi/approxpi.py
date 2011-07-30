@@ -23,15 +23,13 @@ def usage():
 	sys.exit()
 
 def main():
-	systemArgs=sys.argv[1:] # ignore program name
-
 	n=1000L
 
 	try:
 		n=long(sys.argv[1])
-		if b<0:
+		if n<0:
 			raise Exception
-	except Exception, e:
+	except Exception:
 		usage()
 
 	print approxpi(n)

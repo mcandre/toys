@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 
-n=input("N: ")
+if __name__=="__main__":
+	n=int(raw_input("N: "))
 
-print "Running"
+	print "Running"
 
-x=2**n
+	x=2**n
 
-print "2^n=", x
+	print "2^n=", x

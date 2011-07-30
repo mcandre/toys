@@ -11,7 +11,6 @@ from html2txt import html2txt
 
 import webbrowser
 from urllib import urlopen
-import re
 
 import sys
 from getopt import getopt
@@ -54,8 +53,8 @@ def yubnubPlain(command, clean=True):
 
 		return lines
 
-	except IOError, e:
-		return "Error connecting to "+command
+	except IOError:
+		return Exception("Error connecting to "+command)
 
 def usage():
 	print "Usage: "+sys.argv[0]+" [options] <command>"
@@ -75,13 +74,12 @@ def main():
 	global PLAIN_MODE
 
 	mode=BROWSER_MODE
-	parser=PARSER
 	clean=True
 
 	systemArgs=sys.argv[1:]
 	optlist, args=[], []
 	try:
-		optlist, args=getopt(systemArgs, "bphcd", ["browser", "plain", "clean", "dirty", "parser=", "help"])
+		optlist, args=getopt(systemArgs, "bphcd", ["browser", "plain", "clean", "dirty", "help"])
 	except:
 		usage()
 
@@ -97,8 +95,6 @@ def main():
 			clean=True
 		elif option=="-d" or option=="--dirty":
 			clean=False
-		elif option=="--parser":
-			parser=value
 
 	command=" ".join(args)
 

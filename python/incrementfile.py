@@ -34,6 +34,6 @@ def increment(filename):
 
 	newnum="%d" % (int(numstring)+1)
 
-	zeros="".join(["0" for i in range(len(numstring)-len(newnum))])
+	zeros="".join("0" * len(numstring)-len(newnum))
 
 	return "%s%s%s%s" % (pre, zeros, newnum, end)

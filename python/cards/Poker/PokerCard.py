@@ -26,6 +26,8 @@ class PokerCard(Card):
 	JOKER="Joker"
 
 	def __init__(self, suit, rank):
+		Card.__init__()
+
 		self.setSuit(suit)
 		self.setRank(rank)
 

@@ -47,7 +47,7 @@ class SNUSPInterpreter:
 	def __init__(self, debug=False):
 		self.debug=debug
 
-	def printBoard(self, mark=False):
+	def printBoard(self):
 		for row in range(len(self.board)):
 			for column in range(len(self.board[row])):
 				for plate in range(len(self.stack)):
@@ -114,7 +114,7 @@ class SNUSPInterpreter:
 		if self.debug:
 			print "Step: %d" % (self.steps)
 			print "Board:"
-			self.printBoard(mark=True)
+			self.printBoard()
 			print "Stack:"
 			print self.stack
 			print "Tape: %s" % (" ".join(["%d" % (e) for e in self.tape]))
@@ -125,8 +125,8 @@ class SNUSPInterpreter:
 
 		try:
 			cmd=self.board[row][column]
-		except IndexError, e:
-			raise "Board index out of range"
+		except IndexError:
+			raise Exception("Board index out of range")
 
 		if cmd==self.START:
 			self.move()
@@ -159,7 +159,7 @@ class SNUSPInterpreter:
 			self.address-=1
 
 			if self.address<0:
-				raise "Tape index out of range"
+				raise Exception("Tape index out of range")
 
 			self.move()
 		elif cmd==self.WRITE:
@@ -251,7 +251,7 @@ def main():
 
 	try:
 		optlist, args=getopt(systemArgs, "dnh", ["debug", "nowait", "help"])
-	except Exception, e:
+	except Exception:
 		usage()
 
 	if len(args)<1:
@@ -279,12 +279,12 @@ def main():
 		while len(si.stack)>0:
 			si.step()
 			if wait:
-				junk=raw_input()
+				raw_input()
 	else:
 		si.run()
 
 if __name__=="__main__":
 	try:
 		main()
-	except KeyboardInterrupt, e:
+	except KeyboardInterrupt:
 		pass

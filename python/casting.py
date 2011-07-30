@@ -5,12 +5,10 @@ __date__="30 Jan 2007"
 __copyright__="Copyright 2007 Andrew Pennebaker"
 __version__="0.0.1"
 
-import object
-
-class GameObject(object):
+class GameObject:
 	items={}
 
-	def __init__(self, name="Object", description="An object")
+	def __init__(self, name="Object", description="An object"):
 		self.name=name
 		self.description=description
 
@@ -21,7 +19,7 @@ class GameObject(object):
 			item=None
 			try:
 				item=self.items[args[0]]
-			except KeyError, e:
+			except KeyError:
 				return "There is no "+args[0]
 			else:
 				return item.look()
@@ -31,7 +29,7 @@ class GameObject(object):
 
 class Room(GameObject):
 	def __init__(self, name="Room", description="A room"):
-		GameObject.__init__(name, description)
+		GameObject.__init__(self, name, description)
 
 		self.items["floor"]={}
 		self.items["exits"]={}
@@ -55,13 +53,13 @@ class Room(GameObject):
 
 class Map(GameObject):
 	def __init__(self, name="Map", description="A map"):
-		GameObject.__init__(name, description)
+		GameObject.__init__(self, name, description)
 
 		self.items["rooms"]={}
 
 class Character(GameObject):
 	def __init__(self, name="Character", description="A character"):
-		GameObject.__init__(name, description)
+		GameObject.__init__(self, name, description)
 
 		self.items["maps"]={}
 		self.location=""

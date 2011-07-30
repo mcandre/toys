@@ -6,18 +6,18 @@ from getopt import getopt
 def t(t, mult, div):
 	m=2
 	d=3
-	pow=t
-	sum=t
+	p=t
+	s=t
 
-	while pow > 0:
+	while p > 0:
 
-		pow = (pow*mult/div)*m/d
+		p = (p*mult/div)*m/d
 
 		m+=2
 		d+=2
-		sum+=pow
+		s+=p
 
-	return sum
+	return s
 
 def usage():
 	print "Usage: %s [--n n] [--precision precision] [--help]" % (sys.argv[0])
@@ -31,11 +31,10 @@ def main():
 	n=90000L # n=4000
 
 	optlist=[]
-	args=[]
 
 	try:
 		optlist, args=getopt(systemArgs, None, ["n=", "precision=", "help"])
-	except Exception, e:
+	except Exception:
 		usage()
 
 	for option, value in optlist:
@@ -47,15 +46,15 @@ def main():
 				n=long(value)
 				if n<5:
 					raise Exception
-			except Exception, e:
-				raise "N is at least 1"
+			except Exception:
+				raise Exception("N is at least 1")
 		elif option=="--precision":
 			try:
 				po=long(value)
 				if po<1:
 					raise Exception
-			except Exception, e:
-				raise "Precision is at least 1"
+			except Exception:
+				raise Exception("Precision is at least 1")
 
 	for i in range(0, n-5):
 		po *= 10

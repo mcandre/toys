@@ -40,11 +40,11 @@ LISTEN_MODE="LISTEN"
 CONNECT_MODE="CONNECT"
 SCAN_MODE="SCAN"
 
-def listen(host="localhost", port=4000, family=FAMILIES["inet"], type=TYPES["tcp"], command="", key=None, cert=None):
+def listen(host="localhost", port=4000, family=FAMILIES["inet"], t=TYPES["tcp"], command="", key=None, cert=None):
 	if family==FAMILIES["inet6"] and (not has_ipv6):
 		raise Exception, "Platform does not support IPv6"
 
-	server=socket(family, type)
+	server=socket(family, t)
 	if key and cert:
 		server.ssl(key, cert)
 	server.bind((host, port))
@@ -66,11 +66,11 @@ def listen(host="localhost", port=4000, family=FAMILIES["inet"], type=TYPES["tcp
 
 		client.close()
 
-def connect(host, port=4000, family=FAMILIES["inet"], type=TYPES["tcp"], key=None, cert=None):
+def connect(host, port=4000, family=FAMILIES["inet"], t=TYPES["tcp"], key=None, cert=None):
 	if family==FAMILIES["inet6"] and (not has_ipv6):
 		raise Exception, "Platform does not support IPv6"
 
-	client=socket(family, type)
+	client=socket(family, t)
 	if key and cert:
 		client.ssl(key, cert)
 	client.connect((host, port))
@@ -83,13 +83,13 @@ def connect(host, port=4000, family=FAMILIES["inet"], type=TYPES["tcp"], key=Non
 
 	client.close()
 
-def scan(host="localhost", portrange=range(0, 25+1), family=FAMILIES["inet"], type=TYPES["tcp"]):
+def scan(host="localhost", portrange=range(0, 25+1), family=FAMILIES["inet"], t=TYPES["tcp"]):
 	if family==FAMILIES["inet6"] and (not has_ipv6):
 		raise Exception, "Platform does not support IPv6"
 
-	client=socket(family, type)
+	client=socket(family, t)
 
-	open=[]
+	o=[]
 
 	while len(portrange)>0:
 		# randomize port scan
@@ -99,13 +99,13 @@ def scan(host="localhost", portrange=range(0, 25+1), family=FAMILIES["inet"], ty
 		try:
 			client.connect((host, portrange[index]))
 			client.close()
-			open.append(portrange[index])
-		except Exception, e:
+			o.append(portrange[index])
+		except Exception:
 			pass # ignore closed ports
 
 		portrange.pop(index)
 
-	return open
+	return o
 
 def usage():
 	print "Usage: %s [options] <host>" % (sys.argv[0])
@@ -130,7 +130,7 @@ def main():
 	mode=CONNECT_MODE
 	host="localhost"
 	family=FAMILIES["inet"]
-	type=TYPES["tcp"]
+	t=TYPES["tcp"]
 	ports=range(0, 300+1)
 	command=""
 	sslkey=None
@@ -157,7 +157,7 @@ def main():
 				"help"
 			]
 		)
-	except Exception, e:
+	except Exception:
 		usage()
 
 	if len(optlist)<1 and len(args)<1:
@@ -175,7 +175,7 @@ def main():
 				raise TypeError, "Family not valid"
 		elif option=="--type":
 			if TYPES.has_key(value):
-				type=TYPES[value]
+				t=TYPES[value]
 			else:
 				raise TypeError, "Type not valid"
 		elif option=="--port":
@@ -196,11 +196,11 @@ def main():
 			sslcert=open(value, "r")
 
 	if mode==LISTEN_MODE:
-		listen(host, ports[0], family, type, command, sslkey, sslcert)
+		listen(host, ports[0], family, t, command, sslkey, sslcert)
 	elif mode==CONNECT_MODE:
-		connect(host, ports[0], family, type, sslkey, sslcert)
+		connect(host, ports[0], family, t, sslkey, sslcert)
 	elif mode==SCAN_MODE:
-		openports=scan(host, ports, family, type)
+		openports=scan(host, ports, family, t)
 		if len(openports)<1:
 			print "no open ports found"
 		else:

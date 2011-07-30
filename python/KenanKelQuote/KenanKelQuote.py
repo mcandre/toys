@@ -65,7 +65,7 @@ def loadQuotes(objectfile="objects.txt", placefile="places.txt"):
 	except:
 		logger.error("Error loading files")
 
-		raise "Error loading files"
+		raise Exception("Error loading files")
 
 	if len(objects)<1 or len(places)<1:
 		logger.warn("Objects or places empty: %s %s" % (objects, places))
@@ -131,7 +131,7 @@ def main():
 				if loglevel<logging.NOTSET or loglevel>logging.CRITICAL:
 					raise Exception
 			except:
-				raise "Loglevel is an integer from 0 to 50"
+				raise Exception("Loglevel is an integer from 0 to 50")
 
 	if len(args)==2:
 		objectfile, placefile=args
