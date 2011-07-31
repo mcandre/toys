@@ -7,6 +7,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.util.*;
 
+@SuppressWarnings("serial")
 public class PassphraseDialog extends JPanel implements ActionListener {
 	public static boolean CONFIRM_DIALOG=true;
 	public static boolean SINGLE_DIALOG=false;
@@ -77,7 +78,7 @@ public class PassphraseDialog extends JPanel implements ActionListener {
 
 		dialog.pack();
 		Windows.centerOnScreen(dialog);
-		dialog.show();
+		dialog.setVisible(true);
 
 		return returnValue;
 	}

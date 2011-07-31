@@ -3,30 +3,26 @@
 //
 // Credits: http://www.krugle.com/files/cvs/cvs.jabberstudio.org/neutron/plugins/time_plugin.py
 
-/** Proof that Java is retarded. Instead of an easy gmtime() method, I have to use
-the deprecated Date class; I absolutely refuse to use java.util.Calendar with all its
-get(Calendar.CONSTANT) and set(Calendar.CONSTANT) methods. C uses gmtime(), Perl uses
-gmtime(), Ruby uses gmtime(), Python uses gmtime(), even Lua has os.date("%z")! **/
-
-import java.util.Date;
+import java.util.Calendar;
 
 public class Swatch {
-	public static int getTimezone(Date d) {
-		return d.getTimezoneOffset()/60;
+	public static int getTimezone(Calendar c) {
+		return -(c.get(c.ZONE_OFFSET) + c.get(c.DST_OFFSET)) / (60 * 1000)/60;
 	}
 
 	public static double beat() {
-		Date d=new Date();
-		int hour=d.getHours()+getTimezone(d), min=d.getMinutes(), sec=d.getSeconds();
+		Calendar c = Calendar.getInstance();
 
-		int utc=hour*3600+min*60+sec; // Greenwich, England
+		int hour = c.get(c.HOUR_OF_DAY) + getTimezone(c), min = c.get(c.MINUTE), sec = c.get(c.SECOND);
 
-		int bmt=utc+3600; // Biel, Switzerland
+		int utc = hour * 3600 + min * 60 + sec; // Greenwich, England
 
-		double beat=bmt/86.4;
+		int bmt = utc + 3600; // Biel, Switzerland
 
-		if (beat>1000)
-			beat-=1000;
+		double beat = bmt / 86.4;
+
+		if (beat > 1000)
+			beat -= 1000;
 
 		return beat;
 	}

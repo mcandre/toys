@@ -7,6 +7,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.util.*;
 
+@SuppressWarnings("serial")
 public class KeyLengthDialog extends JPanel implements ActionListener {
 	public static boolean  LOCKED=false;
 	public static boolean CUSTOM=true;
@@ -88,7 +89,7 @@ public class KeyLengthDialog extends JPanel implements ActionListener {
 
 		dialog.pack();
 		Windows.centerOnScreen(dialog);
-		dialog.show();
+		dialog.setVisible(true);
 
 		return returnValue;
 	}
