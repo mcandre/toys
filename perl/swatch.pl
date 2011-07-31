@@ -12,8 +12,6 @@ use warnings;
 
 use Time::gmtime;
 
-printf "%s\n", swatch();
-
 sub beat() {
 	my $utc=gmtime();
 
@@ -34,3 +32,5 @@ sub beat() {
 sub swatch() {
 	return sprintf("@%06.2f", beat());
 }
+
+printf "%s\n", swatch();
