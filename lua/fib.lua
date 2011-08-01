@@ -4,11 +4,11 @@ function fib(n)
 	if n<2 then
 		return n
 	else
-		a, b=0, 1
+		local a, b=0, 1
 
-		m=n-1
+		local m=n-1
 
-		i=0
+		local i=0
 		while i<m do
 			a, b=b, a+b
 			i=i+1
@@ -36,15 +36,15 @@ end
 
 io.write("N = ")
 
-n=tonumber(io.read())
+local n=tonumber(io.read())
 
-startt=os.time()
+local startt=os.time()
 
 print("Running")
 
-x=fib(n)
+local x=fib(n)
 
-endt=os.time()
+local endt=os.time()
 
 print("Fib " .. n .. " = " .. x)
 print("Time = ".. (endt-startt) .. " sec")

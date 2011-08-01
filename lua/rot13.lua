@@ -3,14 +3,14 @@
 aplib=require("aplib")
 math=require("math")
 
-BIG_A=65    -- string.byte("A")
-BIG_Z=90    -- string.byte("Z")
-SMALL_A=97  -- string.byte("a")
-SMALL_Z=122 -- string.byte("z")
+local BIG_A=65    -- string.byte("A")
+local BIG_Z=90    -- string.byte("Z")
+local SMALL_A=97  -- string.byte("a")
+local SMALL_Z=122 -- string.byte("z")
 
-KEY=13
+local KEY=13
 
-ALPHABET=26
+local ALPHABET=26
 
 function encrypt(b)
 	local c=0

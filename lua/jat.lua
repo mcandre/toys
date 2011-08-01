@@ -29,7 +29,7 @@ function print_pic(rows)
 end
 
 function main(arg)
-	rows={}
+	local rows={}
 
 	for line in io.lines() do
 		if line:len()==0 then

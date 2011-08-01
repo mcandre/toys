@@ -1,3 +1,5 @@
+#!/usr/bin/env lua
+
 -- Paul Bissex's reverse.lua http://e-scribe.com/news/files/reverse.lua.html
 
 math.randomseed(os.time())
@@ -26,16 +28,16 @@ function disordered(sequence)
 	return false
 end
 
-input = { 1, 2, 3, 4, 5, 6, 7, 8, 9 }
-numbers = {}
+local input = { 1, 2, 3, 4, 5, 6, 7, 8, 9 }
+local numbers = {}
 for i=1,9 do
 	table.insert(numbers, table.remove(input, math.random(#input)))
 end
 
-count = 0
+local count = 0
 while disordered(numbers) do
 	io.write(table.concat(numbers, " ") .. "\nHow many to flip? ")
-	howmany = tonumber(io.read())
+	local howmany = tonumber(io.read())
 	numbers = flip(numbers, howmany)
 	count = count + 1
 end
