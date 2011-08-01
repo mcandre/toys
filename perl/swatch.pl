@@ -12,7 +12,7 @@ use warnings;
 
 use Time::gmtime;
 
-sub beat() {
+sub beat {
 	my $utc=gmtime();
 
 	my ($hour, $min, $sec)=($utc->hour, $utc->min, $utc->sec);
@@ -29,7 +29,7 @@ sub beat() {
 	return $beat;
 }
 
-sub swatch() {
+sub swatch {
 	return sprintf("@%06.2f", beat());
 }
 

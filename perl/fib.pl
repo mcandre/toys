@@ -3,23 +3,7 @@
 use strict;
 use warnings;
 
-print "N = ";
-
-my $n=int(<>);
-
-print "Running\n" ;
-
-my $startt=time();
-
-my $x=fib($n);
-
-my $endt=time();
-
-print "Fib $n = $x\n";
-
-print "Time: ".($endt-$startt)." sec\n";
-
-sub fib() {
+sub fib {
 	my ($n)=@_;
 
 	if ($n<2) {
@@ -40,7 +24,7 @@ sub fib() {
 
 # recursion overhead is slow
 #
-#sub fib() {
+#sub fib {
 #	my ($n)=@_;
 #
 #	if ($n==0) {
@@ -53,3 +37,19 @@ sub fib() {
 #		return fib($n-1)+fib($n-2);
 #	}
 #}
+
+print "N = ";
+
+my $n=int(<>);
+
+print "Running\n" ;
+
+my $startt=time();
+
+my $x=fib($n);
+
+my $endt=time();
+
+print "Fib $n = $x\n";
+
+print "Time: ".($endt-$startt)." sec\n";
