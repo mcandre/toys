@@ -92,7 +92,7 @@ public class VM {
 					break;
 				case ',':
 					try {
-						tape.set(address, (int) System.in.read());
+						tape.set(address, System.in.read());
 					}
 					catch (IOException e) {
 						System.out.println("Error reading from System.in");
