@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/*jslint nodejs:true */
 
 var http = require("http");
 
