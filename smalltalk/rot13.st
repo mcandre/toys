@@ -10,7 +10,7 @@ Character extend [
 		]
 		ifFalse: [
 			self isUppercase ifTrue: [
-			((((self asInteger - ($A asInteger)) + 13) \\ 26) + ($A asInteger)) asCharacter
+				((((self asInteger - ($A asInteger)) + 13) \\ 26) + ($A asInteger)) asCharacter
 			]
 			ifFalse: [
 				self
@@ -22,7 +22,7 @@ Character extend [
 ]
 
 String extend [
-    rot13 [
+	rot13 [
 		| ciphertext |
 
 		ciphertext := self collect: [ :c | c rot13 ].
@@ -33,6 +33,6 @@ String extend [
 
 [
 	[ stdin atEnd ] whileFalse: [
-	    Transcript show: (stdin nextLine rot13); cr.
+		Transcript show: (stdin nextLine rot13); cr.
 	]
 ] on: ExUserBreak do: [].
