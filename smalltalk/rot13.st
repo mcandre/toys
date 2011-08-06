@@ -1,4 +1,5 @@
-#!/usr/bin/env gst
+"exec" "gst" "-f" "$0" "$0" "$*"
+"exit"
 
 Character extend [
 	rot13 [
