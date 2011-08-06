@@ -34,4 +34,4 @@ String extend [
 	[ stdin atEnd ] whileFalse: [
 	    Transcript show: (stdin nextLine rot13); cr.
 	]
-] on: ExUserBreak do: [ :e | ObjectMemory quit: 0 ].
+] on: ExUserBreak do: [].
