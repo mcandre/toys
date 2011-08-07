@@ -1,4 +1,4 @@
-"exec" "gst" "-f" "$0" "$0" "$*"
+"exec" "gst" "-f" "$0" "$0" "$@"
 "exit"
 
 Character extend [
