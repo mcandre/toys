@@ -31,8 +31,16 @@ String extend [
 	]
 ]
 
-[
-	[ stdin atEnd ] whileFalse: [
-		Transcript show: (stdin nextLine rot13); cr.
-	]
-] on: ExUserBreak do: [].
+| main |
+
+main := [
+	[
+		[ stdin atEnd ] whileFalse: [
+			Transcript show: (stdin nextLine rot13); cr.
+		]
+	] on: ExUserBreak do: [].
+].
+
+(((Smalltalk getArgc) > 0) and: [ ((Smalltalk getArgv: 1) endsWith: 'rot13.st') ]) ifTrue: [
+	main value.
+].
