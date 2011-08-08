@@ -1,5 +1,4 @@
-"exec" "gst" "-f" "$0" "$0" "$@"
-"exit"
+#!/usr/bin/env gst
 
 [
 	Transcript show: 'Throwing yawp'; cr.

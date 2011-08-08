@@ -1,5 +1,4 @@
-"exec" "gst" "-f" "$0" "$0" "$@"
-"exit"
+#!/usr/bin/env gst
 
 Character extend [
 	rot13 [
@@ -41,6 +40,6 @@ main := [
 	] on: ExUserBreak do: [].
 ].
 
-(((Smalltalk getArgc) > 0) and: [ ((Smalltalk getArgv: 1) endsWith: 'rot13.st') ]) ifTrue: [
+((thisContext method methodSourceFile) endsWith: 'rot13.st') ifTrue: [
 	main value.
 ].
