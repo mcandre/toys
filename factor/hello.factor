@@ -1,6 +1,6 @@
-#! /usr/bin/env factor -script
+#! /usr/bin/env factor
 
-USE: io
+USING: io ;
 IN: hello
 
 : hello ( -- ) "Hello World!" print ;
