@@ -1,8 +1,8 @@
 #! /usr/bin/env factor
 
-USING: io sequences command-line ;
+USING: namespaces io sequences command-line ;
 IN: args
 
-: main ( -- ) (command-line) [ print ] each ;
+: main ( -- ) command-line get [ print ] each ;
 
 MAIN: main
