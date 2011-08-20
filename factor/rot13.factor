@@ -13,7 +13,7 @@ IN: rot13
     }
     cond ;
 
-: rot13 ( string -- string ) [ rot13-ch ] map ;
+: rot13 ( str -- str ) [ rot13-ch ] map ;
 
 : main ( -- )
     [ readln dup ]
