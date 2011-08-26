@@ -65,8 +65,8 @@ def run(code, position=0):
 	return position
 
 def usage():
-	print "Usage: %s [options] [<sourcefile>]" % (sys.argv[0])
-	print "-h|--help (usage)"
+	print("Usage: %s [options] [<sourcefile>]" % (sys.argv[0]))
+	print("-h|--help (usage)")
 
 	sys.exit()
 
@@ -89,8 +89,8 @@ def main():
 			usage()
 
 	if live:
-		print "--BF Interpreter 0.5--"
-		print "  Type exit to exit."
+		print("--BF Interpreter 0.5--")
+		print("  Type exit to exit.")
 
 		code=""
 		position=0
@@ -117,5 +117,5 @@ def main():
 if __name__=="__main__":
 	try:
 		main()
-	except KeyboardInterrupt, e:
+	except KeyboardInterrupt:
 		pass
