@@ -1,10 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
-if __name__=="__main__":
-	n=int(raw_input("N: "))
+if __name__ == "__main__":
+	n = int(input("N: "))
 
-	print "Running"
+	print("Running")
 
-	x=2**n
+	x = 2**n
 
-	print "2^n=", x
+	print("2^n=", x)
