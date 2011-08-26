@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """Converts decimal numbers to binary using division. Thanks go to Eric Nygren (nygrene@stcsc.edu)."""
 
 __author__="Andrew Pennebaker (andrew.pennebaker@gmail.com)"
@@ -6,7 +8,7 @@ __copyright__="Copyright 2005 Andrew Pennebaker"
 
 def convert(decimal):
 	if decimal==0:
-		print "0000"
+		print("0000")
 		return
 
 	binary=""
@@ -19,4 +21,4 @@ def convert(decimal):
 	if len(binary)%4!=0:
 		binary="%s%s" % ("0"*(4-len(binary)%4), binary)
 
-	print binary
+	print(binary)

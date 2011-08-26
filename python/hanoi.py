@@ -1,42 +1,38 @@
-#!/usr/bin/env python
-
-__author__="Andrew Pennebaker (andrew.pennebaker@gmail.com)"
-__date__="7 Dec 2006 - 12 Jun 2007"
-__copyright__="Copyright 2006 Andrew Pennebaker"
+#!/usr/bin/env python3
 
 import time
 
-START=0
-AUX=1
-END=2
+START = 0
+AUX = 1
+END = 2
 
 def hanoi(n, start, aux, end):
-	if n==1:
+	if n == 1:
 		return (start, end)
 
 	return (
-		hanoi(n-1, start, aux, end)+
-		(start, aux)+
-		hanoi(n-1, aux, end, start)
+		hanoi(n - 1, start, aux, end) +
+		(start, aux) +
+		hanoi(n - 1, aux, end, start)
 	)
 
 def main():
-	n=int(raw_input("N = "))
+	n = int(input("N = "))
 
-	print "Running"
+	print("Running")
 
-	startt=time.time()
+	startt = time.time()
 
 	hanoi(n, START, AUX, END)
 
-	endt=time.time()
+	endt = time.time()
 
-	print "Time = %d sec" % (endt-startt)
+	print("Time = %d sec" % (endt - startt))
 
-	#print "Steps = %s" % str(steps)
+	#print("Steps = %s" % str(steps))
 
-if __name__=="__main__":
+if __name__ == "__main__":
 	try:
 		main()
-	except KeyboardInterrupt, e:
+	except KeyboardInterrupt:
 		pass
