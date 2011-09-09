@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # FreeBSD License
 # 
@@ -62,11 +62,11 @@ import sys, time
 
 from AppKit import *
 
-DEFAULT_PROMPT="Good to see you again, son."
+DEFAULT_PROMPT = "Good to see you again, son."
 
-DEFAULT_RESPONSE=("I'm sorry, my responses are limited. You must ask the right questions.", False)
+DEFAULT_RESPONSE = ("I'm sorry, my responses are limited. You must ask the right questions.", False)
 
-PROMPT2RESPONSE={
+PROMPT2RESPONSE = {
 	"Hello, doctor.": ("Everything that follows is a result of what you see here.", False),
 	"Why did you call me?": ("I trust your judgement.", False),
 	"Normally, these circumstances wouldn't require a homicide detective.": ("But then our interactions have never been entirely normal. Wouldn't you agree?", False),
@@ -81,7 +81,7 @@ PROMPT2RESPONSE={
 	"What?": DEFAULT_RESPONSE
 }
 
-TIME_STOP=7
+TIME_STOP = 7
 
 class Lanning(NSObject):
 	def init(self):
@@ -103,7 +103,7 @@ class Lanning(NSObject):
 		return self
 
 	def say(self, s):
-		print s
+		print(s)
 		self.synthesizer.startSpeakingString_(s)
 
 	def speechRecognizer_didRecognizeCommand_(self, sender, command):
@@ -122,11 +122,11 @@ class Lanning(NSObject):
 			return DEFAULT_RESPONSE
 
 def main():
-	lanning=Lanning.new()
+	lanning = Lanning.new()
 	NSRunLoop.currentRunLoop().runUntilDate_(NSDate.distantFuture())
 
 if __name__ == "__main__":
 	try:
 		main()
-	except KeyboardInterrupt, e:
+	except KeyboardInterrupt:
 		pass

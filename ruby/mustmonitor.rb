@@ -7,7 +7,7 @@ require "open-uri"
 
 def must_blocking_or_offline?
 	begin
-		f=open("http://ip.yellosoft.us/")
+		f=open("http://icanhazip.com/")
 		data=f.read
 		f.close
 

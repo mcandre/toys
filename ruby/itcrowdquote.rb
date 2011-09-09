@@ -4,8 +4,9 @@
 # Copyright:: Copyright 2007-2008 Andrew Pennebaker
 
 require "rubygems"
-require "open-uri"
 require "hpricot"
+
+require "open-uri"
 require "htmlentities"
 
 coder=HTMLEntities.new()
