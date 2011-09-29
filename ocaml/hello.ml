@@ -1,3 +1,3 @@
-#!/usr/bin/env ocaml
+#!/usr/bin/env ocamlscript -o hello
 
-let rec main = print_string "Hello World!\n"
+print_endline "Hello World!"
