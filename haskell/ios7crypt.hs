@@ -39,9 +39,10 @@ pad2 f i = take (2 - length s) "0" ++ s
 	where s = f i ""
 
 onlyPairs :: String -> [String]
-onlyPairs text
-	| length text <= 3 = [take 2 text]
-	| otherwise = take 2 text : (onlyPairs . drop 2) text
+onlyPairs text = take 2 text : if length text <= 3 then
+		[]
+	else
+		(onlyPairs . drop 2) text
 
 encrypt' :: Int -> String -> String
 encrypt' seed password
