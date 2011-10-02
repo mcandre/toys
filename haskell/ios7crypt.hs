@@ -58,9 +58,12 @@ decrypt hash
 	| length hash < 4 = Just ""
 	| otherwise = decrypt' s p
 		where
-			s = (read . take 2) hash
+			s = (maybeRead . take 2) hash
 			(p :: [Maybe Int]) = map (maybeRead . ("0x" ++)) ((onlyPairs . drop 2) hash)
-			decrypt' s p
+
+			decrypt' :: Maybe Int -> [Maybe Int] -> Maybe String
+			decrypt' Nothing _ = Nothing
+			decrypt' (Just s) p
 				| Nothing `elem` p = Nothing
 				| otherwise = Just $ (map chr . zipWith xor (xlat s) . map fromJust) p
 
