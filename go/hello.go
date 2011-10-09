@@ -1,8 +1,4 @@
-// Compile:
-// gomake
-//
-// Run:
-// ./hello
+#!/usr/bin/env gorun
 
 package main
 
