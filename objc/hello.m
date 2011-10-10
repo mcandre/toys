@@ -1,6 +1,10 @@
 // Compile:
 //
 // gcc -o hello -framework foundation hello.m
+//
+// Run:
+//
+// ./hello
 
 #import <Foundation/Foundation.h>
 
