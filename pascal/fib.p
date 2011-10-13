@@ -16,6 +16,5 @@ begin
 	readln(n);
 
 	write('Fib n = ');
-	write(Fib(n));
-	writeln;
+	writeln(Fib(n))
 end.
