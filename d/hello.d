@@ -1,4 +1,4 @@
-#!/usr/bin/env dmd -run
+#!/usr/bin/env rdmd
 
 import std.stdio;
 
