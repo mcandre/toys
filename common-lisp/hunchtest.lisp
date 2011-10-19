@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #|
 exec ccl -e "(load \"$0\")"
 exit
