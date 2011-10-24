@@ -1,0 +1,15 @@
+/* Compile:
+
+	sac2c -o hello hello.sac
+
+	Run:
+
+	./hello */
+
+use StdIO: all;
+use Array: all;
+
+int main() {
+	printf("Hello World!\n");
+	return(0);
+}
