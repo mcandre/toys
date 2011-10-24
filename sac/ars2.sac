@@ -1,0 +1,9 @@
+use StdIO: all;
+use Array: all;
+
+int main() {
+	print(reshape([1], [1]));
+	print(reshape([], [1]));
+
+	return(0);
+}
