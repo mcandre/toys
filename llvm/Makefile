@@ -3,8 +3,7 @@ all: fizzy
 fizzy: fizzy.ll
 	llvm-as fizzy.ll
 	llc fizzy.bc
-	gcc -o fizzy fizzy.s
-	./fizzy
+	gcc -o fizzy -O2 fizzy.s
 
 clean:
 	-rm fizzy
