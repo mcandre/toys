@@ -41,8 +41,8 @@ define i32 @main() {
 		%ival2 = add i32 %ival, 1
 		store i32 %ival2, i32* %i
 
-		%c = icmp ugt i32 %ival, 100
-		br i1 %c, label %quit, label %loop
+		%c = icmp ult i32 %ival, 100
+		br i1 %c, label %loop, label %quit
 	quit:
 		ret i32 0
 }
