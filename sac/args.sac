@@ -1,0 +1,9 @@
+use StdIO: all;
+use Array: all;
+use CommandLine: all;
+
+int main() {
+	printf("%s\n", argv());
+
+	return(0);
+}
