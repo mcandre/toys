@@ -7,19 +7,19 @@ div5 =: 0 = 5 & |
 div35 =: div3 *. div5
 
 fizzy =: 3 : 0
-	if. div35 & do.
-		'FizzBuzz'
-	elseif. div3 & do.
-		'Fizz'
-	elseif. div5 & do.
-		'Buzz'
+	if. div35 y do.
+		echo 'FizzBuzz'
+	elseif. div3 y do.
+		echo 'Fizz'
+	elseif. div5 y do.
+		echo 'Buzz'
 	elseif. 1 do.
-		> 'd' (8!:0) &
+		echo > 'd' (8!:0) y
 	end.
 )
 
-fizzy 1
+xs =: 1 + i. 100
 
-NB. > 'd' (8!:0)/ 1 +/ i. 100
+fizzy"0 xs
 
 exit ''
