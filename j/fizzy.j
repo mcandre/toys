@@ -8,18 +8,18 @@ div35 =: div3 *. div5
 
 fizzy =: 3 : 0
 	if. div35 y do.
-		echo 'FizzBuzz'
+		'FizzBuzz'
 	elseif. div3 y do.
-		echo 'Fizz'
+		'Fizz'
 	elseif. div5 y do.
-		echo 'Buzz'
+		'Buzz'
 	elseif. 1 do.
-		echo > 'd' (8!:0) y
+		> 'd' (8!:0) y
 	end.
 )
 
 xs =: 1 + i. 100
 
-fizzy"0 xs
+echo"1 fizzy"0 xs
 
 exit ''
