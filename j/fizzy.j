@@ -7,11 +7,15 @@ div5 =: 0 = 5 & |
 div35 =: div3 *. div5
 
 fizzy =: 3 : 0
-if. 1 & = do. 'One!'
-elseif. 2 & = do. 'Two!'
-elseif. 3 & = do. 'Three!'
-elseif. 1 do. '?'
-end.
+	if. div35 & do.
+		'FizzBuzz'
+	elseif. div3 & do.
+		'Fizz'
+	elseif. div5 & do.
+		'Buzz'
+	elseif. 1 do.
+		> 'd' (8!:0) &
+	end.
 )
 
 fizzy 1
