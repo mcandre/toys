@@ -6,7 +6,7 @@ div5 =: 0 = 5 & |
 
 div35 =: div3 *. div5
 
-fizzy =: 3 : 0
+fizzy =: monad : 0
 	if. div35 y do.
 		'FizzBuzz'
 	elseif. div3 y do.
