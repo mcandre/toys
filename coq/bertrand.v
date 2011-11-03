@@ -33,5 +33,3 @@ reflexivity.
 Qed.
 
 (* The above proposition is occasionally useful. *)
-
-Check bertrand.

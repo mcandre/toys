@@ -23,5 +23,3 @@ elim H.
 	intros.
 	assumption.
 Qed.
-
-Check peirces_law.
