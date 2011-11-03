@@ -13,7 +13,6 @@ Require Import Classical.
 Lemma peirces_law : forall (p q : Prop), ((p -> q) -> p) -> p.
 
 Proof.
-
 intros.
 apply imply_to_or in H.
 elim H.
