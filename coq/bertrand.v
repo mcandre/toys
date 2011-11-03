@@ -14,8 +14,8 @@ Inductive nat : Set :=
 
 Fixpoint plus (n m : nat) : nat :=
 match n with
-	| O => m
-	| (S n') => S (plus n' m)
+| O => m
+| S n' => S (plus n' m)
 end.
 
 Definition one : nat := S O.

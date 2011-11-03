@@ -1,0 +1,20 @@
+Peirce's Law: ((p -> q) -> p) -> p
+
+(p -> q) -> p		ASSUMPTION
+~(p -> q) | p		ENTAILMENT
+
+	[~(p -> q)]		ASSUMPTION
+	~(~p | q)		ENTAILMENT
+	~~p, ~q			DEMORGAN
+	~~p				AND-ELIMINATION
+	p				DOUBLE NEGATION
+
+	[p]				ASSUMPTION
+	p				IDENTITY
+
+p					EXHAUSTION
+
+===================================
+((p -> q) -> p) -> p
+
+Qed.
