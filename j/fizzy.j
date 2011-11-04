@@ -18,7 +18,7 @@ fizzy =: monad : 0
 	end.
 )
 
-xs =: 1 + i. 100
+xs =. 1 + i. 100
 
 echo"1 fizzy"0 xs
 
