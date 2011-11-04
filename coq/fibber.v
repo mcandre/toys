@@ -24,9 +24,11 @@ match n, m with
 | S n', S m' => minus n' m'
 end.
 
-Fixpoint fib (n : nat) : nat :=
+Fixpoint fibber (n : nat) : nat :=
 match n with
 | O => O
-| one => one
-| _ => plus (fib (minus n one)) (fib (minus n two))
+| S n' => match n' with
+	| O => one
+	| S m' => plus (fibber n') (fibber m')
+	end
 end.

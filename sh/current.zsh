@@ -1,3 +1,3 @@
-#!/usr/bin/env sh
+#!/usr/bin/env zsh
 
 echo "$(dirname -- "$0")"
