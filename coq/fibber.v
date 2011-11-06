@@ -8,12 +8,6 @@ match n with
 | S n' => S (plus n' m)
 end.
 
-Fixpoint mult (n m : nat) : nat :=
-match n with
-| O => O
-| S n' => plus m (mult n' m)
-end.
-
 Definition one : nat := S O.
 Definition two : nat := S(S O).
 
