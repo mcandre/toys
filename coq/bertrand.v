@@ -19,7 +19,7 @@ match n with
 end.
 
 Definition one : nat := S O.
-Definition two : nat := S(S O).
+Definition two : nat := S (S O).
 
 Lemma bertrand : plus one one = two.
 
