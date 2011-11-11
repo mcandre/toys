@@ -1,0 +1,34 @@
+\documentclass{article}
+
+\title{Fizzy}
+\author{Andrew Pennebaker}
+\date{November 10, 2010}
+
+\usepackage{ifthen}
+\usepackage{forloop}
+\usepackage{fmtcount}
+\usepackage{intcalc}
+
+\begin{document}
+
+\maketitle
+
+\newcounter{i}
+\forloop{i}{1}{\value{i} < 101}{
+	\noindent
+	\ifthenelse{\equal{\intcalcMod{value{i}}{15}}{0}}{
+		FizzBuzz
+	}{
+		\ifthenelse{\equal{\intcalcMod{value{i}}{3}}{0}}{
+			Fizz
+		}{
+			\ifthenelse{\equal{\intcalcMod{value{i}}{5}}{0}}{
+				Buzz
+			}{
+				\decimal{i}
+			}
+		}
+	}\\
+}
+
+\end{document}
