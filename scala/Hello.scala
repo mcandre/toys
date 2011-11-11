@@ -7,5 +7,3 @@ object Hello {
 		println("Hello World!")
 	}
 }
-
-Hello.main(args)
