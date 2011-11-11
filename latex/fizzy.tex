@@ -1,4 +1,4 @@
-\documentclass[twocolumn]{article}
+\documentclass[10pt,a4paper]{article}
 
 \title{Fizzy}
 \author{Andrew Pennebaker}
@@ -8,14 +8,14 @@
 \usepackage{forloop}
 \usepackage{fmtcount}
 \usepackage{intcalc}
+\usepackage{multicol}
 
 % Margins
-\setlength{\voffset}{0.1in}
-\setlength{\topskip}{0in}
+\setlength{\topmargin}{-0.25in}
 \pagestyle{empty}
 
 \begin{document}
-
+\begin{multicols}{2}
 \newcounter{i}
 \forloop{i}{1}{\value{i} < 101}{
 	\noindent
@@ -33,5 +33,5 @@
 		}
 	}\\
 }
-
+\end{multicols}
 \end{document}
