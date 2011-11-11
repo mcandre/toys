@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass[twocolumn]{article}
 
 \title{Fizzy}
 \author{Andrew Pennebaker}
@@ -9,20 +9,23 @@
 \usepackage{fmtcount}
 \usepackage{intcalc}
 
-\begin{document}
+% Margins
+\setlength{\voffset}{0.1in}
+\setlength{\topskip}{0in}
+\pagestyle{empty}
 
-\maketitle
+\begin{document}
 
 \newcounter{i}
 \forloop{i}{1}{\value{i} < 101}{
 	\noindent
-	\ifthenelse{\equal{\intcalcMod{value{i}}{15}}{0}}{
+	\ifthenelse{\equal{\intcalcMod{\value{i}}{15}}{0}}{
 		FizzBuzz
 	}{
-		\ifthenelse{\equal{\intcalcMod{value{i}}{3}}{0}}{
+		\ifthenelse{\equal{\intcalcMod{\value{i}}{3}}{0}}{
 			Fizz
 		}{
-			\ifthenelse{\equal{\intcalcMod{value{i}}{5}}{0}}{
+			\ifthenelse{\equal{\intcalcMod{\value{i}}{5}}{0}}{
 				Buzz
 			}{
 				\decimal{i}
