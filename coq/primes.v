@@ -26,6 +26,32 @@ Definition eight : nat := S seven.
 Definition nine : nat := S eight.
 Definition ten : nat := S nine.
 
+Definition divides (n m : nat) : Prop := exists q : nat, m = mult n q.
+
+divides four two.
+
+Fixpoint lte (n m : nat) : Prop :=
+match n with
+| O => True
+| S n' => match m with
+	| O => False
+	| S m' => lte n' m'
+	end
+end.
+
+Fixpoint gt (n m : nat) : Prop :=
+match n with
+| O => False
+| S n' => match m with
+	| O => True
+	| S m' => gt n' m'
+	end
+end.
+
+Definition prime (n : nat) : Prop := gt n one /\ (forall (q : nat), divides q n -> n = one \/ divides q n -> n = n).
+
+Eval simpl in (prime O).
+
 Fixpoint factorial (n : nat) : nat :=
 match n with
 | O => S O
