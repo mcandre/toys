@@ -13,9 +13,7 @@ object Fizzy {
 				"Buzz"
 			else
 				i.toString()
-		}.map { s =>
-			println(s)
-		}
+		}.map(println)
 	}
 
 	def main(args: Array[String]) {
