@@ -3,7 +3,7 @@ exec scala "$0" "$@"
 !#
 
 object Fizzy {
-	def fizzy() {
+	def fizzy {
 		(1 to 100).map { i =>
 			if (i % 15 == 0)
 				"FizzBuzz"
@@ -12,11 +12,11 @@ object Fizzy {
 			else if (i % 5 == 0)
 				"Buzz"
 			else
-				i.toString()
+				i.toString
 		}.map(println)
 	}
 
 	def main(args: Array[String]) {
-		fizzy()
+		fizzy
 	}
 }
