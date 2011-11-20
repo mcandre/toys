@@ -15,4 +15,4 @@ def fizzy = { n ->
 	}
 }
 
-(1 .. 100).collect(fizzy).each({ s -> println s })
+(1 .. 100).collect(fizzy).each { s -> println s }
