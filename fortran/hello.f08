@@ -1,5 +1,5 @@
 ! Compile:
-! gfortran -o hello hello.f03
+! gfortran -o hello hello.f08
 !
 ! Run:
 ! ./hello
