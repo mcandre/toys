@@ -6,6 +6,6 @@
 
 program hello
 
-write (*,*) "Hello World!"
+print *, "Hello World!"
 
 end program
