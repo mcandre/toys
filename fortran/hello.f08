@@ -5,5 +5,7 @@
 ! ./hello
 
 program hello
-	write (*,*) "Hello World!"
+
+write (*,*) "Hello World!"
+
 end program
