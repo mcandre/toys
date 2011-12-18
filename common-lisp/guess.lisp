@@ -1,9 +1,3 @@
-#!/bin/sh
-#|
-exec clisp -q -q $0 $0 ${1+"$@"}
-exit
-|#
-
 ;;; Number guessing game based on Vivek Shangari's Lisp: Tears of Joy, Part 1
 ;;; http://www.linuxforu.com/2011/06/lisp-tears-of-joy-part-1/
 ;;;
