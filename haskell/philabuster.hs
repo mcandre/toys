@@ -50,7 +50,7 @@ module Philabuster where
 
 import Data.Random
 import Data.Random.Source.DevRandom
-import Data.Random.Extras
+import Data.Random.List (randomElement)
 
 features = ["head looks like", "eyes look like", "face looks like"]
 animals = ["lizard", "rabbit", "monkey"]
@@ -60,11 +60,11 @@ suffixes = ["bag", "wipe", "muncher", "bomb", "tard", "gobbler", "fucker", "suck
 
 philabuster :: IO String
 philabuster = do
-	feature <- runRVar (choice features) DevRandom
-	species <- runRVar (choice animals) DevRandom
-	genital <- runRVar (choice genitalia) DevRandom
-	excretion <- runRVar (choice excretions) DevRandom
-	suffix <- runRVar (choice suffixes) DevRandom
+	feature <- runRVar (randomElement features) DevRandom
+	species <- runRVar (randomElement animals) DevRandom
+	genital <- runRVar (randomElement genitalia) DevRandom
+	excretion <- runRVar (randomElement excretions) DevRandom
+	suffix <- runRVar (randomElement suffixes) DevRandom
 
 	return $ "Your " ++ feature ++ " " ++ species ++ " " ++ genital ++ ", you " ++ excretion ++ "-" ++ suffix ++ "!"
 

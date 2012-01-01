@@ -6,7 +6,7 @@ module Roll where
 
 import Data.Random
 import Data.Random.Source.DevRandom
-import Data.Random.Extras
+import Data.Random.List (randomElement)
 import System (getProgName, getArgs)
 import System.Exit (exitSuccess)
 import Control.Monad (replicateM, when)
@@ -41,7 +41,7 @@ fromDie die = 'd' : case die of
 
 -- Roll n dice
 d :: Int -> Die -> IO [Int]
-d n = replicateM n . flip runRVar DevRandom . choice . faces
+d n = replicateM n . flip runRVar DevRandom . randomElement . faces
 	where
 		faces Per = [10, 20 .. 100]
 		faces F = [-1, 0, 1]

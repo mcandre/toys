@@ -9,7 +9,9 @@
 
 module IOS7Crypt where
 
-import Random (randomRIO)
+import Data.Random
+import Data.Random.Source.DevRandom
+import Data.Random.List (randomElement)
 import Numeric (showInt, showHex)
 import Data.List (intercalate)
 import Data.Char (ord, chr)
@@ -51,7 +53,7 @@ encrypt' seed password
 
 encrypt :: String -> IO String
 encrypt password = do
-	seed <- randomRIO (0, 16)
+	seed <- runRVar (randomElement [0..16]) DevRandom
 	return $ encrypt' seed password
 
 decrypt :: String -> Maybe String
