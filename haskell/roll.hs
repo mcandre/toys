@@ -14,6 +14,8 @@ import Data.Maybe (fromMaybe)
 import Data.Char (toLower)
 import Data.List.Split (splitOn)
 import Data.String.Utils (join)
+import Control.Parallel.Strategies
+import Control.Parallel
 
 -- Thanks to aavogt at #haskell
 maybeRead :: Read a => String -> Maybe a
@@ -28,7 +30,7 @@ data Die
 	deriving (Eq, Ord, Show, Read)
 
 toDie :: String -> Maybe Die
-toDie s = case (tail . map toLower) s of
+toDie s = case (tail . (parMap rseq) toLower) s of
 	"%" -> Just Per
 	"f" -> Just F
 	s -> (maybeRead s :: Maybe Int) >>= Just . Poly
@@ -50,7 +52,7 @@ d n = replicateM n . flip runRVar DevRandom . randomElement . faces
 -- Parse and roll n dice
 roll' :: String -> IO (Maybe [Int])
 roll' dice = do
-	let dice' = map toLower dice
+	let dice' = (parMap rseq) toLower dice
 
 	case splitOn "d" dice' of
 		[n, die] -> do

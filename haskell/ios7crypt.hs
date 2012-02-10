@@ -19,6 +19,10 @@ import Bits (xor)
 import Test.QuickCheck
 import Data.Maybe (fromJust)
 import Control.Monad (when)
+
+import Control.Parallel.Strategies
+import Control.Parallel
+
 import GetOptFu
 
 xlat' = [
@@ -49,7 +53,7 @@ onlyPairs text = take 2 text : if length text <= 3 then
 encrypt' :: Int -> String -> String
 encrypt' seed password
 	| seed < 0 || seed > 15 = encrypt' 0 password
-	| otherwise = pad2 showInt seed ++ (intercalate "" . map (pad2 showHex) . zipWith xor (xlat seed) . map ord) password
+	| otherwise = pad2 showInt seed ++ (intercalate "" . (parMap rseq) (pad2 showHex) . zipWith xor (xlat seed) . (parMap rseq) ord) password
 
 encrypt :: String -> IO String
 encrypt password = do
@@ -62,13 +66,13 @@ decrypt hash
 	| otherwise = decrypt' s p
 		where
 			s = (maybeRead . take 2) hash
-			(p :: [Maybe Int]) = map (maybeRead . ("0x" ++)) ((onlyPairs . drop 2) hash)
+			(p :: [Maybe Int]) = (parMap rseq) (maybeRead . ("0x" ++)) ((onlyPairs . drop 2) hash)
 
 			decrypt' :: Maybe Int -> [Maybe Int] -> Maybe String
 			decrypt' Nothing _ = Nothing
 			decrypt' (Just s) p
 				| Nothing `elem` p = Nothing
-				| otherwise = Just $ (map chr . zipWith xor (xlat s) . map fromJust) p
+				| otherwise = Just $ ((parMap rseq) chr . zipWith xor (xlat s) . (parMap rseq) fromJust) p
 
 propReversible :: Int -> String -> Bool
 propReversible seed password = (decrypt . encrypt' seed) password == Just password

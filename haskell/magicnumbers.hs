@@ -3,9 +3,11 @@
 module Magic where
 
 import Text.Printf (printf)
+import Control.Parallel.Strategies
+import Control.Parallel
 
 magic :: String
-magic = (unlines . map magicN) [1..7]
+magic = (unlines . (parMap rseq) magicN) [1..7]
 	where
 		magicN :: Int -> String
 		magicN n
