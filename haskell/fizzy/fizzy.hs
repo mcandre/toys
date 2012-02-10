@@ -1,9 +1,13 @@
 #!/usr/bin/env runhaskell
 
+-- FizzBuzz with parallel processing
 -- Andrew Pennebaker
 
+import Control.Parallel.Strategies
+import Control.Parallel
+
 fizzBuzz :: [String]
-fizzBuzz = map fizzBuzz' [1 .. 100]
+fizzBuzz = (parMap rseq) fizzBuzz' [1 .. 100]
 	where
 		fizzBuzz' :: Int -> String
 		fizzBuzz' x
