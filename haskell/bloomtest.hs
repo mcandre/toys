@@ -17,9 +17,6 @@
 
 import Data.BloomFilter.Easy
 
-query :: Bloom String -> String -> IO ()
-query bf q = putStrLn $ q ++ " in filter? " ++ show (elemB q bf)
-
 main :: IO ()
 main = do
 	let fpr = 0.2
@@ -45,4 +42,4 @@ main = do
 			"Sandy"
 		]
 
-	mapM_ (query bf) queries
+	mapM_ (\q -> putStrLn $ (show q) ++ " in filter? " ++ show (elemB q bf)) queries
