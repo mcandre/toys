@@ -54,7 +54,7 @@ import Data.Random.List (randomElement)
 
 features = ["head looks like", "eyes look like", "face looks like"]
 animals = ["lizard", "rabbit", "monkey"]
-genitalia = ["butt-flaps", "pellets"]
+genitalia = ["butt-flap", "pellets"]
 excretions = ["ass", "pus"]
 suffixes = ["bag", "wipe", "muncher", "bomb", "tard", "gobbler", "fucker", "sucker", "diddler", "slurper", "gurgler", "queefer", "puffer", "knuckler", "nuzzler", "jacker", "groper", "twister", "felcher"]
 
