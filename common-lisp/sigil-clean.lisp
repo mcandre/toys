@@ -19,18 +19,18 @@ exit
 ;;;;  - zip
 ;;;;  - cl-ppcre
 
-;;; Hide stupid Quicklisp warnings
-(handler-bind ((warning #'muffle-warning))
+;;; Hide stupid warnings
+(let* ((*standard-output* (make-broadcast-stream)) (*error-output* *standard-output*))
   ;;; Load Quicklisp.
   (let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp" (user-homedir-pathname))))
     (when (probe-file quicklisp-init)
       (load quicklisp-init))))
 
-;;; Hide stupid warnings from dependencies
-(handler-bind ((warning #'muffle-warning))
+;;; Hide stupid warnings
+(let* ((*standard-output* (make-broadcast-stream)) (*error-output* *standard-output*))
   ;;; Load dependencies.
-  (asdf:oos 'asdf:load-op 'zip :verbose nil)
-  (asdf:oos 'asdf:load-op 'cl-ppcre :verbose nil))
+  (ql:quickload 'zip)
+  (ql:quickload 'cl-ppcre))
 
 (defparameter *temp-filename* "bytes.temp")
 

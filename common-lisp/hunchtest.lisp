@@ -10,17 +10,17 @@ exit
 ;;; Works best with Lispbox
 ;;; http://common-lisp.net/project/lispbox/
 
-;;; Hide stupid Quicklisp warnings
-(handler-bind ((warning #'muffle-warning))
+;;; Hide stupid warnings
+(let* ((*standard-output* (make-broadcast-stream)) (*error-output* *standard-output*))
   ;;; Load Quicklisp.
   (let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp" (user-homedir-pathname))))
     (when (probe-file quicklisp-init)
       (load quicklisp-init))))
 
-;;; Hide stupid warnings from dependencies
-(handler-bind ((warning #'muffle-warning))
+;;; Hide stupid warnings
+(let* ((*standard-output* (make-broadcast-stream)) (*error-output* *standard-output*))
   ;;; Load dependencies.
-  (asdf:oos 'asdf:load-op 'hunchentoot :verbose nil))
+  (ql:quickload 'hunchentoot))
 
 (setq acceptor (make-instance 'hunchentoot:acceptor :port 4242))
 (hunchentoot:start acceptor)
