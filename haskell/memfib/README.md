@@ -1,7 +1,6 @@
 # About
 
-Scientific experiment to evaluate how Haskell uses memoization to increase progr
-am efficiency.
+Scientific experiment to evaluate how Haskell uses memoization to increase program efficiency.
 
 [Source](https://groups.google.com/d/msg/haskell-cafe/4xOSfavJztU/ozKIGRDqe9UJ)
 
