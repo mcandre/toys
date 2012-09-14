@@ -11,10 +11,8 @@ import Test.QuickCheck
 import Data.List (isPrefixOf)
 
 sieve :: (Integral a) => [a] -> [a]
-sieve ns = n : sieve ns'
-	where
-		n = head ns
-		ns' = filter ((/= 0) . flip rem n) ns
+sieve (n:ns) = n : sieve ns'
+	where ns' = filter ((/= 0) . flip rem n) (n:ns)
 
 primes :: (Integral a) => [a]
 primes = sieve [2..]
