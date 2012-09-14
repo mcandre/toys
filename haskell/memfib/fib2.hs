@@ -13,5 +13,3 @@ fib = memo fib'
 main :: IO ()
 main = do
 	putStrLn (show (fib 30))
-	putStrLn (show (fib 30))
-	putStrLn (show (fib 30))

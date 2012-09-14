@@ -7,18 +7,10 @@ am efficiency.
 
 # Example
 
-	$ time ./fib1.hs 
+	$ make
+	time ./fib1.hs
 	832040
-
-	real	0m1.990s
-	user	0m1.912s
-	sys		0m0.058s
-
-	$ time ./fib2.hs 
+	       12.11 real         1.92 user         0.21 sys
+	time ./fib2.hs
 	832040
-	832040
-	832040
-
-	real	0m2.011s
-	user	0m1.928s
-	sys		0m0.063s
+	        2.56 real         1.94 user         0.06 sys
