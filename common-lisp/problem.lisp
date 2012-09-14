@@ -21,20 +21,20 @@ exit
 ;;;;  - split-sequence
 ;;;;  - getopt
 
-;;; Hide stupid Quicklisp warnings
-(handler-bind ((warning #'muffle-warning))
+;;; Hide stupid warnings
+(let* ((*standard-output* (make-broadcast-stream)) (*error-output* *standard-output*))
   ;;; Load Quicklisp.
   (let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp" (user-homedir-pathname))))
     (when (probe-file quicklisp-init)
       (load quicklisp-init))))
 
-;;; Hide stupid warnings from dependencies
-(handler-bind ((warning #'muffle-warning))
+;;; Hide stupid warnings
+(let* ((*standard-output* (make-broadcast-stream)) (*error-output* *standard-output*))
   ;;; Load dependencies.
-  (asdf:oos 'asdf:load-op 'cl-heredoc :verbose nil)
-  (asdf:oos 'asdf:load-op 'html-encode :verbose nil)
-  (asdf:oos 'asdf:load-op 'split-sequence :verbose nil)
-  (asdf:oos 'asdf:load-op 'getopt :verbose nil))
+  (ql:quickload 'cl-heredoc)
+  (ql:quickload 'html-encode)
+  (ql:quickload 'split-sequence)
+  (ql:quickload 'getopt))
 
 (defparameter *inkscape-binary* "inkscape")
 
