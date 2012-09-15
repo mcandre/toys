@@ -44,13 +44,14 @@ Phil: Nice!
 Bonus suffixes from the Really Vulgar Outtakes
 http://www.youtube.com/watch?v=Bh7Nz4bIwss
 
+Requires MissingH and random-fu
+
 -}
 
 module Philabuster where
 
 import Data.Random
-import Data.Random.Source.DevRandom
-import Data.Random.List (randomElement)
+import Data.Random.Source.IO
 
 features = ["head looks like", "eyes look like", "face looks like"]
 animals = ["lizard", "rabbit", "monkey"]
@@ -60,11 +61,11 @@ suffixes = ["bag", "wipe", "muncher", "bomb", "tard", "gobbler", "fucker", "suck
 
 philabuster :: IO String
 philabuster = do
-	feature <- runRVar (randomElement features) DevRandom
-	species <- runRVar (randomElement animals) DevRandom
-	genital <- runRVar (randomElement genitalia) DevRandom
-	excretion <- runRVar (randomElement excretions) DevRandom
-	suffix <- runRVar (randomElement suffixes) DevRandom
+	feature <- sample (randomElement features)
+	species <- sample (randomElement animals)
+	genital <- sample (randomElement genitalia)
+	excretion <- sample (randomElement excretions)
+	suffix <- sample (randomElement suffixes)
 
 	return $ "Your " ++ feature ++ " " ++ species ++ " " ++ genital ++ ", you " ++ excretion ++ "-" ++ suffix ++ "!"
 
