@@ -11,8 +11,7 @@ main:
 
 push msg
 call printf
-add esp, 4
 
-mov eax, 0
 leave
+mov eax, 0
 ret
