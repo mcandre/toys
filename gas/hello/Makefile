@@ -13,9 +13,11 @@ all: test
 test: $(EXECUTABLE)
 	$(RUN)$(EXECUTABLE)
 
-$(EXECUTABLE): hello.s
-	as -o hello.o hello.s
+$(EXECUTABLE): hello.o
 	ld -o $(EXECUTABLE) hello.o $(LIBS)
+
+hello.o: hello.s
+	as -o hello.o hello.s
 
 clean:
 	-rm $(EXECUTABLE)
