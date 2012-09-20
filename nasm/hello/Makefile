@@ -1,7 +1,7 @@
 ifeq ("${MSYSTEM}","MINGW32")
         FORMAT=win32
         EXECUTABLE=hello.exe
-        PREFIX=--PREFIX _
+        PREFIX=--prefix _
         RUN=
 else
         FORMAT=elf
@@ -16,7 +16,7 @@ test: $(EXECUTABLE)
 	$(RUN)$(EXECUTABLE)
 
 $(EXECUTABLE): hello.o
-	ld -o $(EXECUTABLE) hello.o
+	gcc -o $(EXECUTABLE) hello.o
 
 hello.o: hello.asm
 	nasm -f $(FORMAT) -o hello.o $(PREFIX) hello.asm
