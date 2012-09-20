@@ -1,10 +1,10 @@
-LIBS=c:/strawberry/c/bin/../lib/gcc/i686-w64-mingw32/4.4.3/../../../../i686-w64-mingw32/lib/crt2.o c:/strawberry/c/bin/../lib/gcc/i686-w64-mingw32/4.4.3/crtbegin.o -Lc:/strawberry/c/bin/../lib/gcc/i686-w64-mingw32/4.4.3 -Lc:/strawberry/c/bin/../lib/gcc -Lc:/strawberry/c/bin/../lib/gcc/i686-w64-mingw32/4.4.3 -Lc:/strawberry/c/bin/../lib/gcc/i686-w64-mingw32/4.4.3/../../../../lib32/../lib32 -Lc:/strawberry/c/bin/../lib/gcc/i686-w64-mingw32/4.4.3/../../../../lib32 -Lc:/strawberry/c/bin/../lib/gcc/i686-w64-mingw32/4.4.3/../../../../lib32 -Lc:/strawberry/c/bin/../lib/gcc/i686-w64-mingw32/4.4.3 -Lc:/strawberry/c/bin/../lib/gcc -Lc:/strawberry/c/bin/../lib/gcc/i686-w64-mingw32/4.4.3/../../../../lib32 -Lc:/strawberry/c/bin/../lib/gcc/i686-w64-mingw32/4.4.3/../../../../i686-w64-mingw32/lib -Lc:/strawberry/c/bin/../lib/gcc/i686-w64-mingw32/4.4.3/../../.. -L/mingw/lib -Lc:/strawberry/c/bin/../lib/gcc/i686-w64-mingw32/4.4.3/../../../../i686-w64-mingw32/lib -Lc:/strawberry/c/bin/../lib/gcc/i686-w64-mingw32/4.4.3/../../.. -L/mingw/lib -lmingw32 -lgcc_eh -lgcc -lmoldname -lmingwex -lmsvcrt -luser32 -lkernel32
-
 ifeq ("${MSYSTEM}","MINGW32")
 	EXECUTABLE=hello.exe
+	LIBS=c:/strawberry/c/i686-w64-mingw32/lib/crt2.o -Lc:/strawberry/c/i686-w64-mingw32/lib -lmingw32 -lmingwex -lmsvcrt -lkernel32
 	RUN=
 else
 	EXECUTABLE=hello
+	LIBS=
 	RUN=./
 endif
 
