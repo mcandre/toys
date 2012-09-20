@@ -10,7 +10,7 @@ hello: hello.o
 	gcc -o hello hello.o
 
 hello.o: hello.asm
-	nasm -f $(FORMAT) -l hello.lst hello.asm
+	nasm -f $(FORMAT) -o hello.o hello.asm
 
 clean:
 	-rm hello
