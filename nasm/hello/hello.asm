@@ -1,16 +1,16 @@
 section .data
 
-msg: db "Hello World!", 10
+msg: db "Hello World!"
 
 section .text
 
 global main
-extern printf
+extern puts
 
 main:
 
 push msg
-call printf
+call puts
 
 leave
 mov eax, 0
