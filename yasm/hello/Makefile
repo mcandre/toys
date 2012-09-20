@@ -9,10 +9,10 @@ endif
 all: hello
 
 hello: hello.o
-	ld -o $(EXECUTABLE) hello.o
+	gcc -o $(EXECUTABLE) hello.o
 
 hello.o: hello.asm
-	nasm -f $(FORMAT) -o hello.o hello.asm
+	yasm -f $(FORMAT) -o hello.o hello.asm
 
 clean:
 	-rm $(EXECUTABLE)
