@@ -1,15 +1,3 @@
-/*
-
-Assemble:
-
-gcc -o hello hello.s
-
-Run:
-
-./hello
-
-*/
-
 .data
 
 msg:
