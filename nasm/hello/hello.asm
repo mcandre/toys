@@ -14,4 +14,5 @@ call printf
 add esp, 4
 
 mov eax, 0
+leave
 ret
