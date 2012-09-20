@@ -1,6 +1,6 @@
 .data
 
-msg: .ascii "Hello World!\n\0"
+msg: .ascii "Hello World!\0"
 
 .text
 
@@ -9,7 +9,7 @@ msg: .ascii "Hello World!\n\0"
 _main:
 
 pushl $msg
-call _printf
+call _puts
 
 leave
 movl $0, %eax
