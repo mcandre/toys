@@ -40,5 +40,5 @@ $(OBJ): hello.asm
 	nasm $(FORMAT) -o $(OBJ) $(PREFIX) hello.asm
 
 clean:
-	-rm $(EXECUTABLE)
+	-rm $(BIN)
 	-rm $(OBJ)
