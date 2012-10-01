@@ -8,21 +8,13 @@ section .text
 
 global start
 extern puts
+extern exit
 
 start:
-
-; setup stack frame
-push ebp
-mov ebp, esp
 
 push msg
 call puts
 add esp, 4
 
-; tear down stack frame
-mov esp, ebp
-pop ebp
-
-mov eax, 0
-leave
-ret
+push 0
+call exit
