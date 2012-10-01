@@ -4,13 +4,13 @@ msg: .ascii "Hello World!\0"
 
 .text
 
-.global _main
+.globl _start
 
-_main:
+_start:
 
-pushl $msg
+push $msg
 call _puts
+add $4, %esp
 
-leave
-movl $0, %eax
-ret
+push $0
+call _exit

@@ -1,24 +1,39 @@
+# Linux defaults
+
+BIN=hello
+OBJ=hello.o
+ARCH=-arch i386
+ENTRY=-e _start
+MINV=
+LIBS=-lc
+RUN=./
+PIE=
+
 ifeq ("${MSYSTEM}","MINGW32")
-	EXECUTABLE=hello.exe
+	BIN=hello.exe
+	OBJ=hello.obj
+	ARCH=
 	LIBS=c:/strawberry/c/i686-w64-mingw32/lib/crt2.o -Lc:/strawberry/c/i686-w64-mingw32/lib -lmingw32 -lmingwex -lmsvcrt -lkernel32
 	RUN=
-else
-	EXECUTABLE=hello
-	LIBS=
-	RUN=./
 endif
 
-all: test
+# Mac OS X
+ifeq ($(shell uname -s),Darwin)
+	MINV=-macosx_version_min 10.6
+	PIE=-no_pie
+endif
 
-test: $(EXECUTABLE)
-	$(RUN)$(EXECUTABLE)
+all: $(BIN)
 
-$(EXECUTABLE): hello.o
-	ld -o $(EXECUTABLE) hello.o $(LIBS)
+test: $(BIN)
+	$(RUN)$(BIN)
 
-hello.o: hello.s
-	as -o hello.o hello.s
+$(BIN): $(OBJ)
+	ld -o $(BIN) $(OBJ) $(ARCH) $(LIBS) $(MINV) $(ENTRY) $(PIE)
+
+$(OBJ): hello.s
+	as -o $(OBJ) hello.s $(ARCH)
 
 clean:
-	-rm $(EXECUTABLE)
-	-rm hello.o
+	-rm $(BIN)
+	-rm $(OBJ)
