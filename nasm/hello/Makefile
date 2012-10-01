@@ -1,4 +1,4 @@
-# FreeBSD defaults
+# Linux defaults
 
 FORMAT=-f elf
 MINV=

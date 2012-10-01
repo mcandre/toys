@@ -1,17 +1,20 @@
+[bits 32]
+
 section .data
 
-msg: db "Hello World!"
+msg: db "Hello World!", 0
 
 section .text
 
-global main
+global start
 extern puts
+extern exit
 
-main:
+start:
 
 push msg
 call puts
+add esp, 4
 
-leave
-mov eax, 0
-ret
+push 0
+call exit
