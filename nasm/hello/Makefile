@@ -3,46 +3,42 @@
 FORMAT=-f elf
 MINV=
 ARCH=-arch i386
-LIBS=
+LIBS=-lc
 RUN=./
-EXECUTABLE=hello
-PREFIX=
-ENTRY=
+BIN=hello
+OBJ=hello.o
+PREFIX=--prefix _
+ENTRY=-e _start
 PIE=
 
 # Windows
 ifeq (${MSYSTEM},MINGW32)
 	FORMAT=-f win32
-	EXECUTABLE=hello.exe
-	PREFIX=--prefix _
-	ENTRY=-e _start
+	BIN=hello.exe
+	OBJ=hello.obj
 	ARCH=
 	LIBS=c:/strawberry/c/i686-w64-mingw32/lib/crt2.o -Lc:/strawberry/c/i686-w64-mingw32/lib -lmingw32 -lmingwex -lmsvcrt -lkernel32
-	ENTRY=
 	RUN=
 endif
 
 # Mac OS X
 ifeq ($(shell uname -s),Darwin)
 	FORMAT=-f macho
-	PREFIX=--prefix _
-	ENTRY=-e _start
-	LIBS=-lc
 	MINV=-macosx_version_min 10.6
 	PIE=-no_pie
 endif
 
-all: test
+all: $(BIN)
 
-test: $(EXECUTABLE)
-	$(RUN)$(EXECUTABLE)
+test: $(BIN)
+	$(RUN)$(BIN)
 
-$(EXECUTABLE): hello.o
-	ld -o $(EXECUTABLE) hello.o $(ARCH) $(LIBS) $(MINV) $(ENTRY) $(PIE)
+$(BIN): $(OBJ)
+	ld -o $(BIN) $(OBJ) $(ARCH) $(LIBS) $(MINV) $(ENTRY) $(PIE)
 
-hello.o: hello.asm
-	nasm $(FORMAT) -o hello.o $(PREFIX) hello.asm
+$(OBJ): hello.asm
+	nasm $(FORMAT) -o $(OBJ) $(PREFIX) hello.asm
 
 clean:
 	-rm $(EXECUTABLE)
-	-rm hello.o
+	-rm $(OBJ)
