@@ -6,11 +6,11 @@ msg: db "Hello World!", 0
 
 section .text
 
-global start
+global main
 extern puts
 extern exit
 
-start:
+main:
 
 push msg
 call puts
