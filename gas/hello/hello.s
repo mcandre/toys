@@ -4,9 +4,9 @@ msg: .ascii "Hello World!\0"
 
 .text
 
-.globl _start
+.globl _main
 
-_start:
+_main:
 
 push $msg
 call _puts
