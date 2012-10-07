@@ -1,0 +1,18 @@
+//
+// Assemble:
+//
+// hla hello.hla
+//
+// Run:
+//
+// ./hello
+
+program hello;
+
+#include("stdlib.hhf");
+
+begin hello;
+
+stdout.put("Hello World!", nl);
+
+end hello;

@@ -1,12 +1,13 @@
 #!/usr/bin/env runhaskell
 
 -- Andrew Pennebaker
+--
+-- Requires MissingH, random-fu, and split
 
 module Roll where
 
 import Data.Random
-import Data.Random.Source.DevRandom
-import Data.Random.List (randomElement)
+import Data.Random.Source.IO
 import System (getProgName, getArgs)
 import System.Exit (exitSuccess)
 import Control.Monad (replicateM, when)
@@ -43,7 +44,7 @@ fromDie die = 'd' : case die of
 
 -- Roll n dice
 d :: Int -> Die -> IO [Int]
-d n = replicateM n . flip runRVar DevRandom . randomElement . faces
+d n = replicateM n . sample . randomElement . faces
 	where
 		faces Per = [10, 20 .. 100]
 		faces F = [-1, 0, 1]

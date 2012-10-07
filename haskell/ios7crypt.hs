@@ -6,17 +6,18 @@
 -- Andrew Pennebaker
 -- andrew.pennebaker@gmail.com
 -- 30 Nov 2010
+--
+-- Requires MissingH, random-fu, and QuickCheck
 
 module IOS7Crypt where
 
 import Data.Random
-import Data.Random.Source.DevRandom
-import Data.Random.List (randomElement)
+import Data.Random.Source.IO
 import Numeric (showInt, showHex)
 import Data.List (intercalate)
 import Data.Char (ord, chr)
 import Bits (xor)
-import Test.QuickCheck
+import Test.QuickCheck hiding (sample)
 import Data.Maybe (fromJust)
 import Control.Monad (when)
 
@@ -57,7 +58,7 @@ encrypt' seed password
 
 encrypt :: String -> IO String
 encrypt password = do
-	seed <- runRVar (randomElement [0..16]) DevRandom
+	seed <- sample (randomElement [0..16])
 	return $ encrypt' seed password
 
 decrypt :: String -> Maybe String
