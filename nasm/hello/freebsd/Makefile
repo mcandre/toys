@@ -1,4 +1,4 @@
-# FreeBSD / Mac OS X defaults
+# FreeBSD defaults
 
 FORMAT=-f elf
 RUN=./
