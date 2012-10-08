@@ -2,8 +2,8 @@
 
 section .data
 
-msg: db "Hello World!", 10, 0
-len: equ $-msg
+msg db "Hello World!", 10, 0
+len equ $-msg
 
 section .text
 

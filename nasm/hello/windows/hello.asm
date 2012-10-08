@@ -5,7 +5,7 @@ section .data
 stdout equ -11
 null equ 0
 
-msg: db "Hello World!", 13, 10, 0
+msg db "Hello World!", 13, 10, 0
 len equ $-msg
 
 section .bss

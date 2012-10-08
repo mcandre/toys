@@ -17,7 +17,6 @@ push 1		; stdout
 mov eax, 4	; sys_write
 sub esp, 4	; kernel
 int 0x80
-
 add esp, 16	; clean stack (kernel + 4 bytes * 3 arguments)
 
 push 0
