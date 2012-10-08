@@ -7,7 +7,8 @@ len equ $-msg
 
 section .bss
 
-buf resd 1
+stdout resd 1
+charswritten resd 1
 
 section .text
 
@@ -20,13 +21,14 @@ Start:
 
 push -11			; get stdout
 call GetStdHandle
+mov [stdout], eax
 add esp, 4			; clear stack (4 * 1 argument)
 
 push 0				; null
-push buf			; [chars written]
+push charswritten	; [chars written]
 push len
 push msg
-push eax			; stdout
+push dword [stdout]
 call WriteConsoleA
 add esp, 20			; clear stack (4 * 5 arguments)
 
