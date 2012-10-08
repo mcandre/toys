@@ -24,7 +24,7 @@ push stdout
 mov eax, sys_write
 sub esp, 4
 int kernel
-add esp, 16	; clean stack (kernel + 4 bytes * 3 arguments)
+add esp, 4 + 4 * 3
 
 push 0
 mov eax, sys_exit

@@ -22,15 +22,15 @@ Start:
 push -11			; get stdout
 call GetStdHandle
 mov [stdout], eax
-add esp, 4			; clear stack (4 * 1 argument)
+add esp, 4 * 1
 
-push 0				; null
-push charswritten	; [chars written]
+push 0
+push charswritten
 push len
 push msg
 push dword [stdout]
 call WriteConsoleA
-add esp, 20			; clear stack (4 * 5 arguments)
+add esp, 4 * 5
 
 push 0
 call ExitProcess
