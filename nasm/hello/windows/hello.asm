@@ -1,4 +1,4 @@
-[bits 32]
+bits 32
 
 section .data
 
@@ -19,7 +19,7 @@ extern ExitProcess
 
 Start:
 
-push -11			; get stdout
+push -11
 call GetStdHandle
 mov [stdout], eax
 add esp, 4 * 1

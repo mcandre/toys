@@ -1,4 +1,4 @@
-[bits 32]
+bits 32
 
 section .data
 
