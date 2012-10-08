@@ -2,15 +2,12 @@
 
 section .data
 
-stdout equ -11
-null equ 0
-
 msg db "Hello World!", 13, 10, 0
 len equ $-msg
 
 section .bss
 
-dummy resd 1
+buf resd 1
 
 section .text
 
@@ -21,15 +18,15 @@ extern ExitProcess
 
 Start:
 
-push stdout
+push -11			; get stdout
 call GetStdHandle
 
-push null
-push dummy
+push 0				; null
+push buf			; [chars written]
 push len
 push msg
-push eax
+push eax			; stdout
 call WriteConsoleA
 
-push null
+push 0
 call ExitProcess
