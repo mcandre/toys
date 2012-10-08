@@ -2,6 +2,13 @@
 
 section .data
 
+sys_write equ 4
+sys_exit equ 1
+
+stdout equ 1
+
+kernel equ 0x80
+
 msg db "Hello World!", 10, 0
 len equ $-msg
 
@@ -11,12 +18,13 @@ global _start
 
 _start:
 
-mov eax, 4		; sys_write
-mov ebx, 1		; stdout
+mov eax, sys_write
+mov ebx, stdout
 mov ecx, msg
 mov edx, len
-int 0x80		; kernel
+int kernel
 
-mov eax, 1		; sys_exit
+mov eax, sys_exit
 mov ebx, 0
-int 0x80		; kernel
+int kernel
+
