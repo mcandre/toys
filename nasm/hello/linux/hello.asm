@@ -27,4 +27,3 @@ int kernel
 mov eax, sys_exit
 mov ebx, 0
 int kernel
-
