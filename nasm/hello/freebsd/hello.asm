@@ -7,9 +7,9 @@ len equ $-msg
 
 section .text
 
-global _start
+global start
 
-_start:
+start:
 
 push len
 push msg

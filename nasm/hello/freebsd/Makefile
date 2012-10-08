@@ -4,7 +4,6 @@ FORMAT=-f elf
 RUN=./
 BIN=hello
 OBJ=hello.o
-ENTRY=-e _start
 MINV=
 
 # Mac OS X
@@ -19,7 +18,7 @@ test: $(BIN)
 	$(RUN)$(BIN)
 
 $(BIN): $(OBJ)
-	ld -o $(BIN) $(ENTRY) $(MINV) $(OBJ)
+	ld -o $(BIN) $(MINV) $(OBJ)
 
 $(OBJ): hello.asm
 	nasm $(FORMAT) -o $(OBJ) hello.asm
