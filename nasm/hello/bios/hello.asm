@@ -5,7 +5,21 @@ jmp start
 
 msg db "Hello World!", 13, 10, 0
 
-%macro biosprint 1 ; A nice wrapper
+clear:
+	mov ah, 0x0f	; get video mode
+	mov al, 0x00	; reset register
+	int 0x10		; get video mode
+	mov ah, 0x00	; set video mode
+	int 0x10		; reset screen
+	mov ah, 0x02	; set cursor position
+	mov bh, 0x00	; page 0
+	mov dh, 0x00	; row 0
+	mov dl, 0x00	; col 0
+	int 0x10		; set cursor position
+	ret
+
+; puts wrapper
+%macro biosprint 1
 	mov si, %1
 	call puts
 %endmacro
@@ -29,11 +43,8 @@ putc:
 
 start:
 
+call clear
 biosprint msg
-
-; press any key to exit
-mov ah, 0
-int 0x16
 
 times 510 - ($ - $$) db 0
 dw 0xaa55
