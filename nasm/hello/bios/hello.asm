@@ -1,4 +1,6 @@
 bits 16
+org 0x7c00
+
 jmp start
 
 msg db "Hello World!", 13, 10, 0
@@ -20,19 +22,21 @@ puts:
 
 ; print a char to screen - used by puts
 putc:
-	mov ah, 0x0E
+	mov ah, 0x0e
 	mov bx, 0x11
 	int 0x10
 	ret
 
 start:
 
-mov ds, ax
+;xor ax, ax
+;mov ds, ax
+;mov es, ax
 
 biosprint msg
 
 ; press any key to exit
-mov ah, 0x00
+mov ah, 0
 int 0x16
 
 times 510 - ($ - $$) db 0
