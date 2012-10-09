@@ -10,7 +10,7 @@ endif
 all: test
 
 test: $(BIN)
-	qemu-system-i386 $(QCURSES) -no-kvm -fda $(BIN)
+	qemu-system-i386 $(QCURSES) -no-kvm -fda $(BIN) -boot a
 
 $(BIN): hello.asm
 	nasm -o $(BIN) $(FORMAT) hello.asm
