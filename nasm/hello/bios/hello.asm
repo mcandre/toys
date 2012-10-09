@@ -29,10 +29,6 @@ putc:
 
 start:
 
-;xor ax, ax
-;mov ds, ax
-;mov es, ax
-
 biosprint msg
 
 ; press any key to exit
