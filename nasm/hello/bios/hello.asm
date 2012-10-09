@@ -27,6 +27,8 @@ putc:
 
 start:
 
+mov ds, ax
+
 biosprint msg
 
 ; press any key to exit
