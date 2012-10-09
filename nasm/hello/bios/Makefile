@@ -1,9 +1,7 @@
 # Linux defaults
 FORMAT=-f bin
-BIN=hello
+BIN=hello.bin
 QCURSES=-curses
-DISK=disk.img
-SIZE=512 # bytes
 
 ifeq ("${MSYSTEM}","MINGW32")
 	QCURSES=
@@ -11,16 +9,11 @@ endif
 
 all: test
 
-test: $(DISK)
-	qemu-system-i386 $(QCURSES) -no-kvm -fda $(DISK)
+test: $(BIN)
+	qemu-system-i386 $(QCURSES) -no-kvm -fda $(BIN)
 
 $(BIN): hello.asm
 	nasm -o $(BIN) $(FORMAT) hello.asm
 
-$(DISK): $(BIN)
-	qemu-img create $(DISK) $(SIZE)
-	dd if=$(BIN) of=$(DISK)
-
 clean:
-	-rm $(DISK)
 	-rm $(BIN)

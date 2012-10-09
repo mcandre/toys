@@ -32,3 +32,6 @@ biosprint msg
 ; press any key to exit
 mov ah, 0x00
 int 0x16
+
+times 510 - ($ - $$) db 0
+dw 0xaa55
