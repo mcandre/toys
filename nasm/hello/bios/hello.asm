@@ -28,3 +28,7 @@ putc:
 start:
 
 biosprint msg
+
+; press any key to exit
+mov ah, 0x00
+int 0x16
