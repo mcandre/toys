@@ -42,9 +42,8 @@ putc:
 	ret
 
 start:
+	call clear
+	biosprint msg
 
-call clear
-biosprint msg
-
-times 510 - ($ - $$) db 0
-dw 0xaa55
+	times 510 - ($ - $$) db 0
+	dw 0xaa55

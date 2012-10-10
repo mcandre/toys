@@ -7,6 +7,7 @@ len equ $-msg
 
 section .bss
 
+stdouthandle equ -11
 stdout resd 1
 charswritten resd 1
 
@@ -18,19 +19,18 @@ extern WriteConsoleA
 extern ExitProcess
 
 Start:
+	push stdouthandle
+	call GetStdHandle
+	mov [stdout], eax
+	add esp, 4 * 1
 
-push -11
-call GetStdHandle
-mov [stdout], eax
-add esp, 4 * 1
+	push 0
+	push charswritten
+	push len
+	push msg
+	push dword [stdout]
+	call WriteConsoleA
+	add esp, 4 * 5
 
-push 0
-push charswritten
-push len
-push msg
-push dword [stdout]
-call WriteConsoleA
-add esp, 4 * 5
-
-push 0
-call ExitProcess
+	push 0
+	call ExitProcess
