@@ -1,2 +1,4 @@
-#!/usr/bin/env racket -r
-(display "Hello World!\n")
+#!/usr/bin/env racket
+#lang racket
+
+(module+ main (display "Hello World!\n"))

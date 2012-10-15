@@ -1,2 +1,4 @@
-#!/usr/bin/env racket -r
-(printf "Args: ~s\n" (current-command-line-arguments))
+#!/usr/bin/env racket
+#lang racket
+
+(module+ main (printf "Args: ~s\n" (current-command-line-arguments)))
