@@ -1,4 +1,4 @@
-.global _start
+.global start
 
 .data
 
@@ -14,13 +14,16 @@ msg: .asciz "Hello World!\n"
 
 .text
 
-_start:
+start:
+	push $len
+	push $msg
+	push $stdout
 	mov $sys_write, %eax
-	mov $stdout, %ebx
-	mov $msg, %ecx
-	mov $len, %edx
+	sub $4, %esp
 	int $kernel
+	add $4 + $4 * $3, %esp
 
+	push $0
 	mov $sys_exit, %eax
-	mov $0, %ebx
+	sub $4, %esp
 	int $kernel
