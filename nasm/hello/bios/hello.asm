@@ -1,21 +1,23 @@
 bits 16
-org 0x7c00
+org 7c00h
 
 jmp start
+
+bios equ 10h
 
 msg db "Hello World!", 13, 10, 0
 
 clear:
-	mov ah, 0x0f	; get video mode
-	mov al, 0x00	; reset register
-	int 0x10		; get video mode
-	mov ah, 0x00	; set video mode
-	int 0x10		; reset screen
-	mov ah, 0x02	; set cursor position
-	mov bh, 0x00	; page 0
-	mov dh, 0x00	; row 0
-	mov dl, 0x00	; col 0
-	int 0x10		; set cursor position
+	mov ah, 0fh	; get video mode
+	mov al, 00h	; reset register
+	int bios	; get video mode
+	mov ah, 00h	; set video mode
+	int bios	; reset screen
+	mov ah, 02h	; set cursor position
+	mov bh, 00h	; page 0
+	mov dh, 00h	; row 0
+	mov dl, 00h	; col 0
+	int bios	; set cursor position
 	ret
 
 ; puts wrapper
@@ -36,9 +38,9 @@ puts:
 
 ; print a char to screen - used by puts
 putc:
-	mov ah, 0x0e
-	mov bx, 0x11
-	int 0x10
+	mov ah, 0eh
+	mov bx, 11h
+	int bios
 	ret
 
 start:
@@ -46,4 +48,4 @@ start:
 	biosprint msg
 
 	times 510 - ($ - $$) db 0
-	dw 0xaa55
+	dw aa55h

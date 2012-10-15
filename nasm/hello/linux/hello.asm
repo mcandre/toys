@@ -7,7 +7,7 @@ sys_exit equ 1
 
 stdout equ 1
 
-kernel equ 0x80
+kernel equ 80h
 
 msg db "Hello World!", 10, 0
 len equ $-msg
