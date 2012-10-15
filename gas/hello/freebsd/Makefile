@@ -3,12 +3,14 @@ BIN=hello
 OBJ=hello.o
 RUN=./
 AS=as
+ARCH=
 MINV=
 
 # Mac OS X
 ifeq ($(shell uname -s),Darwin)
 	FORMAT=-f macho
 	AS=clang -c
+	ARCH=-arch i386
 	MINV=-macosx_version_min 10.6
 endif
 
@@ -21,7 +23,7 @@ $(BIN): $(OBJ)
 	ld -o $(BIN) $(MINV) $(OBJ)
 
 $(OBJ): hello.s
-	$(AS) -o $(OBJ) hello.s
+	$(AS) -o $(OBJ) $(ARCH) hello.s
 
 clean:
 	-rm $(BIN)
