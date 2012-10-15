@@ -1,29 +1,27 @@
-.global start
-
 .data
 
-.equ stdout, 1
+msg: .string "Hello World!\n"
+len: .long . - msg
 
-.equ sys_write, 4
 .equ sys_exit, 1
-
+.equ sys_write, 4
+.equ stdout, 1
 .equ kernel, 0x80
-
-msg: .asciz "Hello World!\n"
-.equ len, .-msg
 
 .text
 
+.globl start
+
 start:
-	push $len
+	push $14
 	push $msg
 	push $stdout
-	mov $sys_write, %eax
-	sub $4, %esp
+	movl $sys_write, %eax
+	subl $4, %esp
 	int $kernel
-	add $4 + $4 * $3, %esp
+	addl $4 + $4 * 3, %esp
 
 	push $0
-	mov $sys_exit, %eax
+	movl $sys_exit, %eax
 	sub $4, %esp
 	int $kernel

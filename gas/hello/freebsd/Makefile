@@ -20,7 +20,7 @@ test: $(BIN)
 	$(RUN)$(BIN)
 
 $(BIN): $(OBJ)
-	ld -o $(BIN) $(MINV) $(OBJ)
+	ld -o $(BIN) $(MINV) $(ARCH) $(OBJ)
 
 $(OBJ): hello.s
 	$(AS) -o $(OBJ) $(ARCH) hello.s
@@ -28,3 +28,4 @@ $(OBJ): hello.s
 clean:
 	-rm $(BIN)
 	-rm $(OBJ)
+	-rm *.ld_*
