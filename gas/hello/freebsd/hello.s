@@ -1,7 +1,7 @@
 .data
 
-msg: .string "Hello World!\n"
-len: .long . - msg
+msg: .asciz "Hello World!\n"
+len = .-msg
 
 .equ sys_exit, 1
 .equ sys_write, 4
@@ -13,7 +13,7 @@ len: .long . - msg
 .globl start
 
 start:
-	push $14
+	push $len
 	push $msg
 	push $stdout
 	movl $sys_write, %eax
