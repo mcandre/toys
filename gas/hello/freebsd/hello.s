@@ -17,11 +17,11 @@ start:
 	push $msg
 	push $stdout
 	mov $sys_write, %eax
-	subl $4, %esp
+	sub $4, %esp
 	int $kernel
 	add $16, %esp /* $4 + $4 * 3 */
 
-	pushl $0
+	push $0
 	mov $sys_exit, %eax
-	subl $4, %esp
+	sub $4, %esp
 	int $kernel
