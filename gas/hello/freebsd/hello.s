@@ -1,12 +1,12 @@
 .data
 
 msg: .asciz "Hello World!\n"
-len = .-msg
+.set len, . - msg
 
-.equ sys_exit, 1
-.equ sys_write, 4
-.equ stdout, 1
-.equ kernel, 0x80
+.set sys_exit, 1
+.set sys_write, 4
+.set stdout, 1
+.set kernel, 0x80
 
 .text
 
@@ -16,12 +16,12 @@ start:
 	push $len
 	push $msg
 	push $stdout
-	movl $sys_write, %eax
+	mov $sys_write, %eax
 	subl $4, %esp
 	int $kernel
-	addl $4 + $4 * 3, %esp
+	add $16, %esp /* $4 + $4 * 3 */
 
-	push $0
-	movl $sys_exit, %eax
-	sub $4, %esp
+	pushl $0
+	mov $sys_exit, %eax
+	subl $4, %esp
 	int $kernel
