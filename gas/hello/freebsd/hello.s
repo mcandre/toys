@@ -1,7 +1,7 @@
 .data
 
 msg: .asciz "Hello World!\n"
-.set len, . - msg
+.set len, .-msg
 
 .set sys_exit, 1
 .set sys_write, 4
