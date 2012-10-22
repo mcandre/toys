@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
 # From http://freedns.afraid.org/scripts/dnsactual.sh.txt
 # Modified to work in restricted shell accounts

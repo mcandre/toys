@@ -12,7 +12,7 @@ interpreters={
 	"pl":"#!/usr/bin/env perl",
 	"pm":"#!/usr/bin/env perl",
 	"lua":"#!/usr/bin/env lua",
-	"sh":"#!/usr/bin/env sh",
+	"sh":"#!/bin/sh",
 	"rb":"#!/usr/bin/env ruby"
 }
 

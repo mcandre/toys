@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
 div3() {
 	expr $1 % 3 = 0
