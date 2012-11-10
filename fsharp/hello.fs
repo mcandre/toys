@@ -2,4 +2,4 @@
 	exec fsharpi --exec $0 --quiet
 *)
 
-System.Console.WriteLine "Hello World"
+let main = printfn "Hello World"
