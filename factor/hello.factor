@@ -1,4 +1,4 @@
-#! /usr/bin/env factor
+#!/usr/bin/env factor
 
 USING: io ;
 IN: hello
