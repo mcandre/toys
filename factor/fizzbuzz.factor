@@ -1,4 +1,4 @@
-#! /usr/bin/env factor
+#!/usr/bin/env factor
 
 USING: kernel io math prettyprint combinators sequences ;
 IN: fizzbuzz
