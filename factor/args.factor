@@ -1,4 +1,4 @@
-#! /usr/bin/env factor
+#!/usr/bin/env factor
 
 USING: namespaces io sequences command-line ;
 IN: args

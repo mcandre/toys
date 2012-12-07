@@ -1,4 +1,4 @@
-#! /usr/bin/env factor
+#!/usr/bin/env factor
 
 USING: kernel io ascii math combinators sequences ;
 IN: rot13
