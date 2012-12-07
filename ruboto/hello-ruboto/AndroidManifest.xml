@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<manifest package='us.yellosoft.helloruboto' xmlns:android='http://schemas.android.com/apk/res/android' android:versionName='1.0' android:versionCode='1'>
+    <application android:label='@string/app_name' android:icon='@drawable/ic_launcher'>
+        <activity android:label='@string/app_name' android:name='Main'>
+            <intent-filter>
+                <action android:name='android.intent.action.MAIN'/>
+                <category android:name='android.intent.category.LAUNCHER'/>
+            </intent-filter>
+        </activity>
+        <activity android:exported='false' android:name='org.ruboto.RubotoActivity'/>
+        <activity android:exported='false' android:theme='@android:style/Theme.Dialog' android:name='org.ruboto.RubotoDialog'/>
+        <service android:exported='false' android:name='org.ruboto.RubotoService'/>
+    </application>
+    <uses-sdk android:targetSdkVersion='15' android:minSdkVersion='10'/>
+</manifest>
