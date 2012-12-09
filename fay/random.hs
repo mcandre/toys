@@ -12,7 +12,7 @@ random :: Int -> Fay Int
 random = ffi "Math.floor(Math.random() * %1)"
 
 addEventListener :: Element -> String -> Fay () -> Bool -> Fay ()
-addEventListener = ffi "%1.addEventListener(%1,%2,%3)"
+addEventListener = ffi "%1.addEventListener(%1, %2, %3)"
 
 getElementsByTagName :: String -> Fay [Element]
 getElementsByTagName = ffi "document.getElementsByTagName(%1)"
