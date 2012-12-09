@@ -12,24 +12,24 @@ random :: Int -> Fay Int
 random = ffi "Math.floor(Math.random() * %1)"
 
 addEventListener :: Element -> String -> Fay () -> Bool -> Fay ()
-addEventListener = ffi "%1.addEventListener(%1, %2, %3)"
+addEventListener = ffi "%1.addEventListener(%2, %3, %4)"
 
 getElementsByTagName :: String -> Fay [Element]
 getElementsByTagName = ffi "document.getElementsByTagName(%1)"
 
 getFirstElementByTagName :: String -> Fay Element
-getFirstElementByTagName tag = ffi "document.getElementsByTagName(%1)[0]"
+getFirstElementByTagName tag = do
+	es <- getElementsByTagName tag
+	return $ head es
 
-setText :: Element -> String -> Fay ()
-setText = ffi "%1.text = %2"
+setHTML :: Element -> String -> Fay ()
+setHTML = ffi "%1.innerHTML = %2"
 
 refresh :: Fay ()
 refresh = do
 	d <- getFirstElementByTagName "div"
 	r <- random 100
-	setText d $ show r
+	setHTML d $ show r
 
 main :: Fay ()
-main = do
-	body <- getFirstElementByTagName "body"
-	addEventListener body "load" refresh False
+main = refresh
