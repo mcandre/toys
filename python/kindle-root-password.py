@@ -6,6 +6,11 @@
 import hashlib
 import sys
 
+# Common Kindle root passwords:
+# mario
+# fiona1776
+# fiona177
+
 def kindle_root_password(serial):
 	return ("fiona%s" % hashlib.md5((serial + "\n").encode("utf-8")).hexdigest()[7:11])
 
