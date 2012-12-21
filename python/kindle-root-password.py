@@ -12,7 +12,10 @@ import sys
 # fiona177
 
 def kindle_root_password(serial):
-	return ("fiona%s" % hashlib.md5((serial + "\n").encode("utf-8")).hexdigest()[7:11])
+	serialPrime = "".join(serial.split(" "))
+	serialDoublePrime = serialPrime + "\n"
+
+	return ("fiona%s" % hashlib.md5((serialDoublePrime).encode("utf-8")).hexdigest()[7:11])
 
 def usage():
 	print("Usage: %s <serial>" % sys.argv[0])
