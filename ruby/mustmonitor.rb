@@ -31,6 +31,4 @@ def main
 	end
 end
 
-if __FILE__==$0
-	main
-end
+main if __FILE__ == $0

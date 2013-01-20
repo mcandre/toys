@@ -16,10 +16,4 @@ def main
 	1.upto(100) { |i| puts fizz(i) }
 end
 
-if __FILE__==$0
-	begin
-		main
-	rescue Interrupt => e
-		nil
-	end
-end
+main if __FILE__ == $0
