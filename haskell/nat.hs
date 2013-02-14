@@ -38,4 +38,4 @@ myfib n = a `seq` b + a
 		b = myfib (n - 1)
 
 main :: IO ()
-main = putStrLn $ show $ myfib 20
+main = putStrLn . show $ myfib 20

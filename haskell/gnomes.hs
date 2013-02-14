@@ -44,4 +44,4 @@ gnomeParams = nonClusteredParams {
 		fe (f,t,l) = [(Label . StrLabel) l]
 
 main :: IO ()
-main = putStr $ printDotGraph $ graphToDot gnomeParams gnomes
+main = putStr . printDotGraph $ graphToDot gnomeParams gnomes

@@ -17,4 +17,4 @@ fizzBuzz = (parMap rseq) fizzBuzz' [1 .. 100]
 			| otherwise = show x
 
 main :: IO ()
-main = putStrLn $ unlines fizzBuzz
+main = putStrLn . unlines $ fizzBuzz
