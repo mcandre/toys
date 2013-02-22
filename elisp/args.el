@@ -1,2 +1,2 @@
-(mapcar '(lambda (arg) (princ (format "%s\n" arg)))
-	argv)
+#!/usr/bin/env emacs --script
+(mapcar 'message argv)

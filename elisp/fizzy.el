@@ -7,5 +7,5 @@
    ((= (% n 5) 0) "Buzz")
    (t (format "%d" n))))
 
-(mapcar '(lambda (n) (princ (format "%s\n" (fizzy n))))
+(mapcar '(lambda (n) (message (fizzy n)))
 	(number-sequence 1 100))
