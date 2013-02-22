@@ -44,4 +44,4 @@ meParams = nonClusteredParams {
 		fe (f,t,l) = [(Label . StrLabel) l]
 
 main :: IO ()
-main = putStr $ printDotGraph $ graphToDot meParams meGraph
+main = putStr . printDotGraph $ graphToDot meParams meGraph

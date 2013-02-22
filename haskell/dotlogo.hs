@@ -47,4 +47,4 @@ dotParams = nonClusteredParams {
 		fe (f,t,l) = [(Label . StrLabel) l]
 
 main :: IO ()
-main = putStr $ printDotGraph $ graphToDot dotParams dotLogoGraph
+main = putStr . printDotGraph $ graphToDot dotParams dotLogoGraph

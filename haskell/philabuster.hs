@@ -1,5 +1,7 @@
 #!/usr/bin/env runhaskell
 
+-- Requires random-fu
+
 {-
 
 FreeBSD License
@@ -70,6 +72,4 @@ philabuster = do
 	return $ "Your " ++ feature ++ " " ++ species ++ " " ++ genital ++ ", you " ++ excretion ++ "-" ++ suffix ++ "!"
 
 main :: IO ()
-main = do
-	p <- philabuster
-	putStrLn p
+main = philabuster >>= putStrLn
