@@ -3,7 +3,7 @@
 
 ; Load:
 ;
-; clj scriptedmain.clj
+; clj hello.clj
 ;
 ; Interpret:
 ;
