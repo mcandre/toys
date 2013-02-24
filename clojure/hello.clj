@@ -29,4 +29,4 @@
 (defn -main [& args]
 	(if-not (first args)
 		(usage)
-		(println "Hello" (first args) "!")))
+		(printf "Hello %s!\n" (first args))))
