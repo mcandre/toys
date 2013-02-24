@@ -21,12 +21,12 @@
 ; java -cp ~/path/to/clojure.jar:. hello <name>
 
 (ns hello
-	(:gen-class))
+  (:gen-class))
 
 (defn usage []
-	(println "Usage: hello <name>"))
+  (println "Usage: hello <name>"))
 
 (defn -main [& args]
-	(if-not (first args)
-		(usage)
-		(printf "Hello %s!\n" (first args))))
+  (if-not (first args)
+    (usage)
+    (printf "Hello %s!\n" (first args))))
