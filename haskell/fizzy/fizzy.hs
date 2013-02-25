@@ -10,11 +10,11 @@ fizzBuzz :: [String]
 fizzBuzz = (parMap rseq) fizzBuzz' [1 .. 100]
 	where
 		fizzBuzz' :: Int -> String
-		fizzBuzz' x
-			| x `mod` 3 == 0 && x `mod` 5 == 0 = "FizzBuzz"
-			| x `mod` 3 == 0 = "Fizz"
-			| x `mod` 5 == 0 = "Buzz"
-			| otherwise = show x
+		fizzBuzz' x = case (x `mod` 3, x `mod` 5) of
+			(0, 0) -> "FizzBuzz"
+			(0, _) -> "Fizz"
+			(_, 0) -> "Buzz"
+			_ -> show x
 
 main :: IO ()
 main = putStrLn . unlines $ fizzBuzz

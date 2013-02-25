@@ -1,25 +1,6 @@
 ":";exec clj -m `basename $0 .clj` ${1+"$@"}
 ":";exit
 
-; Load:
-;
-; clj fizzy.clj
-;
-; Interpret:
-;
-; ./fizzy.clj
-; clj -m fizzy
-;
-; Compile:
-;
-; clj
-; => (set! *compile-path* ".")
-; => (compile 'fizzy)
-;
-; Run:
-;
-; java -cp ~/path/to/clojure.jar:. fizzy
-
 (ns fizzy
   (:gen-class))
 
