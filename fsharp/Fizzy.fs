@@ -14,4 +14,4 @@ module Fizzy =
       n.ToString("d")
 
   let main =
-    Array.iter (fun s -> printfn "%s" s) (Array.Parallel.map fizzbuzz [1 .. 101])
+    Array.iter (fun s -> printfn "%s" s) (Array.Parallel.map fizzbuzz (List.toArray [1 .. 100]))
