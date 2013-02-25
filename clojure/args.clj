@@ -5,5 +5,4 @@
   (:gen-class))
 
 (defn -main [& args]
-  (doseq [arg args]
-    (println arg)))
+  (doall (map println args)))

@@ -11,5 +11,4 @@
         :else (format "%d" n)))
 
 (defn -main [& args]
-  (doseq [fb (map fizzy (range 1 101))]
-    (println fb)))
+  (doall (map (comp println fizzy) (range 1 101))))
