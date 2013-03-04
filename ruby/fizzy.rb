@@ -2,7 +2,10 @@
 
 require "rubygems"
 require "parallel"
+require "contracts"
+include Contracts
 
+Contract Num => String
 def fizz(n)
   x, y = n % 3, n % 5
 
