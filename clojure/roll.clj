@@ -16,17 +16,15 @@
     [x y]))
 
 (defn roll
-  "Returns a sequence of random rolls specified by xdy or xDy,
+  "Returns a sequence of random rolls specified by strings or keywords of
+
+  xdy or xDy
+
   where x is the number of dice to roll and
   y is the number of faces on each die."
   [dice]
-  (let [[x y] (parse dice)]
+  (let [[x y] (parse (name dice))]
     (doall (repeatedly x #(+ 1 (rand-int y))))))
-
-(defmacro shake
-  "Rolls on keywords."
-  [dice]
-  `(roll (name xc~dice)))
 
 (defn -main [& args]
   (doall (map (comp println roll) args)))
