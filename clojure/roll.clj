@@ -23,5 +23,10 @@
   (let [[x y] (parse dice)]
     (doall (repeatedly x #(+ 1 (rand-int y))))))
 
+(defmacro shake
+  "Rolls on keywords."
+  [dice]
+  `(roll (name xc~dice)))
+
 (defn -main [& args]
   (doall (map (comp println roll) args)))
