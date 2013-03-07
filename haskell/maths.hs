@@ -8,10 +8,10 @@ import Text.Printf
 import Control.Parallel
 
 main = (a::Integer) `par` (b::Integer) `par` (c::Integer) `pseq` printf "A = %d\nB = %d\nC = %d\n" a b c
-	where
-		a = ack 3 10
-		b = fac 42
-		c = fib 34
+  where
+    a = ack 3 10
+    b = fac 42
+    c = fib 34
 
 fac 0 = 1
 fac n = n * fac (n-1)

@@ -63,13 +63,13 @@ suffixes = ["bag", "wipe", "muncher", "bomb", "tard", "gobbler", "fucker", "suck
 
 philabuster :: IO String
 philabuster = do
-	feature <- sample (randomElement features)
-	species <- sample (randomElement animals)
-	genital <- sample (randomElement genitalia)
-	excretion <- sample (randomElement excretions)
-	suffix <- sample (randomElement suffixes)
+  feature <- sample (randomElement features)
+  species <- sample (randomElement animals)
+  genital <- sample (randomElement genitalia)
+  excretion <- sample (randomElement excretions)
+  suffix <- sample (randomElement suffixes)
 
-	return $ "Your " ++ feature ++ " " ++ species ++ " " ++ genital ++ ", you " ++ excretion ++ "-" ++ suffix ++ "!"
+  return $ "Your " ++ feature ++ " " ++ species ++ " " ++ genital ++ ", you " ++ excretion ++ "-" ++ suffix ++ "!"
 
 main :: IO ()
 main = philabuster >>= putStrLn

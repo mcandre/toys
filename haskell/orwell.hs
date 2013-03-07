@@ -3,10 +3,10 @@
 module Orwell where
 
 data Orwell
-	= DoublePlusUnGood
-	| DoubleUnGood
-	| UnGood
-	| Good
-	| DoubleGood
-	| DoublePlusGood
-	deriving (Eq, Ord, Show, Read)
+  = DoublePlusUnGood
+  | DoubleUnGood
+  | UnGood
+  | Good
+  | DoubleGood
+  | DoublePlusGood
+  deriving (Eq, Ord, Show, Read)

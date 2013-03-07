@@ -22,11 +22,11 @@ isLineTerminator _ = False
 ulines :: String -> [String]
 ulines [] = []
 ulines cs = prefix : case suffix of
-		('\r':'\n':rest) -> ulines rest
-		('\r':rest) -> ulines rest
-		('\n':rest) -> ulines rest
-		_ -> []
-	where (prefix, suffix) = break isLineTerminator cs
+    ('\r':'\n':rest) -> ulines rest
+    ('\r':rest) -> ulines rest
+    ('\n':rest) -> ulines rest
+    _ -> []
+  where (prefix, suffix) = break isLineTerminator cs
 
 propOnlyNewlines :: String -> Bool
 propOnlyNewlines s = not $ "\r" `isInfixOf` (unlines . ulines) s

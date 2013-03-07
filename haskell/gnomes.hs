@@ -23,25 +23,25 @@ gnomes = mkGraph [(1, "Collect underpants"), (3, "Profit")] [(1, 3, "?")] :: Gr 
 
 gnomeParams :: GraphvizParams String String () String
 gnomeParams = nonClusteredParams {
-		globalAttributes = ga,
-		fmtNode = fn,
-		fmtEdge = fe
-	}
-	where
-		ga = [
-			GraphAttrs [
-				RankDir FromLeft,
-				(BgColor . X11Color) Transparent
-				],
-			NodeAttrs [
-				Shape BoxShape,
-				(FillColor . X11Color) White,
-				Style [SItem Filled []]
-				]
-			]
+  globalAttributes = ga,
+  fmtNode = fn,
+  fmtEdge = fe
+  }
+  where
+    ga = [
+      GraphAttrs [
+         RankDir FromLeft,
+         (BgColor . X11Color) Transparent
+         ],
+      NodeAttrs [
+        Shape BoxShape,
+        (FillColor . X11Color) White,
+        Style [SItem Filled []]
+        ]
+      ]
 
-		fn (n,l) = [(Label . StrLabel) l]
-		fe (f,t,l) = [(Label . StrLabel) l]
+    fn (n,l) = [(Label . StrLabel) l]
+    fe (f,t,l) = [(Label . StrLabel) l]
 
 main :: IO ()
 main = putStr . printDotGraph $ graphToDot gnomeParams gnomes

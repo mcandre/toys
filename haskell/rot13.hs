@@ -13,12 +13,12 @@ bigZ = ord 'Z'
 
 rot13Char :: Char -> Char
 rot13Char c
-	| isAsciiLower c = rot littleA c
-	| isAsciiUpper c = rot bigA c
-	| otherwise = c
-	where
-		rot :: Int -> Char -> Char
-		rot r = chr . (r +) . flip mod 26 . (13 +) . flip (-) r . ord
+  | isAsciiLower c = rot littleA c
+  | isAsciiUpper c = rot bigA c
+  | otherwise = c
+  where
+    rot :: Int -> Char -> Char
+    rot r = chr . (r +) . flip mod 26 . (13 +) . flip (-) r . ord
 
 rot13 :: String -> String
 rot13 = map rot13Char

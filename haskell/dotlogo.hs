@@ -23,28 +23,28 @@ dotLogoGraph = mkGraph [(0, "D"), (1, "O"), (2, "T")] [(0, 1, ""), (1, 2, ""), (
 
 dotParams :: GraphvizParams String String () String
 dotParams = nonClusteredParams {
-		globalAttributes = ga,
-		fmtNode = fn,
-		fmtEdge = fe
-	}
-	where
-		ga = [
-			GraphAttrs [
-				Center True,
-				(BgColor . X11Color) Transparent,
-				(Margin . DVal) 0.0,
-				(Pad . DVal) 0.0,
-				-- 156.25 pixels
-				ViewPort VP { wVal = 125.0, hVal = 125.0, zVal = 1.0, focus = Nothing }
-				],
-			NodeAttrs [
-				Shape Circle,
-				FontSize 26.0
-				]
-			]
+  globalAttributes = ga,
+  fmtNode = fn,
+  fmtEdge = fe
+  }
+  where
+    ga = [
+      GraphAttrs [
+         Center True,
+         (BgColor . X11Color) Transparent,
+         (Margin . DVal) 0.0,
+         (Pad . DVal) 0.0,
+         -- 156.25 pixels
+         ViewPort VP { wVal = 125.0, hVal = 125.0, zVal = 1.0, focus = Nothing }
+         ],
+      NodeAttrs [
+        Shape Circle,
+        FontSize 26.0
+        ]
+      ]
 
-		fn (n,l) = [(Label . StrLabel) l]
-		fe (f,t,l) = [(Label . StrLabel) l]
+    fn (n,l) = [(Label . StrLabel) l]
+    fe (f,t,l) = [(Label . StrLabel) l]
 
 main :: IO ()
 main = putStr . printDotGraph $ graphToDot dotParams dotLogoGraph
