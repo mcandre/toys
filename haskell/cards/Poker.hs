@@ -1,8 +1,8 @@
 data Suit
-     = Spade
-     | Heart
-     | Diamond
-     | Club
+     = Spades
+     | Hearts
+     | Diamonds
+     | Clubs
      deriving (Eq, Ord, Show, Read)
 
 data Rank
@@ -20,3 +20,8 @@ data Rank
      | Queen
      | King
      deriving (Eq, Ord, Show, Read)
+
+data PokerCard = PokerCard {
+  suit :: Suit,
+  rank :: Rank
+  } deriving (Eq, Ord, Show, Read)
