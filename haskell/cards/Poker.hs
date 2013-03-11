@@ -1,9 +1,7 @@
-data Suit
-     = Spades
-     | Hearts
-     | Diamonds
-     | Clubs
-     deriving (Eq, Ord, Show, Read)
+#!/usr/bin/env runhaskell
+
+-- Enum is surprisingly dumb.
+{-# LANGUAGE StandaloneDeriving, TypeSynonymInstances, FlexibleInstances #-}
 
 data Rank
      = Ace
@@ -19,9 +17,29 @@ data Rank
      | Jack
      | Queen
      | King
-     deriving (Eq, Ord, Show, Read)
+     deriving (Eq, Ord, Enum, Show, Read)
+
+data Suit
+     = Spades
+     | Hearts
+     | Diamonds
+     | Clubs
+     deriving (Eq, Ord, Enum, Show, Read)
 
 data PokerCard = PokerCard {
-  suit :: Suit,
-  rank :: Rank
-  } deriving (Eq, Ord, Show, Read)
+  rank :: Rank,
+  suit :: Suit
+  } deriving (Eq, Ord, Enum)
+
+instance Show PokerCard where
+  show card = (show (rank card)) ++ " of " ++ (show (suit card))
+
+o :: Rank -> Suit -> PokerCard
+r `o` s = PokerCard { rank = r, suit = s }
+
+deriving instance Enum PokerCard
+
+pokerDeck = [Ace `o` Spades .. ]
+
+main :: IO ()
+main = putStrLn $ show pokerDeck
