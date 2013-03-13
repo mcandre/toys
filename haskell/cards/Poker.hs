@@ -1,8 +1,5 @@
 #!/usr/bin/env runhaskell
 
--- Enum is surprisingly dumb.
-{-# LANGUAGE StandaloneDeriving, TypeSynonymInstances, FlexibleInstances #-}
-
 data Rank
      = Ace
      | Two
@@ -29,7 +26,7 @@ data Suit
 data PokerCard = PokerCard {
   rank :: Rank,
   suit :: Suit
-  } deriving (Eq, Ord, Enum)
+  } deriving (Eq, Ord)
 
 instance Show PokerCard where
   show card = (show (rank card)) ++ " of " ++ (show (suit card))
@@ -37,9 +34,7 @@ instance Show PokerCard where
 o :: Rank -> Suit -> PokerCard
 r `o` s = PokerCard { rank = r, suit = s }
 
-deriving instance Enum PokerCard
-
-pokerDeck = [Ace `o` Spades .. ]
+pokerDeck = [ r `o` s | r <- [ Ace .. ], s <- [ Spades .. ] ]
 
 main :: IO ()
 main = putStrLn $ show pokerDeck
