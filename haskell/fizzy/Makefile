@@ -2,7 +2,7 @@ all: fizzy
 
 fizzy: fizzy.hs
 	ghc --make fizzy.hs -threaded -rtsopts
-	./fizzy +RTS -N2
+	./fizzy +RTS -N
 
 clean:
 	-rm fizzy

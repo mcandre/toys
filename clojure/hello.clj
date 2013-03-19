@@ -1,24 +1,24 @@
 ":";exec clj -m `basename $0 .clj` ${1+"$@"}
 ":";exit
 
-; Load:
-;
-; clj hello.clj
-;
-; Interpret:
-;
-; ./hello.clj <name>
-; clj -m hello <name>
-;
-; Compile:
-;
-; clj
-; => (set! *compile-path* ".")
-; => (compile 'hello)
-;
-; Run:
-;
-; java -cp ~/path/to/clojure.jar:. hello <name>
+;; Load:
+;;
+;; clj hello.clj
+;;
+;; Interpret:
+;;
+;; ./hello.clj <name>
+;; clj -m hello <name>
+;;
+;; Compile:
+;;
+;; clj
+;; => (set! *compile-path* ".")
+;; => (compile 'hello)
+;;
+;; Run:
+;;
+;; java -cp ~/path/to/clojure.jar:. hello <name>
 
 (ns hello
   (:gen-class))
@@ -27,6 +27,7 @@
   (println "Usage: hello <name>"))
 
 (defn -main [& args]
-  (if-not (first args)
-    (usage)
-    (printf "Hello %s!\n" (first args))))
+  (let [name (first args)]
+    (if-not name
+      (usage)
+      (printf "Hello %s!\n" name))))
