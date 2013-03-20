@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include <sstream>
-#include <list>
 #include <algorithm>
 // #include <future>
 using namespace std;
