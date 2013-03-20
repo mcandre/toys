@@ -3,6 +3,7 @@
 #include <sstream>
 #include <list>
 #include <algorithm>
+// #include <future>
 using namespace std;
 
 string fizzy(int n) {
@@ -25,12 +26,18 @@ string fizzy(int n) {
 }
 
 void fizzbuzz() {
-  string strings[100];
   list<int> range(100, 0);
   iota(range.begin(), range.end(), 0);
 
+  string strings[100];
+
   for_each(range.begin(), range.end(), [&](int i) {
-      strings[i] = fizzy(i);
+      // std::async(
+      //            launch::async,
+      //            [&]() {
+                   strings[i] = fizzy(i);
+                 // }
+                 // );
     });
 
   for_each(range.begin(), range.end(), [=](int i) {
