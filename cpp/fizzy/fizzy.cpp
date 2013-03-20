@@ -26,10 +26,10 @@ string fizzy(int n) {
 }
 
 void fizzbuzz() {
-  list<int> range(100, 0);
+  vector<int> range(100, 0);
   iota(range.begin(), range.end(), 0);
 
-  string strings[100];
+  vector<string> strings(100, "");
 
   for_each(range.begin(), range.end(), [&](int i) {
       // std::async(
@@ -40,8 +40,8 @@ void fizzbuzz() {
                  // );
     });
 
-  for_each(range.begin(), range.end(), [=](int i) {
-      cout << strings[i] << endl;
+  for_each(strings.begin(), strings.end(), [=](string s) {
+      cout << s << endl;
     });
 }
 
