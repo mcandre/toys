@@ -36,7 +36,7 @@ void fizzbuzz() {
 
   vector<string> strings(100, "");
 
-  for_each(range.begin(), range.end(), [&](int i) {
+  for (auto i : range) {
     #ifdef ASYNC
       std::async(
                  launch::async,
@@ -48,11 +48,11 @@ void fizzbuzz() {
                  }
                  );
     #endif
-    });
+  }
 
-  for_each(strings.begin(), strings.end(), [=](string s) {
-      cout << s << endl;
-    });
+  for (auto s : strings) {
+    cout << s << endl;
+  }
 }
 
 int main() { fizzbuzz(); }
