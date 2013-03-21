@@ -33,11 +33,16 @@ void fizzbuzz() {
   vector<int> range(100, 0);
   iota(range.begin(), range.end(), 0);
 
-  vector<string> strings(100, "");
+  vector<string> strings(range.size(), "");
+
+  #ifdef ASYNC
+    vector<future<void>> futures;
+  #endif
 
   for (auto i : range) {
     #ifdef ASYNC
-      std::async(
+      futures.emplace_back(
+        std::async(
                  launch::async,
                  [&]() {
     #endif
@@ -45,7 +50,8 @@ void fizzbuzz() {
 
     #ifdef ASYNC
                  }
-                 );
+                 )
+          );
     #endif
   }
 
