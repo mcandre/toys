@@ -4,7 +4,11 @@
 #include <vector>
 #include <numeric>
 #include <algorithm>
-// #include <future>
+
+#ifdef ASYNC
+  #include <future>
+#endif
+
 using namespace std;
 
 string fizzy(int n) {
@@ -33,12 +37,17 @@ void fizzbuzz() {
   vector<string> strings(100, "");
 
   for_each(range.begin(), range.end(), [&](int i) {
-      // std::async(
-      //            launch::async,
-      //            [&]() {
+    #ifdef ASYNC
+      std::async(
+                 launch::async,
+                 [&]() {
+    #endif
                    strings[i] = fizzy(i + 1);
-                 // }
-                 // );
+
+    #ifdef ASYNC
+                 }
+                 );
+    #endif
     });
 
   for_each(strings.begin(), strings.end(), [=](string s) {
