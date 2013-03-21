@@ -2,6 +2,7 @@
 #include <string>
 #include <sstream>
 #include <vector>
+#include <numeric>
 #include <algorithm>
 // #include <future>
 using namespace std;
@@ -35,7 +36,7 @@ void fizzbuzz() {
       // std::async(
       //            launch::async,
       //            [&]() {
-                   strings[i] = fizzy(i);
+                   strings[i] = fizzy(i + 1);
                  // }
                  // );
     });

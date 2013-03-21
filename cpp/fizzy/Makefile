@@ -1,6 +1,8 @@
 CC=g++
+LINK_OPTIONS=
 
 ifeq ("${MSYSTEM}","MINGW32")
+	LINK_OPTIONS=-Wl,--enable-auto-import
 else
 	UNAME_S := $(shell uname -s)
 
@@ -15,7 +17,7 @@ test: fizzy
 	./fizzy
 
 fizzy: fizzy.cpp
-	$(CC) -std=c++11 -stdlib=libc++ -Wl,--enable-auto-import -o fizzy fizzy.cpp
+	$(CC) -std=c++11 -stdlib=libc++ $(LINK_OPTIONS) -o fizzy fizzy.cpp
 
 clean:
 	-rm fizzy
