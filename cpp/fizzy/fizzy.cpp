@@ -3,7 +3,6 @@
 #include <sstream>
 #include <vector>
 #include <numeric>
-#include <algorithm>
 
 #ifdef ASYNC
   #include <future>
