@@ -5,12 +5,12 @@
 import java.io.*;
 
 public class YByteOutputStream extends ByteArrayOutputStream {
-	public YByteOutputStream(byte[] newBuf) {
-		super();
-		buf=newBuf;
-	}
+  public YByteOutputStream(byte[] newBuf) {
+    super();
+    buf=newBuf;
+  }
 
-	public byte[] getBytes() {
-		return buf;
-	}
+  public byte[] getBytes() {
+    return buf;
+  }
 }

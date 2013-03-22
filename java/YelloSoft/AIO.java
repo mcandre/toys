@@ -5,94 +5,94 @@
 import java.io.*;
 
 public class AIO {
-	static BufferedReader keyboard=new BufferedReader(new InputStreamReader(System.in));
+  static BufferedReader keyboard=new BufferedReader(new InputStreamReader(System.in));
 
-	// open file for reading
-	public static BufferedReader open(String fileLoc) {
-		FileInputStream fis;
+  // open file for reading
+  public static BufferedReader open(String fileLoc) {
+    FileInputStream fis;
 
-		try {
-			fis=new FileInputStream(fileLoc);
-		}
-		catch(FileNotFoundException e) {
-			return null;
-		}
+    try {
+      fis=new FileInputStream(fileLoc);
+    }
+    catch(FileNotFoundException e) {
+      return null;
+    }
 
-		InputStreamReader isr=new InputStreamReader(fis);
-		BufferedReader br=new BufferedReader(isr);
+    InputStreamReader isr=new InputStreamReader(fis);
+    BufferedReader br=new BufferedReader(isr);
 
-		return br;
-	}
+    return br;
+  }
 
-	// open file for reading
-	public static BufferedReader open(File file) {
-		FileInputStream fis;
+  // open file for reading
+  public static BufferedReader open(File file) {
+    FileInputStream fis;
 
-		try {
-			fis=new FileInputStream(file);
-		}
-		catch(FileNotFoundException e) {
-			return null;
-		}
+    try {
+      fis=new FileInputStream(file);
+    }
+    catch(FileNotFoundException e) {
+      return null;
+    }
 
-		InputStreamReader isr=new InputStreamReader(fis);
-		BufferedReader br=new BufferedReader(isr);
+    InputStreamReader isr=new InputStreamReader(fis);
+    BufferedReader br=new BufferedReader(isr);
 
-		return br;
-	}
+    return br;
+  }
 
-	// create file for writing
-	public static PrintStream create(String fileLoc) {
-		FileOutputStream fos;
+  // create file for writing
+  public static PrintStream create(String fileLoc) {
+    FileOutputStream fos;
 
-		try {
-			fos=new FileOutputStream(fileLoc);
-		}
-		catch(FileNotFoundException e) {
-			return null;
-		}
+    try {
+      fos=new FileOutputStream(fileLoc);
+    }
+    catch(FileNotFoundException e) {
+      return null;
+    }
 
-		PrintStream ps=new PrintStream(fos);
+    PrintStream ps=new PrintStream(fos);
 
-		return ps;
-	}
+    return ps;
+  }
 
-	// create file for writing
-	public static PrintStream create(File file) {
-		FileOutputStream fos;
+  // create file for writing
+  public static PrintStream create(File file) {
+    FileOutputStream fos;
 
-		try {
-			fos=new FileOutputStream(file);
-		}
-		catch(FileNotFoundException e) {
-			return null;
-		}
+    try {
+      fos=new FileOutputStream(file);
+    }
+    catch(FileNotFoundException e) {
+      return null;
+    }
 
-		PrintStream ps=new PrintStream(fos);
+    PrintStream ps=new PrintStream(fos);
 
-		return ps;
-	}
+    return ps;
+  }
 
-	public static String readKeyboard(String s) {
-		System.out.print(s);
-		return read(keyboard);
-	}
+  public static String readKeyboard(String s) {
+    System.out.print(s);
+    return read(keyboard);
+  }
 
-	// read input from keyboard
-	public static String readKeyboard() {
-		return readKeyboard("");
-	}
+  // read input from keyboard
+  public static String readKeyboard() {
+    return readKeyboard("");
+  }
 
-	public static String read(BufferedReader br) {
-		try {
-			return br.readLine();
-		}
-		catch(Exception e) {
-			return null;
-		}
-	}
+  public static String read(BufferedReader br) {
+    try {
+      return br.readLine();
+    }
+    catch(Exception e) {
+      return null;
+    }
+  }
 
-	public static void write(PrintStream ps, String s) {
-		ps.println(s);
-	}
+  public static void write(PrintStream ps, String s) {
+    ps.println(s);
+  }
 }

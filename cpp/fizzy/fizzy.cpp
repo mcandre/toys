@@ -5,7 +5,7 @@
 #include <numeric>
 
 #ifdef ASYNC
-  #include <future>
+#include <future>
 #endif
 
 using namespace std;
@@ -35,24 +35,24 @@ void fizzbuzz() {
 
   vector<string> strings(range.size(), "");
 
-  #ifdef ASYNC
-    vector<future<void>> futures;
-  #endif
+#ifdef ASYNC
+  vector<future<void>> futures;
+#endif
 
   for (auto i : range) {
-    #ifdef ASYNC
-      futures.emplace_back(
-        std::async(
-                 launch::async,
-                 [&]() {
-    #endif
-                   strings[i] = fizzy(i + 1);
+#ifdef ASYNC
+    futures.emplace_back(
+      std::async(
+        launch::async,
+        [&]() {
+#endif
+          strings[i] = fizzy(i + 1);
 
-    #ifdef ASYNC
-                 }
-                 )
-          );
-    #endif
+#ifdef ASYNC
+        }
+      )
+    );
+#endif
   }
 
   for (auto s : strings) {

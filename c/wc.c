@@ -4,38 +4,38 @@
 #include <stdio.h>
 
 int main() {
-	int IN=1;
-	int OUT=0;
+  int IN=1;
+  int OUT=0;
 
-	int characters=0;
-	int words=0;
-	int lines=0;
+  int characters=0;
+  int words=0;
+  int lines=0;
 
-	int state=OUT;
+  int state=OUT;
 
-	char c = (char) getchar();
+  char c = (char) getchar();
 
-	while ((int) c != EOF) {
-		characters++;
+  while ((int) c != EOF) {
+    characters++;
 
-		if (c=='\n') {
-			lines++;
-		}
+    if (c=='\n') {
+      lines++;
+    }
 
-		if (isspace(c)) {
-			state=OUT;
-		}
-		else if (state==OUT) {
-			words++;
-			state=IN;
-		}
+    if (isspace(c)) {
+      state=OUT;
+    }
+    else if (state==OUT) {
+      words++;
+      state=IN;
+    }
 
-		c = (char) getchar();
-	}
+    c = (char) getchar();
+  }
 
-	printf("Characters: %d\n", characters);
-	printf("Words: %d\n", words);
-	printf("Lines: %d\n", lines);
+  printf("Characters: %d\n", characters);
+  printf("Words: %d\n", words);
+  printf("Lines: %d\n", lines);
 
-	return 0;
+  return 0;
 }

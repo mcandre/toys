@@ -1,9 +1,9 @@
 ifeq ("${MSYSTEM}","MINGW32")
-        EXECUTABLE=hello.exe
-        RUN=
+	EXECUTABLE=hello.exe
+	RUN=
 else
-        EXECUTABLE=hello
-        RUN=./
+	EXECUTABLE=hello
+	RUN=./
 endif
 
 all: test

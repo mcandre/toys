@@ -20,611 +20,611 @@ import javax.swing.*;
 import javax.swing.filechooser.*;
 
 public class KeyGen extends JPanel implements ActionListener {
-	JComboBox algorithmBox;
-	JCheckBox passphraseButton;
-	static JButton genButton; // allows genButton to be default
-
-	public KeyGen() {
-		super(new BorderLayout());
-
-		String algorithms[]={
-			"RSA",
-			"DSA",
-			"DH",
-			"ElGamal",
-			"AES",
-			"Blowfish",
-			"CAST5",
-			"DES2X",
-			"DESX",
-			"DESede",
-			"DES",
-			"IDEA",
-			"LOKI91",
-			"RC5",
-			"RC4",
-			"RC2",
-			"SAFER",
-			"SPEED",
-			"Square"
-		};
-		algorithmBox=new JComboBox(algorithms);
-		algorithmBox.setSelectedIndex(4);
-		algorithmBox.addActionListener(this);
-
-		passphraseButton=new JCheckBox("Passphrase-encrypt key");
-		passphraseButton.setMnemonic('p'); // ALT+p
-		passphraseButton.setToolTipText(
-			"<html>If your key were stolen, the new user would<br>"+
-			"have to guess your passphrase to use the key</html>"
-		);
-		passphraseButton.setSelected(true);
-
-		JPanel algPanel=new JPanel();
-		algPanel.setLayout(new BorderLayout());
-		algPanel.setBorder(
-			BorderFactory.createCompoundBorder(
-				BorderFactory.createTitledBorder("Key algorithm"),
-				BorderFactory.createEmptyBorder(5, 5, 5, 5)
-			)
-		);
-		algPanel.add(algorithmBox);
-
-		JPanel pbeKeyPanel=new JPanel();
-		pbeKeyPanel.setLayout(new BorderLayout());
-		pbeKeyPanel.setBorder(
-			BorderFactory.createEmptyBorder(5, 5, 5, 5)
-		);
-		pbeKeyPanel.add(passphraseButton, BorderLayout.WEST);
-
-		genButton=new JButton("Generate");
-		genButton.setMnemonic('g'); // ALT+g
-		genButton.addActionListener(this);
-
-		JPanel genPanel=new JPanel();
-		genPanel.add(genButton);
-
-		add(algPanel, BorderLayout.PAGE_START);
-		add(pbeKeyPanel, BorderLayout.CENTER);
-		add(genPanel, BorderLayout.PAGE_END);
-	}
-
-	public void actionPerformed(ActionEvent ae) {
-		if (ae.getSource()==algorithmBox) {
-			String alg=(String) algorithmBox.getSelectedItem();
-		}
-		if (ae.getSource()==genButton) {
-			String alg=(String) algorithmBox.getSelectedItem();
-			boolean usePass=passphraseButton.isSelected();
-
-			if (
-				alg.equals("RSA")||
-				alg.equals("DSA")||
-				alg.equals("DH")||
-				alg.equals("ElGamal")
-			)
-				generateKeyPair(alg, usePass);
-			else
-				generateSecretKey(alg, usePass);
-		}
-	}
-
-	public void generateKeyPair(String algorithm, boolean usePassphrase) {
-		KeyPairGenerator kpg=null;
-		String provider="Cryptix";
-		try {
-			if (algorithm.equals("ElGamal"))
-				kpg=KeyPairGenerator.getInstance(algorithm, provider);
-			else
-				kpg=KeyPairGenerator.getInstance(algorithm);
-		}
-		catch(NoSuchProviderException e) {
-			JOptionPane.showMessageDialog(
-				KeyGen.this,
-				provider+" not installed.",
-				"Provider error",
-				JOptionPane.ERROR_MESSAGE
-			);
-
-			return;
-		}
-		catch(NoSuchAlgorithmException e) {
-			JOptionPane.showMessageDialog(
-				KeyGen.this,
-				"No provider found for "+algorithm+".",
-				"Provider error",
-				JOptionPane.ERROR_MESSAGE
-			);
-
-			return;
-		}
-
-		String sizes[]={"512", "1024", "2048"};
-		KeyLengthDialog kld=new KeyLengthDialog(sizes, 1, KeyLengthDialog.CUSTOM);
-		kld.setMultiple(128);
-		kld.setBounds(512, 2048);
-		int valSpec=kld.showDialog(KeyGen.this, "Set Key Spec");
-		if (valSpec!=KeyLengthDialog.APPROVE_OPTION)
-			return;
-
-		int bits=Integer.parseInt((String) kld.getChoice());
-
-		kpg.initialize(bits, new SecureRandom());
-
-		KeyPair pair=kpg.generateKeyPair();
-
-		// get default directories
-		String defaultPublicDir="", defaultPrivateDir="";
-		BufferedReader dirBR=AIO.open("dir.dat");
-		boolean dirsFound= (dirBR!=null);
-
-		if (dirsFound) {
-			defaultPublicDir=AIO.read(dirBR);
-			defaultPrivateDir=AIO.read(dirBR);
-		}
-
-		try {
-			if (dirBR!=null)
-				dirBR.close();
-		}
-		catch(IOException e) {}
-
-		// save public key
-		JFileChooser fc=new JFileChooser(defaultPublicDir);
-		fc.setDialogTitle("Save Public Key");
-		fc.setFileFilter(new PublicKeyFilter());
-		int valPub=fc.showSaveDialog(KeyGen.this);
-		if (valPub!=JFileChooser.APPROVE_OPTION)
-			return;
-
-		File publicKeyFile=fc.getSelectedFile();
-
-		FileOutputStream publicKeyOut=null;
-		try {
-			if (getExtension(publicKeyFile).equals(".pk"))
-				publicKeyOut=new FileOutputStream(publicKeyFile);
-			else
-				publicKeyOut=new FileOutputStream(publicKeyFile.getPath()+".pk");
-		}
-		catch(IOException e) {}
-
-		// store public directory
-		String newPublicDir=publicKeyFile.getParent();
-		PrintStream dirPS=AIO.create("dir.dat");
-
-		if (dirPS!=null) {
-			dirPS.println(newPublicDir);
-			dirPS.println(defaultPrivateDir);
-			dirPS.flush();
-			dirPS.close();
-		}
-
-		try {
-			publicKeyOut.write(pair.getPublic().getEncoded());
-			publicKeyOut.close();
-		}
-		catch(IOException e) {}
-
-		// save private key
-		fc=new JFileChooser(defaultPrivateDir);
-		fc.setDialogTitle("Save Private Key");
-		fc.setFileFilter(new PrivateKeyFilter());
-		int valPri=fc.showSaveDialog(KeyGen.this);
-		if (valPri!=fc.APPROVE_OPTION)
-			return;
-
-		File privateKeyFile=fc.getSelectedFile();
-
-		FileOutputStream privateKeyOut=null;
-		try {
-			if (getExtension(privateKeyFile).equals("sk"))
-				privateKeyOut=new FileOutputStream(privateKeyFile);
-			else
-				privateKeyOut=new FileOutputStream(privateKeyFile.getPath()+".sk");
-		}
-		catch(IOException e) {}
-
-		if (usePassphrase) {
-			PassphraseDialog pd=new PassphraseDialog();
-			int valPass=pd.showConfirmDialog(KeyGen.this, "Enter passphrase");
-			if (valPass!=PassphraseDialog.APPROVE_OPTION)
-				return;
-
-			char[] passphrase=pd.getPassphrase();
-
-			String keyAlgorithm="PBEwithMD5andDES";
-
-			byte[] salt=new byte[8];
-			int iterations=20;
-
-			PBEKeySpec ks=new PBEKeySpec(passphrase);
-			SecretKeyFactory skf=null;
-			try {
-				skf=SecretKeyFactory.getInstance(keyAlgorithm);
-			}
-			catch(NoSuchAlgorithmException e) {
-				JOptionPane.showMessageDialog(
-					KeyGen.this,
-					"No provider found for "+keyAlgorithm+".",
-					"Secret Key Error",
-					JOptionPane.ERROR_MESSAGE
-				);
-
-				return;
-			}
-
-			SecretKey pbeKey=null;
-			try {
-				pbeKey=skf.generateSecret(ks);
-			}
-			catch(InvalidKeySpecException e) {}
-
-			byte[] priKeyBytes=pair.getPrivate().getEncoded();
-			MessageDigest md=null;
-
-			try {
-				md=MessageDigest.getInstance("MD5");
-			}
-			catch(NoSuchAlgorithmException e) {}
-
-			md.update(new String(passphrase).getBytes());
-			md.update(priKeyBytes);
-
-			byte[] digest=md.digest();
-			System.arraycopy(digest, 0, salt, 0, 8);
-
-			// encrypt key
-			PBEParameterSpec aps=new PBEParameterSpec(salt, iterations);
-			Cipher cipher=null;
-			try {
-				cipher=Cipher.getInstance(keyAlgorithm);
-			}
-			catch(NoSuchAlgorithmException e) {
-				JOptionPane.showMessageDialog(
-					KeyGen.this,
-					keyAlgorithm+" is invalid for cipher.",
-					"Cipher Error",
-					JOptionPane.ERROR_MESSAGE
-				);
-
-				return;
-			}
-			catch(NoSuchPaddingException e) {}
-
-			try {
-				cipher.init(Cipher.ENCRYPT_MODE, pbeKey, aps);
-			}
-			catch(InvalidAlgorithmParameterException e) {
-				JOptionPane.showMessageDialog(
-					KeyGen.this,
-					keyAlgorithm+" is invalid for cipher.",
-					"Cipher Error",
-					JOptionPane.ERROR_MESSAGE
-				);
-
-				return;
-			}
-			catch(InvalidKeyException e) {
-				JOptionPane.showMessageDialog(
-					KeyGen.this,
-					"Key is invalid for "+keyAlgorithm+".",
-					"Cipher Error",
-					JOptionPane.ERROR_MESSAGE
-				);
-
-				return;
-			}
-
-			byte[] output=getPBEOutput(cipher, priKeyBytes);
-
-			// write encrypted private key
-			try {
-				privateKeyOut.write(salt);
-				privateKeyOut.write(output);
-				privateKeyOut.close();
-			}
-			catch(IOException e) {}
-		}
-		else {
-			try {
-				privateKeyOut.write(pair.getPrivate().getEncoded());
-				privateKeyOut.close();
-			}
-			catch(IOException e) {}
-		}
-
-		// store private key directory
-		String newPrivateDir=privateKeyFile.getParent();
-		dirPS=AIO.create("dir.dat");
-
-		if (dirPS!=null) {
-			dirPS.println(newPublicDir);
-			dirPS.println(newPrivateDir);
-			dirPS.flush();
-			dirPS.close();
-		}
-	}
-
-	public void generateSecretKey(String algorithm, boolean usePassphrase) {
-		KeyGenerator kg=null;
-		String provider="Cryptix";
-		try {
-			if (
-				!algorithm.equals("AES")&&
-				!algorithm.equals("Blowfish")&&
-				!algorithm.equals("DESede")&&
-				!algorithm.equals("DES")
-			)
-				kg=KeyGenerator.getInstance(algorithm, provider);
-			else
-				kg=KeyGenerator.getInstance(algorithm);
-		}
-		catch(NoSuchProviderException e) {
-			JOptionPane.showMessageDialog(
-				KeyGen.this,
-				provider+" not installed.",
-				"Provider error",
-				JOptionPane.ERROR_MESSAGE
-			);
-
-			return;
-		}
-		catch(NoSuchAlgorithmException e) {
-			JOptionPane.showMessageDialog(
-				KeyGen.this,
-				"No provider found for "+algorithm+".",
-				"Provider error",
-				JOptionPane.ERROR_MESSAGE
-			);
-
-			return;
-		}
-
-		// default is DES
-		String[] sizes=new String[2];
-		sizes[0]="56";
-		sizes[1]="40";
-
-		if (algorithm.equals("Blowfish")) {
-			sizes=new String[3];
-			sizes[0]="448";
-			sizes[1]="56";
-			sizes[2]="32";
-		}
-		else if (algorithm.equals("AES")) {
-			sizes=new String[3];
-			sizes[0]="256";
-			sizes[1]="192";
-			sizes[2]="128";
-		}
-		else if (algorithm.equals("DESede")) {
-			sizes=new String[2];
-			sizes[0]="168";
-			sizes[1]="112";
-		}
-
-		KeyLengthDialog kld=null;
-		int valSpec=0;
-		if (
-			!algorithm.equals("IDEA")&&
-			!algorithm.equals("LOKI91")
-		) {
-			boolean isCustom=algorithm.equals("Blowfish");
-			kld=new KeyLengthDialog(sizes, sizes.length-1, isCustom);
-			if (isCustom) {
-				kld.setMultiple(8);
-				kld.setBounds(32, 448);
-			}
-			valSpec=kld.showDialog(KeyGen.this, "Set Key Length");
-		}
-		if (
-			!algorithm.equals("IDEA")&&
-			!algorithm.equals("LOKI91")&&
-			valSpec!=KeyLengthDialog.APPROVE_OPTION
-		) {
-			return;
-		}
-
-		int bits;
-		if (
-			!algorithm.equals("IDEA")&&
-			!algorithm.equals("LOKI91")
-		) {
-			bits=Integer.parseInt((String) kld.getChoice());
-			kg.init(bits, new SecureRandom());
-		}
-
-		SecretKey key=kg.generateKey();
-
-		// get default directories
-		String defaultPublicDir="", defaultSecretDir="";
-		BufferedReader dirBR=AIO.open("dir.dat");
-		boolean dirsFound= (dirBR!=null);
-
-		if (dirsFound) {
-			defaultPublicDir=AIO.read(dirBR);
-			defaultSecretDir=AIO.read(dirBR);
-		}
-
-		try {
-			if (dirBR!=null)
-				dirBR.close();
-		}
-		catch(IOException e) {}
-
-		// save secret key
-		JFileChooser fc=new JFileChooser(defaultSecretDir);
-		fc.setDialogTitle("Save Secret Key");
-		fc.setFileFilter(new SecretKeyFilter());
-		int val=fc.showSaveDialog(KeyGen.this);
-		if (val!=JFileChooser.APPROVE_OPTION)
-			return;
-
-		File keyFile=fc.getSelectedFile();
-
-		FileOutputStream keyOut=null;
-		try {
-			if (getExtension(keyFile).equals("ser"))
-				keyOut=new FileOutputStream(keyFile);
-			else
-				keyOut=new FileOutputStream(keyFile.getPath()+".ser");
-		}
-		catch(IOException e) {}
-
-		if (usePassphrase) {
-			PassphraseDialog pd=new PassphraseDialog();
-			int valPass=pd.showConfirmDialog(KeyGen.this, "Enter passphrase");
-			if (valPass!=PassphraseDialog.APPROVE_OPTION)
-				return;
-
-			char[] passphrase=pd.getPassphrase();
-
-			String keyAlgorithm="PBEwithMD5andDES";
-
-			byte[] salt=new byte[8];
-			int iterations=20;
-
-			PBEKeySpec ks=new PBEKeySpec(passphrase);
-			SecretKeyFactory skf=null;
-			try {
-				skf=SecretKeyFactory.getInstance(keyAlgorithm);
-			}
-			catch(NoSuchAlgorithmException e) {
-				JOptionPane.showMessageDialog(
-					KeyGen.this,
-					"No provider found for "+keyAlgorithm+".",
-					"Secret Key Error",
-					JOptionPane.ERROR_MESSAGE
-				);
-
-				return;
-			}
-
-			SecretKey pbeKey=null;
-			try {
-				pbeKey=skf.generateSecret(ks);
-			}
-			catch(InvalidKeySpecException e) {}
-
-			byte[] secKeyBytes=key.getEncoded();
-			MessageDigest md=null;
-
-			try {
-				md=MessageDigest.getInstance("MD5");
-			}
-			catch(NoSuchAlgorithmException e) {}
-
-			md.update(new String(passphrase).getBytes());
-			md.update(secKeyBytes);
-
-			byte[] digest=md.digest();
-			System.arraycopy(digest, 0, salt, 0, 8);
-
-			// encrypt key
-			PBEParameterSpec aps=new PBEParameterSpec(salt, iterations);
-			Cipher cipher=null;
-			try {
-				cipher=Cipher.getInstance(keyAlgorithm);
-			}
-			catch(NoSuchAlgorithmException e) {
-				JOptionPane.showMessageDialog(
-					KeyGen.this,
-					keyAlgorithm+" is invalid for cipher.",
-					"Cipher Error",
-					JOptionPane.ERROR_MESSAGE
-				);
-
-				return;
-			}
-			catch(NoSuchPaddingException e) {}
-
-			try {
-				cipher.init(Cipher.ENCRYPT_MODE, pbeKey, aps);
-			}
-			catch(InvalidAlgorithmParameterException e) {
-				JOptionPane.showMessageDialog(
-					KeyGen.this,
-					keyAlgorithm+" is invalid for cipher.",
-					"Cipher Error",
-					JOptionPane.ERROR_MESSAGE
-				);
-
-				return;
-			}
-			catch(InvalidKeyException e) {
-				JOptionPane.showMessageDialog(
-					KeyGen.this,
-					"Key is invalid for "+keyAlgorithm+".",
-					"Cipher Error",
-					JOptionPane.ERROR_MESSAGE
-				);
-
-				return;
-			}
-
-			byte[] output=getPBEOutput(cipher, secKeyBytes);
-
-			// write encrypted secret key
-			try {
-				keyOut.write(salt);
-				keyOut.write(output);
-				keyOut.close();
-			}
-			catch(IOException e) {}
-		}
-		else {
-			try {
-				//keyOut.writeObject(key);
-				keyOut.write(key.getEncoded());
-				keyOut.close();
-			}
-			catch(IOException e) {}
-		}
-
-		// store directory
-		String newSecretDir=keyFile.getParent();
-		PrintStream dirPS=AIO.create("dir.dat");
-
-		if (dirPS!=null) {
-			dirPS.println(defaultPublicDir);
-			dirPS.println(newSecretDir);
-			dirPS.flush();
-			dirPS.close();
-		}
-	}
-
-	public String getExtension(File f) {
-		String s=f.getName();
-		int i=s.lastIndexOf('.');
-		if (i>0 && i<s.length()-1)
-			return s.substring(i+1).toLowerCase();
-		return "";
-	}
-
-	public byte[] getPBEOutput(Cipher c, byte[] input) {
-		try {
-			return c.doFinal(input);
-		}
-		catch(Exception e) {
-			return null;
-		}
-	}
-
-	public static void main(String args[]) {
-		JFrame.setDefaultLookAndFeelDecorated(true);
-		JDialog.setDefaultLookAndFeelDecorated(true);
-
-		JFrame frame=new JFrame("KeyGen");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setResizable(false);
-
-		JComponent newContentPane=new KeyGen();
-		newContentPane.setOpaque(true);
-		frame.setContentPane(newContentPane);
-
-		frame.getRootPane().setDefaultButton(genButton);
-
-		frame.pack();
-		frame.setVisible(true);
-	}
+  JComboBox algorithmBox;
+  JCheckBox passphraseButton;
+  static JButton genButton; // allows genButton to be default
+
+  public KeyGen() {
+    super(new BorderLayout());
+
+    String algorithms[]={
+      "RSA",
+      "DSA",
+      "DH",
+      "ElGamal",
+      "AES",
+      "Blowfish",
+      "CAST5",
+      "DES2X",
+      "DESX",
+      "DESede",
+      "DES",
+      "IDEA",
+      "LOKI91",
+      "RC5",
+      "RC4",
+      "RC2",
+      "SAFER",
+      "SPEED",
+      "Square"
+    };
+    algorithmBox=new JComboBox(algorithms);
+    algorithmBox.setSelectedIndex(4);
+    algorithmBox.addActionListener(this);
+
+    passphraseButton=new JCheckBox("Passphrase-encrypt key");
+    passphraseButton.setMnemonic('p'); // ALT+p
+    passphraseButton.setToolTipText(
+      "<html>If your key were stolen, the new user would<br>"+
+      "have to guess your passphrase to use the key</html>"
+    );
+    passphraseButton.setSelected(true);
+
+    JPanel algPanel=new JPanel();
+    algPanel.setLayout(new BorderLayout());
+    algPanel.setBorder(
+      BorderFactory.createCompoundBorder(
+        BorderFactory.createTitledBorder("Key algorithm"),
+        BorderFactory.createEmptyBorder(5, 5, 5, 5)
+      )
+    );
+    algPanel.add(algorithmBox);
+
+    JPanel pbeKeyPanel=new JPanel();
+    pbeKeyPanel.setLayout(new BorderLayout());
+    pbeKeyPanel.setBorder(
+      BorderFactory.createEmptyBorder(5, 5, 5, 5)
+    );
+    pbeKeyPanel.add(passphraseButton, BorderLayout.WEST);
+
+    genButton=new JButton("Generate");
+    genButton.setMnemonic('g'); // ALT+g
+    genButton.addActionListener(this);
+
+    JPanel genPanel=new JPanel();
+    genPanel.add(genButton);
+
+    add(algPanel, BorderLayout.PAGE_START);
+    add(pbeKeyPanel, BorderLayout.CENTER);
+    add(genPanel, BorderLayout.PAGE_END);
+  }
+
+  public void actionPerformed(ActionEvent ae) {
+    if (ae.getSource()==algorithmBox) {
+      String alg=(String) algorithmBox.getSelectedItem();
+    }
+    if (ae.getSource()==genButton) {
+      String alg=(String) algorithmBox.getSelectedItem();
+      boolean usePass=passphraseButton.isSelected();
+
+      if (
+        alg.equals("RSA")||
+        alg.equals("DSA")||
+        alg.equals("DH")||
+        alg.equals("ElGamal")
+      )
+        generateKeyPair(alg, usePass);
+      else
+        generateSecretKey(alg, usePass);
+    }
+  }
+
+  public void generateKeyPair(String algorithm, boolean usePassphrase) {
+    KeyPairGenerator kpg=null;
+    String provider="Cryptix";
+    try {
+      if (algorithm.equals("ElGamal"))
+        kpg=KeyPairGenerator.getInstance(algorithm, provider);
+      else
+        kpg=KeyPairGenerator.getInstance(algorithm);
+    }
+    catch(NoSuchProviderException e) {
+      JOptionPane.showMessageDialog(
+        KeyGen.this,
+        provider+" not installed.",
+        "Provider error",
+        JOptionPane.ERROR_MESSAGE
+      );
+
+      return;
+    }
+    catch(NoSuchAlgorithmException e) {
+      JOptionPane.showMessageDialog(
+        KeyGen.this,
+        "No provider found for "+algorithm+".",
+        "Provider error",
+        JOptionPane.ERROR_MESSAGE
+      );
+
+      return;
+    }
+
+    String sizes[]={"512", "1024", "2048"};
+    KeyLengthDialog kld=new KeyLengthDialog(sizes, 1, KeyLengthDialog.CUSTOM);
+    kld.setMultiple(128);
+    kld.setBounds(512, 2048);
+    int valSpec=kld.showDialog(KeyGen.this, "Set Key Spec");
+    if (valSpec!=KeyLengthDialog.APPROVE_OPTION)
+      return;
+
+    int bits=Integer.parseInt((String) kld.getChoice());
+
+    kpg.initialize(bits, new SecureRandom());
+
+    KeyPair pair=kpg.generateKeyPair();
+
+    // get default directories
+    String defaultPublicDir="", defaultPrivateDir="";
+    BufferedReader dirBR=AIO.open("dir.dat");
+    boolean dirsFound= (dirBR!=null);
+
+    if (dirsFound) {
+      defaultPublicDir=AIO.read(dirBR);
+      defaultPrivateDir=AIO.read(dirBR);
+    }
+
+    try {
+      if (dirBR!=null)
+        dirBR.close();
+    }
+    catch(IOException e) {}
+
+    // save public key
+    JFileChooser fc=new JFileChooser(defaultPublicDir);
+    fc.setDialogTitle("Save Public Key");
+    fc.setFileFilter(new PublicKeyFilter());
+    int valPub=fc.showSaveDialog(KeyGen.this);
+    if (valPub!=JFileChooser.APPROVE_OPTION)
+      return;
+
+    File publicKeyFile=fc.getSelectedFile();
+
+    FileOutputStream publicKeyOut=null;
+    try {
+      if (getExtension(publicKeyFile).equals(".pk"))
+        publicKeyOut=new FileOutputStream(publicKeyFile);
+      else
+        publicKeyOut=new FileOutputStream(publicKeyFile.getPath()+".pk");
+    }
+    catch(IOException e) {}
+
+    // store public directory
+    String newPublicDir=publicKeyFile.getParent();
+    PrintStream dirPS=AIO.create("dir.dat");
+
+    if (dirPS!=null) {
+      dirPS.println(newPublicDir);
+      dirPS.println(defaultPrivateDir);
+      dirPS.flush();
+      dirPS.close();
+    }
+
+    try {
+      publicKeyOut.write(pair.getPublic().getEncoded());
+      publicKeyOut.close();
+    }
+    catch(IOException e) {}
+
+    // save private key
+    fc=new JFileChooser(defaultPrivateDir);
+    fc.setDialogTitle("Save Private Key");
+    fc.setFileFilter(new PrivateKeyFilter());
+    int valPri=fc.showSaveDialog(KeyGen.this);
+    if (valPri!=fc.APPROVE_OPTION)
+      return;
+
+    File privateKeyFile=fc.getSelectedFile();
+
+    FileOutputStream privateKeyOut=null;
+    try {
+      if (getExtension(privateKeyFile).equals("sk"))
+        privateKeyOut=new FileOutputStream(privateKeyFile);
+      else
+        privateKeyOut=new FileOutputStream(privateKeyFile.getPath()+".sk");
+    }
+    catch(IOException e) {}
+
+    if (usePassphrase) {
+      PassphraseDialog pd=new PassphraseDialog();
+      int valPass=pd.showConfirmDialog(KeyGen.this, "Enter passphrase");
+      if (valPass!=PassphraseDialog.APPROVE_OPTION)
+        return;
+
+      char[] passphrase=pd.getPassphrase();
+
+      String keyAlgorithm="PBEwithMD5andDES";
+
+      byte[] salt=new byte[8];
+      int iterations=20;
+
+      PBEKeySpec ks=new PBEKeySpec(passphrase);
+      SecretKeyFactory skf=null;
+      try {
+        skf=SecretKeyFactory.getInstance(keyAlgorithm);
+      }
+      catch(NoSuchAlgorithmException e) {
+        JOptionPane.showMessageDialog(
+          KeyGen.this,
+          "No provider found for "+keyAlgorithm+".",
+          "Secret Key Error",
+          JOptionPane.ERROR_MESSAGE
+        );
+
+        return;
+      }
+
+      SecretKey pbeKey=null;
+      try {
+        pbeKey=skf.generateSecret(ks);
+      }
+      catch(InvalidKeySpecException e) {}
+
+      byte[] priKeyBytes=pair.getPrivate().getEncoded();
+      MessageDigest md=null;
+
+      try {
+        md=MessageDigest.getInstance("MD5");
+      }
+      catch(NoSuchAlgorithmException e) {}
+
+      md.update(new String(passphrase).getBytes());
+      md.update(priKeyBytes);
+
+      byte[] digest=md.digest();
+      System.arraycopy(digest, 0, salt, 0, 8);
+
+      // encrypt key
+      PBEParameterSpec aps=new PBEParameterSpec(salt, iterations);
+      Cipher cipher=null;
+      try {
+        cipher=Cipher.getInstance(keyAlgorithm);
+      }
+      catch(NoSuchAlgorithmException e) {
+        JOptionPane.showMessageDialog(
+          KeyGen.this,
+          keyAlgorithm+" is invalid for cipher.",
+          "Cipher Error",
+          JOptionPane.ERROR_MESSAGE
+        );
+
+        return;
+      }
+      catch(NoSuchPaddingException e) {}
+
+      try {
+        cipher.init(Cipher.ENCRYPT_MODE, pbeKey, aps);
+      }
+      catch(InvalidAlgorithmParameterException e) {
+        JOptionPane.showMessageDialog(
+          KeyGen.this,
+          keyAlgorithm+" is invalid for cipher.",
+          "Cipher Error",
+          JOptionPane.ERROR_MESSAGE
+        );
+
+        return;
+      }
+      catch(InvalidKeyException e) {
+        JOptionPane.showMessageDialog(
+          KeyGen.this,
+          "Key is invalid for "+keyAlgorithm+".",
+          "Cipher Error",
+          JOptionPane.ERROR_MESSAGE
+        );
+
+        return;
+      }
+
+      byte[] output=getPBEOutput(cipher, priKeyBytes);
+
+      // write encrypted private key
+      try {
+        privateKeyOut.write(salt);
+        privateKeyOut.write(output);
+        privateKeyOut.close();
+      }
+      catch(IOException e) {}
+    }
+    else {
+      try {
+        privateKeyOut.write(pair.getPrivate().getEncoded());
+        privateKeyOut.close();
+      }
+      catch(IOException e) {}
+    }
+
+    // store private key directory
+    String newPrivateDir=privateKeyFile.getParent();
+    dirPS=AIO.create("dir.dat");
+
+    if (dirPS!=null) {
+      dirPS.println(newPublicDir);
+      dirPS.println(newPrivateDir);
+      dirPS.flush();
+      dirPS.close();
+    }
+  }
+
+  public void generateSecretKey(String algorithm, boolean usePassphrase) {
+    KeyGenerator kg=null;
+    String provider="Cryptix";
+    try {
+      if (
+        !algorithm.equals("AES")&&
+        !algorithm.equals("Blowfish")&&
+        !algorithm.equals("DESede")&&
+        !algorithm.equals("DES")
+      )
+        kg=KeyGenerator.getInstance(algorithm, provider);
+      else
+        kg=KeyGenerator.getInstance(algorithm);
+    }
+    catch(NoSuchProviderException e) {
+      JOptionPane.showMessageDialog(
+        KeyGen.this,
+        provider+" not installed.",
+        "Provider error",
+        JOptionPane.ERROR_MESSAGE
+      );
+
+      return;
+    }
+    catch(NoSuchAlgorithmException e) {
+      JOptionPane.showMessageDialog(
+        KeyGen.this,
+        "No provider found for "+algorithm+".",
+        "Provider error",
+        JOptionPane.ERROR_MESSAGE
+      );
+
+      return;
+    }
+
+    // default is DES
+    String[] sizes=new String[2];
+    sizes[0]="56";
+    sizes[1]="40";
+
+    if (algorithm.equals("Blowfish")) {
+      sizes=new String[3];
+      sizes[0]="448";
+      sizes[1]="56";
+      sizes[2]="32";
+    }
+    else if (algorithm.equals("AES")) {
+      sizes=new String[3];
+      sizes[0]="256";
+      sizes[1]="192";
+      sizes[2]="128";
+    }
+    else if (algorithm.equals("DESede")) {
+      sizes=new String[2];
+      sizes[0]="168";
+      sizes[1]="112";
+    }
+
+    KeyLengthDialog kld=null;
+    int valSpec=0;
+    if (
+      !algorithm.equals("IDEA")&&
+      !algorithm.equals("LOKI91")
+    ) {
+      boolean isCustom=algorithm.equals("Blowfish");
+      kld=new KeyLengthDialog(sizes, sizes.length-1, isCustom);
+      if (isCustom) {
+        kld.setMultiple(8);
+        kld.setBounds(32, 448);
+      }
+      valSpec=kld.showDialog(KeyGen.this, "Set Key Length");
+    }
+    if (
+      !algorithm.equals("IDEA")&&
+      !algorithm.equals("LOKI91")&&
+      valSpec!=KeyLengthDialog.APPROVE_OPTION
+    ) {
+      return;
+    }
+
+    int bits;
+    if (
+      !algorithm.equals("IDEA")&&
+      !algorithm.equals("LOKI91")
+    ) {
+      bits=Integer.parseInt((String) kld.getChoice());
+      kg.init(bits, new SecureRandom());
+    }
+
+    SecretKey key=kg.generateKey();
+
+    // get default directories
+    String defaultPublicDir="", defaultSecretDir="";
+    BufferedReader dirBR=AIO.open("dir.dat");
+    boolean dirsFound= (dirBR!=null);
+
+    if (dirsFound) {
+      defaultPublicDir=AIO.read(dirBR);
+      defaultSecretDir=AIO.read(dirBR);
+    }
+
+    try {
+      if (dirBR!=null)
+        dirBR.close();
+    }
+    catch(IOException e) {}
+
+    // save secret key
+    JFileChooser fc=new JFileChooser(defaultSecretDir);
+    fc.setDialogTitle("Save Secret Key");
+    fc.setFileFilter(new SecretKeyFilter());
+    int val=fc.showSaveDialog(KeyGen.this);
+    if (val!=JFileChooser.APPROVE_OPTION)
+      return;
+
+    File keyFile=fc.getSelectedFile();
+
+    FileOutputStream keyOut=null;
+    try {
+      if (getExtension(keyFile).equals("ser"))
+        keyOut=new FileOutputStream(keyFile);
+      else
+        keyOut=new FileOutputStream(keyFile.getPath()+".ser");
+    }
+    catch(IOException e) {}
+
+    if (usePassphrase) {
+      PassphraseDialog pd=new PassphraseDialog();
+      int valPass=pd.showConfirmDialog(KeyGen.this, "Enter passphrase");
+      if (valPass!=PassphraseDialog.APPROVE_OPTION)
+        return;
+
+      char[] passphrase=pd.getPassphrase();
+
+      String keyAlgorithm="PBEwithMD5andDES";
+
+      byte[] salt=new byte[8];
+      int iterations=20;
+
+      PBEKeySpec ks=new PBEKeySpec(passphrase);
+      SecretKeyFactory skf=null;
+      try {
+        skf=SecretKeyFactory.getInstance(keyAlgorithm);
+      }
+      catch(NoSuchAlgorithmException e) {
+        JOptionPane.showMessageDialog(
+          KeyGen.this,
+          "No provider found for "+keyAlgorithm+".",
+          "Secret Key Error",
+          JOptionPane.ERROR_MESSAGE
+        );
+
+        return;
+      }
+
+      SecretKey pbeKey=null;
+      try {
+        pbeKey=skf.generateSecret(ks);
+      }
+      catch(InvalidKeySpecException e) {}
+
+      byte[] secKeyBytes=key.getEncoded();
+      MessageDigest md=null;
+
+      try {
+        md=MessageDigest.getInstance("MD5");
+      }
+      catch(NoSuchAlgorithmException e) {}
+
+      md.update(new String(passphrase).getBytes());
+      md.update(secKeyBytes);
+
+      byte[] digest=md.digest();
+      System.arraycopy(digest, 0, salt, 0, 8);
+
+      // encrypt key
+      PBEParameterSpec aps=new PBEParameterSpec(salt, iterations);
+      Cipher cipher=null;
+      try {
+        cipher=Cipher.getInstance(keyAlgorithm);
+      }
+      catch(NoSuchAlgorithmException e) {
+        JOptionPane.showMessageDialog(
+          KeyGen.this,
+          keyAlgorithm+" is invalid for cipher.",
+          "Cipher Error",
+          JOptionPane.ERROR_MESSAGE
+        );
+
+        return;
+      }
+      catch(NoSuchPaddingException e) {}
+
+      try {
+        cipher.init(Cipher.ENCRYPT_MODE, pbeKey, aps);
+      }
+      catch(InvalidAlgorithmParameterException e) {
+        JOptionPane.showMessageDialog(
+          KeyGen.this,
+          keyAlgorithm+" is invalid for cipher.",
+          "Cipher Error",
+          JOptionPane.ERROR_MESSAGE
+        );
+
+        return;
+      }
+      catch(InvalidKeyException e) {
+        JOptionPane.showMessageDialog(
+          KeyGen.this,
+          "Key is invalid for "+keyAlgorithm+".",
+          "Cipher Error",
+          JOptionPane.ERROR_MESSAGE
+        );
+
+        return;
+      }
+
+      byte[] output=getPBEOutput(cipher, secKeyBytes);
+
+      // write encrypted secret key
+      try {
+        keyOut.write(salt);
+        keyOut.write(output);
+        keyOut.close();
+      }
+      catch(IOException e) {}
+    }
+    else {
+      try {
+        //keyOut.writeObject(key);
+        keyOut.write(key.getEncoded());
+        keyOut.close();
+      }
+      catch(IOException e) {}
+    }
+
+    // store directory
+    String newSecretDir=keyFile.getParent();
+    PrintStream dirPS=AIO.create("dir.dat");
+
+    if (dirPS!=null) {
+      dirPS.println(defaultPublicDir);
+      dirPS.println(newSecretDir);
+      dirPS.flush();
+      dirPS.close();
+    }
+  }
+
+  public String getExtension(File f) {
+    String s=f.getName();
+    int i=s.lastIndexOf('.');
+    if (i>0 && i<s.length()-1)
+      return s.substring(i+1).toLowerCase();
+    return "";
+  }
+
+  public byte[] getPBEOutput(Cipher c, byte[] input) {
+    try {
+      return c.doFinal(input);
+    }
+    catch(Exception e) {
+      return null;
+    }
+  }
+
+  public static void main(String args[]) {
+    JFrame.setDefaultLookAndFeelDecorated(true);
+    JDialog.setDefaultLookAndFeelDecorated(true);
+
+    JFrame frame=new JFrame("KeyGen");
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setResizable(false);
+
+    JComponent newContentPane=new KeyGen();
+    newContentPane.setOpaque(true);
+    frame.setContentPane(newContentPane);
+
+    frame.getRootPane().setDefaultButton(genButton);
+
+    frame.pack();
+    frame.setVisible(true);
+  }
 }
