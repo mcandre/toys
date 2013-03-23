@@ -12,7 +12,13 @@ define
     else {Int.toString N} end
   end
 
-  {ForAll {Map {List.number 1 100 1} FizzBuzz}
+  fun {ParMap Xs F}
+    case Xs of nil then nil
+    [] X|Xr then thread {F X} end |{Map Xr F}
+    end
+  end
+
+  {ForAll {ParMap {List.number 1 100 1} FizzBuzz}
    proc {$ S} {System.printInfo S#[&\n]} end
   }
 
