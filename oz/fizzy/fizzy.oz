@@ -12,13 +12,8 @@ define
     else {Int.toString N} end
   end
 
-  {ForAll {List.number 1 100 1}
-   proc {$ N}
-     {System.printInfo
-      {FizzBuzz N}
-      #[&\n]
-     }
-   end
+  {ForAll {Map {List.number 1 100 1} FizzBuzz}
+   proc {$ S} {System.printInfo S#[&\n]} end
   }
 
   {Application.exit 0}
