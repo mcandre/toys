@@ -14,7 +14,7 @@ define
 
   fun {ParMap Xs F}
     case Xs of nil then nil
-    [] X|Xr then thread {F X} end |{Map Xr F}
+    [] X|Xr then thread {F X} end |{ParMap Xr F}
     end
   end
 
