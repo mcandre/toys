@@ -14,13 +14,7 @@ define
     end
   end
 
-  fun {ParMap Xs F}
-    case Xs of nil then nil
-    [] X|Xr then thread {F X} end |{ParMap Xr F}
-    end
-  end
-
-  {ForAll {ParMap {List.number 1 100 1} FizzBuzz}
+  {ForAll {Map {List.number 1 100 1} fun {$ N} thread {FizzBuzz N} end end}
    proc {$ S} {System.printInfo S#[&\n]} end
   }
 
