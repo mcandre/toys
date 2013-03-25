@@ -15,7 +15,7 @@ define
   end
 
   {ForAll {Map {List.number 1 100 1} fun {$ N} thread {FizzBuzz N} end end}
-   proc {$ S} {System.printInfo S#[&\n]} end
+   proc {$ S} {System.printInfo S#"\n"} end
   }
 
   {Application.exit 0}
