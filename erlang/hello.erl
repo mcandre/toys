@@ -1,4 +1,4 @@
-% 22 Feb 2011
+%% 22 Feb 2011
 
 -module(hello).
 -author("andrew.pennebaker@gmail.com").
