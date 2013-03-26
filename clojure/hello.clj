@@ -1,33 +1,11 @@
-":";exec clj -m `basename $0 .clj` ${1+"$@"}
+":";exec lein exec $0 ${1+"$@"}
 ":";exit
-
-;; Load:
-;;
-;; clj hello.clj
-;;
-;; Interpret:
-;;
-;; ./hello.clj <name>
-;; clj -m hello <name>
-;;
-;; Compile:
-;;
-;; clj
-;; => (set! *compile-path* ".")
-;; => (compile 'hello)
-;;
-;; Run:
-;;
-;; java -cp ~/path/to/clojure.jar:. hello <name>
 
 (ns hello
   (:gen-class))
 
-(defn usage []
-  (println "Usage: hello <name>"))
-
 (defn -main [& args]
-  (let [name (first args)]
-    (if-not name
-      (usage)
-      (printf "Hello %s!\n" name))))
+  (println "Hello World!"))
+
+(when (.contains (first *command-line-args*) *source-path*)
+  (apply -main (rest *command-line-args*)))

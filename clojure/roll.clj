@@ -1,4 +1,4 @@
-":";exec clj -m `basename $0 .clj` ${1+"$@"}
+":";exec lein exec $0 ${1+"$@"}
 ":";exit
 
 (ns roll
@@ -23,8 +23,14 @@
   where x is the number of dice to roll and
   y is the number of faces on each die."
   [dice]
+
+  (println "Dice:" dice)
+
   (let [[x y] (parse (name dice))]
     (doall (repeatedly x #(+ 1 (rand-int y))))))
 
 (defn -main [& args]
   (doall (map (comp println roll) args)))
+
+(when (.contains (first *command-line-args*) *source-path*)
+  (apply -main (rest *command-line-args*)))
