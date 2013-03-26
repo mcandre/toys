@@ -46,7 +46,6 @@ void fizzbuzz() {
   for (auto i : range) {
 #else
   int i;
-
   for (i = 0; i < range.size(); i++) {
 #endif
 #ifdef ASYNC
