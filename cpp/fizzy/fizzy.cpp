@@ -31,7 +31,10 @@ string fizzy(int n) {
 
 void fizzbuzz() {
   vector<int> range(100, 0);
+
+#ifdef ASYNC
   iota(range.begin(), range.end(), 0);
+#endif
 
   vector<string> strings(range.size(), "");
 
@@ -39,7 +42,13 @@ void fizzbuzz() {
   vector<future<void>> futures;
 #endif
 
+#ifdef AUTO
   for (auto i : range) {
+#else
+  int i;
+
+  for (i = 0; i < range.size(); i++) {
+#endif
 #ifdef ASYNC
     futures.emplace_back(
       std::async(
@@ -55,7 +64,12 @@ void fizzbuzz() {
 #endif
   }
 
+#ifdef AUTO
   for (auto s : strings) {
+#else
+  for (i = 0; i < strings.size(); i++) {
+    string s = strings[i];
+#endif
     cout << s << endl;
   }
 }
