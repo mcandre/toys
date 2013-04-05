@@ -6,29 +6,27 @@
 require "open-uri"
 
 def must_blocking_or_offline?
-	begin
-		f=open("http://icanhazip.com/")
-		data=f.read
-		f.close
+  begin
+    f = open "http://icanhazip.com/"
+    data = f.read
+    f.close
 
-		octets=data.split(".")
+    octets = data.split(".")
 
-		raise unless octets.length == 4
-	rescue Timeout::Error=>e
-		return true
-	rescue
-		return true
-	else
-		return false
-	end
+    raise unless octets.length == 4
+  rescue
+    true
+  else
+    false
+  end
 end
 
 def main
-	if must_blocking_or_offline?
-		puts "-OFFLINE"
-	else
-		puts "+ONLINE"
-	end
+  if must_blocking_or_offline?
+    puts "-OFFLINE"
+  else
+    puts "+ONLINE"
+  end
 end
 
 main if __FILE__ == $0
