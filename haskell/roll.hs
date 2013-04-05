@@ -31,7 +31,7 @@ data Die
   deriving (Eq, Ord, Show, Read)
 
 toDie :: String -> Maybe Die
-toDie s = case (tail . (parMap rseq) toLower) s of
+toDie s = case (tail . parMap rseq toLower) s of
   "%" -> Just Per
   "f" -> Just F
   s -> (maybeRead s :: Maybe Int) >>= Just . Poly
@@ -53,18 +53,18 @@ d n = replicateM n . sample . randomElement . faces
 -- Parse and roll n dice
 roll' :: String -> IO (Maybe [Int])
 roll' dice = do
-  let dice' = (parMap rseq) toLower dice
+  let dice' = parMap rseq toLower dice
 
   case splitOn "d" dice' of
     [n, die] -> do
       let n' = case n of
-        "" -> Just 1
-        s -> maybeRead s :: Maybe Int
+            "" -> Just 1
+            s -> maybeRead s :: Maybe Int
 
       let die' = toDie ('d':die)
 
       case (n', die') of
-        (Just n'', Just die'') -> n'' `d` die'' >>= return . Just
+        (Just n'', Just die'') -> liftM Just $ n'' `d` die''
         _ -> return Nothing
 
     -- Constant modifier
