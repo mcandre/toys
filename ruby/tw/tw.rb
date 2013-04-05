@@ -46,158 +46,150 @@ require "rubygems"
 
 # prefer faster json parser
 begin
-	require "json/ext"
+  require "json/ext"
 rescue LoadError => e
-	require "json"
+  require "json"
 end
 
 require "highline/import"
 
-$MAX_STATUS_LENGTH=140
+$MAX_STATUS_LENGTH = 140
 
 def load_commands(stream)
-	commands={}
+  commands = {}
 
-	YAML::load(stream).each { |description, command|
-		commands[description]=command
-	}
+  YAML::load(stream).each { |description, command|
+    commands[description] = command
+  }
 
-	return commands
+  commands
 end
 
 def update(settings)
-	debug=settings[:debug]
-	domain=settings[:domain]
-	api=settings[:post_api]
-	status=settings[:status]
-	username=settings[:username]
-	password=settings[:password]
+  debug = settings[:debug]
+  domain = settings[:domain]
+  api = settings[:post_api]
+  status = settings[:status]
+  username = settings[:username]
+  password = settings[:password]
 
-	begin
-		Net::HTTP.start(domain) { |http|
-			request=Net::HTTP::Post.new(api)
-			request.basic_auth(username, password)
-			request.set_form_data({"status" => status})
+  begin
+    Net::HTTP.start(domain) { |http|
+      request = Net::HTTP::Post.new(api)
+      request.basic_auth(username, password)
+      request.set_form_data({"status" => status})
 
-			response=http.request(request)
+      response = http.request(request)
 
-			if debug
-				pp response
-			end
+      pp response if debug
 
-			raise "Could not connect" unless response.message["OK"]
-		}
-	rescue Timeout::Error=>e
-		raise "Could not connect"
-	rescue Errno::ECONNRESET=>e
-		raise "Could not connect"
-	end
+      raise "Could not connect" unless response.message["OK"]
+    }
+  rescue Timeout::Error, Errno::ECONNRESET => e
+    raise "Could not connect"
+  end
 end
 
 def view(settings)
-	debug=settings[:debug]
-	domain=settings[:domain]
-	username=settings[:username]
+  debug = settings[:debug]
+  domain = settings[:domain]
+  username = settings[:username]
 
-	timeline=nil
-	response=nil
+  timeline = nil
+  response = nil
 
-	begin
-		Net::HTTP.start(domain) { |http|
-			response=http.get("/statuses/user_timeline/"+username+".json?count=1")
+  begin
+    Net::HTTP.start(domain) { |http|
+      response = http.get("/statuses/user_timeline/#{username}json?count=1")
 
-			if debug
-				pp response
-			end
+      pp response if debug
 
-			raise "Could not connect" unless response.message["OK"]
+      raise "Could not connect" unless response.message["OK"]
 
-			timeline=response.body
-		}
+      timeline = response.body
+    }
 
-		status=JSON.parse(timeline)[0]["text"]
-	rescue Timeout::Error=>e
-		status="Could not connect"
-	rescue JSON::ParserError => e
-		status="JSON Parse Error"
-	end
+    status = JSON.parse(timeline)[0]["text"]
+  rescue Timeout::Error => e
+    status = "Could not connect"
+  rescue JSON::ParserError => e
+    status = "JSON Parse Error"
+  end
 
-	return status
+  status
 end
 
 def main()
-	mode = :post
-	settings = {
-		:debug => false,
-		:domain => "twitter.com",
-		:post_api => "/statuses/update.json",
-		:username => "mcandre"
-	}
+  mode = :post
+  settings = {
+    :debug => false,
+    :domain => "twitter.com",
+    :post_api => "/statuses/update.json",
+    :username => "mcandre"
+  }
 
-	opts=GetoptLong.new(
-		["--help", "-h", GetoptLong::NO_ARGUMENT],
-		["--debug", "-d", GetoptLong::NO_ARGUMENT],
-		["--user", "-u", GetoptLong::REQUIRED_ARGUMENT],
-		["--view", "-v", GetoptLong::NO_ARGUMENT],
-		["--post", "-p", GetoptLong::NO_ARGUMENT],
-		["--list-commands", "-y", GetoptLong::NO_ARGUMENT]
-	)
+  opts=GetoptLong.new(
+    ["--help", "-h", GetoptLong::NO_ARGUMENT],
+    ["--debug", "-d", GetoptLong::NO_ARGUMENT],
+    ["--user", "-u", GetoptLong::REQUIRED_ARGUMENT],
+    ["--view", "-v", GetoptLong::NO_ARGUMENT],
+    ["--post", "-p", GetoptLong::NO_ARGUMENT],
+    ["--list-commands", "-y", GetoptLong::NO_ARGUMENT]
+  )
 
-	begin
-		opts.each { |option, value|
-			case option
-			when "--help"
-				raise
-			when "--debug"
-				settings[:debug]=true
-			when "--user"
-				settings[:username]=value
-			when "--view"
-				mode = :view
-			when "--post"
-				mode = :post
-			when "--list-commands"
-				mode = :listcommands
-			end
-		}
-	rescue
-		RDoc::usage("Usage")
-	end
+  begin
+    opts.each { |option, value|
+      case option
+      when "--help"
+        raise
+      when "--debug"
+        settings[:debug] = true
+      when "--user"
+        settings[:username] = value
+      when "--view"
+        mode = :view
+      when "--post"
+        mode = :post
+      when "--list-commands"
+        mode = :listcommands
+      end
+    }
+  rescue
+    RDoc::usage("Usage")
+  end
 
-	case mode
-	when :view
-		puts view(settings)
-	when :post
-		if ARGV.length<1
-			RDoc::usage("Usage")
-		else
-			settings[:status]=ARGV.join " "
-			raise "Status too long, shorten to #{$MAX_STATUS_LENGTH} characters" unless settings[:status].length<=$MAX_STATUS_LENGTH
-			settings[:password]=ask("Password: ") {|q| q.echo=false}
+  case mode
+  when :view
+    puts view(settings)
+  when :post
+    if ARGV.length < 1
+      RDoc::usage("Usage")
+    else
+      settings[:status] = ARGV.join " "
+      raise "Status too long, shorten to #{$MAX_STATUS_LENGTH} characters" unless settings[:status].length <= $MAX_STATUS_LENGTH
+      settings[:password] = ask("Password: ") {|q| q.echo = false}
 
-			update(settings)
-		end
-	when :listcommands
-		begin
-			open("#{File.dirname($0)}/tw.yaml") { |file|
-				load_commands(file).each { |description, command|
-					puts "#{description}\n    #{command}\n\n"
-				}
-			}
-		rescue Errno::ENOENT => e
-			raise "Could not open commands file"
-		end
-	end
+      update(settings)
+    end
+  when :listcommands
+    begin
+      open("#{File.dirname($0)}/tw.yaml") { |file|
+        load_commands(file).each { |description, command|
+          puts "#{description}\n    #{command}\n\n"
+        }
+      }
+    rescue Errno::ENOENT => e
+      raise "Could not open commands file"
+    end
+  end
 end
 
-if __FILE__==$0
-	begin
-		main
-	rescue RuntimeError=>e
-		puts e.message
-	rescue SocketError=>e
-		puts "Could not connect"
-	rescue Interrupt=>e
-		nil
-	end
+if __FILE__ == $0
+  begin
+    main
+  rescue SocketError => e
+    puts "Could not connect"
+  rescue Interrupt => e
+    nil
+  end
 end
