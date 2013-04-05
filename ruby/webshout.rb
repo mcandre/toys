@@ -2,14 +2,14 @@
 
 require "open-uri"
 
-data=""
+data = ""
 
-while data==""
-	begin
-		data=open("http://www.google.com/").read
-	rescue
-		nil
-	end
+while data == ""
+  begin
+    data = open("http://www.google.com/").read
+  rescue
+    nil
+  end
 end
 
 # Requires Mac OS X
