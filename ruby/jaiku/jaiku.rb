@@ -39,160 +39,147 @@ require "rubygems"
 
 # prefer faster json parser
 begin
-	require "json/ext"
+  require "json/ext"
 rescue LoadError => e
-	require "json"
+  require "json"
 end
 
 require "highline/import"
 
-$MAX_STATUS_LENGTH=140
+$MAX_STATUS_LENGTH = 140
 
 def load_settings(stream)
-	settings={}
+  settings = {}
 
-	YAML::load(stream).each { |description, command|
-		settings[description]=command
-	}
+  YAML::load(stream).each { |description, command|
+    settings[description] = command
+  }
 
-	return settings
+  settings
 end
 
 def update(settings)
-	debug=settings["debug"]
-	domain=settings["post_domain"]
-	api=settings["post_api"]
-	status=settings["status"]
-	username=settings["username"]
-	password=settings["password"]
-	key=settings["key"]
+  debug = settings["debug"]
+  domain = settings["post_domain"]
+  api = settings["post_api"]
+  status = settings["status"]
+  username = settings["username"]
+  password = settings["password"]
+  key = settings["key"]
 
-	raise "Status too long, shorten to #{$MAX_STATUS_LENGTH} characters" unless status.length<=$MAX_STATUS_LENGTH
+  raise "Status too long, shorten to #{$MAX_STATUS_LENGTH} characters" unless status.length <= $MAX_STATUS_LENGTH
 
-	Net::HTTP.start(domain) { |http|
-		request=Net::HTTP::Post.new(api)
-		request.basic_auth(username, password)
-		request.set_form_data({"user" => username, "personal_key" => key, "method" => "presence.send", "message" => status})
+  Net::HTTP.start(domain) { |http|
+    request=Net::HTTP::Post.new(api)
+    request.basic_auth(username, password)
+    request.set_form_data({ "user" => username, "personal_key" => key, "method" => "presence.send", "message" => status })
 
-		response=http.request(request)
+    response = http.request(request)
 
-		if debug
-			p response
-		end
+    p response if debug
 
-		if response.message["Unauthorized"]
-			raise "Could not authenticate as #{username}"
-		elsif response.message["Not Acceptable"]
-			raise "Could not connect"
-		end
-	}
+    raise "Could not authenticate as #{username}" if response.message["Unauthorized"]
+    raise "Could not connect" if response.message["Not Acceptable"]
+  }
 end
 
 def view(settings)
-	debug=settings["debug"]
-	domain=settings["view_domain"]
-	api=settings["view_api"]
-	username=settings["username"]
+  debug = settings["debug"]
+  domain = settings["view_domain"]
+  api = settings["view_api"]
+  username = settings["username"]
 
-	timeline=nil
-	response=nil
+  timeline = nil
+  response = nil
 
-	Net::HTTP.start(username+domain) { |http|
-		response=http.get(api)
+  Net::HTTP.start(username + domain) { |http|
+    response = http.get(api)
 
-		if debug
-			p response
-		end
+    p response if debug
 
-		if response.message["Not Acceptable"]
-			raise "Could not connect"
-		end
+    raise "Could not connect" if response.message["Not Acceptable"]
 
-		timeline=response.body
-	}
+    timeline = response.body
+  }
 
-	stream=JSON.parse(timeline)["stream"]
+  stream = JSON.parse(timeline)["stream"]
 
-	raise "No posts yet" unless stream.length>0
+  raise "No posts yet" if stream.length == 0
 
-	status=stream[0]["title"]
+  status = stream[0]["title"]
 
-	return status
+  status
 end
 
 def main()
-	mode = :post
-	settings = {
-		"debug" => false,
-		"post_domain" => "api.jaiku.com",
-		"post_api" => "/json",
-		"view_domain" => ".jaiku.com",
-		"view_api" => "/feed/json",
-		"username" => "mcandre",
-		"key" => 0
-	}
+  mode = :post
+  settings = {
+    "debug" => false,
+    "post_domain" => "api.jaiku.com",
+    "post_api" => "/json",
+    "view_domain" => ".jaiku.com",
+    "view_api" => "/feed/json",
+    "username" => "mcandre",
+    "key" => 0
+  }
 
-	begin
-		open(File.dirname($0)+"/"+"jaiku.yaml") { |file|
-			settings=load_settings(file)
-		}
-	rescue Errno::ENOENT => e
-		raise "Could not open settings file"
-	end
+  begin
+    open("#{File.dirname($0)}/jaiku.yaml") { |file|
+      settings = load_settings(file)
+    }
+  rescue Errno::ENOENT => e
+    raise "Could not open settings file"
+  end
 
-	opts=GetoptLong.new(
-		["--help", "-h", GetoptLong::NO_ARGUMENT],
-		["--debug", "-d", GetoptLong::NO_ARGUMENT],
-		["--user", "-u", GetoptLong::REQUIRED_ARGUMENT],
-		["--view", "-v", GetoptLong::NO_ARGUMENT],
-		["--post", "-p", GetoptLong::NO_ARGUMENT],
-		["--list-commands", "-y", GetoptLong::NO_ARGUMENT]
-	)
+  opts = GetoptLong.new(
+    ["--help", "-h", GetoptLong::NO_ARGUMENT],
+    ["--debug", "-d", GetoptLong::NO_ARGUMENT],
+    ["--user", "-u", GetoptLong::REQUIRED_ARGUMENT],
+    ["--view", "-v", GetoptLong::NO_ARGUMENT],
+    ["--post", "-p", GetoptLong::NO_ARGUMENT],
+    ["--list-commands", "-y", GetoptLong::NO_ARGUMENT]
+  )
 
-	begin
-		opts.each { |option, value|
-			case option
-			when "--help"
-				raise
-			when "--debug"
-				settings["debug"]=true
-			when "--user"
-				settings["username"]=value
-			when "--view"
-				mode = :view
-			when "--post"
-				mode = :post
-			end
-		}
-	rescue
-		RDoc::usage("Usage")
-	end
+  begin
+    opts.each { |option, value|
+      case option
+      when "--help"
+        raise
+      when "--debug"
+        settings["debug"] = true
+      when "--user"
+        settings["username"] = value
+      when "--view"
+        mode = :view
+      when "--post"
+        mode = :post
+      end
+    }
+  rescue
+    RDoc::usage("Usage")
+  end
 
-	case mode
-	when :view
-		puts view(settings)
-	when :post
-		if ARGV.length<1
-			RDoc::usage("Usage")
-		else
-			settings["password"]=ask("Password: ") { |q| q.echo=false }
-			settings["status"]=ARGV.join " "
+  case mode
+  when :view
+    puts view(settings)
+  when :post
+    if ARGV.length < 1
+      RDoc::usage("Usage")
+    else
+      settings["password"] = ask("Password: ") { |q| q.echo = false }
+      settings["status"] = ARGV.join " "
 
-			update(settings)
-		end
-	end
+      update(settings)
+    end
+  end
 end
 
-if __FILE__==$0
-	begin
-		main()
-	rescue RuntimeError=>e
-		puts e.message
-	rescue Timeout::Error=>e
-		puts "Could not connect"
-	rescue SocketError=>e
-		puts "Could not connect"
-	rescue Interrupt=>e
-		nil
-	end
+if __FILE__ == $0
+  begin
+    main
+  rescue Timeout::Error, SocketError => e
+    puts "Could not connect"
+  rescue Interrupt => e
+    nil
+  end
 end
