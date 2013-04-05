@@ -9,24 +9,22 @@ require "hpricot"
 require "open-uri"
 require "htmlentities"
 
-coder=HTMLEntities.new()
+coder = HTMLEntities.new
 
-url="http://www.channel4.com/entertainment/tv/microsites/I/itcrowd/quote_generator/"
+url = "http://www.channel4.com/entertainment/tv/microsites/I/itcrowd/quote_generator/"
 
-doc=nil
+doc = nil
 
 begin
-	doc=open(url) { |f| Hpricot(f) }
-rescue Timeout::Error=>e
-	raise "Could not access #{url}"
+  doc = open(url) { |f| Hpricot(f) }
 rescue
-	raise "Could not access #{url}"
+  raise "Could not access #{url}"
 end
 
-section=doc/"blockquote"/"p"
-citation=(section/"cite"/"a").inner_html
-(section/"cite").remove()
-quote=section.inner_html
+section = doc/"blockquote"/"p"
+citation = (section/"cite"/"a").inner_html
+(section/"cite").remove
+quote = section.inner_html
 
 # remove leading whitespace
 quote.gsub!(/^\s+/, "")
@@ -38,6 +36,6 @@ quote.gsub!(/\s+$/, $/)
 quote.gsub!(/\s\-\s+$/, $/).chomp
 
 # decode HTML entities
-quote=coder.decode(quote)
+quote = coder.decode(quote)
 
 puts "#{quote} - #{citation}"
