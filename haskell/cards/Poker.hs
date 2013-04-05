@@ -29,7 +29,7 @@ data PokerCard = PokerCard {
   } deriving (Eq, Ord)
 
 instance Show PokerCard where
-  show card = (show (rank card)) ++ " of " ++ (show (suit card))
+  show card = show (rank card) ++ " of " ++ show (suit card)
 
 o :: Rank -> Suit -> PokerCard
 r `o` s = PokerCard { rank = r, suit = s }
@@ -37,4 +37,4 @@ r `o` s = PokerCard { rank = r, suit = s }
 pokerDeck = [ r `o` s | r <- [ Ace .. ], s <- [ Spades .. ] ]
 
 main :: IO ()
-main = putStrLn $ show pokerDeck
+main = mapM_ print pokerDeck
