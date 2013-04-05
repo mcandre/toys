@@ -8,26 +8,24 @@ require "rubygems"
 require "hpricot"
 
 def get_level
-	f=open("http://www.dhs.gov/dhspublic/getAdvisoryCondition")
-	data=f.read
-	f.close
+  f = open("http://www.dhs.gov/dhspublic/getAdvisoryCondition")
+  data = f.read
+  f.close
 
-	h=Hpricot(data)
-	return h.search("threat_advisory").first[:condition]
+  h = Hpricot(data)
+  h.search("threat_advisory").first[:condition]
 end
 
 def main
-	puts get_level
+  puts get_level
 end
 
-if __FILE__==$0
-	begin
-		main
-	rescue RuntimeError => e
-		puts e
-	rescue Timeout::Error=>e
-		puts "Could not connect"
-	rescue Interrupt => e
-		nil
-	end
+if __FILE__ == $0
+  begin
+    main
+  rescue Timeout::Error => e
+    puts "Could not connect"
+  rescue Interrupt => e
+    nil
+  end
 end
