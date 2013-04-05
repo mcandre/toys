@@ -42,4 +42,4 @@ main = do
         "Sandy"
         ]
 
-  mapM_ (\q -> putStrLn $ (show q) ++ " in filter? " ++ show (elemB q bf)) queries
+  mapM_ (\q -> putStrLn $ show q ++ " in filter? " ++ show (elemB q bf)) queries
