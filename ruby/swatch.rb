@@ -8,39 +8,37 @@
 require "time"
 
 class Time
-	def beats
-		t=self.gmtime
+  def beats
+    t = self.gmtime
 
-		seconds=t.hour*3600+t.min*60+t.sec
+    seconds = t.hour * 3600 + t.min * 60 + t.sec
 
-		seconds+=3600 # UTC to Biel Mean Time
+    seconds += 3600 # UTC to Biel Mean Time
 
-		return (seconds/86.4) % 1000
-	end
+    return (seconds / 86.4) % 1000
+  end
 
-	def self.beats
-		Time.now.beats
-	end
+  def self.beats
+    Time.now.beats
+  end
 
-	def swatchtime
-		return format("@%06.2f", beats)
-	end
+  def swatchtime
+    format("@%06.2f", beats)
+  end
 
-	def self.swatchtime
-		Time.now.swatchtime
-	end
+  def self.swatchtime
+    Time.now.swatchtime
+  end
 
-	def internettime
-		return swatchtime
-	end
+  alias :internettime :swatchtime
 
-	def self.internettime
-		self.swatchtime
-	end
+  def self.internettime
+    self.swatchtime
+  end
 end
 
 def main
-	puts Time.swatchtime
+  puts Time.swatchtime
 end
 
 main if __FILE__ == $0
