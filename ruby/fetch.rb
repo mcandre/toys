@@ -8,8 +8,8 @@
 #
 # fetch <command>
 
-parser="http://fetch.yellosoft.us/?fetch="
+parser = "http://fetch.yellosoft.us/?fetch="
 
-command=ARGV.join "+"
+command = ARGV.join "+"
 
 system "open #{parser}#{command}"
