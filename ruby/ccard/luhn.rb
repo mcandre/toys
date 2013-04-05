@@ -1,48 +1,53 @@
+# Luhn algorithm
 class Luhn
-	def self.sum(n)
-		checksum=0
+  def self.sum(n)
+    checksum = 0
 
-		odd=false
+    odd = false
 
-		while n>0
-			digit=n % 10
+    while n > 0
+      digit = n % 10
 
-			if odd
-				digit*=2
+      if odd
+        digit *= 2
 
-				if digit>9
-					digit-=9
-				end
-			end
+        if digit > 9
+          digit -= 9
+        end
+      end
 
-			checksum+=digit
+      checksum += digit
 
-			n/=10
-			odd=!odd
-		end
+      n /= 10
+      odd = !odd
+    end
 
-		return checksum
-	end
+    return checksum
+  end
 
-	def self.valid?(n)
-		return (sum(n) % 10)==0
-	end
+  def self.valid?(n)
+    (sum(n) % 10) == 0
+  end
 
-	def self.complete(n)
-		checksum=sum(n*10)
+  def self.complete(n)
+    timesten = n * 10
 
-		digit=0
+    checksum = sum(timesten)
 
-		if (checksum % 10) !=0
-			digit=10 - (checksum % 10)
-		end
+    digit=0
 
-		return n*10+digit
-	end
+    modten = checksum % 10
 
-	def self.generate(length=16)
-		n=rand(10**(length-1))
+    if modten != 0
+      digit = 10 - modten
+    end
 
-		return complete(n)
-	end
+    return timesten + digit
+  end
+
+  def self.generate(length = 16)
+    n = rand(10 ** (length - 1))
+
+    complete(n)
+  end
 end
