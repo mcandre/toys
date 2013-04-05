@@ -7,7 +7,7 @@ import Control.Parallel.Strategies
 import Control.Parallel
 
 fizzBuzz :: [String]
-fizzBuzz = (parMap rseq) fizzBuzz' [1 .. 100]
+fizzBuzz = parMap rseq fizzBuzz' [1 .. 100]
   where
     fizzBuzz' :: Int -> String
     fizzBuzz' x = case (x `mod` 3, x `mod` 5) of
