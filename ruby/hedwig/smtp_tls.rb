@@ -3,6 +3,7 @@ require "net/smtp"
 
 Net::SMTP.class_eval do
   private
+
   def do_start(helodomain, user, secret, authtype)
     raise IOError, 'SMTP session already started' if @started
     check_auth_args user, secret, authtype if user or secret
@@ -15,22 +16,27 @@ Net::SMTP.class_eval do
     check_response(critical { recv_response() })
     do_helo(helodomain)
 
-    raise 'openssl library not installed' unless defined?(OpenSSL)
+    raise "openssl library not installed" unless defined?(OpenSSL)
+
     starttls
+
     ssl = OpenSSL::SSL::SSLSocket.new(sock)
     ssl.sync_close = true
     ssl.connect
+
     @socket = Net::InternetMessageIO.new(ssl)
     @socket.read_timeout = 60 #@read_timeout
     @socket.debug_output = @debug_output
+
     do_helo(helodomain)
 
     authenticate user, secret, authtype if user
+
     @started = true
   ensure
     unless @started
       # authentication failed, cancel connection.
-        @socket.close if not @started and @socket and not @socket.closed?
+      @socket.close if not @started and @socket and not @socket.closed?
       @socket = nil
     end
   end
@@ -46,13 +52,15 @@ Net::SMTP.class_eval do
       if @esmtp
         @esmtp = false
         @error_occured = false
+
         retry
       end
+
       raise
     end
   end
 
   def starttls
-    getok('STARTTLS')
+    getok("STARTTLS")
   end
 end
