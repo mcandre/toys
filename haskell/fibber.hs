@@ -6,4 +6,4 @@ fibber 1 = 1
 fibber n = fibber (n - 1) + fibber (n - 2)
 
 main :: IO ()
-main = putStrLn . show $ fibber 20
+main = print $ fibber 20
