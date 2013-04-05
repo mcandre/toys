@@ -25,13 +25,13 @@ require "time"
 # From ttscoff's wrap_text()
 # http://snipplr.com/view/1081/wrap-text/
 class String
-	def wrap(margin=80)
-		gsub(/(.{1,#{margin}})( +|$\n?)|(.{1,#{margin}})/, "\\1\\3\n")
-	end
+  def wrap(margin = 80)
+    gsub /(.{1,#{margin}})( +|$\n?)|(.{1,#{margin}})/, "\\1\\3\n"
+  end
 end
 
-def gen(owners="MIT", year=Time.now.year, margin=80)
-	return "The MIT License
+def gen(owners = "MIT", year = Time.now.year, margin = 80)
+  "The MIT License
 
 Copyright (c) #{year} #{owners}
 
@@ -39,19 +39,19 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.".wrap(margin)
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.".wrap margin
 end
 
 def main
-	owners="MIT"
-	year="1988"
-	margin=80
+  owners = "MIT"
+  year = "1988"
+  margin = 80
 
-	owners=ARGV[0] unless ARGV.length<1
-	year=ARGV[1] unless ARGV.length<2
-	margin=ARGV[2] unless ARGV.length<3
+  owners = ARGV[0] unless ARGV.length < 1
+  year = ARGV[1] unless ARGV.length < 2
+  margin = ARGV[2] unless ARGV.length < 3
 
-	puts gen(owners, year, margin)
+  puts gen(owners, year, margin)
 end
 
 main if __FILE__ == $0

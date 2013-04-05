@@ -28,31 +28,31 @@ require "time"
 # From ttscoff's wrap_text()
 # http://snipplr.com/view/1081/wrap-text/
 class String
-	def wrap(margin=80)
-		gsub(/(.{1,#{margin}})( +|$\n?)|(.{1,#{margin}})/, "\\1\\3\n")
-	end
+  def wrap(margin = 80)
+    gsub /(.{1,#{margin}})( +|$\n?)|(.{1,#{margin}})/, "\\1\\3\n"
+  end
 end
 
-def gen(owners="The Apache Software Foundation", year=Time.now.year, margin=80)
-	return "Copyright #{year} #{owners}
+def gen(owners = "The Apache Software Foundation", year = Time.now.year, margin = 80)
+  "Copyright #{year} #{owners}
 
 Licensed under the Apache License, Version 2.0 (the \"License\"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 
 http://www.apache.org/licenses/LICENSE-2.0
 
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.".wrap(margin)
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.".wrap margin
 end
 
 def main
-	owners="The Apache Software Foundation"
-	year="2004"
-	margin=80
+  owners = "The Apache Software Foundation"
+  year = "2004"
+  margin = 80
 
-	owners=ARGV[0] unless ARGV.length<1
-	year=ARGV[1] unless ARGV.length<2
-	margin=ARGV[2] unless ARGV.length<3
+  owners = ARGV[0] unless ARGV.length < 1
+  year = ARGV[1] unless ARGV.length < 2
+  margin = ARGV[2] unless ARGV.length < 3
 
-	puts gen(owners, year, margin)
+  puts gen(owners, year, margin)
 end
 
 main if __FILE__ == $0
