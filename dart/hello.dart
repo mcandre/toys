@@ -1,5 +1,5 @@
 #!/usr/bin/env dart
 
 main() {
-	print("Hello World!");
+  print("Hello World!");
 }
