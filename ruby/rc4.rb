@@ -96,7 +96,7 @@ class RC4
 end
 
 def encrypt(filename, cipher, key)
-  cipher.set_key(cipher.unformat_key(key))
+  cipher.set_key(RC4.unformat_key(key))
 
   infile = open(filename, "rb")
   outfile = open("#{filename}.rc4", "wb")
@@ -106,7 +106,7 @@ def encrypt(filename, cipher, key)
   filename.each_byte { |b|
     bytes.push(cipher.encrypt(b).chr)
   }
-  outfile.write(cipher.format_bytes(bytes))
+  outfile.write(RC4.format_bytes(bytes))
   outfile.write("\n")
 
   line = ""
@@ -116,7 +116,7 @@ def encrypt(filename, cipher, key)
     line.each_byte { |b|
       bytes.push(cipher.encrypt(b).chr)
     }
-    outfile.write(cipher.format_bytes(bytes))
+    outfile.write(RC4.format_bytes(bytes))
     outfile.write("\n")
   end
 
@@ -125,13 +125,13 @@ def encrypt(filename, cipher, key)
 end
 
 def decrypt(filename, cipher, key)
-  cipher.set_key(cipher.unformat_key(key))
+  cipher.set_key(RC4.unformat_key(key))
 
   infile = open(filename, "rb")
 
   # original filename is included as first line in infile
   bytes = []
-  cipher.unformat_bytes(infile.readline).each { |b|
+  RC4.unformat_bytes(infile.readline).each { |b|
     bytes.push(cipher.decrypt(b).chr)
   }
   original_filename = bytes.join("")
@@ -140,7 +140,7 @@ def decrypt(filename, cipher, key)
 
   infile.each { |line|
     bytes = []
-    cipher.unformat_bytes(line).each { |b|
+    RC4.unformat_bytes(line).each { |b|
       bytes.push(cipher.encrypt(b).chr)
     }
     outfile.write(bytes)
@@ -184,7 +184,7 @@ def main
 
   case mode
   when :gen_key
-    puts cipher.format_key(cipher.gen_key(length))
+    puts RC4.format_key(cipher.gen_key(length))
   when :encrypt
     ARGV.each { |filename|
       encrypt(filename, cipher, key)
