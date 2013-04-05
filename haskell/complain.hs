@@ -25,14 +25,14 @@ main = let
   white = White :: Color
   black = Black :: Color
   in do
-    putStrLn $ show green
-    putStrLn $ show red
-    putStrLn $ show blue
+    print green
+    print red
+    print blue
 
-    putStrLn ""
+    print ""
 
-    putStrLn $ complain green
-    putStrLn $ complain red
-    putStrLn $ complain blue
-    putStrLn $ complain white
-    putStrLn $ complain black
+    print $ complain green
+    print $ complain red
+    print $ complain blue
+    print $ complain white
+    print $ complain black
