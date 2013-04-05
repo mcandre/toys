@@ -59,7 +59,7 @@ main = do
 
   let theCustomer = case getOption pArgs (Customer "") of
         Just (Customer x) -> x
-      _ -> "Mr. Derp"
+        _ -> "Mr. Derp"
 
   let thePeanutButter = case getOption pArgs PeanutButter of
         Just PeanutButter -> 1
@@ -70,16 +70,16 @@ main = do
         _ -> 0
 
   let theBananas = case getOption pArgs (Bananas Nothing) of
-    Just (Bananas x) -> case x of
-      Just x -> case maybeRead x :: Maybe Int of
-        Just y -> y
+        Just (Bananas x) -> case x of
+          Just x -> case maybeRead x :: Maybe Int of
+            Just y -> y
+            _ -> 0
+          _ -> 1
         _ -> 0
-      _ -> 1
-    _ -> 0
 
   let theExpressLane = case getOption pArgs ExpressLane of
-    Just ExpressLane -> True
-    _ -> False
+        Just ExpressLane -> True
+        _ -> False
 
   let numItems = thePeanutButter + theJelly + theBananas
 
