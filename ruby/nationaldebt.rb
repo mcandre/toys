@@ -8,27 +8,25 @@ require "rubygems"
 require "hpricot"
 
 def get_debt
-	f=open("http://www.brillig.com/debt_clock/")
-	data=f.read
-	f.close
+  f = open "http://www.brillig.com/debt_clock/"
+  data = f.read
+  f.close
 
-	h=Hpricot(data)
+  h = Hpricot(data)
 
-	return (h/"body"/"blockquote"/"center"/"p"/"table"/"tr"/"td"/"img").first[:alt].split(" ").join("")
+  return (h/"body"/"blockquote"/"center"/"p"/"table"/"tr"/"td"/"img").first[:alt].split(" ").join("")
 end
 
 def main
-	puts get_debt
+  puts get_debt
 end
 
-if __FILE__==$0
-	begin
-		main
-	rescue RuntimeError => e
-		puts e
-	rescue Timeout::Error=>e
-		puts "Could not connect."
-	rescue Interrupt => e
-		nil
-	end
+if __FILE__ == $0
+  begin
+    main
+  rescue Timeout::Error=>e
+    puts "Could not connect."
+  rescue Interrupt => e
+    nil
+  end
 end
