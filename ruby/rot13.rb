@@ -18,62 +18,62 @@
 require "getoptlong"
 require "rdoc/usage"
 
-def create_rule(n=13)
-	rule={}
+def create_rule(n = 13)
+  rule = {}
 
-	# "A"[0].upto("Z"[0])
-	65.upto(90) { |b|
-		rule[b]=(b+n-65)%26+65
-	}
+  # "A" to "Z"
+  [65 .. 90].each { |b|
+    rule[b] = (b + n - 65) % 26 + 65
+  }
 
-	# "a"[0].upto("z"[0])
-	97.upto(122) { |b|
-		rule[b]=(b+n-97)%26+97
-	}
+  # "a" to "z"
+  [97 .. 122].each { |b|
+    rule[b] = (b + n - 97) % 26 + 97
+  }
 
-	return rule
+  rule
 end
 
 def crypt(rule, b)
-	if rule.include?(b)
-		return rule[b]
-	else
-		return b
-	end
+  if rule.include?(b)
+    rule[b]
+  else
+    b
+  end
 end
 
 def main
-	shift=13
+  shift = 13
 
-	begin
-		opts=GetoptLong.new(
-			["--help", "-h", GetoptLong::NO_ARGUMENT],
-			["--shift", "-s", GetoptLong::REQUIRED_ARGUMENT]
-		)
+  begin
+    opts=GetoptLong.new(
+      ["--help", "-h", GetoptLong::NO_ARGUMENT],
+      ["--shift", "-s", GetoptLong::REQUIRED_ARGUMENT]
+    )
 
-		opts.each { |option, value|
-			case option
-			when "--help"
-				raise
-			when "--shift"
-				shift=value.to_i
-			end
-		}
-	rescue
-		RDoc::usage("Usage")
-	end
+    opts.each { |option, value|
+      case option
+      when "--help"
+        raise
+      when "--shift"
+        shift = value.to_i
+      end
+    }
+  rescue
+    RDoc::usage("Usage")
+  end
 
-	rule=create_rule(shift)
+  rule = create_rule(shift)
 
-	STDIN.each_byte { |b|
-		putc crypt(rule, b)
-	}
+  STDIN.each_byte { |b|
+    putc crypt(rule, b)
+  }
 end
 
-if __FILE__==$0
-	begin
-		main
-	rescue Interrupt=>e
-		nil
-	end
+if __FILE__ == $0
+  begin
+    main
+  rescue Interrupt => e
+    nil
+  end
 end
