@@ -8,8 +8,8 @@
 #
 # slug <command>
 
-parser="http://slug.yellosoft.us/?e="
+parser = "http://slug.yellosoft.us/?e="
 
-command=ARGV.join "+"
+command = ARGV.join "+"
 
 system "open #{parser}#{command}"

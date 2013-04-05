@@ -25,75 +25,73 @@
 require "enumerator"
 
 class Card
-	attr_reader :suit, :face
+  attr_reader :suit, :face
 
-	SUITS=[:clubs, :diamonds, :hearts, :spades]
-	BASE_VALUES=[0, 13, 26, 39]
-	FACES=[:ace, :two, :three, :four, :five, :six, :seven, :eight, :nine, :ten, :jack, :queen, :king]
+  SUITS = [:clubs, :diamonds, :hearts, :spades]
+  BASE_VALUES = [0, 13, 26, 39]
+  FACES = [:ace, :two, :three, :four, :five, :six, :seven, :eight, :nine, :ten, :jack, :queen, :king]
 
-	def initialize(suit, face)
-		@suit=suit
-		@face=face
-	end
+  def initialize(suit, face)
+    @suit = suit
+    @face = face
+  end
 
-	def self.suits
-		return SUITS
-	end
+  def self.suits
+    SUITS
+  end
 
-	def self.faces
-		return FACES
-	end
+  def self.faces
+    FACES
+  end
 
-	def face_value()
-		return FACES.index(@face)+1
-	end
+  def face_value
+    FACES.index(@face) + 1
+  end
 
-	def base_value()
-		return BASE_VALUES[SUITS.index(@suit)]
-	end
+  def base_value
+    BASE_VALUES[SUITS.index(@suit)]
+  end
 
-	def value()
-		if @suit==:joker
-			return 53
-		else
-			return base_value()+face_value()
-		end
-	end
+  def value
+    if @suit == :joker
+      53
+    else
+      base_value + face_value
+    end
+  end
 
-	def to_s()
-		if @suit==:joker
-			return "#{@face} joker [#{value()}]"
-		else
-			return "#{@face} of #{@suit} [#{value()}]"
-		end
-	end
+  def to_s
+    if @suit == :joker
+      "#{@face} joker [#{value()}]"
+    else
+      "#{@face} of #{@suit} [#{value()}]"
+    end
+  end
 end
 
-$deck=[]
+$deck = []
 Card.suits.each { |suit|
-	Card.faces.each { |face|
-		$deck.push(Card.new(suit, face))
-	}
+  Card.faces.each { |face|
+    $deck.push(Card.new(suit, face))
+  }
 }
 $deck.push(Card.new(:joker, :a))
 $deck.push(Card.new(:joker, :b))
 
-$deck.each { |card|
-	puts card
-}
+$deck.each { |card| puts card }
 
 def encrypt(message)
-	# message=(message+("X"*5)).upcase.scan(/.{5}/)
-	message=(message+("X"*5)).upcase.gsub(/[^A-Z]/, "")
+  message = (message + ("X" * 5)).upcase.gsub(/[^A-Z]/, "")
 
-	p message
+  p message
 
-	plainbytes=Enumerable::Enumerator.new(message, :each_byte).collect {|n| n-"A"[0]+1}
+  plainbytes = Enumerable::Enumerator.new(message, :each_byte).collect { |n| n - "A"[0] + 1 }
 
-	p plainbytes
+  p plainbytes
 end
 
 def decrypt(message, key)
+  # ...
 end
 
 encrypt "Boy howdy!\nI do declare."

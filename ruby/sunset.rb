@@ -13,56 +13,52 @@ require "rubygems"
 require "json"
 
 def usage
-	puts "Usage: sunset <zipcode>"
-	exit
+  puts "Usage: sunset <zipcode>"
+  exit
 end
 
 def getinfo(settings)
-	debug=settings["debug"]
-	domain=settings["domain"]
-	api=settings["api"]
-	zip=settings["zip"]
+  debug = settings["debug"]
+  domain = settings["domain"]
+  api = settings["api"]
+  zip = settings["zip"]
 
-	Net::HTTP.start(domain) { |http|
-		response=http.get(api+zip)
+  Net::HTTP.start(domain) { |http|
+    response = http.get(api+zip)
 
-		pp response if debug
+    pp response if debug
 
-		if response.message["Not Acceptable"]
-			raise "Could not connect"
-		end
+    raise "Could not connect" if response.message["Not Acceptable"]
 
-		return JSON.parse(response.body)["weather"]
-	}
+    JSON.parse(response.body)["weather"]
+  }
 end
 
 def main
-	settings={
-		"debug" => false,
-		"domain" => "iamlegend.warnerbros.com",
-		"api" => "/iphone/sunset.php?zip=",
-		"zip" => "22030"
-	}
+  settings = {
+    "debug" => false,
+    "domain" => "iamlegend.warnerbros.com",
+    "api" => "/iphone/sunset.php?zip=",
+    "zip" => "22030"
+  }
 
-	if ARGV.length!=1
-		usage
-	else
-		settings["zip"]=ARGV[0]
-	end
+  if ARGV.length != 1
+    usage
+  else
+    settings["zip"] = ARGV[0]
+  end
 
-	info=getinfo(settings)
+  info = getinfo(settings)
 
-	pp info if settings["debug"]
+  pp info if settings["debug"]
 
-	puts info["formattedSet"]
+  puts info["formattedSet"]
 end
 
-if __FILE__==$0
-	begin
-		main
-	rescue Timeout::Error=>e
-		puts "Could not connect"
-	rescue Interrupt => e
-		nil
-	end
+if __FILE__ == $0
+  begin
+    main
+  rescue Timeout::Error => e
+    puts "Could not connect"
+  end
 end
