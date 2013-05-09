@@ -16,18 +16,17 @@
 #    Set Caesar shift (default 13).
 
 require "getoptlong"
-require "rdoc/usage"
 
 def create_rule(n = 13)
   rule = {}
 
   # "A" to "Z"
-  [65 .. 90].each { |b|
+  (65 .. 90).each { |b|
     rule[b] = (b + n - 65) % 26 + 65
   }
 
   # "a" to "z"
-  [97 .. 122].each { |b|
+  (97 .. 122).each { |b|
     rule[b] = (b + n - 97) % 26 + 97
   }
 
@@ -60,7 +59,7 @@ def main
       end
     }
   rescue
-    RDoc::usage("Usage")
+    system "less #{$0}"
   end
 
   rule = create_rule(shift)
