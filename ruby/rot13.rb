@@ -17,20 +17,18 @@
 
 require "getoptlong"
 
-def create_rule(n = 13)
+def create_rule_26(start, n)
   rule = {}
 
-  # "A" to "Z"
-  (65 .. 90).each { |b|
-    rule[b] = (b + n - 65) % 26 + 65
-  }
-
-  # "a" to "z"
-  (97 .. 122).each { |b|
-    rule[b] = (b + n - 97) % 26 + 97
+  (start .. (start + 26)).each { |b|
+    rule[b] = (b + n - start) % 26 + start
   }
 
   rule
+end
+
+def create_rule(n = 13)
+  create_rule_26("a".ord, n).merge(create_rule_26("A".ord, n))
 end
 
 def crypt(rule, b)
