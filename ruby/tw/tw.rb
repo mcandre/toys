@@ -119,7 +119,7 @@ def view(settings)
   status
 end
 
-def main()
+def main
   mode = :post
   settings = {
     :debug => false,
