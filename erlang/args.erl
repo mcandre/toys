@@ -1,4 +1,14 @@
--module(args).
--export([main/1]).
+%% Compile
+%%
+%% erlc args.erl
+%%
+%% Run
+%%
+%% erl -noshell -s args -- <arg> <arg> <arg>...
 
-main(Args) -> [io:format("~s~n", [A]) || A <- Args].
+-module(args).
+-export([start/0]).
+
+start() ->
+  lists:map(fun(Arg) -> io:format("~s~n", [Arg]) end, init:get_plain_arguments()),
+  init:stop().
