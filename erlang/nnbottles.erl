@@ -1,9 +1,14 @@
-%% Andrew Pennebaker
-%% 5 Dec 2010
+%% Compile
+%%
+%% erlc nnbottles.erl
+%%
+%% Run
+%%
+%% erl -noshell -s nnbottles
 
 -module(nnbottles).
 -author("andrew.pennebaker@gmail.com").
--export([sing/1, main/1]).
+-export([sing/1, start/0]).
 
 sing(1) ->
   io:format("1 bottle of beer on the wall, 1 bottle of beer!~n"),
@@ -13,4 +18,6 @@ sing(I) ->
   io:format("Take one down, pass it around, ~w bottles of beer on the wall.~n~n", [I-1]),
   sing(I-1).
 
-main(_) -> sing(99).
+start() ->
+  sing(99),
+  init:stop().
