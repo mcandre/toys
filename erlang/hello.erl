@@ -1,7 +1,15 @@
-%% 22 Feb 2011
+%% Compile
+%%
+%% erlc hello.erl
+%%
+%% Run
+%%
+%% erl -s hello -noshell
 
 -module(hello).
 -author("andrew.pennebaker@gmail.com").
--export([main/1]).
+-export([start/0]).
 
-main(_) -> io:format("Hello World!~n", []).
+start() ->
+  io:format("Hello World!~n"),
+  init:stop().
