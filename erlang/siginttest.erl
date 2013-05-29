@@ -1,7 +1,15 @@
+%% Compile
+%%
+%% erlc siginttest.erl
+%%
+%% Run
+%%
+%% erl -noshell -s siginttest
+
 -module(siginttest).
 -author("andrew.pennebaker@gmail.com").
--export([main/1]).
+-export([start/0]).
 
-main(_) ->
+start() ->
   io:format("Looping... Exit with Control+C.~n"),
-  main(1).
+  start().
