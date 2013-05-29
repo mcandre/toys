@@ -1,6 +1,14 @@
+%% Compile
+%%
+%% erlc fizzy.erl
+%%
+%% Run
+%%
+%% erl -noshell -s fizzy
+
 -module(fizzy).
 -author("andrew.pennebaker@gmail.com").
--export([fizzbuzz/1, main/1]).
+-export([fizzbuzz/1, start/0]).
 
 fizzbuzz(N) ->
   X = N rem 3,
@@ -12,8 +20,9 @@ fizzbuzz(N) ->
     _ -> io_lib:format("~b", [N])
   end.
 
-main(_) ->
+start() ->
   lists:map(
     fun(S) -> io:format("~s\n", [S]) end,
     rpc:pmap({fizzy, fizzbuzz}, [], lists:seq(1, 100))
-   ).
+   ),
+  init:stop().
