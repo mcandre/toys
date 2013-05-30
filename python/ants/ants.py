@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 
-__author__="Andrew Pennebaker (andrew.pennebaker@gmail.com)"
-__date__="18 May 2007"
-__copyright__="Copyright 2007 Andrew Pennebaker"
-__version__="0.0.1"
+"""2d ant simulation"""
+
+__author__ = "Andrew Pennebaker (andrew.pennebaker@gmail.com)"
+__date__ = "18 May 2007"
+__copyright__ = "Copyright 2007 Andrew Pennebaker"
+__version__ = "0.0.1"
 
 from ants import Ant, Environment
 from ants.util import configreader, screenlengths, screenshot
@@ -13,103 +15,118 @@ import sys, random
 import pygame
 
 def play(screen, settings):
-	clock=pygame.time.Clock()
+  """Tick"""
 
-	lengths=screenlengths.get_lengths(screen)
+  clock = pygame.time.Clock()
 
-	ants=[
-		Ant.Ant(
-			[
-				lengths["midX"]+random.choice(range(-5, 5)),
-				lengths["midY"]+random.choice(range(-5, 5))
-			],
-			random.choice(
-				[[0, 1], [1, 0], [0, -1], [-1, 0]]
-			)
-		)
+  lengths = screenlengths.get_lengths(screen)
 
-		for i in range(settings["antcount"])
-	]
+  ants = [
+    Ant.Ant(
+      [
+        lengths["midX"]+random.choice(range(-5, 5)),
+        lengths["midY"]+random.choice(range(-5, 5))
+      ],
+      random.choice(
+        [[0, 1], [1, 0], [0, -1], [-1, 0]]
+      )
+    )
 
-	env=Environment.Environment(screen, ants, settings["foodcount"], settings["foodsize"])
+    for i in range(settings["antcount"])
+  ]
 
-	while True:
-		for event in pygame.event.get():
-			if event.type==pygame.QUIT:
-				sys.exit()
-			elif event.type==pygame.KEYDOWN:
-				if event.key==settings["keyescape"]:
-					sys.exit()
-				elif event.key==pygame.K_q and event.mod==pygame.KMOD_LMETA or event.mod==pygame.KMOD_RMETA: # Command+Q
-					sys.exit()
-				elif event.key==settings["keyscreenshot"]:
-					screenshot.save(screen, settings["screenshotdir"])
+  env = Environment.Environment(
+    screen,
+    ants,
+    settings["foodcount"],
+    settings["foodsize"]
+  )
 
-		env.update()
+  while True:
+    for event in pygame.event.get():
+      if event.type == pygame.QUIT:
+        sys.exit()
+      elif event.type == pygame.KEYDOWN:
+        if event.key == settings["keyescape"]:
+          sys.exit()
+        elif (
+            event.key == pygame.K_q and
+            event.mod == pygame.KMOD_LMETA or
+            event.mod == pygame.KMOD_RMETA
+        ): # Command+Q
+          sys.exit()
+        elif event.key == settings["keyscreenshot"]:
+          screenshot.save(screen, settings["screenshotdir"])
 
-		screen.fill(env.DIRT_COLOR)
+    env.update()
 
-		screen.fill(env.HOME_COLOR, env.home)
+    screen.fill(env.DIRT_COLOR)
 
-		for rect in env.food_areas:
-			screen.fill(env.FOOD_COLOR, rect)
+    screen.fill(env.HOME_COLOR, env.home)
 
-		#for ant in ants:
-		#	for pos in ant.visited_trail:
-		#		screen.fill(ant.VISITED_TRAIL_COLOR, pygame.Rect(pos[0], pos[1], 1, 1))
+    for rect in env.food_areas:
+      screen.fill(env.FOOD_COLOR, rect)
 
-		for ant in ants:
-			for pos in ant.food_trail:
-				screen.fill(ant.FOOD_TRAIL_COLOR, pygame.Rect(pos[0], pos[1], 1, 1))
+    #for ant in ants:
+    # for pos in ant.visited_trail:
+    #   screen.fill(ant.VISITED_TRAIL_COLOR, pygame.Rect(pos[0], pos[1], 1, 1))
 
-		for ant in ants:
-			if ant.is_alive:
-				screen.fill(ant.COLOR, ant.get_rect())
+    for ant in ants:
+      for pos in ant.food_trail:
+        screen.fill(ant.FOOD_TRAIL_COLOR, pygame.Rect(pos[0], pos[1], 1, 1))
 
-		if settings["screensync"]:
-			clock.tick(settings["fps"])
+    for ant in ants:
+      if ant.is_alive:
+        screen.fill(ant.COLOR, ant.get_rect())
 
-		pygame.display.flip()
+    if settings["screensync"]:
+      clock.tick(settings["fps"])
+
+    pygame.display.flip()
 
 def main():
-	pygame.init()
+  """Run simulation"""
 
-	pygame.mouse.set_visible(False)
+  pygame.init()
 
-	settings={
-		"screensync":True,
-		"fps":16,
-		"fullscreen":False,
-		"resolution":(800, 600),
+  pygame.mouse.set_visible(False)
 
-		"screenshotdir":"screens",
+  settings = {
+    "screensync":True,
+    "fps":16,
+    "fullscreen":False,
+    "resolution":(800, 600),
 
-		"antcount":10,
-		"foodcount":2,
-		"foodsize":30,
+    "screenshotdir":"screens",
 
-		"keyescape":pygame.K_ESCAPE,
-		"keyscreenshot":pygame.K_0
-	}
+    "antcount":10,
+    "foodcount":2,
+    "foodsize":30,
 
-	configreader.read(open("ants.conf", "r"), settings)
+    "keyescape":pygame.K_ESCAPE,
+    "keyscreenshot":pygame.K_0
+  }
 
-	screen=None
+  configreader.read(open("ants.conf", "r"), settings)
 
-	if settings["fullscreen"]:
-		screen=pygame.display.set_mode(settings["resolution"], pygame.FULLSCREEN)
-	else:
-		screen=pygame.display.set_mode(settings["resolution"])
+  screen = None
 
-	#icon=pygame.image.load(settings["gfxdir"]+os.sep+settings["icon"]).convert_alpha()
-	#pygame.display.set_icon(icon)
+  if settings["fullscreen"]:
+    screen = pygame.display.set_mode(settings["resolution"], pygame.FULLSCREEN)
+  else:
+    screen = pygame.display.set_mode(settings["resolution"])
 
-	pygame.display.set_caption("Ants")
+  # icon = pygame.image.load(
+  #   settings["gfxdir"] + os.sep + settings["icon"]
+  # ).convert_alpha()
+  #pygame.display.set_icon(icon)
 
-	play(screen, settings)
+  pygame.display.set_caption("Ants")
 
-if __name__=="__main__":
-	try:
-		main()
-	except KeyboardInterrupt, e:
-		pass
+  play(screen, settings)
+
+if __name__ == "__main__":
+  try:
+    main()
+  except KeyboardInterrupt, e:
+    pass
