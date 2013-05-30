@@ -21,8 +21,6 @@ fizzbuzz(N) ->
   end.
 
 start() ->
-  lists:map(
-    fun(S) -> io:format("~s\n", [S]) end,
-    rpc:pmap({fizzy, fizzbuzz}, [], lists:seq(1, 100))
-   ),
+  [ io:format("~s\n", [Fb]) ||
+    Fb <- rpc:pmap({fizzy, fizzbuzz}, [], lists:seq(1, 100)) ],
   init:stop().
