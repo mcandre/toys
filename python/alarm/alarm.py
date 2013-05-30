@@ -1,16 +1,21 @@
 #!/usr/bin/env python
 
+"""Alarm sounder"""
+
 import time, os, sys
 
 def alert():
-	os.popen("open nads.wav") # helps if OS = Mac and nads.wav is set to open with Play Sound.app
+  """Alert using OS-configured audio file"""
+  os.popen("open nads.wav")
 
-if __name__=="__main__":
-	secs=int(sys.argv[1])
+if __name__ == "__main__":
+  SECS = int(sys.argv[1])
 
-	start=time.time()
-	while time.time()-start<secs: pass
+  START = time.time()
 
-	alert()
+  while time.time() - START < SECS:
+    pass
 
-	sys.exit()
+  alert()
+
+  sys.exit()
