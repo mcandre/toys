@@ -21,128 +21,128 @@ objects=[]
 places=[]
 
 def setLogLevel(level):
-	global logger
+  global logger
 
-	logger.setLevel(level)
+  logger.setLevel(level)
 
 def loadLines(filename):
-	global logger
+  global logger
 
-	logger.debug("Opening %s" % (filename))
+  logger.debug("Opening %s" % (filename))
 
-	f=open(filename, "r")
+  f=open(filename, "r")
 
-	logger.debug("Opened %s in read text mode" % (filename))
-	logger.debug("Reading lines")
+  logger.debug("Opened %s in read text mode" % (filename))
+  logger.debug("Reading lines")
 
-	lines=("".join(f.readlines())).split("\n")
+  lines=("".join(f.readlines())).split("\n")
 
-	logger.debug("Read lines")
-	logger.debug("Closing %s" % (filename))
+  logger.debug("Read lines")
+  logger.debug("Closing %s" % (filename))
 
-	f.close()
+  f.close()
 
-	logger.debug("Closed %s" % (filename))
+  logger.debug("Closed %s" % (filename))
 
-	return lines
+  return lines
 
 def loadQuotes(objectfile="objects.txt", placefile="places.txt"):
-	global objects
-	global places
-	global logger
+  global objects
+  global places
+  global logger
 
-	try:
-		logger.debug("Loading object lines")
+  try:
+    logger.debug("Loading object lines")
 
-		objects=loadLines(objectfile)
+    objects=loadLines(objectfile)
 
-		logger.debug("Loaded object lines %s" % (objects))
-		logger.debug("Loading place lines")
+    logger.debug("Loaded object lines %s" % (objects))
+    logger.debug("Loading place lines")
 
-		places=loadLines(placefile)
+    places=loadLines(placefile)
 
-		logger.debug("Loaded place lines %s" % (places))
-	except:
-		logger.error("Error loading files")
+    logger.debug("Loaded place lines %s" % (places))
+  except:
+    logger.error("Error loading files")
 
-		raise Exception("Error loading files")
+    raise Exception("Error loading files")
 
-	if len(objects)<1 or len(places)<1:
-		logger.warn("Objects or places empty: %s %s" % (objects, places))
+  if len(objects)<1 or len(places)<1:
+    logger.warn("Objects or places empty: %s %s" % (objects, places))
 
 def getQuote():
-	global objects
-	global places
-	global logger
+  global objects
+  global places
+  global logger
 
-	logger.debug("Getting random objects")
+  logger.debug("Getting random objects")
 
-	o=[random.choice(objects) for i in range(3)]
+  o=[random.choice(objects) for i in range(3)]
 
-	logger.debug("Got random objects: %s" % (o))
-	logger.debug("Getting random place")
+  logger.debug("Got random objects: %s" % (o))
+  logger.debug("Getting random place")
 
-	place=random.choice(places)
+  place=random.choice(places)
 
-	logger.debug("Got random place %s" % (place))
-	logger.debug("Concatenating quote")
+  logger.debug("Got random place %s" % (place))
+  logger.debug("Concatenating quote")
 
-	quote="Grab %s, %s, and %s, and meet me %s!" % (
-		o[0].strip(),
-		o[1].strip(),
-		o[2].strip(),
-		place.strip()
-	)
+  quote="Grab %s, %s, and %s, and meet me %s!" % (
+    o[0].strip(),
+    o[1].strip(),
+    o[2].strip(),
+    place.strip()
+  )
 
-	logger.info("Concatenated quote: %s" % (quote))
+  logger.info("Concatenated quote: %s" % (quote))
 
-	return quote
+  return quote
 
 def usage():
-	print "Usage: [options] %s <objectfile> <placefile>" % (sys.argv[0])
-	print "--loglevel <level>"
-	print "-h --help (usage)"
+  print "Usage: [options] %s <objectfile> <placefile>" % (sys.argv[0])
+  print "--loglevel <level>"
+  print "-h --help (usage)"
 
-	sys.exit()
+  sys.exit()
 
 def main():
-	global objects
-	global places
-	global logger
+  global objects
+  global places
+  global logger
 
-	systemArgs=sys.argv[1:] # ignore program name
+  systemArgs=sys.argv[1:] # ignore program name
 
-	objectfile="objects.txt"
-	placefile="places.txt"
-	loglevel=logging.INFO
+  objectfile="objects.txt"
+  placefile="places.txt"
+  loglevel=logging.INFO
 
-	optlist, args=[], []
-	try:
-		optlist, args=getopt(systemArgs, "h", ["loglevel=", "help"])
-	except:
-		usage()
+  optlist, args=[], []
+  try:
+    optlist, args=getopt(systemArgs, "h", ["loglevel=", "help"])
+  except:
+    usage()
 
-	for option, value in optlist:
-		if option=="-h" or option=="--help":
-			usage()
-		elif option=="--loglevel":
-			try:
-				loglevel=int(value)
-				if loglevel<logging.NOTSET or loglevel>logging.CRITICAL:
-					raise Exception
-			except:
-				raise Exception("Loglevel is an integer from 0 to 50")
+  for option, value in optlist:
+    if option=="-h" or option=="--help":
+      usage()
+    elif option=="--loglevel":
+      try:
+        loglevel=int(value)
+        if loglevel<logging.NOTSET or loglevel>logging.CRITICAL:
+          raise Exception
+      except:
+        raise Exception("Loglevel is an integer from 0 to 50")
 
-	if len(args)==2:
-		objectfile, placefile=args
+  if len(args)==2:
+    objectfile, placefile=args
 
-	setLogLevel(loglevel)
+  setLogLevel(loglevel)
 
-	loadQuotes(objectfile, placefile)
+  loadQuotes(objectfile, placefile)
 
-	quote=getQuote()
+  quote=getQuote()
 
-	print quote
+  print quote
 
 if __name__=="__main__":
-	main()
+  main()
