@@ -3,6 +3,7 @@
 # REQUIREMENTS
 
 * [Python](http://python.org)
+* [Fabric](http://docs.fabfile.org)
 
 ## Optional
 
@@ -14,15 +15,15 @@
 
 Test your code while you tweak it:
 
-    $ bundle exec guard
+    $ fab guard
 
 ## Linting
 
 Keep the code tidy:
 
-    $ pylint *.py
+    $ fab lint
 
 # EXAMPLE
 
-    $ python KenanKelQuote.py 
+    $ fab test
     Grab a springboard, an owl, and a lampshade, and meet me on AIM!
