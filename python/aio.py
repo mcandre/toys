@@ -1,44 +1,52 @@
 """Andrew's Input/Output module"""
 
-__author__="Andrew Pennebaker (andrew.pennebaker@gmail.com)"
-__date__="21 Dec 2005 - 27 May 2006"
-__copyright__="Copyright 2005 Andrew Pennebaker"
-__version__="0.2"
+__author__ = "Andrew Pennebaker (andrew.pennebaker@gmail.com)"
+__date__ = "21 Dec 2005 - 27 May 2006"
+__copyright__ = "Copyright 2005 Andrew Pennebaker"
+__version__ = "0.2"
 
-def getByteArray(s):
-	return [ord(e) for e in s]
+def get_byte_array(s):
+  """Convert string to byte list"""
 
-def readAll(f):
-	byteArray=[]
-	line=f.readline()
-	while line!="":
-		for e in line:
-			byteArray.append(ord(e))
-		line=f.readline()
+  return [ord(e) for e in s]
 
-	return byteArray
+def read_all(f):
+  """Read all bytes from file into an array"""
+
+  byte_array = []
+  line = f.readline()
+  while line != "":
+    for e in line:
+      byte_array.append(ord(e))
+    line = f.readline()
+
+  return byte_array
 
 def chomp(text):
-	if text=="" or text=="\n":
-		return ""
-	elif text[-1]=="\n":
-		return text[:-1]
-	else:
-		return text
+  """Strip trailing line ending characters"""
 
-def getSize(file):
-	try:
-		f=open(file, "rb")
-	except Exception, e:
-		raise e
+  if text == "" or text == "\n":
+    return ""
+  elif text[-1] == "\n":
+    return text[:-1]
+  else:
+    return text
 
-	b=0
+def get_size(file):
+  """Size of file in bytes"""
 
-	c=f.read(1)
+  try:
+    f = open(file, "rb")
+  except Exception, e:
+    raise e
 
-	while c!="":
-		b+=1
-		c=f.read(1)
-	f.close()
+  b = 0
 
-	return b
+  c = f.read(1)
+
+  while c != "":
+    b += 1
+    c = f.read(1)
+  f.close()
+
+  return b
