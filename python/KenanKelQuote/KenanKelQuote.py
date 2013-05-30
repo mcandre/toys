@@ -9,7 +9,7 @@ __version__ = "0.1"
 import logging
 import random
 import sys
-from getopt import getopt
+import getopt
 
 LOGGER = logging.getLogger("File")
 FILE_HANDLER = logging.FileHandler("KenanKelQuote.log")
@@ -19,15 +19,10 @@ LOGGER.addHandler(FILE_HANDLER)
 LOGGER.setLevel(logging.INFO)
 
 OBJECTS = []
-places = []
+PLACES = []
 
-def setLogLevel(level):
-  global LOGGER
-
-  LOGGER.setLevel(level)
-
-def loadLines(filename):
-  global LOGGER
+def load_lines(filename):
+  """Load funny lines from a text file into a list."""
 
   LOGGER.debug("Opening %s" % (filename))
 
@@ -47,34 +42,33 @@ def loadLines(filename):
 
   return lines
 
-def loadQuotes(objectfile = "objects.txt", placefile = "places.txt"):
+def load_quotes(objectfile = "objects.txt", placefile = "places.txt"):
+  """Load funny items from text files."""
+
   global OBJECTS
-  global places
-  global LOGGER
+  global PLACES
 
   try:
     LOGGER.debug("Loading object lines")
 
-    OBJECTS = loadLines(objectfile)
+    OBJECTS = load_lines(objectfile)
 
     LOGGER.debug("Loaded object lines %s" % (OBJECTS))
     LOGGER.debug("Loading place lines")
 
-    places = loadLines(placefile)
+    PLACES = load_lines(placefile)
 
-    LOGGER.debug("Loaded place lines %s" % (places))
+    LOGGER.debug("Loaded place lines %s" % (PLACES))
   except:
     LOGGER.error("Error loading files")
 
     raise Exception("Error loading files")
 
-  if len(OBJECTS)<1 or len(places)<1:
-    LOGGER.warn("Objects or places empty: %s %s" % (OBJECTS, places))
+  if len(OBJECTS) < 1 or len(PLACES) < 1:
+    LOGGER.warn("Objects or places empty: %s %s" % (OBJECTS, PLACES))
 
-def getQuote():
-  global OBJECTS
-  global places
-  global LOGGER
+def get_quote():
+  """Generate random quote"""
 
   LOGGER.debug("Getting random objects")
 
@@ -83,7 +77,7 @@ def getQuote():
   LOGGER.debug("Got random objects: %s" % (o))
   LOGGER.debug("Getting random place")
 
-  place = random.choice(places)
+  place = random.choice(PLACES)
 
   LOGGER.debug("Got random place %s" % (place))
   LOGGER.debug("Concatenating quote")
@@ -100,6 +94,8 @@ def getQuote():
   return quote
 
 def usage():
+  """Print usage message"""
+
   print "Usage: [options] %s <objectfile> <placefile>" % (sys.argv[0])
   print "--loglevel <level>"
   print "-h --help (usage)"
@@ -107,11 +103,9 @@ def usage():
   sys.exit()
 
 def main():
-  global OBJECTS
-  global places
-  global LOGGER
+  """Print a random quote"""
 
-  systemArgs = sys.argv[1:] # ignore program name
+  system_args = sys.argv[1:] # ignore program name
 
   objectfile = "objects.txt"
   placefile = "places.txt"
@@ -119,8 +113,8 @@ def main():
 
   optlist, args = [], []
   try:
-    optlist, args = getopt(systemArgs, "h", ["loglevel=", "help"])
-  except:
+    optlist, args = getopt.getopt(system_args, "h", ["loglevel=", "help"])
+  except getopt.GetoptError:
     usage()
 
   for option, value in optlist:
@@ -129,7 +123,7 @@ def main():
     elif option == "--loglevel":
       try:
         loglevel = int(value)
-        if loglevel<logging.NOTSET or loglevel>logging.CRITICAL:
+        if loglevel < logging.NOTSET or loglevel > logging.CRITICAL:
           raise Exception
       except:
         raise Exception("Loglevel is an integer from 0 to 50")
@@ -137,13 +131,16 @@ def main():
   if len(args) == 2:
     objectfile, placefile = args
 
-  setLogLevel(loglevel)
+  LOGGER.setLevel(loglevel)
 
-  loadQuotes(objectfile, placefile)
+  load_quotes(objectfile, placefile)
 
-  quote = getQuote()
+  quote = get_quote()
 
   print quote
 
 if __name__ == "__main__":
-  main()
+  try:
+    main()
+  except KeyboardInterrupt, e:
+    pass
