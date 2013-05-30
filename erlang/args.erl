@@ -10,5 +10,5 @@
 -export([start/0]).
 
 start() ->
-  lists:map(fun(Arg) -> io:format("~s~n", [Arg]) end, init:get_plain_arguments()),
+  io:format("~p~n", [init:get_plain_arguments()]),
   init:stop().
