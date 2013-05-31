@@ -6,84 +6,87 @@
   --
 6  >  (-1)^n / (n^2)
   --
-  n=1
+  n = 1
 
 with remainder < 1 / (n+1)^2
 
 to approximate Pi"""
 
-__author__="Andrew Pennebaker (andrew.pennebaker@gmail.com)"
-__date__="9 Feb 2006"
-__copyright__="Copyright 2006 Andrew Pennebaker"
-__version__="0.0.1" # not currently working
+__author__ = "Andrew Pennebaker (andrew.pennebaker@gmail.com)"
+__date__ = "9 Feb 2006"
+__copyright__ = "Copyright 2006 Andrew Pennebaker"
+__version__ = "0.0.1" # not currently working
 
-import math
-
-from decimal import *
+from decimal import Decimal, getcontext
 
 import sys
+import getopt
 
-from getopt import getopt
+def approxpi(n = 1000, precision = 1000):
+  """Power series approximation"""
 
-def approxpi(n=1000, precision=1000):
-	getcontext().prec=precision
+  getcontext().prec = precision
 
-	s=Decimal(0)
-	x=1
-	while x<=n:
-		s+=((-1)**x)/Decimal(x*x)
-		x+=1
+  s = Decimal(0)
+  x = 1
+  while x <= n:
+    s += ((-1) ** x) / Decimal(x * x)
+    x += 1
 
-	pi=abs(12*s).sqrt()
+  pi = abs(12 * s).sqrt()
 
-	remainder=(12/Decimal((n+1)**2)).sqrt()
+  remainder = (12 / Decimal((n + 1) ** 2)).sqrt()
 
-	return (pi, remainder)
+  return (pi, remainder)
 
 def usage():
-	print "Usage: %s [options]" % (sys.argv[0])
-	print "\n--n large number n"
-	print "--precision digits"
-	print "--help (usage)"
+  """Print usage message"""
 
-	sys.exit()
+  print("Usage: %s [options]" % (sys.argv[0]))
+  print("\n--n large number n")
+  print("--precision digits")
+  print("--help (usage)")
+
+  sys.exit()
 
 def main():
-	systemArgs=sys.argv[1:] # ignore program name
+  """CLI"""
 
-	n=1000
-	p=1000
+  system_args = sys.argv[1:] # ignore program name
 
-	optlist=[]
+  n = 1000
+  p = 1000
 
-	try:
-		optlist, args=getopt(systemArgs, None, ["n=", "precision=", "help"])
-	except Exception:
-		usage()
+  optlist = []
 
-	for option, value in optlist:
-		if option=="--help":
-			usage()
+  try:
+    optlist, args = getopt.getopt(
+      system_args,
+      None,
+      ["n=", "precision=", "help"]
+    )
+  except getopt.GetoptError:
+    usage()
 
-		elif option=="--n":
-			try:
-				n=int(value)
-				if n<1:
-					raise Exception
-			except Exception:
-				raise Exception("N must be at least 1")
-		elif option=="--precision":
-			try:
-				p=int(value)
-				if p<1:
-					raise Exception
-			except Exception:
-				raise Exception("Precision must be at least 1")
+  for option, value in optlist:
+    if option == "--help":
+      usage()
 
-	result=approxpi(n, p)
+    elif option == "--n":
+      n = int(value)
 
-	print "Pi:\n%s\n" % (result[0])
-	print "Remainder:\n%s" % (result[1])
+      if n < 1:
+        raise Exception("N must be at least 1")
+    elif option == "--precision":
+      p = int(value)
 
-if __name__=="__main__":
-	main()
+      if p < 1:
+        raise Exception("Precision must be at least 1")
+
+  result = approxpi(n, p)
+
+  print "Pi:\n%s\n" % (result[0])
+  print "Remainder:\n%s" % (result[1])
+
+if __name__ == "__main__":
+  main()

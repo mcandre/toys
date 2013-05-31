@@ -1,20 +1,28 @@
 #!/usr/bin/env python
 
+"""Monte Carlo demo"""
+
 import sys
 from random import random # Mersienne Twister as the core generator
 
-if __name__=="__main__":
-	points=int(sys.argv[1]) # Number of MC attempts
+def main():
+  """CLI"""
 
-	in_square = 0
+  points = int(sys.argv[1]) # Number of MC attempts
 
-	for point in range(points):
-	   x = 2 * ( random() - 0.5 )
-	   y = 2 * ( random() - 0.5 )
-	   d = x*x + y*y
-	   if d <= 1:
-	      in_square = in_square + 1
+  in_square = 0
 
-	Pi  = 4.0 * in_square / points
+  for point in range(points):
+    x = 2 * (random() - 0.5)
+    y = 2 * (random() - 0.5)
+    d = x * x + y * y
 
-	print "Approximation to Pi after", points, "points: ", Pi
+    if d <= 1:
+      in_square = in_square + 1
+
+  pi = 4.0 * in_square / points
+
+  print("Approximation to Pi after", points, "points: ", pi)
+
+if __name__ == "__main__":
+  main()

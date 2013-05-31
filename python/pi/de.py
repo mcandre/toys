@@ -1,67 +1,76 @@
 #!/usr/bin/env python
 
+"""Yet another Pi approximation"""
+
 import sys
-from getopt import getopt
+import getopt
 
 def t(t, mult, div):
-	m=2
-	d=3
-	p=t
-	s=t
+  """T calculation"""
 
-	while p > 0:
+  m = 2
+  d = 3
+  p = t
+  s = t
 
-		p = (p*mult/div)*m/d
+  while p > 0:
 
-		m+=2
-		d+=2
-		s+=p
+    p = (p * mult / div) * m / d
 
-	return s
+    m += 2
+    d += 2
+    s += p
+
+  return s
 
 def usage():
-	print "Usage: %s [--n n] [--precision precision] [--help]" % (sys.argv[0])
-
-	sys.exit()
+  """Print usage message"""
+  print("Usage: %s [--n n] [--precision precision] [--help]" %
+        (sys.argv[0])
+  )
+  sys.exit()
 
 def main():
-	systemArgs=sys.argv[1:] # ignore program name
+  """CLI"""
+  system_args = sys.argv[1:] # ignore program name
 
-	po=1L
-	n=90000L # n=4000
+  po = 1L
+  n = 90000L # n = 4000
 
-	optlist=[]
+  optlist = []
 
-	try:
-		optlist, args=getopt(systemArgs, None, ["n=", "precision=", "help"])
-	except Exception:
-		usage()
+  try:
+    optlist, args = getopt.getopt(
+      system_args,
+      None,
+      ["n=", "precision=", "help"]
+    )
+  except getopt.GetoptError:
+    usage()
 
-	for option, value in optlist:
-		if option=="--help":
-			usage()
+  for option, value in optlist:
+    if option == "--help":
+      usage()
 
-		elif option=="--n":
-			try:
-				n=long(value)
-				if n<5:
-					raise Exception
-			except Exception:
-				raise Exception("N is at least 1")
-		elif option=="--precision":
-			try:
-				po=long(value)
-				if po<1:
-					raise Exception
-			except Exception:
-				raise Exception("Precision is at least 1")
+    elif option == "--n":
+      n = long(value)
+      if n < 5:
+        raise Exception("N is at least 1")
+    elif option == "--precision":
+      po = long(value)
 
-	for i in range(0, n-5):
-		po *= 10
+      if po < 1:
+        raise Exception("Precision is at least 1")
 
-	pi = t(280000*po, 2, 100) + t(30336*po, 144, 100000)
+  for i in range(0, n - 5):
+    po *= 10
 
-	print pi
+  pi = t(280000 * po, 2, 100) + t(30336 * po, 144, 100000)
 
-if __name__=="__main__":
-	main()
+  print(pi)
+
+if __name__ == "__main__":
+  try:
+    main()
+  except KeyboardInterrupt:
+    pass
