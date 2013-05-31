@@ -2,46 +2,50 @@
 
 """Lists all primes"""
 
-__author__="Andrew Pennebaker (andrew.pennebaker@gmail.com)"
-__date__="26 Nov 2005 - 12 Feb 2006"
-__copyright__="Copyright 2006 Andrew Pennebaker"
-__version__="0.2"
+__author__ = "Andrew Pennebaker (andrew.pennebaker@gmail.com)"
+__date__ = "26 Nov 2005 - 12 Feb 2006"
+__copyright__ = "Copyright 2006 Andrew Pennebaker"
+__version__ = "0.2"
 
+from factor import get_all_factors
 from makerange import makerange
 
 import sys
-from getopt import getopt
-
-from factor import getAllFactors
+import getopt
 
 def usage():
-	print "Usage: %s <number/range> [--help]"
-
-	sys.exit()
+  """Print usage message"""
+  print("Usage: %s <number/range> [--help]")
+  sys.exit()
 
 def main():
-	systemArgs=sys.argv[1:] # ignore program name
-	optlist=[]
-	args=[]
+  """CLI"""
 
-	if len(args)<1:
-		usage()
+  system_args = sys.argv[1:] # ignore program name
+  optlist = []
+  args = []
 
-	try:
-		optlist, args=getopt(systemArgs, None, ["help"])
-	except Exception:
-		usage()
+  if len(args) < 1:
+    usage()
 
-	for option, value in optlist:
-		if option=="--help":
-			usage()
+  try:
+    optlist, args = getopt.getopt(system_args, None, ["help"])
+  except getopt.GetoptError:
+    usage()
 
-	numbers=makerange(args[0], 1, 10**25)
+  for option, value in optlist:
+    if option == "--help":
+      usage()
 
-	print "Factoring"
+  numbers = makerange(args[0], 1, 10 ** 25)
 
-	for n in numbers:
-		print " ".join(getAllFactors(n))
+  print("Factoring")
 
-if __name__=="__main__":
-	main()
+  for n in numbers:
+    print(" ".join(get_all_factors(n)))
+
+if __name__ == "__main__":
+  try:
+    main()
+  except KeyboardInterrupt:
+    pass
