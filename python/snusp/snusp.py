@@ -2,289 +2,314 @@
 
 """A SNUSP interpreter"""
 
-__author__="Andrew Pennebaker (andrew.pennebaker@gmail.com)"
-__date__="27 Feb 2006 - 12 Mar 2006"
-__copyright__="Copyright 2006 Andrew Pennebaker"
-__version__="0.2" # seems to work
+__author__ = "Andrew Pennebaker (andrew.pennebaker@gmail.com)"
+__date__ = "27 Feb 2006 - 12 Mar 2006"
+__copyright__ = "Copyright 2006 Andrew Pennebaker"
+__version__ = "0.2" # seems to work
 
+import getopt
 import sys
-from getopt import getopt
 
 class SNUSPInterpreter:
-	START="$"
-	SUBPROCESS="@"
-	RETURN="#"
+  """SNUSP interpreter"""
 
-	NEXT=">"
-	PREVIOUS="<"
-	ADD="+"
-	SUBTRACT="-"
-	WRITE="."
-	READ=","
+  START = "$"
+  SUBPROCESS = "@"
+  RETURN = "#"
 
-	SLASH="/"
-	BACKSLASH="\\"
-	JUMP="!"
-	QUERY="?"
+  NEXT = ">"
+  PREVIOUS = "<"
+  ADD = "+"
+  SUBTRACT = "-"
+  WRITE = "."
+  READ = ","
 
-	NOP1="="
-	NOP2="|"
-	NOP3="*"
+  SLASH = "/"
+  BACKSLASH = "\\"
+  JUMP = "!"
+  QUERY = "?"
 
-	RIGHT="R"
-	LEFT="L"
-	DOWN="D"
-	UP="U"
+  NOP1 = " = "
+  NOP2 = "|"
+  NOP3 = "*"
 
-	tape=[0] # dynamic length
-	address=0
+  RIGHT = "R"
+  LEFT = "L"
+  DOWN = "D"
+  UP = "U"
 
-	steps=0
+  tape = [0] # dynamic length
+  address = 0
 
-	board=["$#"]
-	stack=[(0, 0, "R")]
+  steps = 0
 
-	def __init__(self, debug=False):
-		self.debug=debug
+  board = ["$#"]
+  stack = [(0, 0, "R")]
 
-	def printBoard(self):
-		for row in range(len(self.board)):
-			for column in range(len(self.board[row])):
-				for plate in range(len(self.stack)):
-					row2, column2, direction=self.stack[plate]
+  def __init__(self, debug = False):
+    self.debug = debug
 
-					if row==row2 and column==column2:
-						sys.stdout.write("%d" % (len(self.stack)-plate))
-						break
-				else:
-					sys.stdout.write(self.board[row][column])
-			sys.stdout.write("\n")
+  def print_board(self):
+    """Debug"""
 
-	def move(self):
-		row, column, direction=self.stack[0]
+    for row in range(len(self.board)):
+      for column in range(len(self.board[row])):
+        for plate in range(len(self.stack)):
+          row2, column2, direction = self.stack[plate]
 
-		if direction==self.RIGHT:
-			self.stack[0]=(row, column+1, direction)
-		elif direction==self.LEFT:
-			self.stack[0]=(row, column-1, direction)
-		elif direction==self.DOWN:
-			self.stack[0]=(row+1, column, direction)
-		elif direction==self.UP:
-			self.stack[0]=(row-1, column, direction)
+          if row == row2 and column == column2:
+            sys.stdout.write("%d" % (len(self.stack) - plate))
+            break
+          else:
+            sys.stdout.write(self.board[row][column])
+            sys.stdout.write("\n")
 
-	def rotate(self, operator):
-		row, column, direction=self.stack[0]
+  def move(self):
+    """Move head"""
 
-		if operator==self.SLASH:
-			if direction==self.RIGHT:
-				direction=self.UP
-			elif direction==self.LEFT:
-				direction=self.DOWN
-			elif direction==self.DOWN:
-				direction=self.LEFT
-			elif direction==self.UP:
-				direction=self.RIGHT
-		elif operator==self.BACKSLASH:
-			if direction==self.RIGHT:
-				direction=self.DOWN
-			elif direction==self.LEFT:
-				direction=self.UP
-			elif direction==self.DOWN:
-				direction=self.RIGHT
-			elif direction==self.UP:
-				direction=self.LEFT
+    row, column, direction = self.stack[0]
 
-		self.stack[0]=(row, column, direction)
+    if direction == self.RIGHT:
+      self.stack[0] = (row, column + 1, direction)
+    elif direction == self.LEFT:
+      self.stack[0] = (row, column - 1, direction)
+    elif direction == self.DOWN:
+      self.stack[0] = (row + 1, column, direction)
+    elif direction == self.UP:
+      self.stack[0] = (row - 1, column, direction)
 
-	def moveBack(self):
-		row, column, direction=self.stack[0]
+  def rotate(self, operator):
+    """Rotate head"""
 
-		if direction==self.RIGHT:
-			self.stack[0]=(row, column-1, direction)
-		elif direction==self.LEFT:
-			self.stack[0]=(row, column+1, direction)
-		elif direction==self.DOWN:
-			self.stack[0]=(row-1, column, direction)
-		elif direction==self.UP:
-			self.stack[0]=(row+1, column, direction)
+    row, column, direction = self.stack[0]
 
-	def step(self):
-		self.steps+=1
+    if operator == self.SLASH:
+      if direction == self.RIGHT:
+        direction = self.UP
+      elif direction == self.LEFT:
+        direction = self.DOWN
+      elif direction == self.DOWN:
+        direction = self.LEFT
+      elif direction == self.UP:
+        direction = self.RIGHT
+      elif operator == self.BACKSLASH:
+        if direction == self.RIGHT:
+          direction = self.DOWN
+        elif direction == self.LEFT:
+          direction = self.UP
+        elif direction == self.DOWN:
+          direction = self.RIGHT
+        elif direction == self.UP:
+          direction = self.LEFT
 
-		if self.debug:
-			print "Step: %d" % (self.steps)
-			print "Board:"
-			self.printBoard()
-			print "Stack:"
-			print self.stack
-			print "Tape: %s" % (" ".join(["%d" % (e) for e in self.tape]))
+    self.stack[0] = (row, column, direction)
 
-		row, column, direction=self.stack[0]
+  def move_back(self):
+    """Reverse head"""
 
-		cmd=""
+    row, column, direction = self.stack[0]
 
-		try:
-			cmd=self.board[row][column]
-		except IndexError:
-			raise Exception("Board index out of range")
+    if direction == self.RIGHT:
+      self.stack[0] = (row, column - 1, direction)
+    elif direction == self.LEFT:
+      self.stack[0] = (row, column + 1, direction)
+    elif direction == self.DOWN:
+      self.stack[0] = (row - 1, column, direction)
+    elif direction == self.UP:
+      self.stack[0] = (row + 1, column, direction)
 
-		if cmd==self.START:
-			self.move()
-		elif cmd==self.SUBPROCESS:
-			if self.tape[self.address]==0:
-				# push command after skipped command
-				self.move()
-				self.move()
-				plate=self.stack[0]
-				self.stack.insert(0, plate)
+  def step(self):
+    """Tick"""
 
-				# backwards to unskipped command
-				self.moveBack()
-			else:
-				self.move()
-		elif cmd==self.ADD:
-			self.tape[self.address]+=1
-			self.move()
-		elif cmd==self.SUBTRACT:
-			self.tape[self.address]-=1
-			self.move()
-		elif cmd==self.NEXT:
-			self.address+=1
+    self.steps += 1
 
-			if self.address>=len(self.tape):
-				self.tape.append(0)
+    if self.debug:
+      print("Step: %d" % (self.steps))
+      print("Board:")
+      self.print_board()
+      print("Stack:")
+      print(self.stack)
+      print("Tape: %s" % (" ".join(["%d" % (e) for e in self.tape])))
 
-			self.move()
-		elif cmd==self.PREVIOUS:
-			self.address-=1
+    row, column, direction = self.stack[0]
 
-			if self.address<0:
-				raise Exception("Tape index out of range")
+    cmd = ""
 
-			self.move()
-		elif cmd==self.WRITE:
-			sys.stdout.write(chr(self.tape[self.address]))
-			self.move()
-		elif cmd==self.READ:
-			try:
-				self.tape[self.address]=ord(sys.stdin.read(1))
-			except:
-				self.tape[self.address]=-1
+    try:
+      cmd = self.board[row][column]
+    except IndexError:
+      raise Exception("Board index out of range")
 
-			self.move()
-		elif cmd==self.SLASH or cmd==self.BACKSLASH:
-			self.rotate(cmd)
-			self.move()
-		elif cmd==self.JUMP:
-			self.move()
-			self.move()
-		elif cmd==self.QUERY:
-			if self.tape[self.address]==0:
-				self.move()
-				self.move()
-			else:
-				self.move()
-		elif cmd==self.RETURN:
-			self.stack.pop(0)
+    if cmd == self.START:
+      self.move()
+    elif cmd == self.SUBPROCESS:
+      if self.tape[self.address] == 0:
+        # push command after skipped command
+        self.move()
+        self.move()
+        plate = self.stack[0]
+        self.stack.insert(0, plate)
 
-		# white-space
-		else:
-			self.move()
+        # backwards to unskipped command
+        self.move_back()
+      else:
+        self.move()
+    elif cmd == self.ADD:
+      self.tape[self.address] += 1
+      self.move()
+    elif cmd == self.SUBTRACT:
+      self.tape[self.address] -= 1
+      self.move()
+    elif cmd == self.NEXT:
+      self.address += 1
 
-	def findStart(self):
-		row=0
-		while row<len(self.board):
-			column=0
-			while column<len(self.board[row]):
-				if self.board[row][column]==self.START:
-					return (row, column)
-				else:
-					column+=1
-			row+=1
+      if self.address >= len(self.tape):
+        self.tape.append(0)
 
-		return (0, 0) # start not found
+      self.move()
+    elif cmd == self.PREVIOUS:
+      self.address -= 1
 
-	def run(self):
-		while len(self.stack)>0:
-			self.step()
+      if self.address < 0:
+        raise Exception("Tape index out of range")
 
-	def compile(self, text):
-		lines=text.split("\n")
+      self.move()
+    elif cmd == self.WRITE:
+      sys.stdout.write(chr(self.tape[self.address]))
+      self.move()
+    elif cmd == self.READ:
+      try:
+        self.tape[self.address] = ord(sys.stdin.read(1))
+      except:
+        self.tape[self.address] = -1
 
-		for i in range(len(lines)):
-			lines[i]=lines[i]
+      self.move()
+    elif cmd == self.SLASH or cmd == self.BACKSLASH:
+      self.rotate(cmd)
+      self.move()
+    elif cmd == self.JUMP:
+      self.move()
+      self.move()
+    elif cmd == self.QUERY:
+      if self.tape[self.address] == 0:
+        self.move()
+        self.move()
+      else:
+        self.move()
+    elif cmd == self.RETURN:
+      self.stack.pop(0)
+    # white-space
+    else:
+      self.move()
 
-		# find longest line
-		longest=0
-		for i in range(len(lines)):
-			if len(lines[i])>len(lines[longest]):
-				longest=i
+  def find_start(self):
+    """Find start"""
 
-		# insert spaces in shorter lines
-		for i in range(len(lines)):
-			lines[i]+=" "*(len(lines[longest])-len(lines[i]))
+    row = 0
+    while row < len(self.board):
+      column = 0
+      while column < len(self.board[row]):
+        if self.board[row][column] == self.START:
+          return (row, column)
+        else:
+          column += 1
+          row += 1
 
-		self.board=[]
-		for line in lines:
-			self.board.append(line)
+    return (0, 0) # start not found
 
-		startRow, startColumn=self.findStart()
+  def run(self):
+    """Run SNUSP code"""
 
-		self.stack=[(startRow, startColumn, self.RIGHT)]
+    while len(self.stack) > 0:
+      self.step()
+
+  def compile(self, text):
+    """Prepare SNUSP code"""
+
+    lines = text.split("\n")
+
+    for i in range(len(lines)):
+      lines[i] = lines[i]
+
+    # find longest line
+    longest = 0
+    for i in range(len(lines)):
+      if len(lines[i]) > len(lines[longest]):
+        longest = i
+
+    # insert spaces in shorter lines
+    for i in range(len(lines)):
+      lines[i] += " " * (len(lines[longest]) - len(lines[i]))
+
+    self.board = []
+    for line in lines:
+      self.board.append(line)
+
+    startRow, start_column = self.find_start()
+
+    self.stack = [(startRow, start_column, self.RIGHT)]
 
 def usage():
-	print "Usage: %s [options] <sourcefile>" % (sys.argv[0])
-	print "\n-d|--debug prints board for every move"
-	print "-n|--nowait step without pauses"
-	print "-h|--help (usage)"
+  """Print usage message"""
 
-	sys.exit()
+  print("Usage: %s [options] <sourcefile>" % (sys.argv[0]))
+  print("\n-d|--debug prints board for every move")
+  print("-n|--nowait step without pauses")
+  print("-h|--help (usage)")
+
+  sys.exit()
 
 def main():
-	systemArgs=sys.argv[1:] # ignore program name
+  """CLI"""
 
-	debug=False
-	wait=True
+  system_args = sys.argv[1:] # ignore program name
 
-	optlist=[]
-	args=[]
+  debug = False
+  wait = True
 
-	try:
-		optlist, args=getopt(systemArgs, "dnh", ["debug", "nowait", "help"])
-	except Exception:
-		usage()
+  optlist = []
+  args = []
 
-	if len(args)<1:
-		usage()
+  try:
+    optlist, args = getopt.getopt(
+      system_args,
+      "dnh",
+      ["debug", "nowait", "help"]
+    )
+  except getopt.GetoptError:
+    usage()
 
-	for option, value in optlist:
-		if option=="-h" or option=="--help":
-			usage()
+  if len(args) < 1:
+    usage()
 
-		elif option=="-d" or option=="--debug":
-			debug=True
-		elif option=="-n" or option=="--nowait":
-			wait=False
+  for option, value in optlist:
+    if option == "-h" or option == "--help":
+      usage()
 
-	src=args[0]
+    elif option == "-d" or option == "--debug":
+      debug = True
+    elif option == "-n" or option == "--nowait":
+      wait = False
 
-	srcfile=open(src, "r")
-	code="".join(srcfile.readlines())
-	srcfile.close()
+  src = args[0]
 
-	si=SNUSPInterpreter(debug)
-	si.compile(code)
+  srcfile = open(src, "r")
+  code = "".join(srcfile.readlines())
+  srcfile.close()
 
-	if debug:
-		while len(si.stack)>0:
-			si.step()
-			if wait:
-				raw_input()
-	else:
-		si.run()
+  si = SNUSPInterpreter(debug)
+  si.compile(code)
 
-if __name__=="__main__":
-	try:
-		main()
-	except KeyboardInterrupt:
-		pass
+  if debug:
+    while len(si.stack) > 0:
+      si.step()
+      if wait:
+        raw_input()
+      else:
+        si.run()
+
+if __name__ == "__main__":
+  try:
+    main()
+  except KeyboardInterrupt:
+    pass
