@@ -1,38 +1,46 @@
 #!/usr/bin/env python3
 
+"""Get file size in bytes"""
+
 import sys
 
-def getSize(file):
-	f = open(file, "rb")
+def get_size(file):
+  """Calculate file size in bytes"""
 
-	b = 0
+  f = open(file, "rb")
 
-	c = f.read(1)
+  b = 0
 
-	while c != "":
-		b += 1
-		c = f.read(1)
+  c = f.read(1)
 
-	f.close()
+  while c != "":
+    b += 1
+    c = f.read(1)
 
-	return b
+  f.close()
+
+  return b
 
 def usage():
-	print("Usage: %s file" % (sys.argv[0]))
-	sys.exit()
+  """Print usage message"""
+
+  print("Usage: %s file" % (sys.argv[0]))
+  sys.exit()
 
 def main():
-	if len(sys.argv) < 2:
-		usage()
+  """Print a file's size"""
 
-	size = 0
+  if len(sys.argv) < 2:
+    usage()
 
-	try:
-		size = getSize(sys.argv[1])
-	except Exception:
-		raise "Could not open %s" % (sys.argv[1])
+  size = 0
 
-	print("%d bytes" % (size))
+  try:
+    size = get_size(sys.argv[1])
+  except Exception:
+    raise "Could not open %s" % (sys.argv[1])
+
+  print("%d bytes" % (size))
 
 if __name__ == "__main__":
-	main()
+  main()
