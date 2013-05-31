@@ -1,139 +1,160 @@
 #!/usr/bin/env python
 
-"""Portscan by using socket.connect(). Family and type constants provided in part by http://pydoc.org/2.2.3/socket.html."""
+"""Portscan by using socket.connect().
+Family and type constants provided in part.
+http://pydoc.org/2.2.3/socket.html."""
 
-__author__="Andrew Pennebaker (andrew.pennebaker@gmail.com"
-__date__="11 Nov 2005 - 12 Feb 2006"
-__copyright__="Copyright 2006 Andrew Pennebaker"
-__version__="0.2"
+__author__ = "Andrew Pennebaker (andrew.pennebaker@gmail.com"
+__date__ = "11 Nov 2005 - 12 Feb 2006"
+__copyright__ = "Copyright 2006 Andrew Pennebaker"
+__version__ = "0.2"
 
 from makerange import makerange
 
-from socket import *
-
+import socket
+import getopt
 import sys
-from getopt import getopt
 
-FAMILIES={
-	"appletalk":5,
-	"decnet":12,
-	"inet":2,
-	"inet6":23,
-	"ipx":6,
-	"sna":11,
-	"unix":1,
-	"unspec":0
+FAMILIES = {
+  "appletalk": 5,
+  "decnet": 12,
+  "inet": 2,
+  "inet6": 23,
+  "ipx": 6,
+  "sna": 11,
+  "unix": 1,
+  "unspec": 0
 }
 
-TYPES={
-	"tcp":1,
-	"udp":2,
-	"rdm":4,
-	"seq":5,
-	"raw":3
+TYPES = {
+  "tcp": 1,
+  "udp": 2,
+  "rdm": 4,
+  "seq": 5,
+  "raw": 3
 }
 
-def scan(family=FAMILIES["inet"], t=TYPES["tcp"], address="localhost", portrange=range(0, 25+1), verbose=False):
-	if family==FAMILIES["inet6"]:
-		if not has_ipv6:
-			raise Exception("Platform does not support IPv6")
+def scan(
+    family = FAMILIES["inet"],
+    t = TYPES["tcp"],
+    address = "localhost",
+    portrange = range(0, 25 + 1),
+    verbose = False
+):
+  """Port scan"""
 
-	openports=[]
+  if family == FAMILIES["inet6"]:
+    if not socket.has_ipv6:
+      raise Exception("Platform does not support IPv6")
 
-	if verbose:
-		print "Creating socket"
+  openports = []
 
-	client=socket(family, t)
+  if verbose:
+    print("Creating socket")
 
-	for port in portrange:
-		try:
-			if verbose:
-				print "Attempting to connect (%s:%d)" % (address, port)
+  client = socket.socket(family, t)
 
-			client.connect((address, port))
+  for port in portrange:
+    try:
+      if verbose:
+        print("Attempting to connect (%s:%d)" % (address, port))
 
-			if verbose:
-				print "Connection made"
+      client.connect((address, port))
 
-			client.close()
+      if verbose:
+        print("Connection made")
 
-			if verbose:
-				print "Connection closed"
+      client.close()
 
-			openports.append(port)
-		except Exception:
-			if verbose:
-				print "Connection not made"
+      if verbose:
+        print("Connection closed")
 
-	return openports
+      openports.append(port)
+    except Exception:
+      if verbose:
+        print("Connection not made")
+
+  return openports
 
 def usage():
-	print "%s [options] <host1 host2 host3 ...>" % (sys.argv[0])
-	print "\n--family [appletalk decnet inet inet6 ipx sna unix unspec]"
-	print "--type [tcp udp rdm seq raw]"
-	print "--port <range> in the format:\n\t-20,80,100-200,40000-\n\t(0 to 20, 80, 100 to 200, 40000 to 65536)"
-	print "--verbose show more information"
-	print "--help (usage)"
+  """Print usage message"""
 
-	sys.exit()
+  print("%s [options] <host1 host2 host3 ...>" % (sys.argv[0]))
+  print("\n--family [appletalk decnet inet inet6 ipx sna unix unspec]")
+  print("--type [tcp udp rdm seq raw]")
+  print("--port <range> in the format:\n")
+  print("\t-20,80,100-200,40000-\n")
+  print("\t(0 to 20, 80, 100 to 200, 40000 to 65536)")
+  print("--verbose show more information")
+  print("--help (usage)")
+
+  sys.exit()
 
 def main():
-	family=FAMILIES["inet"]
-	t=TYPES["tcp"]
-	hosts=[]
-	ports=range(0, 300+1)
-	v=False
+  """CLI"""
 
-	systemArgs=sys.argv[1:] # ignore program name
-	optlist=[]
-	args=[]
+  family = FAMILIES["inet"]
+  t = TYPES["tcp"]
+  hosts = []
+  ports = range(0, 300 + 1)
+  v = False
 
-	try:
-		optlist, args=getopt(systemArgs, "", ["family=", "type=", "port=", "verbose", "help"])
-	except Exception, e:
-		usage()
+  system_args = sys.argv[1:] # ignore program name
+  optlist = []
+  args = []
 
-	if len(args)<1:
-		usage()
+  try:
+    optlist, args = getopt.getopt(
+      system_args,
+      "",
+      ["family=", "type=", "port=", "verbose", "help"]
+    )
+  except getopt.GetoptError:
+    usage()
 
-	for option, value in optlist:
-		if option=="--help":
-			usage()
-		elif option=="--family":
-			if FAMILIES.has_key(value):
-				family=FAMILIES[value]
-			else:
-				raise TypeError, "Family not valid"
-		elif option=="--type":
-			if TYPES.has_key(value):
-				t=TYPES[value]
-			else:
-				raise TypeError, "Type not valid"
-		elif option=="--port":
-			try:
-				ports=makerange(value)
-			except Exception, e:
-				raise e
-				usage()
-		elif option=="--verbose":
-			v=True
+  if len(args)<1:
+    usage()
 
-	hosts=args
+  for option, value in optlist:
+    if option == "--help":
+      usage()
+    elif option == "--family":
+      if FAMILIES.has_key(value):
+        family = FAMILIES[value]
+      else:
+        raise TypeError, "Family not valid"
+    elif option == "--type":
+      if TYPES.has_key(value):
+        t = TYPES[value]
+      else:
+        raise TypeError, "Type not valid"
+    elif option == "--port":
+      try:
+        ports = makerange(value)
+      except Exception, e:
+        usage()
+    elif option == "--verbose":
+      v = True
 
-	print "Scanning"
+  hosts = args
 
-	for host in hosts:
-		print "%s:" % (host)
+  print "Scanning"
 
-		portinfo=scan(family, t, host, ports, v)
+  for host in hosts:
+    print "%s:" % (host)
 
-		if len(portinfo)<1:
-			print "no open ports found"
-		else:
-			for port in portinfo:
-				print "%d open" % (port)
+    portinfo = scan(family, t, host, ports, v)
 
-		print ""
+    if len(portinfo) < 1:
+      print "no open ports found"
+    else:
+      for port in portinfo:
+        print "%d open" % (port)
 
-if __name__=="__main__":
-	main()
+    print ""
+
+if __name__ == "__main__":
+  try:
+    main()
+  except KeyboardInterrupt:
+    pass
