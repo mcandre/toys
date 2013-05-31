@@ -1,112 +1,116 @@
 #!/usr/bin/env python
 
-__author__="Andrew Pennebaker (andrew.pennebaker@gmail.com)"
-__date__="3 Apr 2006"
-__copyright__="Copyright 2006 Andrew Pennebaker"
+"""Properly shebang and mark a file as executable"""
+
+__author__ = "Andrew Pennebaker (andrew.pennebaker@gmail.com)"
+__date__ = "3 Apr 2006"
+__copyright__ = "Copyright 2006 Andrew Pennebaker"
 
 import sys
-from getopt import getopt
+import getopt
 
-interpreters={
-	"py":"#!/usr/bin/env python",
-	"pl":"#!/usr/bin/env perl",
-	"pm":"#!/usr/bin/env perl",
-	"lua":"#!/usr/bin/env lua",
-	"sh":"#!/bin/sh",
-	"rb":"#!/usr/bin/env ruby"
+INTERPRETERS = {
+  "py":"#!/usr/bin/env python",
+  "pl":"#!/usr/bin/env perl",
+  "pm":"#!/usr/bin/env perl",
+  "lua":"#!/usr/bin/env lua",
+  "sh":"#!/bin/sh",
+  "rb":"#!/usr/bin/env ruby"
 }
 
 def update():
-	global interpreters
+  """Update file"""
 
-	try:
-		f=open("paths.conf", "r")
-		options=("".join(f.readlines())).split("\n")
+  global INTERPRETERS
 
-		interpreters={}
+  f = open("paths.conf", "r")
+  options = ("".join(f.readlines())).split("\n")
 
-		for option in options:
-			key, value=option.split(":")
-			interpreters[key]=value
-	except Exception:
-		pass
+  INTERPRETERS = {}
 
-def getExtension(filename):
-	try:
-		return filename[filename.rindex(".")+1:]
-	except Exception:
-		return ""
+  for option in options:
+    key, value = option.split(":")
+    INTERPRETERS[key] = value
 
-def makeexec(filename, manual=None):
-	global interpreters
+def get_extension(filename):
+  """Get a file's extension"""
 
-	auto=None
+  return filename[filename.rindex(".")+1:]
 
-	if manual:
-		auto=manual
-	else:
-		try:
-			auto=interpreters[getExtension(filename)]
-		except KeyError:
-			raise Exception("Cannot guess interpreter. Specify manual path.")
+def makeexec(filename, manual = None):
+  """Make a file properly executable"""
 
-	f=None
+  auto = None
 
-	try:
-		f=open(filename, "r")
-	except IOError:
-		raise Exception("Error reading %s" % (filename))
+  if manual:
+    auto = manual
+  else:
+    try:
+      auto = INTERPRETERS[get_extension(filename)]
+    except KeyError:
+      raise Exception("Cannot guess interpreter. Specify manual path.")
 
-	lines=("".join(f.readlines())).split("\n")
-	f.close()
+  f = None
 
-	if lines[0]!=auto:
-		try:
-			f=open(filename, "w")
-		except IOError:
-			raise Exception("Error writing to %s" % (filename))
+  try:
+    f = open(filename, "r")
+  except IOError:
+    raise Exception("Error reading %s" % (filename))
 
-		f.write("%s\n\n" % (auto))
+  lines = ("".join(f.readlines())).split("\n")
+  f.close()
 
-		for line in lines:
-			f.write("%s\n" % (line))
+  if lines[0] != auto:
+    try:
+      f = open(filename, "w")
+    except IOError:
+      raise Exception("Error writing to %s" % (filename))
 
-		f.close()
+    f.write("%s\n\n" % (auto))
+
+    for line in lines:
+      f.write("%s\n" % (line))
+
+    f.close()
 
 def usage():
-	print "Usage: %s [options] <file1> <file2> <file3> <...>" % (sys.argv[0])
-	print "\n--manual <interpreter path>"
-	print "--help (usage)"
+  """Print usage message"""
 
-	sys.exit()
+  print "Usage: %s [options] <file1> <file2> <file3> <...>" % (sys.argv[0])
+  print "\n--manual <interpreter path>"
+  print "--help (usage)"
+
+  sys.exit()
 
 def main():
-	systemArgs=sys.argv[1:] # ignore program name
+  """CLI"""
 
-	manual=None
+  system_args = sys.argv[1:] # ignore program name
 
-	optlist=[]
-	args=[]
+  manual = None
 
-	try:
-		optlist, args=getopt(systemArgs, "", ["manual=", "help"])
-	except Exception:
-		usage()
+  optlist = []
+  args = []
 
-	if len(args)<1:
-		usage()
+  try:
+    optlist, args = getopt.getopt(system_args, "", ["manual=", "help"])
+  except getopt.GetoptError:
+    usage()
 
-	for option, value in optlist:
-		if option=="--help":
-			usage()
+  if len(args) < 1:
+    usage()
 
-		elif option=="--manual":
-			manual=value
+  for option, value in optlist:
+    if option == "--help":
+      usage()
 
-	for fn in args:
-		makeexec(fn, manual)
+    elif option == "--manual":
+      manual = value
 
-if __name__=="__main__":
-	main()
+  for fn in args:
+    makeexec(fn, manual)
+
+if __name__ == "__main__":
+  main()
 
 update()
