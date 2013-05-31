@@ -1,33 +1,35 @@
-import sys
+"""PyGame demo"""
 
 import pygame
 
+import sys
+
 pygame.init()
 
-screen=pygame.display.set_mode((800, 400))
+SCREEN = pygame.display.set_mode((800, 400))
 
-screenrect=screen.get_rect()
+SCREEN_RECT = SCREEN.get_rect()
 
-black=(0, 0, 0)
-red=(255, 0, 0)
+BLACK = (0, 0, 0)
+RED = (255, 0, 0)
 
-font=pygame.font.Font(None, screenrect.width/10)
+FONT = pygame.font.Font(None, SCREEN_RECT.width / 10)
 
 while True:
-	for event in pygame.event.get():
-		if event.type==pygame.QUIT:
-			sys.exit()
+  for event in pygame.event.get():
+    if event.type == pygame.QUIT:
+      sys.exit()
 
-	mousepos=str(pygame.mouse.get_pos())
+  MOUSE_POS = str(pygame.mouse.get_pos())
 
-	text=font.render(mousepos, 1, red)
+  TEXT = FONT.render(MOUSE_POS, 1, RED)
 
-	textrect=text.get_rect()
-	textrect.centerx=screenrect.centerx
-	textrect.centery=screenrect.centery
+  TEXT_RECT = TEXT.get_rect()
+  TEXT_RECT.centerx = SCREEN_RECT.centerx
+  TEXT_RECT.centery = SCREEN_RECT.centery
 
-	screen.fill(black)
+  SCREEN.fill(BLACK)
 
-	screen.blit(text, textrect)
+  SCREEN.blit(TEXT, TEXT_RECT)
 
-	pygame.display.flip()
+  pygame.display.flip()
