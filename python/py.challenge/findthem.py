@@ -5,32 +5,38 @@
 import sys
 
 def findthem(line, threshhold):
-	rare={}
-	scores=total(line)
-	for i in range(len(scores)):
-		if scores[i]!=0 and scores[i]<threshhold:
-			rare[chr(i)]=scores[i]
+  """Searcher"""
 
-	return rare
+  rare = {}
+  scores = total(line)
+  for i in range(len(scores)):
+    if scores[i] != 0 and scores[i] < threshhold:
+      rare[chr(i)] = scores[i]
+
+  return rare
 
 def total(line):
-	result=[0]*256
+  """Sum"""
 
-	for char in line:
-		result[ord(char)]+=1
+  result = [0] * 256
 
-	return result
+  for char in line:
+    result[ord(char)] += 1
+
+  return result
 
 def main():
-	f=open(sys.argv[1], "r")
+  """CLI"""
 
-	oneline="\n".join(f.readlines())
+  f = open(sys.argv[1], "r")
 
-	findings=findthem(oneline, int(sys.argv[2]))
+  oneline = "\n".join(f.readlines())
 
-	rarejoin=", ".join(["%s:%d" % (key, findings[key]) for key in findings])
+  findings = findthem(oneline, int(sys.argv[2]))
 
-	print "Rare: %s" % (rarejoin)
+  rarejoin = ", ".join(["%s:%d" % (key, findings[key]) for key in findings])
 
-if __name__=="__main__":
-	main()
+  print("Rare: %s" % (rarejoin))
+
+if __name__ == "__main__":
+  main()
