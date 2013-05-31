@@ -1,50 +1,66 @@
 #!/usr/bin/env python
 
+"""Command runner"""
+
+import Tkinter
+
 import os
 
-from Tkinter import *
-
 class App:
-	def __init__(self, master):
-		self.frame=Frame(master)
+  """App"""
 
-		self.inputFrame=Frame(self.frame)
+  def __init__(self, master):
+    self.frame = Tkinter.Frame(master)
 
-		self.commandEntry=Entry(self.inputFrame, width=58)
-		self.commandEntry.pack(side=LEFT)
+    self.input_frame = Tkinter.Frame(self.frame)
 
-		self.commandButton=Button(self.inputFrame, text="Call", command=self.call)
-		self.commandButton.pack(side=RIGHT)
+    self.command_entry = Tkinter.Entry(self.input_frame, width = 58)
+    self.command_entry.pack(side = Tkinter.LEFT)
 
-		self.inputFrame.pack(side=TOP)
+    self.command_button = Tkinter.Button(
+      self.input_frame,
+      text = "Call",
+      command = self.call
+    )
+    self.command_button.pack(side = Tkinter.RIGHT)
 
-		self.resultFrame=Frame(self.frame)
+    self.input_frame.pack(side = Tkinter.TOP)
 
-		self.resultText=Text(self.resultFrame, width=60)
-		self.resultText.pack(side=LEFT)
-		self.scrollVert=Scrollbar(self.resultFrame, orient=VERTICAL, command=self.resultText.yview)
-		self.resultText.configure(yscrollcommand=self.scrollVert.set)
-		self.scrollVert.pack(side=RIGHT, fill=Y)
+    self.result_frame = Tkinter.Frame(self.frame)
 
-		self.resultFrame.pack(side=BOTTOM, fill=BOTH)
+    self.result_text = Tkinter.Text(self.result_frame, width = 60)
+    self.result_text.pack(side = Tkinter.LEFT)
+    self.scroll_vert = Tkinter.Scrollbar(
+      self.result_frame,
+      orient = Tkinter.VERTICAL,
+      command = self.result_text.yview
+    )
+    self.result_text.configure(yscrollcommand = self.scroll_vert.set)
+    self.scroll_vert.pack(side = Tkinter.RIGHT, fill = Tkinter.Y)
 
-		self.frame.pack()
+    self.result_frame.pack(side = Tkinter.BOTTOM, fill = Tkinter.BOTH)
 
-	def call(self):
-		command=self.commandEntry.get()
+    self.frame.pack()
 
-		proc=os.popen(command)
-		result="".join(proc.readlines())
-		proc.close()
+  def call(self):
+    """Execute"""
 
-		self.resultText.delete(1.0, END)
-		self.resultText.insert(1.0, result)
+    command = self.command_entry.get()
+
+    proc = os.popen(command)
+    result = "".join(proc.readlines())
+    proc.close()
+
+    self.result_text.delete(1.0, Tkinter.END)
+    self.result_text.insert(1.0, result)
 
 def main():
-	root=Tk()
-	App(root)
+  """GUI"""
 
-	root.mainloop()
+  root = Tkinter.Tk()
+  App(root)
 
-if __name__=="__main__":
-	main()
+  root.mainloop()
+
+if __name__ == "__main__":
+  main()
