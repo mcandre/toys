@@ -1,101 +1,116 @@
 #!/usr/bin/env python
 
+"""Thread demo"""
+
 import threading
 
 class Dog(threading.Thread):
-	id=0
+  """Dog"""
 
-	def __init__(self, bowl, n, m, lock):
-		threading.Thread.__init__(self)
-		self.bowl=bowl
-		self.n=n
-		self.m=m
-		self.myid=self.id
-		Dog.id+=1
-		self.bowlLock=lock
+  id = 0
 
-	def run(self):
-		while True:
-			self.bowlLock.acquire()
-			self.bowl-=self.n
-			self.bowlLock.release()
+  def __init__(self, bowl, n, m, lock):
+    threading.Thread.__init__(self)
+    self.bowl = bowl
+    self.n = n
+    self.m = m
+    self.myid = self.id
+    Dog.id += 1
+    self.bowl_lock = lock
 
-			print "Dog %d Ate %d" % (self.myid, self.n)
+  def run(self):
+    """Tick"""
 
-			if self.bowl<self.m:
-				break
+    while True:
+      self.bowl_lock.acquire()
+      self.bowl -= self.n
+      self.bowl_lock.release()
+
+      print "Dog %d Ate %d" % (self.myid, self.n)
+
+      if self.bowl < self.m:
+        break
 
 class Man(threading.Thread):
-	id=0
+  """Man"""
 
-	def __init__(self, bowl, n, m, lock):
-		threading.Thread.__init__(self)
-		self.bowl=bowl
-		self.n=n
-		self.m=m
-		self.myid=self.id
-		Man.id+=1
-		self.bowlLock=lock
+  id = 0
 
-	def run(self):
-		while True:
-			self.bowlLock.acquire()
-			self.bowl-=self.n
-			self.bowlLock.release()
+  def __init__(self, bowl, n, m, lock):
+    threading.Thread.__init__(self)
+    self.bowl = bowl
+    self.n = n
+    self.m = m
+    self.myid = self.id
+    Man.id += 1
+    self.bowl_lock = lock
 
-			print "Man %d Gave %d" % (self.myid, self.n)
+  def run(self):
+    """Tick"""
 
-			if self.bowl>self.m:
-				break
+    while True:
+      self.bowl_lock.acquire()
+      self.bowl -= self.n
+      self.bowl_lock.release()
 
-		print "Man %d Quit" % (self.myid)
+      print "Man %d Gave %d" % (self.myid, self.n)
+
+      if self.bowl > self.m:
+        break
+
+    print("Man %d Quit" % (self.myid))
 
 class Monitor(threading.Thread):
-	id=0
+  """Monitor"""
 
-	def __init__(self, bowl, n, m, lock):
-		threading.Thread.__init__(self)
-		self.bowl=bowl
-		self.n=n
-		self.m=m
-		self.myid=self.id
-		Monitor.id+=1
-		self.bowlLock=lock
+  id = 0
 
-	def run(self):
-		while True:
-			self.bowlLock.acquire()
-			b=self.bowl+0
-			self.bowlLock.release()
+  def __init__(self, bowl, n, m, lock):
+    threading.Thread.__init__(self)
+    self.bowl = bowl
+    self.n = n
+    self.m = m
+    self.myid = self.id
+    Monitor.id += 1
+    self.bowl_lock = lock
 
-			print "Monitor %d Contains %d" % (self.myid, self.bowl)
+  def run(self):
+    """Tick"""
 
-			if self.bowl<n or self.bowl>m:
-				break
+    while True:
+      self.bowl_lock.acquire()
+      self.bowl_lock.release()
 
-		print "Monitor %d Quit" % (self.myid)
+      print "Monitor %d Contains %d" % (self.myid, self.bowl)
+
+      if self.bowl < n or self.bowl > m:
+        break
+
+    print "Monitor %d Quit" % (self.myid)
 
 def main():
-	bowlStart=15
-	dogSpeed=2
-	dogMin=5
-	manSpeed=4
-	manMax=25
+  """CLI"""
 
-	bowlLock=threading.Lock()
+  bowl_start = 15
+  dog_speed = 2
+  dog_min = 5
+  man_speed = 4
+  man_max = 25
 
-	t1=Dog(bowlStart, dogSpeed, dogMin, bowlLock)
-	t2=Man(bowlStart, manSpeed, manMax, bowlLock)
-	t3=Monitor(bowlStart, dogMin, manMax, bowlLock)
+  bowl_lock = threading.Lock()
 
-	threads=[t1, t2, t3]
+  t1 = Dog(bowl_start, dog_speed, dog_min, bowl_lock)
+  t2 = Man(bowl_start, man_speed, man_max, bowl_lock)
+  t3 = Monitor(bowl_start, dog_min, man_max, bowl_lock)
 
-	for t in threads:
-		t.start()
+  threads = [t1, t2, t3]
 
-	# wait for all threads to finish
-	for t in threads:
-		t.join()
+  for t in threads:
+    t.start()
 
-if __name__=="__main__":
-	main()
+  # wait for all threads to finish
+  for t in threads:
+    t.join()
+
+if __name__ == "__main__":
+  main()

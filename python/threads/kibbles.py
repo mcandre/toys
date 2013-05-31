@@ -1,55 +1,66 @@
+"""Thread demo"""
+
 import thread
 
-bowl=None
-bowlLock=None
+BOWL = None
+BOWL_LOCK = None
 
 def eat(n, m):
-	global bowl, bowlLock
+  """Consume"""
 
-	while True:
-		bowlLock.acquire()
-		bowl-=n
-		print "Ate %d" % (n)
+  global BOWL
 
-		if bowl<m:
-			break
+  while True:
+    BOWL_LOCK.acquire()
+    BOWL -= n
 
-	bowlLock.release()
+    print("Ate %d" % (n))
+
+    if BOWL < m:
+      break
+
+  BOWL_LOCK.release()
 
 def pour(n, m):
-	global bowl, bowlLock
+  """Produce"""
 
-	while True:
-		bowlLock.acquire()
-		bowl+=n
-		print "Poured %d" % (n)
+  global BOWL
 
-		if bowl>m:
-			break
+  while True:
+    BOWL_LOCK.acquire()
+    BOWL += n
 
-	bowlLock.release()
+    print("Poured %d" % (n))
+
+    if BOWL > m:
+      break
+
+  BOWL_LOCK.release()
 
 def monitor(n, m):
-	global bowl, bowlLock
+  """Debug"""
 
-	while True:
-		bowlLock.acquire()
-		print "Contains %d" % (bowl)
+  while True:
+    BOWL_LOCK.acquire()
 
-		if bowl<n or bowl>m:
-			break
+    print("Contains %d" % (BOWL))
 
-	bowlLock.release()
+    if BOWL < n or BOWL > m:
+      break
+
+  BOWL_LOCK.release()
 
 def main():
-	global bowl, bowlLock
+  """CLI"""
 
-	bowl=15
-	bowlLock=thread.allocate_lock()
+  global BOWL, BOWL_LOCK
 
-	thread.start_new_thread(eat, (2, 5))
-	thread.start_new_thread(pour, (8, 25))
-	thread.start_new_thread(monitor, (2, 25))
+  BOWL = 15
+  BOWL_LOCK = thread.allocate_lock()
 
-if __name__=="__main__":
-	main()
+  thread.start_new_thread(eat, (2, 5))
+  thread.start_new_thread(pour, (8, 25))
+  thread.start_new_thread(monitor, (2, 25))
+
+if __name__ == "__main__":
+  main()
