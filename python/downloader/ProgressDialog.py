@@ -1,104 +1,114 @@
-__author__="Andrew Pennebaker (andrew.pennebaker@gmail.com)"
-__date__="13 Apr 2006 - 14 Apr 2006"
-__copyright__="Copyright 2006 Andrew Pennebaker"
+"""Gtk progress window"""
+
+__author__ = "Andrew Pennebaker (andrew.pennebaker@gmail.com)"
+__date__ = "13 Apr 2006 - 14 Apr 2006"
+__copyright__ = "Copyright 2006 Andrew Pennebaker"
 
 import gtk
 
 class ProgressDialog:
-	PENDING="Pending"
-	SUCCESS="Success"
-	CANCEL="Cancel"
-	FAILURE="Failure"
+  PENDING = "Pending"
+  SUCCESS = "Success"
+  CANCEL = "Cancel"
+  FAILURE = "Failure"
 
-	def __init__(self, titleText, parentWidget, instream, outstream, name, length):
-		self.state=self.PENDING
+  def __init__(
+      self,
+      title_text,
+      parent_widget,
+      instream,
+      outstream,
+      name,
+      length
+  ):
+    self.state = self.PENDING
 
-		self.dialog=gtk.Dialog(title=titleText, parent=parentWidget)
-		self.dialog.set_has_separator(False)
+    self.dialog = gtk.Dialog(title = title_text, parent = parent_widget)
+    self.dialog.set_has_separator(False)
 
-		self.instream=instream
-		self.outstream=outstream
-		self.name=name
-		self.length=length
-		self.bytesRead=0.0
+    self.instream = instream
+    self.outstream = outstream
+    self.name = name
+    self.length = length
+    self.bytes_read = 0.0
 
-		self.nameLabel=gtk.Label(self.name)
+    self.name_label = gtk.Label(self.name)
 
-		self.progressBar=gtk.ProgressBar()
-		self.progressBar.set_fraction(0.0)
-		if not self.length:
-			self.length="?"
-			self.progressBar.set_text("0.00 kb")
-		else:
-			self.length=float(self.length)
-			self.progressBar.set_text(
-				"%.02f/%.02f kb (%d%%)" % (
-					self.bytesRead/1024.0,
-					self.length/1024.0,
-					100*self.bytesRead/self.length
-				)
-			)
+    self.progress_bar = gtk.ProgressBar()
+    self.progress_bar.set_fraction(0.0)
+    if not self.length:
+      self.length = "?"
+      self.progress_bar.set_text("0.00 kb")
+    else:
+      self.length = float(self.length)
+      self.progress_bar.set_text(
+        "%.02f/%.02f kb (%d%%)" % (
+          self.bytes_read/1024.0,
+          self.length/1024.0,
+          100*self.bytes_read/self.length
+        )
+      )
 
-		self.cancelButton=gtk.Button("Cancel")
-		self.cancelButton.connect("clicked", self.cancelButtonEvent)
+    self.cancel_button = gtk.Button("Cancel")
+    self.cancel_button.connect("clicked", self.cancel_button_event)
 
-		self.cancelBox=gtk.HBox()
-		self.cancelBox.pack_start(self.cancelButton, expand=True, fill=False)
+    self.cancel_box = gtk.HBox()
+    self.cancel_box.pack_start(self.cancel_button, expand = True, fill = False)
 
-		self.dialog.vbox.pack_start(self.nameLabel, padding=5)
-		self.dialog.vbox.pack_start(self.progressBar, padding=5)
-		self.dialog.vbox.pack_start(self.cancelBox)
+    self.dialog.vbox.pack_start(self.name_label, padding = 5)
+    self.dialog.vbox.pack_start(self.progress_bar, padding = 5)
+    self.dialog.vbox.pack_start(self.cancel_box)
 
-		self.dialog.show_all()
+    self.dialog.show_all()
 
-		try:
-			while self.state==self.PENDING and (self.instream.fp!=None):
-				line=self.instream.read(1024)
-				if line=="":
-					break
+    try:
+      while self.state == self.PENDING and (self.instream.fp != None):
+        line = self.instream.read(1024)
+        if line == "":
+          break
 
-				self.bytesRead+=len(line)
+        self.bytes_read += len(line)
 
-				if self.length!="?":
-					self.progressBar.set_fraction(self.bytesRead/self.length)
-					self.progressBar.set_text(
-						"%.02f/%.02f kb (%d%%)" % (
-							self.bytesRead/1024.0,
-							self.length/1024.0,
-							100*self.bytesRead/self.length
-						)
-					)
-				else:
-					self.progressBar.set_text("%.02f kb" % (self.bytesRead/1024.0))
+        if self.length != "?":
+          self.progress_bar.set_fraction(self.bytes_read/self.length)
+          self.progress_bar.set_text(
+            "%.02f/%.02f kb (%d%%)" % (
+              self.bytes_read/1024.0,
+              self.length/1024.0,
+              100*self.bytes_read/self.length
+            )
+          )
+        else:
+          self.progress_bar.set_text("%.02f kb" % (self.bytes_read/1024.0))
 
-				self.outstream.write(line)
+        self.outstream.write(line)
 
-				while gtk.events_pending():
-					gtk.main_iteration()
+        while gtk.events_pending():
+          gtk.main_iteration()
 
-			if self.state!=self.CANCEL:
-				self.instream.close()
-				self.outstream.close()
+      if self.state != self.CANCEL:
+        self.instream.close()
+        self.outstream.close()
 
-				self.state==self.SUCCESS
+        self.state == self.SUCCESS
 
-				self.progressBar.set_fraction(1.0)
-				self.progressBar.set_text("%.02f kb" % (self.bytesRead/1024.0))
+        self.progress_bar.set_fraction(1.0)
+        self.progress_bar.set_text("%.02f kb" % (self.bytes_read/1024.0))
 
-				self.deleteEvent()
-		except:
-			self.status=self.FAILURE
-			self.deleteEvent()
+        self.delete_event()
+    except:
+      self.status = self.FAILURE
+      self.delete_event()
 
-	def deleteEvent(self, widget=None, event=None, data=None):
-		self.dialog.destroy()
+  def delete_event(self, widget = None, event = None, data = None):
+    self.dialog.destroy()
 
-		return False
+    return False
 
-	def cancelButtonEvent(self, widget=None, event=None, data=None):
-		self.state=self.CANCEL
+  def cancel_button_event(self, widget = None, event = None, data = None):
+    self.state = self.CANCEL
 
-		self.instream.close()
-		self.outstream.close()
+    self.instream.close()
+    self.outstream.close()
 
-		self.deleteEvent()
+    self.delete_event()

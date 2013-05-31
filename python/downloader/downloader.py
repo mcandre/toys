@@ -2,113 +2,128 @@
 
 # Deprecated in favor of urllib.urlretrieve(url, filename)
 
-__author__="Andrew Pennebaker (andrew.pennebaker@gmail.com)"
-__date__="3 Nov 2005 - 13 Apr 2006"
-__copyright__="Copyright 2006, Andrew Pennebaker"
-__version__="0.4"
-__URL__="http://snippets.dzone.com/posts/show/2887"
+"""URL downloader"""
+
+__author__ = "Andrew Pennebaker (andrew.pennebaker@gmail.com)"
+__date__ = "3 Nov 2005 - 13 Apr 2006"
+__copyright__ = "Copyright 2006, Andrew Pennebaker"
+__version__ = "0.4"
+__URL__ = "http://snippets.dzone.com/posts/show/2887"
 
 from urllib import urlopen
 
+import getopt
 import os
-
 import sys
-from getopt import getopt
 
-def getURLName(url):
-	directory=os.curdir
+def get_url_name(url):
+  """Mirror"""
 
-	name="%s%s%s" % (
-		directory,
-		os.sep,
-		url.split("/")[-1]
-	)
+  directory = os.curdir
 
-	return name
+  name = "%s%s%s" % (
+    directory,
+    os.sep,
+    url.split("/")[-1]
+  )
 
-def createDownload(url, proxy):
-	instream=urlopen(url, None, proxy)
+  return name
 
-	return (instream, instream.info().getheader("Content-Length"))
+def create_download(url, proxy):
+  """Setup download"""
+
+  instream = urlopen(url, None, proxy)
+
+  return (instream, instream.info().getheader("Content-Length"))
 
 def download(instream, outstream):
-	outstream.write(instream.read())
+  """Download from a stream to a stream"""
 
-	instream.close()
-	outstream.close()
+  outstream.write(instream.read())
+
+  instream.close()
+  outstream.close()
 
 def usage():
-	print "Usage: %s [options] <url1 url2 url3 ...>" % (sys.argv[0])
-	print "\n--httpproxy <proxy>"
-	print "--ftpproxy <proxy>"
-	print "--gopherproxy <proxy>"
-	print "\n--help (usage)"
+  """Print usage message"""
 
-	sys.exit()
+  print "Usage: %s [options] <url1 url2 url3 ...>" % (sys.argv[0])
+  print "\n--httpproxy <proxy>"
+  print "--ftpproxy <proxy>"
+  print "--gopherproxy <proxy>"
+  print "\n--help (usage)"
+
+  sys.exit()
 
 def main():
-	systemArgs=sys.argv[1:] # ignore program name
+  """Mirror a URL"""
 
-	urls=[]
-	proxies={}
+  system_args = sys.argv[1:] # ignore program name
 
-	optlist=[]
-	args=[]
+  urls = []
+  proxies = {}
 
-	try:
-		optlist, args=getopt(systemArgs, "", ["url=", "httpproxy=", "ftpproxy=", "gopherproxy=", "help"])
-	except Exception, e:
-		usage()
+  optlist = []
+  args = []
 
-	if len(args)<1:
-		usage()
+  try:
+    optlist, args = getopt.getopt(
+      system_args,
+      "",
+      ["url=", "httpproxy=", "ftpproxy=", "gopherproxy=", "help"]
+    )
+  except getopt.GetoptError:
+    usage()
 
-	for option, value in optlist:
-		if option=="--help":
-			usage()
+  if len(args) < 1:
+    usage()
 
-		elif option=="--httpproxy":
-			proxies["http"]=value
-		elif option=="--ftpproxy":
-			proxies["ftp"]=value
-		elif option=="--gopherproxy":
-			proxies["gopher"]=value
+  for option, value in optlist:
+    if option == "--help":
+      usage()
 
-	urls=args
+    elif option == "--httpproxy":
+      proxies["http"] = value
+    elif option == "--ftpproxy":
+      proxies["ftp"] = value
+    elif option == "--gopherproxy":
+      proxies["gopher"] = value
 
-	for url in urls:
-		try:
-			outfile=open(getURLName(url), "wb")
-			fileName=outfile.name.split(os.sep)[-1]
+  urls = args
 
-			url, length=createDownload(url, proxies)
-			if not length:
-				length="?"
+  for url in urls:
+    try:
+      outfile = open(get_url_name(url), "wb")
+      filename = outfile.name.split(os.sep)[-1]
 
-			print "Downloading %s (%s bytes) ..." % (url.url, length)
-			if length!="?":
-				length=float(length)
-			bytesRead=0.0
+      url, length = create_download(url, proxies)
+      if not length:
+        length = "?"
 
-			for line in url:
-				bytesRead+=len(line)
+      print "Downloading %s (%s bytes) ..." % (url.url, length)
+      if length != "?":
+        length = float(length)
+        bytes_read = 0.0
 
-				if length!="?":
-					print "%s: %.02f/%.02f kb (%d%%)" % (
-						fileName,
-						bytesRead/1024.0,
-						length/1024.0,
-						100*bytesRead/length
-					)
+      for line in url:
+        bytes_read += len(line)
 
-				outfile.write(line)
+        if length != "?":
+          print "%s: %.02f/%.02f kb (%d%%)" % (
+            filename,
+            bytes_read / 1024.0,
+            length / 1024.0,
+            100 * bytes_read / length
+          )
 
-			url.close()
-			outfile.close()
-			print "Done"
+        outfile.write(line)
 
-		except Exception, e:
-			print "Error downloading %s: %s" % (url, e)
+      url.close()
+      outfile.close()
+      print "Done"
 
-if __name__=="__main__":
-	main()
+    except Exception, e:
+      print "Error downloading %s: %s" % (url, e)
+
+if __name__ == "__main__":
+  main()

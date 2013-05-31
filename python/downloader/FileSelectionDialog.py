@@ -1,38 +1,49 @@
-# FileSelectionDialog.py - John Finlay (http://www.pygtk.org/pygtk2tutorial/index.html)
+# FileSelectionDialog.py
+# John Finlay (http://www.pygtk.org/pygtk2tutorial/index.html)
 # Andrew Pennebaker
+
+"""Launch Gtk file selection window"""
 
 import gtk
 
 class FileSelectionDialog:
-	PENDING="Pending"
-	OK="OK"
-	CANCEL="Cancel"
+  """Implement dialog"""
 
-	def __init__(self, titleText="File Selecion", selectionText=""):
-		self.state=self.PENDING
-		self.fileSelection=gtk.FileSelection(title=titleText)
-		self.fileSelection.selection_entry.set_text(selectionText)
+  PENDING = "Pending"
+  OK = "OK"
+  CANCEL = "Cancel"
 
-		self.fileSelection.ok_button.connect("clicked", self.okEvent)
-		self.fileSelection.cancel_button.connect("clicked", self.cancelEvent)
+  def __init__(self, title_text = "File Selecion", selection_text = ""):
+    self.state = self.PENDING
+    self.file_selection = gtk.FileSelection(title = title_text)
+    self.file_selection.selection_entry.set_text(selection_text)
 
-		self.fileSelection.show_all()
+    self.file_selection.ok_button.connect("clicked", self.ok_event)
+    self.file_selection.cancel_button.connect("clicked", self.cancel_event)
 
-		# loop until button clicked
-		while self.state==self.PENDING:
-			while gtk.events_pending():
-				gtk.main_iteration()
+    self.file_selection.show_all()
 
-	def okEvent(self, widget=None, event=None, data=None):
-		self.fileName=self.fileSelection.get_filename()
-		self.state=self.OK
+    # loop until button clicked
+    while self.state == self.PENDING:
+      while gtk.events_pending():
+        gtk.main_iteration()
 
-		self.fileSelection.destroy()
+  def ok_event(self, widget = None, event = None, data = None):
+    """Close on OK"""
 
-	def cancelEvent(self, widget=None, event=None, data=None):
-		self.state=self.CANCEL
+    self.file_name = self.file_selection.get_filename()
+    self.state = self.OK
 
-		self.fileSelection.destroy()
+    self.file_selection.destroy()
 
-	def getFileName(self):
-		return self.fileName
+  def cancel_event(self, widget = None, event = None, data = None):
+    """Close on Cancel"""
+
+    self.state = self.CANCEL
+
+    self.file_selection.destroy()
+
+  def get_filename(self):
+    """Access filename"""
+
+    return self.file_name

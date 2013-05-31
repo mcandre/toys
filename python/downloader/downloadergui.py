@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 
-__author__="Andrew Pennebaker (andrew.pennebaker@gmail.com)"
-__date__="13 Apr 2006 - 14 Apr 2006"
-__copyright__="Copyright 2006 Andrew Pennebaker"
+"""Download GUI"""
+
+__author__ = "Andrew Pennebaker (andrew.pennebaker@gmail.com)"
+__date__ = "13 Apr 2006 - 14 Apr 2006"
+__copyright__ = "Copyright 2006 Andrew Pennebaker"
 
 import os, gtk
 
@@ -10,83 +12,92 @@ from ProgressDialog import ProgressDialog
 from FileSelectionDialog import FileSelectionDialog
 import downloader
 
-window=gtk.Window(gtk.WINDOW_TOPLEVEL)
-window.set_size_request(400, 70)
-window.set_title("Downloader")
-window.connect("delete-event", gtk.main_quit)
+WINDOW = gtk.Window(gtk.WINDOW_TOPLEVEL)
+WINDOW.set_size_request(400, 70)
+WINDOW.set_title("Downloader")
+WINDOW.connect("delete-event", gtk.main_quit)
 
-urlLabel=gtk.Label("URL")
-urlEntry=gtk.Entry(max=0) # no max chars
+URL_LABEL = gtk.Label("URL")
+URL_ENTRY = gtk.Entry(max = 0) # no max chars
 
-hBox=gtk.HBox()
-hBox.pack_start(urlLabel, expand=False, fill=False, padding=5)
-hBox.pack_start(urlEntry, expand=True, fill=True, padding=5)
+HBOX = gtk.HBox()
+HBOX.pack_start(URL_LABEL, expand = False, fill = False, padding = 5)
+HBOX.pack_start(URL_ENTRY, expand = True, fill = True, padding = 5)
 
-downloadButton=gtk.Button("Download")
+DOWNLOAD_BUTTON = gtk.Button("Download")
 
-def downloadButtonEvent(widget=None, event=None, data=None):
-	url=urlEntry.get_text()
-	try:
-		url, length=downloader.createDownload(url, None)
-	except IOError:
-		md=gtk.MessageDialog(
-			window,
-			gtk.DIALOG_MODAL,
-			gtk.MESSAGE_ERROR,
-			gtk.BUTTONS_OK,
-			"Error retrieving url"
-		)
-		md.run()
-		md.destroy()
+def download_button_event(widget = None, event = None, data = None):
+  """Download"""
 
-		return
+  url = URL_ENTRY.get_text()
+  try:
+    url, length = downloader.createDownload(url, None)
+  except IOError:
+    md = gtk.MessageDialog(
+      WINDOW,
+      gtk.DIALOG_MODAL,
+      gtk.MESSAGE_ERROR,
+      gtk.BUTTONS_OK,
+      "Error retrieving url"
+    )
+    md.run()
+    md.destroy()
 
-	fs=FileSelectionDialog("Save", url.url.split("/")[-1])
-	if fs.state!=FileSelectionDialog.OK:
-		return
+    return
 
-	outstream=None
-	try:
-		outstream=open(fs.getFileName(), "wb")
-	except:
-		md=gtk.MessageDialog(
-			window,
-			gtk.DIALOG_MODAL,
-			gtk.MESSAGE_ERROR,
-			gtk.BUTTONS_OK,
-			"Error reading %s" % (fs.getFileName())
-		)
-		md.run()
-		md.destroy()
+  fs = FileSelectionDialog("Save", url.url.split("/")[-1])
+  if fs.state != FileSelectionDialog.OK:
+    return
 
-		return
+  outstream = None
+  try:
+    outstream = open(fs.get_filename(), "wb")
+  except:
+    md = gtk.MessageDialog(
+      WINDOW,
+      gtk.DIALOG_MODAL,
+      gtk.MESSAGE_ERROR,
+      gtk.BUTTONS_OK,
+      "Error reading %s" % (fs.get_filename())
+    )
+    md.run()
+    md.destroy()
 
-	pd=ProgressDialog("Downloading", window, url, outstream, outstream.name.split(os.sep)[-1], length)
+    return
 
-	if pd.state==ProgressDialog.CANCEL:
-		return
-	elif pd.state==ProgressDialog.FAILURE:
-		md=gtk.MessageDialog(
-			window,
-			gtk.DIALOG_MODAL,
-			gtk.MESSAGE_ERROR,
-			gtk.BUTTONS_OK,
-			e
-		)
-		md.run()
-		md.destroy()
+  pd = ProgressDialog(
+    "Downloading",
+    WINDOW,
+    url,
+    outstream,
+    outstream.name.split(os.sep)[-1],
+    length
+  )
 
-downloadButton.connect("clicked", downloadButtonEvent)
+  if pd.state == ProgressDialog.CANCEL:
+    return
+  elif pd.state == ProgressDialog.FAILURE:
+    md = gtk.MessageDialog(
+      WINDOW,
+      gtk.DIALOG_MODAL,
+      gtk.MESSAGE_ERROR,
+      gtk.BUTTONS_OK,
+      e
+    )
+    md.run()
+    md.destroy()
 
-downloadBox=gtk.HBox()
-downloadBox.pack_start(downloadButton, expand=True, fill=False)
+DOWNLOAD_BUTTON.connect("clicked", download_button_event)
 
-vBox=gtk.VBox()
-vBox.pack_start(hBox)
-vBox.pack_start(downloadBox, padding=5)
+DOWNLOAD_BOX = gtk.HBox()
+DOWNLOAD_BOX.pack_start(DOWNLOAD_BUTTON, expand = True, fill = False)
 
-window.add(vBox)
+VBOX = gtk.VBox()
+VBOX.pack_start(HBOX)
+VBOX.pack_start(DOWNLOAD_BOX, padding = 5)
 
-window.show_all()
+WINDOW.add(VBOX)
+
+WINDOW.show_all()
 
 gtk.main()
