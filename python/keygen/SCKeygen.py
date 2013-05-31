@@ -1,85 +1,98 @@
-import time, random
+"""StarCraft key generator"""
+
+import time
+import random
 
 from Keygen import Keygen
 
 class SCKeygen(Keygen):
-	STATIC=[
-		3333333333333,
-		1234567891234,
-		1234567890002,
-		0000000000003,
-		1998000001997
-	]
+  """SC key generator"""
 
-	# x = 1r35-5r0r1-30rr
-	def _generate(self):
-		random.seed(time.time())
-		r=lambda: random.randint(0, 9)
+  STATIC = [
+    3333333333333,
+    1234567891234,
+    1234567890002,
+    0000000000003,
+    1998000001997
+  ]
 
-		x=(
-			r()+
-			r()*10+
-			3*10**3+
-			1*10**4+
-			r()*10**5+
-			r()*10**7+
-			5*10**8+
-			5*10**9+
-			3*10**10+
-			r()*10**11+
-			1*10**12
-		)
+  # x = 1r35-5r0r1-30rr
+  def _generate(self):
+    """Generate SC key"""
 
-		return 	x
+    random.seed(time.time())
+    r = lambda: random.randint(0, 9)
 
-	def format(self, num):
-		c=num%10000
-		num/=10000
+    x = (
+      r() +
+      r() * 10 +
+      3 * 10 ** 3 +
+      10 ** 4 +
+      r() * 10 ** 5 +
+      r() * 10 ** 7 +
+      5 * 10 ** 8 +
+      5 * 10 ** 9 +
+      3 * 10 ** 10 +
+      r() * 10 ** 11 +
+      1 * 10 ** 12
+    )
 
-		b=num%100000
-		num/=100000
+    return  x
 
-		a=num
+  def format(self, num):
+    """Format SC key"""
 
-		return "%04d-%05d-%04d" % (a, b, c)
+    c = num % 10000
+    num /= 10000
 
-	def unformat(self, s):
-		if "-" in s:
-			s="".join(s.split("-"))
+    b = num % 100000
+    num /= 100000
 
-		a, b, c=int(s[:4]), int(s[4:9]), int(s[9:])
+    a = num
 
-		return (a*10**9)+(b*10**4)+c
+    return "%04d-%05d-%04d" % (a, b, c)
 
-	def _verify(self, num):
-		smallEnough=num<=1935590913099
-		largeEnough=num>=1035500013000
+  def unformat(self, s):
+    """Parse SC key"""
 
-		if smallEnough and largeEnough:
-			try:
-				num/=100
-				a=num%1000==130
-				num/=1000
+    if "-" in s:
+      s = "".join(s.split("-"))
 
-				num/=10
+    a, b, c = int(s[:4]), int(s[4:9]), int(s[9:])
 
-				b=num%10==0
-				num/=10
+    return (a * 10 ** 9) + (b * 10 ** 4) + c
 
-				num/=10
-				c=num%1000==355
-				num/=1000
+  def _verify(self, num):
+    small_enough = num <= 1935590913099
+    large_enough = num >= 1035500013000
 
-# smallEnough and largeEnough already certify that d is will be equal to 1
-#				num/=10
-#				d=num==1
+    if small_enough and large_enough:
+      try:
+        num /= 100
+        a = num % 1000 == 130
+        num /= 1000
 
-				return a and b and c # and d
-			except ZeroDivisionError, e:
-				return False
+        num /= 10
+
+        b = num % 10 == 0
+        num /= 10
+
+        num /= 10
+        c = num % 1000 == 355
+        num /= 1000
+
+        # # small_enough and large_enough prove d will equal 1
+        # num /= 10
+        # d = num == 1
+
+        return a and b and c # and d
+      except ZeroDivisionError:
+        return False
 
 def main():
-	SCKeygen().main()
+  """Generate SC key"""
 
-if __name__=="__main__":
-	main()
+  SCKeygen().main()
+
+if __name__ == "__main__":
+  main()
