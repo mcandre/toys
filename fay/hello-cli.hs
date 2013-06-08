@@ -1,7 +1,7 @@
 module HelloWorld where
 
-import Language.Fay.FFI
-import Language.Fay.Prelude
+import FFI
+import Prelude
 
 putStrLn :: String -> Fay ()
 putStrLn = ffi "console.log(%1)"
