@@ -19,17 +19,17 @@ getElementsByTagName = ffi "document.getElementsByTagName(%1)"
 
 getFirstElementByTagName :: String -> Fay Element
 getFirstElementByTagName tag = do
-	es <- getElementsByTagName tag
-	return $ head es
+  es <- getElementsByTagName tag
+  return $ head es
 
 setHTML :: Element -> String -> Fay ()
 setHTML = ffi "%1.innerHTML = %2"
 
 refresh :: Fay ()
 refresh = do
-	d <- getFirstElementByTagName "div"
-	r <- random 100
-	setHTML d $ show r
+  d <- getFirstElementByTagName "div"
+  r <- random 100
+  setHTML d $ show r
 
 main :: Fay ()
 main = refresh
