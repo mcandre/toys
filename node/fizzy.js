@@ -21,7 +21,7 @@ function fizzBuzz(n) {
 
 function main() {
   for (var i = 1; i < 101; i++) {
-    console.log(fizzBuzz);
+    console.log(fizzBuzz(i));
   }
 }
 
