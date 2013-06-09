@@ -1,0 +1,15 @@
+<!--
+
+Start yaws:
+
+$ cd erlang
+$ yaws --conf .yaws -->
+
+<erl>
+method(Arg) ->
+  Rec = Arg#arg.req,
+  Rec#http_request.method.
+
+out(Arg) ->
+  {ehtml, f("Method: ~s", [method(Arg)])}.
+</erl>

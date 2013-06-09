@@ -1,2 +1,5 @@
 *.beam
 erl_crash.dump
+*.access
+*.auth
+*.log
