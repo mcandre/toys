@@ -1,13 +1,38 @@
-body { counter-reset: i; }
+body {
+  counter-reset: i;
+}
 
-div { counter-increment: i; }
-div:after { content: "" counter(i); }
+div {
+  counter-increment: i;
 
-div:nth-child(3n) { visibility: hidden; }
-div:nth-child(3n):after { visibility: visible; content: "Fizz"; }
+  &:after {
+    content: "" counter(i);
+  }
 
-div:nth-child(5n) { visibility: hidden; }
-div:nth-child(5n):after { visibility: visible; content: "Buzz"; }
+  &:nth-child(3n) {
+    visibility: hidden;
 
-div:nth-child(15n) { visibility: hidden; }
-div:nth-child(15n):after { visibility: visible; content: "FizzBuzz"; }
+    &:after {
+      visibility: visible;
+      content: "Fizz";
+    }
+  }
+
+  &:nth-child(5n) {
+    visibility: hidden;
+
+    &:after {
+      visibility: visible;
+      content: "Buzz";
+    }
+  }
+
+  &:nth-child(15n) {
+    visibility: hidden;
+
+    &:after {
+      visibility: visible;
+      content: "FizzBuzz";
+    }
+  }
+}
