@@ -1,4 +1,7 @@
-all: fizzy.css
+all: hello.css fizzy.css
+
+hello.css: hello.styl
+	stylus hello.styl
 
 fizzy.css: fizzy.styl
 	stylus fizzy.styl
