@@ -1,0 +1,15 @@
+{
+  "name": "sass-fizzy",
+  "description": "Sassy FizzBuzz",
+  "version": "0.0.1",
+  "author": "Andrew Pennebaker <andrew.pennebaker@gmail.com> (http://www.yellosoft.us/)",
+  "directories": {
+    "lib": "."
+  },
+  "engines": {
+    "node": "*"
+  },
+  "devDependencies": {
+    "node-sass": "0.3.0"
+  }
+}
