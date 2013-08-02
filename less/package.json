@@ -1,0 +1,15 @@
+{
+  "name": "less-fizzy",
+  "description": "LESS FizzBuzz",
+  "version": "0.0.1",
+  "author": "Andrew Pennebaker <andrew.pennebaker@gmail.com> (http://www.yellosoft.us/)",
+  "directories": {
+    "lib": "."
+  },
+  "engines": {
+    "node": "*"
+  },
+  "devDependencies": {
+    "less": "1.4.2"
+  }
+}
