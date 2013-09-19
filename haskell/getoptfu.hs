@@ -17,7 +17,7 @@ module GetOptFu (
   exitSuccess,
   exitFailure) where
 
-import System (getProgName, getArgs)
+import System.Environment (getProgName, getArgs)
 import System.Exit (exitSuccess, exitFailure)
 import System.IO (hPutStrLn, stderr)
 import System.Console.GetOpt

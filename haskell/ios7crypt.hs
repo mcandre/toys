@@ -16,7 +16,7 @@ import Data.Random.Source.IO
 import Numeric (showInt, showHex)
 import Data.List (intercalate)
 import Data.Char (ord, chr)
-import Bits (xor)
+import Data.Bits (xor)
 import Test.QuickCheck hiding (sample)
 import Data.Maybe (fromJust)
 import Control.Monad (when)
