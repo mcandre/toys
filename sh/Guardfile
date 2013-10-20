@@ -1,10 +1,10 @@
 guard :shell do
-  watch(/.*\.sh/) do |m|
+  watch(/.*sh/) do |m|
     title = "Lint output"
     msg = "Failure"
     status = :failed
 
-    if system("shellcheck *.sh")
+    if system("shellcheck *sh")
       msg = "Linted"
       status = :success
     end
