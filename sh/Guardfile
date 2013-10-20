@@ -4,7 +4,7 @@ guard :shell do
     msg = "Failure"
     status = :failed
 
-    if system("shellcheck #{m[0]}")
+    if system("shellcheck *.sh")
       msg = "Linted"
       status = :success
     end
