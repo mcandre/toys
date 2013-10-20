@@ -1,0 +1,45 @@
+guard :shell do
+  watch("Gemfile") do |m|
+    title = "Bundler output"
+    msg = "Bundler Failure"
+    status = :failed
+
+    if system("bundle")
+      msg = "Bundled"
+      status = :status
+    end
+
+    n msg, title, status
+
+    "-> #{msg}"
+  end
+
+  watch(/.+\.tex/) do |m|
+    title = "lacheck output"
+    msg = "Linted"
+    status = :failed
+
+    if system("for f in *.tex; do lacheck $f; done")
+      status = :success
+    end
+
+    n msg, title, status
+
+    "-> #{msg}"
+  end
+
+  watch(/.*sh/) do |m|
+    title = "Lint output"
+    msg = "Failure"
+    status = :failed
+
+    if system("shellcheck *sh")
+      msg = "Linted"
+      status = :success
+    end
+
+    n msg, title, status
+
+    "-> #{msg}"
+  end
+end
