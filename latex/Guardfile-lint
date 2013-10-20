@@ -19,22 +19,7 @@ guard :shell do
     msg = "Linted"
     status = :failed
 
-    if system("for f in *.tex; do lacheck $f; done")
-      status = :success
-    end
-
-    n msg, title, status
-
-    "-> #{msg}"
-  end
-
-  watch(/.*sh/) do |m|
-    title = "Lint output"
-    msg = "Failure"
-    status = :failed
-
-    if system("shellcheck *sh")
-      msg = "Linted"
+    if system("make lint")
       status = :success
     end
 

@@ -14,12 +14,12 @@ guard :shell do
     "-> #{msg}"
   end
 
-  watch(/(.+)\.tex/) do |m|
+  watch(/.+\.tex/) do |m|
     title = "LaTeX output"
     msg = "Compilation failure"
     status = :failed
 
-    if system("pdflatex #{m[0]}")
+    if system("make `basename #{m[0]} .tex`.pdf")
       msg = "Compiled"
       status = :success
     end
