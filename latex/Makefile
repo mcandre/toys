@@ -11,7 +11,7 @@ guard: Guardfile
 	guard
 
 lint:
-	for f in *.tex; do lacheck $f; done
+	for f in *.tex; do lacheck $$f; done
 
 clean:
 	-rm *.out
