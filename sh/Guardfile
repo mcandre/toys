@@ -1,0 +1,16 @@
+guard :shell do
+  watch(/.*\.sh/) do |m|
+    title = "Lint output"
+    msg = "Failure"
+    status = :failed
+
+    if system("shellcheck #{m[0]}")
+      msg = "Linted"
+      status = :success
+    end
+
+    n msg, title, status
+
+    "-> #{msg}"
+  end
+end
