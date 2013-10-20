@@ -1,5 +1,9 @@
-*.log
 *.aux
+*.log
 *.out
+*.nav
+*.snm
+*.toc
+*.vrb
 *.synctex.gz
 Gemfile.lock
