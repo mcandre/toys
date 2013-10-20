@@ -28,7 +28,7 @@ else
   # The IP has change
   echo "Updating http://free.afraid.org with $CurreIP"
   wget http://freedns.afraid.org/dynamic/update.php?xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -o /dev/null -O afraid.log
-  echo `date` "Updating log with IP $CurreIP" >> dnsactual.log
+  echo "$(date) Updating log with IP $CurreIP" >> dnsactual.log
 fi
 rm -f dnsactual.conf
 echo "$CurreIP" > dnsactual.conf
