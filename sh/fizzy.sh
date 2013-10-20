@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 div3() {
   expr $1 % 3 = 0
@@ -22,5 +22,5 @@ fizzy() {
 
 for ((i = 1; i < 101; i++))
 do
-  echo $(fizzy $i)
+  fizzy $i
 done
