@@ -13,5 +13,8 @@ all: hextime.c
 	$(CC) /EHsc /D WIN32 hextime.c /Fe$(EXECUTABLE)
 	$(DELETE) *.obj
 
+lint:
+	splint *.c
+
 clean:
 	$(DELETE) $(EXECUTABLE)
