@@ -13,5 +13,8 @@ all: args.c join.h
 	$(CC) /EHsc /D WIN32 args.c /Fe$(EXECUTABLE)
 	$(DELETE) *.obj
 
+lint:
+	splint *.c *.h
+
 clean:
 	$(DELETE) $(EXECUTABLE)
