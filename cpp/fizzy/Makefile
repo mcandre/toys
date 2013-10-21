@@ -24,6 +24,9 @@ test: fizzy
 fizzy: fizzy.cpp
 	$(CC) $(STD) $(LINK_OPTIONS) -o fizzy fizzy.cpp
 
+lint:
+	cppcheck *.cpp *.h
+
 clean:
 	-rm fizzy
 	-rm *.exe
