@@ -19,7 +19,7 @@ guard :shell do
     msg = "Linted"
     status = :failed
 
-    if system("pylint *.py")
+    if system("pylint *.py -r n")
       status = :success
     end
 

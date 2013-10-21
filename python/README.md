@@ -26,7 +26,7 @@ Unix shells can also do:
 
 # LINT
 
-    $ pylint *.py
+    $ pylint *.py -r n
     ...
 
 # GUARD
