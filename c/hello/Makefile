@@ -14,5 +14,8 @@ test: $(EXECUTABLE)
 $(EXECUTABLE): hello.c
 	gcc -o $(EXECUTABLE) hello.c
 
+lint:
+	splint *.c
+
 clean:
 	-rm $(EXECUTABLE)
