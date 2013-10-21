@@ -36,10 +36,10 @@ def increment(filename):
     numstring = m.group(2)
     end = m.group(3)
   else:
-    raise TypeError, "No numbers found."
+    raise TypeError("No numbers found.")
 
   newnum = "%d" % (int(numstring) + 1)
-  
+
   zeros = "".join("0" * len(numstring) - len(newnum))
-  
+
   return "%s%s%s%s" % (pre, zeros, newnum, end)
