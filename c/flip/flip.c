@@ -37,27 +37,17 @@ void usage(char *program) {
 int main(int argc, char **argv) {
   if (argc!=2) usage(argv[0]);
 
-  int i;
-
   char *filename=argv[1];
   char *flipname;
 
   int len=strlen(filename);
 
   if (len>5 && strcmp(filename+len-5, ".flip")==0) {
-    flipname=(char*) malloc(len-4);
-    for (i = 0; i < len-4; i++) {
-      flipname[i] = '\0';
-    }
-
+    flipname=(char*) calloc(len-4, sizeof(char));
     strncpy(flipname, filename, len-5);
   }
   else {
-    flipname=(char*) malloc(len+6);
-    for (i = 0; i < len+6; i++) {
-      flipname[i] = '\0';
-    }
-
+    flipname=(char*) calloc(len+6, sizeof(char));
     strcat(flipname, filename);
     strcat(flipname, ".flip");
   }
