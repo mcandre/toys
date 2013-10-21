@@ -33,7 +33,7 @@ class HelloFrame(wx.Frame):
 
   def on_hello(self, event):
     """Hello click"""
-    print "Hello World"
+    print("Hello World!")
 
 def main():
   """GUI"""
