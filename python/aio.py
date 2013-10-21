@@ -1,3 +1,5 @@
+# Requires Python 3
+
 """Andrew's Input/Output module"""
 
 __author__ = "Andrew Pennebaker (andrew.pennebaker@gmail.com)"
@@ -37,7 +39,7 @@ def get_size(file):
 
   try:
     f = open(file, "rb")
-  except Exception, e:
+  except Exception as e:
     raise e
 
   b = 0
