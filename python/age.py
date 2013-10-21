@@ -3,7 +3,7 @@
 """ Takes an age and prints corresponding results """
 
 if __name__ == "__main__":
-  AGE = int(raw_input("Age: "))
+  AGE = int(input("Age: "))
 
   if AGE < 1:
     print("You are too young!")
