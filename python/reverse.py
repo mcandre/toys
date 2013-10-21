@@ -31,7 +31,7 @@ def main():
 
   while disordered(numbers):
     print(" ".join([str(e) for e in numbers]))
-    howmany = int(raw_input("How many to flip? "))
+    howmany = int(input("How many to flip? "))
     howmany = int(howmany)
     numbers = flip(numbers, howmany)
     count += 1
