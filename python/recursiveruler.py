@@ -9,7 +9,7 @@ __copyright__ = "Copyright 2007 Andrew Pennebaker"
 import pygame
 import sys
 
-def draw_ruler(screen, color, start, max, min, parts):
+def draw_ruler(screen, color, start, ruler_max, ruler_min, parts):
   """Blot ruler"""
 
   screenrect = screen.get_rect()
@@ -19,18 +19,24 @@ def draw_ruler(screen, color, start, max, min, parts):
   bottom = height
 
   for i in range(parts-1):
-    markerrect = pygame.Rect(start - (width / parts) * i, bottom - max, 1, max)
+    markerrect = pygame.Rect(
+      start - (width / parts) * i, bottom - ruler_max, 1, ruler_max
+    )
+
     screen.fill(color, markerrect)
 
   for i in range(parts - 1):
-    markerrect = pygame.Rect(start + (width / parts) * i, bottom - max, 1, max)
+    markerrect = pygame.Rect(
+      start + (width / parts) * i, bottom - ruler_max, 1, ruler_max
+    )
+
     screen.fill(color, markerrect)
 
   parts *= 2
-  max /= 2
+  ruler_max /= 2
 
-  if int(max) > min:
-    draw_ruler(screen, color, start, max, min, parts)
+  if int(ruler_max) > ruler_min:
+    draw_ruler(screen, color, start, ruler_max, ruler_min, parts)
 
 def play(screen, screensync = True, fps = 128):
   """Tick"""
