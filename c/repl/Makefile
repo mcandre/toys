@@ -14,7 +14,7 @@ all: repl.c
 	$(DELETE) *.obj
 
 lint:
-	splint *.c
+	splint *.c *.h
 
 clean:
 	$(DELETE) $(EXECUTABLE)

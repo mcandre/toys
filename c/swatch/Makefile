@@ -13,5 +13,8 @@ all: swatch.c
 	$(CC) /EHsc /D WIN32 swatch.c /Fe$(EXECUTABLE)
 	$(DELETE) *.obj
 
+lint:
+	splint *.c *.h
+
 clean:
 	-$(DELETE) $(EXECUTABLE)

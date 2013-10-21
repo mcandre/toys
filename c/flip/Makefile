@@ -13,6 +13,9 @@ flip: flip.c
 backup: test.txt.bak
 	cp test.txt.bak test.txt
 
+lint:
+	splint *.c *.h
+
 clean:
 	-rm $(OUT)
 	-rm test.txt
