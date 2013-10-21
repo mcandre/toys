@@ -13,5 +13,8 @@ all: repl.c
 	$(CC) /EHsc /D WIN32 repl.c /Fe$(EXECUTABLE)
 	$(DELETE) *.obj
 
+lint:
+	splint *.c
+
 clean:
 	$(DELETE) $(EXECUTABLE)
