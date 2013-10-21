@@ -5,7 +5,7 @@
 def main():
   """CLI"""
 
-  n = int(raw_input("N: "))
+  n = int(input("N: "))
 
   print("Running")
 
