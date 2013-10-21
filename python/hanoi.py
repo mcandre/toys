@@ -23,7 +23,7 @@ def hanoi(n, start, aux, end):
 def main():
   """Run solution"""
 
-  n = int(raw_input("N = "))
+  n = int(input("N = "))
 
   print("Running")
 
