@@ -1,11 +1,11 @@
 #!/bin/bash
 
 div3() {
-  expr $1 % 3 = 0
+  echo $((($1 % 3) == 0))
 }
 
 div5() {
-  expr $1 % 5 = 0
+  echo $((($1 % 5) == 0))
 }
 
 fizzy() {
