@@ -15,7 +15,7 @@ $(EXECUTABLE): hello.c
 	gcc -o $(EXECUTABLE) hello.c
 
 lint:
-	splint *.c
+	splint *.c *.h
 
 clean:
 	-rm $(EXECUTABLE)
