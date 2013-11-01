@@ -1,20 +1,21 @@
-# Run inside of a Visual Studio command line environment
-#
-# Example:
-#
-# C:\>nmake /f Makefile.mf
+ifeq ("${MSYSTEM}","MINGW32")
+	EXECUTABLE=swatch.exe
+	RUN=
+else
+	EXECUTABLE=swatch
+	RUN=./
+endif
 
-CC = "cl" # Replace with your compiler
-DELETE = "del"
-EXECUTABLE = "swatch.exe"
+all: test
 
-all: swatch.c
-	$(DELETE) $(EXECUTABLE)
-	$(CC) /EHsc /D WIN32 swatch.c /Fe$(EXECUTABLE)
-	$(DELETE) *.obj
+test: $(EXECUTABLE)
+	$(RUN)$(EXECUTABLE)
+
+$(EXECUTABLE): swatch.c
+	gcc -o $(EXECUTABLE) swatch.c
 
 lint:
 	splint *.c *.h
 
 clean:
-	-$(DELETE) $(EXECUTABLE)
+	-rm $(EXECUTABLE)
