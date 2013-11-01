@@ -1,0 +1,31 @@
+guard :shell do
+  watch("Gemfile") do |m|
+    title = "Bundler output"
+    msg = "Bundler Failure"
+    status = :failed
+
+    if system("bundle")
+      msg = "Bundled"
+      status = :status
+    end
+
+    n msg, title, status
+
+    "-> #{msg}"
+  end
+
+  watch(/(Makefile|(.*\.cpp)|(.*\.h))/) do |m|
+    title = "Test output"
+    status = :failed
+
+    msg = `make lint`
+
+    if $?.success?
+      status = :success
+    end
+
+    n msg, title, status
+
+    "-> #{msg}"
+  end
+end
