@@ -1,20 +1,21 @@
-# Run inside of a Visual Studio command line environment
-#
-# Example:
-#
-# C:\>nmake /f Makefile.mf
+ifeq ("${MSYSTEM}","MINGW32")
+	EXECUTABLE=repl.exe
+	RUN=
+else
+	EXECUTABLE=repl
+	RUN=./
+endif
 
-CC = "cl" # Replace with your compiler
-DELETE = "del"
-EXECUTABLE = "repl.exe"
+all: test
 
-all: repl.c
-	$(DELETE) $(EXECUTABLE)
-	$(CC) /EHsc /D WIN32 repl.c /Fe$(EXECUTABLE)
-	$(DELETE) *.obj
+test: $(EXECUTABLE)
+	echo exit | $(RUN)$(EXECUTABLE)
+
+$(EXECUTABLE): repl.c
+	gcc -o $(EXECUTABLE) repl.c
 
 lint:
 	splint *.c *.h
 
 clean:
-	$(DELETE) $(EXECUTABLE)
+	-rm $(EXECUTABLE)
