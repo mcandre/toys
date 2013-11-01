@@ -1,20 +1,14 @@
-# Run inside of a Visual Studio command line environment
-#
-# Example:
-#
-# C:\>nmake /f Makefile.mf
+all: test
 
-CC = "cl" # Replace with your compiler
-DELETE = "del"
-EXECUTABLE = "hextime.exe"
+test: hextime
+	./hextime
 
-all: hextime.c
-	$(DELETE) $(EXECUTABLE)
-	$(CC) /EHsc /D WIN32 hextime.c /Fe$(EXECUTABLE)
-	$(DELETE) *.obj
+hextime: hextime.c
+	gcc -o hextime hextime.c
 
 lint:
 	splint *.c *.h
 
 clean:
-	$(DELETE) $(EXECUTABLE)
+	rm *.exe
+	rm hextime
