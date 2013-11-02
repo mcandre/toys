@@ -1,5 +1,8 @@
 #!/usr/bin/env perl
 
-foreach $i (0 .. $#ARGV) {
-	print "$ARGV[$i]\n";
+use strict;
+use warnings;
+
+foreach my $i (0 .. $#ARGV) {
+  print "$ARGV[$i]\n";
 }
