@@ -32,4 +32,8 @@ sub swatch {
   return sprintf("@%06.2f", beat());
 }
 
-printf "%s\n", swatch();
+sub main {
+  printf "%s\n", swatch();
+}
+
+main unless caller;
