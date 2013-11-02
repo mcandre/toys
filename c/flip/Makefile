@@ -1,6 +1,6 @@
 OUT=flip
 
-default: test
+all: test
 
 test: flip backup
 	./flip test.txt
