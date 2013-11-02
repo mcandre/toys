@@ -9,7 +9,7 @@ magic: magic.c
 	gcc -o $(OUT) -O2 -Wall magic.c
 
 lint:
-	splint +warning-stream-stdout *.c *.h
+	splint *.c *.h
 
 clean:
 	-rm *.exe

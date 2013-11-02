@@ -15,7 +15,7 @@ $(EXECUTABLE): swatch.c
 	gcc -o $(EXECUTABLE) swatch.c
 
 lint:
-	splint +warning-stream-stdout *.c *.h
+	splint *.c *.h
 
 clean:
 	-rm $(EXECUTABLE)

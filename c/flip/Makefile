@@ -14,7 +14,7 @@ backup: test.txt.bak
 	cp test.txt.bak test.txt
 
 lint:
-	splint +warning-stream-stdout *.c *.h
+	splint *.c *.h
 
 clean:
 	-rm $(OUT)
