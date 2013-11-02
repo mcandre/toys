@@ -1,6 +1,7 @@
-#!/usr/bin/env perl -w
+#!/usr/bin/env perl -sw
 
 use strict;
+use warnings;
 
 sub rot13 {
   my $plaintext = shift @_;
