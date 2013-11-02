@@ -15,7 +15,7 @@ $(EXECUTABLE): swatch.c
 	gcc -o $(EXECUTABLE) swatch.c
 
 lint:
-	splint *.c *.h
+	splint *.c *.h 2>&1
 
 clean:
 	-rm $(EXECUTABLE)
