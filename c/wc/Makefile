@@ -15,7 +15,7 @@ $(EXECUTABLE): wc.c
 	gcc -o $(EXECUTABLE) wc.c
 
 lint:
-	splint +warning-stream-stdout *.c *.h
+	splint *.c *.h
 
 clean:
 	-rm $(EXECUTABLE)
