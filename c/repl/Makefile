@@ -15,7 +15,7 @@ $(EXECUTABLE): repl.c
 	gcc -o $(EXECUTABLE) repl.c
 
 lint:
-	splint *.c *.h
+	splint *.c *.h 2>&1
 
 clean:
 	-rm $(EXECUTABLE)
