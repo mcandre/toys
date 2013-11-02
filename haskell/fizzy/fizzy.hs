@@ -4,7 +4,6 @@
 -- Andrew Pennebaker
 
 import Control.Parallel.Strategies
-import Control.Parallel
 
 fizzBuzz :: [String]
 fizzBuzz = parMap rseq fizzBuzz' [1 .. 100]
