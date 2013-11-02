@@ -12,28 +12,28 @@ use strict;
 use Time::gmtime;
 
 sub beat {
-  my $utc=gmtime();
+  my $utc = gmtime();
 
-  my ($hour, $min, $sec)=($utc->hour, $utc->min, $utc->sec);
+  my ($hour, $min, $sec) = ($utc->hour, $utc->min, $utc->sec);
 
-  $utc=$hour*3600+$min*60+$sec; # Greenwich, England
-  my $bmt=$utc+3600; # Biel, Switzerland
+  $utc = $hour * 3600 + $min * 60 + $sec; # Greenwich, England
+  my $bmt = $utc + 3600; # Biel, Switzerland
 
-  my $beat=$bmt/86.4;
+  my $beat = $bmt / 86.4;
 
-  if ($beat>1000) {
-    $beat-=1000;
+  if ($beat > 1000) {
+    $beat -= 1000;
   }
 
   return $beat;
 }
 
 sub swatch {
-  return sprintf("@%06.2f", beat());
+  return sprintf("@%06.2f", beat);
 }
 
 sub main {
-  printf "%s\n", swatch();
+  printf "%s\n", swatch;
 }
 
 main unless caller;
