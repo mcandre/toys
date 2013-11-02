@@ -7,39 +7,54 @@
 
 #define uint unsigned int
 
-char *hexTime() {
+static /*@null@*/ char *hexTime() {
   time_t timer;
   struct tm *local;
+  uint seconds;
+  uint hhour;
+  uint hmin;
+  uint hsec;
+  char* result;
+  int remainder;
 
   timer = time(NULL);
 
   local = localtime(&timer);
 
-  uint seconds = (unsigned int) ((local->tm_hour * 3600 + local->tm_min * 60 + local->tm_sec) * 65536.0 / 86400.0);
+  seconds = (unsigned int) ((local->tm_hour * 3600 + local->tm_min * 60 + local->tm_sec) * 65536.0 / 86400.0);
 
-  uint hhour = seconds / 4096;
+  hhour = seconds / 4096;
 
-  uint hmin = (seconds % 4096) / 16;
+  hmin = (seconds % 4096) / 16;
 
-  uint hsec = seconds % 16;
+  hsec = seconds % 16;
 
-  char *result = (char *) malloc(sizeof(char) * 7);
+  result = (char *) malloc(sizeof(char) * 7);
 
   if (result != NULL) {
-    snprintf(result, 7, "%x_%02x_%x", hhour, hmin, hsec);
+    remainder = snprintf(result, 7, "%x_%02x_%x", hhour, hmin, hsec);
+
+    if (remainder < 0 || remainder >= 7) {
+      printf("Format error.\n");
+    }
+
     return result;
   }
   else {
-    return "error";
+    printf("Out of memory.\n");
+
+    return NULL;
   }
 }
 
 int main() {
   char *h = hexTime();
 
-  printf("%s\n", h);
+  if (h != NULL) {
+    printf("%s\n", h);
 
-  free(h);
+    free(h);
+  }
 
   return 0;
 }
