@@ -26,7 +26,7 @@
 #include <string.h>
 #include <stdio.h>
 
-void usage(char *program) {
+static void usage(char *program) {
   printf("Usage: %s [file|file.flip]\n", program);
   printf("\nFlip will invert the bits and create a .flip file.\n");
   printf("Flipping a file twice restores the original.\n");
@@ -37,7 +37,7 @@ void usage(char *program) {
 int main(int argc, char **argv) {
   char* filename;
   char* flipname;
-  int len;
+  size_t len;
   FILE* source;
   FILE* dest;
   int b;
@@ -50,10 +50,22 @@ int main(int argc, char **argv) {
 
   if (len > 5 && strcmp(filename + len - 5, ".flip") == 0) {
     flipname = (char*) calloc(len - 4, sizeof(char));
+
+    if (flipname == NULL) {
+      printf("Out of memory.\n");
+      exit(EXIT_FAILURE);
+    }
+
     strncpy(flipname, filename, len - 5);
   }
   else {
     flipname = (char*) calloc(len + 6, sizeof(char));
+
+    if (flipname == NULL) {
+      printf("Out of memory.\n");
+      exit(EXIT_FAILURE);
+    }
+
     strcat(flipname, filename);
     strcat(flipname, ".flip");
   }
@@ -62,24 +74,36 @@ int main(int argc, char **argv) {
 
   if (source == NULL) {
     printf("Cannot read file: %s\n", filename);
-    exit(1);
+    exit(EXIT_FAILURE);
   }
 
   dest = fopen(flipname, "wb");
 
   if (dest == NULL) {
-    fclose(source);
+    if (fclose(source) == EOF) {
+      printf("Failure closing source file.\n");
+    }
 
     printf("Cannot write file: %s\n", flipname);
-    exit(1);
+    exit(EXIT_FAILURE);
   }
 
   while ((b = fgetc(source)) != EOF) {
-    fputc(~b, dest);
+    if (fputc(~b, dest) == EOF) {
+      printf("Error writing to file.\n");
+      exit(EXIT_FAILURE);
+    }
   }
 
-  fclose(dest);
-  fclose(source);
+  if (fclose(dest) == EOF) {
+    printf("Error closing destination file.\n");
+  }
+
+  if (fclose(source) == EOF) {
+    printf("Error closing source file.\n");
+  }
+
+  free(flipname);
 
   return 0;
 }
