@@ -1,7 +1,6 @@
-#!/usr/bin/perl
+#!/usr/bin/perl -w
 
 use strict;
-use warnings;
 
 use File::Basename;
 

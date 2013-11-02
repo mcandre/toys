@@ -1,41 +1,40 @@
-#!/usr/bin/env perl
+#!/usr/bin/env perl -w
 
 use strict;
-use warnings;
 
 sub fib {
-	my ($n)=@_;
+  my ($n)=@_;
 
-	if ($n<2) {
-		return $n;
-	}
-	else {
-		my ($a, $b)=(0, 1);
+  if ($n<2) {
+    return $n;
+  }
+  else {
+    my ($a, $b)=(0, 1);
 
-		my $m=$n-1;
+    my $m=$n-1;
 
-		for (my $i=0; $i<$m; $i++) {
-			($a, $b)=($b, $a+$b);
-		}
+    for (my $i=0; $i<$m; $i++) {
+      ($a, $b)=($b, $a+$b);
+    }
 
-		return $b;
-	}
+    return $b;
+  }
 }
 
 # recursion overhead is slow
 #
 #sub fib {
-#	my ($n)=@_;
+# my ($n)=@_;
 #
-#	if ($n==0) {
-#		return 0;
-#	}
-#	elsif ($n==1) {
-#		return 1;
-#	}
-#	else {
-#		return fib($n-1)+fib($n-2);
-#	}
+# if ($n==0) {
+#   return 0;
+# }
+# elsif ($n==1) {
+#   return 1;
+# }
+# else {
+#   return fib($n-1)+fib($n-2);
+# }
 #}
 
 print "N = ";
