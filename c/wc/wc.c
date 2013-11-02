@@ -5,30 +5,30 @@
 #include <ctype.h>
 
 int main() {
-  int IN=1;
-  int OUT=0;
+  int IN = 1;
+  int OUT = 0;
 
-  int characters=0;
-  int words=0;
-  int lines=0;
+  int characters = 0;
+  int words = 0;
+  int lines = 0;
 
-  int state=OUT;
+  int state = OUT;
 
   char c = (char) getchar();
 
   while ((int) c != EOF) {
     characters++;
 
-    if (c=='\n') {
+    if (c == '\n') {
       lines++;
     }
 
     if (isspace(c)) {
-      state=OUT;
+      state = OUT;
     }
-    else if (state==OUT) {
+    else if (state == OUT) {
       words++;
-      state=IN;
+      state = IN;
     }
 
     c = (char) getchar();
