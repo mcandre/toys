@@ -15,7 +15,7 @@ $(EXECUTABLE): hello.c
 	gcc -o $(EXECUTABLE) hello.c
 
 lint:
-	splint *.c *.h 2>&1
+	splint +warning-stream-stdout *.c *.h
 
 clean:
 	-rm $(EXECUTABLE)
