@@ -31,7 +31,7 @@ int main(int argc, char **argv) {
   strcat(url, argv[1]);
 
   int i;
-  for (i=2; i<argc; i++) {
+  for (i = 2; i < argc; i++) {
     url=(char*) realloc(url, strlen(url) + strlen(argv[i]) + 2);
     strcat(url, "+");
     strcat(url, argv[i]);
