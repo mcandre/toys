@@ -42,37 +42,39 @@ int main(int argc, char **argv) {
   FILE* dest;
   int b;
 
-  if (argc!=2) usage(argv[0]);
+  if (argc != 2) usage(argv[0]);
 
-  filename=argv[1];
+  filename = argv[1];
 
-  len=strlen(filename);
+  len = strlen(filename);
 
-  if (len>5 && strcmp(filename+len-5, ".flip")==0) {
-    flipname=(char*) calloc(len-4, sizeof(char));
-    strncpy(flipname, filename, len-5);
+  if (len > 5 && strcmp(filename + len - 5, ".flip") == 0) {
+    flipname = (char*) calloc(len - 4, sizeof(char));
+    strncpy(flipname, filename, len - 5);
   }
   else {
-    flipname=(char*) calloc(len+6, sizeof(char));
+    flipname = (char*) calloc(len + 6, sizeof(char));
     strcat(flipname, filename);
     strcat(flipname, ".flip");
   }
 
-  source=fopen(filename, "rb");
-  if (source==NULL) {
+  source = fopen(filename, "rb");
+
+  if (source == NULL) {
     printf("Cannot read file: %s\n", filename);
     exit(1);
   }
 
-  dest=fopen(flipname, "wb");
-  if (dest==NULL) {
+  dest = fopen(flipname, "wb");
+
+  if (dest == NULL) {
     fclose(source);
 
     printf("Cannot write file: %s\n", flipname);
     exit(1);
   }
 
-  while ((b=fgetc(source))!=EOF) {
+  while ((b = fgetc(source)) != EOF) {
     fputc(~b, dest);
   }
 
