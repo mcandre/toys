@@ -35,12 +35,18 @@ void usage(char *program) {
 }
 
 int main(int argc, char **argv) {
+  char* filename;
+  char* flipname;
+  int len;
+  FILE* source;
+  FILE* dest;
+  int b;
+
   if (argc!=2) usage(argv[0]);
 
-  char *filename=argv[1];
-  char *flipname;
+  filename=argv[1];
 
-  int len=strlen(filename);
+  len=strlen(filename);
 
   if (len>5 && strcmp(filename+len-5, ".flip")==0) {
     flipname=(char*) calloc(len-4, sizeof(char));
@@ -52,21 +58,19 @@ int main(int argc, char **argv) {
     strcat(flipname, ".flip");
   }
 
-  FILE *source=fopen(filename, "rb");
+  source=fopen(filename, "rb");
   if (source==NULL) {
     printf("Cannot read file: %s\n", filename);
     exit(1);
   }
 
-  FILE *dest=fopen(flipname, "wb");
+  dest=fopen(flipname, "wb");
   if (dest==NULL) {
     fclose(source);
 
     printf("Cannot write file: %s\n", flipname);
     exit(1);
   }
-
-  int b;
 
   while ((b=fgetc(source))!=EOF) {
     fputc(~b, dest);
