@@ -15,7 +15,7 @@ $(EXECUTABLE): yubnub.c
 	gcc -o $(EXECUTABLE) yubnub.c
 
 lint:
-	splint *.c *.h
+	splint *.c *.h 2>&1
 
 clean:
 	-rm $(EXECUTABLE)
