@@ -28,9 +28,9 @@
 #    use a custom service api in the form http://somewebsite.com/api?url=
 
 require "getoptlong"
-require "rdoc/usage"
-
 require "open-uri"
+
+$DEBUG = false
 
 class Tiny
   attr_reader :name, :short, :domain, :api
@@ -62,7 +62,7 @@ class Tiny
     services.to_a.collect { |e| e[1] }.sort_by { |e| e.short }
   end
 
-  def tiny(url, debug = false)
+  def tiny(url)
     tinyurl = ""
 
     begin
@@ -71,7 +71,7 @@ class Tiny
 
         tinyurl = f.readlines.join ""
 
-        p tinyurl if debug
+        p tinyurl if $DEBUG
       }
 
       if tinyurl == ""
@@ -97,6 +97,11 @@ class Tiny
   end
 end
 
+def usage
+  system("more #{$0}")
+  exit
+end
+
 def main
   services = {}
 
@@ -112,8 +117,6 @@ def main
 
   service = Tiny::sort(services)[0]
 
-  debug = false
-
   opts = GetoptLong.new(
     ["--help", "-h", GetoptLong::NO_ARGUMENT],
     ["--debug", "-d", GetoptLong::NO_ARGUMENT],
@@ -128,7 +131,7 @@ def main
       when "--help"
         raise
       when "--debug"
-        debug = true
+        $DEBUG = true
       when "--list-services"
         mode = :list_services
       when "--service"
@@ -145,15 +148,15 @@ def main
       end
     }
   rescue
-    RDoc::usage("Usage")
+    usage
   end
 
   if mode == :shorten
-    raise if ARGV.length < 1
+    usage unless ARGV.length > 0
 
     ARGV.each { |url|
       begin
-        puts service.tiny(url, debug)
+        puts service.tiny(url)
       rescue RuntimeError => e
         puts e.message
       end
@@ -167,7 +170,7 @@ end
 
 if __FILE__ == $0
   begin
-    main()
+    main
   rescue Interrupt => e
     nil
   end
