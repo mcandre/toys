@@ -4,4 +4,4 @@ use strict;
 
 use File::Basename;
 
-print dirname($0)."\n";
+print dirname($0) . "\n";
