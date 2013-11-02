@@ -1,5 +1,7 @@
 #!/usr/bin/perl -w
 
+use warnings;
+
 open FILE, 'practice.txt';
 my @content = <FILE>;
 

@@ -1,6 +1,7 @@
-#!/usr/bin/env perl -w
+#!/usr/bin/env perl -sw
 
 use strict;
+use warnings;
 
 sub fib {
   my ($n) = @_;

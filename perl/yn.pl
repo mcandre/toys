@@ -1,7 +1,10 @@
-#!/usr/bin/env perl -w
+#!/usr/bin/env perl -sw
 
-$parser = "http://yubnub.org/parser/parse?command=";
-$command = $command = join "+", @ARGV;
+use strict;
+use warnings;
+
+my $parser = "http://yubnub.org/parser/parse?command=";
+my $command = join "+", @ARGV;
 
 print "Command: $command\n";
 
