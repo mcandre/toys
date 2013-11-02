@@ -48,7 +48,7 @@ require "highline/import"
 
 $MAX_STATUS_LENGTH = 140
 
-def load_settings(stream)
+def self.load_settings(stream)
   settings = {}
 
   YAML::load(stream).each { |description, command|
@@ -78,8 +78,10 @@ def update(settings)
 
     p response if debug
 
-    raise "Could not authenticate as #{username}" if response.message["Unauthorized"]
-    raise "Could not connect" if response.message["Not Acceptable"]
+    message = response.message
+
+    raise "Could not authenticate as #{username}" if message["Unauthorized"]
+    raise "Could not connect" if message["Not Acceptable"]
   }
 end
 

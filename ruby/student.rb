@@ -4,6 +4,9 @@ module Speakable
   end
 end
 
+#
+# Student
+#
 class Student
   include Speakable
 
@@ -24,6 +27,9 @@ class Student
   end
 end
 
+#
+# Senior Student
+#
 class Senior < Student
   attr_accessor :credits_left
 

@@ -11,7 +11,7 @@ def site_status(domain)
     return "unknown"
   end
 
-  if not data["The website is accessible!"].nil?
+  if data["The website is accessible!"]
     "up"
   else
     "down"

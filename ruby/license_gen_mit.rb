@@ -30,7 +30,7 @@ class String
   end
 end
 
-def gen(owners = "MIT", year = Time.now.year, margin = 80)
+def self.gen(owners = "MIT", year = Time.now.year, margin = 80)
   "The MIT License
 
 Copyright (c) #{year} #{owners}
@@ -43,13 +43,15 @@ THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMP
 end
 
 def main
+  argc = ARGV.length
+
   owners = "MIT"
   year = "1988"
   margin = 80
 
-  owners = ARGV[0] unless ARGV.length < 1
-  year = ARGV[1] unless ARGV.length < 2
-  margin = ARGV[2] unless ARGV.length < 3
+  owners = ARGV[0] unless argc < 1
+  year = ARGV[1] unless argc < 2
+  margin = ARGV[2] unless argc < 3
 
   puts gen(owners, year, margin)
 end

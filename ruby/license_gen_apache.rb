@@ -33,7 +33,7 @@ class String
   end
 end
 
-def gen(owners = "The Apache Software Foundation", year = Time.now.year, margin = 80)
+def self.gen(owners = "The Apache Software Foundation", year = Time.now.year, margin = 80)
   "Copyright #{year} #{owners}
 
 Licensed under the Apache License, Version 2.0 (the \"License\"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
@@ -44,13 +44,15 @@ Unless required by applicable law or agreed to in writing, software distributed 
 end
 
 def main
+  argc = ARGV.length
+
   owners = "The Apache Software Foundation"
   year = "2004"
   margin = 80
 
-  owners = ARGV[0] unless ARGV.length < 1
-  year = ARGV[1] unless ARGV.length < 2
-  margin = ARGV[2] unless ARGV.length < 3
+  owners = ARGV[0] unless argc < 1
+  year = ARGV[1] unless argc < 2
+  margin = ARGV[2] unless argc < 3
 
   puts gen(owners, year, margin)
 end

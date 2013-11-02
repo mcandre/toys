@@ -21,9 +21,11 @@ require "getoptlong"
 require "rdoc/usage"
 require "open-uri"
 
-def prepare_api(settings)
+def self.prepare_api(settings)
+  ip = settings[:ip]
+
   url = "http://#{settings[:domain]}#{settings[:api]}"
-  url += "&ip=#{settings[:ip]}" if settings[:ip].length > 0
+  url += "&ip=#{ip}" unless ip == ""
   url += "&position=true" if settings[:position]
 
   url

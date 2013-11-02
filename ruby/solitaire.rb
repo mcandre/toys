@@ -90,8 +90,8 @@ def encrypt(message)
   p plainbytes
 end
 
-def decrypt(message, key)
-  # ...
-end
+# def decrypt(message, key)
+#   # ...
+# end
 
 encrypt "Boy howdy!\nI do declare."

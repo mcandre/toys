@@ -30,7 +30,7 @@ class String
   end
 end
 
-def gen(owners = "The FreeBSD Project", year = Time.now.year, margin = 80)
+def self.gen(owners = "The FreeBSD Project", year = Time.now.year, margin = 80)
   "FreeBSD License
 
 Copyright #{year} #{owners}. All rights reserved.
@@ -44,13 +44,15 @@ THIS SOFTWARE IS PROVIDED BY THE AUTHORS \"AS IS\" AND ANY EXPRESS OR IMPLIED WA
 end
 
 def main
+  argc = ARGV.length
+
   owners = "The FreeBSD Project"
   year = "1994-2009"
   margin = 80
 
-  owners = ARGV[0] unless ARGV.length < 1
-  year = ARGV[1] unless ARGV.length < 2
-  margin = ARGV[2] unless ARGV.length < 3
+  owners = ARGV[0] unless argc < 1
+  year = ARGV[1] unless argc < 2
+  margin = ARGV[2] unless argc < 3
 
   puts gen(owners, year, margin)
 end

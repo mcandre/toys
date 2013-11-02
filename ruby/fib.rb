@@ -4,7 +4,7 @@ require "contracts"
 include Contracts
 
 Contract Num => Num
-def fib(n)
+def self.fib(n)
   if n<2
     n
   else

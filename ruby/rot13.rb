@@ -17,7 +17,7 @@
 
 require "getoptlong"
 
-def create_rule_26(start, n)
+def self.create_rule_26(start, n)
   rule = {}
 
   (start .. (start + 26)).each { |b|
@@ -31,7 +31,7 @@ def create_rule(n = 13)
   create_rule_26("a".ord, n).merge(create_rule_26("A".ord, n))
 end
 
-def crypt(rule, b)
+def self.crypt(rule, b)
   if rule.include?(b)
     rule[b]
   else

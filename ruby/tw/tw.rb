@@ -55,7 +55,7 @@ require "highline/import"
 
 $MAX_STATUS_LENGTH = 140
 
-def load_commands(stream)
+def self.load_commands(stream)
   commands = {}
 
   YAML::load(stream).each { |description, command|

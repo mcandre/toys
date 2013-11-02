@@ -40,7 +40,7 @@ def load_user_agents(stream)
   return user_agents
 end
 
-def getfilename(url)
+def self.getfilename(url)
   url.split("/")[-1]
 end
 

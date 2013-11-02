@@ -1,10 +1,10 @@
 #!/usr/bin/env ruby
 
-def flip(sequence, howmany)
+def self.flip(sequence, howmany)
   sequence[0, howmany].reverse + sequence[howmany, sequence.length - howmany]
 end
 
-def disordered?(sequence)
+def self.disordered?(sequence)
   [1 .. sequence.length - 1].each { |i|
     return true if sequence[i-1] > sequence[i]
   }
@@ -13,10 +13,13 @@ def disordered?(sequence)
 end
 
 def gen_numbers
+  len = input.length
+
   input = (1 .. 9).to_a
   numbers = []
-  [0 .. input.length - 1].each { |i|
-    numbers << input.delete_at(rand(input.length))
+
+  [0 .. len - 1].each { |i|
+    numbers << input.delete_at(rand(len))
   }
 
   numbers

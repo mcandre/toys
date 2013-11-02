@@ -33,7 +33,7 @@ class String
   end
 end
 
-def gen(owners = "The Free Software Foundation", year = Time.now.year, margin = 80)
+def self.gen(owners = "The Free Software Foundation", year = Time.now.year, margin = 80)
   "Copyright (C) #{year} #{owners}
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
@@ -44,13 +44,15 @@ You should have received a copy of the GNU General Public License along with thi
 end
 
 def main
+  argc = ARGV.length
+
   owners = "The Free Software Foundation"
   year = "2007"
   margin = 80
 
-  owners = ARGV[0] unless ARGV.length < 1
-  year = ARGV[1] unless ARGV.length < 2
-  margin = ARGV[2] unless ARGV.length < 3
+  owners = ARGV[0] unless argc < 1
+  year = ARGV[1] unless argc < 2
+  margin = ARGV[2] unless argc < 3
 
   puts gen(owners, year, margin)
 end

@@ -42,7 +42,7 @@ class SBox
     @x, @y = 0, 0
   end
 
-  def swap(items, a, b)
+  def self.swap(items, a, b)
     items[a], items[b] = items[b], items[a]
   end
 
