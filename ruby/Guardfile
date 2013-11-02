@@ -1,0 +1,28 @@
+guard :shell do
+  watch("Gemfile") do |m|
+    title = "Bundler output"
+    msg = "Bundler Failure"
+    status = :failed
+
+    if system("bundle")
+      msg = "Bundled"
+      status = :status
+    end
+
+    n msg, title, status
+
+    "-> #{msg}"
+  end
+
+  watch(/\.rb/) do |m|
+    title = "Lint output"
+    msg = "Lint failure"
+    status = :success
+
+    msg = `rake lint`
+
+    n msg, title, status
+
+    "-> #{msg}"
+  end
+end
