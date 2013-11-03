@@ -22,7 +22,7 @@ test: fizzy
 	./fizzy
 
 fizzy: fizzy.cpp
-	$(CC) $(STD) $(LINK_OPTIONS) -o fizzy fizzy.cpp
+	$(CC) -O2 $(STD) $(LINK_OPTIONS) -o fizzy fizzy.cpp
 
 lint:
 	cppcheck *.cpp *.h
