@@ -1,6 +1,6 @@
 %% Compile
 %%
-%% erlc args.erl
+%% erlc -Wall args.erl
 %%
 %% Run
 %%
