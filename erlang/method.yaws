@@ -2,7 +2,7 @@
 
 Start yaws:
 
-$ cd erlang
+$ cd erlang/
 $ yaws --conf .yaws -->
 
 <erl>
