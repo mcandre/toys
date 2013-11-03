@@ -1,4 +1,4 @@
-all: args
+all: test
 
 test: args
 	./args

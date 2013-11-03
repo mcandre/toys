@@ -1,4 +1,4 @@
-all: hello
+all: test
 
 test: hello
 	./hello
