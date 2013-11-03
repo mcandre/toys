@@ -7,6 +7,10 @@ end;;
 
 (*
 
+Interpret
+
+./hello.ml
+
 Compile
 
 ocamlc -w +a -o hello hello.ml
