@@ -45,7 +45,7 @@ void fizzbuzz() {
 #ifdef AUTO
   for (auto i : range) {
 #else
-  int i;
+  size_t i;
   for (i = 0; i < range.size(); i++) {
 #endif
 #ifdef ASYNC
