@@ -4,7 +4,7 @@ test: swatch
 	./swatch
 
 swatch: swatch.c
-	gcc -o swatch -O2 -Wall swatch.c
+	gcc -O2 -Wall -o swatch swatch.c
 
 lint:
 	splint *.c *.h

@@ -4,7 +4,7 @@ test: wc
 	./wc < wc.c
 
 wc: wc.c
-	gcc -o wc -O2 -Wall wc.c
+	gcc -O2 -Wall -o wc wc.c
 
 lint:
 	splint *.c *.h

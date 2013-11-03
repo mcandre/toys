@@ -4,7 +4,7 @@ test: hello
 	./hello
 
 hello: hello.c
-	gcc -o hello -O2 hello.c -Wall
+	gcc -O2 -Wall -o hello hello.c
 
 lint:
 	splint *.c *.h

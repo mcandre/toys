@@ -3,8 +3,8 @@ all: test
 test: repl
 	echo exit | ./repl
 
-$(BIN): repl.c
-	gcc -o repl -O2 -Wall repl.c
+repl: repl.c
+	gcc -O2 -Wall -o repl repl.c
 
 lint:
 	splint *.c *.h

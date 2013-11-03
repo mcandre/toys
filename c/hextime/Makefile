@@ -4,7 +4,7 @@ test: hextime
 	./hextime
 
 hextime: hextime.c
-	gcc -o hextime -O2 hextime.c -Wall
+	gcc -O2 -Wall -o hextime hextime.c
 
 lint:
 	splint *.c *.h

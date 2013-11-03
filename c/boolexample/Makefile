@@ -4,7 +4,7 @@ test: boolexample
 	./boolexample
 
 boolexample: boolexample.c
-	gcc -o boolexample -O2 -Wall boolexample.c
+	gcc -O2 -Wall -o boolexample boolexample.c
 
 lint:
 	splint *.c *.h
