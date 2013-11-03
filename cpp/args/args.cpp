@@ -8,5 +8,7 @@ int main(int argc, char **argv) {
     cout << argv[i];
   }
 
+  cout << endl;
+
   return 0;
 }
