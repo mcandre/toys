@@ -1,21 +1,14 @@
-ifeq ("${MSYSTEM}","MINGW32")
-	EXECUTABLE=swatch.exe
-	RUN=
-else
-	EXECUTABLE=swatch
-	RUN=./
-endif
-
 all: test
 
-test: $(EXECUTABLE)
-	$(RUN)$(EXECUTABLE)
+test: swatch
+	./swatch
 
-$(EXECUTABLE): swatch.c
-	gcc -o $(EXECUTABLE) -O2 -Wall swatch.c
+swatch: swatch.c
+	gcc -o swatch -O2 -Wall swatch.c
 
 lint:
 	splint *.c *.h
 
 clean:
-	-rm $(EXECUTABLE)
+	-rm *.exe
+	-rm swatch

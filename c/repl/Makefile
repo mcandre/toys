@@ -1,21 +1,14 @@
-ifeq ("${MSYSTEM}","MINGW32")
-	EXECUTABLE=repl.exe
-	RUN=
-else
-	EXECUTABLE=repl
-	RUN=./
-endif
-
 all: test
 
-test: $(EXECUTABLE)
-	echo exit | $(RUN)$(EXECUTABLE)
+test: repl
+	echo exit | ./repl
 
-$(EXECUTABLE): repl.c
-	gcc -o $(EXECUTABLE) -O2 -Wall repl.c
+$(BIN): repl.c
+	gcc -o repl -O2 -Wall repl.c
 
 lint:
 	splint *.c *.h
 
 clean:
-	-rm $(EXECUTABLE)
+	-rm *.exe
+	-rm repl

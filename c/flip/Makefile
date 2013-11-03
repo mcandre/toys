@@ -1,5 +1,3 @@
-OUT=flip
-
 all: test
 
 test: flip backup
@@ -8,7 +6,7 @@ test: flip backup
 	md5 test.txt test.txt.bak
 
 flip: flip.c
-	gcc -o $(OUT) -O2 -Wall flip.c
+	gcc -o flip -O2 -Wall flip.c
 
 backup: test.txt.bak
 	cp test.txt.bak test.txt
@@ -17,6 +15,7 @@ lint:
 	splint *.c *.h
 
 clean:
-	-rm $(OUT)
+	-rm *.exe
+	-rm flip
 	-rm test.txt
 	-rm test.txt.flip

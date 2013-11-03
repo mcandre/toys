@@ -1,21 +1,14 @@
-ifeq ("${MSYSTEM}","MINGW32")
-	EXECUTABLE=wc.exe
-	RUN=
-else
-	EXECUTABLE=wc
-	RUN=./
-endif
-
 all: test
 
-test: $(EXECUTABLE)
-	$(RUN)$(EXECUTABLE) < wc.c
+test: wc
+	./wc < wc.c
 
-$(EXECUTABLE): wc.c
-	gcc -o $(EXECUTABLE) -O2 -Wall wc.c
+wc: wc.c
+	gcc -o wc -O2 -Wall wc.c
 
 lint:
 	splint *.c *.h
 
 clean:
-	-rm $(EXECUTABLE)
+	-rm *.exe
+	-rm wc
