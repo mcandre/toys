@@ -14,7 +14,7 @@ guard :shell do
     "-> #{msg}"
   end
 
-  watch(/\.java/) do |m|
+  watch(/checkstyle\.xml|.*\.java/) do |m|
     title = "Lint output"
     msg = "Lint failure"
     status = :success
