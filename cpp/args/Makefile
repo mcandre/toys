@@ -10,4 +10,5 @@ lint:
 	cppcheck *.cpp *.h
 
 clean:
+	-rm *.exe
 	-rm args

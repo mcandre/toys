@@ -28,6 +28,5 @@ lint:
 	cppcheck *.cpp *.h
 
 clean:
-	-rm fizzy
 	-rm *.exe
-	-rm *.o
+	-rm fizzy
