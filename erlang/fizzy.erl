@@ -1,6 +1,6 @@
 %% Compile
 %%
-%% erlc fizzy.erl
+%% erlc -Wall fizzy.erl
 %%
 %% Run
 %%
