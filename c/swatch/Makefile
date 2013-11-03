@@ -12,7 +12,7 @@ test: $(EXECUTABLE)
 	$(RUN)$(EXECUTABLE)
 
 $(EXECUTABLE): swatch.c
-	gcc -o $(EXECUTABLE) swatch.c
+	gcc -o $(EXECUTABLE) -O2 -Wall swatch.c
 
 lint:
 	splint *.c *.h

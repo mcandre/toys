@@ -12,7 +12,7 @@ test: $(EXECUTABLE)
 	$(RUN)$(EXECUTABLE) < wc.c
 
 $(EXECUTABLE): wc.c
-	gcc -o $(EXECUTABLE) wc.c
+	gcc -o $(EXECUTABLE) -O2 -Wall wc.c
 
 lint:
 	splint *.c *.h

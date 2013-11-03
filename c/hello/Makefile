@@ -12,7 +12,7 @@ test: $(EXECUTABLE)
 	$(RUN)$(EXECUTABLE)
 
 $(EXECUTABLE): hello.c
-	gcc -o $(EXECUTABLE) hello.c
+	gcc -o $(EXECUTABLE) -O2 hello.c -Wall
 
 lint:
 	splint *.c *.h

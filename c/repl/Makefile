@@ -12,7 +12,7 @@ test: $(EXECUTABLE)
 	echo exit | $(RUN)$(EXECUTABLE)
 
 $(EXECUTABLE): repl.c
-	gcc -o $(EXECUTABLE) repl.c
+	gcc -o $(EXECUTABLE) -O2 -Wall repl.c
 
 lint:
 	splint *.c *.h
