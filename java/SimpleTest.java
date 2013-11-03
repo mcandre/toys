@@ -1,11 +1,11 @@
-import org.junit.*;
-import static org.junit.Assert.*;
+import org.junit.Test;
+import static org.junit.Assert.assertTrue;
 
-import java.util.*;
+import java.util.ArrayList;
 
 public class SimpleTest {
   @Test
-  public void testSomething() {
+  public final void testSomething() {
     assertTrue(new ArrayList().isEmpty());
   }
 
@@ -13,7 +13,7 @@ public class SimpleTest {
     return new junit.framework.JUnit4TestAdapter(SimpleTest.class);
   }
 
-  public static void main(String[] args) {
+  public static void main(final String[] args) {
     org.junit.runner.JUnitCore.main("SimpleTest");
   }
 }
