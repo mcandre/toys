@@ -1,6 +1,6 @@
 %% Compile
 %%
-%% erlc nnbottles.erl
+%% erlc -Wall nnbottles.erl
 %%
 %% Run
 %%
