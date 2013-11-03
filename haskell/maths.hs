@@ -1,8 +1,8 @@
 -- Compile:
--- ghc -O2 --make maths.hs -threaded -rtsopts -Wall
+-- ghc -O2 -Wall --make maths.hs -threaded -rtsopts
 --
 -- Run:
--- time ./maths +RTS -N2
+-- time ./maths +RTS -N
 
 import Text.Printf
 import Control.Parallel

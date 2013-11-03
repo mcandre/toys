@@ -1,10 +1,13 @@
-all: fizzy
+all: test
 
-fizzy: fizzy.hs
-	ghc --make fizzy.hs -threaded -rtsopts -Wall
+test: fizzy
 	./fizzy +RTS -N
 
+fizzy: fizzy.hs
+	ghc -O2 -Wall --make fizzy.hs -threaded -rtsopts
+
 clean:
+	-rm *.exe
+	-rm *.o
+	-rm *.hi
 	-rm fizzy
-	-rm fizzy.o
-	-rm fizzy.hi
