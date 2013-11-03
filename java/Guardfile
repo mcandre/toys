@@ -1,0 +1,28 @@
+guard :shell do
+  watch("Gemfile") do |m|
+    title = "Bundler output"
+    msg = "Bundler Failure"
+    status = :failed
+
+    if system("bundle")
+      msg = "Bundled"
+      status = :status
+    end
+
+    n msg, title, status
+
+    "-> #{msg}"
+  end
+
+  watch(/\.java/) do |m|
+    title = "Compiler output"
+    msg = "Compile failure"
+    status = :success
+
+    msg = `javac -Xlint:all #{m[0]} 2>&1 && echo Success`
+
+    n msg, title, status
+
+    "-> #{msg}"
+  end
+end
