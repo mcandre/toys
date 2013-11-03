@@ -1,6 +1,6 @@
 %% Compile
 %%
-%% erlc siginttest.erl
+%% erlc -Wall siginttest.erl
 %%
 %% Run
 %%
