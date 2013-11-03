@@ -9,10 +9,7 @@ public final class Swatch {
   private Swatch() {}
 
   public static int getTimezone(final Calendar c) {
-    return -(
-      c.get(Calendar.ZONE_OFFSET) +
-      c.get(Calendar.DST_OFFSET)
-    ) / (60 * 1000) / 60;
+    return -(c.get(Calendar.ZONE_OFFSET) + c.get(Calendar.DST_OFFSET)) / (60 * 1000) / 60;
   }
 
   public static double beat() {
