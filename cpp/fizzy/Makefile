@@ -25,7 +25,7 @@ fizzy: fizzy.cpp
 	$(CC) -O2 -Wall -Wextra $(STD) $(LINK_OPTIONS) -o fizzy fizzy.cpp
 
 lint:
-	cppcheck .
+	cppcheck --enable=all --suppress=missingIncludeSystem .
 
 clean:
 	-rm *.exe
