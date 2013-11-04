@@ -1,10 +1,15 @@
+FLAGS=-Wall -Wextra -Wmost -framework Foundation -lobjc -o fizzy
+
 all: test
 
 test: fizzy
 	./fizzy
 
-fizzy: fizzy.m
-	clang -Wall -Wextra -Wmost -framework Foundation -lobjc -o fizzy fizzy.m
+fizzy: Fizzy.m
+	clang $(FLAGS) Fizzy.m
+
+lint:
+	oclint Fizzy.m -- $(FLAGS)
 
 clean:
 	-rm *.exe
