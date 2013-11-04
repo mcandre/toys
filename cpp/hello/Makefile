@@ -7,7 +7,7 @@ hello: hello.cpp
 	g++ -O2 -Wall -Wextra -o hello hello.cpp
 
 lint:
-	cppcheck *.cpp *.h
+	cppcheck .
 
 clean:
 	-rm *.exe

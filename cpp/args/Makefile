@@ -7,7 +7,7 @@ args: args.cpp
 	g++ -O2 -Wall -Wextra -o args args.cpp
 
 lint:
-	cppcheck *.cpp *.h
+	cppcheck .
 
 clean:
 	-rm *.exe
