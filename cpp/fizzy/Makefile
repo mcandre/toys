@@ -22,7 +22,7 @@ test: fizzy
 	./fizzy
 
 fizzy: fizzy.cpp
-	$(CC) -O2 -Wall -Wextra $(STD) $(LINK_OPTIONS) -o fizzy fizzy.cpp
+	$(CC) -O2 -Wall -Wextra -Weffc++ $(STD) $(LINK_OPTIONS) -o fizzy fizzy.cpp
 
 lint:
 	cppcheck --enable=all --suppress=missingIncludeSystem .

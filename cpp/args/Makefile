@@ -4,7 +4,7 @@ test: args
 	./args
 
 args: args.cpp
-	g++ -O2 -Wall -Wextra -o args args.cpp
+	g++ -O2 -Wall -Wextra -Weffc++ -o args args.cpp
 
 lint:
 	cppcheck --enable=all --suppress=missingIncludeSystem .
