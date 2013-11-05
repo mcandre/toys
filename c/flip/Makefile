@@ -1,3 +1,6 @@
+CC=clang
+FLAGS=-O2 -Wall -Wextra -Wmost -Weverything
+
 all: test
 
 test: flip backup
@@ -6,7 +9,7 @@ test: flip backup
 	md5 test.txt test.txt.bak
 
 flip: flip.c
-	gcc -O2 -Wall -Wextra -o flip flip.c
+	$(CC) $(FLAGS) -o flip flip.c
 
 backup: test.txt.bak
 	cp test.txt.bak test.txt

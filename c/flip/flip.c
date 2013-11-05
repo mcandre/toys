@@ -26,7 +26,7 @@
 #include <string.h>
 #include <stdio.h>
 
-static void usage(char *program) {
+static void __attribute__((noreturn)) usage(char *program) {
   printf("Usage: %s [file|file.flip]\n", program);
   printf("\nFlip will invert the bits and create a .flip file.\n");
   printf("Flipping a file twice restores the original.\n");
