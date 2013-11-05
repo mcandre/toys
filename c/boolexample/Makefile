@@ -10,7 +10,7 @@ boolexample: boolexample.c
 	$(CC) $(FLAGS) -o boolexample boolexample.c
 
 lint:
-	splint *.c *.h
+	splint *.c *.h -preproc
 
 clean:
 	-rm *.exe

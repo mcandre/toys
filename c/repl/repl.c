@@ -14,7 +14,7 @@
 
 #define EXIT "exit"
 
-static void __attribute((noreturn)) usage(char* program) {
+static void __attribute__((noreturn)) usage(char* program) {
   printf("Usage: %s <script>\n", program);
   printf("\n-h --help\tDisplay usage\n");
   printf("-v --version\tDisplay version\n");
@@ -22,7 +22,7 @@ static void __attribute((noreturn)) usage(char* program) {
   exit(0);
 }
 
-static void __attribute((noreturn)) version() {
+static void __attribute__((noreturn)) version() {
   printf("%s %s\n", PROGRAM, VERSION);
   exit(0);
 }

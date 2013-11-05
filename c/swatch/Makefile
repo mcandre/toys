@@ -10,7 +10,7 @@ swatch: swatch.c
 	$(CC) $(FLAGS) -o swatch swatch.c
 
 lint:
-	splint *.c *.h
+	splint *.c *.h -preproc
 
 clean:
 	-rm *.exe

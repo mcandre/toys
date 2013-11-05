@@ -15,7 +15,7 @@ backup: test.txt.bak
 	cp test.txt.bak test.txt
 
 lint:
-	splint *.c *.h
+	splint *.c *.h -preproc
 
 clean:
 	-rm *.exe

@@ -10,7 +10,7 @@ hextime: hextime.c
 	$(CC) $(FLAGS) -o hextime hextime.c
 
 lint:
-	splint *.c *.h
+	splint *.c *.h -preproc
 
 clean:
 	-rm *.exe

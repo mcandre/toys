@@ -10,7 +10,7 @@ hello: hello.c
 	$(CC) $(FLAGS) -o hello hello.c
 
 lint:
-	splint *.c *.h
+	splint *.c *.h -preproc
 
 clean:
 	-rm *.exe
