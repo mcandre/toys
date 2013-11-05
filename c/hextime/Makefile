@@ -1,10 +1,13 @@
+CC=clang
+FLAGS=-O2 -Wall -Wextra -Wmost -Weverything
+
 all: test
 
 test: hextime
 	./hextime
 
 hextime: hextime.c
-	gcc -O2 -Wall -Wextra -o hextime hextime.c
+	$(CC) $(FLAGS) -o hextime hextime.c
 
 lint:
 	splint *.c *.h
