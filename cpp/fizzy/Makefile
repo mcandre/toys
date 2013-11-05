@@ -1,4 +1,5 @@
 CC=g++
+FLAGS=-O2 -Wall -Wextra -Weffc++
 LINK_OPTIONS=
 STD=
 
@@ -13,6 +14,7 @@ else
 
 	ifeq ($(UNAME_S),Darwin)
 		CC=clang++
+		FLAGS=-O2 -Wall -Wextra -Weffc++ -Wmost -Weverything
 	endif
 endif
 
@@ -22,7 +24,7 @@ test: fizzy
 	./fizzy
 
 fizzy: fizzy.cpp
-	$(CC) -O2 -Wall -Wextra -Weffc++ $(STD) $(LINK_OPTIONS) -o fizzy fizzy.cpp
+	$(CC) $(FLAGS) $(STD) $(LINK_OPTIONS) -o fizzy fizzy.cpp
 
 lint:
 	cppcheck --enable=all --suppress=missingIncludeSystem .

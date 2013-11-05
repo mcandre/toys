@@ -8,6 +8,8 @@
 #include <future>
 #endif
 
+#include "fizzy.h"
+
 using namespace std;
 
 string fizzy(int n) {
@@ -54,7 +56,7 @@ void fizzbuzz() {
         launch::async,
         [&]() {
 #endif
-          strings[i] = fizzy(i + 1);
+          strings[i] = fizzy((int) (i + 1));
 
 #ifdef ASYNC
         }
