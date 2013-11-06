@@ -23,6 +23,8 @@
 # --key, -k <key>
 
 require "enumerator"
+require "contracts"
+include Contracts
 
 class Card
   attr_reader :suit, :face
@@ -31,27 +33,33 @@ class Card
   BASE_VALUES = [0, 13, 26, 39]
   FACES = [:ace, :two, :three, :four, :five, :six, :seven, :eight, :nine, :ten, :jack, :queen, :king]
 
+  Contract Symbol, Symbol => Symbol
   def initialize(suit, face)
     @suit = suit
     @face = face
   end
 
+  Contract nil => ArrayOf[Symbol]
   def self.suits
     SUITS
   end
 
+  Contract nil => ArrayOf[Symbol]
   def self.faces
     FACES
   end
 
+  Contract nil => Num
   def face_value
     FACES.index(@face) + 1
   end
 
+  Contract nil => Num
   def base_value
     BASE_VALUES[SUITS.index(@suit)]
   end
 
+  Contract nil => Num
   def value
     if @suit == :joker
       53
@@ -60,6 +68,7 @@ class Card
     end
   end
 
+  Contract nil => String
   def to_s
     if @suit == :joker
       "#{@face} joker [#{value()}]"
@@ -80,6 +89,7 @@ $deck.push(Card.new(:joker, :b))
 
 $deck.each { |card| puts card }
 
+Contract String => String
 def encrypt(message)
   message = (message + ("X" * 5)).upcase.gsub(/[^A-Z]/, "")
 
@@ -90,6 +100,7 @@ def encrypt(message)
   p plainbytes
 end
 
+# Contract String, String => String
 # def decrypt(message, key)
 #   # ...
 # end

@@ -1,7 +1,10 @@
 #!/usr/bin/env ruby
 
 require "open-uri"
+require "contracts"
+include Contracts
 
+Contract String => String
 def site_status(domain)
   data = nil
 

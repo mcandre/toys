@@ -1,4 +1,10 @@
+#!/usr/bin/env ruby
+
+require "contracts"
+include Contracts
+
 module Speakable
+  Contract nil => String
   def speak
     puts "Yo!"
   end
@@ -12,18 +18,21 @@ class Student
 
   attr_accessor :name, :gender, :age
 
+  Contract String, Symbol, Num => Num
   def initialize(name, gender, age)
     @name = name
     @gender = gender
     @age = age
   end
 
+  Contract nil => Or[String, nil]
   def speak
     puts "Yo, my name is #{@name}!"
   end
 
+  Contract nil => String
   def to_s
-    return "#{@name} #{@gender} #{@age}"
+    "#{@name} #{@gender} #{@age}"
   end
 end
 
@@ -33,13 +42,15 @@ end
 class Senior < Student
   attr_accessor :credits_left
 
+  Contract String, Symbol, Num, Num => Num
   def initialize(name, gender, age, credits_left)
     super(name, gender, age)
     @credits_left = credits_left
   end
 
+  Contract nil => String
   def to_s
-    return super + " Credits left: #{@credits_left}"
+    super + " Credits left: #{@credits_left}"
   end
 end
 
