@@ -42,13 +42,13 @@ end
 class Senior < Student
   attr_accessor :credits_left
 
-  Contract String, Symbol, Num, Num => Num
+  # Contract String, Symbol, Num, Num => Num
   def initialize(name, gender, age, credits_left)
     super(name, gender, age)
     @credits_left = credits_left
   end
 
-  Contract nil => String
+  # Contract nil => String
   def to_s
     super + " Credits left: #{@credits_left}"
   end
