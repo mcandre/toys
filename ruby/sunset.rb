@@ -8,15 +8,19 @@
 
 require "pp"
 require "net/http"
-
 require "rubygems"
 require "json"
 
+require "contracts"
+include Contracts
+
+Contract nil => nil
 def usage
   puts "Usage: sunset <zipcode>"
   exit
 end
 
+Contract Hash => Hash
 def getinfo(settings)
   debug = settings["debug"]
   domain = settings["domain"]
