@@ -21,7 +21,7 @@ def self.mark(rows, x, y, c)
     rows.push([])
   }
 
-  0.upto(x-rows[y].length) { |i|
+  0.upto(x - rows[y].length) { |i|
     rows[y].push(space)
   }
 

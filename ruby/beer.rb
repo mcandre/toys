@@ -4,7 +4,7 @@ require "contracts"
 include Contracts
 
 Contract Num => String
-def beer(i)
+def self.beer(i)
   if i >= 3 then
     "#{i} bottles of beer on the wall, #{i} bottles of beer.\nTake one down, pass it around, #{i-1} bottles of beer on the wall.\n\n"
   elsif i > 1 then

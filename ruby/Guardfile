@@ -14,7 +14,7 @@ guard :shell do
     "-> #{msg}"
   end
 
-  watch(/\.rb/) do |m|
+  watch(/Rakefile|(.*\.rb)/) do |m|
     title = "Lint output"
     msg = "Lint failure"
     status = :success

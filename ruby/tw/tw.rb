@@ -75,7 +75,7 @@ def update(settings)
 
       pp response if debug
 
-      raise "Could not connect" unless response.message["OK"]
+      raise unless response.message["OK"]
     }
   rescue Timeout::Error, Errno::ECONNRESET => e
     raise "Could not connect"

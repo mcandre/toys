@@ -21,11 +21,11 @@ def self.mail(to_address, subject, message, username, password)
 end
 
 def main
-  print "To: "; to=gets.chomp
-  print "Subject: "; subject=gets.chomp
-  print "Message: "; message=gets.chomp
-  print "Username: "; username=gets.chomp
-  password=ask("Password: ") { |q| q.echo=false }.chomp
+  print "To: "; to = gets.chomp
+  print "Subject: "; subject = gets.chomp
+  print "Message: "; message = gets.chomp
+  print "Username: "; username = gets.chomp
+  password=ask("Password: ") { |q| q.echo = false }.chomp
 
   puts "Sending..."
 

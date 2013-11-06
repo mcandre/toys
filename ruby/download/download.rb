@@ -106,8 +106,10 @@ def main
       when "--outfile"
         outfile=value
       when "--user-agent"
-        if user_agents[value]
-          user_agent=user_agents[value]
+        value = user_agents[value]
+
+        if value
+          user_agent = value
         else
           puts "Warning: agent not found or agents file not loaded"
           user_agent = value
