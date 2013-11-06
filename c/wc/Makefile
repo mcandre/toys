@@ -10,7 +10,7 @@ wc: wc.c
 	$(CC) $(FLAGS) -o wc wc.c
 
 lint:
-	splint *.c *.h -preproc
+	splint *.c *.h
 
 clean:
 	-rm *.exe

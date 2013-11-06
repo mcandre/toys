@@ -10,7 +10,7 @@ magic: magic.c
 	$(CC) $(FLAGS) -o magic magic.c
 
 lint:
-	splint *.c *.h -preproc
+	splint *.c *.h
 
 clean:
 	-rm *.exe

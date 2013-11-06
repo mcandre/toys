@@ -10,7 +10,7 @@ repl: repl.c
 	$(CC) $(FLAGS) -o repl repl.c
 
 lint:
-	splint *.c *.h -preproc
+	splint *.c *.h
 
 clean:
 	-rm *.exe
