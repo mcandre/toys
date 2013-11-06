@@ -29,12 +29,15 @@
 
 require "getoptlong"
 require "open-uri"
+require "contracts"
+include Contracts
 
 $DEBUG = false
 
 class Tiny
   attr_reader :name, :short, :domain, :api
 
+  Contract File => Hash
   def self.load_services(stream)
     require "yaml"
 
@@ -51,6 +54,7 @@ class Tiny
     services
   end
 
+  Contract String, String, String, String => String
   def initialize(name, short, domain, api)
     @name = name
     @short = short
@@ -58,10 +62,12 @@ class Tiny
     @api = api
   end
 
+  Contract Hash => ArrayOf[Tiny]
   def self.sort(services)
     services.to_a.collect { |e| e[1] }.sort_by { |e| e.short }
   end
 
+  Contract String => String
   def tiny(url)
     tinyurl = ""
 
@@ -97,6 +103,7 @@ class Tiny
   end
 end
 
+Contract nil => nil
 def usage
   system("more #{$0}")
   exit

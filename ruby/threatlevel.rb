@@ -6,7 +6,10 @@
 require "open-uri"
 require "rubygems"
 require "hpricot"
+require "contracts"
+include Contracts
 
+Contract nil => String
 def get_level
   f = open("http://www.dhs.gov/dhspublic/getAdvisoryCondition")
   data = f.read
