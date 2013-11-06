@@ -8,4 +8,5 @@ group :development do
   gem "reek"
   gem "flay"
   gem "flog"
+  gem "roodi"
 end

@@ -71,9 +71,7 @@ def main
   end
 
   mode = :generate
-
-  service=services.to_a[0][1]
-
+  service = services.to_a[0][1]
   numbers = 1
 
   opts = GetoptLong.new(
@@ -115,9 +113,7 @@ def main
     raise "Specify a service" unless service
     numbers.times { |i| puts service.generate() }
   elsif mode == :validate
-    if ARGV.length < 1
-      usage
-    end
+    usage unless ARGV.length > 0
 
     ARGV.each { |n|
       n = n.gsub(/\D/, "")
@@ -133,8 +129,6 @@ end
 if __FILE__ == $0
   begin
     main
-  rescue RuntimeError => e
-    puts e.message
   rescue Interrupt => e
     nil
   end
