@@ -6,8 +6,11 @@
 # Credits: http://www.krugle.com/files/cvs/cvs.jabberstudio.org/neutron/plugins/time_plugin.py
 
 require "time"
+require "contracts"
+include Contracts
 
 class Time
+  Contract nil => Num
   def beats
     t = self.gmtime
 
@@ -18,20 +21,22 @@ class Time
     return (seconds / 86.4) % 1000
   end
 
+  Contract nil => Num
   def self.beats
     Time.now.beats
   end
 
+  Contract nil => String
   def swatchtime
     format("@%06.2f", beats)
   end
 
+  Contract nil => String
   def self.swatchtime
     Time.now.swatchtime
   end
 
-  alias :internettime :swatchtime
-
+  Contract nil => String
   def self.internettime
     self.swatchtime
   end
