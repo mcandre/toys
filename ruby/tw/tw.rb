@@ -36,25 +36,16 @@
 #    command mode
 
 require "pp"
-
+require "json"
 require "getoptlong"
-require "rdoc/usage"
-
 require "net/http"
-
-require "rubygems"
-
-# prefer faster json parser
-begin
-  require "json/ext"
-rescue LoadError => e
-  require "json"
-end
-
 require "highline/import"
+require "contracts"
+include Contracts
 
 $MAX_STATUS_LENGTH = 140
 
+Contract File => Hash
 def self.load_commands(stream)
   commands = {}
 
@@ -65,6 +56,7 @@ def self.load_commands(stream)
   commands
 end
 
+Contract Hash => String
 def update(settings)
   debug = settings[:debug]
   domain = settings[:domain]
@@ -90,6 +82,7 @@ def update(settings)
   end
 end
 
+Contract Hash => String
 def view(settings)
   debug = settings[:debug]
   domain = settings[:domain]
@@ -117,6 +110,12 @@ def view(settings)
   end
 
   status
+end
+
+Contract nil => nil
+def usage
+  system("more #{$0}")
+  exit(0)
 end
 
 def main
@@ -155,7 +154,7 @@ def main
       end
     }
   rescue
-    RDoc::usage("Usage")
+    usage
   end
 
   case mode
@@ -163,7 +162,7 @@ def main
     puts view(settings)
   when :post
     if ARGV.length < 1
-      RDoc::usage("Usage")
+      usage
     else
       settings[:status] = ARGV.join " "
       raise "Status too long, shorten to #{$MAX_STATUS_LENGTH} characters" unless settings[:status].length <= $MAX_STATUS_LENGTH
