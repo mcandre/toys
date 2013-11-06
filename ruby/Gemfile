@@ -7,4 +7,5 @@ group :development do
   gem "rake"
   gem "reek"
   gem "flay"
+  gem "flog"
 end
