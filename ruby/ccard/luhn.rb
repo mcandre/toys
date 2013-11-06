@@ -1,5 +1,9 @@
+require "contracts"
+include Contracts
+
 # Luhn algorithm
 class Luhn
+  Contract Num => Num
   def self.sum(n)
     checksum = 0
 
@@ -22,13 +26,15 @@ class Luhn
       odd = !odd
     end
 
-    return checksum
+    checksum
   end
 
+  Contract Num => Bool
   def self.valid?(n)
     (sum(n) % 10) == 0
   end
 
+  Contract Num => Num
   def self.complete(n)
     timesten = n * 10
 
@@ -42,9 +48,10 @@ class Luhn
       digit = 10 - modten
     end
 
-    return timesten + digit
+    timesten + digit
   end
 
+  Contract Num => Num
   def self.generate(length = 16)
     n = rand(10 ** (length - 1))
 

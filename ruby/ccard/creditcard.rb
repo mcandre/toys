@@ -1,9 +1,12 @@
-require "luhn"
+require "./luhn"
+require "contracts"
+include Contracts
 
 # Validate and generate credit card numbers
 class CreditCard
   attr_reader :name, :short, :prefixes, :lengths, :sum
 
+  Contract String, String, ArrayOf[Num], ArrayOf[Num], String => String
   def initialize(name, short, prefixes, lengths, sum)
     @name = name
     @short = short
@@ -12,6 +15,7 @@ class CreditCard
     @sum = sum
   end
 
+  Contract File => ArrayOf[CreditCard]
   def self.load_services(stream)
     require "yaml"
 
@@ -32,6 +36,7 @@ class CreditCard
     services
   end
 
+  Contract nil => Num
   def generate
     prefix = @prefixes[rand(@prefixes.length)]
     length = @lengths[rand(@lengths.length)]
@@ -50,6 +55,7 @@ class CreditCard
     n
   end
 
+  Contract Num => Or[Bool, String]
   def valid?(n)
     if @sum == "luhn" and not Luhn.valid?(n.to_i)
       return "fails Luhn checksum"
@@ -67,7 +73,7 @@ class CreditCard
       }
 
       if prefix_matches.length == 0
-        return "fails to match service prefix"
+        "fails to match service prefix"
       end
     end
 
@@ -81,7 +87,7 @@ class CreditCard
       }
 
       if length_matches.length == 0
-        return "fails to match service length"
+        "fails to match service length"
       end
     end
 

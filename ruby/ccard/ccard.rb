@@ -46,11 +46,18 @@
 # --luhn-validate, -l <number1> <number2> <number3> ...
 #    validate only by simple Luhn check
 
-require "luhn"
-require "creditcard"
+require "./luhn"
+require "./creditcard"
 
 require "getoptlong"
-require "rdoc/usage"
+require "contracts"
+include Contracts
+
+Contract nil => nil
+def usage
+  system("more #{$0}")
+  exit(0)
+end
 
 def main
   services = {}
@@ -101,7 +108,7 @@ def main
       end
     }
   rescue
-    RDoc::usage("Usage")
+    usage
   end
 
   if mode == :generate
@@ -109,7 +116,7 @@ def main
     numbers.times { |i| puts service.generate() }
   elsif mode == :validate
     if ARGV.length < 1
-      RDoc::usage("Usage")
+      usage
     end
 
     ARGV.each { |n|
