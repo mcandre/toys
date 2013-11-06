@@ -6,7 +6,10 @@
 require "open-uri"
 require "rubygems"
 require "hpricot"
+require "contracts"
+include Contracts
 
+Contract nil => String
 def get_debt
   f = open "http://www.brillig.com/debt_clock/"
   data = f.read

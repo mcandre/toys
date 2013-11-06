@@ -30,24 +30,16 @@
 # --list-commands, -l:
 #    command mode
 
+require "json"
 require "getoptlong"
-require "rdoc/usage"
-
 require "net/http"
-
-require "rubygems"
-
-# prefer faster json parser
-begin
-  require "json/ext"
-rescue LoadError => e
-  require "json"
-end
-
 require "highline/import"
+require "contracts"
+include Contracts
 
 $MAX_STATUS_LENGTH = 140
 
+Contract File => Hash
 def self.load_settings(stream)
   settings = {}
 
@@ -58,6 +50,7 @@ def self.load_settings(stream)
   settings
 end
 
+Contract Hash => String
 def update(settings)
   debug = settings["debug"]
   domain = settings["post_domain"]
@@ -85,6 +78,7 @@ def update(settings)
   }
 end
 
+Contract Hash => String
 def view(settings)
   debug = settings["debug"]
   domain = settings["view_domain"]
@@ -113,7 +107,13 @@ def view(settings)
   status
 end
 
-def main()
+Contract nil => nil
+def usage
+  system("more #{$0}")
+  exit(0)
+end
+
+def main
   mode = :post
   settings = {
     "debug" => false,
@@ -158,7 +158,7 @@ def main()
       end
     }
   rescue
-    RDoc::usage("Usage")
+    usage
   end
 
   case mode
@@ -166,7 +166,7 @@ def main()
     puts view(settings)
   when :post
     if ARGV.length < 1
-      RDoc::usage("Usage")
+      usage
     else
       settings["password"] = ask("Password: ") { |q| q.echo = false }
       settings["status"] = ARGV.join " "

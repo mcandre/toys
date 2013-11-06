@@ -1,7 +1,10 @@
 #!/usr/bin/env ruby
 
 require "open-uri"
+require "contracts"
+include Contracts
 
+Contract nil => ArrayOf[String]
 def get_proxies
   url = "http://www.steganos.com/?area=updateproxylist"
 
@@ -17,7 +20,7 @@ def get_proxies
     raise "Unable to access #{url}"
   end
 
-  return proxies
+  proxies
 end
 
 def main

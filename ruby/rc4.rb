@@ -22,11 +22,12 @@
 #    generates key (default length 8)
 
 require "base64"
-
 require "getoptlong"
-require "rdoc/usage"
+require "contracts"
+include Contracts
 
 class SBox
+  Contract ArrayOf[Num] => ArrayOf[Num]
   def initialize(key = [0])
     @s = (0 .. 255).to_a
 
@@ -42,10 +43,12 @@ class SBox
     @x, @y = 0, 0
   end
 
+  Contract ArrayOf[Num] => ArrayOf[Num]
   def self.swap(items, a, b)
     items[a], items[b] = items[b], items[a]
   end
 
+  Contract nil => Num
   def next_byte
     @x = (@x + 1) % 256
     @y = (@s[@x] + @y) % 256
@@ -58,10 +61,12 @@ end
 
 # RC4 algorithm
 class RC4
+  Contract ArrayOf[Num] => SBox
   def set_key(key)
     @sbox = SBox.new(key)
   end
 
+  Contract Num => ArrayOf[Num]
   def gen_key(length = 8)
     raise "Key length must be >= 1" unless length >= 1
 
@@ -70,33 +75,35 @@ class RC4
       key.push((rand * 256).to_i)
     }
 
-    return key
+    key
   end
 
+  Contract Num => Num
   def encrypt(b)
     b ^ @sbox.next_byte
   end
 
+  Contract Num => Num
   def decrypt(b)
     encrypt(b)
   end
 
+  Contract ArrayOf[Num] => String
   def self.format_bytes(bytes)
     Base64.encode64(bytes.join("")).chomp
   end
 
+  Contract String => ArrayOf[Num]
   def self.unformat_bytes(line)
     bytes = []
     Base64.decode64(line).each_byte { |e| bytes.push(e) }
     bytes
   end
-
-  alias :format_bytes :format_key
-  alias :unformat_bytes :unformat_key
 end
 
+Contract String, RC4, ArrayOf[Num] => File
 def encrypt(filename, cipher, key)
-  cipher.set_key(RC4.unformat_key(key))
+  cipher.set_key(RC4.unformat_bytes(key))
 
   infile = open(filename, "rb")
   outfile = open("#{filename}.rc4", "wb")
@@ -124,8 +131,9 @@ def encrypt(filename, cipher, key)
   outfile.close()
 end
 
+Contract String, RC4, ArrayOf[Num] => File
 def decrypt(filename, cipher, key)
-  cipher.set_key(RC4.unformat_key(key))
+  cipher.set_key(RC4.unformat_bytes(key))
 
   infile = open(filename, "rb")
 
@@ -136,7 +144,7 @@ def decrypt(filename, cipher, key)
   }
   original_filename = bytes.join("")
 
-  outfile=open(original_filename, "wb")
+  outfile = open(original_filename, "wb")
 
   infile.each { |line|
     bytes = []
@@ -148,6 +156,12 @@ def decrypt(filename, cipher, key)
 
   infile.close
   outfile.close
+end
+
+Contract nil => nil
+def usage
+  system("more #{$0}")
+  exit(0)
 end
 
 def main
@@ -166,7 +180,7 @@ def main
   opts.each { |option, value|
     case option
     when "--help"
-      RDoc::usage("Usage")
+      usage
     when "--encrypt"
       mode = :encrypt
     when "--decrypt"
@@ -184,7 +198,7 @@ def main
 
   case mode
   when :gen_key
-    puts RC4.format_key(cipher.gen_key(length))
+    puts RC4.format_bytes(cipher.gen_key(length))
   when :encrypt
     ARGV.each { |filename|
       encrypt(filename, cipher, key)

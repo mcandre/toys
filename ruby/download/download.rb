@@ -25,11 +25,14 @@
 #    specify a user agent. if not in useragents.yaml by name, string is used as the agent.
 
 require "getoptlong"
-require "rdoc/usage"
 require "open-uri"
 
-$DEFAULT_USER_AGENT="Ruby/#{RUBY_VERSION}"
+require "contracts"
+include Contracts
 
+$DEFAULT_USER_AGENT = "Ruby/#{RUBY_VERSION}"
+
+Contract File => Hash
 def load_user_agents(stream)
   require "yaml"
 
@@ -37,13 +40,15 @@ def load_user_agents(stream)
 
   YAML::load(stream).each { |name, string| user_agents[name] = string }
 
-  return user_agents
+  user_agents
 end
 
+Contract String => String
 def self.getfilename(url)
   url.split("/")[-1]
 end
 
+Contract String, String, String => String
 def download(url, filename = "", user_agent = $DEFAULT_USER_AGENT)
   begin
     open(url, "User-Agent" => user_agent) { |filein|
@@ -60,6 +65,12 @@ def download(url, filename = "", user_agent = $DEFAULT_USER_AGENT)
   rescue
     raise "Could not download #{url}"
   end
+end
+
+Contract nil => nil
+def usage
+  system("more #{$0}")
+  exit(0)
 end
 
 def main
@@ -104,12 +115,12 @@ def main
       end
     }
   rescue
-    RDoc::usage("Usage")
+    usage
   end
 
   if mode == :download
     if ARGV.length < 1
-      RDoc::usage("Usage")
+      usage
     end
 
     ARGV.each { |url|

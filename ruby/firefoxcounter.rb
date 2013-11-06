@@ -6,7 +6,10 @@
 require "open-uri"
 require "rubygems"
 require "hpricot"
+require "contracts"
+include Contracts
 
+Contract nil => Num
 def get_counter
   begin
     f = open("http://feeds.spreadfirefox.com/downloads/firefox.xml")
@@ -16,9 +19,9 @@ def get_counter
     h = Hpricot(data)
     counter = (h/"rss"/"channel"/"item"/"description").inner_html
 
-    return counter.to_i
+    counter.to_i
   rescue
-    return 0
+    0
   end
 end
 

@@ -5,7 +5,7 @@
 
 def get_input
   while true
-    line=gets
+    line = gets
     if not line or line == ""
       break
     else
@@ -15,9 +15,9 @@ def get_input
 end
 
 def self.mark(rows, x, y, c)
-  space=" "
+  space = " "
 
-  0.upto(y-rows.length) { |i|
+  0.upto(y - rows.length) { |i|
     rows.push([])
   }
 
@@ -25,7 +25,7 @@ def self.mark(rows, x, y, c)
     rows[y].push(space)
   }
 
-  rows[y][x]=c
+  rows[y][x] = c
 end
 
 def print_pic(rows)
@@ -35,12 +35,12 @@ def print_pic(rows)
 end
 
 def main
-  rows=[]
+  rows = []
 
   get_input { |line|
     parts=line.split(" ")
 
-    x, y, c=parts[0].to_i, parts[1].to_i, parts[2].to_i.chr
+    x, y, c = parts[0].to_i, parts[1].to_i, parts[2].to_i.chr
 
     mark(rows, x, y, c)
   }
@@ -48,10 +48,10 @@ def main
   print_pic(rows)
 end
 
-if __FILE__==$0
+if __FILE__ == $0
   begin
     main
-  rescue Interrupt => e:
+  rescue Interrupt => e
     nil
   end
 end

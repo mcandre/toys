@@ -16,7 +16,10 @@
 #    Set Caesar shift (default 13).
 
 require "getoptlong"
+require "contracts"
+include Contracts
 
+Contract Num, Num => Hash
 def self.create_rule_26(start, n)
   rule = {}
 
@@ -27,18 +30,21 @@ def self.create_rule_26(start, n)
   rule
 end
 
+Contract Num => Hash
 def create_rule(n = 13)
   create_rule_26("a".ord, n).merge(create_rule_26("A".ord, n))
 end
 
+Contract Hash, Num => Num
 def self.crypt(rule, b)
-  if rule.include?(b)
+  if rule.include?(b) then
     rule[b]
   else
     b
   end
 end
 
+Contract nil => IO
 def main
   shift = 13
 

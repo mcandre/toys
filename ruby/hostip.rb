@@ -18,9 +18,11 @@
 #    show latitude and longitude
 
 require "getoptlong"
-require "rdoc/usage"
 require "open-uri"
+require "contracts"
+include Contracts
 
+Contract Hash => String
 def self.prepare_api(settings)
   ip = settings[:ip]
 
@@ -31,6 +33,7 @@ def self.prepare_api(settings)
   url
 end
 
+Contract Hash => ArrayOf[String]
 def geoip(settings)
   url = prepare_api(settings)
 
@@ -39,6 +42,12 @@ def geoip(settings)
   rescue
     raise "Unable to access #{url}"
   end
+end
+
+Contract nil => nil
+def usage
+  system("more #{$0}")
+  exit(0)
 end
 
 def main
@@ -67,7 +76,7 @@ def main
       end
     }
   rescue
-    RDoc::usage("Usage")
+    usage
   end
 
   args = [] + ARGV

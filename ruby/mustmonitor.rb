@@ -4,7 +4,10 @@
 # Copyright 2009 YelloSoft
 
 require "open-uri"
+require "contracts"
+include Contracts
 
+Contract nil => Bool
 def must_blocking_or_offline?
   begin
     f = open "http://icanhazip.com/"

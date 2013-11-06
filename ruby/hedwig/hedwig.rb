@@ -4,9 +4,13 @@
 
 require "rubygems"
 require "net/smtp"
-require "smtp_tls"
 require "highline/import"
+require "contracts"
+include Contracts
 
+require "./smtp_tls"
+
+Contract String, String, String, String, String => String
 def self.mail(to_address, subject, message, username, password)
   from_address="#{username}@gmail.com"
   email="From: #{from_address}\nTo: #{to_address}\nSubject: #{subject}\n\n#{message}"

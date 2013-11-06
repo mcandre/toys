@@ -22,15 +22,16 @@ def self.fib(n)
   end
 end
 
-# recursion overhead is slow
-#
-#def fib(n)
-#  if n < 2
+# # recursion overhead is slow
+
+# Contract Num => Num
+# def fib(n)
+#   if n < 2
 #     n
-#  else
+#   else
 #     fib(n - 1) + fib(n - 2)
-#  end
-#end
+#   end
+# end
 
 print "N = "
 
