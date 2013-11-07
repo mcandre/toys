@@ -1,16 +1,16 @@
 #!/usr/bin/env ruby
 
-require "open-uri"
+require 'open-uri'
 
-data = ""
+data = ''
 
-while data == ""
+while data == ''
   begin
-    data = open("http://www.google.com/").read
+    data = open('http://www.google.com/').read
   rescue
     nil
   end
 end
 
 # Requires Mac OS X
-exec "say You are now online."
+exec 'say You are now online.'

@@ -22,10 +22,13 @@
 #
 # --key, -k <key>
 
-require "enumerator"
-require "contracts"
+require 'enumerator'
+require 'contracts'
 include Contracts
 
+#
+# Card
+#
 class Card
   attr_reader :suit, :face
 
@@ -71,20 +74,20 @@ class Card
   Contract nil => String
   def to_s
     if @suit == :joker
-      "#{@face} joker [#{value()}]"
+      "#{@face} joker [#{value}]"
     else
-      "#{@face} of #{@suit} [#{value()}]"
+      "#{@face} of #{@suit} [#{value}]"
     end
   end
 end
 
 Contract String => String
 def encrypt(message)
-  message = (message + ("X" * 5)).upcase.gsub(/[^A-Z]/, "")
+  message = (message + ('X' * 5)).upcase.gsub(/[^A-Z]/, '')
 
   p message
 
-  plainbytes = Enumerable::Enumerator.new(message, :each_byte).collect { |n| n - "A"[0] + 1 }
+  plainbytes = Enumerable::Enumerator.new(message, :each_byte).map { |n| n - 'A'[0] + 1 }
 
   p plainbytes
 end
@@ -94,4 +97,4 @@ end
 #   # ...
 # end
 
-encrypt "Boy howdy!\nI do declare."
+encrypt 'Boy howdy!\nI do declare.'

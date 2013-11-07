@@ -1,12 +1,15 @@
 #!/usr/bin/env ruby
 
-require "contracts"
+require 'contracts'
 include Contracts
 
+#
+# Speakable
+#
 module Speakable
   Contract nil => String
   def speak
-    puts "Yo!"
+    puts 'Yo!'
   end
 end
 
@@ -54,11 +57,11 @@ class Senior < Student
   end
 end
 
-s1 = Student.new("Bob", :m, 14)
+s1 = Student.new('Bob', :m, 14)
 
 puts s1
 
-s2 = Senior.new("Betty", :f, 18, 6)
+s2 = Senior.new('Betty', :f, 18, 6)
 
 puts s2
 
@@ -66,7 +69,7 @@ puts s1.name
 
 puts s2.credits_left
 
-s1.name = "Roberto"
+s1.name = 'Roberto'
 
 puts s1.name
 

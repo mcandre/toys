@@ -1,4 +1,4 @@
-require "contracts"
+require 'contracts'
 include Contracts
 
 # From ttscoff's wrap_text()

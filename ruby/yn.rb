@@ -8,8 +8,8 @@
 #
 # yn <command>
 
-parser = "http://yubnub.org/parser/parse?command="
+parser = 'http://yubnub.org/parser/parse?command='
 
-command = ARGV.join "+"
+command = ARGV.join '+'
 
 system "open #{parser}#{command}"

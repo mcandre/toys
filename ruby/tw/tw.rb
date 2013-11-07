@@ -35,14 +35,17 @@
 # --list-commands, -l:
 #    command mode
 
-require "pp"
-require "json"
-require "getoptlong"
-require "net/http"
-require "highline/import"
-require "contracts"
+require 'pp'
+require 'json'
+require 'getoptlong'
+require 'net/http'
+require 'highline/import'
+require 'contracts'
 include Contracts
 
+#
+# Twitter
+#
 module Tw
   MAX_STATUS_LENGTH = 140
 
@@ -50,9 +53,9 @@ module Tw
   def self.load_commands(stream)
     commands = {}
 
-    YAML::load(stream).each { |description, command|
+    YAML.load(stream).each do |description, command|
       commands[description] = command
-    }
+    end
 
     commands
   end
@@ -67,19 +70,19 @@ module Tw
     password = settings[:password]
 
     begin
-      Net::HTTP.start(domain) { |http|
+      Net::HTTP.start(domain) do |http|
         request = Net::HTTP::Post.new(api)
         request.basic_auth(username, password)
-        request.set_form_data({"status" => status})
+        request.set_form_data('status' => status)
 
         response = http.request(request)
 
         pp response if debug
 
-        raise unless response.message["OK"]
-      }
-    rescue Timeout::Error, Errno::ECONNRESET => e
-      raise "Could not connect"
+        fail unless response.message['OK']
+      end
+    rescue Timeout::Error, Errno::ECONNRESET
+      raise 'Could not connect'
     end
   end
 
@@ -93,21 +96,21 @@ module Tw
     response = nil
 
     begin
-      Net::HTTP.start(domain) { |http|
+      Net::HTTP.start(domain) do |http|
         response = http.get("/statuses/user_timeline/#{username}json?count=1")
 
         pp response if debug
 
-        raise "Could not connect" unless response.message["OK"]
+        fail 'Could not connect' unless response.message['OK']
 
         timeline = response.body
-      }
+      end
 
-      status = JSON.parse(timeline)[0]["text"]
-    rescue Timeout::Error => e
-      status = "Could not connect"
-    rescue JSON::ParserError => e
-      status = "JSON Parse Error"
+      status = JSON.parse(timeline)[0]['text']
+    rescue Timeout::Error
+      status = 'Could not connect'
+    rescue JSON::ParserError
+      status = 'JSON Parse Error'
     end
 
     status
@@ -116,45 +119,45 @@ end
 
 Contract nil => nil
 def usage
-  system("more #{$0}")
+  system("more #{$PROGRAM_NAME}")
   exit(0)
 end
 
 def main
   mode = :post
   settings = {
-    :debug => false,
-    :domain => "twitter.com",
-    :post_api => "/statuses/update.json",
-    :username => "mcandre"
+    debug: false,
+    domain: 'twitter.com',
+    post_api: '/statuses/update.json',
+    username: 'mcandre'
   }
 
-  opts=GetoptLong.new(
-    ["--help", "-h", GetoptLong::NO_ARGUMENT],
-    ["--debug", "-d", GetoptLong::NO_ARGUMENT],
-    ["--user", "-u", GetoptLong::REQUIRED_ARGUMENT],
-    ["--view", "-v", GetoptLong::NO_ARGUMENT],
-    ["--post", "-p", GetoptLong::NO_ARGUMENT],
-    ["--list-commands", "-y", GetoptLong::NO_ARGUMENT]
+  opts = GetoptLong.new(
+    ['--help', '-h', GetoptLong::NO_ARGUMENT],
+    ['--debug', '-d', GetoptLong::NO_ARGUMENT],
+    ['--user', '-u', GetoptLong::REQUIRED_ARGUMENT],
+    ['--view', '-v', GetoptLong::NO_ARGUMENT],
+    ['--post', '-p', GetoptLong::NO_ARGUMENT],
+    ['--list-commands', '-y', GetoptLong::NO_ARGUMENT]
   )
 
   begin
-    opts.each { |option, value|
+    opts.each do |option, value|
       case option
-      when "--help"
-        raise
-      when "--debug"
+      when '--help'
+        usage
+      when '--debug'
         settings[:debug] = true
-      when "--user"
+      when '--user'
         settings[:username] = value
-      when "--view"
+      when '--view'
         mode = :view
-      when "--post"
+      when '--post'
         mode = :post
-      when "--list-commands"
+      when '--list-commands'
         mode = :listcommands
       end
-    }
+    end
   rescue
     usage
   end
@@ -166,31 +169,35 @@ def main
     if ARGV.length < 1
       usage
     else
-      settings[:status] = ARGV.join " "
-      raise "Status too long, shorten to #{MAX_STATUS_LENGTH} characters" unless settings[:status].length <= MAX_STATUS_LENGTH
-      settings[:password] = ask("Password: ") {|q| q.echo = false}
+      settings[:status] = ARGV.join ' '
+
+      if settings[:status].length > MAX_STATUS_LENGTH
+        fail "Status too long, shorten to #{MAX_STATUS_LENGTH} characters"
+      end
+
+      settings[:password] = ask('Password: ') { |q| q.echo = false }
 
       update(settings)
     end
   when :listcommands
     begin
-      open("#{File.dirname($0)}/tw.yaml") { |file|
-        load_commands(file).each { |description, command|
+      open("#{File.dirname($PROGRAM_NAME)}/tw.yaml") do |file|
+        load_commands(file).each do |description, command|
           puts "#{description}\n    #{command}\n\n"
-        }
-      }
-    rescue Errno::ENOENT => e
-      raise "Could not open commands file"
+        end
+      end
+    rescue Errno::ENOENT
+      raise 'Could not open commands file'
     end
   end
 end
 
-if __FILE__ == $0
+if $PROGRAM_NAME == __FILE__
   begin
     main
-  rescue SocketError => e
-    puts "Could not connect"
-  rescue Interrupt => e
+  rescue SocketError
+    puts 'Could not connect'
+  rescue Interrupt
     nil
   end
 end
