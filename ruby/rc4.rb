@@ -191,6 +191,8 @@ def main
       mode = :gen_key
       length = value.to_i
       length = 8 unless length >= 1
+    else
+      usage
     end
   }
 
@@ -207,6 +209,8 @@ def main
     ARGV.each { |filename|
       decrypt(filename, cipher, key)
     }
+  else
+    usage
   end
 end
 

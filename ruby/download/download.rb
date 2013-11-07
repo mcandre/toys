@@ -116,6 +116,8 @@ def main
           puts "Warning: agent not found or agents file not loaded"
           user_agent = value
         end
+      else
+        usage
       end
     }
   rescue

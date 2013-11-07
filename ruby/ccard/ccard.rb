@@ -103,6 +103,8 @@ def main
       when "--luhn-validate"
         mode = :validate
         service = CreditCard.new("Custom", "cust", "any", "any", "luhn")
+      else
+        usage
       end
     }
   rescue

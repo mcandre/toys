@@ -157,6 +157,8 @@ def main
         mode = :view
       when "--post"
         mode = :post
+      else
+        usage
       end
     }
   rescue
@@ -175,6 +177,8 @@ def main
 
       update(settings)
     end
+  else
+    usage
   end
 end
 

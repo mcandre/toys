@@ -60,6 +60,8 @@ def main
         raise
       when "--shift"
         shift = value.to_i
+      else
+        usage
       end
     }
   rescue

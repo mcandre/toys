@@ -73,6 +73,8 @@ def main
         settings[:ip] = value
       when "--position"
         settings[:position] = true
+      else
+        usage
       end
     }
   rescue
