@@ -1,4 +1,4 @@
-FLAGS=-Wall -Wextra -Wmost -framework Foundation -lobjc -o fizzy
+FLAGS=-Wall -Wextra -Wmost -Weverything -framework Foundation -lobjc -o fizzy
 
 all: test
 
