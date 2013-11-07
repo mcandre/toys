@@ -21,11 +21,14 @@
 # --gen-key, -g [<length>]:
 #    generates key (default length 8)
 
-require "base64"
-require "getoptlong"
-require "contracts"
+require 'base64'
+require 'getoptlong'
+require 'contracts'
 include Contracts
 
+#
+# Substitution Box
+#
 class SBox
   Contract ArrayOf[Num] => ArrayOf[Num]
   def initialize(key = [0])
@@ -34,11 +37,11 @@ class SBox
     keypos = 0
     index = 0
 
-    [0 .. 255].each { |counter|
+    [0 .. 255].each do |counter|
       index = (key[keypos % key.length] + counter + index) % 256
       swap(@s, counter, index)
       keypos += 1
-    }
+    end
 
     @x, @y = 0, 0
   end
@@ -68,12 +71,12 @@ class RC4
 
   Contract Num => ArrayOf[Num]
   def gen_key(length = 8)
-    raise "Key length must be >= 1" unless length >= 1
+    fail 'Key length must be >= 1' unless length >= 1
 
     key = []
-    [0 .. length].each { |i|
+    [0 .. length].each do |i|
       key.push((rand * 256).to_i)
-    }
+    end
 
     key
   end
@@ -90,7 +93,7 @@ class RC4
 
   Contract ArrayOf[Num] => String
   def self.format_bytes(bytes)
-    Base64.encode64(bytes.join("")).chomp
+    Base64.encode64(bytes.join('')).chomp
   end
 
   Contract String => ArrayOf[Num]
@@ -105,54 +108,64 @@ Contract String, RC4, ArrayOf[Num] => File
 def encrypt(filename, cipher, key)
   cipher.set_key(RC4.unformat_bytes(key))
 
-  infile = open(filename, "rb")
-  outfile = open("#{filename}.rc4", "wb")
+  infile = open(filename, 'rb')
+  outfile = open("#{filename}.rc4", 'wb')
 
   # include original filename as first line in outfile
   bytes = []
-  filename.each_byte { |b|
-    bytes.push(cipher.encrypt(b).chr)
-  }
-  outfile.write(RC4.format_bytes(bytes))
-  outfile.write("\n")
 
-  line = ""
-  while not infile.eof?
-    line = infile.read(1024, line)
-    bytes = []
-    line.each_byte { |b|
-      bytes.push(cipher.encrypt(b).chr)
-    }
-    outfile.write(RC4.format_bytes(bytes))
-    outfile.write("\n")
+  filename.each_byte do |b|
+    bytes.push(cipher.encrypt(b).chr)
   end
 
-  infile.close()
-  outfile.close()
+  outfile.write(RC4.format_bytes(bytes))
+  outfile.write('\n')
+
+  line = ''
+
+  until infile.eof?
+    line = infile.read(1024, line)
+
+    bytes = []
+
+    line.each_byte do |b|
+      bytes.push(cipher.encrypt(b).chr)
+    end
+
+    outfile.write(RC4.format_bytes(bytes))
+    outfile.write('\n')
+  end
+
+  infile.close
+  outfile.close
 end
 
 Contract String, RC4, ArrayOf[Num] => File
 def decrypt(filename, cipher, key)
   cipher.set_key(RC4.unformat_bytes(key))
 
-  infile = open(filename, "rb")
+  infile = open(filename, 'rb')
 
   # original filename is included as first line in infile
   bytes = []
-  RC4.unformat_bytes(infile.readline).each { |b|
+
+  RC4.unformat_bytes(infile.readline).each do |b|
     bytes.push(cipher.decrypt(b).chr)
-  }
-  original_filename = bytes.join("")
+  end
 
-  outfile = open(original_filename, "wb")
+  original_filename = bytes.join('')
 
-  infile.each { |line|
+  outfile = open(original_filename, 'wb')
+
+  infile.each do |line|
     bytes = []
-    RC4.unformat_bytes(line).each { |b|
+
+    RC4.unformat_bytes(line).each do |b|
       bytes.push(cipher.encrypt(b).chr)
-    }
+    end
+
     outfile.write(bytes)
-  }
+  end
 
   infile.close
   outfile.close
@@ -160,64 +173,64 @@ end
 
 Contract nil => nil
 def usage
-  system("more #{$0}")
+  system("more #{$PROGRAM_NAME}")
   exit(0)
 end
 
 def main
   mode = :encrypt
-  key = ""
+  key = ''
   length = 8
 
-  opts=GetoptLong.new(
-    ["--help", "-h", GetoptLong::NO_ARGUMENT],
-    ["--encrypt", "-e", GetoptLong::NO_ARGUMENT],
-    ["--decrypt", "-d", GetoptLong::NO_ARGUMENT],
-    ["--key", "-k", GetoptLong::REQUIRED_ARGUMENT],
-    ["--gen-key", "-g", GetoptLong::OPTIONAL_ARGUMENT]
+  opts = GetoptLong.new(
+    ['--help', '-h', GetoptLong::NO_ARGUMENT],
+    ['--encrypt', '-e', GetoptLong::NO_ARGUMENT],
+    ['--decrypt', '-d', GetoptLong::NO_ARGUMENT],
+    ['--key', '-k', GetoptLong::REQUIRED_ARGUMENT],
+    ['--gen-key', '-g', GetoptLong::OPTIONAL_ARGUMENT]
   )
 
-  opts.each { |option, value|
+  opts.each do |option, value|
     case option
-    when "--help"
+    when '--help'
       usage
-    when "--encrypt"
+    when '--encrypt'
       mode = :encrypt
-    when "--decrypt"
+    when '--decrypt'
       mode = :decrypt
-    when "--key"
+    when '--key'
       key = value
-    when "--gen-key"
+    when '--gen-key'
       mode = :gen_key
       length = value.to_i
       length = 8 unless length >= 1
     else
       usage
     end
-  }
+  end
 
-  cipher = RC4.new()
+  cipher = RC4.new
 
   case mode
   when :gen_key
     puts RC4.format_bytes(cipher.gen_key(length))
   when :encrypt
-    ARGV.each { |filename|
+    ARGV.each do |filename|
       encrypt(filename, cipher, key)
-    }
+    end
   when :decrypt
-    ARGV.each { |filename|
+    ARGV.each do |filename|
       decrypt(filename, cipher, key)
-    }
+    end
   else
     usage
   end
 end
 
-if __FILE__ == $0
+if $PROGRAM_NAME == __FILE__
   begin
     main
-  rescue Interrupt => e
+  rescue Interrupt
     nil
   end
 end

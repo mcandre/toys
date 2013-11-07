@@ -3,33 +3,31 @@
 # Andrew Pennebaker
 # Copyright 2009 YelloSoft
 
-require "open-uri"
-require "contracts"
+require 'open-uri'
+require 'contracts'
 include Contracts
 
 Contract nil => Bool
 def must_blocking_or_offline?
-  begin
-    f = open "http://icanhazip.com/"
-    data = f.read
-    f.close
+  f = open 'http://icanhazip.com/'
+  data = f.read
+  f.close
 
-    octets = data.split(".")
+  octets = data.split('.')
 
-    raise unless octets.length == 4
-  rescue
-    true
-  else
-    false
-  end
+  fail unless octets.length == 4
+rescue
+  true
+else
+  false
 end
 
 def main
   if must_blocking_or_offline?
-    puts "-OFFLINE"
+    puts '-OFFLINE'
   else
-    puts "+ONLINE"
+    puts '+ONLINE'
   end
 end
 
-main if __FILE__ == $0
+main if $PROGRAM_NAME == __FILE__

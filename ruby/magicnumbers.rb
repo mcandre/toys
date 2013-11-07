@@ -9,14 +9,14 @@ data = [
   0x63, 0x56, 0x88, 0xbd
 ]
 
-0.upto(6) { |i|
+0.upto(6) do |i|
   temp = data.dup
   temp[-1] += i
-  temp = temp.collect { |e| "%02x" % e }
+  temp = temp.map { |e| sprintf '%02x', e }
 
   if i != 3
-    puts temp.join(" ")
+    puts temp.join(' ')
   else
-    puts " "*17+"[ redacted ]"
+    puts ' ' * 17 + '[ redacted ]'
   end
-}
+end

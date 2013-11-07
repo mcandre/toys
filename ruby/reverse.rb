@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require "contracts"
+require 'contracts'
 include Contracts
 
 Contract ArrayOf[Num] => ArrayOf[Num]
@@ -10,9 +10,9 @@ end
 
 Contract ArrayOf[Num] => Bool
 def self.disordered?(sequence)
-  (1 .. sequence.length - 1).each { |i|
-    return true if sequence[i-1] > sequence[i]
-  }
+  (1 .. sequence.length - 1).each do |i|
+    return true if sequence[i - 1] > sequence[i]
+  end
 
   false
 end
@@ -24,9 +24,9 @@ def gen_numbers(input)
   input = (1 .. 9).to_a
   numbers = []
 
-  (0 .. len - 1).each { |i|
+  (0 .. len - 1).each do |i|
     numbers << input.delete_at(rand(len))
-  }
+  end
 
   numbers
 end
@@ -38,9 +38,9 @@ def main
   if ARGV.length == 0
     numbers = gen_numbers(input)
   else
-    ARGV.each { |arg|
+    ARGV.each do |arg|
       numbers.push(arg.to_i)
-    }
+    end
   end
 
   count = 0
@@ -55,10 +55,10 @@ def main
   puts "Done! That took you #{count} steps."
 end
 
-if __FILE__ == $0
+if $PROGRAM_NAME == __FILE__
   begin
     main
-  rescue Interrupt => e
+  rescue Interrupt
     nil
   end
 end

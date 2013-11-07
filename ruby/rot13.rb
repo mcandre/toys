@@ -15,29 +15,29 @@
 # --shift, -s:
 #    Set Caesar shift (default 13).
 
-require "getoptlong"
-require "contracts"
+require 'getoptlong'
+require 'contracts'
 include Contracts
 
 Contract Num, Num => Hash
 def self.create_rule_26(start, n)
   rule = {}
 
-  (start .. (start + 26)).each { |b|
+  (start .. (start + 26)).each do |b|
     rule[b] = (b + n - start) % 26 + start
-  }
+  end
 
   rule
 end
 
 Contract Num => Hash
 def create_rule(n = 13)
-  create_rule_26("a".ord, n).merge(create_rule_26("A".ord, n))
+  create_rule_26('a'.ord, n).merge(create_rule_26('A'.ord, n))
 end
 
 Contract Hash, Num => Num
 def self.crypt(rule, b)
-  if rule.include?(b) then
+  if rule.include?(b)
     rule[b]
   else
     b
@@ -49,36 +49,36 @@ def main
   shift = 13
 
   begin
-    opts=GetoptLong.new(
-      ["--help", "-h", GetoptLong::NO_ARGUMENT],
-      ["--shift", "-s", GetoptLong::REQUIRED_ARGUMENT]
+    opts = GetoptLong.new(
+      ['--help', '-h', GetoptLong::NO_ARGUMENT],
+      ['--shift', '-s', GetoptLong::REQUIRED_ARGUMENT]
     )
 
-    opts.each { |option, value|
+    opts.each do |option, value|
       case option
-      when "--help"
-        raise
-      when "--shift"
+      when '--help'
+        usage
+      when '--shift'
         shift = value.to_i
       else
         usage
       end
-    }
+    end
   rescue
-    system "less #{$0}"
+    system "less #{$PROGRAM_NAME}"
   end
 
   rule = create_rule(shift)
 
-  STDIN.each_byte { |b|
+  STDIN.each_byte do |b|
     putc crypt(rule, b)
-  }
+  end
 end
 
-if __FILE__ == $0
+if $PROGRAM_NAME == __FILE__
   begin
     main
-  rescue Interrupt => e
+  rescue Interrupt
     nil
   end
 end

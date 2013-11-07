@@ -1,11 +1,11 @@
-def printargs(params)
-  unless params[:dog]
-    params[:dog] = "fuzzydog"
-  end
+#!/usr/bin/env ruby
 
-  params.each { |key, value|
+def printargs(params)
+  params[:dog] = 'fuzzydog' unless params[:dog]
+
+  params.each do |key, value|
     puts "#{key} => #{value}"
-  }
+  end
 end
 
-printargs(:cat => "fuzzycat")
+printargs(cat: 'fuzzycat')
