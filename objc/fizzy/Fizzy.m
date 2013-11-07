@@ -15,9 +15,8 @@
   else if (div5) {
     return @"Buzz";
   }
-  else {
-    return [NSString stringWithFormat:@"%ld", n];
-  }
+
+  return [NSString stringWithFormat:@"%ld", n];
 }
 
 int main() {
