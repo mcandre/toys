@@ -32,9 +32,9 @@ require "open-uri"
 require "contracts"
 include Contracts
 
-$DEBUG = false
-
 class Tiny
+  DEBUG = false
+
   attr_reader :name, :short, :domain, :api
 
   Contract File => Hash
@@ -77,7 +77,7 @@ class Tiny
 
         tinyurl = f.readlines.join ""
 
-        p tinyurl if $DEBUG
+        p tinyurl if DEBUG
       }
 
       if tinyurl == ""
@@ -138,7 +138,7 @@ def main
       when "--help"
         raise
       when "--debug"
-        $DEBUG = true
+        Tiny::DEBUG = true
       when "--list-services"
         mode = :list_services
       when "--service"

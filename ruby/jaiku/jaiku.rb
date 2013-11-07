@@ -37,74 +37,76 @@ require "highline/import"
 require "contracts"
 include Contracts
 
-$MAX_STATUS_LENGTH = 140
+module Jaiku
+  MAX_STATUS_LENGTH = 140
 
-Contract File => Hash
-def self.load_settings(stream)
-  settings = {}
+  Contract File => Hash
+  def self.load_settings(stream)
+    settings = {}
 
-  YAML::load(stream).each { |description, command|
-    settings[description] = command
-  }
+    YAML::load(stream).each { |description, command|
+      settings[description] = command
+    }
 
-  settings
-end
+    settings
+  end
 
-Contract Hash => String
-def update(settings)
-  debug = settings["debug"]
-  domain = settings["post_domain"]
-  api = settings["post_api"]
-  status = settings["status"]
-  username = settings["username"]
-  password = settings["password"]
-  key = settings["key"]
+  Contract Hash => String
+  def update(settings)
+    debug = settings["debug"]
+    domain = settings["post_domain"]
+    api = settings["post_api"]
+    status = settings["status"]
+    username = settings["username"]
+    password = settings["password"]
+    key = settings["key"]
 
-  raise "Status too long, shorten to #{$MAX_STATUS_LENGTH} characters" unless status.length <= $MAX_STATUS_LENGTH
+    raise "Status too long, shorten to #{MAX_STATUS_LENGTH} characters" unless status.length <= MAX_STATUS_LENGTH
 
-  Net::HTTP.start(domain) { |http|
-    request=Net::HTTP::Post.new(api)
-    request.basic_auth(username, password)
-    request.set_form_data({ "user" => username, "personal_key" => key, "method" => "presence.send", "message" => status })
+    Net::HTTP.start(domain) { |http|
+      request=Net::HTTP::Post.new(api)
+      request.basic_auth(username, password)
+      request.set_form_data({ "user" => username, "personal_key" => key, "method" => "presence.send", "message" => status })
 
-    response = http.request(request)
+      response = http.request(request)
 
-    p response if debug
+      p response if debug
 
-    message = response.message
+      message = response.message
 
-    raise "Could not authenticate as #{username}" if message["Unauthorized"]
-    raise "Could not connect" if message["Not Acceptable"]
-  }
-end
+      raise "Could not authenticate as #{username}" if message["Unauthorized"]
+      raise "Could not connect" if message["Not Acceptable"]
+    }
+  end
 
-Contract Hash => String
-def view(settings)
-  debug = settings["debug"]
-  domain = settings["view_domain"]
-  api = settings["view_api"]
-  username = settings["username"]
+  Contract Hash => String
+  def view(settings)
+    debug = settings["debug"]
+    domain = settings["view_domain"]
+    api = settings["view_api"]
+    username = settings["username"]
 
-  timeline = nil
-  response = nil
+    timeline = nil
+    response = nil
 
-  Net::HTTP.start(username + domain) { |http|
-    response = http.get(api)
+    Net::HTTP.start(username + domain) { |http|
+      response = http.get(api)
 
-    p response if debug
+      p response if debug
 
-    raise "Could not connect" if response.message["Not Acceptable"]
+      raise "Could not connect" if response.message["Not Acceptable"]
 
-    timeline = response.body
-  }
+      timeline = response.body
+    }
 
-  stream = JSON.parse(timeline)["stream"]
+    stream = JSON.parse(timeline)["stream"]
 
-  raise "No posts yet" if stream.length == 0
+    raise "No posts yet" if stream.length == 0
 
-  status = stream[0]["title"]
+    status = stream[0]["title"]
 
-  status
+    status
+  end
 end
 
 Contract nil => nil

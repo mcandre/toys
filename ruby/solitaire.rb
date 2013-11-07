@@ -78,17 +78,6 @@ class Card
   end
 end
 
-$deck = []
-Card.suits.each { |suit|
-  Card.faces.each { |face|
-    $deck.push(Card.new(suit, face))
-  }
-}
-$deck.push(Card.new(:joker, :a))
-$deck.push(Card.new(:joker, :b))
-
-$deck.each { |card| puts card }
-
 Contract String => String
 def encrypt(message)
   message = (message + ("X" * 5)).upcase.gsub(/[^A-Z]/, "")

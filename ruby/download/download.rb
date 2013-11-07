@@ -30,40 +30,42 @@ require "open-uri"
 require "contracts"
 include Contracts
 
-$DEFAULT_USER_AGENT = "Ruby/#{RUBY_VERSION}"
+module Download
+  DEFAULT_USER_AGENT = "Ruby/#{RUBY_VERSION}"
 
-Contract File => Hash
-def load_user_agents(stream)
-  require "yaml"
+  Contract File => Hash
+  def load_user_agents(stream)
+    require "yaml"
 
-  user_agents = {}
+    user_agents = {}
 
-  YAML::load(stream).each { |name, string| user_agents[name] = string }
+    YAML::load(stream).each { |name, string| user_agents[name] = string }
 
-  user_agents
-end
+    user_agents
+  end
 
-Contract String => String
-def self.getfilename(url)
-  url.split("/")[-1]
-end
+  Contract String => String
+  def self.getfilename(url)
+    url.split("/")[-1]
+  end
 
-Contract String, String, String => String
-def download(url, filename = "", user_agent = $DEFAULT_USER_AGENT)
-  begin
-    open(url, "User-Agent" => user_agent) { |filein|
-      if filename.length < 1
-        filename = getfilename(url)
-      end
+  Contract String, String, String => String
+  def download(url, filename = "", user_agent = Download::DEFAULT_USER_AGENT)
+    begin
+      open(url, "User-Agent" => user_agent) { |filein|
+        if filename.length < 1
+          filename = getfilename(url)
+        end
 
-      open(filename, "wb") { |fileout|
-        filein.each { |line|
-          fileout.write(line)
+        open(filename, "wb") { |fileout|
+          filein.each { |line|
+            fileout.write(line)
+          }
         }
       }
-    }
-  rescue
-    raise "Could not download #{url}"
+    rescue
+      raise "Could not download #{url}"
+    end
   end
 end
 
@@ -77,7 +79,7 @@ def main
   mode = :download
 
   outfile = ""
-  user_agent = $DEFAULT_USER_AGENT
+  user_agent = Download::DEFAULT_USER_AGENT
 
   user_agents = {}
 

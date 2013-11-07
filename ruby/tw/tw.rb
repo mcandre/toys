@@ -43,73 +43,75 @@ require "highline/import"
 require "contracts"
 include Contracts
 
-$MAX_STATUS_LENGTH = 140
+module Tw
+  MAX_STATUS_LENGTH = 140
 
-Contract File => Hash
-def self.load_commands(stream)
-  commands = {}
+  Contract File => Hash
+  def self.load_commands(stream)
+    commands = {}
 
-  YAML::load(stream).each { |description, command|
-    commands[description] = command
-  }
-
-  commands
-end
-
-Contract Hash => String
-def update(settings)
-  debug = settings[:debug]
-  domain = settings[:domain]
-  api = settings[:post_api]
-  status = settings[:status]
-  username = settings[:username]
-  password = settings[:password]
-
-  begin
-    Net::HTTP.start(domain) { |http|
-      request = Net::HTTP::Post.new(api)
-      request.basic_auth(username, password)
-      request.set_form_data({"status" => status})
-
-      response = http.request(request)
-
-      pp response if debug
-
-      raise unless response.message["OK"]
-    }
-  rescue Timeout::Error, Errno::ECONNRESET => e
-    raise "Could not connect"
-  end
-end
-
-Contract Hash => String
-def view(settings)
-  debug = settings[:debug]
-  domain = settings[:domain]
-  username = settings[:username]
-
-  timeline = nil
-  response = nil
-
-  begin
-    Net::HTTP.start(domain) { |http|
-      response = http.get("/statuses/user_timeline/#{username}json?count=1")
-
-      pp response if debug
-
-      raise "Could not connect" unless response.message["OK"]
-
-      timeline = response.body
+    YAML::load(stream).each { |description, command|
+      commands[description] = command
     }
 
-    status = JSON.parse(timeline)[0]["text"]
-  rescue Timeout::Error => e
-    status = "Could not connect"
-  rescue JSON::ParserError => e
-    status = "JSON Parse Error"
+    commands
   end
 
-  status
+  Contract Hash => String
+  def update(settings)
+    debug = settings[:debug]
+    domain = settings[:domain]
+    api = settings[:post_api]
+    status = settings[:status]
+    username = settings[:username]
+    password = settings[:password]
+
+    begin
+      Net::HTTP.start(domain) { |http|
+        request = Net::HTTP::Post.new(api)
+        request.basic_auth(username, password)
+        request.set_form_data({"status" => status})
+
+        response = http.request(request)
+
+        pp response if debug
+
+        raise unless response.message["OK"]
+      }
+    rescue Timeout::Error, Errno::ECONNRESET => e
+      raise "Could not connect"
+    end
+  end
+
+  Contract Hash => String
+  def view(settings)
+    debug = settings[:debug]
+    domain = settings[:domain]
+    username = settings[:username]
+
+    timeline = nil
+    response = nil
+
+    begin
+      Net::HTTP.start(domain) { |http|
+        response = http.get("/statuses/user_timeline/#{username}json?count=1")
+
+        pp response if debug
+
+        raise "Could not connect" unless response.message["OK"]
+
+        timeline = response.body
+      }
+
+      status = JSON.parse(timeline)[0]["text"]
+    rescue Timeout::Error => e
+      status = "Could not connect"
+    rescue JSON::ParserError => e
+      status = "JSON Parse Error"
+    end
+
+    status
+  end
 end
 
 Contract nil => nil
@@ -165,7 +167,7 @@ def main
       usage
     else
       settings[:status] = ARGV.join " "
-      raise "Status too long, shorten to #{$MAX_STATUS_LENGTH} characters" unless settings[:status].length <= $MAX_STATUS_LENGTH
+      raise "Status too long, shorten to #{MAX_STATUS_LENGTH} characters" unless settings[:status].length <= MAX_STATUS_LENGTH
       settings[:password] = ask("Password: ") {|q| q.echo = false}
 
       update(settings)
