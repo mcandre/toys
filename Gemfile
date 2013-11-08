@@ -1,6 +1,6 @@
-source "http://rubygems.org"
+source 'http://rubygems.org'
 
 group :development do
-  gem "flog"
-  gem "churn"
+  gem 'flog'
+  gem 'churn'
 end
