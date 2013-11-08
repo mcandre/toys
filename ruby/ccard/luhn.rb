@@ -49,7 +49,7 @@ class Luhn
 
   Contract Num => Num
   def self.generate(length = 16)
-    n = rand(10 ** (length - 1))
+    n = rand(10**(length - 1))
 
     complete(n)
   end

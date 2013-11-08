@@ -41,7 +41,7 @@ class CreditCard
     prefix = @prefixes[rand(@prefixes.length)]
     length = @lengths[rand(@lengths.length)]
 
-    ten_raised = 10 ** (length - prefix.to_s.length - 1)
+    ten_raised = 10**(length - prefix.to_s.length - 1)
 
     n = prefix * ten_raised
     n += rand(ten_raised)
@@ -57,9 +57,7 @@ class CreditCard
 
   Contract Num => Or[Bool, String]
   def valid?(n)
-    if @sum == 'luhn' && !Luhn.valid?(n.to_i)
-      return 'fails Luhn checksum'
-    end
+    return 'fails Luhn checksum' if @sum == 'luhn' && !Luhn.valid?(n.to_i)
 
     if @prefixes != 'any'
       prefix_matches = []
@@ -70,9 +68,7 @@ class CreditCard
         prefix_matches.push(prefix) unless n[0, prefix.length] != prefix
       end
 
-      if prefix_matches.length == 0
-        'fails to match service prefix'
-      end
+      return 'fails to match service prefix' if prefix_matches.length == 0
     end
 
     if @lengths != 'any'
@@ -82,9 +78,7 @@ class CreditCard
         length_matches.push(length) unless n.length != length
       end
 
-      if length_matches.length == 0
-        'fails to match service length'
-      end
+      return 'fails to match service length' if length_matches.length == 0
     end
 
     'passes'

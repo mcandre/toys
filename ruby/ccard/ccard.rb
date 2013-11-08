@@ -122,8 +122,8 @@ def main
       puts "#{n} #{service.valid?(n)}"
     end
   elsif mode == :list_services
-    services.each do |short, service|
-      puts "#{service.name} (#{short})"
+    services.each do |short, svc|
+      puts "#{svc.name} (#{short})"
     end
   end
 end

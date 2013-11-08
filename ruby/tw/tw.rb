@@ -171,9 +171,7 @@ def main
     else
       settings[:status] = ARGV.join ' '
 
-      if settings[:status].length > MAX_STATUS_LENGTH
-        fail "Status too long, shorten to #{MAX_STATUS_LENGTH} characters"
-      end
+      fail "Status too long, shorten to #{MAX_STATUS_LENGTH} characters" unless settings[:status].length <= MAX_STATUS_LENGTH
 
       settings[:password] = ask('Password: ') { |q| q.echo = false }
 

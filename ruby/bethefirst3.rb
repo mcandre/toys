@@ -7,7 +7,9 @@ require 'pp'
 def main
   puts 'Awaiting release.'
 
-  while true
+  new_firefox_release = false
+
+  until new_firefox_release
     t = Time.now
 
     puts "Checking mozilla.com #{t.hour}:#{t.min}:#{t.sec}"
@@ -33,15 +35,12 @@ def main
 
       data.downcase!
 
-      using_proxy = true
-      if data.include?('firefox') && data.include?('<a href=\"https://addons.mozilla.org/\">')
-        using_proxy = false
-      end
+      using_proxy = !(data.include?('firefox') && data.include?('<a href=\"https://addons.mozilla.org/\">'))
 
-      new_firefox_release = false
-      if !data.include?('<html><body><b>Http/1.1 Service Unavailable</b></body> </html>') && !data.include?('2.0.0.14')
-        new_firefox_release = true
-      end
+      new_firefox_release = !data.include?(
+        '<html><body><b>Http/1.1 Service Unavailable</b></body> </html>'
+        ) &&
+          !data.include?('2.0.0.14')
 
       if using_proxy
         puts 'Error: Behind a proxy.'
@@ -49,14 +48,13 @@ def main
         puts 'Firefox 3 released!'
 
         # Roommate annoyed by so many false updates.
-        #                               puts 'Sounding alert.'
-        #                               system('open favthings.mp3')
+        # puts 'Sounding alert.'
+        # system('open favthings.mp3')
 
         puts 'Opening announcement page.'
 
         system('open http://www.mozilla.com/')
 
-        break
         # Not released yet; wait 1 second and reload
       else
         sleep 1
