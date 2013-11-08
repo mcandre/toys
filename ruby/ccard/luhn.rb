@@ -1,4 +1,4 @@
-require "contracts"
+require 'contracts'
 include Contracts
 
 # Luhn algorithm
@@ -15,9 +15,7 @@ class Luhn
       if odd
         digit *= 2
 
-        if digit > 9
-          digit -= 9
-        end
+        digit -= 9 unless digit <= 9
       end
 
       checksum += digit
@@ -40,13 +38,11 @@ class Luhn
 
     checksum = sum(timesten)
 
-    digit=0
+    digit = 0
 
     modten = checksum % 10
 
-    if modten != 0
-      digit = 10 - modten
-    end
+    digit = 10 - modten unless modten == 0
 
     timesten + digit
   end

@@ -4,54 +4,49 @@
 # http://codegolf.com/bob-ross-the-joy-of-ascii-art
 
 def get_input
-  while true
-    line = gets
-    if not line or line == ""
-      break
-    else
-      yield line.chomp
-    end
-  end
+  line = ''
+
+  yield line.chomp until !line || line == ''
 end
 
 def self.mark(rows, x, y, c)
-  space = " "
+  space = ' '
 
-  0.upto(y - rows.length) { |i|
+  0.upto(y - rows.length) do |i|
     rows.push([])
-  }
+  end
 
-  0.upto(x - rows[y].length) { |i|
+  0.upto(x - rows[y].length) do |i|
     rows[y].push(space)
-  }
+  end
 
   rows[y][x] = c
 end
 
 def print_pic(rows)
-  rows.each { |row|
-    puts row.join("")
-  }
+  rows.each do |row|
+    puts row.join('')
+  end
 end
 
 def main
   rows = []
 
-  get_input { |line|
-    parts=line.split(" ")
+  get_input do |line|
+    parts = line.split(' ')
 
     x, y, c = parts[0].to_i, parts[1].to_i, parts[2].to_i.chr
 
     mark(rows, x, y, c)
-  }
+  end
 
   print_pic(rows)
 end
 
-if __FILE__ == $0
+if $PROGRAM_NAME == __FILE__
   begin
     main
-  rescue Interrupt => e
+  rescue Interrupt
     nil
   end
 end

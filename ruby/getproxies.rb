@@ -1,41 +1,37 @@
 #!/usr/bin/env ruby
 
-require "open-uri"
-require "contracts"
+require 'open-uri'
+require 'contracts'
 include Contracts
 
 Contract nil => ArrayOf[String]
 def get_proxies
-  url = "http://www.steganos.com/?area=updateproxylist"
+  url = 'http://www.steganos.com/?area=updateproxylist'
 
   proxies = []
 
-  begin
-    open(url) { |f|
-      f.each_line { |line|
-        proxies << line
-      }
-    }
-  rescue
-    raise "Unable to access #{url}"
+  open(url) do |f|
+    f.each_line do |line|
+      proxies << line
+    end
   end
 
   proxies
+rescue
+  raise "Unable to access #{url}"
 end
 
 def main
-  begin
-    proxies = get_proxies
-    puts proxies
-  rescue
-    puts "Could not connect to Steganos"
-  end
+  proxies = get_proxies
+  puts proxies
+rescue
+  puts 'Could not connect to Steganos'
 end
 
-if __FILE__ == $0
+if $PROGRAM_NAME == __FILE__
   begin
     main
-  rescue Interrupt => e
+  rescue Interrupt
     nil
   end
 end

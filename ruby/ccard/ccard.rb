@@ -46,16 +46,16 @@
 # --luhn-validate, -l <number1> <number2> <number3> ...
 #    validate only by simple Luhn check
 
-require "./luhn"
-require "./creditcard"
+require './luhn'
+require './creditcard'
 
-require "getoptlong"
-require "contracts"
+require 'getoptlong'
+require 'contracts'
 include Contracts
 
 Contract nil => nil
 def usage
-  system("more #{$0}")
+  system("more #{$PROGRAM_NAME}")
   exit(0)
 end
 
@@ -63,11 +63,11 @@ def main
   services = {}
 
   begin
-    f = open("#{File.dirname($0)}/ccard.yaml")
-    services = CreditCard::load_services(f)
-    f.close()
-  rescue Errno::ENOENT => e
-    raise "Could not open services file"
+    f = open("#{File.dirname($PROGRAM_NAME)}/ccard.yaml")
+    services = CreditCard.load_services(f)
+    f.close
+  rescue Errno::ENOENT
+    raise 'Could not open services file'
   end
 
   mode = :generate
@@ -75,63 +75,63 @@ def main
   numbers = 1
 
   opts = GetoptLong.new(
-    ["--help", "-h", GetoptLong::NO_ARGUMENT],
-    ["--list-services", "-y", GetoptLong::NO_ARGUMENT],
-    ["--generate", "-g", GetoptLong::NO_ARGUMENT],
-    ["--service", "-s", GetoptLong::REQUIRED_ARGUMENT],
-    ["--multiple", "-m", GetoptLong::REQUIRED_ARGUMENT],
-    ["--validate", "-v", GetoptLong::NO_ARGUMENT],
-    ["--luhn-validate", "-l", GetoptLong::NO_ARGUMENT]
+    ['--help', '-h', GetoptLong::NO_ARGUMENT],
+    ['--list-services', '-y', GetoptLong::NO_ARGUMENT],
+    ['--generate', '-g', GetoptLong::NO_ARGUMENT],
+    ['--service', '-s', GetoptLong::REQUIRED_ARGUMENT],
+    ['--multiple', '-m', GetoptLong::REQUIRED_ARGUMENT],
+    ['--validate', '-v', GetoptLong::NO_ARGUMENT],
+    ['--luhn-validate', '-l', GetoptLong::NO_ARGUMENT]
   )
 
   begin
-    opts.each { |option, value|
+    opts.each do |option, value|
       case option
-      when "--help"
-        raise
-      when "--list-services"
+      when '--help'
+        usage
+      when '--list-services'
         mode = :list_services
-      when "--generate"
+      when '--generate'
         mode = :generate
-      when "--service"
+      when '--service'
         service = services[value.downcase]
-        raise "Service not found under #{value}" unless service
-      when "--multiple"
+        fail "Service not found under #{value}" unless service
+      when '--multiple'
         numbers = value.to_i
-      when "--validate"
+      when '--validate'
         mode = :validate
-      when "--luhn-validate"
+      when '--luhn-validate'
         mode = :validate
-        service = CreditCard.new("Custom", "cust", "any", "any", "luhn")
+        service = CreditCard.new('Custom', 'cust', 'any', 'any', 'luhn')
       else
         usage
       end
-    }
+    end
   rescue
     usage
   end
 
   if mode == :generate
-    raise "Specify a service" unless service
-    numbers.times { |i| puts service.generate() }
+    fail 'Specify a service' unless service
+    numbers.times { |i| puts service.generate }
   elsif mode == :validate
     usage unless ARGV.length > 0
 
-    ARGV.each { |n|
-      n = n.gsub(/\D/, "")
+    ARGV.each do |n|
+      n = n.gsub(/\D/, '')
       puts "#{n} #{service.valid?(n)}"
-    }
+    end
   elsif mode == :list_services
-    services.each { |short, service|
+    services.each do |short, service|
       puts "#{service.name} (#{short})"
-    }
+    end
   end
 end
 
-if __FILE__ == $0
+if $PROGRAM_NAME == __FILE__
   begin
     main
-  rescue Interrupt => e
+  rescue Interrupt
     nil
   end
 end

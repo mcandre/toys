@@ -20,17 +20,17 @@
 # Margin:
 #    The width of the copyright message.
 
-require "time"
+require 'time'
 
 # From ttscoff's wrap_text()
 # http://snipplr.com/view/1081/wrap-text/
 class String
   def wrap(margin = 80)
-    gsub /(.{1,#{margin}})( +|$\n?)|(.{1,#{margin}})/, "\\1\\3\n"
+    gsub /(.{1,#{margin}})( +|$\n?)|(.{1,#{margin}})/, '\\1\\3\n'
   end
 end
 
-def self.gen(owners = "MIT", year = Time.now.year, margin = 80)
+def self.gen(owners = 'MIT', year = Time.now.year, margin = 80)
   "The MIT License
 
 Copyright (c) #{year} #{owners}
@@ -45,8 +45,8 @@ end
 def main
   argc = ARGV.length
 
-  owners = "MIT"
-  year = "1988"
+  owners = 'MIT'
+  year = '1988'
   margin = 80
 
   owners = ARGV[0] unless argc < 1
@@ -56,4 +56,4 @@ def main
   puts gen(owners, year, margin)
 end
 
-main if __FILE__ == $0
+main if $PROGRAM_NAME == __FILE__

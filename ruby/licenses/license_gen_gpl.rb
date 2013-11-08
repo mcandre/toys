@@ -23,17 +23,17 @@
 # Margin:
 #    The width of the copyright message.
 
-require "time"
+require 'time'
 
 # From ttscoff's wrap_text()
 # http://snipplr.com/view/1081/wrap-text/
 class String
   def wrap(margin = 80)
-    gsub /(.{1,#{margin}})( +|$\n?)|(.{1,#{margin}})/, "\\1\\3\n"
+    gsub /(.{1,#{margin}})( +|$\n?)|(.{1,#{margin}})/, '\\1\\3\n'
   end
 end
 
-def self.gen(owners = "The Free Software Foundation", year = Time.now.year, margin = 80)
+def self.gen(owners = 'The Free Software Foundation', year = Time.now.year, margin = 80)
   "Copyright (C) #{year} #{owners}
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
@@ -46,8 +46,8 @@ end
 def main
   argc = ARGV.length
 
-  owners = "The Free Software Foundation"
-  year = "2007"
+  owners = 'The Free Software Foundation'
+  year = '2007'
   margin = 80
 
   owners = ARGV[0] unless argc < 1
@@ -57,4 +57,4 @@ def main
   puts gen(owners, year, margin)
 end
 
-main if __FILE__ == $0
+main if $PROGRAM_NAME == __FILE__

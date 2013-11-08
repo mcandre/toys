@@ -1,11 +1,11 @@
 #!/usr/bin/env ruby
 
-require "contracts"
+require 'contracts'
 include Contracts
 
 Contract Num => Num
 def self.fib(n)
-  if n<2
+  if n < 2
     n
   else
     a, b = 0, 1
@@ -14,8 +14,8 @@ def self.fib(n)
 
     i = 0
     while i < m
-       a, b = b, a + b
-       i += 1
+      a, b = b, a + b
+      i += 1
     end
 
     b
@@ -33,18 +33,18 @@ end
 #   end
 # end
 
-print "N = "
+print 'N = '
 
 n = gets.chomp.to_i
 
-puts "Running"
+puts 'Running'
 
-#startt = time
+# startt = time
 
 x = fib(n)
 
-#endt = time
+# endt = time
 
 puts "Fib #{n} = #{x}"
 
-#puts "Time: #{endt - startt} sec"
+# puts "Time: #{endt - startt} sec"

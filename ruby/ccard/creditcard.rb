@@ -1,5 +1,5 @@
-require "./luhn"
-require "contracts"
+require './luhn'
+require 'contracts'
 include Contracts
 
 # Validate and generate credit card numbers
@@ -17,21 +17,21 @@ class CreditCard
 
   Contract File => ArrayOf[CreditCard]
   def self.load_services(stream)
-    require "yaml"
+    require 'yaml'
 
     services = {}
 
-    YAML::load(stream).each { |name, specs|
-      short = specs["short"]
+    YAML.load(stream).each do |name, specs|
+      short = specs['short']
 
       # if already arrays, no worries
 
-      prefixes = specs["prefixes"].to_a
-      lengths = specs["lengths"].to_a
-      sum = specs["sum"]
+      prefixes = specs['prefixes'].to_a
+      lengths = specs['lengths'].to_a
+      sum = specs['sum']
 
       services[short] = CreditCard.new(name, short, prefixes, lengths, sum)
-    }
+    end
 
     services
   end
@@ -46,9 +46,9 @@ class CreditCard
     n = prefix * ten_raised
     n += rand(ten_raised)
 
-    if @sum == "any"
+    if @sum == 'any'
       n = n * 10 + rand(10)
-    elsif @sum == "luhn"
+    elsif @sum == 'luhn'
       n = Luhn.complete(n)
     end
 
@@ -57,40 +57,36 @@ class CreditCard
 
   Contract Num => Or[Bool, String]
   def valid?(n)
-    if @sum == "luhn" and not Luhn.valid?(n.to_i)
-      return "fails Luhn checksum"
+    if @sum == 'luhn' && !Luhn.valid?(n.to_i)
+      return 'fails Luhn checksum'
     end
 
-    if @prefixes != "any"
+    if @prefixes != 'any'
       prefix_matches = []
 
-      @prefixes.each { |prefix|
+      @prefixes.each do |prefix|
         prefix = prefix.to_s
 
-        if n[0, prefix.length] == prefix
-          prefix_matches.push(prefix)
-        end
-      }
+        prefix_matches.push(prefix) unless n[0, prefix.length] != prefix
+      end
 
       if prefix_matches.length == 0
-        "fails to match service prefix"
+        'fails to match service prefix'
       end
     end
 
-    if @lengths != "any"
+    if @lengths != 'any'
       length_matches = []
 
-      @lengths.each { |length|
-        if n.length == length
-          length_matches.push(length)
-        end
-      }
+      @lengths.each do |length|
+        length_matches.push(length) unless n.length != length
+      end
 
       if length_matches.length == 0
-        "fails to match service length"
+        'fails to match service length'
       end
     end
 
-    "passes"
+    'passes'
   end
 end

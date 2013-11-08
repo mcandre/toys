@@ -30,13 +30,16 @@
 # --list-commands, -l:
 #    command mode
 
-require "json"
-require "getoptlong"
-require "net/http"
-require "highline/import"
-require "contracts"
+require 'json'
+require 'getoptlong'
+require 'net/http'
+require 'highline/import'
+require 'contracts'
 include Contracts
 
+#
+# Jaiku
+#
 module Jaiku
   MAX_STATUS_LENGTH = 140
 
@@ -44,29 +47,34 @@ module Jaiku
   def self.load_settings(stream)
     settings = {}
 
-    YAML::load(stream).each { |description, command|
+    YAML.load(stream).each do |description, command|
       settings[description] = command
-    }
+    end
 
     settings
   end
 
   Contract Hash => String
   def update(settings)
-    debug = settings["debug"]
-    domain = settings["post_domain"]
-    api = settings["post_api"]
-    status = settings["status"]
-    username = settings["username"]
-    password = settings["password"]
-    key = settings["key"]
+    debug = settings['debug']
+    domain = settings['post_domain']
+    api = settings['post_api']
+    status = settings['status']
+    username = settings['username']
+    password = settings['password']
+    key = settings['key']
 
-    raise "Status too long, shorten to #{MAX_STATUS_LENGTH} characters" unless status.length <= MAX_STATUS_LENGTH
+    fail "Status too long, shorten to #{MAX_STATUS_LENGTH} characters" unless status.length <= MAX_STATUS_LENGTH
 
-    Net::HTTP.start(domain) { |http|
-      request=Net::HTTP::Post.new(api)
+    Net::HTTP.start(domain) do |http|
+      request = Net::HTTP::Post.new(api)
       request.basic_auth(username, password)
-      request.set_form_data({ "user" => username, "personal_key" => key, "method" => "presence.send", "message" => status })
+      request.set_form_data(
+        'user' => username,
+        'personal_key' => key,
+        'method' => 'presence.send',
+        'message' => status
+      )
 
       response = http.request(request)
 
@@ -74,36 +82,36 @@ module Jaiku
 
       message = response.message
 
-      raise "Could not authenticate as #{username}" if message["Unauthorized"]
-      raise "Could not connect" if message["Not Acceptable"]
-    }
+      fail "Could not authenticate as #{username}" if message['Unauthorized']
+      fail 'Could not connect' if message['Not Acceptable']
+    end
   end
 
   Contract Hash => String
   def view(settings)
-    debug = settings["debug"]
-    domain = settings["view_domain"]
-    api = settings["view_api"]
-    username = settings["username"]
+    debug = settings['debug']
+    domain = settings['view_domain']
+    api = settings['view_api']
+    username = settings['username']
 
     timeline = nil
     response = nil
 
-    Net::HTTP.start(username + domain) { |http|
+    Net::HTTP.start(username + domain) do |http|
       response = http.get(api)
 
       p response if debug
 
-      raise "Could not connect" if response.message["Not Acceptable"]
+      fail 'Could not connect' if response.message['Not Acceptable']
 
       timeline = response.body
-    }
+    end
 
-    stream = JSON.parse(timeline)["stream"]
+    stream = JSON.parse(timeline)['stream']
 
-    raise "No posts yet" if stream.length == 0
+    fail 'No posts yet' if stream.length == 0
 
-    status = stream[0]["title"]
+    status = stream[0]['title']
 
     status
   end
@@ -111,56 +119,56 @@ end
 
 Contract nil => nil
 def usage
-  system("more #{$0}")
+  system("more #{$PROGRAM_NAME}")
   exit(0)
 end
 
 def main
   mode = :post
   settings = {
-    "debug" => false,
-    "post_domain" => "api.jaiku.com",
-    "post_api" => "/json",
-    "view_domain" => ".jaiku.com",
-    "view_api" => "/feed/json",
-    "username" => "mcandre",
-    "key" => 0
+    'debug' => false,
+    'post_domain' => 'api.jaiku.com',
+    'post_api' => '/json',
+    'view_domain' => '.jaiku.com',
+    'view_api' => '/feed/json',
+    'username' => 'mcandre',
+    'key' => 0
   }
 
   begin
-    open("#{File.dirname($0)}/jaiku.yaml") { |file|
+    open("#{File.dirname($PROGRAM_NAME)}/jaiku.yaml") do |file|
       settings = load_settings(file)
-    }
-  rescue Errno::ENOENT => e
-    raise "Could not open settings file"
+    end
+  rescue Errno::ENOENT
+    raise 'Could not open settings file'
   end
 
   opts = GetoptLong.new(
-    ["--help", "-h", GetoptLong::NO_ARGUMENT],
-    ["--debug", "-d", GetoptLong::NO_ARGUMENT],
-    ["--user", "-u", GetoptLong::REQUIRED_ARGUMENT],
-    ["--view", "-v", GetoptLong::NO_ARGUMENT],
-    ["--post", "-p", GetoptLong::NO_ARGUMENT],
-    ["--list-commands", "-y", GetoptLong::NO_ARGUMENT]
+    ['--help', '-h', GetoptLong::NO_ARGUMENT],
+    ['--debug', '-d', GetoptLong::NO_ARGUMENT],
+    ['--user', '-u', GetoptLong::REQUIRED_ARGUMENT],
+    ['--view', '-v', GetoptLong::NO_ARGUMENT],
+    ['--post', '-p', GetoptLong::NO_ARGUMENT],
+    ['--list-commands', '-y', GetoptLong::NO_ARGUMENT]
   )
 
   begin
-    opts.each { |option, value|
+    opts.each do |option, value|
       case option
-      when "--help"
-        raise
-      when "--debug"
-        settings["debug"] = true
-      when "--user"
-        settings["username"] = value
-      when "--view"
+      when '--help'
+        usage
+      when '--debug'
+        settings['debug'] = true
+      when '--user'
+        settings['username'] = value
+      when '--view'
         mode = :view
-      when "--post"
+      when '--post'
         mode = :post
       else
         usage
       end
-    }
+    end
   rescue
     usage
   end
@@ -172,8 +180,8 @@ def main
     if ARGV.length < 1
       usage
     else
-      settings["password"] = ask("Password: ") { |q| q.echo = false }
-      settings["status"] = ARGV.join " "
+      settings['password'] = ask('Password: ') { |q| q.echo = false }
+      settings['status'] = ARGV.join ' '
 
       update(settings)
     end
@@ -182,12 +190,12 @@ def main
   end
 end
 
-if __FILE__ == $0
+if $PROGRAM_NAME == __FILE__
   begin
     main
-  rescue Timeout::Error, SocketError => e
-    puts "Could not connect"
-  rescue Interrupt => e
+  rescue Timeout::Error, SocketError
+    puts 'Could not connect'
+  rescue Interrupt
     nil
   end
 end

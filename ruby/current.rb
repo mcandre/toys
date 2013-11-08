@@ -1,2 +1,2 @@
 #!/usr/bin/env ruby
-puts File.dirname($0)
+puts File.dirname($PROGRAM_NAME)

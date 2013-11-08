@@ -17,9 +17,9 @@
 # --position, -p:
 #    show latitude and longitude
 
-require "getoptlong"
-require "open-uri"
-require "contracts"
+require 'getoptlong'
+require 'open-uri'
+require 'contracts'
 include Contracts
 
 Contract Hash => String
@@ -27,8 +27,8 @@ def self.prepare_api(settings)
   ip = settings[:ip]
 
   url = "http://#{settings[:domain]}#{settings[:api]}"
-  url += "&ip=#{ip}" unless ip == ""
-  url += "&position=true" if settings[:position]
+  url += "&ip=#{ip}" unless ip == ''
+  url += '&position=true' if settings[:position]
 
   url
 end
@@ -46,58 +46,58 @@ end
 
 Contract nil => nil
 def usage
-  system("more #{$0}")
+  system("more #{$PROGRAM_NAME}")
   exit(0)
 end
 
 def main
   settings = {
-    :domain => "api.hostip.info",
-    :api => "/get_html.php?",
-    :ip => "",
-    :position => false
+    domain: 'api.hostip.info',
+    api: '/get_html.php?',
+    ip: '',
+    position: false
   }
 
   begin
-    opts=GetoptLong.new(
-      ["--help", "-h", GetoptLong::NO_ARGUMENT],
-      ["--address", "-a", GetoptLong::REQUIRED_ARGUMENT],
-      ["--position", "-p", GetoptLong::NO_ARGUMENT]
+    opts = GetoptLong.new(
+      ['--help', '-h', GetoptLong::NO_ARGUMENT],
+      ['--address', '-a', GetoptLong::REQUIRED_ARGUMENT],
+      ['--position', '-p', GetoptLong::NO_ARGUMENT]
     )
 
-    opts.each { |option, value|
+    opts.each do |option, value|
       case option
-      when "--help"
-        raise
-      when "--address"
+      when '--help'
+        usage
+      when '--address'
         settings[:ip] = value
-      when "--position"
+      when '--position'
         settings[:position] = true
       else
         usage
       end
-    }
+    end
   rescue
     usage
   end
 
   args = [] + ARGV
-  args << "" if args.length == 0
+  args << '' if args.length == 0
 
-  args.each { |ip|
+  args.each do |ip|
     settings[:ip] = ip
     begin
       puts geoip(settings)
-    rescue SocketError => e
+    rescue SocketError
       puts "Could not connect to #{settings[:domain]}"
     end
-  }
+  end
 end
 
-if __FILE__ == $0
+if $PROGRAM_NAME == __FILE__
   begin
     main
-  rescue Interrupt => e
+  rescue Interrupt
     nil
   end
 end

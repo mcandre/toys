@@ -14,12 +14,12 @@ guard :shell do
     "-> #{msg}"
   end
 
-  watch(/Rakefile|(.*\.rb)/) do |m|
+  watch(/Rakefile|\..*|(.*\.rb)/) do |m|
     title = "Lint output"
     msg = "Lint failure"
     status = :success
 
-    msg = `rake lint`
+    msg = `rake rubocop`
 
     n msg, title, status
 
