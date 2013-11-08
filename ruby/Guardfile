@@ -19,7 +19,7 @@ guard :shell do
     msg = "Lint failure"
     status = :success
 
-    msg = `rake rubocop`
+    msg = `rake lint`
 
     n msg, title, status
 
