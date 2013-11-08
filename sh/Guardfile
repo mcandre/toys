@@ -1,11 +1,11 @@
 guard :shell do
   watch(/.*sh/) do |m|
-    title = "Lint output"
-    msg = "Failure"
+    title = 'Lint output'
+    msg = 'Failure'
     status = :failed
 
-    if system("make lint")
-      msg = "Linted"
+    if `make lint`
+      msg = 'Linted'
       status = :success
     end
 
