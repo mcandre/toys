@@ -43,10 +43,10 @@ for ($i=0; $i<$n; $i++) {
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-	<title>Dice</title>
-	<link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
-	<link href="stylesheet.css" media="screen" rel="stylesheet" type="text/css" />
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>Dice</title>
+  <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+  <link href="stylesheet.css" media="screen" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
