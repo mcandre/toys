@@ -26,10 +26,13 @@
 # NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
 # EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# Requires AppKit
-# https://pypi.python.org/pypi/AppKit/
+# Requires AppKit and PyObjC
 #
-# pip install AppKit
+# http://nitipit.github.io/appkit/
+# http://pythonhosted.org/pyobjc/install.html
+#
+# sudo pip install AppKit
+# sudo pip install -U pyobjc
 #
 # I, Robot Transcript
 # http://www.script-o-rama.com/movie_scripts/i/i-robot-script-transcript.html
