@@ -26,7 +26,7 @@ require 'time'
 # http://snipplr.com/view/1081/wrap-text/
 class String
   def wrap(margin = 80)
-    gsub /(.{1,#{margin}})( +|$\n?)|(.{1,#{margin}})/, '\\1\\3\n'
+    gsub(/(.{1,#{margin}})( +|$\n?)|(.{1,#{margin}})/, '\\1\\3\n')
   end
 end
 
