@@ -10,8 +10,13 @@ naivesettheory.pdf: naivesettheory.tex
 guard: Guardfile
 	guard
 
-lint:
+lacheck:
 	for f in *.tex; do lacheck $$f; done
+
+style-check:
+	style-check.rb *.tex
+
+lint: lacheck style-check
 
 clean:
 	-rm *.out
