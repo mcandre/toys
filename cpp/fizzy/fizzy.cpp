@@ -1,14 +1,14 @@
-#include <iostream>
-#include <string>
-#include <sstream>
-#include <vector>
-#include <numeric>
+#include "./fizzy.h"
 
 #ifdef ASYNC
 #include <future>
 #endif
 
-#include "fizzy.h"
+#include <iostream>
+#include <string>
+#include <sstream>
+#include <vector>
+#include <numeric>
 
 using namespace std;
 
