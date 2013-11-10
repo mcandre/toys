@@ -13,7 +13,7 @@ cppcheck:
 	cppcheck --enable=all --suppress=missingIncludeSystem .
 
 cpplint:
-	cpplint --filter=-build/header_guard,-whitespace/parens,-readability/braces,-whitespace/newline,-legal/copyright *.cpp *.h
+	cpplint --filter=-readability/streams,-build/header_guard,-whitespace/parens,-readability/braces,-whitespace/newline,-legal/copyright *.cpp *.h
 
 lint: cppcheck
 

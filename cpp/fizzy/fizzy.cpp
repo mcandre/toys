@@ -10,7 +10,11 @@
 #include <vector>
 #include <numeric>
 
-using namespace std;
+using std::cout;
+using std::endl;
+using std::string;
+using std::stringstream;
+using std::vector;
 
 string fizzy(int n) {
   int a = n % 3, b = n % 5;
