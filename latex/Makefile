@@ -11,10 +11,10 @@ guard: Guardfile
 	guard
 
 lacheck:
-	for f in *.tex; do lacheck $$f; done
+	-for f in *.tex; do lacheck $$f; done
 
 style-check:
-	style-check.rb *.tex
+	-style-check.rb *.tex
 
 lint: lacheck style-check
 
