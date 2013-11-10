@@ -156,9 +156,9 @@ def main():
 
     set_status(settings, message)
   elif mode == VIEW_MODE:
-    print view_status(settings)
+    print(view_status(settings))
   elif mode == COMMAND_MODE:
-    print COMMANDS
+    print(COMMANDS)
 
 if __name__ == "__main__":
   try:

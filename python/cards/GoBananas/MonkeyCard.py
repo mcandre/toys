@@ -5,6 +5,7 @@ __date__ = "6 Apr 2006"
 __copyright__ = "Copyright 2006 Andrew Pennebaker"
 
 from GoBananasCard import GoBananasCard
+from GotchaGatorCard import GotchaGatorCard
 
 class MonkeyCard(GoBananasCard):
   MILD = "Mild"

@@ -4,7 +4,6 @@ __author__ = "Andrew Pennebaker (andrew.pennebaker@gmail.com)"
 __date__ = "6 Apr 2006"
 __copyright__ = "Copyright 2006 Andrew Pennebaker"
 
-from BoBananasCard import GoBananasCard
 from MonkeyCard import MonkeyCard
 from GotchaGatorCard import GotchaGatorCard
 from BananaCard import BananaCard

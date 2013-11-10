@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """A SNUSP interpreter"""
 
@@ -304,7 +304,7 @@ def main():
     while len(si.stack) > 0:
       si.step()
       if wait:
-        raw_input()
+        input()
       else:
         si.run()
 

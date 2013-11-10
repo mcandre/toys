@@ -52,7 +52,7 @@ def download_button_event(widget = None, event = None, data = None):
   outstream = None
   try:
     outstream = open(fs.get_filename(), "wb")
-  except:
+  except Exception as e:
     md = gtk.MessageDialog(
       WINDOW,
       gtk.DIALOG_MODAL,

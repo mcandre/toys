@@ -6,6 +6,7 @@ __copyright__ = "Copyright 2006 Andrew Pennebaker"
 
 from UNOAttackCard import UNOAttackCard
 from NumberedUNOCard import NumberedUNOCard
+from WildUNOCard import WildUNOCard
 from WildUNOAttackCard import WildUNOAttackCard
 
 from UNODeck import UNODeck
