@@ -18,7 +18,7 @@ def get_input():
 
   while True:
     try:
-      line = raw_input()
+      line = input()
 
       if len(line) == 0:
         break

@@ -2,6 +2,9 @@
 
 """Wx demo"""
 
+# Requires wx
+# https://pypi.python.org/pypi/wx/
+
 import wx
 
 ID_ANY = wx.ID_ANY

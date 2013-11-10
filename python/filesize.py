@@ -38,7 +38,7 @@ def main():
   try:
     size = get_size(sys.argv[1])
   except Exception:
-    raise "Could not open %s" % (sys.argv[1])
+    raise Exception("Could not open %s" % (sys.argv[1]))
 
   print("%d bytes" % (size))
 

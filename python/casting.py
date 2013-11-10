@@ -16,8 +16,11 @@ class GameObject:
     self.name = name
     self.description = description
 
-  def look(self, args = []):
+  def look(self, args = None):
     """Look around a room"""
+
+    if args == None:
+      args = []
 
     if len(args) == 0:
       return self.__repr__()
