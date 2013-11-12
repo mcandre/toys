@@ -1,31 +1,19 @@
 guard :shell do
   watch('Gemfile') do |m|
-    title = 'Bundler output'
-    msg = 'Bundler Failure'
-    status = :failed
-
-    if `bundle`
-      msg = 'Bundled'
-      status = :status
-    end
+    title = 'Bundler'
+    msg = `bundle`
+    status = ($?.success? && :success) || :failed
 
     n msg, title, status
-
     "-> #{msg}"
   end
 
   watch(/.+\.tex/) do |m|
-    title = 'LaTeX output'
-    msg = 'Compilation failure'
-    status = :failed
-
-    if `make \`basename #{m[0]} .tex\`.pdf`
-      msg = 'Compiled'
-      status = :success
-    end
+    title = 'Compile'
+    msg = `make \`basename #{m[0]} .tex\`.pdf`
+    status = ($?.success? && :success) || :failed
 
     n msg, title, status
-
     "-> #{msg}"
   end
 end

@@ -30,7 +30,7 @@ task :excellent => [] do
 end
 
 task :rubocop => [] do
-  sh 'bundle exec rubocop'
+  sh 'bundle exec rubocop **/*.rb **/*.erb **/Guardfile*'
 end
 
 task :tailor => [] do

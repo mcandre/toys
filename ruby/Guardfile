@@ -1,28 +1,19 @@
 guard :shell do
   watch('Gemfile') do |m|
-    title = 'Bundler output'
-    msg = 'Bundler Failure'
-    status = :failed
-
-    if `bundle`
-      msg = 'Bundled'
-      status = :status
-    end
+    title = 'Bundler'
+    msg = `bundle`
+    status = ($?.success? && :success) || :failed
 
     n msg, title, status
-
     "-> #{msg}"
   end
 
   watch(/Rakefile|\..*|(.*\.rb)/) do |m|
-    title = 'Lint output'
-    msg = 'Lint failure'
-    status = :success
-
+    title = 'Lint'
     msg = `rake lint`
+    status = ($?.success? && :success) || :failed
 
     n msg, title, status
-
     "-> #{msg}"
   end
 end
