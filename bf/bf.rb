@@ -20,202 +20,200 @@
 # --version, -v:
 #    show version
 
-require "getoptlong"
-require "rdoc/usage"
+require 'getoptlong'
 
-BF_APP="Brainfuck"
-BF_VERSION="0.0.1"
-BF_COPYRIGHT="Copyright 2009 YelloSoft"
-BF_WELCOME="Use \'exit\' or Control-C to quit.\n\n"
-BF_INTERACTIVE_EXIT="exit"
+BF_APP = 'Brainfuck'
+BF_VERSION = '0.0.1'
+BF_COPYRIGHT = 'Copyright 2009 YelloSoft'
+BF_WELCOME = 'Use \'exit\' or Control-C to quit.\n\n'
+BF_INTERACTIVE_EXIT = 'exit'
 
+#
+# Brainfuck VM
+#
 class VM
-	attr_accessor :COMMENT, :tape, :address, :code, :pos, :step, :debug
+  attr_accessor :COMMENT, :tape, :address, :code, :pos, :step, :debug
 
-	COMMENT="#"
+  COMMENT = '#'
 
-	def initialize
-		@tape=[0] # Dynamic
-		@address=0
-		@code=""
-		@pos=0
-		@step=0
+  def initialize
+    @tape = [0] # Dynamic
+    @address = 0
+    @code = ''
+    @pos = 0
+    @step = 0
 
-		@debug=false
-	end
+    @debug = false
+  end
 
-	def self.valid?(level)
-		return level.count("[")==level.count("]")
-	end
+  def self.valid?(level)
+    level.count('[') == level.count(']')
+  end
 
-	# Assumes level is valid code.
-	def self.sublevel(level)
-		i=1
+  # Assumes level is valid code.
+  def self.sublevel(level)
+    i = 1
 
-		slevel=level[0, i]
-		while not valid?(slevel)
-			i+=1
-			slevel=level[0, i]
-		end
+    slevel = level[0, i]
 
-		return slevel[1, slevel.length-2]
-	end
+    until valid?(slevel)
+      i += 1
+      slevel = level[0, i]
+    end
 
-	def run(level, position=0)
-		len = level.length
+    slevel[1, slevel.length - 2]
+  end
 
-		while (position<len)
-			@step+=1
+  def run(level, position = 0)
+    len = level.length
 
-			if @debug
-				puts self
-			end
+    while position < len
+      @step += 1
 
-			c=level[position, 1]
+      puts self if @debug
 
-			case c
-			when "+"
-				@tape[@address]+=1
-			when "-"
-				@tape[@address]-=1
-			when "<"
-				@address-=1
-			when ">"
-				@address+=1
-				if @address==@tape.length
-					@tape << 0
-				end
-			when "."
-				STDOUT.putc(@tape[@address].chr)
-			when ","
-				@tape[@address]=STDIN.readchar
-			when "["
-				slevel=VM.sublevel(level[position, len-position])
+      c = level[position, 1]
 
-				while (@tape[@address]!=0)
-					run(slevel)
-				end
+      case c
+      when '+'
+        @tape[@address] += 1
+      when '-'
+        @tape[@address] -= 1
+      when '<'
+        @address -= 1
+      when '>'
+        @address += 1
 
-				position+=slevel.length+1
-			end
+        @tape << 0 if @address == @tape.length
+      when '.'
+        STDOUT.putc(@tape[@address].chr)
+      when ','
+        @tape[@address] = STDIN.readchar
+      when '['
+        slevel = VM.sublevel(level[position, len - position])
 
-			position+=1
-		end
+        run(slevel) until @tape[@address] == 0
 
-		return position
-	end
+        position += slevel.length + 1
+      end
 
-	def eval(command)
-		result=""
+      position += 1
+    end
 
-		command.split("\n").each do |cmd|
-			if (cmd[0, 1]!=COMMENT)
-				@code+=cmd
+    position
+  end
 
-				if VM.valid?(@code)
-					@pos=run(@code, @pos)
+  def evalbf(command)
+    result = ''
 
-					result=@tape[@address].to_s
-				end
-			end
-		end
+    command.split('\n').each do |cmd|
+      if cmd[0, 1] != COMMENT
+        @code += cmd
 
-		return result
-	end
+        if VM.valid?(@code)
+          @pos = run(@code, @pos)
 
-	def interactive
-		welcome
+          result = @tape[@address].to_s
+        end
+      end
+    end
 
-		begin
-			line=gets
+    result
+  end
 
-			result=eval(line.chomp)
-			if (result!="")
-				puts result
-			end
-		end while line!= BF_INTERACTIVE_EXIT
-	end
+  def interactive
+    welcome
 
-	def scripted(script)
-		lines=""
+    loop do
+      line = gets
 
-		begin
-			f=open(script, "r")
+      break if line == BF_INTERACTIVE_EXIT
 
-			lines=f.read
+      result = evalbf(line.chomp)
 
-			f.close
-		rescue
-			raise "Error reading file #{script}"
-		end
+      puts result if result != ''
+    end
+  end
 
-		eval(lines)
-	end
+  def scripted(script)
+    lines = ''
 
-	def to_s
-		result="--- Step #{@step} ---\n"
-		result+="Code:\n#{@code}\n"
-		result+="Position: #{@pos}\n"
-		result+="Command: #{@code[@pos, 1]}\n"
-		result+="Tape: #{ @tape.collect { |e| e.to_s }.join(" ") }\n"
-		result+="Address: #{@address}\n"
-		result+="Value: #{@tape[@address]}"
+    begin
+      f = open(script, 'r')
 
-		return result
-	end
+      lines = f.read
+
+      f.close
+    rescue
+      raise "Error reading file #{script}"
+    end
+
+    evalbf(lines)
+  end
+
+  def to_s
+    "--- Step #{@step} ---
+Code:\n#{@code}
+Position: #{@pos}
+Command: #{@code[@pos, 1]}
+Tape: #{ @tape.map { |e| e.to_s }.join(" ") }
+Address: #{@address}
+Value: #{@tape[@address]}"
+  end
 end
 
 def version
-	puts "#{BF_APP} #{BF_VERSION}"
-	exit
+  puts "#{BF_APP} #{BF_VERSION}"
+  exit
 end
 
 def welcome
-	puts "#{BF_APP} #{BF_VERSION} #{BF_COPYRIGHT}\n#{BF_WELCOME}"
+  puts "#{BF_APP} #{BF_VERSION} #{BF_COPYRIGHT}\n#{BF_WELCOME}"
+end
+
+def usage
+  system("more #{$PROGRAM_NAME}")
+  exit
 end
 
 def main
-	mode = :scripted
+  mode = :scripted
 
-	script=""
+  vm = VM.new
 
-	vm=VM.new
+  opts = GetoptLong.new(
+    ['--debug', '-d', GetoptLong::NO_ARGUMENT],
+    ['--help', '-h', GetoptLong::NO_ARGUMENT],
+    ['--version', '-v', GetoptLong::NO_ARGUMENT]
+  )
 
-	opts=GetoptLong.new(
-		["--debug", "-d", GetoptLong::NO_ARGUMENT],
-		["--help", "-h", GetoptLong::NO_ARGUMENT],
-		["--version", "-v", GetoptLong::NO_ARGUMENT]
-	)
+  opts.each do |option, value|
+    case option
+    when '--debug'
+      vm.debug = true
+    when '--help'
+      usgae
+    when '--version'
+      version
+    end
+  end
 
-	opts.each { |option, value|
-		case option
-		when "--debug"
-			vm.debug=true
-		when "--help"
-			RDoc::usage("Usage")
-		when "--version"
-			version
-		end
-	}
+  mode = :interactive if ARGV.length < 1
 
-	if ARGV.length<1
-		mode = :interactive
-	end
-
-	case mode
-	when :interactive
-		vm.interactive
-	when :scripted
-		vm.scripted(ARGV[0])
-	end
+  case mode
+  when :interactive
+    vm.interactive
+  when :scripted
+    vm.scripted(ARGV[0])
+  end
 end
 
-if __FILE__==$0
-	begin
-		main
-	rescue Interrupt => e
-		nil
-	rescue RuntimeError => e
-		puts e.message
-	end
+if $PROGRAM_NAME == __FILE__
+  begin
+    main
+  rescue Interrupt
+    nil
+  rescue RuntimeError => e
+    puts e.message
+  end
 end
