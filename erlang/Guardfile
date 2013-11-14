@@ -1,0 +1,10 @@
+guard :shell do
+  watch(/Makefile|(.*\.erl)/) do |m|
+    title = 'Lint'
+    msg = `make lint`
+    status = ($?.success? && :success) || :failed
+
+    n msg, title, status
+    "-> #{msg}"
+  end
+end
