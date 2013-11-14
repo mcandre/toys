@@ -29,12 +29,17 @@ checkstyle -c checkstyle.xml -r src/
   <module name="TreeWalker">
     <property name="fileExtensions" value="java,ejb,jpf" />
 
+    <!-- Lint javadocs -->
+    <module name="JavadocType"/>
+    <module name="JavadocMethod"/>
+
     <module name="ConstantName"/>
     <module name="LocalFinalVariableName"/>
     <module name="LocalVariableName"/>
     <module name="MemberName"/>
     <module name="MethodName"/>
     <module name="PackageName"/>
+    <module name="PackageDeclaration"/>
     <module name="ParameterName"/>
     <module name="StaticVariableName"/>
     <module name="TypeName"/>
@@ -53,7 +58,12 @@ checkstyle -c checkstyle.xml -r src/
     <module name="EmptyForIteratorPad"/>
     <module name="GenericWhitespace"/>
     <module name="MethodParamPad"/>
-    <module name="NoWhitespaceAfter"/>
+
+    <!-- Whitespace inside static arrays -->
+    <module name="NoWhitespaceAfter">
+      <property name="tokens" value="BNOT, DEC, DOT, INC, LNOT, UNARY_MINUS, UNARY_PLUS, TYPECAST" />
+    </module>
+
     <module name="NoWhitespaceBefore"/>
     <module name="OperatorWrap">
       <property name="tokens" value="PLUS" />
@@ -88,7 +98,10 @@ checkstyle -c checkstyle.xml -r src/
     <module name="FinalClass"/>
     <module name="HideUtilityClassConstructor"/>
     <module name="InterfaceIsType"/>
-    <module name="VisibilityModifier"/>
+    <module name="VisibilityModifier">
+      <!-- E.g., for unit testing -->
+      <property name="packageAllowed" value="true" />
+    </module>
 
     <module name="ArrayTypeStyle"/>
     <module name="FinalParameters"/>
