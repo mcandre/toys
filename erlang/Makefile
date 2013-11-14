@@ -8,5 +8,4 @@ lint: ~/.dialyzer_plt
 	dialyzer *.beam
 
 clean:
-	-rm *.exe
 	-rm *.beam
