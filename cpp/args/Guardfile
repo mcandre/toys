@@ -1,13 +1,4 @@
 guard :shell do
-  watch('Gemfile') do |m|
-    title = 'Bundler'
-    msg = `bundle`
-    status = ($?.success? && :success) || :failed
-
-    n msg, title, status
-    "-> #{msg}"
-  end
-
   watch(/(Makefile|(.*\.cpp)|(.*\.h))/) do |m|
     title = 'Test'
     msg = `make test`

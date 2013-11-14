@@ -1,13 +1,4 @@
 guard :shell do
-  watch('Gemfile') do |m|
-    title = 'Bundler'
-    msg = `bundle`
-    status = ($?.success? && :success) || :failed
-
-    n msg, title, status
-    "-> #{msg}"
-  end
-
   watch(/\.java/) do |m|
     title = 'Compile'
     msg = `javac -Xlint:all #{m[0]} 2>&1 && echo Success`
