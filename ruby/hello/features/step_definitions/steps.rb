@@ -3,5 +3,5 @@ Given(/^the program has finished$/) do
 end
 
 Then(/^the output is hello world$/) do
-  @cucumber.should == 'Hello World!\n'
+  @cucumber.chop.should == 'Hello World!'
 end
