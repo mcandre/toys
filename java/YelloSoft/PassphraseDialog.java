@@ -69,8 +69,10 @@ public class PassphraseDialog extends JPanel implements ActionListener {
       BorderFactory.createEmptyBorder(5, 5, 5, 5)
     );
     passphrasePanel.add(password1, BorderLayout.NORTH);
-    if (isDouble)
+
+    if (isDouble) {
       passphrasePanel.add(password2, BorderLayout.SOUTH);
+    }
 
     JPanel inputPanel = new JPanel();
     inputPanel.setLayout(new BorderLayout());
