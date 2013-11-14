@@ -8,45 +8,47 @@ import javax.crypto.*;
 public class EncryptedOutputStream extends OutputStream {
   private /*Cipher*/BufferedOutputStream out;
 
-  public EncryptedOutputStream(OutputStream os, Cipher c) {
-    out=/*new CipherOutputStream(*/
+  public EncryptedOutputStream(final OutputStream os, final Cipher c) {
+    out = /*new CipherOutputStream(*/
       new BufferedOutputStream(os)/*,
                                     c
                                     )*/;
   }
 
-  public void write(int i) {
+  public final void write(final int i) {
     try {
       out.write(i);
       out.flush();
     }
-    catch(IOException e) {
+    catch (IOException e) {
       e.printStackTrace();
     }
   }
 
-  public void writeString(String s) {
-    int len=s.length();
-    byte[] buf=new byte[len];
-    for (int i=0; i<buf.length; i++)
-      buf[i]=(byte) s.charAt(i);
+  public final void writeString(final String s) {
+    int len = s.length();
+    byte[] buf = new byte[len];
+
+    for (int i = 0; i < buf.length; i++) {
+      buf[i] = (byte) s.charAt(i);
+    }
 
     try {
       write(len);
       out.write(buf);
       out.flush();
     }
-    catch(IOException e) {
+    catch (IOException e) {
       e.printStackTrace();
     }
   }
 
-  public void close() {
+  public final void close() {
     try {
       out.flush();
       out.close();
     }
-    catch(IOException e) {
+    catch (IOException e) {
       e.printStackTrace();
     }
   }
