@@ -5,11 +5,11 @@
 import java.io.*;
 
 public class YByteInputStream extends ByteArrayInputStream {
-  public YByteInputStream(byte[] newBuf) {
+  public YByteInputStream(final byte[] newBuf) {
     super(newBuf);
   }
 
-  public byte[] getBytes() {
+  public final byte[] getBytes() {
     return buf;
   }
 }
