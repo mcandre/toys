@@ -4,7 +4,7 @@
 %%
 %% Run
 %%
-%% erl -noshell -s args -- <arg> <arg> <arg>...
+%% erl -noshell -s args -extra <arg> <arg> <arg>...
 
 -module(args).
 -export([start/0]).
