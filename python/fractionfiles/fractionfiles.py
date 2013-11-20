@@ -9,7 +9,8 @@ __copyright__ = "Copyright 2006 Andrew Pennebaker"
 __version__ = "0.3"
 __URL__ = "http://snippets.dzone.com/posts/show/3541"
 
-import sys, os
+import sys
+import os
 import getopt
 
 SPLIT_MODE = "SPLIT"
@@ -18,7 +19,7 @@ JOIN_MODE = "JOIN"
 def split_file(name, length, number):
   """Split a file into specified parts"""
 
-  if length == None:
+  if length is None:
     infile = open(name, "rb")
     size = 0
     while infile.read(1) != "":
@@ -112,7 +113,7 @@ def main():
   except getopt.GetoptError:
     usage()
 
-  if len(optlist)<1 or len(args)<1:
+  if len(optlist) < 1 or len(args) < 1:
     usage()
 
   for option, value in optlist:

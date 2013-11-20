@@ -6,11 +6,13 @@ __author__ = "Andrew Pennebaker (andrew.pennebaker@gmail.com)"
 __date__ = "13 Apr 2006 - 14 Apr 2006"
 __copyright__ = "Copyright 2006 Andrew Pennebaker"
 
-import os, gtk
-
 from ProgressDialog import ProgressDialog
 from FileSelectionDialog import FileSelectionDialog
 import downloader
+
+import gtk
+
+import os
 
 WINDOW = gtk.Window(gtk.WINDOW_TOPLEVEL)
 WINDOW.set_size_request(400, 70)

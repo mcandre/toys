@@ -8,9 +8,12 @@ __copyright__ = "Copyright 2007 Andrew Pennebaker"
 __version__ = "0.0.1"
 __URL__ = "http://snippets.dzone.com/posts/show/4223"
 
-import sys, getopt, urllib2, xmlrpclib
-
 import configreader
+
+import sys
+import getopt
+import urllib2
+import xmlrpclib
 
 STATUS_MODE = "STATUS"
 VIEW_MODE = "VIEW"
@@ -19,14 +22,14 @@ def set_status(settings, status):
   """Set Jaiku status"""
 
   s = xmlrpclib.ServerProxy(settings["xmlrpcurl"])
-  
+
   calldata = {
     "user": settings["username"],
     "personal_key": settings["personalkey"],
     "message": status,
     "location": settings["location"]
   }
-  
+
   try:
     s.presence.send(calldata)
   except:
@@ -41,7 +44,7 @@ def view_status(settings):
 
   try:
     instream = urllib2.urlopen(
-      settings["feedurlstart"]+settings["username"]+settings["feedurlend"]
+      settings["feedurlstart"] + settings["username"] + settings["feedurlend"]
     )
 
     for line in instream:
@@ -52,7 +55,7 @@ def view_status(settings):
 
     instream.close()
 
-    status = title[title.index(t1)+len(t1):title.index(t2)]
+    status = title[title.index(t1) + len(t1):title.index(t2)]
 
     return status
 
@@ -83,16 +86,16 @@ def main():
   mode = STATUS_MODE
 
   settings = {
-    "config":"jaiku.conf",
-    "xmlrpcurl":"http://api.jaiku.com/xmlrpc",
-    "feedurlstart":"http://",
-    "feedurlend":".jaiku.com/feed/atom",
-    "itemdelimeter":"<entry>",
-    "titledelimeter1":"<title>",
-    "titledelimeter2":"</title>",
-    "username":"mcandre",
-    "personalkey":"",
-    "location":""
+    "config": "jaiku.conf",
+    "xmlrpcurl": "http: //api.jaiku.com/xmlrpc",
+    "feedurlstart": "http: //",
+    "feedurlend": ".jaiku.com/feed/atom",
+    "itemdelimeter": "<entry>",
+    "titledelimeter1": "<title>",
+    "titledelimeter2": "</title>",
+    "username": "mcandre",
+    "personalkey": "",
+    "location": ""
   }
 
   optlist, args = [], []
