@@ -1,5 +1,5 @@
 guard :shell do
-  watch(/.*sh/) do |m|
+  watch(/lib\/.*/) do |m|
     title = 'Lint output'
     msg = 'Failure'
     status = :failed

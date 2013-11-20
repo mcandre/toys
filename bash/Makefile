@@ -1,7 +1,7 @@
-checkbashisms:
-	-checkbashisms *.sh
+shlint:
+	-shlint lib/
 
 shellcheck:
-	-shellcheck *sh
+	-shellcheck lib/**
 
-lint: checkbashisms shellcheck
+lint: shlint shellcheck
