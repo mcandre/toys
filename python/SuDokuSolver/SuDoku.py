@@ -9,7 +9,7 @@ from SuDokuCell import SuDokuCell
 
 class SuDoku:
   """Matrix representation of a SuDoKu puzzle"""
-  def __init__(self, rows = [[SuDokuCell(1, SuDokuCell.BLANK)]*9]*9):
+  def __init__(self, rows = [[SuDokuCell(1, SuDokuCell.BLANK)] * 9] * 9):
     """Initalize wrapper"""
     self.setRows(rows)
 
@@ -26,7 +26,7 @@ class SuDoku:
 
       row = [SuDokuCell() for t in range(9)]
       for j in range(9):
-        textCell = textRow[3*j:3*j+3]
+        textCell = textRow[3 * j:3 * j + 3]
 
         cell = SuDokuCell()
         cell.text2cell(textCell)
@@ -67,17 +67,17 @@ class SuDoku:
     return [
       [
         [
-          self.getCell(3*i, 3*j),
-          self.getCell(3*i, 3*j+1),
-          self.getCell(3*i, 3*j+2),
+          self.getCell(3 * i, 3 * j),
+          self.getCell(3 * i, 3 * j + 1),
+          self.getCell(3 * i, 3 * j + 2),
 
-          self.getCell(3*i+1, 3*j),
-          self.getCell(3*i+1, 3*j+1),
-          self.getCell(3*i+1, 3*j+2),
+          self.getCell(3 * i + 1, 3 * j),
+          self.getCell(3 * i + 1, 3 * j + 1),
+          self.getCell(3 * i + 1, 3 * j + 2),
 
-          self.getCell(3*i+2, 3*j),
-          self.getCell(3*i+2, 3*j+1),
-          self.getCell(3*i+2, 3*j+2)
+          self.getCell(3 * i + 2, 3 * j),
+          self.getCell(3 * i + 2, 3 * j + 1),
+          self.getCell(3 * i + 2, 3 * j + 2)
         ]
         for j in [0, 1, 2]
       ]
@@ -88,7 +88,7 @@ class SuDoku:
     return self.getMiniSDs()[loc[0]][loc[1]]
 
   def getMiniIndex(self, i, j):
-    loc = 0,0
+    loc = 0, 0
 
     # sudoku (i,j)       mini sudokus (x, y)
     #
@@ -112,25 +112,25 @@ class SuDoku:
 
     if i in [0, 1, 2]:
       if j in [0, 1, 2]:
-        loc = 0,0
+        loc = 0, 0
       elif j in [3, 4, 5]:
-        loc = 0,1
+        loc = 0, 1
       elif j in [6, 7, 8]:
-        loc = 0,2
+        loc = 0, 2
     elif i in [3, 4, 5]:
       if j in [0, 1, 2]:
-        loc = 1,0
+        loc = 1, 0
       elif j in [3, 4, 5]:
-        loc = 1,1
+        loc = 1, 1
       elif j in [6, 7, 8]:
-        loc = 1,2
+        loc = 1, 2
     elif i in [6, 7, 8]:
       if j in [0, 1, 2]:
-        loc = 2,0
+        loc = 2, 0
       elif j in [3, 4, 5]:
-        loc = 2,1
+        loc = 2, 1
       elif j in [6, 7, 8]:
-        loc = 2,2
+        loc = 2, 2
 
     return loc
 
@@ -176,8 +176,8 @@ class SuDoku:
     result = ""
     for row in self.getRows():
       for cell in row:
-        result+=str(cell)
-      result+="\n"
+        result += str(cell)
+      result += "\n"
 
     return result
 

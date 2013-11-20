@@ -112,26 +112,26 @@ def main():
   except getopt.GetoptError:
     usage()
 
-  if len(args)<1:
+  if len(args) < 1:
     usage()
 
   for option, value in optlist:
     if option == "--help":
       usage()
     elif option == "--family":
-      if FAMILIES.has_key(value):
+      if value in FAMILIES:
         family = FAMILIES[value]
       else:
-        raise TypeError, "Family not valid"
+        raise new TypeError("Family not valid")
     elif option == "--type":
-      if TYPES.has_key(value):
+      if value in TYPES:
         t = TYPES[value]
       else:
-        raise TypeError, "Type not valid"
+        raise new TypeError("Type not valid")
     elif option == "--port":
       try:
         ports = makerange(value)
-      except Exception, e:
+      except Exception as e:
         usage()
     elif option == "--verbose":
       v = True

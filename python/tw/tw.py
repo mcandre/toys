@@ -9,9 +9,13 @@ __version__ = "0.0.1"
 __credits__ = "Based on tweetyPy (http://muffinresearch.co.uk/archives/2007/03/24/tweetypy-python-based-cli-client-for-twitter/)"
 __URL__ = "http://snippets.dzone.com/posts/show/4150"
 
-import sys, getopt, getpass, urllib, urllib2
-
 import configreader
+
+import sys
+import getopt
+import getpass
+import urllib
+import urllib2
 
 STATUS_MODE = "STATUS"
 VIEW_MODE = "VIEW"
@@ -63,7 +67,7 @@ def set_status(settings, status):
   opener = urllib2.build_opener(auth_handler)
 
   url = "http://twitter.com/statuses/update.xml"
-  post = urllib.urlencode({"status":status})
+  post = urllib.urlencode({ "status": status })
 
   request = urllib2.Request(url, post)
   request.add_header("User-Agent", settings["useragent"])
@@ -76,7 +80,7 @@ def set_status(settings, status):
 def view_status(settings):
   """View Twitter status"""
 
-  url = "http://twitter.com/"+settings["username"]
+  url = "http://twitter.com/" + settings["username"]
   message = ""
 
   statusdelimeter1 = settings["statusdelimeter1"]
@@ -94,7 +98,6 @@ def view_status(settings):
     instream.close()
 
     return message
-        
   except IOError:
     raise "Could not connect."
 

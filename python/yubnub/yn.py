@@ -28,7 +28,7 @@ def space2plus(s):
 
 def yubnub(command = ""):
   """Execute YubNub command"""
-  return PARSER+space2plus(command)
+  return PARSER + space2plus(command)
 
 def yubnub_browser(command):
   """Open YubNub result in browser"""
@@ -62,12 +62,12 @@ def yubnub_plain(command, clean = True):
     return lines
 
   except IOError:
-    return Exception("Error connecting to "+command)
+    return Exception("Error connecting to " + command)
 
 def usage():
   """CLI"""
 
-  print("Usage: "+sys.argv[0]+" [options] <command>")
+  print("Usage: " + sys.argv[0] + " [options] <command>")
   print("-b --browser\n\tdefault mode")
   print("\n=p --plain\n\toutputs page contents")
   print("\t-c --clean\n\treplaces htmlencoded text with natural text")

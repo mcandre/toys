@@ -30,7 +30,7 @@ def tiny(url, settings):
       return url
 
     if settings["service"] == "urltea" and len(settings["description"]) > 0:
-      tinyurl += settings["description delimeter"]+settings["description"]
+      tinyurl += settings["description delimeter"] + settings["description"]
 
     return tinyurl
   except IOError:

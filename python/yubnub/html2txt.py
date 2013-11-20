@@ -39,7 +39,7 @@ class html2txt(SGMLParser):
     try:
       self.pieces.append(htmllib.HTMLParser.entitydefs[ref])
     except KeyError:
-      self.pieces.append("&"+ref)
+      self.pieces.append("&" + ref)
 
   def output(self):
     """Dump"""

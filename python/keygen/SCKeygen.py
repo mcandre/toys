@@ -37,7 +37,7 @@ class SCKeygen(Keygen):
       1 * 10 ** 12
     )
 
-    return  x
+    return x
 
   def format(self, num):
     """Format SC key"""

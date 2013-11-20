@@ -20,16 +20,16 @@ def makerange(s, min = 0, max = 65536):
     for s in sets:
       # form: -300
       if s[0] == "-":
-        temp = range(min, int(s[1:])+1)
+        temp = range(min, int(s[1:]) + 1)
         r += temp
         # form: 20000-
       elif s[-1] == "-":
-        temp = range(int(s[:-1]), max+1)
+        temp = range(int(s[:-1]), max + 1)
         r += temp
         # form: 200-300
       elif "-" in s:
         low, high = s.split("-")
-        temp = range(int(low), int(high)+1) # inclusive
+        temp = range(int(low), int(high) + 1) # inclusive
         r += temp
         # form: 80
       else:

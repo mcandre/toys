@@ -51,7 +51,7 @@ class Keygen:
     if self.verify(unformatted_key):
       return "Passed"
     else:
-      return "Failed: "+[num_key, formatted_key, unformatted_key]
+      return "Failed: " + [num_key, formatted_key, unformatted_key]
 
 def usage(self):
   """Print usage message"""
