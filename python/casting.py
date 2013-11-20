@@ -19,7 +19,7 @@ class GameObject:
   def look(self, args = None):
     """Look around a room"""
 
-    if args == None:
+    if args is None:
       args = []
 
     if len(args) == 0:
@@ -48,7 +48,7 @@ class Room(GameObject):
   def __repr__(self):
     result = self.description
 
-    if len(self.items["floor"].keys())<1:
+    if len(self.items["floor"].keys()) < 1:
       result += "\nNo items on floor."
     else:
       result += "\nOn the floor:\n"
@@ -56,7 +56,7 @@ class Room(GameObject):
         value.name for value in self.items["floor"].values()
       ])
 
-    if len(self.items["exits"].keys())<1:
+    if len(self.items["exits"].keys()) < 1:
       result += "\nNo exits."
     else:
       result += "\nExits: "

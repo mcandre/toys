@@ -10,9 +10,10 @@ __version__ = "0.0.1"
 from ants import Ant, Environment
 from ants.util import configreader, screenlengths, screenshot
 
-import sys, random
-
 import pygame
+
+import sys
+import random
 
 def play(screen, settings):
   """Tick"""
@@ -24,8 +25,8 @@ def play(screen, settings):
   ants = [
     Ant.Ant(
       [
-        lengths["midX"]+random.choice(range(-5, 5)),
-        lengths["midY"]+random.choice(range(-5, 5))
+        lengths["midX"] + random.choice(range(-5, 5)),
+        lengths["midY"] + random.choice(range(-5, 5))
       ],
       random.choice(
         [[0, 1], [1, 0], [0, -1], [-1, 0]]
@@ -92,19 +93,19 @@ def main():
   pygame.mouse.set_visible(False)
 
   settings = {
-    "screensync":True,
-    "fps":16,
-    "fullscreen":False,
-    "resolution":(800, 600),
+    "screensync": True,
+    "fps": 16,
+    "fullscreen": False,
+    "resolution": (800, 600),
 
-    "screenshotdir":"screens",
+    "screenshotdir": "screens",
 
-    "antcount":10,
-    "foodcount":2,
-    "foodsize":30,
+    "antcount": 10,
+    "foodcount": 2,
+    "foodsize": 30,
 
-    "keyescape":pygame.K_ESCAPE,
-    "keyscreenshot":pygame.K_0
+    "keyescape": pygame.K_ESCAPE,
+    "keyscreenshot": pygame.K_0
   }
 
   configreader.read(open("ants.conf", "r"), settings)

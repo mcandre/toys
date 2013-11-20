@@ -76,7 +76,8 @@
 # Dr. Lanning's Hologram: That, detective, is the right question.
 # Program terminated.
 
-import sys, time
+import sys
+import time
 
 # Requirements:
 # Mac OS X 10.5+
@@ -177,7 +178,7 @@ class Lanning(AppKit.NSObject):
   def respond(self, spooner):
     """Respond."""
 
-    if PROMPT2RESPONSE.has_key(spooner):
+    if spooner in PROMPT2RESPONSE:
       return PROMPT2RESPONSE[spooner]
     else:
       return DEFAULT_RESPONSE

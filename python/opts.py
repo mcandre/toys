@@ -2,7 +2,8 @@
 
 """Getopt demo"""
 
-import sys, getopt
+import sys
+import getopt
 
 def usage():
   """Print usage message"""

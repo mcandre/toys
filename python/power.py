@@ -9,7 +9,7 @@ def main():
 
   print("Running")
 
-  x = 2**n
+  x = 2 ** n
 
   print("2^n=", x)
 

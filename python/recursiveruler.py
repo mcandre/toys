@@ -18,7 +18,7 @@ def draw_ruler(screen, color, start, ruler_max, ruler_min, parts):
 
   bottom = height
 
-  for i in range(parts-1):
+  for i in range(parts - 1):
     markerrect = pygame.Rect(
       start - (width / parts) * i, bottom - ruler_max, 1, ruler_max
     )

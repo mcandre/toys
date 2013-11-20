@@ -2,7 +2,9 @@
 
 """Alarm sounder"""
 
-import time, os, sys
+import time
+import os
+import sys
 
 def alert():
   """Alert using OS-configured audio file"""
