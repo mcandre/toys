@@ -10,12 +10,12 @@ import sys
 import getopt
 
 INTERPRETERS = {
-  "py":"#!/usr/bin/env python",
-  "pl":"#!/usr/bin/env perl",
-  "pm":"#!/usr/bin/env perl",
-  "lua":"#!/usr/bin/env lua",
-  "sh":"#!/bin/sh",
-  "rb":"#!/usr/bin/env ruby"
+  "py": "#!/usr/bin/env python",
+  "pl": "#!/usr/bin/env perl",
+  "pm": "#!/usr/bin/env perl",
+  "lua": "#!/usr/bin/env lua",
+  "sh": "#!/bin/sh",
+  "rb": "#!/usr/bin/env ruby"
 }
 
 def update():
@@ -35,7 +35,7 @@ def update():
 def get_extension(filename):
   """Get a file's extension"""
 
-  return filename[filename.rindex(".")+1:]
+  return filename[filename.rindex(".") + 1:]
 
 def makeexec(filename, manual = None):
   """Make a file properly executable"""

@@ -25,8 +25,9 @@ def t(t, mult, div):
 
 def usage():
   """Print usage message"""
-  print("Usage: %s [--n n] [--precision precision] [--help]" %
-        (sys.argv[0])
+  print(
+    "Usage: %s [--n n] [--precision precision] [--help]" %
+    (sys.argv[0])
   )
   sys.exit()
 

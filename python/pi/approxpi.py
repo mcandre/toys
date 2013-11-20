@@ -12,11 +12,12 @@ __date__ = "17 Jan 2006 - 12 Feb 2006"
 __copyright__ = "Copyright 2006 Andrew Pennebaker"
 __version__ = "0.1"
 
-import math, sys
+import math
+import sys
 
 def approxpi(b = 1000L):
   """Pi approximation"""
-  return 2L*math.atan(b)
+  return 2L * math.atan(b)
 
 def usage():
   """Print usage message"""

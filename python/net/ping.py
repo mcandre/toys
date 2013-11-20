@@ -75,7 +75,7 @@ def checksum(data):
   state = 0
 
   while data:
-    state = state+(decode_short(data[0:2]) & 0xffff)
+    state = state + (decode_short(data[0:2]) & 0xffff)
 
     data = data[2:]
     while state > 0xffff:
@@ -161,7 +161,7 @@ def catch_echo_reply(s, other_address, ident, time_limit):
     if rdat[ihl] != "\x00":
       continue
 
-    if rdat[ihl + 4 : ihl + 6] != identity_string:
+    if rdat[ihl + 4: ihl + 6] != identity_string:
       continue
 
     if checksum(rdat[ihl:]) != 0:
@@ -188,7 +188,7 @@ def ping(host, timeout = 2, length = 56, ttl = 128):
 
   send_echo_request(s, dest_inet_address, data)
 
-  return catch_echo_reply(s, dest_inet_address, (os.getpid()&0xffff), timeout)
+  return catch_echo_reply(s, dest_inet_address, (os.getpid() & 0xffff), timeout)
 
 def usage():
   """Print usage message"""

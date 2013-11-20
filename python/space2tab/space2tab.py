@@ -33,7 +33,7 @@ Defaults to tab = 2 spaces."""
 def replace_spaces(lines, length):
   """Replace spaces"""
 
-  mark = " "*length
+  mark = " " * length
   newcode = []
   for line in lines:
     newcode.append(re.sub(mark, "\t", line))
@@ -47,7 +47,7 @@ def space2tab(input, output, length = None):
   text = f.readlines()
   f.close()
 
-  if length == None:
+  if length is None:
     length = get_space_length(text)
 
   text = replace_spaces(text, length)

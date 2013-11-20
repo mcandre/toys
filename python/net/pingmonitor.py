@@ -80,7 +80,7 @@ def main():
   except getopt.GetoptError:
     usage()
 
-  if len(args)<1:
+  if len(args) < 1:
     usage()
 
   for option, value in optlist:

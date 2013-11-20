@@ -30,7 +30,8 @@ TYPES = {
 
 from makerange import makerange
 
-import os, sys
+import os
+import sys
 from getopt import getopt
 
 GAPING_SECURITY_HOLE = False
@@ -42,7 +43,7 @@ SCAN_MODE = "SCAN"
 
 def listen(host = "localhost", port = 4000, family = FAMILIES["inet"], t = TYPES["tcp"], command = "", key = None, cert = None):
   if family == FAMILIES["inet6"] and (not has_ipv6):
-    raise Exception, "Platform does not support IPv6"
+    raise new Exception("Platform does not support IPv6")
 
   server = socket(family, t)
   if key and cert:
@@ -62,13 +63,13 @@ def listen(host = "localhost", port = 4000, family = FAMILIES["inet"], t = TYPES
     while isReceiving:
       data = client.recv(BUFFER)
       sys.stdout.write(data)
-      isReceiving = len(data)>0
+      isReceiving = len(data) > 0
 
     client.close()
 
 def connect(host, port = 4000, family = FAMILIES["inet"], t = TYPES["tcp"], key = None, cert = None):
   if family == FAMILIES["inet6"] and (not has_ipv6):
-    raise Exception, "Platform does not support IPv6"
+    raise new Exception("Platform does not support IPv6")
 
   client = socket(family, t)
   if key and cert:
@@ -79,13 +80,13 @@ def connect(host, port = 4000, family = FAMILIES["inet"], t = TYPES["tcp"], key 
   while isSending:
     data = sys.stdin.readline()
     client.send(data)
-    isSending = len(data)>0
+    isSending = len(data) > 0
 
   client.close()
 
-def scan(host = "localhost", portrange = range(0, 25+1), family = FAMILIES["inet"], t = TYPES["tcp"]):
+def scan(host = "localhost", portrange = range(0, 25 + 1), family = FAMILIES["inet"], t = TYPES["tcp"]):
   if family == FAMILIES["inet6"] and (not has_ipv6):
-    raise Exception, "Platform does not support IPv6"
+    raise new Exception("Platform does not support IPv6")
 
   client = socket(family, t)
 
@@ -94,7 +95,7 @@ def scan(host = "localhost", portrange = range(0, 25+1), family = FAMILIES["inet
   while len(portrange) > 0:
     # randomize port scan
     rand = os.urandom(2)
-    index = (ord(rand[0])*256+ord(rand[1]))%len(portrange)
+    index = (ord(rand[0]) * 256 + ord(rand[1])) % len(portrange)
 
     try:
       client.connect((host, portrange[index]))
@@ -169,15 +170,15 @@ def main():
     elif option == "--connect":
       mode = CONNECT_MODE
     elif option == "--family":
-      if FAMILIES.has_key(value):
+      if value in FAMILIES:
         family = FAMILIES[value]
       else:
-        raise TypeError, "Family not valid"
+        raise new TypeError("Family not valid")
     elif option == "--type":
-      if TYPES.has_key(value):
+      if value in TYPES:
         t = TYPES[value]
       else:
-        raise TypeError, "Type not valid"
+        raise new TypeError("Type not valid")
     elif option == "--port":
       try:
         ports = makerange(value)
@@ -187,7 +188,7 @@ def main():
       mode = LISTEN_MODE
     elif option == "--execute":
       if not GAPING_SECURITY_HOLE:
-        raise Exception, "GAPING_SECURITY_HOLE not configured to allow command execution"
+        raise new Exception("GAPING_SECURITY_HOLE not configured to allow command execution")
     elif option == "--scan":
       mode = SCAN_MODE
     elif option == "--sslkey":
@@ -210,5 +211,5 @@ def main():
 if __name__ == "__main__":
   try:
     main()
-  except: KeyboardInterrupt:
+  except KeyboardInterrupt:
     pass
