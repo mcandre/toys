@@ -1,3 +1,3 @@
 #!/usr/bin/env zsh
 
-echo "Hello World"
+echo "Hello World!"
