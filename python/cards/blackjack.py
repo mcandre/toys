@@ -11,21 +11,21 @@ from Poker.PokerCard import PokerCard
 from Poker.PokerDeck import PokerDeck
 
 VALUE = {
-  "Low Ace":1,
-  "High Ace":11,
-  PokerCard.TWO:2,
-  PokerCard.THREE:3,
-  PokerCard.FOUR:4,
-  PokerCard.FIVE:5,
-  PokerCard.SIX:6,
-  PokerCard.SEVEN:7,
-  PokerCard.EIGHT:8,
-  PokerCard.NINE:9,
-  PokerCard.TEN:10,
-  PokerCard.JACK:10,
-  PokerCard.QUEEN:10,
-  PokerCard.KING:10,
-  PokerCard.ACE:11
+  "Low Ace": 1,
+  "High Ace": 11,
+  PokerCard.TWO: 2,
+  PokerCard.THREE: 3,
+  PokerCard.FOUR: 4,
+  PokerCard.FIVE: 5,
+  PokerCard.SIX: 6,
+  PokerCard.SEVEN: 7,
+  PokerCard.EIGHT: 8,
+  PokerCard.NINE: 9,
+  PokerCard.TEN: 10,
+  PokerCard.JACK: 10,
+  PokerCard.QUEEN: 10,
+  PokerCard.KING: 10,
+  PokerCard.ACE: 11
 }
 
 def separate_aces(cards):

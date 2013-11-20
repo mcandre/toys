@@ -43,9 +43,9 @@ class ProgressDialog:
       self.length = float(self.length)
       self.progress_bar.set_text(
         "%.02f/%.02f kb (%d%%)" % (
-          self.bytes_read/1024.0,
-          self.length/1024.0,
-          100*self.bytes_read/self.length
+          self.bytes_read / 1024.0,
+          self.length / 1024.0,
+          100 * self.bytes_read / self.length
         )
       )
 
@@ -62,7 +62,7 @@ class ProgressDialog:
     self.dialog.show_all()
 
     try:
-      while self.state == self.PENDING and (self.instream.fp != None):
+      while self.state == self.PENDING and (self.instream.fp is not None):
         line = self.instream.read(1024)
         if line == "":
           break
@@ -70,16 +70,16 @@ class ProgressDialog:
         self.bytes_read += len(line)
 
         if self.length != "?":
-          self.progress_bar.set_fraction(self.bytes_read/self.length)
+          self.progress_bar.set_fraction(self.bytes_read / self.length)
           self.progress_bar.set_text(
             "%.02f/%.02f kb (%d%%)" % (
-              self.bytes_read/1024.0,
-              self.length/1024.0,
-              100*self.bytes_read/self.length
+              self.bytes_read / 1024.0,
+              self.length / 1024.0,
+              100 * self.bytes_read / self.length
             )
           )
         else:
-          self.progress_bar.set_text("%.02f kb" % (self.bytes_read/1024.0))
+          self.progress_bar.set_text("%.02f kb" % (self.bytes_read / 1024.0))
 
         self.outstream.write(line)
 
@@ -93,7 +93,7 @@ class ProgressDialog:
         self.state == self.SUCCESS
 
         self.progress_bar.set_fraction(1.0)
-        self.progress_bar.set_text("%.02f kb" % (self.bytes_read/1024.0))
+        self.progress_bar.set_text("%.02f kb" % (self.bytes_read / 1024.0))
 
         self.delete_event()
     except:

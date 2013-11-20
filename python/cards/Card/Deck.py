@@ -31,7 +31,7 @@ class Deck:
     self.cards.append(card)
 
   def remove(self, item = None):
-    if item == None:
+    if item is None:
       return self.cards.pop()
     elif item.__class__ == (1).__class__:
       return self.cards.pop(item)
@@ -53,14 +53,14 @@ class Deck:
     """TIMTOWDI"""
 
     for i in range(len(self.cards)):
-      index = ord(os.urandom(1))%len(self.cards) # 0 to 255
+      index = ord(os.urandom(1)) % len(self.cards) # 0 to 255
 
       # rifle shuffle
       card = self.remove(index)
       self.add(card)
 
     if rounds > 0:
-      self.shuffle(rounds-1)
+      self.shuffle(rounds - 1)
 
   def deal(self, number):
     cards = []

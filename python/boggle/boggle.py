@@ -2,7 +2,8 @@
 
 """Trie-based boggle solver"""
 
-import sys, random
+import sys
+import random
 
 DEFAULT_DICT = "dict.txt"
 
@@ -45,7 +46,7 @@ def create_board():
 
   # random places
   board2 = []
-  while len(board)>0:
+  while len(board) > 0:
     board2.append(
       board.pop(
         random.choice(range(len(board)))
@@ -89,20 +90,20 @@ def trace(board, word, positions):
 
   if start == word:
     return positions
-  elif len(positions)>len(word):
+  elif len(positions) > len(word):
     return False
   else:
     x, y = positions[-1]
 
-    for i in [x-1, x, x+1]:
-      for j in [y-1, y, y+1]:
+    for i in [x - 1, x, x + 1]:
+      for j in [y - 1, y, y + 1]:
         if (
-            i >= 0 and i<len(board) and
-            j >= 0 and j<len(board[i]) and
+            i >= 0 and i < len(board) and
+            j >= 0 and j < len(board[i]) and
             (i, j) not in positions and
             rest.startswith(board[i][j])
         ):
-          t = trace(board, word, positions+[(i, j)])
+          t = trace(board, word, positions + [(i, j)])
           if t:
             return t
 
@@ -115,7 +116,7 @@ def main():
 
   dictname = DEFAULT_DICT
 
-  if len(sys.argv)>1:
+  if len(sys.argv) > 1:
     dictname = sys.argv[1]
 
   dictfile = open(dictname, "r")

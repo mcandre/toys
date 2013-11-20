@@ -12,7 +12,7 @@ from Card.Deck import Deck
 
 class UNODeck(Deck):
   def __init__(self, cards = None):
-    if cards != None:
+    if cards is not None:
       self.setCards(cards)
     else:
       self.setCards(

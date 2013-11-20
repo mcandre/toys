@@ -18,7 +18,7 @@ def bigger_luhn(n):
   """ bigger_luhn(int) -> int
   Gets a Luhn number greater than n.
   Uses a probability model that is very efficient if
-  n passes the Luhn checksum. 
+  n passes the Luhn checksum.
   It may be possible to miss a Luhn number with this method.
   """
   for t in [8, 18, 7, 17, 6, 16]:
@@ -26,7 +26,7 @@ def bigger_luhn(n):
       return n + t
 
   return next_luhn(n)
-        
+
 def xluhn(seed, howmany):
   """xluhn(int,int) -> *int
   Yields Luhn numbers greater than the seed.

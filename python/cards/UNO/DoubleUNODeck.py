@@ -9,7 +9,7 @@ from UNODeck import UNODeck
 class DoubleUNODeck(UNODeck):
   def __init__(self, cards = None):
     # if deck is already a regular UNO Deck
-    if cards != None and len(cards) == len(UNODeck().getCards()): # 108
+    if cards is not None and len(cards) == len(UNODeck().getCards()): # 108
       self.setCards(cards + UNODeck().getCards())
     else:
-      self.setCards(UNODeck().getCards()+UNODeck().getCards())
+      self.setCards(UNODeck().getCards() + UNODeck().getCards())
