@@ -10,13 +10,13 @@ div5() {
 
 fizzy() {
   if [ "$(div3 "$1")" -eq 1 ] && [ "$(div5 "$1")" -eq 1 ]; then
-    expr "FizzBuzz"
+    echo "FizzBuzz"
   elif [ "$(div3 "$1")" -eq 1 ]; then
-    expr "Fizz"
+    echo "Fizz"
   elif [ "$(div5 "$1")" -eq 1 ]; then
-    expr "Buzz"
+    echo "Buzz"
   else
-    expr "$1"
+    echo "$1"
   fi
 }
 
