@@ -1,11 +1,11 @@
 compile:
 	for f in *.erl; do erlc -Wall +debug_info $$f; done
 
-~/.dialyzer_plt: compile
-	dialyzer *.beam --build_plt --quiet
+plt:
+	dialyzer *.beam --build_plt --apps erts kernel stdlib
 
-lint: ~/.dialyzer_plt
-	dialyzer *.beam
+lint: compile
+	dialyzer *.beam --quiet
 
 clean:
 	-rm *.beam
