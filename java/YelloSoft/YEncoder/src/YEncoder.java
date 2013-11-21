@@ -15,8 +15,7 @@ import javax.swing.filechooser.*;
 public class YEncoder extends JPanel implements ActionListener {
   JTextArea contentArea;
 
-  static JButton encodeButton;
-
+  JButton encodeButton;
   JButton decodeButton;
 
   public YEncoder() {
