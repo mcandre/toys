@@ -1,4 +1,7 @@
 shlint:
 	-shlint lib/
 
-lint: shlint
+shellcheck:
+	-shellcheck lib/**
+
+lint: shlint shellcheck
