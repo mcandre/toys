@@ -1,6 +1,8 @@
+//
 // YEncoder
 // Andrew Pennebaker
 // July 2, 2004 - November 30, 2004
+//
 
 import java.io.*;
 
@@ -12,12 +14,14 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.filechooser.*;
 
+/** Base64 encoder */
 public class YEncoder extends JPanel implements ActionListener {
   JTextArea contentArea;
 
   JButton encodeButton;
   JButton decodeButton;
 
+  /** Construct GUI */
   public YEncoder() {
     super(new BorderLayout());
 
@@ -42,6 +46,10 @@ public class YEncoder extends JPanel implements ActionListener {
     add(buttonPanel, BorderLayout.PAGE_END);
   }
 
+  /**
+     <p>Respond to GUI event</p>
+     @param ae GUI event
+  */
   public final void actionPerformed(final ActionEvent ae) {
     if (ae.getSource() == encodeButton) {
       yEncode();
@@ -51,6 +59,7 @@ public class YEncoder extends JPanel implements ActionListener {
     }
   }
 
+  /** Encode */
   public final void yEncode() {
     // open binary file
     JFileChooser fc = new JFileChooser(".");
@@ -124,6 +133,7 @@ public class YEncoder extends JPanel implements ActionListener {
     }
   }
 
+  /** Decode */
   public final void yDecode() {
     // open encoded file
     JFileChooser fc = new JFileChooser(".");
@@ -177,6 +187,11 @@ public class YEncoder extends JPanel implements ActionListener {
     }
   }
 
+  /**
+     <p>Extract file extension</p>
+     @param f file
+     @return file extension
+  */
   public static final String getExtension(final File f) {
     String s = f.getName();
     int i = s.lastIndexOf('.');
@@ -189,6 +204,11 @@ public class YEncoder extends JPanel implements ActionListener {
     }
   }
 
+  /**
+     <p>Decode a base64 formatted string</p>
+     @param u a base64 formatted string
+     @return data, in bytes
+  */
   public static final byte[] getDecoded(final String u) {
     BASE64Decoder decoder = new BASE64Decoder();
 
@@ -201,6 +221,10 @@ public class YEncoder extends JPanel implements ActionListener {
     }
   }
 
+  /**
+     <p>Launch GUI app</p>
+     @param args CLI args
+  */
   public static void main(final String[] args) {
     JFrame.setDefaultLookAndFeelDecorated(true);
     JDialog.setDefaultLookAndFeelDecorated(true);
