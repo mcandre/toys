@@ -12,15 +12,15 @@ import java.util.*;
 /** GUI Passphrase entry dialog */
 @SuppressWarnings("serial")
 public class PassphraseDialog extends JPanel implements ActionListener {
-  /** Type is confirmation */
+  /** Confirmation enabled */
   public static final boolean CONFIRM_DIALOG = true;
-  /** Single mode */
+  /** Multimode */
   public static final boolean SINGLE_DIALOG = false;
-  /** Toggle Cancel available */
+  /** Cancel */
   public static final int CANCEL_OPTION = 0;
-  /** Toggle Error available */
+  /** Error */
   public static final int ERROR_OPTION = 1;
-  /** Toggle Approve available */
+  /** Approve */
   public static final int APPROVE_OPTION = 2;
   /** OK text */
   public static final String CMD_OK = "Ok";

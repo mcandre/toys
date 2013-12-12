@@ -1,20 +1,31 @@
+//
 // KeyLengthDialog
 // Andrew Pennebaker
 // June 23, 2004 - October 5, 2004
+//
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.util.*;
 
+/** Key length dialog */
 @SuppressWarnings("serial")
 public class KeyLengthDialog extends JPanel implements ActionListener {
+  /** Unlocked */
   public static final boolean LOCKED = false;
+  /** Customized */
   public static final boolean CUSTOM = true;
+  /** Cancel */
   public static final int CANCEL_OPTION = 0;
+  /** Error */
   public static final int ERROR_OPTION = 1;
+  /** Approved */
   public static final int APPROVE_OPTION = 2;
+
+  /** OK text */
   public static final String CMD_OK = "Ok";
+  /** Cancel text */
   public static final String CMD_CANCEL = "Cancel";
 
   private String title = "Key Length Dialog";
@@ -33,6 +44,12 @@ public class KeyLengthDialog extends JPanel implements ActionListener {
   private boolean isDouble = true;
   private int returnValue = CANCEL_OPTION;
 
+  /**
+     <p>Construct GUI dialog</p>
+     @param objs objects
+     @param i index for default choice
+     @param b customizable
+  */
   public KeyLengthDialog(final Object[] objs, final int i, final boolean b) {
     choices = objs;
 
@@ -43,12 +60,21 @@ public class KeyLengthDialog extends JPanel implements ActionListener {
     allowCustom = b;
   }
 
+  /**
+     <p>Set multiple</p>
+     @param i index
+  */
   public final void setMultiple(final int i) {
     if (i > 0) {
       multiple = i;
     }
   }
 
+  /**
+     <p>Set selection bounds</p>
+     @param a minimum
+     @param b maximum
+  */
   public final void setBounds(final int a, final int b) {
     if (a > 0 && b > a) {
       min = a;
@@ -56,6 +82,12 @@ public class KeyLengthDialog extends JPanel implements ActionListener {
     }
   }
 
+  /**
+     <p>Present GUI</p>
+     @param parent GUI parent widget
+     @param s message text
+     @return GUI response
+  */
   public final int showDialog(final Component parent, final String s) {
     Frame frame = (Frame) SwingUtilities.getAncestorOfClass(Frame.class, parent);
 
@@ -103,10 +135,18 @@ public class KeyLengthDialog extends JPanel implements ActionListener {
     return returnValue;
   }
 
+  /**
+     <p>Get selection</p>
+     @return object
+  */
   public final Object getChoice() {
     return choice;
   }
 
+  /**
+     <p>Make button panel</p>
+     @return panel
+  */
   private JPanel makeButtonPanel() {
     JPanel panel = new JPanel();
 
@@ -121,6 +161,10 @@ public class KeyLengthDialog extends JPanel implements ActionListener {
     return panel;
   }
 
+  /**
+     <p>Respond to GUI event</p>
+     @param e GUI event
+  */
   public final void actionPerformed(final ActionEvent e) {
     if (allowCustom && e.getSource() == bitLengthBox) {
       String newLength = (String) bitLengthBox.getSelectedItem();
