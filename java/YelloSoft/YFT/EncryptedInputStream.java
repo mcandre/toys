@@ -1,13 +1,21 @@
+//
 // EncryptedInputStream
 // Andrew Pennebaker
 // July 13, 2004
+//
 
 import java.io.*;
 import javax.crypto.*;
 
+/** Encryption wrapper around an input stream */
 public class EncryptedInputStream extends InputStream {
   private /*Cipher*/BufferedInputStream in;
 
+  /**
+     <p>Wrap an input stream in encryption</p>
+     @param is input stream
+     @param c cipher
+  */
   public EncryptedInputStream(final InputStream is, final Cipher c) {
     in = /*new CipherInputStream(*/
       new BufferedInputStream(is)/*,
@@ -15,6 +23,10 @@ public class EncryptedInputStream extends InputStream {
                                    )*/;
   }
 
+  /**
+     <p>Read an integer</p>
+     @return an integer
+  */
   public final int read() {
     try {
       return in.read();
@@ -25,6 +37,11 @@ public class EncryptedInputStream extends InputStream {
     }
   }
 
+  /**
+     <p>Read a string</p>
+     @return a string
+     @throws Exception on read error
+  */
   public final String readString() throws Exception {
     int len = (int) read();
 
