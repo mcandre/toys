@@ -11,9 +11,16 @@ import javax.crypto.*;
 
 import sun.misc.*;
 
+/** File server */
 public class YFTServer {
+  /** Default server port */
   public static final int DEFAULT_PORT = 7000;
 
+  /**
+     <p>Start server</p>
+     @param args CLI args
+     @throws IOException on read error
+  */
   public static void main(final String[] args) throws IOException {
     String algorithm = "AES"; // JOptionPane.showInputDialog("Enter algorithm:");
 
@@ -45,6 +52,12 @@ public class YFTServer {
     }
   }
 
+  /**
+     <p>Connect to client</p>
+     @param sessionTerms session data
+     @return whether the connection was successful
+     @throws Exception on error
+  */
   public static final boolean acceptSecureConnection(final String[] sessionTerms) throws Exception {
     boolean shutDown = false;
 
@@ -104,6 +117,14 @@ public class YFTServer {
     return !sessionTerms[2].equals("true");
   }
 
+  /**
+     <p>Login</p>
+     @param in content input stream
+     @param out content output stream
+     @param myName username
+     @param p password
+     @return whether the login was successful
+  */
   public static final boolean secureLogin(
     final DataInputStream in,
     final DataOutputStream out,
@@ -142,6 +163,14 @@ public class YFTServer {
 
   }
 
+  /**
+     <p>Transfer file</p>
+     @param name filename
+     @param params parameters
+     @param socket network socket
+     @return parameters
+     @throws Exception on error
+  */
   public static String[] yft(
     final String name,
     final String[] params,
@@ -366,6 +395,12 @@ public class YFTServer {
     return params;
   }
 
+  /**
+     <p>Encrypt</p>
+     @param c a cipher
+     @param plainText plaintext data
+     @return ciphertext, base64 encoded
+  */
   public static String makeEncryption(final Cipher c, final String plainText) {
     try {
       BASE64Encoder encoder = new BASE64Encoder();
@@ -390,6 +425,13 @@ public class YFTServer {
     }
   }
 
+  /**
+     <p>Decrypt</p>
+     @param c a cipher
+     @param cipherText ciphertext data
+     @param len length
+     @return plaintext, as a string
+  */
   public static String makeDecryption(final Cipher c, final String cipherText, final int len) {
     try {
       BASE64Decoder decoder = new BASE64Decoder();
@@ -423,6 +465,12 @@ public class YFTServer {
     }
   }
 
+  /**
+     <p>Digitally sign</p>
+     @param key private key
+     @param plainText plaintext data
+     @return a digital signature
+  */
   public static String makeSignature(final PrivateKey key, final String plainText) {
     try {
       BASE64Encoder encoder = new BASE64Encoder();
@@ -446,6 +494,11 @@ public class YFTServer {
     }
   }
 
+  /**
+     <p>Read a string from a network stream</p>
+     @param dis network input stream
+     @return a string
+  */
   public static String getString(final DataInputStream dis) {
     try {
       return dis.readUTF();
@@ -455,6 +508,11 @@ public class YFTServer {
     }
   }
 
+  /**
+     <p>Write a string to a network stream</p>
+     @param dos network output stream
+     @param s string
+  */
   public static void sendString(final DataOutputStream dos, final String s) {
     try {
       dos.writeUTF(s);
@@ -465,6 +523,11 @@ public class YFTServer {
     }
   }
 
+  /**
+     <p>Decode base64-formatted string</p>
+     @param u base64-formatted string
+     @return data, in bytes
+  */
   public final byte[] getDecoded(final String u) {
     BASE64Decoder decoder = new BASE64Decoder();
 
@@ -480,6 +543,11 @@ public class YFTServer {
     }
   }
 
+  /**
+     <p>Get an integer from a network stream</p>
+     @param is input stream
+     @return an integer
+  */
   public static int getData(final InputStream is) {
     try {
       int i = is.read();
@@ -491,6 +559,11 @@ public class YFTServer {
     }
   }
 
+  /**
+     <p>Buffer and return all data from a stream</p>
+     @param in input stream
+     @return data, in bytes
+  */
   public static byte[] getAllData(final InputStream in) {
     byte[] buf;
 
@@ -505,6 +578,11 @@ public class YFTServer {
     return buf;
   }
 
+  /**
+     <p>Write data to a stream</p>
+     @param os output stream
+     @param data an integer
+  */
   public static void writeData(final OutputStream os, final int data) {
     try {
       os.write(data);
