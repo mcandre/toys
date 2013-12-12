@@ -1,20 +1,30 @@
+//
 // PassphraseDialog
 // Andrew Pennebaker
 // June 22, 2004 - October 5, 2004
+//
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.util.*;
 
+/** GUI Passphrase entry dialog */
 @SuppressWarnings("serial")
 public class PassphraseDialog extends JPanel implements ActionListener {
+  /** Type is confirmation */
   public static final boolean CONFIRM_DIALOG = true;
+  /** Single mode */
   public static final boolean SINGLE_DIALOG = false;
+  /** Toggle Cancel available */
   public static final int CANCEL_OPTION = 0;
+  /** Toggle Error available */
   public static final int ERROR_OPTION = 1;
+  /** Toggle Approve available */
   public static final int APPROVE_OPTION = 2;
+  /** OK text */
   public static final String CMD_OK = "Ok";
+  /** Cancel text */
   public static final String CMD_CANCEL = "Cancel";
 
   private String title = "Passphrase Dialog";
@@ -28,16 +38,33 @@ public class PassphraseDialog extends JPanel implements ActionListener {
   private boolean isDouble = true;
   private int returnValue = CANCEL_OPTION;
 
-  public PassphraseDialog() {}
-
+  /**
+     <p>Present GUI confirmation dialog</p>
+     @param parent GUI parent widget
+     @param s confirmation text
+     @return GUI response
+  */
   public final int showConfirmDialog(final Component parent, final String s) {
     return showDialog(parent, s, CONFIRM_DIALOG);
   }
 
+  /**
+     <p>Present single GUI dialog</p>
+     @param parent GUI parent widget
+     @param s message text
+     @return GUI response
+  */
   public final int showSingleDialog(final Component parent, final String s) {
     return showDialog(parent, s, SINGLE_DIALOG);
   }
 
+  /**
+     <p>Present GUI dialog</p>
+     @param parent GUI parent widget
+     @param s message text
+     @param b toggle double/single
+     @return GUI response
+  */
   public final int showDialog(final Component parent, final String s, final boolean b) {
     isDouble = b;
 
@@ -91,10 +118,18 @@ public class PassphraseDialog extends JPanel implements ActionListener {
     return returnValue;
   }
 
+  /**
+     <p>Get passphrase</p>
+     @return passphrase, in characters
+  */
   public final char[] getPassphrase() {
     return passphrase;
   }
 
+  /**
+     <p>Generate button panel</p>
+     @return panel
+  */
   private JPanel makeButtonPanel() {
     JPanel panel = new JPanel();
 
@@ -109,6 +144,10 @@ public class PassphraseDialog extends JPanel implements ActionListener {
     return panel;
   }
 
+  /**
+     <p>Respond to GUI events</p>
+     @param e GUI event
+  */
   public final void actionPerformed(final ActionEvent e) {
     if (e.getSource() == okButton) {
       char[] temp1 = password1.getPassword();
@@ -153,6 +192,7 @@ public class PassphraseDialog extends JPanel implements ActionListener {
     }
   }
 
+  /** Erase passphrase from memory */
   public final void wipePassphrase() {
     for (int i = 0; i < passphrase.length; i++) {
       passphrase[i] = (char) ((int) 'a' + i);
