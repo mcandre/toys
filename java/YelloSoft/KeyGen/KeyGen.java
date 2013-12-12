@@ -1,6 +1,8 @@
+//
 // KeyGen
 // Andrew Pennebaker
 // June 12, 2004 - November 30, 2004
+//
 
 import java.io.*;
 import java.security.*;
@@ -15,7 +17,9 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.filechooser.*;
 
+/** GUI Key generator */
 public class KeyGen extends JPanel implements ActionListener {
+  /** Supported algorithms */
   public static final String[] ALGORITHMS = {
     "RSA",
     "ElGamal",
@@ -42,6 +46,7 @@ public class KeyGen extends JPanel implements ActionListener {
   JCheckBox passphraseButton;
   static JButton genButton;
 
+  /** Construct GUI */
   public KeyGen() {
     super(new BorderLayout());
 
@@ -89,6 +94,10 @@ public class KeyGen extends JPanel implements ActionListener {
     add(genPanel, BorderLayout.PAGE_END);
   }
 
+  /**
+     <p>Respond to GUI event</p>
+     @param e GUI event
+  */
   public final void actionPerformed(final ActionEvent e) {
     if (e.getSource() == genButton) {
       String alg = ALGORITHMS[algList.getSelectedIndex()];
@@ -108,6 +117,11 @@ public class KeyGen extends JPanel implements ActionListener {
     }
   }
 
+  /**
+     <p>Generate keypair</p>
+     @param algorithm key algorithm
+     @param usePassphrase optionally protect private key with a passphrase
+  */
   public final void generateKeyPair(final String algorithm, final boolean usePassphrase) {
     KeyPairGenerator kpg = null;
     String provider = "Cryptix";
@@ -339,6 +353,11 @@ public class KeyGen extends JPanel implements ActionListener {
     }
   }
 
+  /**
+     <p>Generate secret key</p>
+     @param algorithm key algorithm
+     @param usePassphrase optinoally protect key with a passphrase
+  */
   public final void generateSecretKey(final String algorithm, final boolean usePassphrase) {
     KeyGenerator kg = null;
     String provider = "Cryptix";
@@ -594,6 +613,11 @@ public class KeyGen extends JPanel implements ActionListener {
     }
   }
 
+  /**
+     <p>Get file extension</p>
+     @param f file
+     @return file extension (lowercase)
+  */
   public final String getExtension(final File f) {
     String s = f.getName();
     int i = s.lastIndexOf('.');
@@ -606,6 +630,12 @@ public class KeyGen extends JPanel implements ActionListener {
     }
   }
 
+  /**
+     <p>Get PBE output</p>
+     @param c cipher
+     @param input input
+     @return bytes
+  */
   public final byte[] getPBEOutput(final Cipher c, final byte[] input) {
     try {
       return c.doFinal(input);
@@ -615,6 +645,10 @@ public class KeyGen extends JPanel implements ActionListener {
     }
   }
 
+  /**
+     <p>Launch GUI app</p>
+     @param args CLI args
+  */
   public static void main(final String[] args) {
     JFrame.setDefaultLookAndFeelDecorated(true);
     JDialog.setDefaultLookAndFeelDecorated(true);
