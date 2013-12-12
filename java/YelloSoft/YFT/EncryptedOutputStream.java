@@ -1,13 +1,21 @@
+//
 // EncryptedOutputStream
 // Andrew Pennebaker
 // July 13, 2004
+//
 
 import java.io.*;
 import javax.crypto.*;
 
+/** Encryption wrapper around output stream */
 public class EncryptedOutputStream extends OutputStream {
   private /*Cipher*/BufferedOutputStream out;
 
+  /**
+     <p>Wrap an output stream in encryption</p>
+     @param os output stream
+     @param c cipher
+  */
   public EncryptedOutputStream(final OutputStream os, final Cipher c) {
     out = /*new CipherOutputStream(*/
       new BufferedOutputStream(os)/*,
@@ -15,6 +23,10 @@ public class EncryptedOutputStream extends OutputStream {
                                     )*/;
   }
 
+  /**
+     <p>Write an integer</p>
+     @param i an integer
+  */
   public final void write(final int i) {
     try {
       out.write(i);
@@ -25,6 +37,10 @@ public class EncryptedOutputStream extends OutputStream {
     }
   }
 
+  /**
+     <p>Write a string</p>
+     @param s a string
+  */
   public final void writeString(final String s) {
     int len = s.length();
     byte[] buf = new byte[len];
@@ -43,6 +59,7 @@ public class EncryptedOutputStream extends OutputStream {
     }
   }
 
+  /** Close stream */
   public final void close() {
     try {
       out.flush();
