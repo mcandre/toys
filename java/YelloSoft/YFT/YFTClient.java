@@ -1,6 +1,8 @@
+//
 // Yellosoft File Transfer Client
 // Andrew Pennebaker
 // June 30, 2004 - October 16, 2004
+//
 
 import java.io.*;
 import java.net.*;
@@ -12,7 +14,13 @@ import javax.crypto.*;
 
 import sun.misc.*;
 
+/** File transfer client */
 public class YFTClient {
+  /**
+     <p>Start client</p>
+     @param args CLI args
+     @throws Exception on error
+  */
   public static void main(final String[] args) throws Exception {
     String alg = JOptionPane.showInputDialog("Enter session algorithm");
     String host = JOptionPane.showInputDialog("Enter hostname or ip");
@@ -117,6 +125,12 @@ public class YFTClient {
     System.exit(1);
   }
 
+  /**
+     <p>Transfer file</p>
+     @param params parameters
+     @param socket network socket
+     @throws Exception on error
+  */
   public static void yft(final String[] params, final Socket socket) throws Exception {
     DataInputStream in = new DataInputStream(socket.getInputStream());
     DataOutputStream out = new DataOutputStream(socket.getOutputStream());
@@ -316,6 +330,12 @@ public class YFTClient {
     out.close();
   }
 
+  /**
+     <p>Encrypt</p>
+     @param c a cipher
+     @param plainText plaintext data
+     @return ciphertext, base64 formatted
+  */
   public static String makeEncryption(final Cipher c, final String plainText) {
     try {
       BASE64Encoder encoder = new BASE64Encoder();
@@ -339,6 +359,13 @@ public class YFTClient {
     }
   }
 
+  /**
+     <p>Decrypt</p>
+     @param c a cipher
+     @param cipherText ciphertext data
+     @param len length
+     @return plaintext, as a string
+  */
   public static String makeDecryption(final Cipher c, final String cipherText, final int len) {
     try {
       BASE64Decoder decoder = new BASE64Decoder();
@@ -371,6 +398,13 @@ public class YFTClient {
     }
   }
 
+  /**
+     <p>Verify a digital signature</p>
+     @param key public key
+     @param sigData signature
+     @param text plaintext data
+     @return verification or error message
+  */
   public static String makeVerification(final PublicKey key, final String sigData, final String text) {
     try {
       BASE64Decoder decoder = new BASE64Decoder();
@@ -392,6 +426,11 @@ public class YFTClient {
     }
   }
 
+  /**
+     <p>Get a string from a stream</p>
+     @param dis stream
+     @return string
+  */
   public static String getString(final DataInputStream dis) {
     try {
       return dis.readUTF();
@@ -401,6 +440,11 @@ public class YFTClient {
     }
   }
 
+  /**
+     <p>Write a string to a stream</p>
+     @param dos output stream
+     @param s string
+  */
   public static void sendString(final DataOutputStream dos, final String s) {
     try {
       dos.writeUTF(s);
@@ -411,6 +455,11 @@ public class YFTClient {
     }
   }
 
+  /**
+     <p>Decode base64 formatted string</p>
+     @param u base64 formatted string
+     @return data, in bytes
+  */
   public final byte[] getDecoded(final String u) {
     BASE64Decoder decoder = new BASE64Decoder();
 
@@ -426,6 +475,11 @@ public class YFTClient {
     }
   }
 
+  /**
+     <p>Read an integer from a stream</p>
+     @param is input stream
+     @return an integer
+  */
   public static int getData(final InputStream is) {
     try {
       int i = is.read();
@@ -438,6 +492,11 @@ public class YFTClient {
     return -1;
   }
 
+  /**
+     <p>Buffer and read all data from a stream</p>
+     @param in input stream
+     @return data, in bytes
+  */
   public static byte[] getAllData(final InputStream in) {
     byte[] buf;
     try {
@@ -451,6 +510,11 @@ public class YFTClient {
     return buf;
   }
 
+  /**
+     <p>Write an integer to a stream</p>
+     @param os output stream
+     @param data an integer
+  */
   public static void writeData(final OutputStream os, final int data) {
     try {
       os.write(data);
