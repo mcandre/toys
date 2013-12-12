@@ -1,13 +1,18 @@
+//
 // PerformingOperationDialog
 // Andrew Pennebaker
 // July 13, 2004
+//
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+/** GUI Progress tracker */
 public class PerformingOperationDialog extends JPanel {
+  /** Starting HTML tag */
   public static final String START_HTML = "<html><font color=blue><font size=+2>";
+  /** Ending HTML tag */
   public static final String END_HTML = "</font></html>";
 
   private String title = "Performing Operation";
@@ -16,14 +21,26 @@ public class PerformingOperationDialog extends JPanel {
   private JDialog dialog = null;
   private JLabel label = null;
 
+  /**
+     <p>Set title</p>
+     @param t title
+  */
   public final void setTitle(final String t) {
     title = t;
   }
 
+  /**
+     <p>Set label text</p>
+     @param l label text
+  */
   public final void setLabelText(final String l) {
     labelText = l;
   }
 
+  /**
+     <p>Show tracker</p>
+     @param parent GUI parent widget
+  */
   public final void show(final Component parent) {
     Frame frame = (Frame) SwingUtilities.getAncestorOfClass(Frame.class, parent);
 
@@ -45,6 +62,7 @@ public class PerformingOperationDialog extends JPanel {
     dialog.show();
   }
 
+  /** Hide tracker */
   public final void hide() {
     dialog.dispose();
   }
