@@ -1,10 +1,19 @@
+package fib;
+
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
+/** Fibonnaci */
 public final class Fib {
+  /** utility class */
   private Fib() {}
 
+  /**
+     <p>Fibonacci</p>
+     @param n input
+     @return fib(n)
+  */
   public static int fib(final int n) {
     if (n < 2) {
       return n;
@@ -23,6 +32,11 @@ public final class Fib {
     }
   }
 
+  /**
+     <p>Timed Fibonacci test</p>
+     @param args CLI args
+     @throws IOException on CLI read error
+  */
   public static void main(final String[] args) throws IOException {
     System.out.print("N = ");
 
