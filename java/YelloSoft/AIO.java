@@ -1,16 +1,23 @@
+//
 // Andrew Input/Output
 // Andrew Pennebaker
 // June 9, 2004
+//
 
 import java.io.*;
 
+/** Andrew's IO helper */
 public final class AIO {
-  static BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in));
-
-  /** <p>No instance methods, only static methods.</p> */
+  /** utility class */
   private AIO() {}
 
-  // open file for reading
+  static BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in));
+
+  /**
+     <p>Open file for reading</p>
+     @param fileLoc file path
+     @return reader
+  */
   public static BufferedReader open(final String fileLoc) {
     FileInputStream fis;
 
@@ -27,8 +34,12 @@ public final class AIO {
     return br;
   }
 
-  // open file for reading
-  public static BufferedReader open(File file) {
+  /**
+     <p>Open file for reading</p>
+     @param file file
+     @return reader
+  */
+  public static BufferedReader open(final File file) {
     FileInputStream fis;
 
     try {
@@ -44,7 +55,11 @@ public final class AIO {
     return br;
   }
 
-  // create file for writing
+  /**
+     <p>Create file for writing</p>
+     @param fileLoc file path
+     @return writer
+  */
   public static PrintStream create(final String fileLoc) {
     FileOutputStream fos;
 
@@ -60,7 +75,11 @@ public final class AIO {
     return ps;
   }
 
-  // create file for writing
+  /**
+     <p>Create file for writing</p>
+     @param file file
+     @return writer
+  */
   public static PrintStream create(final File file) {
     FileOutputStream fos;
 
@@ -76,16 +95,29 @@ public final class AIO {
     return ps;
   }
 
+  /**
+     <p>Prompt and read input from keyboard</p>
+     @param s prompt
+     @return keyboard input
+  */
   public static String readKeyboard(final String s) {
     System.out.print(s);
     return read(keyboard);
   }
 
-  // read input from keyboard
+  /**
+     <p>Read input from keyboard</p>
+     @return keyboard input
+  */
   public static String readKeyboard() {
     return readKeyboard("");
   }
 
+  /**
+     <p>Read from a reader</p>
+     @param br reader
+     @return input, or null on error
+  */
   public static String read(final BufferedReader br) {
     try {
       return br.readLine();
@@ -95,6 +127,11 @@ public final class AIO {
     }
   }
 
+  /**
+     <p>Write a string to a stream</p>
+     @param ps stream
+     @param s string
+  */
   public static void write(final PrintStream ps, final String s) {
     ps.println(s);
   }
