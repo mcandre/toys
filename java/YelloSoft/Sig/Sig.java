@@ -1,6 +1,8 @@
+//
 // Sig
 // Andrew Pennebaker
 // June 14, 2004 - november 30, 2004
+//
 
 import java.io.*;
 import java.security.*;
@@ -14,6 +16,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.filechooser.*;
 
+/** Digital signer GUI */
 public class Sig extends JPanel implements ActionListener {
   JComboBox keyBox, mdBox;
   JCheckBox passphraseButton;
@@ -23,6 +26,7 @@ public class Sig extends JPanel implements ActionListener {
 
   JButton verifyButton;
 
+  /** Construct signer GUI */
   public Sig() {
     super(new BorderLayout());
 
@@ -119,6 +123,10 @@ public class Sig extends JPanel implements ActionListener {
     add(calcPanel, BorderLayout.PAGE_END);
   }
 
+  /**
+     <p>Responde to GUI event</p>
+     @param e GUI event
+  */
   public final void actionPerformed(final ActionEvent e) {
     if (e.getSource() == keyBox) {
       String keyAlg = (String) keyBox.getSelectedItem();
@@ -153,6 +161,12 @@ public class Sig extends JPanel implements ActionListener {
     }
   }
 
+  /**
+     <p>Sign</p>
+     @param keyAlgorithm key algorithm
+     @param mdAlgorithm message digest algorithm
+     @param hasPassphrase whether the key is protected by a passphrase
+  */
   public final void sign(final String keyAlgorithm, final String mdAlgorithm, final boolean hasPassphrase) {
     boolean useCryptix = false;
     String instance = "";
@@ -480,6 +494,11 @@ public class Sig extends JPanel implements ActionListener {
     }
   }
 
+  /**
+     <p>Verify</p>
+     @param keyAlgorithm key algorithm
+     @param mdAlgorithm message digest algorithm
+  */
   public final void verify(final String keyAlgorithm, final String mdAlgorithm) {
     boolean useCryptix = false;
     String instance = "";
@@ -677,6 +696,11 @@ public class Sig extends JPanel implements ActionListener {
     }
   }
 
+  /**
+     <p>Get file extension</p>
+     @param f file
+     @return file extension (lowercase)
+  */
   public final String getExtension(final File f) {
     String s = f.getName();
     int i = s.lastIndexOf('.');
@@ -689,6 +713,11 @@ public class Sig extends JPanel implements ActionListener {
     }
   }
 
+  /**
+     <p>Detect an input stream's availability for reading</p>
+     @param is an input stream
+     @return availability
+  */
   public final boolean isAvailable(final InputStream is) {
     try {
       return is.available() != 0;
@@ -698,6 +727,11 @@ public class Sig extends JPanel implements ActionListener {
     }
   }
 
+  /**
+     <p>Buffer and read all data from an input stream</p>
+     @param in an input stream
+     @return data, in bytes
+  */
   public static final byte[] getAllData(final InputStream in) {
     byte[] buf;
 
@@ -712,6 +746,10 @@ public class Sig extends JPanel implements ActionListener {
     return buf;
   }
 
+  /**
+     <p>Launch GUI</p>
+     @param args CLI args
+  */
   public static void main(final String[] args) {
     JFrame.setDefaultLookAndFeelDecorated(true);
     JDialog.setDefaultLookAndFeelDecorated(true);
