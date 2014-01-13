@@ -26,7 +26,7 @@
 #include <string.h>
 #include <stdio.h>
 
-static void __attribute__((noreturn)) usage(char *program) {
+static void __attribute__((noreturn)) usage(char* const program) {
   printf("Usage: %s [file|file.flip]\n", program);
   printf("\nFlip will invert the bits and create a .flip file.\n");
   printf("Flipping a file twice restores the original.\n");
@@ -34,7 +34,7 @@ static void __attribute__((noreturn)) usage(char *program) {
   exit(0);
 }
 
-int main(int argc, char **argv) {
+int main(const int argc, char** const argv) {
   char* filename;
   char* flipname;
   size_t len;
