@@ -1,13 +1,15 @@
-/*      Andrew Pennebaker (andrew.pennebaker@gmail.com)
-        Copyright 2007 Andrew Pennebaker
+/*
+  Andrew Pennebaker (andrew.pennebaker@gmail.com)
+  Copyright 2007 Andrew Pennebaker
 
-        Credits:
+  Credits:
 
-        http://www.krugle.com/files/cvs/cvs.jabberstudio.org/neutron/plugins/time_plugin.py
-        For the basic conversion method.
+  http://www.krugle.com/files/cvs/cvs.jabberstudio.org/neutron/plugins/time_plugin.py
+  For the basic conversion method.
 
-        http://www.acm.uiuc.edu/webmonkeys/book/c_guide/2.15.html
-        Thanks for actual working example of C's time and date libraries. */
+  http://www.acm.uiuc.edu/webmonkeys/book/c_guide/2.15.html
+  Thanks for actual working example of C's time and date libraries.
+*/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -55,7 +57,7 @@ static /*@null@*/ char* swatch() {
   }
 }
 
-int main(void) {
+int main() {
   char* s = swatch();
 
   if (s != NULL) {
