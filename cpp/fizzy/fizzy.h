@@ -3,7 +3,7 @@
 
 #include <string>
 
-std::string fizzy(int n);
+std::string fizzy(int const n);
 void fizzbuzz();
 
 #endif

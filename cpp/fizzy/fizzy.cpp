@@ -16,7 +16,7 @@ using std::string;
 using std::stringstream;
 using std::vector;
 
-string fizzy(int n) {
+string fizzy(int const n) {
   int a = n % 3, b = n % 5;
 
   if (a == 0 && b == 0) {
