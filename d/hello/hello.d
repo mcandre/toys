@@ -2,6 +2,6 @@
 
 import std.stdio;
 
-void main(immutable string[] args) {
+void main(const string[] args) {
   writeln("Hello World!");
 }
