@@ -2,9 +2,9 @@
 #import "Fizzy.h"
 
 @implementation Fizzy
-+ (NSString*) fizzy: (NSInteger) n {
-  BOOL div3 = (n % 3 == 0);
-  BOOL div5 = (n % 5 == 0);
++ (NSString*) fizzy: (const NSInteger) n {
+  const BOOL div3 = (n % 3 == 0);
+  const BOOL div5 = (n % 5 == 0);
 
   if (div3 && div5) {
     return @"FizzBuzz";

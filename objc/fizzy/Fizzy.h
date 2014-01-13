@@ -1,3 +1,3 @@
 @interface Fizzy: NSObject
-+ (NSString*) fizzy: (NSInteger) n;
++ (NSString*) fizzy: (const NSInteger) n;
 @end
