@@ -34,7 +34,7 @@ static void __attribute__((noreturn)) usage(char* const program) {
   exit(0);
 }
 
-int main(const int argc, char** const argv) {
+int main(int const argc, char** const argv) {
   char* filename;
   char* flipname;
   size_t len;

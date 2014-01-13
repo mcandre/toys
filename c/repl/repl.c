@@ -14,7 +14,7 @@
 
 #define EXIT "exit"
 
-static void __attribute__((noreturn)) usage(char* program) {
+static void __attribute__((noreturn)) usage(char* const program) {
   printf("Usage: %s <script>\n", program);
   printf("\n-h --help\tDisplay usage\n");
   printf("-v --version\tDisplay version\n");
@@ -37,7 +37,7 @@ static void interactive() {
 
   welcome();
 
-  command=(char*) malloc(1024);
+  command = (char*) malloc(1024);
 
   if (command != NULL) {
     do {
@@ -49,34 +49,34 @@ static void interactive() {
   free(command);
 }
 
-static void run(char* script) {
-  FILE *f=fopen(script, "rb");
+static void run(char* const script) {
+  FILE *f = fopen(script, "rb");
 
-  if (f==NULL) {
+  if (f == NULL) {
     printf("Error: Cannot read script %s\n", script);
   }
   else {
-    int c=fgetc(f);
-    while (c!=EOF) {
+    int c = fgetc(f);
+    while (c != EOF) {
       (void) putchar(c);
-      c=fgetc(f);
+      c = fgetc(f);
     }
 
     (void) fclose(f);
   }
 }
 
-int main(int argc, char** argv) {
+int main(int const argc, char** const argv) {
   if (argc<2) {
     interactive();
   }
   else {
     int i;
     for (i=1; i<argc; i++) {
-      if (strcmp(argv[i], "-h")==0 || strcmp(argv[i], "--help")==0) {
+      if (strcmp(argv[i], "-h") == 0 || strcmp(argv[i], "--help") == 0) {
         usage(argv[0]);
       }
-      else if (strcmp(argv[i], "-v")==0 || strcmp(argv[i], "--version")==0) {
+      else if (strcmp(argv[i], "-v") == 0 || strcmp(argv[i], "--version") == 0) {
         version();
       }
     }
