@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 
-def fizzy = { final n ->
+final def fizzy = { final n ->
 	if (n % 15 == 0) {
 		"FizzBuzz"
 	}
