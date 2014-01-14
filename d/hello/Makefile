@@ -1,10 +1,12 @@
+FLAGS=-w -wi
+
 all: test
 
 test: hello
 	./hello
 
 hello: hello.d
-	dmd hello
+	dmd $(FLAGS) hello
 
 clean:
 	-rm *.exe

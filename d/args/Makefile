@@ -1,10 +1,12 @@
+FLAGS=-w -wi
+
 all: test
 
 test: args
 	./args
 
 args: args.d
-	dmd args
+	dmd $(FLAGS) args
 
 clean:
 	-rm *.exe
