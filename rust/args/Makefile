@@ -8,4 +8,5 @@ args: args.rs
 
 clean:
 	-rm *.exe
+	-rm -rf *.dSYM
 	-rm args

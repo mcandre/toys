@@ -8,4 +8,5 @@ hello: hello.rs
 
 clean:
 	-rm *.exe
+	-rm -rf *.dSYM
 	-rm hello

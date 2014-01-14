@@ -8,4 +8,5 @@ vectest: vectest.rs
 
 clean:
 	-rm *.exe
+	-rm -rf *.dSYM
 	-rm vectest

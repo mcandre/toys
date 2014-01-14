@@ -8,4 +8,5 @@ fib: fib.rs
 
 clean:
 	-rm *.exe
+	-rm -rf *.dSYM
 	-rm fib
