@@ -1,5 +1,8 @@
 task :ruby => [] do
-  sh 'for f in **/*.rb; do ruby -wc $f 2>&1 | grep -v "Syntax OK" | grep -v openssl | grep -v rubygems; done'
+  begin
+    sh 'for f in **/*.rb; do ruby -wc $f 2>&1 | grep -v "Syntax OK" | grep -v openssl | grep -v rubygems; done'
+  rescue
+  end
 end
 
 task :reek => [] do
