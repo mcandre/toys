@@ -1,10 +1,9 @@
 guard :shell do
   watch(/.+\.hs/) do |m|
     title = 'Lint'
-    msg = `hlint #{m[0]}`
+    eager "hlint #{m[0]}"
     status = ($?.success? && :success) || :failed
-
-    n msg, title, status
-    "-> #{msg}"
+    n '', title, status
+    ''
   end
 end
