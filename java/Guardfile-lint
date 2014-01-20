@@ -1,5 +1,5 @@
 guard :shell do
-  watch(/(.*\.xml)|(.*\.java)/) do |m|
+  watch(/^.*\.(java|xml)$/) do |m|
     title = 'Lint'
     eager 'checkstyle -c checkstyle.xml **/*.java'
     status = ($?.success? && :success) || :failed
