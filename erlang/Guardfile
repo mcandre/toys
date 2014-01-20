@@ -1,5 +1,5 @@
 guard :shell do
-  watch(/Makefile|(.*\.erl)|(.*\.escript)/) do |m|
+  watch(/^Makefile|.*\.(erl|escript)$/) do |m|
     title = 'Lint'
     eager 'make lint'
     status = ($?.success? && :success) || :failed
