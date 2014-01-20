@@ -1,5 +1,5 @@
 guard :shell do
-  watch(/Rakefile|\..*|(.*\.rb)/) do |m|
+  watch(/^Rakefile|\..*|(.*\.rb)$/) do |m|
     title = 'Lint'
     eager 'rake lint'
     status = ($?.success? && :success) || :failed
