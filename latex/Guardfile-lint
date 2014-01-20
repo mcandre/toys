@@ -1,5 +1,5 @@
 guard :shell do
-  watch(/.+\.tex/) do |m|
+  watch(/^Makefile|.*\.tex$/) do |m|
     title = 'Lint'
     eager 'make lint'
     status = ($?.success? && :success) || :failed
