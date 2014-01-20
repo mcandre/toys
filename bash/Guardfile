@@ -1,5 +1,5 @@
 guard :shell do
-  watch(/lib\/.*/) do |m|
+  watch(/^lib\/.*$/) do |m|
     title = 'Lint output'
     eager 'make lint'
     status = ($?.success? && :success) || :failed
