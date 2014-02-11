@@ -1,4 +1,6 @@
-/* From Michael Plexousakis' http://www.tem.uoc.gr/~plex/EM191/wordcount.c */
+/* Copyright 2010 YelloSoft
+
+From Michael Plexousakis' http://www.tem.uoc.gr/~plex/EM191/wordcount.c */
 
 #include <stdlib.h>
 #include <stdio.h>
