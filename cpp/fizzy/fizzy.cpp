@@ -1,4 +1,6 @@
-#include "./fizzy.h"
+/* Copyright 2010 YelloSoft */
+
+#include "fizzy.h"
 
 #ifdef ASYNC
 #include <future>

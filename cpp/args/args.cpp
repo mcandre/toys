@@ -1,3 +1,5 @@
+/* Copyright 2010 YelloSoft */
+
 #include <iostream>
 using std::cout;
 using std::endl;
