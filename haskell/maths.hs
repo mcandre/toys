@@ -1,5 +1,5 @@
 -- Compile:
--- ghc -O2 -Wall --make maths.hs -threaded -rtsopts
+-- ghc -O2 -Wall -fwarn-tabs --make maths.hs -threaded -rtsopts
 --
 -- Run:
 -- time ./maths +RTS -N
