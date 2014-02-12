@@ -1,20 +1,17 @@
 #!/usr/bin/env perl
 use strict;
 use warnings;
+use Time::gmtime;
 
 # Andrew Pennebaker
 # Copyright 2007 Andrew Pennebaker
 #
 # Credits: http://www.krugle.com/files/cvs/cvs.jabberstudio.org/neutron/plugins/time_plugin.py
-
+#
 # Fixed: Mysterious slow upates, due to sec being added to UTC instead of $sec.
 
-use strict;
-
-use Time::gmtime;
-
 sub beat {
-  my $utc = gmtime();
+  my $utc = shift @_ || gmtime;
 
   my ($hour, $min, $sec) = ($utc->hour, $utc->min, $utc->sec);
 
@@ -31,7 +28,8 @@ sub beat {
 }
 
 sub swatch {
-  return sprintf("@%06.2f", beat);
+  my $b = beat shift @_;
+  return sprintf("@%06.2f", $b);
 }
 
 sub main {
