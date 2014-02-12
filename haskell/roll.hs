@@ -8,9 +8,9 @@ module Roll where
 
 import Data.Random
 import Data.Random.Source.IO
-import System (getProgName, getArgs)
-import System.Exit (exitSuccess)
-import Control.Monad (replicateM, when)
+import System.Environment (getProgName, getArgs)
+import System.Exit (exitSuccess, exitFailure)
+import Control.Monad (replicateM, when, liftM)
 import Data.Maybe (fromMaybe)
 import Data.Char (toLower)
 import Data.List.Split (splitOn)

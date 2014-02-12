@@ -14,11 +14,11 @@ catapult _ = "Nothing happened."
 
 main :: IO ()
 main = let
-  odie = Nothing :: Maybe Cat
-  c1 = Cat "Whiskers" 8.0 "Prof. Boring"
-  c2 = Cat "Garfield" 11.5 "Jon Arbuckle"
-  c3 = Cat "Galeanthrope" 7.0 "Nero"
-	in do
+    odie = Nothing :: Maybe Cat
+    c1 = Cat "Whiskers" 8.0 "Prof. Boring"
+    c2 = Cat "Garfield" 11.5 "Jon Arbuckle"
+    c3 = Cat "Galeanthrope" 7.0 "Nero"
+  in do
     putStrLn $ "Odie = " ++ show odie
     putStrLn $ "C1 = " ++ show c1
     putStrLn $ "C2 = " ++ show c2
