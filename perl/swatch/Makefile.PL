@@ -14,7 +14,7 @@ perlwarn:
 	-find . -type f -name '*.t' -exec perl -MO=Lint -cw {} 2>&1 \; | grep -v "syntax OK" | grep -v "Can't locate"
 
 perlcritic:
-	-perlcritic . | grep -v "source OK"
+	-perlcritic -q .
 
 lint: perlwarn perlcritic
 END
