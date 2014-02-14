@@ -1,13 +1,15 @@
 CC=clang
 FLAGS=-O2 -Wall -Wextra -Wmost -Weverything
 
+BIN=repl
+
 all: test
 
-test: repl
-	echo exit | ./repl
+test: $(BIN)
+	echo exit | ./$(BIN)
 
-repl: repl.c
-	$(CC) $(FLAGS) -o repl repl.c
+$(BIN): repl.c
+	$(CC) $(FLAGS) -o $(BIN) repl.c
 
 splint:
 	find . -type f -name '*.c' -exec splint {} \;
@@ -20,6 +22,9 @@ vera++:
 
 lint: splint vera++
 
+valgrind: $(BIN)
+	valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --track-fds=yes --dsymutil=yes echo exit | ./$(BIN)
+
 clean:
 	-rm *.exe
-	-rm repl
+	-rm $(BIN)

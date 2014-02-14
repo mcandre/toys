@@ -1,13 +1,15 @@
 CC=clang
 FLAGS=-O2 -Wall -Wextra -Wmost -Weverything
 
+BIN=swatch
+
 all: test
 
-test: swatch
-	./swatch
+test: $(BIN)
+	./$(BIN)
 
-swatch: swatch.c
-	$(CC) $(FLAGS) -o swatch swatch.c
+$(BIN): swatch.c
+	$(CC) $(FLAGS) -o $(BIN) swatch.c
 
 splint:
 	find . -type f -name '*.c' -exec splint {} \;
@@ -20,6 +22,9 @@ vera++:
 
 lint: splint vera++
 
+valgrind: $(BIN)
+	valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --track-fds=yes --dsymutil=yes ./$(BIN)
+
 clean:
 	-rm *.exe
-	-rm swatch
+	-rm $(BIN)

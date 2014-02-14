@@ -1,13 +1,15 @@
 CC=clang
 FLAGS=-O2 -Wall -Wextra -Wmost -Weverything
 
+BIN=hello
+
 all: test
 
-test: hello
-	./hello
+test: $(BIN)
+	./$(BIN)
 
-hello: hello.c
-	$(CC) $(FLAGS) -o hello hello.c
+$(BIN): hello.c
+	$(CC) $(FLAGS) -o $(BIN) hello.c
 
 splint:
 	find . -type f -name '*.c' -exec splint {} \;
@@ -20,6 +22,9 @@ vera++:
 
 lint: splint vera++
 
+valgrind: $(BIN)
+	valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --track-fds=yes --dsymutil=yes ./$(BIN)
+
 clean:
 	-rm *.exe
-	-rm hello
+	-rm $(BIN)

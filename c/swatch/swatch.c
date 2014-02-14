@@ -29,6 +29,8 @@ static double beats(void) {
 
   hour = g->tm_hour, min = g->tm_min, sec = g->tm_sec;
 
+  free(g);
+
   utc = hour * 3600 + min * 60 + sec; // Greenwich, England
 
   bmt = utc + 3600; // Biel, Switzerland

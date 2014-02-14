@@ -1,13 +1,15 @@
 CC=clang
 FLAGS=-O2 -Wall -Wextra -Wmost -Weverything
 
+BIN=hextime
+
 all: test
 
-test: hextime
-	./hextime
+test: $(BIN)
+	./$(BIN)
 
-hextime: hextime.c
-	$(CC) $(FLAGS) -o hextime hextime.c
+$(BIN): hextime.c
+	$(CC) $(FLAGS) -o $(BIN) hextime.c
 
 splint:
 	find . -type f -name '*.c' -exec splint {} \;
@@ -20,6 +22,9 @@ vera++:
 
 lint: splint vera++
 
+valgrind: $(BIN)
+	valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --track-fds=yes --dsymutil=yes ./$(BIN)
+
 clean:
 	-rm *.exe
-	-rm hextime
+	-rm $(BIN)
