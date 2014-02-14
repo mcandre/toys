@@ -18,13 +18,15 @@ else
 	endif
 endif
 
+BIN=fizzy
+
 all: test
 
-test: fizzy
-	./fizzy
+test: $(BIN)
+	./$(BIN)
 
-fizzy: fizzy.cpp
-	$(CC) $(FLAGS) $(STD) $(LINK_OPTIONS) -o fizzy fizzy.cpp
+$(BIN): fizzy.cpp
+	$(CC) $(FLAGS) $(STD) $(LINK_OPTIONS) -o $(BIN) fizzy.cpp
 
 cppcheck:
 	cppcheck --enable=all --suppress=missingIncludeSystem .
@@ -43,6 +45,9 @@ vera++:
 
 lint: cppcheck cpplint splint vera++
 
+valgrind: $(BIN)
+	valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --track-fds=yes --dsymutil=yes ./$(BIN)
+
 clean:
 	-rm *.exe
-	-rm fizzy
+	-rm $(BIN)

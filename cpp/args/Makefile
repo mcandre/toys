@@ -1,13 +1,15 @@
 CC=clang++
 FLAGS=-O2 -Wall -Wextra -Weffc++ -Wmost -Weverything
 
+BIN=args
+
 all: test
 
-test: args
-	./args
+test: $(BIN)
+	./$(BIN) a b c
 
-args: args.cpp
-	$(CC) $(FLAGS) -o args args.cpp
+$(BIN): args.cpp
+	$(CC) $(FLAGS) -o $(BIN) args.cpp
 
 cppcheck:
 	cppcheck --enable=all --suppress=missingIncludeSystem .
@@ -26,6 +28,9 @@ vera++:
 
 lint: cppcheck cpplint splint vera++
 
+valgrind: $(BIN)
+	valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --track-fds=yes --dsymutil=yes ./$(BIN) a b c
+
 clean:
 	-rm *.exe
-	-rm args
+	-rm $(BIN)
