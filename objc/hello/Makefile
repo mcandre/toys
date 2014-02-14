@@ -1,16 +1,18 @@
 FLAGS=-Wall -Wextra -Wmost -Weverything -framework Foundation -lobjc -o hello
 
+BIN=hello
+
 all: test
 
-test: hello
-	./hello
+test: $(BIN)
+	./$(BIN)
 
-hello: hello.m
-	clang $(FLAGS) hello.m
+$(BIN): Hello.m
+	clang $(FLAGS) Hello.m
 
-lint: hello
-	oclint hello.m -- $(FLAGS)
+lint: $(BIN)
+	oclint Hello.m -- $(FLAGS)
 
 clean:
 	-rm *.exe
-	-rm hello
+	-rm $(BIN)

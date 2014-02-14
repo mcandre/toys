@@ -8,7 +8,7 @@ test: fizzy
 fizzy: Fizzy.m
 	clang $(FLAGS) Fizzy.m
 
-lint:
+lint: $(BIN)
 	oclint -rc=SHORT_VARIABLE_NAME=1 Fizzy.m -- $(FLAGS)
 
 clean:

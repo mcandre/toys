@@ -1,16 +1,18 @@
 FLAGS=-Wall -Wextra -Wmost -Weverything -framework Foundation -lobjc -o args
 
+BIN=args
+
 all: test
 
-test: args
-	./args
+test: $(BIN)
+	./$(BIN)
 
-args: args.m
-	clang $(FLAGS) args.m
+$(BIN): Args.m
+	clang $(FLAGS) Args.m
 
-lint:
-	oclint args.m -- $(FLAGS)
+lint: $(BIN)
+	oclint Args.m -- $(FLAGS)
 
 clean:
 	-rm *.exe
-	-rm args
+	-rm $(BIN)
