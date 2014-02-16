@@ -13,6 +13,9 @@ $(BIN): Args.m
 lint: $(BIN)
 	oclint Args.m -- $(FLAGS)
 
+valgrind: $(BIN)
+	valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --track-fds=yes --dsymutil=yes ./$(BIN)
+
 clean:
 	-rm *.exe
 	-rm $(BIN)
