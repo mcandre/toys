@@ -1,11 +1,11 @@
 fizzy.pdf: fizzy.tex
-	pdflatex fizzy
+	pdflatex -interaction=nonstopmode fizzy
 
 magicnumbers.pdf: magicnumbers.tex
-	pdflatex magicnumbers
+	pdflatex -interaction=nonstopmode magicnumbers
 
 naivesettheory.pdf: naivesettheory.tex
-	pdflatex naivesettheory
+	pdflatex -interaction=nonstopmode naivesettheory
 
 guard: Guardfile
 	guard
