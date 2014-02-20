@@ -15,13 +15,16 @@
 
 module DotLogo where
 
+import Data.Text.Lazy (Text, pack, unpack)
 import Data.Graph.Inductive
 import Data.GraphViz
+import Data.GraphViz.Printing
+import Data.GraphViz.Attributes.Complete
 
-dotLogoGraph :: Gr String String
-dotLogoGraph = mkGraph [(0, "D"), (1, "O"), (2, "T")] [(0, 1, ""), (1, 2, ""), (2, 0, "")]
+dotLogoGraph :: Gr Text Text
+dotLogoGraph = mkGraph [(0, pack "D"), (1, pack "O"), (2, pack "T")] [(0, 1, pack ""), (1, 2, pack ""), (2, 0, pack "")]
 
-dotParams :: GraphvizParams String String () String
+dotParams :: GraphvizParams n Text Text () Text
 dotParams = nonClusteredParams {
   globalAttributes = ga,
   fmtNode = fn,
@@ -31,7 +34,7 @@ dotParams = nonClusteredParams {
     ga = [
       GraphAttrs [
          Center True,
-         (BgColor . X11Color) Transparent,
+         BgColor [toWColor Transparent],
          (Margin . DVal) 0.0,
          (Pad . DVal) 0.0,
          -- 156.25 pixels
@@ -47,4 +50,4 @@ dotParams = nonClusteredParams {
     fe (f,t,l) = [(Label . StrLabel) l]
 
 main :: IO ()
-main = putStr . printDotGraph $ graphToDot dotParams dotLogoGraph
+main = putStr $ unpack $ renderDot $ toDot $ graphToDot dotParams dotLogoGraph

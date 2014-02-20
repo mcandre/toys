@@ -15,13 +15,16 @@
 
 module Me where
 
+import Data.Text.Lazy (Text, pack, unpack)
 import Data.Graph.Inductive
 import Data.GraphViz
+import Data.GraphViz.Printing
+import Data.GraphViz.Attributes.Complete
 
-meGraph :: Gr String String
-meGraph = mkGraph [(0, "Me")] [(0, 0, "")]
+meGraph :: Gr Text Text
+meGraph = mkGraph [(0, pack "Me")] [(0, 0, pack "")]
 
-meParams :: GraphvizParams String String () String
+meParams :: GraphvizParams n Text Text () Text
 meParams = nonClusteredParams {
     globalAttributes = ga,
     fmtNode = fn,
@@ -30,12 +33,12 @@ meParams = nonClusteredParams {
   where
     ga = [
       GraphAttrs [
-        (BgColor . X11Color) Transparent
+        BgColor [toWColor Transparent]
         ],
       NodeAttrs [
         Shape Circle,
         PenWidth 0.0,
-        (FillColor . X11Color) Yellow,
+        FillColor [toWColor Yellow],
         Style [SItem Filled []]
         ]
       ]
@@ -44,4 +47,4 @@ meParams = nonClusteredParams {
     fe (f,t,l) = [(Label . StrLabel) l]
 
 main :: IO ()
-main = putStr . printDotGraph $ graphToDot meParams meGraph
+main = putStr $ unpack $ renderDot $ toDot $ graphToDot meParams meGraph

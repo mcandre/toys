@@ -15,13 +15,16 @@
 
 module Gnomes where
 
+import Data.Text.Lazy (Text, pack, unpack)
 import Data.Graph.Inductive
 import Data.GraphViz
+import Data.GraphViz.Printing
+import Data.GraphViz.Attributes.Complete
 
-gnomes :: Gr String String
-gnomes = mkGraph [(1, "Collect underpants"), (3, "Profit")] [(1, 3, "?")] :: Gr String String
+gnomes :: Gr Text Text
+gnomes = mkGraph [(1, pack "Collect underpants"), (3, pack "Profit")] [(1, 3, pack "?")]
 
-gnomeParams :: GraphvizParams String String () String
+gnomeParams :: GraphvizParams n Text Text () Text
 gnomeParams = nonClusteredParams {
   globalAttributes = ga,
   fmtNode = fn,
@@ -31,11 +34,11 @@ gnomeParams = nonClusteredParams {
     ga = [
       GraphAttrs [
          RankDir FromLeft,
-         (BgColor . X11Color) Transparent
+         BgColor [toWColor Transparent]
          ],
       NodeAttrs [
         Shape BoxShape,
-        (FillColor . X11Color) White,
+        FillColor [toWColor White],
         Style [SItem Filled []]
         ]
       ]
@@ -44,4 +47,4 @@ gnomeParams = nonClusteredParams {
     fe (f,t,l) = [(Label . StrLabel) l]
 
 main :: IO ()
-main = putStr . printDotGraph $ graphToDot gnomeParams gnomes
+main = putStr $ unpack $ renderDot $ toDot $ graphToDot gnomeParams gnomes
