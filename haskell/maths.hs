@@ -4,7 +4,7 @@
 -- Run:
 -- time ./maths +RTS -N
 
-import Text.Printf
+import Text.Printf (printf)
 import Control.Parallel (par, pseq)
 
 main :: IO ()
