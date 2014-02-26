@@ -5,10 +5,10 @@
 -- time ./maths +RTS -N
 
 import Text.Printf
-import Control.Parallel
+import Control.Parallel (par, pseq)
 
 main :: IO ()
-main = (a::Integer) `par` (b::Integer) `par` (c::Integer) `pseq` printf "A = %d\nB = %d\nC = %d\n" a b c
+main = a `par` b `par` c `pseq` printf "A = %d\nB = %d\nC = %d\n" a b c
   where
     a = ack 3 10
     b = fac 42
