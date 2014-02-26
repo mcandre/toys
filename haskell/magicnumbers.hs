@@ -3,8 +3,7 @@
 module Magic where
 
 import Text.Printf (printf)
-import Control.Parallel.Strategies
-import Control.Parallel
+import Control.Parallel.Strategies (parMap, rseq)
 
 magic :: String
 magic = unlines . parMap rseq magicN $ [1 .. 7]

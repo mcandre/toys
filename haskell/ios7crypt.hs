@@ -21,8 +21,7 @@ import Test.QuickCheck hiding (sample)
 import Data.Maybe (fromJust)
 import Control.Monad (when)
 
-import Control.Parallel.Strategies
-import Control.Parallel
+import Control.Parallel.Strategies (parMap, rseq)
 
 import GetOptFu
 
