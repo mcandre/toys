@@ -4,7 +4,15 @@
 
 module Main where
 
-import Control.Concurrent.STM
+import Control.Concurrent.STM (
+  TVar,
+  STM,
+  newTVarIO,
+  readTVar,
+  writeTVar,
+  atomically,
+  retry
+  )
 
 type Account = TVar Integer
 

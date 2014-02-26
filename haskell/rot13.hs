@@ -4,7 +4,7 @@ module ROT13 where
 
 import Data.Char (ord, chr, isAsciiLower, isAsciiUpper)
 import System.IO (interact)
-import Test.QuickCheck
+import Test.QuickCheck (quickCheck)
 
 littleA = ord 'a'
 littleZ = ord 'z'

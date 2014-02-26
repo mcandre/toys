@@ -12,7 +12,7 @@
 module ULines where
 
 import Data.List (isInfixOf)
-import Test.QuickCheck
+import Test.QuickCheck (quickCheck)
 
 isLineTerminator :: Char -> Bool
 isLineTerminator '\r' = True

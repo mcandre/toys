@@ -7,8 +7,8 @@
 
 module Eratosthenes where
 
-import Test.QuickCheck
 import Data.List (isPrefixOf)
+import Test.QuickCheck (quickCheck)
 
 sieve :: (Integral a) => [a] -> [a]
 sieve (n:ns) = n : sieve ns'

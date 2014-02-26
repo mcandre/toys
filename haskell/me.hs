@@ -16,10 +16,47 @@
 module Me where
 
 import Data.Text.Lazy (Text, pack, unpack)
-import Data.Graph.Inductive
-import Data.GraphViz
-import Data.GraphViz.Printing
-import Data.GraphViz.Attributes.Complete
+import Data.Graph.Inductive (Gr, mkGraph)
+import Data.GraphViz (
+  GraphvizParams,
+  GlobalAttributes(
+    GraphAttrs,
+    NodeAttrs
+    ),
+  X11Color(Transparent, Yellow),
+  nonClusteredParams,
+  globalAttributes,
+  fmtNode,
+  fmtEdge,
+  graphToDot
+  )
+import Data.GraphViz.Printing (toDot, renderDot)
+import Data.GraphViz.Attributes.Complete (
+  DPoint(DVal),
+  Attribute(
+    Margin,
+    Pad,
+    Center,
+    FillColor,
+    BgColor,
+    FontSize,
+    PenWidth,
+    Shape,
+    Label,
+    ViewPort,
+    Style
+    ),
+  Shape(Circle),
+  Label(StrLabel),
+  ViewPort(VP),
+  StyleName(Filled),
+  StyleItem(SItem),
+  toWColor,
+  wVal,
+  hVal,
+  zVal,
+  focus
+  )
 
 meGraph :: Gr Text Text
 meGraph = mkGraph [(0, pack "Me")] [(0, 0, pack "")]

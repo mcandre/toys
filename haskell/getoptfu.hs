@@ -20,9 +20,15 @@ module GetOptFu (
 import System.Environment (getProgName, getArgs)
 import System.Exit (exitSuccess, exitFailure)
 import System.IO (hPutStrLn, stderr)
-import System.Console.GetOpt
+import System.Console.GetOpt (
+  ArgOrder(RequireOrder),
+  OptDescr(Option),
+  ArgDescr(OptArg, ReqArg, NoArg),
+  getOpt,
+  usageInfo
+  )
 import Data.List (nub)
-import Data.Generics
+import Data.Generics (Data, Typeable, toConstr)
 
 parseOpts :: (Eq a, Data a) => String -> [String] -> [OptDescr a] -> IO ([a], [String])
 parseOpts prog argv opts = case getOpt RequireOrder opts argv of
