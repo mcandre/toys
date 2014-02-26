@@ -3,7 +3,7 @@
 -- FizzBuzz with parallel processing
 -- Andrew Pennebaker
 
-import Control.Parallel.Strategies
+import Control.Parallel.Strategies (parMap, rseq)
 
 fizzBuzz :: [String]
 fizzBuzz = parMap rseq fizzBuzz' [1 .. 100]
