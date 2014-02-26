@@ -15,8 +15,7 @@ import Data.Maybe (fromMaybe)
 import Data.Char (toLower)
 import Data.List.Split (splitOn)
 import Data.String.Utils (join)
-import Control.Parallel.Strategies
-import Control.Parallel
+import Control.Parallel.Strategies (parMap, rseq)
 
 -- Thanks to aavogt at #haskell
 maybeRead :: Read a => String -> Maybe a
