@@ -95,7 +95,7 @@
 			((find (text 0) tokens)
 				(push (token (text 0)) parts -1)
 				(setq text (rest text)))
-			;; tokenize entires strings as single entities
+			;; tokenize strings as single entities
 			((or (starts-with text "\"") (starts-with text "'"))
 				(let ((str (parse-string text)))
 					(push (token (str 0)) parts -1)
