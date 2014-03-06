@@ -356,7 +356,7 @@ public class KeyGen extends JPanel implements ActionListener {
   /**
      <p>Generate secret key</p>
      @param algorithm key algorithm
-     @param usePassphrase optinoally protect key with a passphrase
+     @param usePassphrase optionally protect key with a passphrase
   */
   public final void generateSecretKey(final String algorithm, final boolean usePassphrase) {
     KeyGenerator kg = null;
