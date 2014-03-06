@@ -192,7 +192,7 @@ def main
     when '--debug'
       vm.debug = true
     when '--help'
-      usgae
+      usage
     when '--version'
       version
     end
