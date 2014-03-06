@@ -2,7 +2,7 @@
  Copyright 2005-2007 Hacker Factor, All Rights Reserved.
  By Neal Krawetz, www.hackerfactor.com
  jpegquality:
- Estimate the quality of the JPEG based on the quanitization tables.
+ Estimate the quality of the JPEG based on the quantization tables.
 
  Neal's personal comment...
  "Jpeg, and Exif in particular, is one of the most screwed up formats
@@ -21,7 +21,7 @@
  costs associated with using this software.
 
  This code, or portions of it, may be incorporated into other projects as 
- long as the code is not re-licensed and the following acknowledgement is
+ long as the code is not re-licensed and the following acknowledgment is
  included along with any licensing files, copyright statements, and
  source code:
     This software includes code from jpegquality by Neal Krawetz,
@@ -185,7 +185,7 @@ int	ProcessJPEG	(FILE *Fin)
 	Precision = (Precision & 0xf0) / 16;
 	printf("  Precision=%d; Table index=%d (%s)\n",Precision,Index,Index ? "chrominance":"luminance");
 
-	/* Quantications tables have 1 DC value and 63 AC values */
+	/* Quantization tables have 1 DC value and 63 AC values */
 	/** Average AC table values to estimate compression level **/
 	Total=0;
 	TotalNum=0;
