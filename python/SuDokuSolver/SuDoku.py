@@ -1,4 +1,4 @@
-"""Brute force SuDoKu solver"""
+"""Brute force Sudoku solver"""
 
 __author__ = "Andrew Pennebaker (andrew.pennebaker@gmail.com)"
 __date__ = "2 May 2006 - 11 Dec 2006"
@@ -8,9 +8,9 @@ __credits__ = "Example solution from www.sudokusolver.co.uk"
 from SuDokuCell import SuDokuCell
 
 class SuDoku:
-  """Matrix representation of a SuDoKu puzzle"""
+  """Matrix representation of a SuDoku puzzle"""
   def __init__(self, rows = [[SuDokuCell(1, SuDokuCell.BLANK)] * 9] * 9):
-    """Initalize wrapper"""
+    """Initialize wrapper"""
     self.setRows(rows)
 
   def text2sudoku(self, text):
