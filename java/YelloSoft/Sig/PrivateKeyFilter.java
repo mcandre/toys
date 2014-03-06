@@ -12,7 +12,7 @@ public class PrivateKeyFilter extends FileFilter {
   /**
      <p>Accept only private key files</p>
      @param f file
-     @return acceptibility
+     @return acceptability
   */
   public final boolean accept(final File f) {
     // display all directories
