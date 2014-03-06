@@ -18,17 +18,17 @@ fi
 #echo $CacheIP
 
 wget http://freedns.afraid.org/dynamic/check.php -o /dev/null -O afraid.log
-CurreIP=$(tail afraid.log | grep Detected | cut -d : -f 2 | cut -d '<' -f 1 | tr -d " ")
-#echo $CurreIP
-if [ "$CurreIP" = "$CacheIP" ]
+CurrentIP=$(tail afraid.log | grep Detected | cut -d : -f 2 | cut -d '<' -f 1 | tr -d " ")
+#echo $CurrentIP
+if [ "$CurrentIP" = "$CacheIP" ]
 then
   # Both IP are equal
   echo "Update not required..."
 else
   # The IP has change
-  echo "Updating http://free.afraid.org with $CurreIP"
+  echo "Updating http://free.afraid.org with $CurrentIP"
   wget http://freedns.afraid.org/dynamic/update.php?xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -o /dev/null -O afraid.log
-  echo "$(date) Updating log with IP $CurreIP" >> dnsactual.log
+  echo "$(date) Updating log with IP $CurrentIP" >> dnsactual.log
 fi
 rm -f dnsactual.conf
-echo "$CurreIP" > dnsactual.conf
+echo "$CurrentIP" > dnsactual.conf
