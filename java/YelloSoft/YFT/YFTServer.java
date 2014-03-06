@@ -144,7 +144,7 @@ public class YFTServer {
       name = getString(in);
       clientsTicket = getString(in);
 
-      // calulate digest
+      // calculate digest
       MessageDigest md = MessageDigest.getInstance("MD5");
       md.update(myName.getBytes());
       md.update(timeStamp.getBytes());
