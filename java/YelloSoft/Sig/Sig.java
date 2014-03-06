@@ -1,7 +1,7 @@
 //
 // Sig
 // Andrew Pennebaker
-// June 14, 2004 - november 30, 2004
+// June 14, 2004 - November 30, 2004
 //
 
 import java.io.*;
@@ -124,7 +124,7 @@ public class Sig extends JPanel implements ActionListener {
   }
 
   /**
-     <p>Responde to GUI event</p>
+     <p>Respond to GUI event</p>
      @param e GUI event
   */
   public final void actionPerformed(final ActionEvent e) {
