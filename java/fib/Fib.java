@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-/** Fibonnaci */
+/** Fibonacci */
 public final class Fib {
   /** utility class */
   private Fib() {}
