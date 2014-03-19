@@ -6,7 +6,7 @@ int main() {
   int c = getchar();
 
   while (c != EOF) {
-    putchar(c);
+    (void) putchar(c);
     c = getchar();
   }
 
