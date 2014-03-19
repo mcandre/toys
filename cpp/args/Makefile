@@ -21,9 +21,7 @@ splint:
 	find . -type f -name '*.c' -exec splint {} \;
 
 vera++:
-	find . -type f -name '*.cpp' -exec vera++ -s {} \;
-	find . -type f -name '*.c' -exec vera++ -s {} \;
-	find . -type f -name '*.h' -exec vera++ -s {} \;
+	find . -type f -name '*.[ch]' -o -name '*.cpp' -exec vera++ -s {} \;
 
 lint: cppcheck cpplint splint vera++
 
