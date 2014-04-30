@@ -12,13 +12,10 @@ $(BIN): hello.c
 	$(CC) $(FLAGS) -o $(BIN) hello.c
 
 splint:
-	find . -type f -name '*.c' -exec splint {} \;
-	find . -type f -name '*.h' -exec splint {} \;
+	find . -type f -name '*.[ch]' -exec splint {} \;
 
 vera++:
-	find . -type f -name '*.cpp' -exec vera++ -s {} \;
-	find . -type f -name '*.c' -exec vera++ -s {} \;
-	find . -type f -name '*.h' -exec vera++ -s {} \;
+	find . -type f -name '*.[ch]' -o -name '*.cpp' -exec vera++ -s {} \;
 
 lint: splint vera++
 
