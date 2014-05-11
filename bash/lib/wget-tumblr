@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+#
+# Usage:
+#
+# wget-tumblr <Tumblr Domain>
+#
+# Source:
+#
+# http://kiodane.tumblr.com/post/27508318036/wget-mirror-a-tumblr-site
+#
+wget -mpNHk -D .media.tumblr.com,$1 -R "*avatar*","*\?*","*_[0-9][0-9][0-9].*" http://$1
