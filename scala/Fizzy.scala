@@ -1,7 +1,5 @@
 #!/usr/bin/env scala
 
-import scala.collection.parallel.immutable.ParSeq
-
 object Fizzy {
   def fizzy: Seq[String] = {
     (1 to 100).par.map { n =>
