@@ -1,7 +1,7 @@
 #!/usr/bin/env scala
 
 object Fizzy {
-  def fizzy: Seq[String] = (1 to 100).par.map { n =>
+  def fizzy : Seq[String] = (1 to 100).par.map { n =>
     (n % 3, n % 5) match {
       case (0, 0) => "FizzBuzz"
       case (0, _) => "Fizz"
@@ -10,5 +10,5 @@ object Fizzy {
     }
   }.seq
 
-  def main(args: Array[String]): Unit = fizzy.foreach(println)
+  def main(args : Array[String]) : Unit = fizzy.foreach(println)
 }

@@ -1,5 +1,5 @@
 #!/usr/bin/env scala
 
 object Hello {
-  def main(args: Array[String]): Unit = println("Hello World!")
+  def main(args : Array[String]) : Unit = println("Hello World!")
 }
