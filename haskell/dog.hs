@@ -1,5 +1,3 @@
-#!/usr/bin/env runhaskell
-
 module Dog where
 
 data Dog = Dog {
