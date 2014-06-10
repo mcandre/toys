@@ -1,5 +1,4 @@
 #!/usr/bin/env scala
 
-object Hello {
+object Hello
   def main(args : Array[String]) : Unit = args.foreach(println)
-}

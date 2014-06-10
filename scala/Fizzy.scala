@@ -6,7 +6,7 @@ object Fizzy {
       case (0, 0) => "FizzBuzz"
       case (0, _) => "Fizz"
       case (_, 0) => "Buzz"
-      case (_, _) => n.toString
+      case _ => n.toString
     }
   }.seq
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env scala
 
 object Cat {
-  case class Cat(name : String, weight : Double, owner : String) {}
+  case class Cat(name : String, weight : Double, owner : String)
 
   def catapult(c : Option[Cat]) : String = c match {
     case None => "Nothing happened."

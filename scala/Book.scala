@@ -1,1 +1,1 @@
-case class Book(title : String, quantity : Int) {}
+case class Book(title : String, quantity : Int)
