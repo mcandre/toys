@@ -1,5 +1,3 @@
-#!/usr/bin/env scala
-
 object Fibber {
   def fib(n : Int) : Int = n match {
     case 1 => 1

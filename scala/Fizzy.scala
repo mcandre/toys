@@ -1,5 +1,3 @@
-#!/usr/bin/env scala
-
 object Fizzy {
   def fizzy : Seq[String] = (1 to 100).par.map { n =>
     (n % 3, n % 5) match {

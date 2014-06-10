@@ -1,5 +1,3 @@
-#!/usr/bin/env scala
-
 object Cat {
   case class Cat(name : String, weight : Double, owner : String)
 

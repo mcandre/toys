@@ -1,5 +1,3 @@
-#!/usr/bin/env scala
-
 object Magic {
   val NUMBERS = List(
     0xbd, 0x88, 0x56, 0x63,
