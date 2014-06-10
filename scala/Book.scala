@@ -1,3 +1,1 @@
-class Book(val title : String, val quantity : Int) {
-  override def toString : String = title + " (" + quantity + "x)"
-}
+case class Book(title : String, quantity : Int) {}

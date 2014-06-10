@@ -1,24 +1,18 @@
 #!/usr/bin/env scala
 
 object Cat {
-  class Cat(
-    val name : String,
-    val weight : Double,
-    val owner : String
-  ) {
-    override def toString : String = "Cat(" + name + ", " + weight + ", " + owner + ")"
-  }
+  case class Cat(name : String, weight : Double, owner : String) {}
 
   def catapult(c : Option[Cat]) : String = c match {
     case None => "Nothing happened."
-    case _ => "Pull!\n" ++ c.get.name + " says 'Meow!'"
+    case option => "Pull!\n" ++ option.get.name + " says 'Meow!'"
   }
 
   def main(args : Array[String]) : Unit = {
     val odie = None : Option[Cat]
-    val c1 = new Cat("Whiskers", 8.0, "Prof. Boring")
-    val c2 = new Cat("Garfield", 11.5, "Jon Arbuckle")
-    val c3 = new Cat("Galeanthrope", 7.0, "Nero")
+    val c1 = Cat("Whiskers", 8.0, "Prof. Boring")
+    val c2 = Cat("Garfield", 11.5, "Jon Arbuckle")
+    val c3 = Cat("Galeanthrope", 7.0, "Nero")
 
     println("Odie = " + odie)
     println("C1 = " + c1)
