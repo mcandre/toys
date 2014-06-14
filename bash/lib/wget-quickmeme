@@ -13,6 +13,6 @@ wget -q \
   -D "www.quickmeme.com,s2.quickmeme.com" \
   -w $DELAY \
   -nd \
-  -I "$TAG/,img/,meme/," \
+  -I "$TAG/,img/,meme/" \
   -A ".html,.jpg,.jpeg,.gif,.png" \
   http://www.quickmeme.com/$TAG/
