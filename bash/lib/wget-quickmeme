@@ -17,3 +17,5 @@ wget -q \
   -I "$TAG/,img/,meme/" \
   -A ".html,.jpg,.jpeg,.gif,.png" \
   http://www.quickmeme.com/$TAG/
+
+rm $TAG/index.html
