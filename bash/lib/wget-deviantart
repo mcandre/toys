@@ -11,17 +11,17 @@
 
 if [ "$2" = "" ]
 then
-    dA=`wget -O-  "http://backend.deviantart.com/rss.xml?q=gallery%3A$1+sort%3Atime&type=deviation"`
+  dA=`wget -q -O- "http://backend.deviantart.com/rss.xml?q=gallery%3A$1+sort%3Atime&type=deviation"`
 else
-    dA=`wget -O- "$2"`
+  dA=`wget -q -O- "$2"`
 fi
 
-echo $dA | xmlstarlet sel -T -t -v //media:content/@url | xargs wget
+echo $dA | xmlstarlet sel -T -t -v //media:content/@url | xargs wget -q
 
 NEXT=`echo $dA | xmlstarlet sel -T -t -v "//atom:link[@rel='next']/@href"`
 if [ "$NEXT" != "" ]
 then
-    $0 $1 $NEXT
+  $0 $1 $NEXT
 else
-    echo Done
+  echo Done
 fi
