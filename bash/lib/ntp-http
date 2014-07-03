@@ -21,4 +21,4 @@
 # ...
 # Your clock is 0.3 seconds behind.
 
-sudo wget -S -O /dev/null google.com 2>&1 | sed -n -e 's/ *Date: *//p' -eT -eq | xargs -0 sudo date -s
+sudo wget -S -O /dev/null google.com 2>&1 | sed -n -e 's/\W*Date: *//p' -eT -eq | xargs -0 sudo date -s
