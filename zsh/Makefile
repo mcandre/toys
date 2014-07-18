@@ -1,3 +1,5 @@
+all: lint
+
 shlint:
 	-shlint lib/
 
