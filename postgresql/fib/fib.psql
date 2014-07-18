@@ -1,3 +1,5 @@
+--() { :; }; exec psql -f "$0"
+
 -- CREATE LANGUAGE plpgsql;
 
 CREATE OR REPLACE FUNCTION fib(n integer) RETURNS integer
