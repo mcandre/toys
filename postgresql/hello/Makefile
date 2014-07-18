@@ -1,8 +1,7 @@
 all: test
 
-test: fib.psql
-	psql -f fib.psql
-	time -p psql -c 'SELECT fib(20);'
+test: hello.psql
+	psql -f hello.psql
 
 pgsanity:
 	find . -type f -name '*.psql' -exec pgsanity {} \;
