@@ -1,7 +1,6 @@
 #!/bin/sh
 #|
-exec ccl -e "(load \"$0\")"
-exit
+exec clisp -q -q $0 $0 ${1+"$@"}
 |#
 
 ;;; Andrew Pennebaker

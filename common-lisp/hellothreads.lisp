@@ -1,3 +1,8 @@
+#!/bin/sh
+#|
+exec clisp -q -q $0 $0 ${1+"$@"}
+|#
+
 ;;; Hide stupid warnings
 (let* ((*standard-output* (make-broadcast-stream)) (*error-output* *standard-output*))
   ;;; Load Quicklisp.

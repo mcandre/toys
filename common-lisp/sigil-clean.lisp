@@ -1,7 +1,6 @@
 #!/bin/sh
 #|
 exec clisp -q -q $0 $0 ${1+"$@"}
-exit
 |#
 
 ;;;; Removes newlines at the beginning of PRE tags in Sigil-edited ePub files.
