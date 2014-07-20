@@ -1,3 +1,5 @@
+#!/usr/bin/env csi -ss
+
 ; Andrew Pennebaker
 ; 13 Feb 2007 - 5 Jun 2007
 
@@ -37,3 +39,5 @@
 (display (format "Fib ~a = ~a\n" n x))
 
 (display (format "Time = ~a sec\n" (- endt startt)))
+
+(exit)

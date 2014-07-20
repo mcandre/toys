@@ -1,3 +1,5 @@
+#!/usr/bin/env csi -ss
+
 (display "N: ")
 
 (define n (read))
@@ -11,3 +13,5 @@
 (display x)
 
 (display "\n")
+
+(exit)

@@ -1,3 +1,5 @@
+#!/usr/bin/env csi -ss
+
 (define response
 	(lambda (age)
 		(cond

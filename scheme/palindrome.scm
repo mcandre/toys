@@ -1,8 +1,4 @@
-#!/bin/bash
-#|
-exec csi -q -ss $0 ${1+"$@"}
-exit
-|#
+#!/usr/bin/env csi -ss
 
 ;;; Andrew Pennebaker
 ;;; 5 Mar 2011
@@ -31,8 +27,8 @@ exit
 				(format "~a ~a\n"
 					text
 					(if (palindrome? text)
-						" is a palindrome"
-						" is not a palindrome"))))
+						"is a palindrome"
+						"is not a palindrome"))))
 		(usage)))
 
 (define (program)

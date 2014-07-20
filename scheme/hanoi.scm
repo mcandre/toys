@@ -1,3 +1,5 @@
+#!/usr/bin/env csi -ss
+
 ; Andrew Pennebaker
 ; 9 Feb 2007 - 12 Jun 2007
 ; URL: http://snippets.dzone.com/posts/show/3492
@@ -19,6 +21,8 @@
 					(hanoi (- n 1) aux start end)
 				))))
 
+
+
 (display "N = ")
 (define n (read))
 
@@ -33,3 +37,5 @@
 (display (format "Time = ~a sec\n" (- endt startt)))
 
 ;(display (format "Steps = ~a\n" steps))
+
+(exit)
