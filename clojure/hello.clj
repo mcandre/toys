@@ -1,5 +1,4 @@
 ":";exec lein exec $0 ${1+"$@"}
-":";exit
 
 (ns hello
   (:gen-class))
