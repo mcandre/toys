@@ -27,5 +27,5 @@ echo "$dA" | xmlstarlet sel -T -t -v //media:content/@url | xargs wget -q -w $DE
 NEXT=$(echo "$dA" | xmlstarlet sel -T -t -v "//atom:link[@rel='next']/@href")
 if [ "$NEXT" != "" ]
 then
-  $0 "$ARTIST" "$NEXT"
+  "$0" "$ARTIST" "$NEXT"
 fi
