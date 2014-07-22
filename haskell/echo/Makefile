@@ -5,10 +5,10 @@ FLAGS=-O2 -Wall -fwarn-tabs --make -fforce-recomp -o $(BIN)
 all: test
 
 test: $(BIN)
-	./$(BIN) < echo.hs
+	./$(BIN) < Echo.hs
 
-$(BIN): echo.hs
-	ghc $(FLAGS) echo.hs
+$(BIN): Echo.hs
+	ghc $(FLAGS) Echo.hs
 
 hlint:
 	hlint .
