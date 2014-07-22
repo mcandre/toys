@@ -7,8 +7,8 @@ all: test
 test: $(BIN)
 	./$(BIN)
 
-$(BIN): fibber.hs
-	ghc $(FLAGS) fibber.hs
+$(BIN): Fibber.hs
+	ghc $(FLAGS) Fibber.hs
 
 hlint:
 	hlint .
