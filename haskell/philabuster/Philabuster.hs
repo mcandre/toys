@@ -1,6 +1,6 @@
 #!/usr/bin/env runhaskell
 
--- Requires random-fu
+-- Requires random-fu and random-source
 
 {-
 
@@ -53,12 +53,21 @@ Requires MissingH and random-fu
 module Philabuster where
 
 import Data.Random
-import Data.Random.Source.IO
+import Data.Random.Source.IO()
 
+features :: [String]
 features = ["head looks like", "eyes look like", "face looks like"]
+
+animals :: [String]
 animals = ["lizard", "rabbit", "monkey"]
+
+genitalia :: [String]
 genitalia = ["butt-flap", "pellets"]
+
+excretions :: [String]
 excretions = ["ass", "pus"]
+
+suffixes :: [String]
 suffixes = ["bag", "wipe", "muncher", "bomb", "tard", "gobbler", "fucker", "sucker", "diddler", "slurper", "gurgler", "queefer", "puffer", "knuckler", "nuzzler", "jacker", "groper", "twister", "felcher"]
 
 philabuster :: IO String
