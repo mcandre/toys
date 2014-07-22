@@ -3,12 +3,19 @@
 module ROT13 where
 
 import Data.Char (ord, chr, isAsciiLower, isAsciiUpper)
-import System.IO (interact)
+import System.IO()
 import Test.QuickCheck (quickCheck)
 
+littleA :: Int
 littleA = ord 'a'
+
+littleZ :: Int
 littleZ = ord 'z'
+
+bigA :: Int
 bigA = ord 'A'
+
+bigZ :: Int
 bigZ = ord 'Z'
 
 rot13Char :: Char -> Char
