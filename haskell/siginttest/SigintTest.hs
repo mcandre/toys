@@ -11,7 +11,7 @@
 -- Based on Rosetta Code
 -- http://rosettacode.org/wiki/Handle_a_signal#Haskell
 
-module SigIntTest where
+module SigintTest where
 
 import Control.Exception (handle, AsyncException(UserInterrupt))
 import Control.Monad (forever, when)
