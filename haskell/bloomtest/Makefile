@@ -7,8 +7,8 @@ all: test
 test: $(BIN)
 	./$(BIN)
 
-$(BIN): bloomtest.hs
-	ghc $(FLAGS) bloomtest.hs -package bloomfilter
+$(BIN): Bloomtest.hs
+	ghc $(FLAGS) Bloomtest.hs -package bloomfilter
 
 hlint:
 	hlint .
