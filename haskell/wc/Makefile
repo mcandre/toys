@@ -4,8 +4,8 @@ FLAGS=-O2 -Wall -fwarn-tabs --make -fforce-recomp -o $(BIN) -main-is WC
 
 all: test
 
-test: $(BIN)
-	./$(BIN) < WC.hs
+test: $(BIN) quux.txt
+	./$(BIN) < quux.txt
 
 $(BIN): WC.hs
 	ghc $(FLAGS) WC.hs
