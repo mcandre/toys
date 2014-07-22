@@ -7,8 +7,8 @@ all: test
 test: $(BIN)
 	./$(BIN) +RTS -N
 
-$(BIN): fizzy.hs
-	ghc $(FLAGS) fizzy.hs -threaded -rtsopts
+$(BIN): Fizzy.hs
+	ghc $(FLAGS) Fizzy.hs -threaded -rtsopts
 
 hlint:
 	hlint .
