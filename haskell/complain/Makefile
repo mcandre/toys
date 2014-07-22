@@ -7,8 +7,8 @@ all: test
 test: $(BIN)
 	./$(BIN)
 
-$(BIN): complain.hs
-	ghc $(FLAGS) complain.hs
+$(BIN): Complain.hs
+	ghc $(FLAGS) Complain.hs
 
 hlint:
 	hlint .
