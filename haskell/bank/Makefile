@@ -1,6 +1,6 @@
 BIN=bank
 
-FLAGS=-O2 -Wall -fwarn-tabs --make -fforce-recomp -o $(BIN)
+FLAGS=-O2 -Wall -fwarn-tabs --make -fforce-recomp -o $(BIN) -main-is Bank
 
 all: test
 

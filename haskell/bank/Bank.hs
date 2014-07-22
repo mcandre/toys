@@ -2,7 +2,7 @@
 
 -- From http://en.wikipedia.org/wiki/Concurrent_Haskell
 
-module Main where
+module Bank where
 
 import Control.Concurrent.STM (
   TVar,
