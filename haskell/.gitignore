@@ -3,7 +3,6 @@
 *.exe
 Gemfile.lock
 maths
-Poker
 experiment1
 experiment2
 experiment3

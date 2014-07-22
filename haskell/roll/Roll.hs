@@ -7,9 +7,9 @@
 module Roll where
 
 import Data.Random
-import Data.Random.Source.IO
+import Data.Random.Source.IO()
 import System.Environment (getProgName, getArgs)
-import System.Exit (exitSuccess, exitFailure)
+import System.Exit (exitSuccess)
 import Control.Monad (replicateM, when, liftM)
 import Data.Maybe (fromMaybe)
 import Data.Char (toLower)
@@ -33,7 +33,7 @@ toDie :: String -> Maybe Die
 toDie s = case (tail . parMap rseq toLower) s of
   "%" -> Just Per
   "f" -> Just F
-  s -> (maybeRead s :: Maybe Int) >>= Just . Poly
+  s' -> (maybeRead s' :: Maybe Int) >>= Just . Poly
 
 fromDie :: Die -> String
 fromDie die = 'd' : case die of
