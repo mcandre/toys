@@ -1,10 +1,17 @@
+FLAGS=-O2 -Wall -fwarn-tabs --make -fforce-recomp
+
 all: test
 
 test: fizzy
 	./fizzy +RTS -N
 
 fizzy: fizzy.hs
-	ghc -O2 -Wall -fwarn-tabs --make fizzy.hs -threaded -rtsopts
+	ghc $(FLAGS) fizzy.hs -threaded -rtsopts
+
+hlint:
+	hlint .
+
+lint: hlint
 
 clean:
 	-rm *.exe
