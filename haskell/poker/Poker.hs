@@ -34,6 +34,7 @@ instance Show PokerCard where
 o :: Rank -> Suit -> PokerCard
 r `o` s = PokerCard { rank = r, suit = s }
 
+pokerDeck :: [PokerCard]
 pokerDeck = [ r `o` s | r <- [ Ace .. ], s <- [ Spades .. ] ]
 
 main :: IO ()
