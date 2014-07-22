@@ -4,8 +4,8 @@ FLAGS=-O2 -Wall -fwarn-tabs --make -fforce-recomp
 
 all: $(LIB)
 
-$(LIB): dbool.hs
-	ghc $(FLAGS) dbool.hs
+$(LIB): DBool.hs
+	ghc $(FLAGS) DBool.hs
 
 hlint:
 	hlint .
