@@ -5,17 +5,18 @@
 -- Sieve of Eratosthenes
 -- http://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
 
-module Eratosthenes where
+module Sieve where
 
 import Data.List (isPrefixOf)
 import Test.QuickCheck (quickCheck)
 
-sieve :: (Integral a) => [a] -> [a]
-sieve (n:ns) = n : sieve ns'
-  where ns' = filter ((/= 0) . flip rem n) (n:ns)
-
-primes :: (Integral a) => [a]
+primes :: [Integer]
 primes = sieve [2..]
+  where
+    sieve :: (Integral a) => [a] -> [a]
+    sieve [] = []
+    sieve (n:ns) = n : sieve ns'
+      where ns' = filter ((/= 0) . flip rem n) (n:ns)
 
 propFirst :: Bool
 propFirst = head primes == 2
