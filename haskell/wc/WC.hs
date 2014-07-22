@@ -1,6 +1,6 @@
 #!/usr/bin/env runhaskell
 
-module Wordcount where
+module WC where
 
 wordCount :: String -> String
 wordCount input = "Lines: " ++ show (length (lines input)) ++ "\n" ++
