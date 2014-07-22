@@ -4,8 +4,8 @@ FLAGS=-O2 -Wall -fwarn-tabs --make -fforce-recomp
 
 all: $(LIB)
 
-$(LIB): books.hs
-	ghc $(FLAGS) books.hs
+$(LIB): Books.hs
+	ghc $(FLAGS) Books.hs
 
 hlint:
 	hlint .
