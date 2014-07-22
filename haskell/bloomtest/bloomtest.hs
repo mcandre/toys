@@ -1,5 +1,7 @@
 #!/usr/bin/env runhaskell
 
+{-# LANGUAGE NoImplicitPrelude #-}
+
 -- Requirements
 --
 -- Haskell
@@ -15,6 +17,7 @@
 -- Mandy in filter? True
 -- Sandy in filter? False
 
+import Prelude hiding (elem)
 import Data.BloomFilter.Easy
 
 main :: IO ()
@@ -42,4 +45,4 @@ main = do
         "Sandy"
         ]
 
-  mapM_ (\q -> putStrLn $ show q ++ " in filter? " ++ show (elemB q bf)) queries
+  mapM_ (\q -> putStrLn $ show q ++ " in filter? " ++ show (elem q bf)) queries
