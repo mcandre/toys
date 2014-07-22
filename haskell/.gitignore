@@ -2,7 +2,6 @@
 *.hi
 *.exe
 Gemfile.lock
-bank
 bird
 bloomtest
 maths

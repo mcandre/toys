@@ -1,14 +1,14 @@
-BIN=fizzy
+BIN=bank
 
 FLAGS=-O2 -Wall -fwarn-tabs --make -fforce-recomp -o $(BIN)
 
 all: test
 
 test: $(BIN)
-	./$(BIN) +RTS -N
+	./$(BIN)
 
-$(BIN): fizzy.hs
-	ghc $(FLAGS) fizzy.hs -threaded -rtsopts
+$(BIN): bank.hs
+	ghc $(FLAGS) bank.hs
 
 hlint:
 	hlint .
