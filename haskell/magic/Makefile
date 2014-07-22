@@ -7,8 +7,8 @@ all: test
 test: $(BIN)
 	./$(BIN)
 
-$(BIN): magic.hs
-	ghc $(FLAGS) magic.hs
+$(BIN): Magic.hs
+	ghc $(FLAGS) Magic.hs
 
 hlint:
 	hlint .
