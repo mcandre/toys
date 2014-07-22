@@ -18,6 +18,7 @@ complain c = case c of
   White -> "Too light!"
   Black -> "Too dark!"
 
+main :: IO ()
 main = let
   green = Green :: Color
   red = Red :: Color
