@@ -7,8 +7,8 @@ all: test
 test: $(BIN)
 	./$(BIN)
 
-$(BIN): bird.lhs
-	ghc $(FLAGS) bird.lhs
+$(BIN): Bird.lhs
+	ghc $(FLAGS) Bird.lhs
 
 hlint:
 	hlint .
