@@ -5,10 +5,10 @@
 CREATE OR REPLACE FUNCTION fib(n integer) RETURNS integer
 LANGUAGE plpgsql AS $$
 BEGIN
-        IF n < 2 THEN
-           RETURN n;
-        ELSE
-            RETURN fib(n - 2) + fib(n - 1);
-        END IF;
+  IF n < 2 THEN
+    RETURN n;
+  ELSE
+    RETURN fib(n - 2) + fib(n - 1);
+  END IF;
 END;
 $$;

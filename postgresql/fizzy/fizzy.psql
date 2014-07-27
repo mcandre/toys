@@ -5,17 +5,17 @@
 CREATE OR REPLACE FUNCTION fizzy(n integer) RETURNS text
 LANGUAGE plpgsql AS $$
 DECLARE
-				a integer := n % 3;
-				b integer := n % 5;
+  a integer := n % 3;
+	b integer := n % 5;
 BEGIN
-				IF (a, b) = (0, 0) THEN
-					 RETURN 'FizzBuzz';
-        ELSIF a = 0 THEN
-           RETURN 'Fizz';
-        ELSIF b = 0 THEN
-           RETURN 'Buzz';
-        ELSE
-           RETURN format('%s', n);
-				END IF;
+  IF (a, b) = (0, 0) THEN
+    RETURN 'FizzBuzz';
+  ELSIF a = 0 THEN
+    RETURN 'Fizz';
+  ELSIF b = 0 THEN
+    RETURN 'Buzz';
+  ELSE
+    RETURN format('%s', n);
+  END IF;
 END;
 $$;
