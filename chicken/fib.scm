@@ -3,8 +3,8 @@
 ; Andrew Pennebaker
 ; 13 Feb 2007 - 5 Jun 2007
 
-(require-extension srfi-13) ; strings
-(require-extension srfi-1) ; lists
+(use srfi-1) ; lists
+(use srfi-13) ; strings
 
 (define (main args)
   (display "N = ")

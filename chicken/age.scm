@@ -1,7 +1,7 @@
 #!/usr/bin/env csi -ss
 
-(require-extension srfi-13) ; strings
-(require-extension srfi-1) ; lists
+(use srfi-1) ; lists
+(use srfi-13) ; strings
 
 (define (main args)
   (display "Age: ")

@@ -4,8 +4,8 @@
 ; 9 Feb 2007 - 12 Jun 2007
 ; URL: http://snippets.dzone.com/posts/show/3492
 
-(require-extension srfi-13) ; strings
-(require-extension srfi-1) ; lists
+(use srfi-1) ; lists
+(use srfi-13) ; strings
 
 (define (main args)
   (display "N = ")

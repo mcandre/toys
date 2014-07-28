@@ -6,8 +6,8 @@
 ;;; From The Chicken User's Manual
 ;;; http://wiki.call-cc.org/man/4/Getting%20started
 
-(require-extension srfi-13) ; strings
-(require-extension srfi-1) ; lists
+(use srfi-1) ; lists
+(use srfi-13) ; strings
 
 (define (palindrome? x)
 	(define (check left right)
