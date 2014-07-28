@@ -3,6 +3,25 @@
 ; Andrew Pennebaker
 ; 13 Feb 2007 - 5 Jun 2007
 
+(require-extension srfi-13) ; strings
+(require-extension srfi-1) ; lists
+
+(define (main args)
+  (display "N = ")
+  (define n (read))
+  (display (format "~a\n" (fib n))))
+
+(define (program)
+  (if (string=? (car (argv)) "csi")
+      (let ((s-index (list-index (lambda (x) (string-contains x "-s")) (argv))))
+        (if (number? s-index)
+            (cons 'interpreted (list-ref (argv) (+ 1 s-index)))
+            (cons 'unknown "")))
+      (cons 'compiled (car (argv)))))
+
+(if (equal? (car (program)) 'compiled)
+    (main (cdr (argv))))
+
 (define (fib n)
 	(cond
 		((< n 2) n)
@@ -23,21 +42,3 @@
 ;		((= n 1) 1)
 ;		(else
 ;			(+ (fib (- n 1)) (fib (- n 2))))))
-
-(display "N = ")
-
-(define n (read))
-
-(display "Running\n")
-
-(define startt (current-seconds))
-
-(define x (fib n))
-
-(define endt (current-seconds))
-
-(display (format "Fib ~a = ~a\n" n x))
-
-(display (format "Time = ~a sec\n" (- endt startt)))
-
-(exit)

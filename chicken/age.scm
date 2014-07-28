@@ -1,5 +1,23 @@
 #!/usr/bin/env csi -ss
 
+(require-extension srfi-13) ; strings
+(require-extension srfi-1) ; lists
+
+(define (main args)
+  (display "Age: ")
+  (display (format "~a\n" (response (read)))))
+
+(define (program)
+  (if (string=? (car (argv)) "csi")
+      (let ((s-index (list-index (lambda (x) (string-contains x "-s")) (argv))))
+        (if (number? s-index)
+            (cons 'interpreted (list-ref (argv) (+ 1 s-index)))
+            (cons 'unknown "")))
+      (cons 'compiled (car (argv)))))
+
+(if (equal? (car (program)) 'compiled)
+    (main (cdr (argv))))
+
 (define response
 	(lambda (age)
 		(cond
@@ -12,9 +30,3 @@
 			((< age 64) "You are over the hill.")
 			((< age 100) "You are a senior citizen.")
 			(else "You are barking old."))))
-
-(display "Age: ")
-(display (response (read)))
-(display "\n")
-
-(exit)
