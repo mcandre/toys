@@ -2,8 +2,8 @@
 
 function fizzBuzz(n) {
   var
-  a = n % 3 == 0,
-  b = n % 5 == 0;
+  a = n % 3 === 0,
+  b = n % 5 === 0;
 
   if (a && b) {
     return "FizzBuzz";
