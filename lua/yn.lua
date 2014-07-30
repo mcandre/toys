@@ -1,7 +1,15 @@
 #!/usr/bin/env lua
 
-local parser="http://yubnub.org/parser/parse?command="
+function main()
+  local parser="http://yubnub.org/parser/parse?command="
 
-local command=table.concat(arg, "+")
+  local command=table.concat(arg, "+")
 
-os.execute("open " .. parser .. command)
+  os.execute("open " .. parser .. command)
+end
+
+if type(package.loaded[(...)]) ~= "userdata" then
+	main(arg)
+else
+	module(..., package.seeall)
+end

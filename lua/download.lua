@@ -2,8 +2,8 @@
 
 --[[
 
-Author: Andrew Pennebaker (andrew.pennebaker@gmail.com)
-Copyright: Copyright 2007 Andrew Pennebaker
+  Author: Andrew Pennebaker (andrew.pennebaker@gmail.com)
+  Copyright: Copyright 2007 Andrew Pennebaker
 
 ]]
 
@@ -12,31 +12,31 @@ aplib=require("aplib")
 http=require("socket.http")
 
 function filename_from_url(url)
-	local parts=url:split("/")
+  local parts=url:split("/")
 
-	return parts[#parts]
+  return parts[#parts]
 end
 
 function main(arg)
-	for i=1, #arg do
-		local url=arg[i]
+  for i=1, #arg do
+    local url=arg[i]
 
-		print("Downloading " .. url)
+    print("Downloading " .. url)
 
-		local filename=filename_from_url(url)
-		local file=io.open(filename, "wb")
+    local filename=filename_from_url(url)
+    local file=io.open(filename, "wb")
 
-		local body=http.request(url)
+    local body=http.request(url)
 
-		file:write(body)
-		file:close()
+    file:write(body)
+    file:close()
 
-		print("Done")
-	end
+    print("Done")
+  end
 end
 
 if type(package.loaded[(...)]) ~= "userdata" then
-	main(arg)
+  main(arg)
 else
-	module(..., package.seeall)
+  module(..., package.seeall)
 end
