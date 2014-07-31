@@ -1,36 +1,41 @@
 #!/usr/bin/env lua
 
-aplib=require("aplib")
-math=require("math")
+require("aplib")
 
-local BIG_A=65    -- string.byte("A")
-local BIG_Z=90    -- string.byte("Z")
-local SMALL_A=97  -- string.byte("a")
-local SMALL_Z=122 -- string.byte("z")
+Rot13 = {}
 
-local KEY=13
+local BIG_A = 65    -- string.byte("A")
+local BIG_Z = 90    -- string.byte("Z")
+local SMALL_A = 97  -- string.byte("a")
+local SMALL_Z = 122 -- string.byte("z")
 
-local ALPHABET=26
+local KEY = 13
 
-function encrypt(b)
-  local c=0
+local ALPHABET = 26
 
-  if b>=BIG_A and b<=BIG_Z then
-    c=math.mod((b-BIG_A+KEY), ALPHABET)+BIG_A
-  elseif b>=SMALL_A and b<=SMALL_Z then
-    c=math.mod((b-SMALL_A+KEY), ALPHABET)+SMALL_A
+local encrypt
+encrypt = function(b)
+  local c = 0
+
+  if b >= BIG_A and b <= BIG_Z then
+    c = ((b - BIG_A + KEY) % ALPHABET) + BIG_A
+  elseif b >= SMALL_A and b <= SMALL_Z then
+    c = ((b - SMALL_A + KEY) % ALPHABET) + SMALL_A
   else
-    c=b
+    c = b
   end
 
   return c
 end
+Rot13.encrypt = encrypt
 
-function main(arg)
+local main
+main = function(arg)
   for line in io.lines() do
     for b in line:iter_bytes() do
       io.write(string.char(encrypt(b)))
     end
+
     print()
   end
 end

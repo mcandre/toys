@@ -9,36 +9,43 @@
 
 ]]
 
-os=require("os")
-math=require("math")
+require("os")
 
-function get_timezone()
-  return -1*os.date("%z")/100*60*60
+Swatch = {}
+
+local get_timezone
+get_timezone = function()
+  return -1 * os.date("%z") / 100 * 60 * 60
 end
 
-function beats()
-  local t=os.time()+get_timezone() -- os.time() apparently returns UTC
-  local d=os.date("*t", t)
-  local h, m, s=d.hour, d.min, d.sec
+local beats
+beats = function()
+  local t = os.time() + get_timezone() -- os.time() apparently returns UTC
+  local d = os.date("*t", t)
+  local h, m, s = d.hour, d.min, d.sec
 
-  local utc=3600*h+60*m+s -- Greenwich, England
+  local utc = 3600 * h + 60 * m + s -- Greenwich, England
 
-  local bmt=utc+3600 -- Biel, Switzerland
+  local bmt = utc + 3600 -- Biel, Switzerland
 
-  local beat=bmt/86.4
+  local beat = bmt / 86.4
 
-  if beat>1000 then
-    beat=beat-1000
+  if beat > 1000 then
+    beat = beat - 1000
   end
 
   return beat
 end
+Swatch.beats = beats
 
-function swatch()
+local swatch
+swatch = function()
   return string.format("@%06.2f", beats())
 end
+Swatch.swatch = swatch
 
-function main(arg)
+local main
+main = function(arg)
   print(swatch())
 end
 

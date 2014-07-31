@@ -6,22 +6,28 @@
 
 ]]
 
-function factorial(n)
-  if n==1 or n==0 then
+Statistics = {}
+
+local factorial
+factorial = function(n)
+  if n == 1 or n == 0 then
     return 1
-  elseif n==2 then
+  elseif n == 2 then
     return 2
   else
-    return n*factorial(n-1)
+    return n * factorial(n - 1)
   end
 end
+Statistics.factorial = factorial
 
-function choose(n, k)
-  if n==k then
+local choose
+choose = function(n, k)
+  if n == k then
     return 1
   else
-    return factorial(n)/(factorial(n-k)*factorial(k))
+    return factorial(n) / (factorial(n - k) * factorial(k))
   end
 end
+Statistics.choose = choose
 
 module(..., package.seeall)

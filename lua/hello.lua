@@ -1,6 +1,7 @@
 #!/usr/bin/env lua
 
-function main(arg)
+local main
+main = function(arg)
   print("Hello World!")
 end
 

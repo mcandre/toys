@@ -1,6 +1,7 @@
 #!/usr/bin/env lua
 
-function main(arg)
+local main
+main = function(arg)
   for i, value in ipairs(arg) do
     print("Arg[" .. i .. "] = " .. value)
   end

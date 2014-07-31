@@ -5,11 +5,12 @@
 math.randomseed(os.time())
 math.random()
 
-function flip(sequence, howmany)
+local flip
+flip = function(sequence, howmany)
   local flipped = {}
-  for i=1, #sequence do
-    if i<=howmany then
-      flipped[i] = sequence[howmany+1-i]
+  for i = 1, #sequence do
+    if i <= howmany then
+      flipped[i] = sequence[howmany + 1 - i]
     else
       flipped[i] = sequence[i]
     end
@@ -18,8 +19,9 @@ function flip(sequence, howmany)
   return flipped
 end
 
-function disordered(sequence)
-  for i=2, #sequence do
+local disordered
+disordered = function(sequence)
+  for i = 2, #sequence do
     if sequence[i-1] > sequence[i] then
       return true
     end
@@ -28,10 +30,11 @@ function disordered(sequence)
   return false
 end
 
-function main(arg)
+local main
+main = function(arg)
   local input = { 1, 2, 3, 4, 5, 6, 7, 8, 9 }
   local numbers = {}
-  for i=1,9 do
+  for i = 1, 9 do
     table.insert(numbers, table.remove(input, math.random(#input)))
   end
 
@@ -47,7 +50,7 @@ function main(arg)
 end
 
 if type(package.loaded[(...)]) ~= "userdata" then
-	main(arg)
+  main(arg)
 else
-	module(..., package.seeall)
+  module(..., package.seeall)
 end

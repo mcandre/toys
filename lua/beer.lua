@@ -1,6 +1,7 @@
 #!/usr/bin/env lua
 
-function main(arg)
+local main
+main = function(arg)
   for i=99, 2, -1 do
     print(i .. " bottles of beer on the wall, " .. i .. " bottles of beer.\nTake one down, pass it around, " .. (i-1).. " bottles of beer on the wall.\n")
   end

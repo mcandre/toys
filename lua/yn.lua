@@ -1,6 +1,7 @@
 #!/usr/bin/env lua
 
-function main()
+local main
+main = function()
   local parser="http://yubnub.org/parser/parse?command="
 
   local command=table.concat(arg, "+")

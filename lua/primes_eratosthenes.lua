@@ -2,8 +2,8 @@
 
 -- Sieve of Eratosthenes
 
-require "math"
-require "primes"
+-- require "math"
+require("primes")
 
 function table.index(t, o)
   for i, e in ipairs(t) do
@@ -15,40 +15,41 @@ function table.index(t, o)
   return -1
 end
 
-function sieve(n)
-  if n<2 then
+local sieve
+sieve = function(n)
+  if n < 2 then
     return {}
-  elseif n<3 then
+  elseif n < 3 then
     return {2}
   end
 
-  local base_primes=primes.get_primes(math.sqrt(n))
+  local base_primes = Primes.get_primes(math.sqrt(n))
 
   print("Base primes:")
   print(table.concat(base_primes, " "))
 
-  local numbers={}
-  for i=2, n do
+  local numbers = {}
+  for i = 2, n do
     -- Do not include primes already in base_primes
-    if table.index(base_primes, i)==-1 then
+    if table.index(base_primes, i) == -1 then
       table.insert(numbers, i)
     end
   end
 
   -- Strikeout the multiples of the base primes
   for _, p in pairs(base_primes) do
-    for i=1, #numbers do
+    for i = 1, #numbers do
       -- If not marked and if divisible by p
-      if numbers[i]~=0 and math.mod(numbers[i], p)==0 then
+      if numbers[i] ~= 0 and numbers[i] % p == 0 then
         -- Mark as compound
-        numbers[i]=0
+        numbers[i] = 0
       end
     end
   end
 
   -- Add unmarked numbers to primes
-  for i=1, #numbers do
-    if numbers[i]~=0 then
+  for i = 1, #numbers do
+    if numbers[i] ~= 0 then
       table.insert(base_primes, numbers[i])
     end
   end
@@ -56,16 +57,17 @@ function sieve(n)
   return base_primes
 end
 
-function main(arg)
-  local n=100
+local main
+main = function(arg)
+  local n = 100
 
-  if #arg>=1 then
-    n=tonumber(arg[1])
+  if #arg >= 1 then
+    n = tonumber(arg[1])
   end
 
   print("Searching ...")
 
-  local primes=sieve(n)
+  local primes = sieve(n)
 
   print("Primes <= " .. n .. ":")
   print(table.concat(primes, " "))
