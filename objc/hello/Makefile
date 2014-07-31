@@ -1,4 +1,15 @@
-FLAGS=-Wall -Wextra -Wmost -Weverything -framework Foundation -lobjc -o hello
+FLAGS=-Wall -Wextra -Wmost -Weverything -framework Foundation -lobjc
+
+LINUX_FLAGS=
+
+ifneq ($(OS),Windows_NT)
+	UNAME_S := $(shell uname -s)
+
+	ifeq ($(UNAME_S),Linux)
+		FLAGS=-Wall -lobjc -o Version
+		LINUX_FLAGS=-I `gnustep-config --variable=GNUSTEP_SYSTEM_HEADERS` -L `gnustep-config --variable=GNUSTEP_SYSTEM_LIBRARIES` -lgnustep-base -fconstant-string-class=NSConstantString -D_NATIVE_OBJC_EXCEPTIONS
+	endif
+endif
 
 BIN=hello
 
@@ -8,7 +19,7 @@ test: $(BIN)
 	./$(BIN)
 
 $(BIN): Hello.m
-	clang $(FLAGS) Hello.m
+	clang $(FLAGS) $(LINUX_FLAGS) -o $(BIN) Hello.m
 
 lint: $(BIN)
 	oclint Hello.m -- $(FLAGS)

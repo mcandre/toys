@@ -1,4 +1,15 @@
-FLAGS=-Wall -Wextra -Wmost -Weverything -framework Foundation -lobjc -o fizzy
+FLAGS=-Wall -Wextra -Wmost -Weverything -framework Foundation -lobjc
+
+LINUX_FLAGS=
+
+ifneq ($(OS),Windows_NT)
+	UNAME_S := $(shell uname -s)
+
+	ifeq ($(UNAME_S),Linux)
+		FLAGS=-Wall -lobjc -o Version
+		LINUX_FLAGS=-I `gnustep-config --variable=GNUSTEP_SYSTEM_HEADERS` -L `gnustep-config --variable=GNUSTEP_SYSTEM_LIBRARIES` -lgnustep-base -fconstant-string-class=NSConstantString -D_NATIVE_OBJC_EXCEPTIONS
+	endif
+endif
 
 BIN=fizzy
 
@@ -8,7 +19,7 @@ test: $(BIN)
 	./$(BIN)
 
 $(BIN): Fizzy.m
-	clang $(FLAGS) Fizzy.m
+	clang $(FLAGS) $(LINUX_FLAGS) -o $(BIN) Fizzy.m
 
 lint: $(BIN)
 	oclint -rc=SHORT_VARIABLE_NAME=1 Fizzy.m -- $(FLAGS)
