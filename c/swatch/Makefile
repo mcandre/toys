@@ -12,7 +12,7 @@ $(BIN): swatch.c
 	$(CC) $(FLAGS) -o $(BIN) swatch.c
 
 cppcheck:
-	cppcheck --enable=all --suppressions $$HOME/suppressions.cfg .
+	cppcheck --quiet --enable=all --suppressions $$HOME/suppressions.cfg .
 
 splint:
 	find . -type f -name '*.[ch]' -exec splint {} \;
