@@ -15,7 +15,7 @@ splint:
 	find . -type f -name '*.[ch]' -exec splint {} \;
 
 vera++:
-	find . -type f -name '*.[ch]' -o -name '*.cpp' -exec vera++ -s {} \;
+	find . -type f -name '*.cpp' -o -name '*.[ch]' -exec vera++ -s {} \;
 
 lint: splint vera++
 
