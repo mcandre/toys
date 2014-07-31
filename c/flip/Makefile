@@ -16,13 +16,16 @@ $(BIN): flip.c
 backup: test.txt.bak
 	cp test.txt.bak test.txt
 
+cppcheck:
+	cppcheck --enable=all --suppressions $$HOME/suppressions.cfg .
+
 splint:
 	find . -type f -name '*.[ch]' -exec splint {} \;
 
 vera++:
 	find . -type f -name '*.cpp' -o -name '*.[ch]' -exec vera++ -s {} \;
 
-lint: splint vera++
+lint: cppcheck splint vera++
 
 valgrind: $(BIN)
 	valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --track-fds=yes --dsymutil=yes ./$(BIN) test.txt.flip
