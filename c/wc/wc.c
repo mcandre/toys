@@ -16,12 +16,12 @@ int main() {
 
   int state = OUT;
 
-  char c = (char) getchar();
+  int c = getchar();
 
-  while ((int) c != EOF) {
+  while (c != EOF) {
     characters++;
 
-    if (c == '\n') {
+    if ((char) c == '\n') {
       lines++;
     }
 
@@ -33,7 +33,7 @@ int main() {
       state = IN;
     }
 
-    c = (char) getchar();
+    c = getchar();
   }
 
   printf("Characters: %d\n", characters);
