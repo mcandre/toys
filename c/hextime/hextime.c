@@ -14,7 +14,6 @@ static /*@null@*/ char *hexTime() {
   uint hmin;
   uint hsec;
   char* result;
-  int remainder;
 
   timer = time(NULL);
 
@@ -23,8 +22,6 @@ static /*@null@*/ char *hexTime() {
   seconds = (unsigned int) (
     (local->tm_hour * 3600 + local->tm_min * 60 + local->tm_sec) * 65536.0 / 86400.0
   );
-
-  free(local);
 
   hhour = seconds / 4096;
 
@@ -35,7 +32,7 @@ static /*@null@*/ char *hexTime() {
   result = (char *) malloc(sizeof(char) * 7);
 
   if (result != NULL) {
-    remainder = snprintf(result, 7, "%x_%02x_%x", hhour, hmin, hsec);
+    int remainder = snprintf(result, 7, "%x_%02x_%x", hhour, hmin, hsec);
 
     if (remainder < 0 || remainder >= 7) {
       printf("Format error.\n");
