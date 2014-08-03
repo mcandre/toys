@@ -44,7 +44,7 @@ static void interactive() {
   if (command != NULL) {
     do {
       printf(PROMPT);
-      (void) scanf("%s", command);
+      (void) scanf("%1023s", command);
     } while (strcmp(command, EXIT) != 0);
   }
 
