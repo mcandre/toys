@@ -1,16 +1,17 @@
 CC=clang
 FLAGS=-O2 -Wall -Wextra -Wmost -Weverything
 
-BIN=flip
+BIN=bin/flip
 
 all: test
 
 test: $(BIN) backup
-	./$(BIN) test.txt
-	./$(BIN) test.txt.flip
+	$(BIN) test.txt
+	$(BIN) test.txt.flip
 	md5 test.txt test.txt.bak
 
 $(BIN): flip.c
+	mkdir -p bin/
 	$(CC) $(FLAGS) -o $(BIN) flip.c
 
 backup: test.txt.bak
@@ -31,7 +32,6 @@ valgrind: $(BIN)
 	valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --track-fds=yes --dsymutil=yes ./$(BIN) test.txt.flip
 
 clean:
-	-rm *.exe
-	-rm $(BIN)
 	-rm test.txt
 	-rm test.txt.flip
+	-rm -rf bin/

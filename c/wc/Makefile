@@ -1,14 +1,15 @@
 CC=clang
 FLAGS=-O2 -Wall -Wextra -Wmost -Weverything
 
-BIN=wc
+BIN=bin/wc
 
 all: test
 
 test: $(BIN)
-	./$(BIN) < wc.c
+	$(BIN) < wc.c
 
 $(BIN): wc.c
+	mkdir -p bin/
 	$(CC) $(FLAGS) -o $(BIN) wc.c
 
 cppcheck:
@@ -26,5 +27,4 @@ valgrind: $(BIN)
 	valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --track-fds=yes --dsymutil=yes ./$(BIN) < wc.c
 
 clean:
-	-rm *.exe
-	-rm $(BIN)
+	-rm -rf bin/

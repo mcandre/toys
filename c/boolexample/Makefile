@@ -1,14 +1,15 @@
 CC=clang
 FLAGS=-O2 -Wall -Wextra -Wmost -Weverything
 
-BIN=boolexample
+BIN=bin/boolexample
 
 all: test
 
 test: $(BIN)
-	./$(BIN)
+	$(BIN)
 
 $(BIN): boolexample.c
+	mkdir -p bin/
 	$(CC) $(FLAGS) -o $(BIN) boolexample.c
 
 cppcheck:
@@ -26,5 +27,4 @@ valgrind: $(BIN)
 	valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --track-fds=yes --dsymutil=yes ./$(BIN)
 
 clean:
-	-rm *.exe
-	-rm $(BIN)
+	-rm -rf bin/

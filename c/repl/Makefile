@@ -1,14 +1,15 @@
 CC=clang
 FLAGS=-O2 -Wall -Wextra -Wmost -Weverything
 
-BIN=repl
+BIN=bin/repl
 
 all: test
 
 test: $(BIN)
-	echo exit | ./$(BIN)
+	echo exit | $(BIN)
 
 $(BIN): repl.c
+	mkdir -p bin/
 	$(CC) $(FLAGS) -o $(BIN) repl.c
 
 cppcheck:
@@ -26,5 +27,4 @@ valgrind: $(BIN)
 	valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --track-fds=yes --dsymutil=yes echo exit | ./$(BIN)
 
 clean:
-	-rm *.exe
-	-rm $(BIN)
+	-rm -rf bin/
