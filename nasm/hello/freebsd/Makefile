@@ -1,8 +1,7 @@
 # FreeBSD defaults
 
 FORMAT=-f elf
-RUN=./
-BIN=hello
+BIN=bin/hello
 OBJ=hello.o
 MINV=
 
@@ -15,14 +14,15 @@ endif
 all: test
 
 test: $(BIN)
-	$(RUN)$(BIN)
+	$(BIN)
 
 $(BIN): $(OBJ)
+	mkdir -p bin/
 	ld -o $(BIN) $(MINV) $(OBJ)
 
 $(OBJ): hello.asm
 	nasm $(FORMAT) -o $(OBJ) hello.asm
 
 clean:
-	-rm $(BIN)
-	-rm $(OBJ)
+	-rm -rf bin/
+	-rm *.o

@@ -1,20 +1,20 @@
 # Linux defaults
 FORMAT=-f elf
-RUN=./
-BIN=hello
+BIN=bin/hello
 OBJ=hello.o
 
 all: test
 
 test: $(BIN)
-	$(RUN)$(BIN)
+	$(BIN)
 
 $(BIN): $(OBJ)
+	mkdir -p bin/
 	ld -o $(BIN) $(OBJ)
 
 $(OBJ): hello.asm
 	nasm $(FORMAT) -o $(OBJ) hello.asm
 
 clean:
-	-rm $(BIN)
-	-rm $(OBJ)
+	-rm -rf bin/
+	-rm *.o
