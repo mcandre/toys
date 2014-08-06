@@ -1,11 +1,13 @@
+BIN=bin/hello
+
 all: test
 
-test: hello
-	./hello
+test: $(BIN)
+	$(BIN)
 
-hello: hello.oz
-	ozc -x hello.oz
+$(BIN): hello.oz
+	mkdir -p bin/
+	ozc -x -o $(BIN) hello.oz
 
 clean:
-	-rm hello
-	-rm *.exe
+	-rm -rf bin/

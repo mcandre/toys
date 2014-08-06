@@ -1,11 +1,13 @@
+BIN=bin/args
+
 all: test
 
-test: args
-	./args
+test: $(BIN)
+	$(BIN) a b c
 
-args: args.oz
-	ozc -x args.oz
+$(BIN): args.oz
+	mkdir -p bin/
+	ozc -x -o $(BIN) args.oz
 
 clean:
-	-rm args
-	-rm *.exe
+	-rm -rf bin/

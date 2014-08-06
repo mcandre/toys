@@ -1,11 +1,13 @@
+BIN=bin/fizzy
+
 all: test
 
-test: fizzy
-	./fizzy
+test: $(BIN)
+	$(BIN)
 
-fizzy: fizzy.oz
-	ozc -x fizzy.oz
+$(BIN): fizzy.oz
+	mkdir -p bin/
+	ozc -x -o $(BIN) fizzy.oz
 
 clean:
-	-rm fizzy
-	-rm *.exe
+	-rm -rf bin/

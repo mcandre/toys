@@ -1,11 +1,13 @@
+BIN=bin/maths
+
 all: test
 
-test: maths
-	./maths
+test: $(BIN)
+	$(BIN)
 
-maths: maths.oz
-	ozc -x maths.oz
+$(BIN): maths.oz
+	mkdir -p bin/
+	ozc -x -o $(BIN) maths.oz
 
 clean:
-	-rm maths
-	-rm *.exe
+	-rm -rf bin/
