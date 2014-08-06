@@ -1,31 +1,20 @@
-# Example sh scripts
+# Example bash scripts
 
 # REQUIREMENTS
 
-* `sh`
+* `zsh`
 
 ## Optional
 
-* [guard](http://guardgem.org/)
+* [shlint](https://github.com/duggan/shlint)
 * [shellcheck](http://www.shellcheck.net/)
-
-Install `guard` (requires [Ruby](https://www.ruby-lang.org/)):
-
-    $ bundle
-
-Install `shellcheck` (requires [Haskell Platform](http://www.haskell.org/platform/)):
-
-    $ cd ..
-    $ git clone git@github.com:koalaman/shellcheck.git
-    $ cabal install
-    $ which shellcheck
-    ~/.cabal/bin/shellcheck
+* [guard](http://guardgem.org/)
 
 # DEVELOPMENT
 
 ## Lint
 
-    $ shellcheck *.sh
+    $ make lint
 
 ## Guard
 

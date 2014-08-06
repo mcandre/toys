@@ -20,7 +20,6 @@ fizzy() {
   fi
 }
 
-for ((i = 1; i < 101; i++))
-do
+for i in $(seq 1 100); do
   fizzy $i
 done

@@ -4,6 +4,9 @@ shlint:
 	-shlint lib/
 
 shellcheck:
-	-shellcheck lib/**
+	-shellcheck lib/*
 
-lint: shlint shellcheck
+checkbashisms:
+	-checkbashisms lib/*
+
+lint: shlint checkbashisms shellcheck
