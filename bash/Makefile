@@ -7,6 +7,6 @@ shellcheck:
 	-shellcheck lib/*
 
 checkbashisms:
-	-checkbashisms lib/*
+	-checkbashisms -n -p lib/*
 
 lint: shlint checkbashisms shellcheck
