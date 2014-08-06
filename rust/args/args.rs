@@ -1,4 +1,4 @@
-extern mod std;
+extern crate std;
 
 use std::io::println;
 use std::os::args;

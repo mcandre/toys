@@ -1,12 +1,14 @@
+BIN=bin/vectest
+
 all: test
 
-test: vectest
-	./vectest
+test: $(BIN)
+	$(BIN)
 
-vectest: vectest.rs
-	rustc vectest.rs
+$(BIN): vectest.rs
+	mkdir -p bin/
+	rustc -o $(BIN) vectest.rs
 
 clean:
-	-rm *.exe
+	-rm -rf bin/
 	-rm -rf *.dSYM
-	-rm vectest

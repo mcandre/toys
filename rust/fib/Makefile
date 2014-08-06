@@ -1,12 +1,14 @@
+BIN=bin/fib
+
 all: test
 
-test: fib
-	./fib
+test: $(BIN)
+	$(BIN)
 
-fib: fib.rs
-	rustc fib.rs
+$(BIN): fib.rs
+	mkdir -p bin/
+	rustc -o $(BIN) fib.rs
 
 clean:
-	-rm *.exe
+	-rm -rf bin/
 	-rm -rf *.dSYM
-	-rm fib

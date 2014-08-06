@@ -1,4 +1,4 @@
-extern mod std;
+extern crate std;
 
 use std::io::println;
 
@@ -6,13 +6,13 @@ fn fizzbuzz(n: int) -> ~str {
   let mod3 = n % 3 == 0;
   let mod5 = n % 5 == 0;
 
-  if (mod3 && mod5) {
+  if mod3 && mod5 {
     return "FizzBuzz".to_owned();
   }
-  else if (mod3) {
+  else if mod3 {
     return "Fizz".to_owned();
   }
-  else if (mod5) {
+  else if mod5 {
     return "Buzz".to_owned();
   }
   else {

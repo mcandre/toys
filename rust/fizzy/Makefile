@@ -1,12 +1,14 @@
+BIN=bin/fizzy
+
 all: test
 
-test: fizzy
-	./fizzy
+test: $(BIN)
+	$(BIN)
 
-fizzy: fizzy.rs
-	rustc fizzy.rs
+$(BIN): fizzy.rs
+	mkdir -p bin/
+	rustc -o $(BIN) fizzy.rs
 
 clean:
-	-rm *.exe
+	-rm -rf bin/
 	-rm -rf *.dSYM
-	-rm fizzy

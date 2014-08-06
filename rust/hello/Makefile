@@ -1,12 +1,14 @@
+BIN=bin/hello
+
 all: test
 
-test: hello
-	./hello
+test: $(BIN)
+	$(BIN)
 
-hello: hello.rs
-	rustc hello.rs
+$(BIN): hello.rs
+	mkdir -p bin/
+	rustc -o $(BIN) hello.rs
 
 clean:
-	-rm *.exe
+	-rm -rf bin/
 	-rm -rf *.dSYM
-	-rm hello

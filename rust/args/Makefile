@@ -1,12 +1,14 @@
+BIN=bin/args
+
 all: test
 
-test: args
-	./args
+test: $(BIN)
+	$(BIN) a b c
 
-args: args.rs
-	rustc args.rs
+$(BIN): args.rs
+	mkdir -p bin/
+	rustc -o $(BIN) args.rs
 
 clean:
-	-rm *.exe
+	-rm -rf bin/
 	-rm -rf *.dSYM
-	-rm args
