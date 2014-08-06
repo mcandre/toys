@@ -1,11 +1,14 @@
-all: fizzy
+BIN=bin/fizzy
 
-fizzy: fizzy.ll
+all: $(BIN)
+
+$(BIN): fizzy.ll
 	llvm-as fizzy.ll
 	llc fizzy.bc
-	gcc -o fizzy fizzy.s
+	mkdir -p bin/
+	gcc -o $(BIN) fizzy.s
 
 clean:
-	-rm fizzy
-	-rm fizzy.s
-	-rm fizzy.bc
+	-rm -rf bin/
+	-rm *.s
+	-rm *.bc
