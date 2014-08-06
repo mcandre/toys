@@ -1,6 +1,6 @@
+bin/
 *.o
 *.hi
-*.exe
 Gemfile.lock
 maths
 experiment1

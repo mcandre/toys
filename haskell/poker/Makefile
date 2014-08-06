@@ -1,13 +1,14 @@
-BIN=poker
+BIN=bin/poker
 
 FLAGS=-O2 -Wall -fwarn-tabs --make -fforce-recomp -o $(BIN)
 
 all: test
 
 test: $(BIN)
-	./$(BIN)
+	$(BIN)
 
 $(BIN): Poker.hs
+	mkdir -p bin/
 	ghc $(FLAGS) Poker.hs
 
 hlint:
@@ -16,7 +17,6 @@ hlint:
 lint: hlint
 
 clean:
-	-rm $(BIN)
-	-rm *.exe
+	-rm -rf bin/
 	-rm *.o
 	-rm *.hi

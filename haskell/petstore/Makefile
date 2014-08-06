@@ -1,16 +1,21 @@
 FLAGS=-O2 -Wall -fwarn-tabs --make -fforce-recomp
 
+CAT=bin/cat
+PETSTORE=bin/petstore
+
 all: test
 
-test: cat petstore
-	./cat
-	./petstore
+test: $(CAT) $(PETSTORE)
+	$(CAT)
+	$(PETSTORE)
 
-cat: Cat.hs
-	ghc $(FLAGS) -o cat -main-is Cat Cat.hs
+$(CAT): Cat.hs
+	mkdir -p bin/
+	ghc $(FLAGS) -o $(CAT) -main-is Cat Cat.hs
 
-petstore: Petstore.hs Cat.hs Dog.hs
-	ghc $(FLAGS) -o petstore -main-is Petstore Petstore.hs Cat.hs Dog.hs
+$(PETSTORE): Petstore.hs Cat.hs Dog.hs
+	mkdir -p bin/
+	ghc $(FLAGS) -o $(PETSTORE) -main-is Petstore Petstore.hs Cat.hs Dog.hs
 
 hlint:
 	hlint .
@@ -18,8 +23,6 @@ hlint:
 lint: hlint
 
 clean:
-	-rm petstore
-	-rm cat
-	-rm *.exe
+	-rm -rf bin/
 	-rm *.o
 	-rm *.hi
