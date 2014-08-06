@@ -11,22 +11,22 @@ ifneq ($(OS),Windows_NT)
 	endif
 endif
 
-BIN=args
+BIN=bin/args
 
 all: test
 
 test: $(BIN)
-	./$(BIN)
+	$(BIN)
 
 $(BIN): Args.m
+	mkdir -p bin/
 	clang $(FLAGS) $(LINUX_FLAGS) -o $(BIN) Args.m
 
 lint: $(BIN)
-	oclint Args.m -- $(FLAGS)
+	oclint Args.m -- $(FLAGS) -o $(BIN)
 
 valgrind: $(BIN)
 	valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --track-fds=yes --dsymutil=yes ./$(BIN)
 
 clean:
-	-rm *.exe
-	-rm $(BIN)
+	-rm -rf bin/

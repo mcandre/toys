@@ -11,22 +11,22 @@ ifneq ($(OS),Windows_NT)
 	endif
 endif
 
-BIN=fizzy
+BIN=bin/fizzy
 
 all: test
 
 test: $(BIN)
-	./$(BIN)
+	$(BIN)
 
 $(BIN): Fizzy.m
+	mkdir -p bin/
 	clang $(FLAGS) $(LINUX_FLAGS) -o $(BIN) Fizzy.m
 
 lint: $(BIN)
-	oclint -rc=SHORT_VARIABLE_NAME=1 Fizzy.m -- $(FLAGS)
+	oclint -rc=SHORT_VARIABLE_NAME=1 Fizzy.m -- $(FLAGS) -o $(BIN)
 
 valgrind: $(BIN)
 	valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --track-fds=yes --dsymutil=yes ./$(BIN)
 
 clean:
-	-rm *.exe
-	-rm $(BIN)
+	-rm -rf bin/
