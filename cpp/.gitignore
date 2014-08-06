@@ -1,4 +1,4 @@
+bin/
 *.o
 *.obj
-*.exe
 *.dSYM/

@@ -18,14 +18,15 @@ else
 	endif
 endif
 
-BIN=fizzy
+BIN=bin/fizzy
 
 all: test
 
 test: $(BIN)
-	./$(BIN)
+	$(BIN)
 
 $(BIN): fizzy.cpp
+	mkdir -p bin/
 	$(CC) $(FLAGS) $(STD) $(LINK_OPTIONS) -o $(BIN) fizzy.cpp
 
 cppcheck:
@@ -46,5 +47,4 @@ valgrind: $(BIN)
 	valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --track-fds=yes --dsymutil=yes ./$(BIN)
 
 clean:
-	-rm *.exe
-	-rm $(BIN)
+	-rm -rf bin/

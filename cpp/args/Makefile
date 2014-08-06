@@ -1,14 +1,15 @@
 CC=clang++
 FLAGS=-O2 -Wall -Wextra -Weffc++ -Wmost -Weverything
 
-BIN=args
+BIN=bin/args
 
 all: test
 
 test: $(BIN)
-	./$(BIN) a b c
+	$(BIN) a b c
 
 $(BIN): args.cpp
+	mkdir -p bin/
 	$(CC) $(FLAGS) -o $(BIN) args.cpp
 
 cppcheck:
@@ -29,5 +30,4 @@ valgrind: $(BIN)
 	valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --track-fds=yes --dsymutil=yes ./$(BIN) a b c
 
 clean:
-	-rm *.exe
-	-rm $(BIN)
+	-rm -rf bin/
