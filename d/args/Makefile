@@ -1,14 +1,16 @@
 FLAGS=-w -wi
 
+BIN=bin/args
+
 all: test
 
-test: args
-	./args
+test: $(BIN)
+	$(BIN) a b c
 
-args: args.d
-	dmd $(FLAGS) args
+$(BIN): args.d
+	mkdir -p bin/
+	dmd $(FLAGS) -of$(BIN) args
 
 clean:
-	-rm *.exe
-	-rm args
+	-rm -rf bin/
 	-rm *.o

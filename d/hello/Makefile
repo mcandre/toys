@@ -1,14 +1,16 @@
 FLAGS=-w -wi
 
+BIN=bin/hello
+
 all: test
 
-test: hello
-	./hello
+test: $(BIN)
+	$(BIN)
 
-hello: hello.d
-	dmd $(FLAGS) hello
+$(BIN): hello.d
+	mkdir -p bin/
+	dmd $(FLAGS) -of$(BIN) hello
 
 clean:
-	-rm *.exe
-	-rm hello
+	-rm -rf bin/
 	-rm *.o
