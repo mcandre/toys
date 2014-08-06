@@ -1,7 +1,6 @@
 # FreeBSD defaults
-BIN=hello
+BIN=bin/hello
 OBJ=hello.o
-RUN=./
 ARCH=
 MINV=
 
@@ -15,15 +14,16 @@ endif
 all: test
 
 test: $(BIN)
-	$(RUN)$(BIN)
+	$(BIN)
 
 $(BIN): $(OBJ)
+	mkdir -p bin/
 	ld -o $(BIN) $(MINV) $(ARCH) $(OBJ)
 
 $(OBJ): hello.s
 	as -o $(OBJ) $(ARCH) hello.s
 
 clean:
-	-rm $(BIN)
+	-rm -rf bin/
 	-rm $(OBJ)
 	-rm *.ld_*

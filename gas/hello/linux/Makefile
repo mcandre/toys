@@ -1,19 +1,19 @@
 # Linux defaults
-BIN=hello
+BIN=bin/hello
 OBJ=hello.o
-RUN=./
 
 all: test
 
 test: $(BIN)
-	$(RUN)$(BIN)
+	$(BIN)
 
 $(BIN): $(OBJ)
+	mkdir -p bin/
 	ld -o $(BIN) $(OBJ)
 
 $(OBJ): hello.s
 	as -o $(OBJ) hello.s
 
 clean:
-	-rm $(BIN)
+	-rm -rf bin/
 	-rm $(OBJ)

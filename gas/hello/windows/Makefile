@@ -1,19 +1,19 @@
 # Windows defaults
-BIN=hello.exe
+BIN=bin/hello
 OBJ=hello.obj
-RUN=
 
 all: test
 
 test: $(BIN)
-	$(RUN)$(BIN)
+	$(BIN)
 
 $(BIN): $(OBJ)
+	mkdir -p bin/
 	golink /fo $(BIN) $(OBJ) /console kernel32.dll
 
 $(OBJ): hello.s
 	as -o $(OBJ) hello.s
 
 clean:
-	-rm $(BIN)
+	-rm -rf bin/
 	-rm $(OBJ)
