@@ -1,12 +1,12 @@
 extern crate std;
 
-use std::io::println;
 use std::os::args;
+use std::vec::Vec;
 
 fn main() {
-    let args : ~[~str] = args();
+  let args : Vec<String> = args();
 
   for arg in args.iter() {
-    println(*arg);
+    println!("{}", *arg);
   }
 }

@@ -2,8 +2,6 @@
 
 extern crate std;
 
-use std::io::println;
-
 fn fib(n : int) -> int {
   if n == 0 {
     return 0;
@@ -17,5 +15,5 @@ fn fib(n : int) -> int {
 }
 
 fn main() {
-  println("Fib 40 = " + fib(40).to_str());
+  println!("Fib 40 = {}", fib(40).to_str());
 }
