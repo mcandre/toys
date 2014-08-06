@@ -5,20 +5,4 @@ fi
 true else 0
 end;;
 
-(*
-
-Interpret
-
-./hello.ml
-
-Compile
-
-ocamlc -w +a -o hello hello.ml
-
-Run
-
-./hello
-
-*)
-
 let main = print_endline "Hello World!"
