@@ -9,7 +9,7 @@ fn main() {
 
   assert_eq!(args.len() > 0, true);
 
-  let program : Option<&String> = args.slice(0, 1).head();
+  let program : Option<&String> = args.as_slice().head();
 
   match program {
     Some(p) => println!("Program: {}", p),
