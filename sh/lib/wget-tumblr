@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 # Usage:
 #
@@ -6,7 +6,7 @@
 
 DELAY=2 # sec
 
-DOMAIN=$1
+DOMAIN="$1"
 
 wget -q \
   -nd \

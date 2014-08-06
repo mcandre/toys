@@ -1,8 +1,8 @@
-# Example bash scripts
+# Example POSIX sh scripts
 
 # REQUIREMENTS
 
-* `bash` (preferably 4+)
+* `sh`
 
 ## Optional
 

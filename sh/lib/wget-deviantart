@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 # Usage:
 #
@@ -11,9 +11,9 @@
 
 DELAY=2 # sec
 
-ARTIST=$1
+ARTIST="$1"
 
-PAGE=$2
+PAGE="$2"
 
 if [ "$PAGE" = "" ]
 then

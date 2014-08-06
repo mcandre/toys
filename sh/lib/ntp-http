@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 # A poor man's NTP proxy, where the clock's wrong and NTP is firewalled.
 #

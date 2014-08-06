@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 # Usage:
 #
@@ -6,7 +6,7 @@
 
 DELAY=2 # sec
 
-TAG=$1
+TAG="$1"
 
 wget -q \
   -mpNHk \
