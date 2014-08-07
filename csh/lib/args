@@ -1,2 +1,2 @@
-#!/bin/csh
+#!/usr/bin/env csh
 echo "$argv"
