@@ -2,7 +2,7 @@
 
 # REQUIREMENTS
 
-* `dash`
+* `ash`
 
 ## Optional
 
