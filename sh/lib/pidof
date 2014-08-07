@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 # From Adam Jacob Muller's /bin/pidof
 # http://www.macosxhints.com/article.php?story=20030618114543169

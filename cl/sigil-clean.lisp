@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 #|
 exec clisp -q -q $0 $0 ${1+"$@"}
 |#
