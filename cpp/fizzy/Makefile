@@ -1,9 +1,9 @@
 CC=clang++
-FLAGS=-std=c++11 -stdlib=libc++ -O2 -Wall -Wextra -Weffc++ -Wmost -Weverything
-LINK_OPTIONS=
+FLAGS=-std=c++11 -stdlib=libc++ -O2 -Wall -Wextra -Weffc++ -Wmost -Weverything -Wno-c++98-compat
+LINK_OPTIONS=-lpthread
 
 ifeq ("${MSYSTEM}","MINGW32")
-	LINK_OPTIONS=-Wl,--enable-auto-import
+	LINK_OPTIONS=$(LINK_OPTIONS) -Wl,--enable-auto-import
 endif
 
 BIN=bin/fizzy
