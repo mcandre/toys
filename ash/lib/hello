@@ -1,2 +1,2 @@
-#!/bin/ash
+#!/usr/bin/env ash
 echo "Hello World!"

@@ -1,2 +1,2 @@
-#!/bin/dash
+#!/usr/bin/env dash
 echo "$@"

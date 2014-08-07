@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/usr/bin/env dash
 
 div3() {
   echo $((($1 % 3) == 0))
