@@ -45,19 +45,15 @@ void fizzbuzz() {
   for (auto i : range) {
     strings[(size_t) i] = std::async(
       launch::async,
-      [&]() {
+      [=]() -> string {
         return fizzy((int) (i + 1));
       }
     );
   }
 
-  for (size_t i = 0; i < strings.size(); i++) {
-    cout << "Strings[" << i << "] = " << strings[i].get() << endl;
+  for (auto& s : strings) {
+    cout << s.get() << endl;
   }
-
-  // for (auto& s : strings) {
-  //   cout << s.get() << endl;
-  // }
 }
 
 int main() { fizzbuzz(); }
