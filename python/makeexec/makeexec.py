@@ -14,7 +14,7 @@ INTERPRETERS = {
   "pl": "#!/usr/bin/env perl",
   "pm": "#!/usr/bin/env perl",
   "lua": "#!/usr/bin/env lua",
-  "sh": "#!/bin/sh",
+  "sh": "#!/usr/bin/env sh",
   "rb": "#!/usr/bin/env ruby"
 }
 
