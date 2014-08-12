@@ -17,28 +17,16 @@
 
 (define *location* 'living-room)
 
-(define second (list)
-    (car (cdr list)))
-
-(define third (list)
-    (car (cdr (cdr list))))
-
-(define describe-location (location map)
+(define (describe-location location map)
     (second (assoc location map)))
 
-(define describe-path (path)
+(define (describe-path path)
     `(There is a ,(second path) going ,(car path) from here.))
 
-(define mapcar (func list)
-    (cond
-      ((null? list) ())
-      (else
-       (cons (func (car list)) (mapcar func (cdr list))))))
+(define (describe-paths location map)
+    (apply append (map describe-path (cddr (assoc location map)))))
 
-(define describe-paths (location map)
-    (apply append (mapcar describe-path (cddr (assoc location map)))))
-
-(define is-at (obj loc obj-loc)
+(define (is-at obj loc obj-loc)
     (eq? (second (assoc obj obj-loc)) loc))
 
 (define (remove-if-not pred? lst)
@@ -48,30 +36,30 @@
 	  ((pred? (car lst)) (remove-if-not (cdr lst) (cons (car lst) result)))
 	  (else (remove-if-not (cdr lst) result)))))
 
-(define describe-floor (loc objs obj-loc)
-    (append (mapcar (lambda (x)
+(define (describe-floor loc objs obj-loc)
+    (append (map (lambda (x)
                       `(You see a ,x on the floor.))
                     (remove-if-not (lambda (x)
                                      (is-at x loc obj-loc))
                                    objs))))
 
-(define look ()
+(define (look)
   (print (append (describe-location *location* *map*)
                  (describe-paths *location* *map*)
                  (describe-floor *location* *objects* *object-locations*))))
 
-(define walk-direction (direction)
+(define (walk-direction direction)
     (let ((next (assoc direction (cddr (assoc *location* *map*)))))
       (cond (next (set! *location* (third next)) (look))
             (#t '(You cant go that way.)))))
 
 (define-macro defspel
   (lambda (func arg)
-    `(#'func ,arg)))
+    `(func ,arg)))
 
-(defspel walk (#'walk-direction 'direction))
+(defspel walk (walk-direction direction))
 
-(define pickup-object (object)
+(define (pickup-object object)
     (cond
       (
        (is-at object *location* *object-locations*)

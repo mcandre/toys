@@ -6,6 +6,13 @@
 (use srfi-1) ; lists
 (use srfi-13) ; strings
 
+(define (fib n)
+	(cond
+		((= n 0) 0)
+		((= n 1) 1)
+		(else
+			(+ (fib (- n 1)) (fib (- n 2))))))
+
 (define (main args)
   (display "N = ")
   (define n (read))
@@ -21,24 +28,3 @@
 
 (if (equal? (car (program)) 'compiled)
     (main (cdr (argv))))
-
-(define (fib n)
-	(cond
-		((< n 2) n)
-		(else
-			(let ((a 0) (b 1) (i 0) (m (- n 1)))
-				(do () ((= i m))
-					(let ((c (+ a b)))
-						(set! a b)
-						(set! b c)
-						(set! i (+ i 1))))
-						b))))
-
-; recursion overhead is slow
-;
-;(define (fib n)
-;	(cond
-;		((= n 0) 0)
-;		((= n 1) 1)
-;		(else
-;			(+ (fib (- n 1)) (fib (- n 2))))))
