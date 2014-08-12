@@ -1,4 +1,4 @@
-#!/usr/bin/env csi -ss
+":"; exec csi -ss $0 ${1+"$@"}
 
 (use srfi-1) ; lists
 (use srfi-13) ; strings

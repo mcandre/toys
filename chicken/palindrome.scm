@@ -1,4 +1,4 @@
-#!/usr/bin/env csi -ss
+":"; exec csi -ss $0 ${1+"$@"}
 
 ;;; Andrew Pennebaker
 ;;; 5 Mar 2011

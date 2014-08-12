@@ -1,7 +1,9 @@
-#!/usr/bin/env csi -ss
+":"; exec csi -ss $0 ${1+"$@"}
 
+(declare (uses chicken-syntax))
 (use srfi-1) ; lists
 (use srfi-13) ; strings
+(use regex)
 
 (define (response age)
 	(cond
@@ -27,5 +29,8 @@
             (cons 'unknown "")))
       (cons 'compiled (car (argv)))))
 
-(if (equal? (car (program)) 'compiled)
-    (main (cdr (argv))))
+(let ((prog (program)))
+	(if (and
+			 (equal? (car prog) 'compiled)
+			 (string-match ".*age.*" (cdr prog)))
+			(main (cdr (argv)))))

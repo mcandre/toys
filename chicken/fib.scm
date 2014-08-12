@@ -1,4 +1,4 @@
-#!/usr/bin/env csi -ss
+":"; exec csi -ss $0 ${1+"$@"}
 
 ; Andrew Pennebaker
 ; 13 Feb 2007 - 5 Jun 2007
