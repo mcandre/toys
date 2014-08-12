@@ -2,15 +2,18 @@
 
 require 'open-uri'
 
-data = ''
+def main
+  data = ''
 
-while data == ''
-  begin
-    data = open('http://www.google.com/').read
-  rescue
-    nil
+  while data == ''
+    begin
+      data = open('http://www.google.com/').read
+    rescue
+      nil
+    end
   end
+
+  system 'say You are now online.'
 end
 
-# Requires Mac OS X
-exec 'say You are now online.'
+main if $PROGRAM_NAME == __FILE__
