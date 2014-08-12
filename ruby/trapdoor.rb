@@ -6,19 +6,23 @@ require 'webrick/httpproxy'
 # Generate htdigest.txt:
 # htdigest -c <filename> <realm> <username>
 
-authenticator = WEBrick::HTTPAuth::ProxyDigestAuth.new(
-  UserDB: WEBrick::HTTPAuth::Htdigest.new('htdigest.txt'),
-  Realm: 'trapdoor'
-)
+def main
+  authenticator = WEBrick::HTTPAuth::ProxyDigestAuth.new(
+    UserDB: WEBrick::HTTPAuth::Htdigest.new('htdigest.txt'),
+    Realm: 'trapdoor'
+  )
 
-server = WEBrick::HTTPProxyServer.new(
-  ProxyAuthProc: ->(req, res) { authenticator.authenticate(req, res) },
-  MaxClients: 100,
-  BindAddress: 'localhost',
-  Port: 8080,
-  AccessLog: [] # suppress log messages
-)
+  server = WEBrick::HTTPProxyServer.new(
+    ProxyAuthProc: ->(req, res) { authenticator.authenticate(req, res) },
+    MaxClients: 100,
+    BindAddress: 'localhost',
+    Port: 8080,
+    AccessLog: [] # suppress log messages
+  )
 
-trap('INT') { server.shutdown }
+  trap('INT') { server.shutdown }
 
-server.start
+  server.start
+end
+
+main if $PROGRAM_NAME == __FILE__

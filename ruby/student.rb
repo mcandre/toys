@@ -57,22 +57,26 @@ class Senior < Student
   end
 end
 
-s1 = Student.new('Bob', :m, 14)
+def main
+  s1 = Student.new('Bob', :m, 14)
 
-puts s1
+  puts s1
 
-s2 = Senior.new('Betty', :f, 18, 6)
+  s2 = Senior.new('Betty', :f, 18, 6)
 
-puts s2
+  puts s2
 
-puts s1.name
+  puts s1.name
 
-puts s2.credits_left
+  puts s2.credits_left
 
-s1.name = 'Roberto'
+  s1.name = 'Roberto'
 
-puts s1.name
+  puts s1.name
 
-s1.speak
+  s1.speak
 
-s2.speak
+  s2.speak
+end
+
+main if $PROGRAM_NAME == __FILE__

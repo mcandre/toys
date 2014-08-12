@@ -97,4 +97,8 @@ end
 #   # ...
 # end
 
-encrypt 'Boy howdy!\nI do declare.'
+def main
+  encrypt 'Boy howdy!\nI do declare.'
+end
+
+main if $PROGRAM_NAME == __FILE__
