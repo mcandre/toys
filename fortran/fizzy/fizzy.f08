@@ -1,9 +1,3 @@
-! Compile:
-! gfortran -o fizzy fizzy.f08 
-!
-! Run:
-! ./fizzy
-
 program fizzy
   character(len=8) :: fzbz
 
