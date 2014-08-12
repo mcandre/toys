@@ -3,48 +3,54 @@
 require 'contracts'
 include Contracts
 
-Contract Num => Num
-def self.fib(n)
-  if n < 2
-    n
-  else
-    a, b = 0, 1
+module Fib
+  Contract Num => Num
+  def self.fib(n)
+    if n < 2
+      n
+    else
+      a, b = 0, 1
 
-    m = n - 1
+      m = n - 1
 
-    i = 0
-    while i < m
-      a, b = b, a + b
-      i += 1
+      i = 0
+      while i < m
+        a, b = b, a + b
+        i += 1
+      end
+
+      b
     end
-
-    b
   end
+
+  # # recursion overhead is slow
+
+  # Contract Num => Num
+  # def fib(n)
+  #   if n < 2
+  #     n
+  #   else
+  #     fib(n - 1) + fib(n - 2)
+  #   end
+  # end
 end
 
-# # recursion overhead is slow
+def main
+  print 'N = '
 
-# Contract Num => Num
-# def fib(n)
-#   if n < 2
-#     n
-#   else
-#     fib(n - 1) + fib(n - 2)
-#   end
-# end
+  n = gets.chomp.to_i
 
-print 'N = '
+  puts 'Running'
 
-n = gets.chomp.to_i
+  # startt = time
 
-puts 'Running'
+  x = Fib.fib(n)
 
-# startt = time
+  # endt = time
 
-x = fib(n)
+  puts "Fib #{n} = #{x}"
 
-# endt = time
+  # puts "Time: #{endt - startt} sec"
+end
 
-puts "Fib #{n} = #{x}"
-
-# puts "Time: #{endt - startt} sec"
+main if $PROGRAM_NAME == __FILE__
