@@ -8,4 +8,8 @@ def printargs(params)
   end
 end
 
-printargs(cat: 'fuzzycat')
+def main
+  printargs(cat: 'fuzzycat')
+end
+
+main if $PROGRAM_NAME == __FILE__
