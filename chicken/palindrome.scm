@@ -6,9 +6,6 @@
 ;;; From The Chicken User's Manual
 ;;; http://wiki.call-cc.org/man/4/Getting%20started
 
-(use srfi-1) ; lists
-(use srfi-13) ; strings
-
 (define (palindrome? x)
 	(define (check left right)
 		(if (>= left right)
@@ -18,7 +15,7 @@
 		(check 0 (sub1 (string-length x))))
 
 (define (usage)
-	(display (format "Usage: ~a <string>\n" (cdr (program)))))
+	(display (format "Usage: ~a <string>\n" (program-name))))
 
 (define (main args)
 	(if (> (length args) 0)
@@ -31,13 +28,7 @@
 						"is not a palindrome"))))
 		(usage)))
 
-(define (program)
-	(if (string=? (car (argv)) "csi")
-		(let ((s-index (list-index (lambda (x) (string-contains x "-s")) (argv))))
-			(if (number? s-index)
-				(cons 'interpreted (list-ref (argv) (+ 1 s-index)))
-				(cons 'unknown "")))
-		(cons 'compiled (car (argv)))))
-
-(if (equal? (car (program)) 'compiled)
-	(main (cdr (argv))))
+(cond-expand
+ (chicken-compile-shared)
+ (compiling (main (command-line-arguments)))
+ (else))

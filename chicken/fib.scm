@@ -3,9 +3,6 @@
 ; Andrew Pennebaker
 ; 13 Feb 2007 - 5 Jun 2007
 
-(use srfi-1) ; lists
-(use srfi-13) ; strings
-
 (define (fib n)
 	(cond
 		((= n 0) 0)
@@ -18,13 +15,7 @@
   (define n (read))
   (display (format "~a\n" (fib n))))
 
-(define (program)
-  (if (string=? (car (argv)) "csi")
-      (let ((s-index (list-index (lambda (x) (string-contains x "-s")) (argv))))
-        (if (number? s-index)
-            (cons 'interpreted (list-ref (argv) (+ 1 s-index)))
-            (cons 'unknown "")))
-      (cons 'compiled (car (argv)))))
-
-(if (equal? (car (program)) 'compiled)
-    (main (cdr (argv))))
+(cond-expand
+ (chicken-compile-shared)
+ (compiling (main (command-line-arguments)))
+ (else))
