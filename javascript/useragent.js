@@ -1,1 +1,1 @@
-javascript:alert(navigator.userAgent+'\n\nName: '+navigator.appName+'\nCodeName: '+navigator.appCodeName+'\nVersion: '+navigator.appVersion+'\nPlatform: '+navigator.platform);
+alert(navigator.userAgent);
