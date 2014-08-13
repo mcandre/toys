@@ -13,9 +13,7 @@
   "engines": {
     "node": "*"
   },
-  "scripts": {
-    "test": "node fizzy.js"
-  },
+  "scripts": {},
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.5",
