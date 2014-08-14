@@ -26,7 +26,7 @@
    59 Bcy, 3161:       PRAISE_BOB and KILL_BOB options split, other minor
                        changes.
 
-   1999-02-22 Arkadiusz Mi¶kiewicz <misiek@pld.ORG.PL>
+   1999-02-22 Arkadiusz MiÂ¶kiewicz <misiek@pld.ORG.PL>
    - added Native Language Support
 
    2000-03-17 Burt Holzman <bnh@iname.com>
@@ -105,7 +105,7 @@ char *excl[] = {
     /* randomness, from the Net and other places. Feel free to add (after
        checking with the relevant authorities, of course). */
     "Grudnuk demand sustenance!", "Keep the Lasagna flying!", 
-    "Umlaut Zebra über alles!", "You are what you see.",
+    "Umlaut Zebra Ã¼ber alles!", "You are what you see.",
     "Or is it?", "This statement is false.",
     ""
 };
