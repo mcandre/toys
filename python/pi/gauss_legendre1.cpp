@@ -1,4 +1,4 @@
-// pi.cpp : Definiert den Einsprungpunkt für die Konsolenanwendung.
+// pi.cpp : Definiert den Einsprungpunkt fÃ¼r die Konsolenanwendung.
 //
 
 /*	PI-Calculator V 0.1
