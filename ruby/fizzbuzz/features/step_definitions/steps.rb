@@ -9,13 +9,13 @@ Then(/^the output is FizzBuzz$/) do
     line = lines[i - 1].chop
 
     if i % 3 == 0 && i % 5 == 0
-      line.should == 'FizzBuzz'
+      expect(line).to eq('FizzBuzz')
     elsif i % 3 == 0
-      line.should == 'Fizz'
+      expect(line).to eq('Fizz')
     elsif i % 5 == 0
-      line.should == 'Buzz'
+      expect(line).to eq('Buzz')
     else
-      line.should == i.to_s
+      expect(line).to eq(i.to_s)
     end
   end
 end
