@@ -1,8 +1,8 @@
 source 'http://rubygems.org'
 
-gem 'hpricot'
-gem 'htmlentities'
-gem 'contracts'
+gem 'hpricot', '~> 0.8'
+gem 'htmlentities', '~> 4.3'
+gem 'contracts', '~> 0.4'
 
 group :development do
   gem 'guard'
