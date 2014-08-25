@@ -136,7 +136,7 @@ def main
       end
     end
   elsif mode == :list_user_agents
-    user_agents.each { |name, agent| puts name }
+    user_agents.each { |name, _| puts name }
   end
 end
 

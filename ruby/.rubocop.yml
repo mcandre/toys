@@ -1,13 +1,13 @@
-inherit_from: ../.rubocop.yml
-
 LineLength:
   Max: 130
-
 MethodLength:
   Max: 60
-
 CyclomaticComplexity:
   Max: 20
-
+Metrics/PerceivedComplexity:
+  Enabled: false
 SpecialGlobalVars:
   Enabled: false
+Style/FileName:
+  Exclude:
+    - '**/Guardfile*'

@@ -113,7 +113,7 @@ def main
 
   if mode == :generate
     fail 'Specify a service' unless service
-    numbers.times { |i| puts service.generate }
+    numbers.times { || puts service.generate }
   elsif mode == :validate
     usage unless ARGV.length > 0
 
