@@ -1,3 +1,5 @@
+FLAGS=-X -O2
+
 BIN=bin/hello
 
 all: test
@@ -7,7 +9,7 @@ test: $(BIN)
 
 $(BIN): hello.vala
 	mkdir -p bin/
-	valac -o $(BIN) hello.vala
+	valac $(FLAGS) -o $(BIN) hello.vala
 
 clean:
 	-rm -rf bin/
