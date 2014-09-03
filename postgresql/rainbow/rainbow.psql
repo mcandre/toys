@@ -1,0 +1,6 @@
+--() { :; }; exec psql -f "$0"
+
+CREATE TABLE IF NOT EXISTS "rainbow" (
+  "hash" TEXT PRIMARY KEY, -- md5
+  "password" TEXT NOT NULL
+);
