@@ -1,0 +1,17 @@
+{
+  "name": "sass-fizzy",
+  "description": "Sassy FizzBuzz",
+  "version": "0.0.1",
+  "author": "Andrew Pennebaker <andrew.pennebaker@gmail.com> (http://www.yellosoft.us/)",
+  "directories": {
+    "lib": "."
+  },
+  "engines": {
+    "node": "*"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-cli": "~0.1.13",
+    "grunt-exec": "~0.4.6"
+  }
+}
