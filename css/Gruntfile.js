@@ -9,7 +9,7 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks("grunt-exec");
 
-  grunt.registerTask("default", ["exec:csslint", "exec:tidy"]);
+  grunt.registerTask("default", ["exec:csslint", "exec:scss_lint", "exec:tidy"]);
   grunt.registerTask("lint", ["exec:csslint", "exec:scss_lint", "exec:tidy"]);
   grunt.registerTask("scss_lint", ["exec:scss_lint"]);
   grunt.registerTask("csslint", ["exec:csslint"]);
