@@ -5,3 +5,5 @@ linters:
     enabled: false
   Indentation:
     enabled: false
+  SingleLinePerSelector:
+    enabled: false
