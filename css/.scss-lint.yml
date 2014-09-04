@@ -1,4 +1,6 @@
-exclude: 'node_modules/*'
+exclude:
+  - 'node_modules/*'
+  - 'bower_components/*'
 
 linters:
   EmptyLineBetweenBlocks:
@@ -6,4 +8,8 @@ linters:
   Indentation:
     enabled: false
   SingleLinePerSelector:
+    enabled: false
+  Comment:
+    enabled: false
+  LeadingZero:
     enabled: false
