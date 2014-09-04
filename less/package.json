@@ -10,6 +10,9 @@
     "node": "*"
   },
   "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-cli": "~0.1.13",
+    "grunt-exec": "~0.4.6",
     "less": "1.4.2"
   }
 }
