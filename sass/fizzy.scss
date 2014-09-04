@@ -6,15 +6,15 @@ div {
   counter-increment: i;
 
   &:after {
-    content: "" counter(i);
+    content: '' counter(i);
   }
 
   &:nth-child(3n) {
     visibility: hidden;
 
     &:after {
+      content: 'Fizz';
       visibility: visible;
-      content: "Fizz";
     }
   }
 
@@ -22,8 +22,8 @@ div {
     visibility: hidden;
 
     &:after {
+      content: 'Buzz';
       visibility: visible;
-      content: "Buzz";
     }
   }
 
@@ -31,8 +31,8 @@ div {
     visibility: hidden;
 
     &:after {
+      content: 'FizzBuzz';
       visibility: visible;
-      content: "FizzBuzz";
     }
   }
 }
