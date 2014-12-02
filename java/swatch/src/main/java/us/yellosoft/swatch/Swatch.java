@@ -1,4 +1,4 @@
-package swatch;
+package us.yellosoft.swatch;
 
 //
 // Andrew Pennebaker
