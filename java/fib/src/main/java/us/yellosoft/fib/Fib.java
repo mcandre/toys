@@ -1,4 +1,4 @@
-package fib;
+package us.yellosoft.fib;
 
 import java.io.IOException;
 import java.io.BufferedReader;
