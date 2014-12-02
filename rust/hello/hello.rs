@@ -1,3 +1,5 @@
+//! Hello World
+
 extern crate std;
 
 use std::io::println;
