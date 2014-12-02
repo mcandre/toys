@@ -1,3 +1,3 @@
-#!/usr/bin/env groovy
+package us.yellosoft.hello.groovy
 
 println "Hello World!"
