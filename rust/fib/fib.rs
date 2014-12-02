@@ -1,3 +1,5 @@
+//! Fibonacci
+
 #![crate_id(name = "fib")]
 
 extern crate std;
