@@ -1,4 +1,4 @@
-package hello;
+package us.yellosoft.hello;
 
 /** Hello World */
 public final class Hello {
