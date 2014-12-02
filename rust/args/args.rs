@@ -1,3 +1,5 @@
+//! Command line arguments (argv)
+
 extern crate std;
 
 use std::os::args;

@@ -9,7 +9,7 @@ test: $(BIN)
 
 $(BIN): hello.rs
 	mkdir -p bin/
-	rustc $(FLAGS) -o $(BIN) hello.rs
+	rustc -o $(BIN) hello.rs $(FLAGS)
 
 clean:
 	-rm -rf bin/
