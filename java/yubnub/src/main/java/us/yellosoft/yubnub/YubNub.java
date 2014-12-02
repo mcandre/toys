@@ -1,4 +1,4 @@
-package yubnub;
+package us.yellosoft.yubnub;
 
 import java.io.IOException;
 
