@@ -1,3 +1,5 @@
+//! FizzBuzz
+
 extern crate std;
 
 fn fizzbuzz(n: int) -> String {
