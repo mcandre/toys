@@ -6,9 +6,9 @@ use std::os::args;
 use std::vec::Vec;
 
 fn main() {
-  let args : Vec<String> = args();
+  let argv : Vec<String> = args();
 
-  for arg in args.iter() {
+  for arg in argv.iter() {
     println!("{}", *arg);
   }
 }
