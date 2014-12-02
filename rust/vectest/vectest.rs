@@ -1,3 +1,5 @@
+//! Vector test
+
 extern crate std;
 
 use std::os::args;
