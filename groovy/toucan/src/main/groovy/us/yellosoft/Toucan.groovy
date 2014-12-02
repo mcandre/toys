@@ -1,4 +1,4 @@
-#!/usr/bin/env groovy
+package us.yellosoft.toucan.groovy
 
 final def toucan = 2
 
