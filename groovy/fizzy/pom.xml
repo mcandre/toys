@@ -8,7 +8,7 @@
   <packaging>jar</packaging>
 
   <name>fizzy</name>
-  <url>https://github.com/mcandre/mcandre/tree/master/java/fizzy/</url>
+  <url>https://github.com/mcandre/mcandre/tree/master/groovy/fizzy/</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
