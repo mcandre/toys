@@ -1,7 +1,5 @@
 //! Vector test
 
-extern crate std;
-
 use std::os::args;
 use std::vec::Vec;
 use std::option::Option;
