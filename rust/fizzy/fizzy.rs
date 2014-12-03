@@ -1,7 +1,5 @@
 //! FizzBuzz
 
-extern crate std;
-
 fn fizzbuzz(n: int) -> String {
   let mod3 = n % 3 == 0;
   let mod5 = n % 5 == 0;
@@ -16,7 +14,7 @@ fn fizzbuzz(n: int) -> String {
     return "Buzz".to_string();
   }
   else {
-    return n.to_str();
+    return n.to_string();
   }
 }
 
