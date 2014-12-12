@@ -7,9 +7,6 @@
     "url": "git://github.com/mcandre/mcandre.git"
   },
   "author": "Andrew Pennebaker <andrew.pennebaker@gmail.com> (http://www.yellosoft.us/)",
-  "directories": {
-    "lib": "."
-  },
   "engines": {
     "node": ">=0.8"
   },
