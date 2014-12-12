@@ -1,4 +1,8 @@
-# Example
+# mcandre/java/fib
+
+Fibonacci example in Java
+
+# EXAMPLE
 
 ```
 $ mvn package
@@ -7,7 +11,11 @@ N = 10
 Fib 10 = 55
 ```
 
-# Code coverage
+# REQUIREMENTS
+
+* [Java](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 1.6+
+
+# CODE COVERAGE
 
 ```
 $ mvn site
