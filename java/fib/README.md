@@ -13,7 +13,7 @@ Fib 10 = 55
 
 # REQUIREMENTS
 
-* [Java](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 1.6+
+* [JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 1.6+
 
 # CODE COVERAGE
 
