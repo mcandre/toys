@@ -1,2 +1,12 @@
 #!/usr/bin/env bash
+
+usage() {
+  echo "Usage: $0 [arguments]"
+  exit
+}
+
+if [ -z "$1" ]; then
+  usage
+fi
+
 echo "$@"
