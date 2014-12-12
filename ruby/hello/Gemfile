@@ -1,0 +1,19 @@
+source 'http://rubygems.org'
+
+ruby '2.0.0'
+
+group :development do
+  gem 'guard'
+  gem 'guard-shell', '>= 0.6'
+  gem 'rake'
+  gem 'reek'
+  gem 'flay'
+  gem 'flog'
+  gem 'roodi'
+  gem 'cane'
+  gem 'excellent'
+  gem 'rubocop'
+  gem 'tailor'
+  gem 'rspec'
+  gem 'cucumber'
+end
