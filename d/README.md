@@ -1,6 +1,17 @@
-# mcandre/d/
+# mcandre/d
 
-A small collection of working D code snippets.
+Introductory D programs
+
+# EXAMPLE
+
+```
+$ cd hello/
+$ make
+mkdir -p bin/
+dmd -w -wi -ofbin/hello hello
+bin/hello
+Hello World!
+```
 
 # REQUIREMENTS
 
