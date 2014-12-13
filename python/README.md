@@ -1,8 +1,21 @@
-# Python example scripts
+# mcandre/python
+
+Introductory Python programs
+
+# EXAMPLE
+
+```
+$ python hello.py
+Hello World!
+```
 
 # REQUIREMENTS
 
 * [Python](http://python.org/) 2.6+
+
+E.g., (built-in) (Debuntu, Mac OS X)
+
+E.g., `chocolatey install python` (Windows)
 
 ## OPTIONAL
 
@@ -12,26 +25,36 @@
 
 Install Guard:
 
-    $ bundle
+```
+$ bundle
+```
 
 # USAGE
 
-    $ python hello.py
-    Hello World!
+```
+$ python hello.py
+Hello World!
+```
     
 Unix shells can also do:
 
-    $ ./hello.py
-    Hello World!
+```
+$ ./hello.py
+Hello World!
+```
 
 # LINT
 
-    $ pylint *.py
-    ...
+```
+$ pylint *.py
+...
+```
 
 # GUARD
 
 Guard can automatically lint .py files while you code.
 
-    $ guard
-    $ emacs .
+```
+$ guard
+$ emacs .
+```
