@@ -1,4 +1,14 @@
-# Haskell example scripts
+# mcandre/haskell
+
+Introductory Haskell programs
+
+# EXAMPLE
+
+```
+$ cd hello/
+hello (master)$ runhaskell Hello.hs
+Hello World!
+```
 
 # REQUIREMENTS
 
@@ -11,21 +21,29 @@
 
 Install Guard:
 
-    $ bundle
+```
+$ bundle
+```
 
 # USAGE
 
-    $ runhaskell hello.hs 
-    Hello World
+```
+$ runhaskell hello.hs 
+Hello World
+```
 
 Unix shells can run also scripts this way:
 
-    $ ./hello.hs 
-    Hello World
+```
+$ ./hello.hs 
+Hello World
+```
 
 # GUARD
 
 Guard can automatically provide tips for improving Haskell code.
 
-    $ guard
-    $ emacs .
+```
+$ guard
+$ emacs .
+```
