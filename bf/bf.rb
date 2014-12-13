@@ -127,7 +127,7 @@ class VM
     loop do
       line = gets
 
-      break if line == BF_INTERACTIVE_EXIT
+      break if line.nil? || line == BF_INTERACTIVE_EXIT
 
       result = evalbf(line.chomp)
 
