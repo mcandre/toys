@@ -1,4 +1,11 @@
-# Example POSIX sh scripts
+# Introductory bash scripts
+
+# EXAMPLE
+
+```
+$ bash lib/hello 
+Hello World!
+```
 
 # REQUIREMENTS
 
@@ -14,11 +21,15 @@
 
 ## Lint
 
-    $ make lint
+```
+$ make lint
+```
 
 ## Guard
 
 Guard can monitor sh scripts for changes, automatically linting them.
 
-    $ guard
-    $ emacs .
+```
+$ guard
+$ emacs .
+```
