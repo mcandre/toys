@@ -1,6 +1,9 @@
 BIN=bin/fizzy
 
-all: $(BIN)
+all: test
+
+test: $(BIN)
+	$(BIN)
 
 $(BIN): fizzy.ll
 	llvm-as fizzy.ll
