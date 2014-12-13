@@ -1,4 +1,15 @@
-# Example LaTeX documents
+# mcandre/latex
+
+Introductory LaTeX programs/documents
+
+# EXAMPLE
+
+```
+$ make fizzy.pdf
+pdflatex -interaction=nonstopmode fizzy
+$ open fizzy.pdf
+...
+```
 
 # REQUIREMENTS
 
@@ -11,30 +22,42 @@
 
 Install `guard` (requires [Ruby](https://www.ruby-lang.org/)):
 
-    $ bundle
+```
+$ bundle
+```
 
 # DEVELOPMENT
 
 ## Build
 
-    $ make fizzy.pdf
+```
+$ make fizzy.pdf
+```
 
 ## Clean
 
-    $ make clean
+```
+$ make clean
+```
 
 ## Lint
 
-    $ for f in *.tex; do lacheck $f; done
+```
+$ for f in *.tex; do lacheck $f; done
+```
 
 ## Guard
 
 Guard can monitor .tex files for changes, automatically recompiling them into PDFs.
 
-    $ guard
-    $ emacs .
+```
+$ guard
+$ emacs .
+```
 
 Guard can also automatically lint .tex files.
 
-    $ guard -G Guardfile-lint
-    $ emacs .
+```
+$ guard -G Guardfile-lint
+$ emacs .
+```
