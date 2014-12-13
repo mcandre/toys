@@ -1,3 +1,3 @@
 #!/usr/bin/env octave -qf
 
-a=1
+printf("Hello World!\n");
