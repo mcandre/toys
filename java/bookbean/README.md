@@ -8,7 +8,7 @@ Java [Beans](https://en.wikipedia.org/wiki/JavaBeans) are a discipline (like kun
 * Implements the Serializable inteface
 * Has getter and setter access methods for its attributes (at least the non-transient ones)
 
-Why is it good for a Java class to be a Bean? Beans are easier to configure (good default behavior, and setters for everything), and they integrate better in larger systems.
+Why is it good for a Java class to be a Bean? Beans are easier to configure (good default behavior, and setters/getters for everything), and they integrate better in larger systems.
 
 Providing getters and setters for every single attribute might seem like wasted boilerplate code, but in the long run, your Java class becomes much more flexible in the Java ecosystem, allowing new and interesting uses--you would be surprised by how different developers and computer systems might want to configure and use your code!
 
