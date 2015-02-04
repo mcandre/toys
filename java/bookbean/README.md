@@ -17,6 +17,36 @@ Providing getters and setters for every single attribute might seem like wasted 
 ```
 $ mvn test
 
+$ less src/main/java/us/yellosoft/bookbean/Book.java
+package us.yellosoft.bookbean;
+
+import java.io.Serializable;
+import java.util.Date;
+
+// A Bean for Books
+public class Book implements Serializable, Comparable {
+  // Attributes
+  private String title;
+  private String author;
+  private String publisher;
+  private Date published;
+  private String isbn;
+
+  // 0-ary default constructor with reasonable defaults
+  public Book() {
+    this.title = "";
+    this.author = "";
+    this.publisher = "";
+    this.published = new Date();
+    this.isbn = "";
+  }
+
+  // Setter/Getter boilerplate follows
+
+  public String getTitle() { return this.title; }
+  public void setTitle(String title) { this.title = title; }
+  ...
+
 $ less src/test/java/us/yellosoft/bookbean/BookTest.java
 package us.yellosoft.bookbean;
 
