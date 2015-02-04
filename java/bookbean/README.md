@@ -2,7 +2,7 @@
 
 # ABOUT
 
-Java [Beans](https://en.wikipedia.org/wiki/JavaBeans) are not a library. They are a discipline (like Haskell Monads). Any Java class is considered a Bean if it followes a few rules:
+Java [Beans](https://en.wikipedia.org/wiki/JavaBeans) are a discipline (like kung-fu, or Haskell Monads). Any Java class is considered a Bean if it follows certain rules:
 
 * Has a 0-ary (no arguments) default constructor
 * Implements the Serializable inteface
