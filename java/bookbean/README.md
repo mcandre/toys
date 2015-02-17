@@ -2,7 +2,7 @@
 
 # ABOUT
 
-Java [Beans](https://en.wikipedia.org/wiki/JavaBeans) are a convention (like kung-fu, or Haskell Monads). Any Java class is considered a Bean if it follows certain rules:
+Java [Beans](https://en.wikipedia.org/wiki/JavaBeans) are a convention (like "Green means GO", or Haskell Monads). Any Java class is considered a Bean if it follows certain rules:
 
 * Class has a 0-ary (no arguments) default constructor
 * Class implements the Serializable inteface
