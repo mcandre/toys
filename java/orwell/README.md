@@ -23,7 +23,7 @@ public enum Orwell {
 }
 
 $ less src/test/java/us/yellosoft/orwell/OrwellTest.java
-.package us.yellosoft.orwell;
+package us.yellosoft.orwell;
 
 import org.junit.Test;
 import org.junit.Assert;
