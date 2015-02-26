@@ -8,14 +8,17 @@
   },
   "author": "Andrew Pennebaker <andrew.pennebaker@gmail.com> (http://www.yellosoft.us/)",
   "engines": {
-    "iojs": ">=1.3"
+    "node": ">=0.8"
   },
-  "scripts": {},
+  "scripts": {
+    "exec": "exec"
+  },
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.5",
     "grunt-cli": "~0.1.13",
     "grunt-exec": "~0.4.6",
-    "jshint": ">=2.1.2"
+    "jshint": ">=2.1.2",
+    "jslint": ">= 0.8.1"
   }
 }

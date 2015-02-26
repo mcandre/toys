@@ -1,5 +1,7 @@
 #!/usr/bin/env iojs
 
+"use strict";
+
 function main() {
   process.stdin.resume();
   process.stdin.setEncoding("UTF8");

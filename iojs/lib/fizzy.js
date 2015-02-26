@@ -1,5 +1,7 @@
 #!/usr/bin/env iojs
 
+"use strict";
+
 function fizzBuzz(n) {
   var
   a = n % 3 === 0,
