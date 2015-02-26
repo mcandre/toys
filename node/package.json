@@ -10,7 +10,9 @@
   "engines": {
     "node": ">=0.8"
   },
-  "scripts": {},
+  "scripts": {
+    "exec": "exec"
+  },
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.5",
