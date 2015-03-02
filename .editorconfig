@@ -1,3 +1,5 @@
+# ln -s .../.editorconfig ~/.editorconfig
+
 # EditorConfig + Google Style Guide
 # http://editorconfig.org/
 # https://code.google.com/p/google-styleguide/
@@ -24,3 +26,6 @@ tab_width = 2
 
 [*.js]
 quote_type = single
+
+[{*.xml,*.bash*,.profile}]
+max_line_length = 1000
