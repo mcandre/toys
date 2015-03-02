@@ -3,6 +3,6 @@
 # EXAMPLE
 
 ```
-$ Rscript hello.R 
+$ Rscript hello.R
 Hello World!
 ```
