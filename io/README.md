@@ -5,7 +5,7 @@ Introductory Io programs
 # EXAMPLE
 
 ```
-$ io hello.io 
+$ io hello.io
 Hello world!
 ```
 

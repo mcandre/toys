@@ -1,156 +1,156 @@
 var
-	black = 0,
-	white = 255,
-	ruleInput = document.getElementById("rule"),
-	cc,
-	bounds,
-	steps,
-	stepSpan = document.getElementById("steps"),
-	playPauseButton = document.getElementById("pause"),
-	rule,
-	currentState,
-	currentStep,
-	currentScale,
-	cachedRule,
-	looping;
+  black = 0,
+  white = 255,
+  ruleInput = document.getElementById("rule"),
+  cc,
+  bounds,
+  steps,
+  stepSpan = document.getElementById("steps"),
+  playPauseButton = document.getElementById("pause"),
+  rule,
+  currentState,
+  currentStep,
+  currentScale,
+  cachedRule,
+  looping;
 
 processing.setup = function () {
-	rule = parseInt(ruleInput.value, 10);
+  rule = parseInt(ruleInput.value, 10);
 
-	if (isNaN(rule) || rule < 0 || rule > 255) {
-		noLoop();
-		println("Rule is an integer from 1 to 255 inclusive.");
-	}
-	else {
-		cc = document.getElementById("center-canvas");
-		bounds = cc.getAttribute("width");
-		steps = cc.getAttribute("height");
-		currentStep = 0;
+  if (isNaN(rule) || rule < 0 || rule > 255) {
+    noLoop();
+    println("Rule is an integer from 1 to 255 inclusive.");
+  }
+  else {
+    cc = document.getElementById("center-canvas");
+    bounds = cc.getAttribute("width");
+    steps = cc.getAttribute("height");
+    currentStep = 0;
 
-		currentState = initState(bounds);
-		cachedRule = cacheRule(rule);
+    currentState = initState(bounds);
+    cachedRule = cacheRule(rule);
 
-		currentScale = 1.0;
-		looping = true;
+    currentScale = 1.0;
+    looping = true;
 
-		size(bounds, steps);
-		background(white);
-		fill(black);
-		noStroke();
-	}
+    size(bounds, steps);
+    background(white);
+    fill(black);
+    noStroke();
+  }
 }
 
 function shrink() {
-	var newScale = currentScale * 0.5;
+  var newScale = currentScale * 0.5;
 
-	if (newScale > 0.0625) {
-		background(white);
+  if (newScale > 0.0625) {
+    background(white);
 
-		currentScale = newScale;
-		steps *= 2;
-		bounds *= 2;
+    currentScale = newScale;
+    steps *= 2;
+    bounds *= 2;
 
-		currentState = initState(bounds);
-		currentStep = 0;		
-	}
-	// Scale makes graphics effectively invisible
-	else {
-		noLoop();
-	}
+    currentState = initState(bounds);
+    currentStep = 0;
+  }
+  // Scale makes graphics effectively invisible
+  else {
+    noLoop();
+  }
 }
 
 processing.draw = function () {
-	scale(currentScale);
+  scale(currentScale);
 
-	drawState(currentState, currentStep);
+  drawState(currentState, currentStep);
 
-	stepSpan.innerHTML = "" + (currentStep + 1);
+  stepSpan.innerHTML = "" + (currentStep + 1);
 
-	currentState = step(currentState);
+  currentState = step(currentState);
 
-	currentStep++;
+  currentStep++;
 
-	if (currentStep >= steps) { shrink(); }
+  if (currentStep >= steps) { shrink(); }
 }
 
 window.redraw = function () {
-	noLoop();
+  noLoop();
 
-	currentState = [];
-	currentStep = 0;
+  currentState = [];
+  currentStep = 0;
 
-	processing.setup();
+  processing.setup();
 
-	loop();
+  loop();
 }
 
 window.screenshot = function () {
-	save("cellular-automata-code-" + rule + "-step-" + (currentStep + 1) + ".png");
+  save("cellular-automata-code-" + rule + "-step-" + (currentStep + 1) + ".png");
 }
 
 window.playPause = function () {
-	if (looping) {
-		noLoop();
-		looping = false;
-		playPauseButton.innerHTML = "Play";
-	}
-	else {
-		loop();
-		looping = true;
-		playPauseButton.innerHTML = "Pause";
-	}
+  if (looping) {
+    noLoop();
+    looping = false;
+    playPauseButton.innerHTML = "Play";
+  }
+  else {
+    loop();
+    looping = true;
+    playPauseButton.innerHTML = "Pause";
+  }
 }
 
 function initState(bounds) {
-	var s = [];
+  var s = [];
 
-	for (var i = 0; i < bounds; i++) {
-		s.push( i == bounds / 2 ? 1 : 0);
-	}
+  for (var i = 0; i < bounds; i++) {
+    s.push( i == bounds / 2 ? 1 : 0);
+  }
 
-	return s;
+  return s;
 }
 
 function cacheRule(rule) {
-	var result = {};
+  var result = {};
 
-	var bitRule = rule.toString(2).split("").map(function (x) { return x == "1" ? 1 : 0; });
-	while (bitRule.length < 8) { bitRule = [0].concat(bitRule); }
+  var bitRule = rule.toString(2).split("").map(function (x) { return x == "1" ? 1 : 0; });
+  while (bitRule.length < 8) { bitRule = [0].concat(bitRule); }
 
-	[0, 1].map(function (i) {
-		[0, 1].map(function (j) {
-			[0, 1].map(function (k) {
-				var key = [i, j, k];
+  [0, 1].map(function (i) {
+    [0, 1].map(function (j) {
+      [0, 1].map(function (k) {
+        var key = [i, j, k];
 
-				// Wolfram ordering is inverted and backwards.
-				var invertedKey = key.map(function (x) { return x == 1 ? 0 : 1; });
-				invertedKey.reverse();
+        // Wolfram ordering is inverted and backwards.
+        var invertedKey = key.map(function (x) { return x == 1 ? 0 : 1; });
+        invertedKey.reverse();
 
-				result[key] = bitRule[invertedKey[0] + invertedKey[1] * 2 + invertedKey[2] * 4];
-			});
-		});
-	});
+        result[key] = bitRule[invertedKey[0] + invertedKey[1] * 2 + invertedKey[2] * 4];
+      });
+    });
+  });
 
-	return result;
+  return result;
 }
 
 function drawState(state, row) {
-	for (var i = 0; i < state.length; i++) {
-		if (state[i] == 1) { rect(i, row, 1, 1); }
-	}
+  for (var i = 0; i < state.length; i++) {
+    if (state[i] == 1) { rect(i, row, 1, 1); }
+  }
 }
 
 function step(state) {
-	var statePrime = [];
+  var statePrime = [];
 
-	for (var i = 0; i < state.length; i++) {
-		var
-			a = i - 1 > 0 ? i - 1 : state.length - 1,
-			b = i,
-			c = i + 1 < state.length ? i + 1 : 0;
+  for (var i = 0; i < state.length; i++) {
+    var
+      a = i - 1 > 0 ? i - 1 : state.length - 1,
+      b = i,
+      c = i + 1 < state.length ? i + 1 : 0;
 
-		statePrime.push(cachedRule[ [state[a], state[b], state[c]] ]);
-	}
+    statePrime.push(cachedRule[ [state[a], state[b], state[c]] ]);
+  }
 
-	return statePrime;
+  return statePrime;
 }
