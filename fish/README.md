@@ -5,7 +5,7 @@ Introductory Fish programs
 # EXAMPLE
 
 ```
-$ fish lib/hello 
+$ fish lib/hello
 Hello World!
 ```
 

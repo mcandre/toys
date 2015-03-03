@@ -5,7 +5,7 @@ Introductory Forth programs
 # EXAMPLE
 
 ```
-$ gforth hello.fth 
+$ gforth hello.fth
 Hello World!
 ```
 
