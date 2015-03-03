@@ -13,15 +13,15 @@ msg: .asciz "Hello World!\n"
 .globl start
 
 start:
-	push $len
-	push $msg
-	push $stdout
-	mov $sys_write, %eax
-	sub $4, %esp
-	int $kernel
-	add $16, %esp /* $4 + $4 * 3 */
+  push $len
+  push $msg
+  push $stdout
+  mov $sys_write, %eax
+  sub $4, %esp
+  int $kernel
+  add $16, %esp /* $4 + $4 * 3 */
 
-	push $0
-	mov $sys_exit, %eax
-	sub $4, %esp
-	int $kernel
+  push $0
+  mov $sys_exit, %eax
+  sub $4, %esp
+  int $kernel

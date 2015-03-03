@@ -28,14 +28,14 @@ $ bundle
 # USAGE
 
 ```
-$ runhaskell hello.hs 
+$ runhaskell hello.hs
 Hello World
 ```
 
 Unix shells can run also scripts this way:
 
 ```
-$ ./hello.hs 
+$ ./hello.hs
 Hello World
 ```
 

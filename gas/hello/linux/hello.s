@@ -15,12 +15,12 @@ msg: .asciz "Hello World!\n"
 .text
 
 _start:
-	mov $sys_write, %eax
-	mov $stdout, %ebx
-	mov $msg, %ecx
-	mov $len, %edx
-	int $kernel
+  mov $sys_write, %eax
+  mov $stdout, %ebx
+  mov $msg, %ecx
+  mov $len, %edx
+  int $kernel
 
-	mov $sys_exit, %eax
-	mov $0, %ebx
-	int $kernel
+  mov $sys_exit, %eax
+  mov $0, %ebx
+  int $kernel

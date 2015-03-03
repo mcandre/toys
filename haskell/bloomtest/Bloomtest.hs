@@ -9,7 +9,7 @@
 
 -- Example
 --
--- $ runhaskell bloomtest.hs 
+-- $ runhaskell bloomtest.hs
 -- Jerry in filter? True
 -- Kerry in filter? True
 -- Larry in filter? True
