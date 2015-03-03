@@ -5,7 +5,7 @@ Introductory Emacs Lisp programs
 # EXAMPLE
 
 ```
-$ emacs --script hello.el 
+$ emacs --script hello.el
 Hello World!
 ```
 
