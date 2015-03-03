@@ -5,7 +5,7 @@ Introductory Perl programs
 # EXAMPLE
 
 ```
-$ perl hello.pl 
+$ perl hello.pl
 Hello World!
 ```
 

@@ -5,7 +5,7 @@ Introductory PHP programs
 # EXAMPLE
 
 ```
-$ php hello.php 
+$ php hello.php
 <p>Hello World</p>php
 ```
 

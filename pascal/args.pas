@@ -1,7 +1,7 @@
 program Args;
 var
-	i : integer;
+  i : integer;
 begin
-	for i := 0 to ParamCount do
-		writeln(ParamStr(i));
+  for i := 0 to ParamCount do
+    writeln(ParamStr(i));
 end.

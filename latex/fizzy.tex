@@ -19,19 +19,19 @@
 \noindent
 \newcounter{i}
 \forloop{i}{1}{\value{i} < 101}{%
-	\ifthenelse{\equal{\intcalcMod{\value{i}}{15}}{0}}{%
-		FizzBuzz
-	}{%
-		\ifthenelse{\equal{\intcalcMod{\value{i}}{3}}{0}}{%
-			Fizz
-		}{%
-			\ifthenelse{\equal{\intcalcMod{\value{i}}{5}}{0}}{%
-				Buzz
-			}{%
-				\thei
-			}
-		}
-	}\\
+  \ifthenelse{\equal{\intcalcMod{\value{i}}{15}}{0}}{%
+    FizzBuzz
+  }{%
+    \ifthenelse{\equal{\intcalcMod{\value{i}}{3}}{0}}{%
+      Fizz
+    }{%
+      \ifthenelse{\equal{\intcalcMod{\value{i}}{5}}{0}}{%
+        Buzz
+      }{%
+        \thei
+      }
+    }
+  }\\
 }
 \end{multicols}
 \end{document}

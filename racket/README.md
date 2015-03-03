@@ -5,7 +5,7 @@ Introductory Racket programs
 # EXAMPLE
 
 ```
-$ racket hello.rkt 
+$ racket hello.rkt
 Hello World!
 ```
 

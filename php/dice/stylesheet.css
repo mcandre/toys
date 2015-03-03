@@ -1,21 +1,21 @@
 body {
-	background-color: #fff;
-	color: #333;
-	text-align: center;
+  background-color: #fff;
+  color: #333;
+  text-align: center;
 }
 
 body, p, ol, ul, td {
-	font-family: verdana, arial, helvetica, sans-serif;
-	font-size: 18px;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 18px;
 }
 
 input {
-	font-size: 200%;
-	text-align: center;
+  font-size: 200%;
+  text-align: center;
 }
 
 button {
-	font-size: 200%;
+  font-size: 200%;
 }
 
 a { color: #000; }
@@ -23,15 +23,15 @@ a:visited { color: #666; }
 a:hover { background-color: #000; color: #fff; }
 
 img {
-	vertical-align: middle;
+  vertical-align: middle;
 }
 
 #dice_form {
-	display: block;
-	margin: 10%;
+  display: block;
+  margin: 10%;
 }
 
 #roll_button {
-	margin-bottom: 5%;
-	margin-top: 5%;
+  margin-bottom: 5%;
+  margin-top: 5%;
 }

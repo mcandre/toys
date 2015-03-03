@@ -24,12 +24,12 @@ end
 
 -- from Peter Prade's recipe http://lua-users.org/wiki/SplitJoin
 function string:join(list)
-  if #list == 0 then 
-    return "" 
+  if #list == 0 then
+    return ""
   end
 
   local result = list[1]
-  for i=2, #list do 
+  for i=2, #list do
     result = result .. self .. list[i]
   end
 

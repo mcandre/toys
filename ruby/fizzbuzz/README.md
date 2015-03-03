@@ -5,7 +5,7 @@ FizzBuzz, functional-style, parallelized, in Ruby
 # EXAMPLE
 
 ```
-$ ruby fizzy.rb 
+$ ruby fizzy.rb
 1
 2
 Fizz

@@ -5,7 +5,7 @@ Introductory programs in Lua
 # EXAMPLE
 
 ```
-$ lua hello.lua 
+$ lua hello.lua
 Hello World!
 ```
 
