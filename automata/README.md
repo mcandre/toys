@@ -5,7 +5,7 @@ Wolfram automata modulinos
 # EXAMPLE
 
 ```
-$ ruby automata.rb 
+$ ruby automata.rb
                                         #
                                        ##
                                       ###

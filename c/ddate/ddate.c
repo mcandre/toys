@@ -1,24 +1,24 @@
 /* $ DVCS ID: $jer|,523/lhos,KYTP!41023161\b"?" <<= DO NOT DELETE! */
 
 /* ddate.c .. converts boring normal dates to fun Discordian Date -><-
-   written  the 65th day of The Aftermath in the Year of Our Lady of 
+   written  the 65th day of The Aftermath in the Year of Our Lady of
    Discord 3157 by Druel the Chaotic aka Jeremy Johnson aka
-   mpython@gnu.ai.mit.edu  
+   mpython@gnu.ai.mit.edu
       28 Sever St Apt #3
       Worcester MA 01609
 
-   and I'm not responsible if this program messes anything up (except your 
+   and I'm not responsible if this program messes anything up (except your
    mind, I'm responsible for that)
 
    (k) YOLD 3161 and all time before and after.
    Reprint, reuse, and recycle what you wish.
    This program is in the public domain.  Distribute freely.  Or not.
 
-   Majorly hacked, extended and bogotified/debogotified on 
-   Sweetmorn, Bureaucracy 42, 3161 YOLD, by Lee H:. O:. Smith, KYTP, 
+   Majorly hacked, extended and bogotified/debogotified on
+   Sweetmorn, Bureaucracy 42, 3161 YOLD, by Lee H:. O:. Smith, KYTP,
    aka Andrew Bulhak, aka acb@dev.null.org
 
-   and I'm not responsible if this program messes anything up (except your 
+   and I'm not responsible if this program messes anything up (except your
    mind, I'm responsible for that) (and that goes for me as well --lhos)
 
    Version history:
@@ -35,8 +35,8 @@
 
 /* configuration options  VVVVV   READ THIS!!! */
 
-/* If you wish ddate(1) to print the date in the same format as Druel's 
- * original ddate when called in immediate mode, define OLD_IMMEDIATE_FMT 
+/* If you wish ddate(1) to print the date in the same format as Druel's
+ * original ddate when called in immediate mode, define OLD_IMMEDIATE_FMT
  */
 
 #define OLD_IMMEDIATE_FMT
@@ -47,7 +47,7 @@
 
 /* #define US_FORMAT */
 
-/* If you are ideologically, theologically or otherwise opposed to the 
+/* If you are ideologically, theologically or otherwise opposed to the
  * Church of the SubGenius and do not wish your copy of ddate(1) to contain
  * code for counting down to X-Day, undefine KILL_BOB */
 
@@ -69,19 +69,19 @@ int xday_countdown(int yday, int year);
 
 /* string constants */
 
-char *day_long[5] = { 
+char *day_long[5] = {
     "Sweetmorn", "Boomtime", "Pungenday", "Prickle-Prickle", "Setting Orange"
 };
 
 char *day_short[5] = {"SM","BT","PD","PP","SO"};
 
-char *season_long[5] = { 
+char *season_long[5] = {
     "Chaos", "Discord", "Confusion", "Bureaucracy", "The Aftermath"
 };
 
 char *season_short[5] = {"Chs", "Dsc", "Cfn", "Bcy", "Afm"};
 
-char *holyday[5][2] = { 
+char *holyday[5][2] = {
     { "Mungday", "Chaoflux" },
     { "Mojoday", "Discoflux" },
     { "Syaday",  "Confuflux" },
@@ -98,13 +98,13 @@ struct disc_time {
 
 char *excl[] = {
     "Hail Eris!", "All Hail Discordia!", "Kallisti!", "Fnord.", "Or not.",
-    "Wibble.", "Pzat!", "P'tang!", "Frink!", 
+    "Wibble.", "Pzat!", "P'tang!", "Frink!",
 #ifdef PRAISE_BOB
     "Slack!", "Praise \"Bob\"!", "Or kill me.",
 #endif /* PRAISE_BOB */
     /* randomness, from the Net and other places. Feel free to add (after
        checking with the relevant authorities, of course). */
-    "Grudnuk demand sustenance!", "Keep the Lasagna flying!", 
+    "Grudnuk demand sustenance!", "Keep the Lasagna flying!",
     "Umlaut Zebra über alles!", "You are what you see.",
     "Or is it?", "This statement is false.",
     ""
@@ -127,8 +127,8 @@ static inline char *ending(int i) {
 	case 11:
 	case 12:
 	case 13:
-		return "th"; 
-	
+		return "th";
+
 	default:
 		return (i%10==1)?"st":(i%10==2?"nd":(i%10==3?"rd":"th"));
 	}
@@ -170,32 +170,32 @@ main (int argc, char *argv[]) {
     for(pi=1; pi<argc; pi++) {
 	switch(argv[pi][0]) {
 	case '+': fnord=argv[pi]+1; break;
-	case '-': 
-	    switch(argv[pi][1]) {
-	    case 'V':
+	case '-':
+    switch(argv[pi][1]) {
+    case 'V':
 		printf("%s from %s\n", progname, "1.0");
-	    default: goto usage;
-	    }
+    default: goto usage;
+   }
 	default: goto thud;
 	}
     }
 
   thud:
-    if (argc-pi==3){ 
+    if (argc-pi==3){
 	int moe=atoi(argv[pi]), larry=atoi(argv[pi+1]), curly=atoi(argv[pi+2]);
 	hastur=makeday(
 #ifdef US_FORMAT
-	    moe,larry,
+   moe,larry,
 #else
-	    larry,moe,
+  larry,moe,
 #endif
-	    curly);
+  curly);
 	if (hastur.season == -1) {
 		printf("Invalid date -- out of range\n");
 		return -1;
 	}
 	fnord=fnord?fnord:default_fmt;
-    } else if (argc!=pi) { 
+    } else if (argc!=pi) {
       usage:
 	fprintf(stderr, "usage: %s [+format] [day month year]\n", argv[0]);
 	exit(1);
@@ -209,7 +209,7 @@ main (int argc, char *argv[]) {
     }
     format(schwa, fnord, hastur);
     printf("%s\n", schwa);
-   
+
     return 0;
 }
 
@@ -224,17 +224,17 @@ void format(char *buf, const char* fmt, struct disc_time dt)
     /* first, find extents of St. Tib's Day area, if defined */
     for(i=0; i<fmtlen; i++) {
 	if(fmt[i]=='%') {
-	    switch(fmt[i+1]) {
-	    case 'A':
-	    case 'a':
-	    case 'd':
-	    case 'e':
-		if(tib_start>0)	    tib_end=i+1;
-		else		    tib_start=i;
+    switch(fmt[i+1]) {
+    case 'A':
+    case 'a':
+    case 'd':
+    case 'e':
+		if(tib_start>0)    tib_end=i+1;
+		else    tib_start=i;
 		break;
-	    case '{': tib_start=i; break;
-	    case '}': tib_end=i+1; break;
-	    }
+    case '{': tib_start=i; break;
+    case '}': tib_end=i+1; break;
+    }
 	}
     }
 
@@ -243,11 +243,11 @@ void format(char *buf, const char* fmt, struct disc_time dt)
 
     for(i=0; i<fmtlen; i++) {
 	if((i==tib_start) && (dt.day==-1)) {
-	    /* handle St. Tib's Day */
-	    strcpy(bufptr, "St. Tib's Day"); bufptr += 13;
-	    i=tib_end;
+    /* handle St. Tib's Day */
+    strcpy(bufptr, "St. Tib's Day"); bufptr += 13;
+    i=tib_end;
 	} else {
-	    if(fmt[i]=='%') {
+    if(fmt[i]=='%') {
 		char *wibble=0, snarf[23];
 		switch(fmt[++i]) {
 		case 'A': wibble=day_long[dt.yday%5]; break;
@@ -255,30 +255,29 @@ void format(char *buf, const char* fmt, struct disc_time dt)
 		case 'B': wibble=season_long[dt.season]; break;
 		case 'b': wibble=season_short[dt.season]; break;
 		case 'd': sprintf(snarf, "%d", dt.day+1); wibble=snarf; break;
-		case 'e': sprintf(snarf, "%d%s", dt.day+1, ending(dt.day+1)); 
-		    wibble=snarf; break;
+		case 'e': sprintf(snarf, "%d%s", dt.day+1, ending(dt.day+1));
+    wibble=snarf; break;
 		case 'H': if(dt.day==4||dt.day==49)
-		    wibble=holyday[dt.season][dt.day==49]; break;
+    wibble=holyday[dt.season][dt.day==49]; break;
 		case 'N': if(dt.day!=4&&dt.day!=49) goto eschaton; break;
 		case 'n': *(bufptr++)='\n'; break;
 		case 't': *(bufptr++)='\t'; break;
-		    
 		case 'Y': sprintf(snarf, "%d", dt.year); wibble=snarf; break;
 		case '.': wibble=sel(excl, sizeof(excl)/sizeof(excl[0]));
-		    break;
+    break;
 #ifdef KILL_BOB
-		case 'X': sprintf(snarf, "%d", 
-				  xday_countdown(dt.yday, dt.year));
-				  wibble = snarf; break;
+		case 'X': sprintf(snarf, "%d",
+  xday_countdown(dt.yday, dt.year));
+  wibble = snarf; break;
 #endif /* KILL_BOB */
 		}
 		if(wibble) {
-/*		    fprintf(stderr, "wibble = (%s)\n", wibble);*/
-		    strcpy(bufptr, wibble); bufptr+=strlen(wibble);
+/*    fprintf(stderr, "wibble = (%s)\n", wibble);*/
+    strcpy(bufptr, wibble); bufptr+=strlen(wibble);
 		}
-	    } else {
+    } else {
 		*(bufptr++) = fmt[i];
-	    }
+    }
 	}
     }
   eschaton:
@@ -286,25 +285,25 @@ void format(char *buf, const char* fmt, struct disc_time dt)
 }
 
 struct disc_time makeday(int imonth,int iday,int iyear) /*i for input */
-{ 
+{
     struct disc_time funkychickens;
-    
+
     int cal[12] = { 31,28,31,30,31,30,31,31,30,31,30,31 };
     int dayspast=0;
 
     /* basic range checks */
     if (imonth < 1 || imonth > 12) {
-	    funkychickens.season = -1;
-	    return funkychickens;
+    funkychickens.season = -1;
+    return funkychickens;
     }
     if (iday < 1 || iday > cal[imonth-1]) {
-	    if (!(imonth == 2 && iday == 29 && iyear%4 == 0 &&
-		  (iyear%100 != 0 || iyear%400 == 0))) {
-		    funkychickens.season = -1;
-		    return funkychickens;
-	    }
+    if (!(imonth == 2 && iday == 29 && iyear%4 == 0 &&
+  (iyear%100 != 0 || iyear%400 == 0))) {
+    funkychickens.season = -1;
+    return funkychickens;
     }
-    
+    }
+
     imonth--;
     funkychickens.year= iyear+1166;
     while(imonth>0) { dayspast+=cal[--imonth]; }
@@ -324,7 +323,7 @@ struct disc_time makeday(int imonth,int iday,int iyear) /*i for input */
 
 struct disc_time convert(int nday, int nyear)
 {  struct disc_time funkychickens;
-   
+
    funkychickens.year = nyear+3066;
    funkychickens.day=nday;
    funkychickens.season=0;
@@ -340,15 +339,14 @@ struct disc_time convert(int nday, int nyear)
        funkychickens.day-=73;
      }
    return funkychickens;
-  
  }
 
 #ifdef KILL_BOB
 
-/* Code for counting down to X-Day, X-Day being Cfn 40, 3164 
+/* Code for counting down to X-Day, X-Day being Cfn 40, 3164
  *
- * After `X-Day' passed without incident, the CoSG declared that it had 
- * got the year upside down --- X-Day is actually in 8661 AD rather than 
+ * After `X-Day' passed without incident, the CoSG declared that it had
+ * got the year upside down --- X-Day is actually in 8661 AD rather than
  * 1998 AD.
  *
  * Thus, the True X-Day is Cfn 40, 9827.

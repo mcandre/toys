@@ -15,12 +15,13 @@
 
 root = true
 
+# Most files
 [*]
 end_of_line = lf
 insert_final_newline = true
 charset = utf-8
 trim_trailing_whitespace = true
-max_line_length = 80
+max_line_length = 100
 spaces_around_operators = true
 spaces_around_brackets = false
 indent_style = space
@@ -29,12 +30,23 @@ indent_brace_style = K&R
 curly_bracket_next_line = false
 continuation_indent_size 4
 
+# Makefiles
 [{Makefile,*.mf}]
 indent_style = tab
 tab_width = 2
 
+# JavaScript
 [*.js]
 quote_type = single
 
-[{*.xml,*.bash*,.profile*,.editorconfig,.emacs}]
+# Lisp
+[{*.lisp,*.scm,*.lsp,*.clj,*.el}]
+indent_size = none
+
+# Windows files
+[{*.bat,*reg,*.ps1,*.cs,*.fs,*.ahk}]
+end_of_line = crlf
+
+# Configuration files and shell scripts
+[{Makefile*,*.mf,Rakefile*,Gruntfile*,Guardfile*,*.xml,*.ahk,*.epf,.*,*.profile,*.conf,*.cfg,*.plist,*-init,*.bf,*.bs}]
 max_line_length = 1000

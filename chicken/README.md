@@ -5,6 +5,6 @@ Introductory Chicken Scheme scripts
 # EXAMPLE
 
 ```
-$ csi -ss hello.scm 
+$ csi -ss hello.scm
 Hello World!
 ```

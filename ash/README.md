@@ -3,7 +3,7 @@
 # EXAMPLE
 
 ```
-$ lib/hello 
+$ lib/hello
 Hello World!
 ```
 
