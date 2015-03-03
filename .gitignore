@@ -4,3 +4,4 @@ bin/
 Thumbs.db
 Gemfile.lock
 tmp/
+node_modules/

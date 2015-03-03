@@ -1,11 +1,11 @@
 (*
-	Epicurus - Problem of Evil
-	Andrew Pennebaker
-	30 Jan 2012
+  Epicurus - Problem of Evil
+  Andrew Pennebaker
+  30 Jan 2012
 
-	Example:
+  Example:
 
-	coqtop -l god.v
+  coqtop -l god.v
 *)
 
 

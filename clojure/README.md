@@ -5,6 +5,6 @@ Introductory Clojure scripts
 # EXAMPLE
 
 ```
-$ lein exec hello.clj 
+$ lein exec hello.clj
 Hello World!
 ```
