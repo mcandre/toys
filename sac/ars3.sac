@@ -2,11 +2,11 @@ use StdIO: all;
 use Array: all;
 
 int main() {
-	print(1);
-	print([1, 2, 3, 4, 5]);
-	print([[1, 2], [3, 4], [5, 6]]);
-	print(genarray([4, 3, 2], 1));
-	print(genarray([4, 3], [1, 2]));
+  print(1);
+  print([1, 2, 3, 4, 5]);
+  print([[1, 2], [3, 4], [5, 6]]);
+  print(genarray([4, 3, 2], 1));
+  print(genarray([4, 3], [1, 2]));
 
-	return(0);
+  return(0);
 }
