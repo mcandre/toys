@@ -5,13 +5,13 @@
 (setf PARSER "http://yubnub.org/parser/parse?command=")
 
 (define (yubnub:yubnub terms)
-	(exec (append "open " PARSER (join terms "+"))))
+  (exec (append "open " PARSER (join terms "+"))))
 
 (define (main)
-	(let ((arguments (main-args)))
-		(yubnub (2 arguments)))
+  (let ((arguments (main-args)))
+    (yubnub (2 arguments)))
 
-	(exit))
+  (exit))
 
 (if (find "yubnub" (main-args 1)) (main))
 

@@ -10,9 +10,9 @@
 (context 'MODULE)
 
 (define (main)
-	;; KOPIMI
+  ;; KOPIMI
 
-	(exit))
+  (exit))
 
 (if (find "module" (main-args 1)) (main))
 

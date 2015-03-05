@@ -5,6 +5,6 @@ Introductory scripts in Common Lisp (with a preference for CLISP)
 # EXAMPLE
 
 ```
-$ ./hello.lisp 
+$ ./hello.lisp
 Hello from main!
 ```

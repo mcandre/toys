@@ -9,7 +9,7 @@ exec clisp -q -q $0 $0 ${1+"$@"}
 ;;;; 16 Nov 2010
 
 (defun say (str)
-       (shell (format nil "say ~a" str)))
+  (shell (format nil "say ~a" str)))
 
 (defun say-n (n)
-       (say (format nil "~r" n)))
+  (say (format nil "~r" n)))

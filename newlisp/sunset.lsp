@@ -7,25 +7,25 @@
 (setf API "http://iamlegend.warnerbros.com/iphone/sunset.php?zip=")
 
 (define (Sunset:Sunset zipcode)
-	(let ((url (append API zipcode)))
-		(setf data (get-url url))
+  (let ((url (append API zipcode)))
+    (setf data (get-url url))
 
-		(setf info (Json:json->lisp data))
+    (setf info (Json:json->lisp data))
 
-		(lookup "formattedSet" (lookup "weather" info))))
+    (lookup "formattedSet" (lookup "weather" info))))
 
 (define (usage)
-	(println "Usage: sunset <zipcodes>")
-	(exit))
+  (println "Usage: sunset <zipcodes>")
+  (exit))
 
 (define (main)
-	(let ((arguments (2 (main-args))))
-		(if (< (length arguments) 1)
-			(usage)
-			(dolist (zipcode arguments)
-				(println (Sunset zipcode)))))
+  (let ((arguments (2 (main-args))))
+    (if (< (length arguments) 1)
+      (usage)
+      (dolist (zipcode arguments)
+        (println (Sunset zipcode)))))
 
-	(exit))
+  (exit))
 
 (if (find "sunset" (main-args 1)) (main))
 
