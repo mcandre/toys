@@ -69,19 +69,19 @@ int xday_countdown(int yday, int year);
 
 /* string constants */
 
-char* day_long[5] = {
+char *day_long[5] = {
   "Sweetmorn", "Boomtime", "Pungenday", "Prickle-Prickle", "Setting Orange"
 };
 
-char* day_short[5] = {"SM", "BT", "PD", "PP", "SO"};
+char *day_short[5] = {"SM", "BT", "PD", "PP", "SO"};
 
-char* season_long[5] = {
+char *season_long[5] = {
   "Chaos", "Discord", "Confusion", "Bureaucracy", "The Aftermath"
 };
 
-char* season_short[5] = {"Chs", "Dsc", "Cfn", "Bcy", "Afm"};
+char *season_short[5] = {"Chs", "Dsc", "Cfn", "Bcy", "Afm"};
 
-char* holyday[5][2] = {
+char *holyday[5][2] = {
   { "Mungday", "Chaoflux" },
   { "Mojoday", "Discoflux" },
   { "Syaday",  "Confuflux" },
@@ -96,7 +96,7 @@ struct disc_time {
   int year; /* 3066- */
 };
 
-char* excl[] = {
+char *excl[] = {
   "Hail Eris!", "All Hail Discordia!", "Kallisti!", "Fnord.", "Or not.",
   "Wibble.", "Pzat!", "P'tang!", "Frink!",
 #ifdef PRAISE_BOB
@@ -111,7 +111,7 @@ char* excl[] = {
 };
 
 char default_fmt[] = "%{%A, %B %d%}, %Y YOLD";
-char* default_immediate_fmt =
+char *default_immediate_fmt =
 #ifdef OLD_IMMEDIATE_FMT
   "Today is %{%A, the %e day of %B%} in the YOLD %Y%N%nCelebrate %H"
 #else
@@ -121,7 +121,7 @@ char* default_immediate_fmt =
 
 #define DY(y) (y+1166)
 
-static inline char* ending(int i) {
+static inline char *ending(int i) {
   switch (i) {
   case 11:
   case 12:
@@ -139,27 +139,27 @@ static inline int leapp(int i) {
 }
 
 /* select a random string */
-static inline char* sel(char** strings, int num) {
+static inline char *sel(char **strings, int num) {
   return (strings[random() % num]);
 }
 
-void print(struct disc_time, char**); /* old */
-void format(char* buf, const char* fmt, struct disc_time dt);
+void print(struct disc_time, char **); /* old */
+void format(char *buf, const char *fmt, struct disc_time dt);
 /* read a fortune file */
-int load_fortunes(char* fn, char* delim, char** result);
+int load_fortunes(char *fn, char *delim, char **result);
 
 struct disc_time convert(int, int);
 struct disc_time makeday(int, int, int);
 
 int
-main(int argc, char* argv[]) {
+main(int argc, char *argv[]) {
   long t;
-  struct tm* eris;
+  struct tm *eris;
   int bob, raw;
   struct disc_time hastur;
   char schwa[23 * 17], *fnord = 0;
   int pi;
-  char* progname, *p;
+  char *progname, *p;
 
   progname = argv[0];
 
@@ -228,10 +228,10 @@ usage:
   return 0;
 }
 
-void format(char* buf, const char* fmt, struct disc_time dt) {
+void format(char *buf, const char *fmt, struct disc_time dt) {
   int tib_start = -1, tib_end = 0;
   int i, fmtlen = strlen(fmt);
-  char* bufptr = buf;
+  char *bufptr = buf;
 
   /*    fprintf(stderr, "format(%p, \"%s\", dt)\n", buf, fmt);*/
 
@@ -273,7 +273,7 @@ void format(char* buf, const char* fmt, struct disc_time dt) {
       i = tib_end;
     } else {
       if (fmt[i] == '%') {
-        char* wibble = 0, snarf[23];
+        char *wibble = 0, snarf[23];
 
         switch (fmt[++i]) {
         case 'A':

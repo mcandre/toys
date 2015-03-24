@@ -6,14 +6,14 @@
 
 #define uint unsigned int
 
-static /*@null@*/ char* hexTime() {
+static /*@null@*/ char *hexTime() {
   time_t timer;
-  struct tm* local;
+  struct tm *local;
   uint seconds;
   uint hhour;
   uint hmin;
   uint hsec;
-  char* result;
+  char *result;
 
   timer = time(NULL);
 
@@ -29,7 +29,7 @@ static /*@null@*/ char* hexTime() {
 
   hsec = seconds % 16;
 
-  result = (char*) malloc(sizeof(char) * 7);
+  result = (char *) malloc(sizeof(char) * 7);
 
   if (result != NULL) {
     int remainder = snprintf(result, 7, "%x_%02x_%x", hhour, hmin, hsec);
@@ -47,7 +47,7 @@ static /*@null@*/ char* hexTime() {
 }
 
 int main() {
-  char* h = hexTime();
+  char *h = hexTime();
 
   if (h != NULL) {
     printf("%s\n", h);

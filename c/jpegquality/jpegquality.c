@@ -53,7 +53,7 @@ int Debug = 0;
 /***************************************************
  Usage(): Display program usage.
 ***************************************************/
-void  Usage(char* Name) {
+void  Usage(char *Name) {
   fprintf(stderr, "Usage: %s file.jpg [file.jpg file.jpg...]\n", Name);
 }
 
@@ -64,7 +64,7 @@ void  Usage(char* Name) {
  by 0x00 or 0xff.
  This function reads the next marker.
 ***************************************************/
-int ReadJpegMarker(FILE* Fin) {
+int ReadJpegMarker(FILE *Fin) {
   int B1, B2;
   long Pos;
   long Len;
@@ -103,7 +103,7 @@ ReadAgainB2:
  ProcessJPEG(): Process a JPEG
  Returns:  0=processed JPEG    1=not a JPEG!
 ***************************************************/
-int ProcessJPEG(FILE* Fin) {
+int ProcessJPEG(FILE *Fin) {
   int Header[15];
   int i;
   int Type;
@@ -288,9 +288,9 @@ int ProcessJPEG(FILE* Fin) {
 }
 
 /**************************************************************/
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[]) {
   int c;
-  FILE* Fin;
+  FILE *Fin;
   int rc;
 
   /* process command lines */

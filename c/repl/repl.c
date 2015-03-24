@@ -16,7 +16,7 @@
 
 #define EXIT "exit"
 
-static void __attribute__((noreturn)) usage(char* const program) {
+static void __attribute__((noreturn)) usage(char *const program) {
   printf("Usage: %s <script>\n", program);
   printf("\n-h --help\tDisplay usage\n");
   printf("-v --version\tDisplay version\n");
@@ -35,11 +35,11 @@ static void welcome() {
 }
 
 static void interactive() {
-  char* command;
+  char *command;
 
   welcome();
 
-  command = (char*) malloc(1024);
+  command = (char *) malloc(1024);
 
   if (command != NULL) {
     do {
@@ -51,8 +51,8 @@ static void interactive() {
   free(command);
 }
 
-static void run(char* const script) {
-  FILE* f = fopen(script, "rb");
+static void run(char *const script) {
+  FILE *f = fopen(script, "rb");
 
   if (f == NULL) {
     printf("Error: Cannot read script %s\n", script);
@@ -68,7 +68,7 @@ static void run(char* const script) {
   }
 }
 
-int main(int const argc, char** const argv) {
+int main(int const argc, char **const argv) {
   if (argc < 2) {
     interactive();
   } else {

@@ -4,7 +4,7 @@
 #include <string.h>
 #include <stdio.h>
 
-static void __attribute__((noreturn)) usage(char* const program) {
+static void __attribute__((noreturn)) usage(char *const program) {
   printf("Usage: %s [file|file.flip]\n", program);
   printf("\nFlip will invert the bits and create a .flip file.\n");
   printf("Flipping a file twice restores the original.\n");
@@ -12,12 +12,12 @@ static void __attribute__((noreturn)) usage(char* const program) {
   exit(0);
 }
 
-int main(int const argc, char** const argv) {
-  char* filename;
-  char* flipname;
+int main(int const argc, char **const argv) {
+  char *filename;
+  char *flipname;
   size_t len;
-  FILE* source;
-  FILE* dest;
+  FILE *source;
+  FILE *dest;
   int b;
 
   if (argc != 2) {
@@ -29,7 +29,7 @@ int main(int const argc, char** const argv) {
   len = strlen(filename);
 
   if (len > 5 && strcmp(filename + len - 5, ".flip") == 0) {
-    flipname = (char*) calloc(len - 4, sizeof(char));
+    flipname = (char *) calloc(len - 4, sizeof(char));
 
     if (flipname == NULL) {
       printf("Out of memory.\n");
@@ -38,7 +38,7 @@ int main(int const argc, char** const argv) {
 
     strncpy(flipname, filename, len - 5);
   } else {
-    flipname = (char*) calloc(len + 6, sizeof(char));
+    flipname = (char *) calloc(len + 6, sizeof(char));
 
     if (flipname == NULL) {
       printf("Out of memory.\n");

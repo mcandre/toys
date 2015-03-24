@@ -18,7 +18,7 @@ static char SPACE = ' ';
 typedef struct automata_struct {
   int rule;
   int memory;
-  bool* record;
+  bool *record;
 } automata;
 
 static float SCALE = 1 + (float) RAND_MAX;
@@ -28,8 +28,8 @@ static float rand_float() {
   return (float) rand() / SCALE;
 }
 
-static automata* create_automata(int rule, int memory, bool random) {
-  automata* a = (automata*) malloc(sizeof(automata));
+static automata *create_automata(int rule, int memory, bool random) {
+  automata *a = (automata *) malloc(sizeof(automata));
 
   int i;
 
@@ -37,7 +37,7 @@ static automata* create_automata(int rule, int memory, bool random) {
     a->rule = rule;
     a->memory = memory;
 
-    a->record = (bool*) malloc(sizeof(bool) * memory);
+    a->record = (bool *) malloc(sizeof(bool) * memory);
 
     if (a->record != NULL) {
       if (random) {
@@ -57,10 +57,10 @@ static automata* create_automata(int rule, int memory, bool random) {
   return a;
 }
 
-static void step(automata* a) {
-  bool* old_record;
+static void step(automata *a) {
+  bool *old_record;
 
-  bool* output = (bool*) malloc(sizeof(bool) * a->memory);
+  bool *output = (bool *) malloc(sizeof(bool) * a->memory);
 
   int left, right, state;
 
@@ -105,8 +105,8 @@ static void step(automata* a) {
   }
 }
 
-static char* render(automata* a) {
-  char* str = (char*) malloc(sizeof(char) * (a->memory + 1));
+static char *render(automata *a) {
+  char *str = (char *) malloc(sizeof(char) * (a->memory + 1));
 
   if (str != NULL) {
     int i;
@@ -121,7 +121,7 @@ static char* render(automata* a) {
   return str;
 }
 
-static void usage(char* program) {
+static void usage(char *program) {
   printf("Usage: %s [options] [rule]\n", program);
   printf("-w <width>\n");
   printf("-i <iterations>\n");
@@ -132,13 +132,13 @@ static void usage(char* program) {
   exit(0);
 }
 
-int main(int argc, char** argv) {
+int main(int argc, char **argv) {
   int rule = 110;
   int width = 80;
   int iterations = 100;
   bool random = 0;
   char c;
-  automata* a;
+  automata *a;
   int i;
 
   srand((unsigned int) time(NULL));
@@ -175,7 +175,7 @@ int main(int argc, char** argv) {
   a = create_automata(rule, width, random);
 
   for (i = 0; i < iterations; i++) {
-    char* str = render(a);
+    char *str = render(a);
     printf("%s\n", str);
     free(str);
 
