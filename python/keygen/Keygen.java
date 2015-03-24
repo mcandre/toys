@@ -8,16 +8,16 @@ import java.util.Random;
 
 public class Keygen {
   public static void main(String args[]) {
-    Random random=new Random((new Date()).getTime());
+    Random random = new Random((new Date()).getTime());
 
     System.out.println(
-      "1"+
-      random.nextInt(10)+
-      "355"+
-      random.nextInt(10)+
-      "0"+
-      random.nextInt(10)+
-      "130"+
+      "1" +
+      random.nextInt(10) +
+      "355" +
+      random.nextInt(10) +
+      "0" +
+      random.nextInt(10) +
+      "130" +
       random.nextInt(100)
     );
   }
