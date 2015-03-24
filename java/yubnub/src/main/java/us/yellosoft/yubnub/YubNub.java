@@ -27,9 +27,9 @@ public final class YubNub {
   public static void main(final String[] args) throws IOException {
     if (args.length < 1) {
       go("");
-    }
-    else {
+    } else {
       String command = args[0];
+
       for (int i = 1; i < args.length; i++) {
         command += "+" + args[i];
       }

@@ -93,8 +93,7 @@ public class KeyLengthDialog extends JPanel implements ActionListener {
 
     if (s == null || s.equals("")) {
       dialog = new JDialog(frame, title, true);
-    }
-    else {
+    } else {
       dialog = new JDialog(frame, s, true);
     }
 
@@ -173,8 +172,7 @@ public class KeyLengthDialog extends JPanel implements ActionListener {
 
       try {
         temp = Integer.parseInt(newLength);
-      }
-      catch (Exception ie) {
+      } catch (Exception ie) {
         isANumber = false;
         JOptionPane.showMessageDialog(
           this,
@@ -186,6 +184,7 @@ public class KeyLengthDialog extends JPanel implements ActionListener {
         bitLengthBox.setSelectedIndex(index);
         returnValue = ERROR_OPTION;
       }
+
       if (isANumber && (temp % multiple != 0 || temp < min)) {
         JOptionPane.showMessageDialog(
           this,
@@ -197,18 +196,15 @@ public class KeyLengthDialog extends JPanel implements ActionListener {
 
         bitLengthBox.setSelectedIndex(index);
         returnValue = ERROR_OPTION;
-      }
-      else if (isANumber) {
+      } else if (isANumber) {
         choice = newLength;
         returnValue = APPROVE_OPTION;
       }
-    }
-    else if (e.getSource() == okButton) {
+    } else if (e.getSource() == okButton) {
       choice = bitLengthBox.getSelectedItem();
       returnValue = APPROVE_OPTION;
       dialog.dispose();
-    }
-    else if (e.getSource() == cancelButton) {
+    } else if (e.getSource() == cancelButton) {
       returnValue = CANCEL_OPTION;
       dialog.dispose();
     }

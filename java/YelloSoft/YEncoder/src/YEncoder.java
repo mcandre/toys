@@ -53,8 +53,7 @@ public class YEncoder extends JPanel implements ActionListener {
   public final void actionPerformed(final ActionEvent ae) {
     if (ae.getSource() == encodeButton) {
       yEncode();
-    }
-    else if (ae.getSource() == decodeButton) {
+    } else if (ae.getSource() == decodeButton) {
       yDecode();
     }
   }
@@ -76,8 +75,7 @@ public class YEncoder extends JPanel implements ActionListener {
 
     try {
       fis = new DataInputStream(new FileInputStream(binaryFile));
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       System.out.println("IOException.");
     }
 
@@ -107,14 +105,12 @@ public class YEncoder extends JPanel implements ActionListener {
         out = new DataOutputStream(
           new FileOutputStream(encodedFile)
         );
-      }
-      else {
+      } else {
         out = new DataOutputStream(
           new FileOutputStream(encodedFile.getPath() + ".dat")
         );
       }
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       System.out.println("IOException.");
     }
 
@@ -127,8 +123,7 @@ public class YEncoder extends JPanel implements ActionListener {
 
       out.write(buf);
       out.close();
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       System.out.println("IOException.");
     }
   }
@@ -148,12 +143,12 @@ public class YEncoder extends JPanel implements ActionListener {
     File encodedFile = fc.getSelectedFile();
 
     DataInputStream in = null;
+
     try {
       in = new DataInputStream(
         new FileInputStream(encodedFile)
       );
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       System.out.println("IOException.");
     }
 
@@ -181,8 +176,7 @@ public class YEncoder extends JPanel implements ActionListener {
       out = new DataOutputStream(new FileOutputStream(binaryFile));
       out.write(raw);
       out.close();
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       System.out.println("IOException.");
     }
   }
@@ -198,8 +192,7 @@ public class YEncoder extends JPanel implements ActionListener {
 
     if (i > 0 && i < s.length() - 1) {
       return s.substring(i + 1).toLowerCase();
-    }
-    else {
+    } else {
       return "";
     }
   }
@@ -214,8 +207,7 @@ public class YEncoder extends JPanel implements ActionListener {
 
     try {
       return decoder.decodeBuffer(u);
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       byte[] temp = {(byte) 0};
       return temp;
     }

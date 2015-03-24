@@ -110,8 +110,7 @@ public class KeyGen extends JPanel implements ActionListener {
         alg.equals("ElGamal")
       ) {
         generateKeyPair(alg, usePass);
-      }
-      else {
+      } else {
         generateSecretKey(alg, usePass);
       }
     }
@@ -122,19 +121,18 @@ public class KeyGen extends JPanel implements ActionListener {
      @param algorithm key algorithm
      @param usePassphrase optionally protect private key with a passphrase
   */
-  public final void generateKeyPair(final String algorithm, final boolean usePassphrase) {
+  public final void generateKeyPair(final String algorithm,
+                                    final boolean usePassphrase) {
     KeyPairGenerator kpg = null;
     String provider = "Cryptix";
 
     try {
       if (algorithm.equals("ElGamal")) {
         kpg = KeyPairGenerator.getInstance(algorithm, provider);
-      }
-      else {
+      } else {
         kpg = KeyPairGenerator.getInstance(algorithm);
       }
-    }
-    catch (NoSuchProviderException e) {
+    } catch (NoSuchProviderException e) {
       JOptionPane.showMessageDialog(
         KeyGen.this,
         provider + " not installed.",
@@ -143,8 +141,7 @@ public class KeyGen extends JPanel implements ActionListener {
       );
 
       return;
-    }
-    catch (NoSuchAlgorithmException e) {
+    } catch (NoSuchAlgorithmException e) {
       JOptionPane.showMessageDialog(
         KeyGen.this,
         "No provider found for " + algorithm + ".",
@@ -184,19 +181,18 @@ public class KeyGen extends JPanel implements ActionListener {
     File publicKeyFile = fc.getSelectedFile();
 
     ObjectOutputStream publicKeyOut = null;
+
     try {
       if (getExtension(publicKeyFile).equals(".pk")) {
         publicKeyOut = new ObjectOutputStream(
           new FileOutputStream(publicKeyFile)
         );
-      }
-      else {
+      } else {
         publicKeyOut = new ObjectOutputStream(
           new FileOutputStream(publicKeyFile.getPath() + ".pk")
         );
       }
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       System.out.println("IOException.");
     }
 
@@ -213,19 +209,18 @@ public class KeyGen extends JPanel implements ActionListener {
     File privateKeyFile = fc.getSelectedFile();
 
     ObjectOutputStream privateKeyOut = null;
+
     try {
       if (getExtension(privateKeyFile).equals("sk")) {
         privateKeyOut = new ObjectOutputStream(
           new FileOutputStream(privateKeyFile)
         );
-      }
-      else {
+      } else {
         privateKeyOut = new ObjectOutputStream(
           new FileOutputStream(privateKeyFile.getPath() + ".sk")
         );
       }
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       System.out.println("IOException.");
     }
 
@@ -246,10 +241,10 @@ public class KeyGen extends JPanel implements ActionListener {
 
       PBEKeySpec ks = new PBEKeySpec(passphrase);
       SecretKeyFactory skf = null;
+
       try {
         skf = SecretKeyFactory.getInstance(keyAlgorithm);
-      }
-      catch (NoSuchAlgorithmException e) {
+      } catch (NoSuchAlgorithmException e) {
         JOptionPane.showMessageDialog(
           KeyGen.this,
           "No provider found for " + keyAlgorithm + ".",
@@ -264,8 +259,7 @@ public class KeyGen extends JPanel implements ActionListener {
 
       try {
         pbeKey = skf.generateSecret(ks);
-      }
-      catch (InvalidKeySpecException e) {
+      } catch (InvalidKeySpecException e) {
         System.out.println("Invalid key spec.");
       }
 
@@ -274,8 +268,7 @@ public class KeyGen extends JPanel implements ActionListener {
 
       try {
         md = MessageDigest.getInstance("MD5");
-      }
-      catch (NoSuchAlgorithmException e) {
+      } catch (NoSuchAlgorithmException e) {
         System.out.println("No such algorithm.");
       }
 
@@ -291,8 +284,7 @@ public class KeyGen extends JPanel implements ActionListener {
 
       try {
         cipher = Cipher.getInstance(keyAlgorithm);
-      }
-      catch (NoSuchAlgorithmException e) {
+      } catch (NoSuchAlgorithmException e) {
         JOptionPane.showMessageDialog(
           KeyGen.this,
           keyAlgorithm + " is invalid for cipher.",
@@ -301,15 +293,13 @@ public class KeyGen extends JPanel implements ActionListener {
         );
 
         return;
-      }
-      catch (NoSuchPaddingException e) {
+      } catch (NoSuchPaddingException e) {
         System.out.println("No such algorithm.");
       }
 
       try {
         cipher.init(Cipher.ENCRYPT_MODE, pbeKey, aps);
-      }
-      catch (InvalidAlgorithmParameterException e) {
+      } catch (InvalidAlgorithmParameterException e) {
         JOptionPane.showMessageDialog(
           KeyGen.this,
           keyAlgorithm + " is invalid for cipher.",
@@ -318,8 +308,7 @@ public class KeyGen extends JPanel implements ActionListener {
         );
 
         return;
-      }
-      catch (InvalidKeyException e) {
+      } catch (InvalidKeyException e) {
         JOptionPane.showMessageDialog(
           KeyGen.this,
           "Key is invalid for " + keyAlgorithm + ".",
@@ -337,17 +326,14 @@ public class KeyGen extends JPanel implements ActionListener {
         privateKeyOut.write(salt);
         privateKeyOut.write(output);
         privateKeyOut.close();
-      }
-      catch (IOException e) {
+      } catch (IOException e) {
         System.out.println("IOException.");
       }
-    }
-    else {
+    } else {
       try {
         privateKeyOut.writeObject(pair.getPrivate()/*.getEncoded()*/);
         privateKeyOut.close();
-      }
-      catch (IOException e) {
+      } catch (IOException e) {
         System.out.println("IOException.");
       }
     }
@@ -358,7 +344,8 @@ public class KeyGen extends JPanel implements ActionListener {
      @param algorithm key algorithm
      @param usePassphrase optionally protect key with a passphrase
   */
-  public final void generateSecretKey(final String algorithm, final boolean usePassphrase) {
+  public final void generateSecretKey(final String algorithm,
+                                      final boolean usePassphrase) {
     KeyGenerator kg = null;
     String provider = "Cryptix";
 
@@ -370,12 +357,10 @@ public class KeyGen extends JPanel implements ActionListener {
         !algorithm.equals("DES")
       ) {
         kg = KeyGenerator.getInstance(algorithm, provider);
-      }
-      else {
+      } else {
         kg = KeyGenerator.getInstance(algorithm);
       }
-    }
-    catch (NoSuchProviderException e) {
+    } catch (NoSuchProviderException e) {
       JOptionPane.showMessageDialog(
         KeyGen.this,
         provider + " not installed.",
@@ -384,8 +369,7 @@ public class KeyGen extends JPanel implements ActionListener {
       );
 
       return;
-    }
-    catch (NoSuchAlgorithmException e) {
+    } catch (NoSuchAlgorithmException e) {
       JOptionPane.showMessageDialog(
         KeyGen.this,
         "No provider found for " + algorithm + ".",
@@ -406,14 +390,12 @@ public class KeyGen extends JPanel implements ActionListener {
       sizes[0] = "448";
       sizes[1] = "56";
       sizes[2] = "32";
-    }
-    else if (algorithm.equals("AES")) {
+    } else if (algorithm.equals("AES")) {
       sizes = new String[3];
       sizes[0] = "256";
       sizes[1] = "192";
       sizes[2] = "128";
-    }
-    else if (algorithm.equals("DESede")) {
+    } else if (algorithm.equals("DESede")) {
       sizes = new String[2];
       sizes[0] = "168";
       sizes[1] = "112";
@@ -471,19 +453,18 @@ public class KeyGen extends JPanel implements ActionListener {
     File keyFile = fc.getSelectedFile();
 
     ObjectOutputStream keyOut = null;
+
     try {
       if (getExtension(keyFile).equals("ser")) {
         keyOut = new ObjectOutputStream(
           new FileOutputStream(keyFile)
         );
-      }
-      else {
+      } else {
         keyOut = new ObjectOutputStream(
           new FileOutputStream(keyFile.getPath() + ".ser")
         );
       }
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       System.out.println("IOException.");
     }
 
@@ -507,8 +488,7 @@ public class KeyGen extends JPanel implements ActionListener {
 
       try {
         skf = SecretKeyFactory.getInstance(keyAlgorithm);
-      }
-      catch (NoSuchAlgorithmException e) {
+      } catch (NoSuchAlgorithmException e) {
         JOptionPane.showMessageDialog(
           KeyGen.this,
           "No provider found for " + keyAlgorithm + ".",
@@ -523,8 +503,7 @@ public class KeyGen extends JPanel implements ActionListener {
 
       try {
         pbeKey = skf.generateSecret(ks);
-      }
-      catch (InvalidKeySpecException e) {
+      } catch (InvalidKeySpecException e) {
         System.out.println("Invalid key spec.");
       }
 
@@ -533,8 +512,7 @@ public class KeyGen extends JPanel implements ActionListener {
 
       try {
         md = MessageDigest.getInstance("MD5");
-      }
-      catch (NoSuchAlgorithmException e) {
+      } catch (NoSuchAlgorithmException e) {
         System.out.println("No such algorithm.");
       }
 
@@ -550,8 +528,7 @@ public class KeyGen extends JPanel implements ActionListener {
 
       try {
         cipher = Cipher.getInstance(keyAlgorithm);
-      }
-      catch (NoSuchAlgorithmException e) {
+      } catch (NoSuchAlgorithmException e) {
         JOptionPane.showMessageDialog(
           KeyGen.this,
           keyAlgorithm + " is invalid for cipher.",
@@ -560,15 +537,13 @@ public class KeyGen extends JPanel implements ActionListener {
         );
 
         return;
-      }
-      catch (NoSuchPaddingException e) {
+      } catch (NoSuchPaddingException e) {
         System.out.println("No such padding.");
       }
 
       try {
         cipher.init(Cipher.ENCRYPT_MODE, pbeKey, aps);
-      }
-      catch (InvalidAlgorithmParameterException e) {
+      } catch (InvalidAlgorithmParameterException e) {
         JOptionPane.showMessageDialog(
           KeyGen.this,
           keyAlgorithm + " is invalid for cipher.",
@@ -577,8 +552,7 @@ public class KeyGen extends JPanel implements ActionListener {
         );
 
         return;
-      }
-      catch (InvalidKeyException e) {
+      } catch (InvalidKeyException e) {
         JOptionPane.showMessageDialog(
           KeyGen.this,
           "Key is invalid for " + keyAlgorithm + ".",
@@ -596,18 +570,15 @@ public class KeyGen extends JPanel implements ActionListener {
         keyOut.write(salt);
         keyOut.write(output);
         keyOut.close();
-      }
-      catch (IOException e) {
+      } catch (IOException e) {
         System.out.println("IOException.");
       }
-    }
-    else {
+    } else {
       try {
         //keyOut.writeObject(key);
         keyOut.writeObject(key/*.getEncoded()*/);
         keyOut.close();
-      }
-      catch (IOException e) {
+      } catch (IOException e) {
         System.out.println("IOException.");
       }
     }
@@ -624,8 +595,7 @@ public class KeyGen extends JPanel implements ActionListener {
 
     if (i > 0 && i < s.length() - 1) {
       return s.substring(i + 1).toLowerCase();
-    }
-    else {
+    } else {
       return "";
     }
   }
@@ -639,8 +609,7 @@ public class KeyGen extends JPanel implements ActionListener {
   public final byte[] getPBEOutput(final Cipher c, final byte[] input) {
     try {
       return c.doFinal(input);
-    }
-    catch (Exception e) {
+    } catch (Exception e) {
       return null;
     }
   }

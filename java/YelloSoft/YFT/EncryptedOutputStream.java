@@ -31,8 +31,7 @@ public class EncryptedOutputStream extends OutputStream {
     try {
       out.write(i);
       out.flush();
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       e.printStackTrace();
     }
   }
@@ -53,8 +52,7 @@ public class EncryptedOutputStream extends OutputStream {
       write(len);
       out.write(buf);
       out.flush();
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       e.printStackTrace();
     }
   }
@@ -64,8 +62,7 @@ public class EncryptedOutputStream extends OutputStream {
     try {
       out.flush();
       out.close();
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       e.printStackTrace();
     }
   }

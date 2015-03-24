@@ -9,9 +9,9 @@ public class OrwellTest {
 
   @Test
   public void testCanSwitchOverOrwells() {
-    switch(Orwell.GOOD) {
-      default:
-        Assert.assertTrue(true);
+    switch (Orwell.GOOD) {
+    default:
+      Assert.assertTrue(true);
     }
   }
 
@@ -23,7 +23,7 @@ public class OrwellTest {
 
   @Test
   public void canPrintAndReadOrwells() {
-    for (Orwell orwell: Orwell.values()) {
+    for (Orwell orwell : Orwell.values()) {
       Assert.assertEquals(orwell, Orwell.valueOf(orwell.toString()));
     }
   }

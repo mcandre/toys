@@ -26,20 +26,20 @@ public class YFTClient {
     String host = JOptionPane.showInputDialog("Enter hostname or ip");
 
     int port = -1;
+
     while (port == -1) {
       try {
         port = 7000; //Integer.parseInt(JOptionPane.showInputDialog("Enter port"));
-      }
-      catch (NumberFormatException e) {
+      } catch (NumberFormatException e) {
         System.out.println("Number format exception.");
       }
     }
 
     Socket socket = null;
+
     try {
       socket = new Socket(host, port);
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       System.out.println("Server " + host + " not connected at port " + port + ".");
       System.exit(0);
     }
@@ -63,7 +63,8 @@ public class YFTClient {
 
     String sigEnc = getString(in);
 
-    if (makeVerification(verifyingKey, sigEnc, "YSES" + sigRand + sigDate).equals("true")) {
+    if (makeVerification(verifyingKey, sigEnc,
+                         "YSES" + sigRand + sigDate).equals("true")) {
       System.out.println("-Verified-");
 
       BASE64Decoder decoder = new BASE64Decoder();
@@ -77,6 +78,7 @@ public class YFTClient {
 
       PassphraseDialog pd = new PassphraseDialog();
       int valPass = pd.showSingleDialog(null, "Enter session passphrase");
+
       if (valPass == PassphraseDialog.APPROVE_OPTION) {
         char[] pass = pd.getPassphrase();
 
@@ -99,14 +101,13 @@ public class YFTClient {
           System.out.println("-logged in-");
 
           String[] terms = {alg, name};
+
           try {
             yft(terms, socket);
-          }
-          catch (Exception e) {
+          } catch (Exception e) {
             //e.printStackTrace();
           }
-        }
-        else {
+        } else {
           System.out.println("-login unsuccessful-");
         }
       }
@@ -114,8 +115,7 @@ public class YFTClient {
       // close connections
       in.close();
       out.close();
-    }
-    else {
+    } else {
       System.out.println("-Server could not verify itself as your YServer-");
     }
 
@@ -131,7 +131,8 @@ public class YFTClient {
      @param socket network socket
      @throws Exception on error
   */
-  public static void yft(final String[] params, final Socket socket) throws Exception {
+  public static void yft(final String[] params,
+                         final Socket socket) throws Exception {
     DataInputStream in = new DataInputStream(socket.getInputStream());
     DataOutputStream out = new DataOutputStream(socket.getOutputStream());
 
@@ -157,7 +158,8 @@ public class YFTClient {
       c2
     );
     int decryptLen = Integer.parseInt(getString(in));
-    System.out.println(makeDecryption(c2, getString(in), decryptLen)/*eis.readString()*/);
+    System.out.println(makeDecryption(c2, getString(in),
+                                      decryptLen)/*eis.readString()*/);
 
     boolean latherRinseRepeat = true;
     boolean shutDown = false;
@@ -217,6 +219,7 @@ public class YFTClient {
 
           // decrypt file
           int d = getData(temp);
+
           while (d != -1) {
             writeData(fos, d);
             d = getData(temp);
@@ -232,13 +235,11 @@ public class YFTClient {
 
           System.out.println("-" + fileToSave + " saved-");
           //pod.hide();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
           e.printStackTrace();
           System.exit(1);
         }
-      }
-      else if (
+      } else if (
         message.length() > 5 &&
         message.substring(0, 4).equals("send") &&
         message.indexOf(' ') != message.lastIndexOf(' ')
@@ -247,10 +248,10 @@ public class YFTClient {
         System.out.println("-sending " + fileToSend + "-");
 
         FileInputStream fis = null;
+
         try {
           fis = new FileInputStream(fileToSend);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
           System.out.println("-" + fileToSend + " not found-\n-sending fnf notice-");
 
           DataOutputStream dos = new DataOutputStream(
@@ -274,6 +275,7 @@ public class YFTClient {
 
         // encrypt file
         int d = getData(fis);
+
         while (d != -1) {
           writeData(temp, d);
           d = getData(fis);
@@ -290,8 +292,8 @@ public class YFTClient {
 
       else if (message.length() == 6 && message.substring(0, 6).equals("logout")) {
         latherRinseRepeat = false;
-      }
-      else if (message.length() == 8 && message.substring(0, 8).equals("shutdown")) {
+      } else if (message.length() == 8 &&
+                 message.substring(0, 8).equals("shutdown")) {
         latherRinseRepeat = false;
         shutDown = true;
       }
@@ -305,12 +307,14 @@ public class YFTClient {
 
     if (!shutDown && !serverRan) {
       decryptLen = Integer.parseInt(getString(in));
-      message = JOptionPane.showInputDialog(makeDecryption(c2, getString(in), decryptLen)/*eis.readString*/);
+      message = JOptionPane.showInputDialog(makeDecryption(c2, getString(in),
+                                            decryptLen)/*eis.readString*/);
       sendString(out, "" + message.getBytes().length);
       sendString(out, makeEncryption(c1, message)); // eos.writeString(message);
 
       decryptLen = Integer.parseInt(getString(in));
-      message = JOptionPane.showInputDialog(makeDecryption(c2, getString(in), decryptLen)/*eis.readString()*/);
+      message = JOptionPane.showInputDialog(makeDecryption(c2, getString(in),
+                                            decryptLen)/*eis.readString()*/);
       sendString(out, "" + message.getBytes().length);
       sendString(out, makeEncryption(c1, message)); // eos.writeString(message);
 
@@ -319,8 +323,7 @@ public class YFTClient {
 
     else if (!serverRan) {
       System.out.println("-YServer shutting down " + new Date() + "-");
-    }
-    else {
+    } else {
       System.out.println("-ended transmission with disconnected server-");
     }
 
@@ -346,14 +349,14 @@ public class YFTClient {
 
       // encrypt
       int d = getData(ybis);
+
       while (d != -1) {
         writeData(ybos, d);
         d = getData(ybis);
       }
 
       return encoder.encode(ybos.getBytes());
-    }
-    catch (Exception e) {
+    } catch (Exception e) {
       e.printStackTrace();
       return "[error encrypting]";
     }
@@ -366,7 +369,8 @@ public class YFTClient {
      @param len length
      @return plaintext, as a string
   */
-  public static String makeDecryption(final Cipher c, final String cipherText, final int len) {
+  public static String makeDecryption(final Cipher c, final String cipherText,
+                                      final int len) {
     try {
       BASE64Decoder decoder = new BASE64Decoder();
 
@@ -378,6 +382,7 @@ public class YFTClient {
       // decrypt
       int i = 0;
       int d = getData(ybis);
+
       while (d != -1) {
         writeData(ybos, d);
         d = getData(ybis);
@@ -391,8 +396,7 @@ public class YFTClient {
       }
 
       return new String(finalBytes);
-    }
-    catch (Exception e) {
+    } catch (Exception e) {
       e.printStackTrace();
       return "[error decrypting]";
     }
@@ -405,7 +409,8 @@ public class YFTClient {
      @param text plaintext data
      @return verification or error message
   */
-  public static String makeVerification(final PublicKey key, final String sigData, final String text) {
+  public static String makeVerification(final PublicKey key, final String sigData,
+                                        final String text) {
     try {
       BASE64Decoder decoder = new BASE64Decoder();
 
@@ -419,8 +424,7 @@ public class YFTClient {
       aSig.update(getAllData(ybis));
 
       return ("" + aSig.verify(actualSig));
-    }
-    catch (Exception e) {
+    } catch (Exception e) {
       e.printStackTrace();
       return "[error verifying]";
     }
@@ -434,8 +438,7 @@ public class YFTClient {
   public static String getString(final DataInputStream dis) {
     try {
       return dis.readUTF();
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       return "";
     }
   }
@@ -449,8 +452,7 @@ public class YFTClient {
     try {
       dos.writeUTF(s);
       dos.flush();
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       e.printStackTrace();
     }
   }
@@ -465,8 +467,7 @@ public class YFTClient {
 
     try {
       return decoder.decodeBuffer(u);
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       e.printStackTrace();
 
       byte[] temp = {(byte) 0};
@@ -484,8 +485,7 @@ public class YFTClient {
     try {
       int i = is.read();
       return i;
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       e.printStackTrace();
     }
 
@@ -499,11 +499,11 @@ public class YFTClient {
   */
   public static byte[] getAllData(final InputStream in) {
     byte[] buf;
+
     try {
       buf = new byte[in.available()];
       int i = in.read(buf);
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       buf = new byte[0];
     }
 
@@ -518,8 +518,7 @@ public class YFTClient {
   public static void writeData(final OutputStream os, final int data) {
     try {
       os.write(data);
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       e.printStackTrace();
     }
   }

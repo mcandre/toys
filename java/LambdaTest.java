@@ -13,9 +13,10 @@ public class LambdaTest {
 
     Stream<Integer> xsParallelStream = xsList.stream().parallel();
 
-    List<Integer> ys = xsParallelStream.map( (Integer i) -> i * 2 ).collect(Collectors.toList());
+    List<Integer> ys = xsParallelStream.map((Integer i) -> i * 2).collect(
+                         Collectors.toList());
 
-    for (Integer y: ys) {
+    for (Integer y : ys) {
       System.out.println(y);
     }
   }

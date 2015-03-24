@@ -65,15 +65,15 @@ public class PassphraseDialog extends JPanel implements ActionListener {
      @param b toggle double/single
      @return GUI response
   */
-  public final int showDialog(final Component parent, final String s, final boolean b) {
+  public final int showDialog(final Component parent, final String s,
+                              final boolean b) {
     isDouble = b;
 
     Frame frame = (Frame) SwingUtilities.getAncestorOfClass(Frame.class, parent);
 
     if (s == null || s.equals("")) {
       dialog = new JDialog(frame, title, true);
-    }
-    else {
+    } else {
       dialog = new JDialog(frame, s, true);
     }
 
@@ -157,7 +157,8 @@ public class PassphraseDialog extends JPanel implements ActionListener {
         temp2 = password2.getPassword();
       }
 
-      if (new String(temp1).equals("") || (isDouble && new String(temp2).equals(""))) {
+      if (new String(temp1).equals("") || (isDouble &&
+                                           new String(temp2).equals(""))) {
         JOptionPane.showMessageDialog(
           this,
           "Passphrase(s) blank",
@@ -165,8 +166,7 @@ public class PassphraseDialog extends JPanel implements ActionListener {
           JOptionPane.ERROR_MESSAGE
         );
         returnValue = ERROR_OPTION;
-      }
-      else if (isDouble && !new String(temp1).equals(new String(temp2))) {
+      } else if (isDouble && !new String(temp1).equals(new String(temp2))) {
         password1.setText("");
         password2.setText("");
         JOptionPane.showMessageDialog(
@@ -176,8 +176,7 @@ public class PassphraseDialog extends JPanel implements ActionListener {
           JOptionPane.ERROR_MESSAGE
         );
         returnValue = ERROR_OPTION;
-      }
-      else {
+      } else {
         passphrase = temp1;
         returnValue = APPROVE_OPTION;
       }
@@ -185,8 +184,7 @@ public class PassphraseDialog extends JPanel implements ActionListener {
       if (returnValue != ERROR_OPTION) {
         dialog.dispose();
       }
-    }
-    else if (e.getSource() == cancelButton) {
+    } else if (e.getSource() == cancelButton) {
       returnValue = CANCEL_OPTION;
       dialog.dispose();
     }
@@ -195,7 +193,7 @@ public class PassphraseDialog extends JPanel implements ActionListener {
   /** Erase passphrase from memory */
   public final void wipePassphrase() {
     for (int i = 0; i < passphrase.length; i++) {
-      passphrase[i] = (char) ((int) 'a' + i);
+      passphrase[i] = (char)((int) 'a' + i);
     }
   }
 }

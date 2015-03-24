@@ -30,8 +30,7 @@ public class EncryptedInputStream extends InputStream {
   public final int read() {
     try {
       return in.read();
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       e.printStackTrace();
       return -1;
     }

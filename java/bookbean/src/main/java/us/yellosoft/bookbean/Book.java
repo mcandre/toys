@@ -39,26 +39,46 @@ public class Book implements Serializable, Comparable {
 
   // Nasty setter/getter boilerplate follows
 
-  public String getTitle() { return this.title; }
-  public void setTitle(String title) { this.title = title; }
+  public String getTitle() {
+    return this.title;
+  }
+  public void setTitle(String title) {
+    this.title = title;
+  }
 
-  public String getAuthor() { return this.author; }
-  public void setAuthor(String author) { this.author = author; }
+  public String getAuthor() {
+    return this.author;
+  }
+  public void setAuthor(String author) {
+    this.author = author;
+  }
 
-  public String getPublisher() { return this.publisher; }
-  public void setPublisher(String publisher) { this.publisher = publisher; }
+  public String getPublisher() {
+    return this.publisher;
+  }
+  public void setPublisher(String publisher) {
+    this.publisher = publisher;
+  }
 
-  public Date getPublished() { return this.published; }
-  public void setPublished(Date published) { this.published = published; }
+  public Date getPublished() {
+    return this.published;
+  }
+  public void setPublished(Date published) {
+    this.published = published;
+  }
 
-  public String getISBN() { return this.isbn; }
-  public void setISBN(String isbn) { this.isbn = isbn; }
+  public String getISBN() {
+    return this.isbn;
+  }
+  public void setISBN(String isbn) {
+    this.isbn = isbn;
+  }
 
   // Yuck! But now that's over, any external Java code can configure this Bean super easily.
 
   // Not necessary, but helpful for sorting
   public int compareTo(Object other) {
-    return this.isbn.compareTo( ((Book) other).getISBN() );
+    return this.isbn.compareTo(((Book) other).getISBN());
   }
   public boolean equals(Object other) {
     return compareTo(other) == 0;

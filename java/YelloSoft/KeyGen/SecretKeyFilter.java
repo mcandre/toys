@@ -45,8 +45,7 @@ public class SecretKeyFilter extends FileFilter {
 
     if (i > 0 && i < s.length() - 1) {
       return s.substring(i + 1).toLowerCase();
-    }
-    else {
+    } else {
       return "";
     }
   }

@@ -17,8 +17,7 @@ public final class Fib {
   public static int fib(final int n) {
     if (n < 2) {
       return n;
-    }
-    else {
+    } else {
       int a = 0, b = 1;
       int m = n - 1;
 

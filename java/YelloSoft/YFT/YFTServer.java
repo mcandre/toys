@@ -41,8 +41,7 @@ public class YFTServer {
         try {
           hadError = true;
           keepRunning = acceptSecureConnection(info);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
           e.printStackTrace();
         }
       }
@@ -58,7 +57,8 @@ public class YFTServer {
      @return whether the connection was successful
      @throws Exception on error
   */
-  public static final boolean acceptSecureConnection(final String[] sessionTerms) throws Exception {
+  public static final boolean acceptSecureConnection(final String[] sessionTerms)
+  throws Exception {
     boolean shutDown = false;
 
     String algorithm = sessionTerms[0];
@@ -77,7 +77,7 @@ public class YFTServer {
     // prove identity
     ObjectInputStream signingKeyIn = new ObjectInputStream(
       new FileInputStream("RSA.session.sk")
-                                                        );
+    );
 
     PrivateKey signingKey = (PrivateKey) signingKeyIn.readObject();
     signingKeyIn.close();
@@ -98,12 +98,10 @@ public class YFTServer {
     if (secureLogin(in, out, name, passphrase)) {
       try {
         sessionTerms = yft(name, sessionTerms, socket);
-      }
-      catch (Exception e) {
+      } catch (Exception e) {
         //e.printStackTrace();
       }
-    }
-    else {
+    } else {
       sendString(out, "false");
       System.out.println("--login attempt rejected " + (new Date()) + "--");
     }
@@ -155,8 +153,7 @@ public class YFTServer {
       String encodedDigest = encoder.encode(raw);
 
       return clientsTicket.equals(encodedDigest);
-    }
-    catch (Exception e) {
+    } catch (Exception e) {
       e.printStackTrace();
       return false;
     }
@@ -187,7 +184,7 @@ public class YFTServer {
     sendString(
       out,
       "true"
-              );
+    );
 
     System.out.println("--connected to Yellosoft Client " + new Date() + "--");
 
@@ -195,7 +192,7 @@ public class YFTServer {
 
     ObjectInputStream keyIn = new ObjectInputStream(
       new FileInputStream(alg + ".session.ser")
-                                                 );
+    );
     key = (SecretKey) keyIn.readObject();
     keyIn.close();
 
@@ -214,7 +211,7 @@ public class YFTServer {
     EncryptedOutputStream eos = new EncryptedOutputStream(
       socket.getOutputStream(),
       c1
-                                                       );
+    );
 
     String welcomeEncrypted = makeEncryption(c1, welcomeMessage);
     sendString(out, "" + welcomeMessage.getBytes().length);
@@ -227,7 +224,7 @@ public class YFTServer {
     EncryptedInputStream eis = new EncryptedInputStream(
       socket.getInputStream(),
       c2
-                                                     );
+    );
 
     String message = "";
     int decryptLen = Integer.parseInt(getString(in));
@@ -248,8 +245,7 @@ public class YFTServer {
         sendString(out, "" + echoPhrase.getBytes().length);
         sendString(out, makeEncryption(c1, echoPhrase)); // eos.writeString(echoPhrase);
         System.out.println("--echo sent--");
-      }
-      else if (
+      } else if (
         message.length() > 4 &&
         message.substring(0, 3).equals("get") &&
         message.indexOf(' ') != message.lastIndexOf(' ')
@@ -261,8 +257,7 @@ public class YFTServer {
 
         try {
           fis = new FileInputStream(fileToSend);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
           System.out.println("--" + fileToSend + " not found--\n--sending fnf notice--");
 
           DataOutputStream dos = new DataOutputStream(
@@ -301,8 +296,7 @@ public class YFTServer {
         fileServer.close();
 
         System.out.println("--" + fileToSend + " sent--");
-      }
-      else if (
+      } else if (
         message.length() > 5 &&
         message.substring(0, 4).equals("send") &&
         message.indexOf(' ') != message.lastIndexOf(' ')
@@ -344,8 +338,7 @@ public class YFTServer {
 
       else if (message.length() > 5 && message.substring(0, 6).equals("logout")) {
         latherRinseRepeat = false;
-      }
-      else if (message.length() > 7 && message.substring(0, 8).equals("shutdown")) {
+      } else if (message.length() > 7 && message.substring(0, 8).equals("shutdown")) {
         shutDown = true;
         latherRinseRepeat = false;
       }
@@ -365,13 +358,15 @@ public class YFTServer {
     if (!shutDown && !clientRan) {
       String passQuestion = "Enter next session password: ";
       sendString(out, "" + passQuestion.getBytes().length);
-      sendString(out, makeEncryption(c1, passQuestion)); // eos.writeString(passQuestion);
+      sendString(out, makeEncryption(c1,
+                                     passQuestion)); // eos.writeString(passQuestion);
       decryptLen = Integer.parseInt(getString(in));
       newPass = makeDecryption(c2, getString(in), decryptLen); // eis.readString();
 
       String algQuestion = "Enter next session algorithm: ";
       sendString(out, "" + algQuestion.getBytes().length);
-      sendString(out, makeEncryption(c1, algQuestion)); // eos.writeString(algQuestion);
+      sendString(out, makeEncryption(c1,
+                                     algQuestion)); // eos.writeString(algQuestion);
       decryptLen = Integer.parseInt(getString(in));
       newAlg = makeDecryption(c2, getString(in), decryptLen); // eis.readString();
     }
@@ -385,9 +380,9 @@ public class YFTServer {
       params[0] = newAlg;
       params[1] = newPass;
       System.out.println("--disconnected safely " + new Date() + "--");
-    }
-    else {
-      System.out.println("--ended transmission with disconnected client " + new Date() + "--");
+    } else {
+      System.out.println("--ended transmission with disconnected client " + new Date()
+                         + "--");
     }
 
     params[2] = "" + shutDown;
@@ -418,8 +413,7 @@ public class YFTServer {
       }
 
       return encoder.encode(ybos.getBytes());
-    }
-    catch (Exception e) {
+    } catch (Exception e) {
       e.printStackTrace();
       return "[error encrypting]";
     }
@@ -432,7 +426,8 @@ public class YFTServer {
      @param len length
      @return plaintext, as a string
   */
-  public static String makeDecryption(final Cipher c, final String cipherText, final int len) {
+  public static String makeDecryption(final Cipher c, final String cipherText,
+                                      final int len) {
     try {
       BASE64Decoder decoder = new BASE64Decoder();
 
@@ -458,8 +453,7 @@ public class YFTServer {
       }
 
       return new String(finalBytes);
-    }
-    catch (Exception e) {
+    } catch (Exception e) {
       e.printStackTrace();
       return "[error decrypting]";
     }
@@ -471,7 +465,8 @@ public class YFTServer {
      @param plainText plaintext data
      @return a digital signature
   */
-  public static String makeSignature(final PrivateKey key, final String plainText) {
+  public static String makeSignature(final PrivateKey key,
+                                     final String plainText) {
     try {
       BASE64Encoder encoder = new BASE64Encoder();
 
@@ -487,8 +482,7 @@ public class YFTServer {
       byte[] sigBytes = sig.sign();
 
       return encoder.encode(sigBytes);
-    }
-    catch (Exception e) {
+    } catch (Exception e) {
       e.printStackTrace();
       return "[error signing]";
     }
@@ -502,8 +496,7 @@ public class YFTServer {
   public static String getString(final DataInputStream dis) {
     try {
       return dis.readUTF();
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       return "";
     }
   }
@@ -517,8 +510,7 @@ public class YFTServer {
     try {
       dos.writeUTF(s);
       dos.flush();
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       e.printStackTrace();
     }
   }
@@ -533,8 +525,7 @@ public class YFTServer {
 
     try {
       return decoder.decodeBuffer(u);
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       e.printStackTrace();
 
       byte[] temp = {(byte) 0};
@@ -552,8 +543,7 @@ public class YFTServer {
     try {
       int i = is.read();
       return i;
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       e.printStackTrace();
       return -1;
     }
@@ -570,8 +560,7 @@ public class YFTServer {
     try {
       buf = new byte[in.available()];
       int i = in.read(buf);
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       buf = new byte[0];
     }
 
@@ -586,8 +575,7 @@ public class YFTServer {
   public static void writeData(final OutputStream os, final int data) {
     try {
       os.write(data);
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       e.printStackTrace();
     }
   }

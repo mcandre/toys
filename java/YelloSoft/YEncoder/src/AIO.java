@@ -11,7 +11,8 @@ public final class AIO {
   /** utility class */
   private AIO() {}
 
-  static BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in));
+  static BufferedReader keyboard = new BufferedReader(new InputStreamReader(
+        System.in));
 
   /**
      <p>Open file for reading</p>
@@ -23,8 +24,7 @@ public final class AIO {
 
     try {
       fis = new FileInputStream(fileLoc);
-    }
-    catch (FileNotFoundException e) {
+    } catch (FileNotFoundException e) {
       return null;
     }
 
@@ -44,8 +44,7 @@ public final class AIO {
 
     try {
       fis = new FileInputStream(file);
-    }
-    catch (FileNotFoundException e) {
+    } catch (FileNotFoundException e) {
       return null;
     }
 
@@ -65,8 +64,7 @@ public final class AIO {
 
     try {
       fos = new FileOutputStream(fileLoc);
-    }
-    catch (FileNotFoundException e) {
+    } catch (FileNotFoundException e) {
       return null;
     }
 
@@ -85,8 +83,7 @@ public final class AIO {
 
     try {
       fos = new FileOutputStream(file);
-    }
-    catch (FileNotFoundException e) {
+    } catch (FileNotFoundException e) {
       return null;
     }
 
@@ -121,8 +118,7 @@ public final class AIO {
   public static String read(final BufferedReader br) {
     try {
       return br.readLine();
-    }
-    catch (Exception e) {
+    } catch (Exception e) {
       return null;
     }
   }

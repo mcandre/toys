@@ -130,15 +130,14 @@ public class Sig extends JPanel implements ActionListener {
   public final void actionPerformed(final ActionEvent e) {
     if (e.getSource() == keyBox) {
       String keyAlg = (String) keyBox.getSelectedItem();
+
       if (keyAlg.equals("DSA")) {
         mdBox.setEnabled(false);
         mdBox.setSelectedIndex(0);
-      }
-      else {
+      } else {
         mdBox.setEnabled(true);
       }
-    }
-    else if (e.getSource() == signButton) {
+    } else if (e.getSource() == signButton) {
       String keyAlg = (String) keyBox.getSelectedItem();
       String mdAlg = (String) mdBox.getSelectedItem();
       boolean hasPass = passphraseButton.isSelected();
@@ -148,8 +147,7 @@ public class Sig extends JPanel implements ActionListener {
       }
 
       sign(keyAlg, mdAlg, hasPass);
-    }
-    else if (e.getSource() == verifyButton) {
+    } else if (e.getSource() == verifyButton) {
       String keyAlg = (String) keyBox.getSelectedItem();
       String mdAlg = (String) mdBox.getSelectedItem();
 
@@ -167,15 +165,15 @@ public class Sig extends JPanel implements ActionListener {
      @param mdAlgorithm message digest algorithm
      @param hasPassphrase whether the key is protected by a passphrase
   */
-  public final void sign(final String keyAlgorithm, final String mdAlgorithm, final boolean hasPassphrase) {
+  public final void sign(final String keyAlgorithm, final String mdAlgorithm,
+                         final boolean hasPassphrase) {
     boolean useCryptix = false;
     String instance = "";
 
     if (keyAlgorithm.equals("ElGamal")) {
       instance = mdAlgorithm + "/" + keyAlgorithm + "/PKCS#1";
       useCryptix = true;
-    }
-    else {
+    } else {
       instance = mdAlgorithm + "with" + keyAlgorithm;
     }
 
@@ -184,15 +182,12 @@ public class Sig extends JPanel implements ActionListener {
     try {
       if (useCryptix) {
         sig = Signature.getInstance(instance, "Cryptix");
-      }
-      else {
+      } else {
         sig = Signature.getInstance(instance);
       }
-    }
-    catch (NoSuchProviderException e) {
+    } catch (NoSuchProviderException e) {
       System.out.println("No such provider.");
-    }
-    catch (NoSuchAlgorithmException e) {
+    } catch (NoSuchAlgorithmException e) {
       JOptionPane.showMessageDialog(
         Sig.this,
         "No provider found for " + instance + ".",
@@ -238,8 +233,7 @@ public class Sig extends JPanel implements ActionListener {
 
       try {
         skf = SecretKeyFactory.getInstance(pbeAlgorithm);
-      }
-      catch (NoSuchAlgorithmException e) {
+      } catch (NoSuchAlgorithmException e) {
         JOptionPane.showMessageDialog(
           Sig.this,
           "No provider found for " + pbeAlgorithm + ".",
@@ -254,8 +248,7 @@ public class Sig extends JPanel implements ActionListener {
 
       try {
         pbeKey = skf.generateSecret(ks);
-      }
-      catch (InvalidKeySpecException e) {
+      } catch (InvalidKeySpecException e) {
         System.out.println("Invalid key spec.");
       }
 
@@ -264,16 +257,15 @@ public class Sig extends JPanel implements ActionListener {
 
       try {
         fileIn = new FileInputStream(keyFile);
-      }
-      catch (IOException e) {
+      } catch (IOException e) {
         System.out.println("IOException.");
       }
 
       int len = 0;
+
       try {
         len = fileIn.available();
-      }
-      catch (IOException e) {
+      } catch (IOException e) {
         System.out.println("IOException.");
       }
 
@@ -282,8 +274,7 @@ public class Sig extends JPanel implements ActionListener {
       try {
         fileIn.read(salt);
         fileIn.read(input);
-      }
-      catch (IOException e) {
+      } catch (IOException e) {
         System.out.println("IOException.");
       }
 
@@ -293,8 +284,7 @@ public class Sig extends JPanel implements ActionListener {
 
       try {
         keyCipher = Cipher.getInstance(pbeAlgorithm);
-      }
-      catch (NoSuchAlgorithmException e) {
+      } catch (NoSuchAlgorithmException e) {
         JOptionPane.showMessageDialog(
           Sig.this,
           "No provider found for " + pbeAlgorithm + ".",
@@ -303,15 +293,13 @@ public class Sig extends JPanel implements ActionListener {
         );
 
         return;
-      }
-      catch (NoSuchPaddingException e) {
+      } catch (NoSuchPaddingException e) {
         System.out.println("No such padding.");
       }
 
       try {
         keyCipher.init(Cipher.DECRYPT_MODE, key, aps);
-      }
-      catch (InvalidAlgorithmParameterException e) {
+      } catch (InvalidAlgorithmParameterException e) {
         JOptionPane.showMessageDialog(
           Sig.this,
           pbeAlgorithm + " is invalid for cipher.",
@@ -320,8 +308,7 @@ public class Sig extends JPanel implements ActionListener {
         );
 
         return;
-      }
-      catch (InvalidKeyException e) {
+      } catch (InvalidKeyException e) {
         JOptionPane.showMessageDialog(
           Sig.this,
           "Key is invalid",
@@ -336,8 +323,7 @@ public class Sig extends JPanel implements ActionListener {
 
       try {
         output = keyCipher.doFinal(input);
-      }
-      catch (Exception e) {
+      } catch (Exception e) {
         JOptionPane.showMessageDialog(
           Sig.this,
           "Wrong key!",
@@ -349,16 +335,14 @@ public class Sig extends JPanel implements ActionListener {
       }
 
       // use pbeKey to decrypt private key
-    }
-    else {
+    } else {
       ObjectInputStream keyIn = null;
 
       try {
         keyIn = new ObjectInputStream(
           new FileInputStream(keyFile)
         );
-      }
-      catch (IOException e) {
+      } catch (IOException e) {
         System.out.println("IOException.");
       }
 
@@ -370,8 +354,7 @@ public class Sig extends JPanel implements ActionListener {
           else
           key = (DSAPrivateKey) keyIn.readObject();*/
         key = (PrivateKey) keyIn.readObject();
-      }
-      catch (Exception e) {
+      } catch (Exception e) {
         JOptionPane.showMessageDialog(
           Sig.this,
           "Not a private key"/*"Not a " + keyAlgorithm + " private key"*/,
@@ -385,8 +368,7 @@ public class Sig extends JPanel implements ActionListener {
 
     try {
       sig.initSign(key);
-    }
-    catch (InvalidKeyException e) {
+    } catch (InvalidKeyException e) {
       JOptionPane.showMessageDialog(
         Sig.this,
         "Key is invalid for " + instance + ".",
@@ -414,16 +396,14 @@ public class Sig extends JPanel implements ActionListener {
       fileIn = new BufferedInputStream(
         new FileInputStream(file)
       );
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       System.out.println("IOException.");
     }
 
     // calculate signature
     try {
       sig.update(getAllData(fileIn));
-    }
-    catch (SignatureException e) {
+    } catch (SignatureException e) {
       System.out.println("Signature exception.");
     }
 
@@ -431,8 +411,7 @@ public class Sig extends JPanel implements ActionListener {
       if (fileIn != null) {
         fileIn.close();
       }
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       System.out.println("IOException.");
     }
 
@@ -453,16 +432,13 @@ public class Sig extends JPanel implements ActionListener {
     if (getExtension(sigFile).equals(".sig")) {
       try {
         sigOut = new FileOutputStream(sigFile);
-      }
-      catch (IOException e) {
+      } catch (IOException e) {
         System.out.println("IOException.");
       }
-    }
-    else {
+    } else {
       try {
         sigOut = new FileOutputStream(sigFile.getPath() + ".sig");
-      }
-      catch (IOException e) {
+      } catch (IOException e) {
         System.out.println("IOException.");
       }
     }
@@ -472,15 +448,13 @@ public class Sig extends JPanel implements ActionListener {
 
     try {
       actualSig = sig.sign();
-    }
-    catch (SignatureException e) {
+    } catch (SignatureException e) {
       System.out.println("Signature exception.");
     }
 
     try {
       sigOut.write(actualSig);
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       System.out.println("IOException.");
     }
 
@@ -488,8 +462,7 @@ public class Sig extends JPanel implements ActionListener {
       if (sigOut != null) {
         sigOut.close();
       }
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       System.out.println("IOException.");
     }
   }
@@ -506,8 +479,7 @@ public class Sig extends JPanel implements ActionListener {
     if (keyAlgorithm.equals("ElGamal")) {
       instance = mdAlgorithm + "/" + keyAlgorithm + "/PKCS#1";
       useCryptix = true;
-    }
-    else {
+    } else {
       instance = mdAlgorithm + "with" + keyAlgorithm;
     }
 
@@ -516,15 +488,12 @@ public class Sig extends JPanel implements ActionListener {
     try {
       if (useCryptix) {
         sig = Signature.getInstance(instance, "Cryptix");
-      }
-      else {
+      } else {
         sig = Signature.getInstance(instance);
       }
-    }
-    catch (NoSuchProviderException e) {
+    } catch (NoSuchProviderException e) {
       System.out.println("No such provider.");
-    }
-    catch (NoSuchAlgorithmException e) {
+    } catch (NoSuchAlgorithmException e) {
       JOptionPane.showMessageDialog(
         Sig.this,
         "No provider found for " + instance + ".",
@@ -552,8 +521,7 @@ public class Sig extends JPanel implements ActionListener {
 
     try {
       sigIn = new FileInputStream(sigFile);
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       System.out.println("IOException.");
     }
 
@@ -561,8 +529,7 @@ public class Sig extends JPanel implements ActionListener {
 
     try {
       actualSigLen = sigIn.available();
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       System.out.println("IOException.");
     }
 
@@ -570,8 +537,7 @@ public class Sig extends JPanel implements ActionListener {
 
     try {
       sigIn.read(actualSig);
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       JOptionPane.showMessageDialog(
         Sig.this,
         "Not a signature",
@@ -584,8 +550,7 @@ public class Sig extends JPanel implements ActionListener {
       if (sigIn != null) {
         sigIn.close();
       }
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       System.out.println("IOException.");
     }
 
@@ -607,8 +572,7 @@ public class Sig extends JPanel implements ActionListener {
       keyIn = new ObjectInputStream(
         new FileInputStream(keyFile)
       );
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       System.out.println("IOException.");
     }
 
@@ -623,8 +587,7 @@ public class Sig extends JPanel implements ActionListener {
         else
         key = (DSAPublicKey) keyIn.readObject();*/
       key = (PublicKey) keyIn.readObject();
-    }
-    catch (Exception e) {
+    } catch (Exception e) {
       JOptionPane.showMessageDialog(
         Sig.this,
         "Not a public key"/* + "Not a " + keyAlgorithm + " key"*/,
@@ -637,8 +600,7 @@ public class Sig extends JPanel implements ActionListener {
 
     try {
       sig.initVerify(key);
-    }
-    catch (InvalidKeyException e) {
+    } catch (InvalidKeyException e) {
       JOptionPane.showMessageDialog(
         Sig.this,
         "Key is invalid for " + instance + ".",
@@ -666,16 +628,14 @@ public class Sig extends JPanel implements ActionListener {
       fileIn = new BufferedInputStream(
         new FileInputStream(file)
       );
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       System.out.println("IOException.");
     }
 
     // verify signature
     try {
       sig.update(getAllData(fileIn));
-    }
-    catch (SignatureException e) {
+    } catch (SignatureException e) {
       System.out.println("Signature exception.");
     }
 
@@ -683,15 +643,13 @@ public class Sig extends JPanel implements ActionListener {
       if (fileIn != null) {
         fileIn.close();
       }
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       System.out.println("IOException.");
     }
 
     try {
       verifyField.setText("" + sig.verify(actualSig));
-    }
-    catch (SignatureException e) {
+    } catch (SignatureException e) {
       System.out.println("Signature exception.");
     }
   }
@@ -707,8 +665,7 @@ public class Sig extends JPanel implements ActionListener {
 
     if (i > 0 && i < s.length() - 1) {
       return s.substring(i + 1).toLowerCase();
-    }
-    else {
+    } else {
       return "";
     }
   }
@@ -721,8 +678,7 @@ public class Sig extends JPanel implements ActionListener {
   public final boolean isAvailable(final InputStream is) {
     try {
       return is.available() != 0;
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       return false;
     }
   }
@@ -738,8 +694,7 @@ public class Sig extends JPanel implements ActionListener {
     try {
       buf = new byte[in.available()];
       int i = in.read(buf);
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       buf = new byte[0];
     }
 
