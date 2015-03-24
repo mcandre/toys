@@ -27,8 +27,7 @@ int main() {
 
     if (isspace(c)) {
       state = OUT;
-    }
-    else if (state == OUT) {
+    } else if (state == OUT) {
       words++;
       state = IN;
     }

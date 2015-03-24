@@ -37,41 +37,40 @@ like long double or long long double to increase accuracy.
 #include<stdio.h>
 #include<math.h>
 
-double find(double x,double a)
-{
-double y;
-y=sqrt((a*a)-(x*x));
-return y;
+double find(double x, double a) {
+  double y;
+  y = sqrt((a * a) - (x * x));
+  return y;
 }
 
-int main()
-{
-double ind,delta,rad,dec,sum=0.0,x,y,xnow,ynow,length;
-printf("Enter the radius.\n");
-scanf("%lf",&rad);
-printf("Enter the decrease in x.\n");
-scanf("%lf",&dec);
-x=rad;
-y=0.0;
-delta=rad/100.0;
-ind=1.0;
-for(xnow=rad;xnow>=0.0;xnow=xnow-dec)
- {
- ynow=find(xnow,rad);
- length=sqrt(((x-xnow)*(x-xnow))+((ynow-y)*(ynow-y)));
- sum=sum+length;
- x=xnow;
- y=ynow;
- if(xnow<=rad-(ind*delta))
- {
-	 printf("\n%.0lf of 100 completed.",ind);
-	 ind=ind+1.0;
- }
- }
-printf("\nPi=%.10lf",2.0*sum/rad);
-printf("\nPress 0 and Enter to exit\n");
-scanf("%lf",&dec);
-return(0);
+int main() {
+  double ind, delta, rad, dec, sum = 0.0, x, y, xnow, ynow, length;
+  printf("Enter the radius.\n");
+  scanf("%lf", &rad);
+  printf("Enter the decrease in x.\n");
+  scanf("%lf", &dec);
+  x = rad;
+  y = 0.0;
+  delta = rad / 100.0;
+  ind = 1.0;
+
+  for (xnow = rad; xnow >= 0.0; xnow = xnow - dec) {
+    ynow = find(xnow, rad);
+    length = sqrt(((x - xnow) * (x - xnow)) + ((ynow - y) * (ynow - y)));
+    sum = sum + length;
+    x = xnow;
+    y = ynow;
+
+    if (xnow <= rad - (ind * delta)) {
+      printf("\n%.0lf of 100 completed.", ind);
+      ind = ind + 1.0;
+    }
+  }
+
+  printf("\nPi=%.10lf", 2.0 * sum / rad);
+  printf("\nPress 0 and Enter to exit\n");
+  scanf("%lf", &dec);
+  return (0);
 }
 
 

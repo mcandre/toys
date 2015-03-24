@@ -52,13 +52,13 @@ static void interactive() {
 }
 
 static void run(char* const script) {
-  FILE *f = fopen(script, "rb");
+  FILE* f = fopen(script, "rb");
 
   if (f == NULL) {
     printf("Error: Cannot read script %s\n", script);
-  }
-  else {
+  } else {
     int c = fgetc(f);
+
     while (c != EOF) {
       (void) putchar(c);
       c = fgetc(f);
@@ -69,16 +69,15 @@ static void run(char* const script) {
 }
 
 int main(int const argc, char** const argv) {
-  if (argc<2) {
+  if (argc < 2) {
     interactive();
-  }
-  else {
+  } else {
     int i;
-    for (i=1; i<argc; i++) {
+
+    for (i = 1; i < argc; i++) {
       if (strcmp(argv[i], "-h") == 0 || strcmp(argv[i], "--help") == 0) {
         usage(argv[0]);
-      }
-      else if (strcmp(argv[i], "-v") == 0 || strcmp(argv[i], "--version") == 0) {
+      } else if (strcmp(argv[i], "-v") == 0 || strcmp(argv[i], "--version") == 0) {
         version();
       }
     }

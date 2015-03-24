@@ -1,10 +1,10 @@
 main() {
-	printf("georgie boy");
+  printf("georgie boy");
 
-	if (1==1) {
-		doSomething();
-	else {
-		doSomethingElse();
+  if (1 == 1) {
+    doSomething();
+    else {
+      doSomethingElse();
 
-	quit();
-}
+      quit();
+    }

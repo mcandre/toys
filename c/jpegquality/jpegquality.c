@@ -53,7 +53,7 @@ int Debug = 0;
 /***************************************************
  Usage(): Display program usage.
 ***************************************************/
-void  Usage(char *Name) {
+void  Usage(char* Name) {
   fprintf(stderr, "Usage: %s file.jpg [file.jpg file.jpg...]\n", Name);
 }
 
@@ -64,23 +64,29 @@ void  Usage(char *Name) {
  by 0x00 or 0xff.
  This function reads the next marker.
 ***************************************************/
-int ReadJpegMarker(FILE *Fin) {
-  int B1,B2;
+int ReadJpegMarker(FILE* Fin) {
+  int B1, B2;
   long Pos;
   long Len;
 
-  Pos = ftell(Fin); Len=0;
+  Pos = ftell(Fin);
+  Len = 0;
 ReadAgainB1:
-  B1 = fgetc(Fin); Len++;
-  while(!feof(Fin) && (B1 != 0xff)) {
-    B1 = fgetc(Fin); Len++;
+  B1 = fgetc(Fin);
+  Len++;
+
+  while (!feof(Fin) && (B1 != 0xff)) {
+    B1 = fgetc(Fin);
+    Len++;
   }
 
   if (feof(Fin)) {
-    return(0);
+    return (0);
   }
+
 ReadAgainB2:
-  B2 = fgetc(Fin); Len++;
+  B2 = fgetc(Fin);
+  Len++;
 
   if (B2 == 0xff) {
     goto ReadAgainB2;
@@ -97,18 +103,18 @@ ReadAgainB2:
  ProcessJPEG(): Process a JPEG
  Returns:  0=processed JPEG    1=not a JPEG!
 ***************************************************/
-int ProcessJPEG(FILE *Fin) {
+int ProcessJPEG(FILE* Fin) {
   int Header[15];
   int i;
   int Type;
   int Length;
-  float Diff=0;  /* difference between quantization tables */
-  float QualityAvg[3] = {0,0,0}; /* allow up to 3 quantization tables */
+  float Diff = 0; /* difference between quantization tables */
+  float QualityAvg[3] = {0, 0, 0}; /* allow up to 3 quantization tables */
   float QualityF; /* quality as a float */
   int QualityI; /* quality as an integer */
   float Total;
   float TotalNum;
-  int Precision,Index;
+  int Precision, Index;
 
   /***
       JPEGs are in a fixed file format:
@@ -152,7 +158,7 @@ int ProcessJPEG(FILE *Fin) {
   }
 
   /* Now, search for the quantization tables. */
-  while(!feof(Fin)) {
+  while (!feof(Fin)) {
     /* All "Type" markers begin with "FF" and are followed by anything
        except 0x00 or 0xFF.  (Very weird standard.) */
     Type = ReadJpegMarker(Fin);
@@ -199,12 +205,13 @@ int ProcessJPEG(FILE *Fin) {
       Length--;
       Index = Precision & 0x0f;
       Precision = (Precision & 0xf0) / 16;
-      printf("  Precision=%d; Table index=%d (%s)\n", Precision, Index, Index ? "chrominance" : "luminance");
+      printf("  Precision=%d; Table index=%d (%s)\n", Precision, Index,
+             Index ? "chrominance" : "luminance");
 
       /* Quantization tables have 1 DC value and 63 AC values */
       /** Average AC table values to estimate compression level **/
-      Total=0;
-      TotalNum=0;
+      Total = 0;
+      TotalNum = 0;
 
       while (Length > 0 && TotalNum < 64) {
         i = fgetc(Fin);
@@ -230,6 +237,7 @@ int ProcessJPEG(FILE *Fin) {
       }
 
       TotalNum--; /* we read 64 bytes, but only care about 63 values */
+
       if (Index < 3) { /* Only track the first 3 quantization tables */
         QualityAvg[Index] = 100.0 - Total / TotalNum;
         printf("  Estimated quality level = %5.2f%%\n", QualityAvg[Index]);
@@ -262,14 +270,14 @@ int ProcessJPEG(FILE *Fin) {
 
       if (Index > 0) {
         /* Diff is a really rough estimate for converting YCrCb to RGB */
-        Diff  = Abs(QualityAvg[0]-QualityAvg[1]) * 0.49;
-        Diff += Abs(QualityAvg[0]-QualityAvg[2]) * 0.49;
+        Diff  = Abs(QualityAvg[0] - QualityAvg[1]) * 0.49;
+        Diff += Abs(QualityAvg[0] - QualityAvg[2]) * 0.49;
 
         /* If you know that Cr==Cb and don't mind a little more error,
            then you can take a short-cut and simply say
            Diff = Abs(QualityAvg[0]-QualityAvg[1]); */
-        QualityF = (QualityAvg[0]+QualityAvg[1]+QualityAvg[2]) / 3.0 + Diff;
-        QualityI = (QualityF+0.5); /* round quality to int */
+        QualityF = (QualityAvg[0] + QualityAvg[1] + QualityAvg[2]) / 3.0 + Diff;
+        QualityI = (QualityF + 0.5); /* round quality to int */
 
         printf("Average quality: %5.2f%% (%d%%)\n", QualityF, QualityI);
       }
@@ -280,14 +288,15 @@ int ProcessJPEG(FILE *Fin) {
 }
 
 /**************************************************************/
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
   int c;
-  FILE *Fin;
+  FILE* Fin;
   int rc;
 
   /* process command lines */
   /** Uh, imgana has command line options, but jpegquality does not **/
-  opterr=0;
+  opterr = 0;
+
   while ((c = getopt(argc, argv, "")) != -1) {
     switch (c) {
     default:
@@ -302,11 +311,11 @@ int main(int argc, char *argv[]) {
     exit(-1);
   }
 
-  for(; optind < argc; optind++) {
+  for (; optind < argc; optind++) {
     Fin = fopen(argv[optind], "rb");
 
     if (!Fin) {
-      fprintf(stderr,"ERROR: failed to open %s\n", argv[optind]);
+      fprintf(stderr, "ERROR: failed to open %s\n", argv[optind]);
       continue;
     }
 

@@ -37,8 +37,7 @@ int main(int const argc, char** const argv) {
     }
 
     strncpy(flipname, filename, len - 5);
-  }
-  else {
+  } else {
     flipname = (char*) calloc(len + 6, sizeof(char));
 
     if (flipname == NULL) {

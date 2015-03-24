@@ -6,9 +6,9 @@
 
 #define uint unsigned int
 
-static /*@null@*/ char *hexTime() {
+static /*@null@*/ char* hexTime() {
   time_t timer;
-  struct tm *local;
+  struct tm* local;
   uint seconds;
   uint hhour;
   uint hmin;
@@ -19,9 +19,9 @@ static /*@null@*/ char *hexTime() {
 
   local = localtime(&timer);
 
-  seconds = (unsigned int) (
-    (local->tm_hour * 3600 + local->tm_min * 60 + local->tm_sec) * 65536.0 / 86400.0
-  );
+  seconds = (unsigned int)(
+              (local->tm_hour * 3600 + local->tm_min * 60 + local->tm_sec) * 65536.0 / 86400.0
+            );
 
   hhour = seconds / 4096;
 
@@ -29,7 +29,7 @@ static /*@null@*/ char *hexTime() {
 
   hsec = seconds % 16;
 
-  result = (char *) malloc(sizeof(char) * 7);
+  result = (char*) malloc(sizeof(char) * 7);
 
   if (result != NULL) {
     int remainder = snprintf(result, 7, "%x_%02x_%x", hhour, hmin, hsec);
@@ -39,8 +39,7 @@ static /*@null@*/ char *hexTime() {
     }
 
     return result;
-  }
-  else {
+  } else {
     printf("Out of memory.\n");
 
     return NULL;
@@ -48,7 +47,7 @@ static /*@null@*/ char *hexTime() {
 }
 
 int main() {
-  char *h = hexTime();
+  char* h = hexTime();
 
   if (h != NULL) {
     printf("%s\n", h);
