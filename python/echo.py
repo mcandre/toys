@@ -9,4 +9,5 @@ def main():
     sys.stdout.write(c)
     c = sys.stdin.read(1)
 
-if __name__ == "__main__": main()
+if __name__ == "__main__":
+  main()
