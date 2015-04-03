@@ -46,7 +46,8 @@ task :lint => [
   :lili,
   :editorconfig,
   :astyle,
-  :xmllint
+  :xmllint,
+  :pep8
 ] do
 end
 
