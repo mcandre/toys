@@ -48,6 +48,10 @@ task :jslint => [] do
   sh 'find . -type d -name node_modules -prune -o -type d -name bower_components -prune -o -type f -name "*[-.]min.js" -prune -o -type f -name "*.bat" -prune -o -type f -name "*.js" -exec node_modules/jslint/bin/jslint.js {} \\;'
 end
 
+task :eslint => [] do
+  sh 'node_modules/eslint/bin/eslint.js .'
+end
+
 task :lint => [
   :flog,
   :churn,
@@ -57,7 +61,8 @@ task :lint => [
   :xmllint,
   :pep8,
   :jshint,
-  :jslint
+  :jslint,
+  :eslint
 ] do
 end
 
