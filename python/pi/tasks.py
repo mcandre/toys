@@ -14,7 +14,7 @@ def pyflakes():
 
 @task
 def tidy():
-  run("find . -type f -name '*.html' -print -exec tidy -qe {} \; 2>&1")
+  run("find . -type d -name node_modules -prune -o -type f -name '*.html' \\( -exec tidy -qe {} \\; -o -print \\) 2>&1 | grep -v 'canvas>' | grep -v 'proprietary attribute'; true")
 
 @task("pep8", "pylint", "pyflakes", "tidy")
 def lint():
