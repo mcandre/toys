@@ -40,6 +40,10 @@ task :pep8 => [] do
   sh 'find . -name node_modules -prune -o -name bower_components -prune -o -name "*.py" -exec pep8 {} \\;'
 end
 
+task :jshint => [] do
+  sh 'node_modules/jshint/bin/jshint .'
+end
+
 task :lint => [
   :flog,
   :churn,

@@ -1,9 +1,0 @@
-{
-  "expr": true,
-  "maxerr": 10000,
-  "indent": 2,
-  "eqeqeq": true,
-  "quotmark": true,
-  "curly": true,
-  "camelcase": true
-}
