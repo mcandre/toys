@@ -44,6 +44,10 @@ task :jshint => [] do
   sh 'node_modules/jshint/bin/jshint .'
 end
 
+task :jslint => [] do
+  sh 'find . -type d -name node_modules -prune -o -type d -name bower_components -prune -o -type f -name "*[-.]min.js" -prune -o -type f -name "*.bat" -prune -o -type f -name "*.js" -exec node_modules/jslint/bin/jslint.js {} \\;'
+end
+
 task :lint => [
   :flog,
   :churn,
@@ -51,7 +55,9 @@ task :lint => [
   :editorconfig,
   :astyle,
   :xmllint,
-  :pep8
+  :pep8,
+  :jshint,
+  :jslint
 ] do
 end
 
