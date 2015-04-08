@@ -6,6 +6,6 @@ test: rainbow.psql data.psql test.psql
 	psql -f test.psql
 
 pgsanity:
-	find . -type f -name '*.psql' -exec pgsanity {} \;
+	find . -type f -name "*.psql" | xargs pgsanity
 
 lint: pgsanity

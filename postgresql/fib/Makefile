@@ -5,6 +5,6 @@ test: fib.psql
 	time -p psql -c 'SELECT fib(20);'
 
 pgsanity:
-	find . -type f -name '*.psql' -exec pgsanity {} \;
+	find . -type f -name "*.psql" | xargs pgsanity
 
 lint: pgsanity
