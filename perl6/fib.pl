@@ -37,9 +37,9 @@ sub fib {
 
 my $n = @*ARGS[0];
 
-print "N= $n\n";
+say "N= $n";
 
-print "Running\n" ;
+say "Running" ;
 
 my $startt = time;
 
@@ -47,6 +47,6 @@ my $x = fib($n);
 
 my $endt = time;
 
-print "Fib $n = $x\n";
+say "Fib $n = $x";
 
-print "Time: " ~ ($endt - $startt) ~ " sec\n";
+say "Time: " ~ ($endt - $startt) ~ " sec";

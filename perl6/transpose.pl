@@ -2,8 +2,8 @@
 
 my @content = 'practice.txt'.IO.lines;
 
-print "raw content:\n";
-print @content ~ "\n\n";
+say 'raw content:';
+say @content;
 
 my $line;
 my @matrix;
@@ -13,23 +13,15 @@ my $j;
 for @content {
   $line = $_;
 
-  # print "$line\n";
-
   my @wordarray = $line.split(/\s+/);
-
-  # print "word array: " ~ @wordarray ~ "\n";
-  # print "index 0: @wordarray[0]\n";
-  # print "index 1: @wordarray[1]\n";
-  # print "index 2: @wordarray[2]\n";
-
   @matrix.push([@wordarray]);
 }
 
-print "parsed matrix:\n";
+say 'parsed matrix:';
 
 loop ($i = 0; $i <= @matrix.end; $i++) {
   loop ($j = 0; $j <= @matrix[$i].end; $j++) {
-    print "($i, $j): " ~ @matrix[$i][$j] ~ "\n";
+    say "($i, $j): " ~ @matrix[$i][$j];
   }
 }
 
@@ -53,12 +45,12 @@ loop ($i = 0; $i <= @matrix.end; $i++) {
   }
 }
 
-print "transposed matrix:\n";
+say 'transposed matrix:';
 
 loop ($i = 0; $i <= @transposed.end; $i++) {
   loop ($j = 0; $j <= @transposed[$i].end; $j++) {
     print @transposed[$i][$j] ~ ' ';
   }
 
-  print "\n";
+  say '';
 }

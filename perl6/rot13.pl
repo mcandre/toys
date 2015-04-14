@@ -11,6 +11,6 @@ sub rot13 {
 
 sub MAIN {
   for (lines) {
-    print rot13($_) ~ "\n";
+    say rot13($_);
   }
 }

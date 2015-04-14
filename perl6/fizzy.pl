@@ -30,6 +30,6 @@ sub MAIN {
 
   for (@fbs) {
     my $r = $_.result;
-    print "$r\n";
+    say $r;
   }
 }

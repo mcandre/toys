@@ -3,6 +3,6 @@
 my $parser = 'http://yubnub.org/parser/parse?command=';
 my $command = @*ARGS.join('+');
 
-print "Command: $command\n";
+say "Command: $command";
 
 shell "open $parser$command";
