@@ -52,6 +52,10 @@ task :eslint => [] do
   sh 'node_modules/eslint/bin/eslint.js .'
 end
 
+task :infernu => [] do
+  sh 'find . -type d -name node_modules -prune -o -type d -name bower_components -prune -o -type d -name target -prune -o -type f -name "*.js" -exec infernu {} \\;'
+end
+
 task :lint => [
   :flog,
   :churn,
@@ -62,7 +66,8 @@ task :lint => [
   :pep8,
   :jshint,
   :jslint,
-  :eslint
+  :eslint,
+  :infernu
 ] do
 end
 
