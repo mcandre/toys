@@ -1,12 +1,2 @@
-#!/usr/bin/env ksh
-
-usage() {
-  echo "Usage: $0 [arguments]"
-  exit
-}
-
-if [ -z "$1" ]; then
-  usage
-fi
-
+#!/bin/ksh
 echo "$@"
