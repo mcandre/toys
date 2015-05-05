@@ -18,6 +18,8 @@ Why is it good for a Java class to be a Bean? Beans are easier:
 
 Providing getters and setters for every single attribute might seem like wasted boilerplate code, but in the long run, your Java class becomes much more flexible in the Java ecosystem, allowing new and interesting uses--you would be surprised by how different developers and computer systems might want to configure and use your code!
 
+Java beans follow the [Hollywood Principle](http://en.wikipedia.org/wiki/Hollywood_principle): "Don't call us, we'll call you!" By adhering to certain standards, your code integrates better with everyone else's code.
+
 # EXAMPLE
 
 ```
