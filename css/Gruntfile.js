@@ -3,7 +3,7 @@
 module.exports = function(grunt) {
   grunt.initConfig({
     exec: {
-      csslint: 'csslint .',
+      csslint: 'node_modules/.bin/csslint .',
       scssLint: 'scss-lint .',
       tidy: 'find . -type d -name node_modules -prune -o -type f -name "*.html" \\( -exec tidy -qe {} \\; -o -print \\) 2>&1 | grep -v "canvas>" | grep -v "proprietary attribute"; true'
     }

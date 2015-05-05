@@ -3,8 +3,8 @@
 module.exports = function(grunt) {
   grunt.initConfig({
     exec: {
-      hello: 'stylus hello.styl',
-      fizzy: 'stylus fizzy.styl',
+      hello: 'node_modules/.bin/stylus hello.styl',
+      fizzy: 'node_modules/.bin/stylus fizzy.styl',
       tidy: 'find . -type d -name node_modules -prune -o -type f -name "*.html" \\( -exec tidy -qe {} \\; -o -print \\) 2>&1 | grep -v "canvas>" | grep -v "proprietary attribute"; true',
       clean: 'rm *.css; exit 0'
     }
