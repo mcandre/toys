@@ -4,6 +4,10 @@
 
 * `sh`
 
+On many Unix systems, `sh` resolves to `bash`. However, you can use [BusyBox](http://www.busybox.net/) or [Homebrew](http://brew.sh/) to access specifically the circa 1975 UNIX System 6 `sh` for testing backwards compatibility.
+
+E.g., `brew install osh`
+
 ## Optional
 
 * [shlint](https://github.com/duggan/shlint)
