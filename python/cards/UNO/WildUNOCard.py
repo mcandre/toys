@@ -1,17 +1,17 @@
-"""Wild UNO card"""
+'''Wild UNO card'''
 
-__author__ = "Andrew Pennebaker (andrew.pennebaker@gmail.com)"
-__date__ = "6 Apr 2006"
-__copyright__ = "Copyright 2006 Andrew Pennebaker"
+__author__ = 'Andrew Pennebaker (andrew.pennebaker@gmail.com)'
+__date__ = '6 Apr 2006'
+__copyright__ = 'Copyright 2006 Andrew Pennebaker'
 
 from UNOCard import UNOCard
 
 
 class WildUNOCard(UNOCard):
-    UNSET = "Unset"
+    UNSET = 'Unset'
 
-    DRAW_FOUR = "Draw Four"
-    ALL_DRAW = "All Draw"
+    DRAW_FOUR = 'Draw Four'
+    ALL_DRAW = 'All Draw'
 
     def __init__(self, action=UNOCard.NO_ACTION):
         self.setAction(action)
@@ -26,6 +26,6 @@ class WildUNOCard(UNOCard):
 
     def __str__(self):
         if self.getAction() == self.NO_ACTION:
-            return "Wild"
+            return 'Wild'
 
-        return "Wild %s" % (self.getAction())
+        return 'Wild %s' % (self.getAction())

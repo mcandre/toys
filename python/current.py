@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-"""Print scripts' directory"""
+'''Print scripts' directory'''
 
 import os
 

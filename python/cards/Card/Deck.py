@@ -1,8 +1,8 @@
-"""Generic playing card deck interface"""
+'''Generic playing card deck interface'''
 
-__author__ = "Andrew Pennebaker (andrew.pennebaker@gmail.com)"
-__date__ = "1 Jan 2006 - 6 Apr 2006"
-__copyright__ = "Copyright 2006 Andrew Pennebaker"
+__author__ = 'Andrew Pennebaker (andrew.pennebaker@gmail.com)'
+__date__ = '1 Jan 2006 - 6 Apr 2006'
+__copyright__ = 'Copyright 2006 Andrew Pennebaker'
 
 from Card import Card
 
@@ -52,7 +52,7 @@ class Deck:
 
     # NSA says 7 is enough to randomize a deck of cards
     def shuffle(self, rounds=7):
-        """TIMTOWDI"""
+        '''TIMTOWDI'''
 
         for i in range(len(self.cards)):
             index = ord(os.urandom(1)) % len(self.cards)  # 0 to 255

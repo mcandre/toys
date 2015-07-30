@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 
-"""Reverser"""
+'''Reverser'''
 
 import random
 
 
 def flip(sequence, howmany):
-    """Flipper"""
+    '''Flipper'''
 
     a = sequence[:howmany]
     a.reverse()
@@ -15,7 +15,7 @@ def flip(sequence, howmany):
 
 
 def disordered(sequence):
-    """Unsorted?"""
+    '''Unsorted?'''
 
     for i in range(1, len(sequence) - 1):
         if sequence[i - 1] > sequence[i]:
@@ -25,7 +25,7 @@ def disordered(sequence):
 
 
 def main():
-    """CLI"""
+    '''CLI'''
 
     inp = list(range(1, 10))
     numbers = [
@@ -36,13 +36,13 @@ def main():
     count = 0
 
     while disordered(numbers):
-        print(" ".join([str(e) for e in numbers]))
-        howmany = int(input("How many to flip? "))
+        print(' '.join([str(e) for e in numbers]))
+        howmany = int(input('How many to flip? '))
         howmany = int(howmany)
         numbers = flip(numbers, howmany)
         count += 1
 
-    print("Done! That took you %d steps." % (count))
+    print('Done! That took you %d steps.' % (count))
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

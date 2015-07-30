@@ -1,15 +1,15 @@
-"""Gotcha Gator card"""
+'''Gotcha Gator card'''
 
-__author__ = "Andrew Pennebaker (andrew.pennebaker@gmail.com)"
-__date__ = "6 Apr 2006"
-__copyright__ = "Copyright 2006 Andrew Pennebaker"
+__author__ = 'Andrew Pennebaker (andrew.pennebaker@gmail.com)'
+__date__ = '6 Apr 2006'
+__copyright__ = 'Copyright 2006 Andrew Pennebaker'
 
 from GoBananasCard import GoBananasCard
 from MonkeyCard import MonkeyCard
 
 
 class GotchaGatorCard(GoBananasCard):
-    WILD = "Wild"
+    WILD = 'Wild'
 
     def __init__(self, number):
         self.setColor(GoBananasCard.GREEN)
@@ -34,4 +34,4 @@ class GotchaGatorCard(GoBananasCard):
         return False
 
     def __str__(self):
-        return "Gotcha Gator %s" % (self.getNumber())
+        return 'Gotcha Gator %s' % (self.getNumber())

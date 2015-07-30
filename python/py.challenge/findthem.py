@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 
-"""findthem.py"""
+'''findthem.py'''
 
 import sys
 
 
 def findthem(line, threshhold):
-    """Searcher"""
+    '''Searcher'''
 
     rare = {}
     scores = total(line)
@@ -18,7 +18,7 @@ def findthem(line, threshhold):
 
 
 def total(line):
-    """Sum"""
+    '''Sum'''
 
     result = [0] * 256
 
@@ -29,17 +29,17 @@ def total(line):
 
 
 def main():
-    """CLI"""
+    '''CLI'''
 
-    f = open(sys.argv[1], "r")
+    f = open(sys.argv[1], 'r')
 
-    oneline = "\n".join(f.readlines())
+    oneline = '\n'.join(f.readlines())
 
     findings = findthem(oneline, int(sys.argv[2]))
 
-    rarejoin = ", ".join(["%s:%d" % (key, findings[key]) for key in findings])
+    rarejoin = ', '.join(['%s:%d' % (key, findings[key]) for key in findings])
 
-    print("Rare: %s" % (rarejoin))
+    print('Rare: %s' % (rarejoin))
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

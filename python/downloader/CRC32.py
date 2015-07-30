@@ -1,26 +1,26 @@
 #!/usr/bin/env python
 
-"""CRC32 implementation"""
+'''CRC32 implementation'''
 
-__author__ = "Andrew Pennebaker (andrew.pennebaker@gmail.com)"
-__date__ = "10 Oct 2005 - 17 Jul 2006"
-__copyright__ = "Copyright 2006 Andrew Pennebaker"
-__credits__ = "From the PyPy project"
-__URL__ = "http://snippets.dzone.com/posts/show/3540"
+__author__ = 'Andrew Pennebaker (andrew.pennebaker@gmail.com)'
+__date__ = '10 Oct 2005 - 17 Jul 2006'
+__copyright__ = 'Copyright 2006 Andrew Pennebaker'
+__credits__ = 'From the PyPy project'
+__URL__ = 'http://snippets.dzone.com/posts/show/3540'
 
 import HashFunction
 
 
 class CRC32(HashFunction.HashFunction):
-    """CRC32 implementation"""
+    '''CRC32 implementation'''
 
     BLOCK_SIZE = 1
     DIGEST_SIZE = 4
 
     INIT = 0x00000000
-    SUM_REQ = "Sum >= 0"
+    SUM_REQ = 'Sum >= 0'
 
-    TEST_DATA = "abc"
+    TEST_DATA = 'abc'
     TEST_HASH = 0x352441c2
 
     TABLE = [
@@ -94,29 +94,29 @@ class CRC32(HashFunction.HashFunction):
         self.sum = sum ^ 0xffffffff
 
     def sum_valid(self, sum):
-        """Is CRC32 sum valid?"""
+        '''Is CRC32 sum valid?'''
 
         return sum >= 0
 
     def _update(self, b):
-        """Tick"""
+        '''Tick'''
 
         self.sum = self.TABLE[(self.sum ^ b) & 0xff] ^ (self.sum >> 8)
 
     def digest(self):
-        """Prepare sum for formatting"""
+        '''Prepare sum for formatting'''
 
         return self.sum ^ 0xffffffff
 
     def format(self, data):
-        """Format sum"""
+        '''Format sum'''
 
-        return "%02x" % (data)
+        return '%02x' % (data)
 
     def unformat(self, hash):
-        """Parse sum"""
+        '''Parse sum'''
 
         return int(hash, 16)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     HashFunction.main(CRC32)

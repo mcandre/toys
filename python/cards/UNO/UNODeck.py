@@ -1,8 +1,8 @@
-"""UNO deck"""
+'''UNO deck'''
 
-__author__ = "Andrew Pennebaker (andrew.pennebaker@gmail.com)"
-__date__ = "6 Apr 2006"
-__copyright__ = "Copyright 2006 Andrew Pennebaker"
+__author__ = 'Andrew Pennebaker (andrew.pennebaker@gmail.com)'
+__date__ = '6 Apr 2006'
+__copyright__ = 'Copyright 2006 Andrew Pennebaker'
 
 from UNOCard import UNOCard
 from NumberedUNOCard import NumberedUNOCard

@@ -1,32 +1,32 @@
-"""Poker playing card"""
+'''Poker playing card'''
 
-__author__ = "Andrew Pennebaker (andrew.pennebaker@gmail.com)"
-__date__ = "1 Jan 2006 - 6 Apr 2006"
-__copyright__ = "Copyright 2006 Andrew Pennebaker"
+__author__ = 'Andrew Pennebaker (andrew.pennebaker@gmail.com)'
+__date__ = '1 Jan 2006 - 6 Apr 2006'
+__copyright__ = 'Copyright 2006 Andrew Pennebaker'
 
 from Card.Card import Card
 
 
 class PokerCard(Card):
-    SPADE = "Spade"
-    CLUB = "Club"
-    DIAMOND = "Diamond"
-    HEART = "Heart"
+    SPADE = 'Spade'
+    CLUB = 'Club'
+    DIAMOND = 'Diamond'
+    HEART = 'Heart'
 
-    ACE = "Ace"
-    TWO = "2"
-    THREE = "3"
-    FOUR = "4"
-    FIVE = "5"
-    SIX = "6"
-    SEVEN = "7"
-    EIGHT = "8"
-    NINE = "9"
-    TEN = "10"
-    JACK = "Jack"
-    QUEEN = "Queen"
-    KING = "King"
-    JOKER = "Joker"
+    ACE = 'Ace'
+    TWO = '2'
+    THREE = '3'
+    FOUR = '4'
+    FIVE = '5'
+    SIX = '6'
+    SEVEN = '7'
+    EIGHT = '8'
+    NINE = '9'
+    TEN = '10'
+    JACK = 'Jack'
+    QUEEN = 'Queen'
+    KING = 'King'
+    JOKER = 'Joker'
 
     def __init__(self, suit, rank):
         Card.__init__()
@@ -53,4 +53,4 @@ class PokerCard(Card):
         )
 
     def __str__(self):
-        return "%s %s" % (self.getSuit(), self.getRank())
+        return '%s %s' % (self.getSuit(), self.getRank())

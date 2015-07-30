@@ -1,17 +1,17 @@
-"""Brute force Sudoku solver"""
+'''Brute force Sudoku solver'''
 
-__author__ = "Andrew Pennebaker (andrew.pennebaker@gmail.com)"
-__date__ = "2 May 2006 - 11 Dec 2006"
-__version__ = "0.0.1"
-__credits__ = "Example solution from www.sudokusolver.co.uk"
+__author__ = 'Andrew Pennebaker (andrew.pennebaker@gmail.com)'
+__date__ = '2 May 2006 - 11 Dec 2006'
+__version__ = '0.0.1'
+__credits__ = 'Example solution from www.sudokusolver.co.uk'
 
 from SuDokuCell import SuDokuCell
 
 
 class SuDoku:
-    """Matrix representation of a SuDoku puzzle"""
+    '''Matrix representation of a SuDoku puzzle'''
     def __init__(self, rows=None):
-        """Initialize wrapper"""
+        '''Initialize wrapper'''
 
         if rows is None:
             rows = [[SuDokuCell(1, SuDokuCell.BLANK)] * 9] * 9
@@ -24,7 +24,7 @@ class SuDoku:
         # with 9 newlines between each row
         text = text[:252]
 
-        textRows = text.split("\n")[:9]
+        textRows = text.split('\n')[:9]
 
         for i in range(9):
             textRow = textRows[i]
@@ -180,11 +180,11 @@ class SuDoku:
         return False
 
     def __repr__(self):
-        result = ""
+        result = ''
         for row in self.getRows():
             for cell in row:
                 result += str(cell)
-            result += "\n"
+            result += '\n'
 
         return result
 

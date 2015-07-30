@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-"""Alarm sounder"""
+'''Alarm sounder'''
 
 import time
 import os
@@ -8,10 +8,10 @@ import sys
 
 
 def alert():
-    """Alert using OS-configured audio file"""
-    os.popen("open nads.wav")
+    '''Alert using OS-configured audio file'''
+    os.popen('open nads.wav')
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     SECS = int(sys.argv[1])
 
     START = time.time()

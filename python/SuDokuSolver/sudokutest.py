@@ -4,20 +4,20 @@ import SuDokuCell
 import SuDoku
 import SuDokuSolver
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     sd = SuDoku.SuDoku(SuDoku.SOLUTION0)
 
     sd.setCell(8, 8, SuDokuCell.SuDokuCell())
 
-    print("Initial SD:\n")
+    print('Initial SD:\n')
     print(sd)
 
-    print("Initial SD validates?: " + str(sd.validate()) + "\n")
+    print('Initial SD validates?: ' + str(sd.validate()) + '\n')
 
-    print("Solving...\n")
+    print('Solving...\n')
 
     solver = SuDokuSolver.SuDokuSolver(sd)
     solver.solve()
 
-    print("\nSolved SD:\n")
+    print('\nSolved SD:\n')
     print(sd)

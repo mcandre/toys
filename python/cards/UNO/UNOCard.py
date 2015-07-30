@@ -1,22 +1,22 @@
-"""UNO card"""
+'''UNO card'''
 
-__author__ = "Andrew Pennebaker (andrew.pennebaker@gmail.com)"
-__date__ = "6 Apr 2006"
-__copyright__ = "Copyright 2006 Andrew Pennebaker"
+__author__ = 'Andrew Pennebaker (andrew.pennebaker@gmail.com)'
+__date__ = '6 Apr 2006'
+__copyright__ = 'Copyright 2006 Andrew Pennebaker'
 
 from Card.Card import Card
 
 
 class UNOCard(Card):
-    RED = "Red"
-    GREEN = "Green"
-    BLUE = "Blue"
-    YELLOW = "Yellow"
+    RED = 'Red'
+    GREEN = 'Green'
+    BLUE = 'Blue'
+    YELLOW = 'Yellow'
 
-    SKIP = "Skip"
-    DRAW_TWO = "Draw Two"
-    REVERSE = "Reverse"
-    NO_ACTION = ""
+    SKIP = 'Skip'
+    DRAW_TWO = 'Draw Two'
+    REVERSE = 'Reverse'
+    NO_ACTION = ''
 
     def __init__(self, color, action):
         self.setColor(color)
@@ -50,4 +50,4 @@ class UNOCard(Card):
         return self.getAction() == other.getAction()
 
     def __str__(self):
-        return "%s %s" % (self.getColor(), self.getAction())
+        return '%s %s' % (self.getColor(), self.getAction())

@@ -1,17 +1,17 @@
 #!/usr/bin/env python
 
-"""Ruler drawer"""
+'''Ruler drawer'''
 
-__author__ = "Andrew Pennebaker (andrew.pennebaker@gmail.com)"
-__date__ = "23 Jan 2007 - 6 Feb 2007"
-__copyright__ = "Copyright 2007 Andrew Pennebaker"
+__author__ = 'Andrew Pennebaker (andrew.pennebaker@gmail.com)'
+__date__ = '23 Jan 2007 - 6 Feb 2007'
+__copyright__ = 'Copyright 2007 Andrew Pennebaker'
 
 import pygame
 import sys
 
 
 def draw_ruler(screen, color, start, ruler_max, ruler_min, parts):
-    """Blot ruler"""
+    '''Blot ruler'''
 
     screenrect = screen.get_rect()
 
@@ -41,7 +41,7 @@ def draw_ruler(screen, color, start, ruler_max, ruler_min, parts):
 
 
 def play(screen, screensync=True, fps=128):
-    """Tick"""
+    '''Tick'''
 
     black = (0, 0, 0)
     red = (255, 0, 0)
@@ -71,7 +71,7 @@ def play(screen, screensync=True, fps=128):
 
 
 def main():
-    """Show ruler"""
+    '''Show ruler'''
 
     pygame.init()
     pygame.mouse.set_visible(False)
@@ -91,7 +91,7 @@ def main():
 
     play(screen, screensync, fps)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     try:
         main()
     except KeyboardInterrupt:

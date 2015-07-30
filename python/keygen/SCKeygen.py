@@ -1,4 +1,4 @@
-"""StarCraft key generator"""
+'''StarCraft key generator'''
 
 import time
 import random
@@ -7,7 +7,7 @@ from Keygen import Keygen
 
 
 class SCKeygen(Keygen):
-    """SC key generator"""
+    '''SC key generator'''
 
     STATIC = [
         3333333333333,
@@ -19,7 +19,7 @@ class SCKeygen(Keygen):
 
     # x = 1r35-5r0r1-30rr
     def _generate(self):
-        """Generate SC key"""
+        '''Generate SC key'''
 
         random.seed(time.time())
         r = lambda: random.randint(0, 9)
@@ -41,7 +41,7 @@ class SCKeygen(Keygen):
         return x
 
     def format(self, num):
-        """Format SC key"""
+        '''Format SC key'''
 
         c = num % 10000
         num /= 10000
@@ -51,13 +51,13 @@ class SCKeygen(Keygen):
 
         a = num
 
-        return "%04d-%05d-%04d" % (a, b, c)
+        return '%04d-%05d-%04d' % (a, b, c)
 
     def unformat(self, s):
-        """Parse SC key"""
+        '''Parse SC key'''
 
-        if "-" in s:
-            s = "".join(s.split("-"))
+        if '-' in s:
+            s = ''.join(s.split('-'))
 
         a, b, c = int(s[:4]), int(s[4:9]), int(s[9:])
 
@@ -92,9 +92,9 @@ class SCKeygen(Keygen):
 
 
 def main():
-    """Generate SC key"""
+    '''Generate SC key'''
 
     SCKeygen().main()
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

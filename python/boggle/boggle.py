@@ -1,47 +1,47 @@
 #!/usr/bin/env python
 
-"""Trie-based boggle solver"""
+'''Trie-based boggle solver'''
 
 import sys
 import random
 
-DEFAULT_DICT = "dict.txt"
+DEFAULT_DICT = 'dict.txt'
 
 DICE = [
-    ["A", "O", "B", "B", "O", "J"],
-    ["W", "H", "G", "E", "E", "N"],
-    ["N", "R", "N", "Z", "H", "L"],
-    ["N", "A", "E", "A", "G", "E"],
-    ["D", "I", "Y", "S", "T", "T"],
-    ["I", "E", "S", "T", "S", "O"],
-    ["A", "O", "T", "T", "W", "O"],
-    ["H", "Qu", "U", "M", "N", "I"],
-    ["R", "Y", "T", "L", "T", "E"],
-    ["P", "O", "H", "C", "S", "A"],
-    ["L", "R", "E", "V", "Y", "D"],
-    ["E", "X", "L", "D", "I", "R"],
-    ["I", "E", "N", "S", "U", "E"],
-    ["S", "F", "F", "K", "A", "P"],
-    ["I", "O", "T", "M", "U", "C"],
-    ["E", "H", "W", "V", "T", "R"]
+    ['A', 'O', 'B', 'B', 'O', 'J'],
+    ['W', 'H', 'G', 'E', 'E', 'N'],
+    ['N', 'R', 'N', 'Z', 'H', 'L'],
+    ['N', 'A', 'E', 'A', 'G', 'E'],
+    ['D', 'I', 'Y', 'S', 'T', 'T'],
+    ['I', 'E', 'S', 'T', 'S', 'O'],
+    ['A', 'O', 'T', 'T', 'W', 'O'],
+    ['H', 'Qu', 'U', 'M', 'N', 'I'],
+    ['R', 'Y', 'T', 'L', 'T', 'E'],
+    ['P', 'O', 'H', 'C', 'S', 'A'],
+    ['L', 'R', 'E', 'V', 'Y', 'D'],
+    ['E', 'X', 'L', 'D', 'I', 'R'],
+    ['I', 'E', 'N', 'S', 'U', 'E'],
+    ['S', 'F', 'F', 'K', 'A', 'P'],
+    ['I', 'O', 'T', 'M', 'U', 'C'],
+    ['E', 'H', 'W', 'V', 'T', 'R']
 ]
 
-CMD_STOP = "[stop]"
-PROMPT = "> "
+CMD_STOP = '[stop]'
+PROMPT = '> '
 MIN_LENGTH = 3
 
 
 def chomp(line):
-    "Strip trailing line endings"""
+    'Strip trailing line endings'''
 
-    if line[-1] == "\n":
+    if line[-1] == '\n':
         return line[:-1]
 
     return line
 
 
 def create_board():
-    """Initialize board"""
+    '''Initialize board'''
 
     # random faces
     board = [random.choice(d) for d in DICE]
@@ -72,7 +72,7 @@ def create_board():
 
 
 def find(board, word):
-    """Test existence of word in board"""
+    '''Test existence of word in board'''
 
     for i in range(len(board)):
         for j in range(len(board[i])):
@@ -85,9 +85,9 @@ def find(board, word):
 
 
 def trace(board, word, positions):
-    """Trie-based word lookup"""
+    '''Trie-based word lookup'''
 
-    start = ""
+    start = ''
     for x, y in positions:
         start += board[x][y]
         rest = word[len(start):]
@@ -115,16 +115,16 @@ def trace(board, word, positions):
 
 
 def main():
-    """Play a game of boggle"""
+    '''Play a game of boggle'''
 
-    print("Loading dictionary")
+    print('Loading dictionary')
 
     dictname = DEFAULT_DICT
 
     if len(sys.argv) > 1:
         dictname = sys.argv[1]
 
-    dictfile = open(dictname, "r")
+    dictfile = open(dictname, 'r')
 
     wordlist = []
 
@@ -133,15 +133,15 @@ def main():
 
     dictfile.close()
 
-    print("Done")
+    print('Done')
 
-    print("Creating board")
+    print('Creating board')
 
     board, lower = create_board()
 
-    print("Done")
+    print('Done')
 
-    print("Enter words.", CMD_STOP, "when done.")
+    print('Enter words.', CMD_STOP, 'when done.')
 
     wordsfound = []
 
@@ -153,28 +153,28 @@ def main():
         word = word.lower()
 
         if len(word) < MIN_LENGTH:
-            print("Too short")
+            print('Too short')
         elif word not in wordlist:
-            print("Not in dictionary")
+            print('Not in dictionary')
         elif word in wordsfound:
-            print("Already used")
+            print('Already used')
         else:
             if find(lower, word):
                 wordsfound.append(word)
-                print("Accepted (%d words)" % (len(wordsfound)))
+                print('Accepted (%d words)' % (len(wordsfound)))
             else:
-                print("Not on board")
+                print('Not on board')
 
         for line in board:
             print(line)
 
         word = input(PROMPT)
 
-    print("You found %d words." % (len(wordsfound)))
+    print('You found %d words.' % (len(wordsfound)))
 
-    input("Press enter to find other words.")
+    input('Press enter to find other words.')
 
-    print("Finding words.")
+    print('Finding words.')
 
     compwords = []
 
@@ -185,16 +185,16 @@ def main():
             if find(lower, word):
                 compwords.append(word)
 
-    print("Done")
+    print('Done')
 
-    print("Computer found %d words." % (len(compwords)))
+    print('Computer found %d words.' % (len(compwords)))
 
-    input("Press enter to list words.")
+    input('Press enter to list words.')
 
     for word in compwords:
         print(word)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     try:
         main()
     except (KeyboardInterrupt, EOFError) as e:

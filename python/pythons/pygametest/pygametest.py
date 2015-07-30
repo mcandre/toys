@@ -15,10 +15,10 @@ def main():
     black = 0, 0, 0
 
     screen = pygame.display.set_mode(size)
-    icon = pygame.image.load("ball icon.png")
+    icon = pygame.image.load('ball icon.png')
     pygame.display.set_icon(icon)
 
-    ball = pygame.image.load("ball.png").convert()
+    ball = pygame.image.load('ball.png').convert()
     ballrect = ball.get_rect()
 
     while True:
@@ -42,5 +42,5 @@ def main():
 
         pygame.display.flip()
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

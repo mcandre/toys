@@ -1,7 +1,7 @@
-__author__ = "Andrew Pennebaker (andrew.pennebaker@gmail.com)"
-__date__ = "18 May 2007"
-__copyright__ = "Copyright 2007 Andrew Pennebaker"
-__version__ = "0.0.1"
+__author__ = 'Andrew Pennebaker (andrew.pennebaker@gmail.com)'
+__date__ = '18 May 2007'
+__copyright__ = 'Copyright 2007 Andrew Pennebaker'
+__version__ = '0.0.1'
 
 from ants.util import screenlengths
 
@@ -29,8 +29,8 @@ class Environment:
 
     def generate_home(self):
         return pygame.Rect(
-            self.lengths["midX"] - 20,
-            self.lengths["midY"] - 20,
+            self.lengths['midX'] - 20,
+            self.lengths['midY'] - 20,
             40,
             40
         )
@@ -40,16 +40,16 @@ class Environment:
 
         for i in range(foodcount):
             area = pygame.Rect(
-                random.choice(range(self.lengths["width"])),
-                random.choice(range(self.lengths["height"])),
+                random.choice(range(self.lengths['width'])),
+                random.choice(range(self.lengths['height'])),
                 foodsize,
                 foodsize
             )
 
             while area.colliderect(self.home):
                 area = pygame.Rect(
-                    random.choice(range(self.lengths["width"])),
-                    random.choice(range(self.lengths["height"])),
+                    random.choice(range(self.lengths['width'])),
+                    random.choice(range(self.lengths['height'])),
                     foodsize,
                     foodsize
                 )

@@ -1,15 +1,15 @@
-"""Go Bananas card"""
+'''Go Bananas card'''
 
-__author__ = "Andrew Pennebaker (andrew.pennebaker@gmail.com)"
-__date__ = "6 Apr 2006"
-__copyright__ = "Copyright 2006 Andrew Pennebaker"
+__author__ = 'Andrew Pennebaker (andrew.pennebaker@gmail.com)'
+__date__ = '6 Apr 2006'
+__copyright__ = 'Copyright 2006 Andrew Pennebaker'
 
 from GoBananasCard import GoBananasCard
 
 
 class BananaCard(GoBananasCard):
-    FRESH = "Fresh"
-    ROTTEN = "Rotten"
+    FRESH = 'Fresh'
+    ROTTEN = 'Rotten'
 
     def __init__(self, type):
         self.setType(type)
@@ -38,4 +38,4 @@ class BananaCard(GoBananasCard):
             return self.getType() != other.getType()
 
     def __str__(self):
-        return "%s Banana" % (self.getType())
+        return '%s Banana' % (self.getType())

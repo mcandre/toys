@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 
-"""2d ant simulation"""
+'''2d ant simulation'''
 
-__author__ = "Andrew Pennebaker (andrew.pennebaker@gmail.com)"
-__date__ = "18 May 2007"
-__copyright__ = "Copyright 2007 Andrew Pennebaker"
-__version__ = "0.0.1"
+__author__ = 'Andrew Pennebaker (andrew.pennebaker@gmail.com)'
+__date__ = '18 May 2007'
+__copyright__ = 'Copyright 2007 Andrew Pennebaker'
+__version__ = '0.0.1'
 
 from ants import Ant, Environment
 from ants.util import configreader, screenlengths, screenshot
@@ -17,7 +17,7 @@ import random
 
 
 def play(screen, settings):
-    """Tick"""
+    '''Tick'''
 
     clock = pygame.time.Clock()
 
@@ -26,22 +26,22 @@ def play(screen, settings):
     ants = [
         Ant.Ant(
             [
-                lengths["midX"] + random.choice(range(-5, 5)),
-                lengths["midY"] + random.choice(range(-5, 5))
+                lengths['midX'] + random.choice(range(-5, 5)),
+                lengths['midY'] + random.choice(range(-5, 5))
             ],
             random.choice(
                 [[0, 1], [1, 0], [0, -1], [-1, 0]]
             )
         )
 
-        for i in range(settings["antcount"])
+        for i in range(settings['antcount'])
     ]
 
     env = Environment.Environment(
         screen,
         ants,
-        settings["foodcount"],
-        settings["foodsize"]
+        settings['foodcount'],
+        settings['foodsize']
     )
 
     while True:
@@ -49,7 +49,7 @@ def play(screen, settings):
             if event.type == pygame.QUIT:
                 sys.exit()
             elif event.type == pygame.KEYDOWN:
-                if event.key == settings["keyescape"]:
+                if event.key == settings['keyescape']:
                     sys.exit()
                 elif (
                         event.key == pygame.K_q and
@@ -57,8 +57,8 @@ def play(screen, settings):
                         event.mod == pygame.KMOD_RMETA
                 ):  # Command+Q
                     sys.exit()
-                elif event.key == settings["keyscreenshot"]:
-                    screenshot.save(screen, settings["screenshotdir"])
+                elif event.key == settings['keyscreenshot']:
+                    screenshot.save(screen, settings['screenshotdir'])
 
         env.update()
 
@@ -87,56 +87,56 @@ def play(screen, settings):
             if ant.is_alive:
                 screen.fill(ant.COLOR, ant.get_rect())
 
-        if settings["screensync"]:
-            clock.tick(settings["fps"])
+        if settings['screensync']:
+            clock.tick(settings['fps'])
 
         pygame.display.flip()
 
 
 def main():
-    """Run simulation"""
+    '''Run simulation'''
 
     pygame.init()
 
     pygame.mouse.set_visible(False)
 
     settings = {
-        "screensync": True,
-        "fps": 16,
-        "fullscreen": False,
-        "resolution": (800, 600),
-        "screenshotdir": "screens",
-        "antcount": 10,
-        "foodcount": 2,
-        "foodsize": 30,
-        "keyescape": pygame.K_ESCAPE,
-        "keyscreenshot": pygame.K_0
+        'screensync': True,
+        'fps': 16,
+        'fullscreen': False,
+        'resolution': (800, 600),
+        'screenshotdir': 'screens',
+        'antcount': 10,
+        'foodcount': 2,
+        'foodsize': 30,
+        'keyescape': pygame.K_ESCAPE,
+        'keyscreenshot': pygame.K_0
     }
 
-    configreader.read(open("ants.conf", "r"), settings)
+    configreader.read(open('ants.conf', 'r'), settings)
 
     screen = None
 
-    if settings["fullscreen"]:
+    if settings['fullscreen']:
         screen = pygame.display.set_mode(
-            settings["resolution"],
+            settings['resolution'],
             pygame.FULLSCREEN
         )
     else:
         screen = pygame.display.set_mode(
-            settings["resolution"]
+            settings['resolution']
         )
 
     # icon = pygame.image.load(
-    #     settings["gfxdir"] + os.sep + settings["icon"]
+    #     settings['gfxdir'] + os.sep + settings['icon']
     # ).convert_alpha()
     # pygame.display.set_icon(icon)
 
-    pygame.display.set_caption("Ants")
+    pygame.display.set_caption('Ants')
 
     play(screen, settings)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     try:
         main()
     except KeyboardInterrupt as e:

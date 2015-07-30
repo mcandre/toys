@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-"""Uses
+'''Uses
 
     oo
     --
@@ -10,12 +10,12 @@
 
 with remainder < 1 / (n+1)^2
 
-to approximate Pi"""
+to approximate Pi'''
 
-__author__ = "Andrew Pennebaker (andrew.pennebaker@gmail.com)"
-__date__ = "9 Feb 2006"
-__copyright__ = "Copyright 2006 Andrew Pennebaker"
-__version__ = "0.0.1"  # not currently working
+__author__ = 'Andrew Pennebaker (andrew.pennebaker@gmail.com)'
+__date__ = '9 Feb 2006'
+__copyright__ = 'Copyright 2006 Andrew Pennebaker'
+__version__ = '0.0.1'  # not currently working
 
 from decimal import Decimal, getcontext
 
@@ -24,7 +24,7 @@ import getopt
 
 
 def approxpi(n=1000, precision=1000):
-    """Power series approximation"""
+    '''Power series approximation'''
 
     getcontext().prec = precision
 
@@ -42,18 +42,18 @@ def approxpi(n=1000, precision=1000):
 
 
 def usage():
-    """Print usage message"""
+    '''Print usage message'''
 
-    print("Usage: %s [options]" % (sys.argv[0]))
-    print("\n--n large number n")
-    print("--precision digits")
-    print("--help (usage)")
+    print('Usage: %s [options]' % (sys.argv[0]))
+    print('\n--n large number n')
+    print('--precision digits')
+    print('--help (usage)')
 
     sys.exit()
 
 
 def main():
-    """CLI"""
+    '''CLI'''
 
     system_args = sys.argv[1:]  # ignore program name
 
@@ -66,30 +66,30 @@ def main():
         optlist, args = getopt.getopt(
             system_args,
             None,
-            ["n=", "precision=", "help"]
+            ['n=', 'precision=', 'help']
         )
     except getopt.GetoptError:
         usage()
 
     for option, value in optlist:
-        if option == "--help":
+        if option == '--help':
             usage()
 
-        elif option == "--n":
+        elif option == '--n':
             n = int(value)
 
             if n < 1:
-                raise Exception("N must be at least 1")
-        elif option == "--precision":
+                raise Exception('N must be at least 1')
+        elif option == '--precision':
             p = int(value)
 
             if p < 1:
-                raise Exception("Precision must be at least 1")
+                raise Exception('Precision must be at least 1')
 
     result = approxpi(n, p)
 
-    print("Pi:\n%s\n" % (result[0]))
-    print("Remainder:\n%s" % (result[1]))
+    print('Pi:\n%s\n' % (result[0]))
+    print('Remainder:\n%s' % (result[1]))
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

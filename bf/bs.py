@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 
-"""A Bullshit interpreter"""
+'''A Bullshit interpreter'''
 
-__author__ = "Andrew Pennebaker (andrew.pennebaker@gmail.com)"
-__date__ = "18 Nov 2005 - 6 Jul 2006"
-__copyright__ = "Copyright 2006 Andrew Pennebaker"
-__version__ = "0.5"
-__URL__ = "http://snippets.dzone.com/posts/show/3536"
+__author__ = 'Andrew Pennebaker (andrew.pennebaker@gmail.com)'
+__date__ = '18 Nov 2005 - 6 Jul 2006'
+__copyright__ = 'Copyright 2006 Andrew Pennebaker'
+__version__ = '0.5'
+__URL__ = 'http://snippets.dzone.com/posts/show/3536'
 
 import sys
 import os
@@ -19,10 +19,10 @@ address = 0
 def sublevel(level):
     i = 0
 
-    if level.count("[") > level.count("]"):
-        raise Exception("Unmatched Bracket")
+    if level.count('[') > level.count(']'):
+        raise Exception('Unmatched Bracket')
 
-    while level[0:i + 1].count("[") != level[0:i + 1].count("]"):
+    while level[0:i + 1].count('[') != level[0:i + 1].count(']'):
         i += 1
 
     return level[1:i + 1]
@@ -35,22 +35,22 @@ def run(code, position=0):
     while position < len(code):
         cmd = code[position]
 
-        if cmd == "<":
+        if cmd == '<':
             address -= 1
-        elif cmd == ">":
+        elif cmd == '>':
             address += 1
-        elif cmd == "+":
+        elif cmd == '+':
             tape[address] += 1
-        elif cmd == "-":
+        elif cmd == '-':
             tape[address] -= 1
-        elif cmd == "!":
+        elif cmd == '!':
             sys.stdout.write(chr(tape[address]))
-        elif cmd == "?":
+        elif cmd == '?':
             try:
                 tape[address] = ord(sys.stdin.read(1))
             except:
                 tape[address] -= 1
-        elif cmd == "[":
+        elif cmd == '[':
             try:
                 level = sublevel(code[position:])
 
@@ -60,7 +60,7 @@ def run(code, position=0):
                 position += len(level)
             except:
                 return position
-        elif cmd == "]":
+        elif cmd == ']':
             return position
 
         position += 1
@@ -69,8 +69,8 @@ def run(code, position=0):
 
 
 def usage():
-    print("Usage: %s [options] [<sourcefile>]" % (sys.argv[0]))
-    print("-h|--help (usage)")
+    print('Usage: %s [options] [<sourcefile>]' % (sys.argv[0]))
+    print('-h|--help (usage)')
 
     sys.exit()
 
@@ -83,27 +83,27 @@ def main():
     optlist, args = [], []
 
     try:
-        optlist, args = getopt.getopt(systemArgs, "h", ["help"])
+        optlist, args = getopt.getopt(systemArgs, 'h', ['help'])
     except Exception:
         usage()
 
     live = len(args) < 1
 
     for option, value in optlist:
-        if option == "-h" or option == "--help":
+        if option == '-h' or option == '--help':
             usage()
 
     if live:
-        print("--BF Interpreter 0.5--")
-        print("    Type exit to exit.")
+        print('--BF Interpreter 0.5--')
+        print('    Type exit to exit.')
 
-        code = ""
+        code = ''
         position = 0
 
-        line = "not exit"
+        line = 'not exit'
 
-        while line != "exit":
-            sys.stdout.write("% ")
+        while line != 'exit':
+            sys.stdout.write('% ')
             line = sys.stdin.readline().rstrip(os.linesep)
             code += line
 
@@ -111,16 +111,16 @@ def main():
     else:
         src = args[0]
 
-        srcfile = open(src, "r")
-        code = "".join(srcfile.readlines())
+        srcfile = open(src, 'r')
+        code = ''.join(srcfile.readlines())
         srcfile.close()
 
-        if code.count("[") != code.count("]"):
-            raise Exception("Unbalanced brackets")
+        if code.count('[') != code.count(']'):
+            raise Exception('Unbalanced brackets')
         else:
             run(code)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     try:
         main()
     except KeyboardInterrupt:

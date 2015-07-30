@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-"""Command runner"""
+'''Command runner'''
 
 import Tkinter
 
@@ -8,7 +8,7 @@ import os
 
 
 class App:
-    """App"""
+    '''App'''
 
     def __init__(self, master):
         self.frame = Tkinter.Frame(master)
@@ -20,7 +20,7 @@ class App:
 
         self.command_button = Tkinter.Button(
             self.input_frame,
-            text="Call",
+            text='Call',
             command=self.call
         )
         self.command_button.pack(side=Tkinter.RIGHT)
@@ -44,12 +44,12 @@ class App:
         self.frame.pack()
 
     def call(self):
-        """Execute"""
+        '''Execute'''
 
         command = self.command_entry.get()
 
         proc = os.popen(command)
-        result = "".join(proc.readlines())
+        result = ''.join(proc.readlines())
         proc.close()
 
         self.result_text.delete(1.0, Tkinter.END)
@@ -57,12 +57,12 @@ class App:
 
 
 def main():
-    """GUI"""
+    '''GUI'''
 
     root = Tkinter.Tk()
     App(root)
 
     root.mainloop()
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

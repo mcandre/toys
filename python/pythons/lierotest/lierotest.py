@@ -13,12 +13,12 @@ def main():
     size = width, height
 
     screen = pygame.display.set_mode(size)
-    icon = pygame.image.load("single.png")
+    icon = pygame.image.load('single.png')
     pygame.display.set_icon(icon)
 
     black = 0, 0, 0
 
-    worm = pygame.image.load("single.png").convert()
+    worm = pygame.image.load('single.png').convert()
     wormrect = worm.get_rect()
     wormrect.bottom = screen.get_rect().bottom
 
@@ -43,5 +43,5 @@ def main():
 
         pygame.display.flip()
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

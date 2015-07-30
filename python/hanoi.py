@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-"""Solve Tower of Hanoi"""
+'''Solve Tower of Hanoi'''
 
 import time
 
@@ -10,7 +10,7 @@ END = 2
 
 
 def hanoi(n, start, aux, end):
-    """Recursive solution"""
+    '''Recursive solution'''
 
     if n == 1:
         return (start, end)
@@ -23,11 +23,11 @@ def hanoi(n, start, aux, end):
 
 
 def main():
-    """Run solution"""
+    '''Run solution'''
 
-    n = int(input("N = "))
+    n = int(input('N = '))
 
-    print("Running")
+    print('Running')
 
     start_time = time.time()
 
@@ -35,11 +35,11 @@ def main():
 
     end_time = time.time()
 
-    print("Time = %d sec" % (end_time - start_time))
+    print('Time = %d sec' % (end_time - start_time))
 
-    # print("Steps = %s" % str(steps))
+    # print('Steps = %s' % str(steps))
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     try:
         main()
     except KeyboardInterrupt:

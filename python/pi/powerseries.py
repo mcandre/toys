@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-"""Uses
+'''Uses
 
   oo
   --
@@ -10,12 +10,12 @@
 
 with remainder < 1/(2n+3)
 
-to approximate Pi"""
+to approximate Pi'''
 
-__author__ = "Andrew Pennebaker (andrew.pennebaker@gmail.com)"
-__date__ = "9 Feb 2006"
-__copyright__ = "Copyright 2006 Andrew Pennebaker"
-__version__ = "0.2"
+__author__ = 'Andrew Pennebaker (andrew.pennebaker@gmail.com)'
+__date__ = '9 Feb 2006'
+__copyright__ = 'Copyright 2006 Andrew Pennebaker'
+__version__ = '0.2'
 
 from decimal import Decimal, getcontext
 
@@ -26,7 +26,7 @@ import getopt
 
 
 def approxpi(n=1000):
-    """Power series approximation"""
+    '''Power series approximation'''
 
     s = Decimal(0)
     x = 0
@@ -42,13 +42,13 @@ def approxpi(n=1000):
 
 
 def usage():
-    """Print usage message"""
-    print("Usage: %s [--n n] [--help]" % (sys.argv[0]))
+    '''Print usage message'''
+    print('Usage: %s [--n n] [--help]' % (sys.argv[0]))
     sys.exit()
 
 
 def main():
-    """CLI"""
+    '''CLI'''
     system_args = sys.argv[1:]  # ignore program name
 
     n = 1000
@@ -56,23 +56,23 @@ def main():
     optlist = []
 
     try:
-        optlist, args = getopt.getopt(system_args, None, ["n=", "help"])
+        optlist, args = getopt.getopt(system_args, None, ['n=', 'help'])
     except getopt.GetoptError:
         usage()
 
     for option, value in optlist:
-        if option == "--help":
+        if option == '--help':
             usage()
 
-        elif option == "--n":
+        elif option == '--n':
             n = int(value)
             if n < 0:
-                raise Exception("N must be at least 0")
+                raise Exception('N must be at least 0')
 
     result = approxpi(n)
 
-    print("Pi:\n%s\n" % (result[0]))
-    print("Remainder:\n%s" % (result[1]))
+    print('Pi:\n%s\n' % (result[0]))
+    print('Remainder:\n%s' % (result[1]))
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

@@ -1,22 +1,22 @@
 #!/usr/bin/env python3
 
-"""ASCII art"""
+'''ASCII art'''
 
 # JAT: The Joy of ASCII Art
 # http://codegolf.com/bob-ross-the-joy-of-ascii-art
 
 
 def chomp(s):
-    """Strip trailing line endings"""
+    '''Strip trailing line endings'''
 
-    if len(s) > 0 and s[-1] == "\n":
+    if len(s) > 0 and s[-1] == '\n':
         return s[:-2]
     else:
         return s
 
 
 def get_input():
-    """Read input from stdin"""
+    '''Read input from stdin'''
 
     while True:
         try:
@@ -31,9 +31,9 @@ def get_input():
 
 
 def mark(rows, x, y, c):
-    """Mark a region"""
+    '''Mark a region'''
 
-    space = " "
+    space = ' '
 
     rows += [] * (y + 1 - len(rows))
 
@@ -43,19 +43,19 @@ def mark(rows, x, y, c):
 
 
 def print_pic(rows):
-    """Print ASCII art"""
+    '''Print ASCII art'''
 
     for row in rows:
-        print("".join(row))
+        print(''.join(row))
 
 
 def main():
-    """CLI"""
+    '''CLI'''
 
     rows = []
 
     for line in get_input():
-        parts = line.split(" ")
+        parts = line.split(' ')
 
         x, y, c = int(parts[0]), int(parts[1]), chr(int(parts[2]))
 
@@ -63,7 +63,7 @@ def main():
 
     print_pic(rows)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     try:
         main()
     except KeyboardInterrupt:

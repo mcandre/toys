@@ -1,13 +1,13 @@
-"""Lists prime factors of composite"""
+'''Lists prime factors of composite'''
 
-__author__ = "Andrew Pennebaker (andrew.pennebaker@gmail.com)"
-__date__ = "26 Nov 2005"
-__copyright__ = "Copyright 2005 Andrew Pennebaker"
-__version__ = "0.1"
+__author__ = 'Andrew Pennebaker (andrew.pennebaker@gmail.com)'
+__date__ = '26 Nov 2005'
+__copyright__ = 'Copyright 2005 Andrew Pennebaker'
+__version__ = '0.1'
 
 
 def factor(x):
-    """Find a factor of x"""
+    '''Find a factor of x'''
 
     if x == 1:
         return 1
@@ -23,7 +23,7 @@ def factor(x):
 
 
 def get_all_factors(x):
-    """Find all factors of x"""
+    '''Find all factors of x'''
 
     factors = [1, factor(x)]
 

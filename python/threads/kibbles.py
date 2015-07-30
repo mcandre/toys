@@ -1,4 +1,4 @@
-"""Thread demo"""
+'''Thread demo'''
 
 import thread
 
@@ -7,7 +7,7 @@ BOWL_LOCK = None
 
 
 def eat(n, m):
-    """Consume"""
+    '''Consume'''
 
     global BOWL
 
@@ -15,7 +15,7 @@ def eat(n, m):
         BOWL_LOCK.acquire()
         BOWL -= n
 
-        print("Ate %d" % (n))
+        print('Ate %d' % (n))
 
         if BOWL < m:
             break
@@ -24,7 +24,7 @@ def eat(n, m):
 
 
 def pour(n, m):
-    """Produce"""
+    '''Produce'''
 
     global BOWL
 
@@ -32,7 +32,7 @@ def pour(n, m):
         BOWL_LOCK.acquire()
         BOWL += n
 
-        print("Poured %d" % (n))
+        print('Poured %d' % (n))
 
         if BOWL > m:
             break
@@ -41,12 +41,12 @@ def pour(n, m):
 
 
 def monitor(n, m):
-    """Debug"""
+    '''Debug'''
 
     while True:
         BOWL_LOCK.acquire()
 
-        print("Contains %d" % (BOWL))
+        print('Contains %d' % (BOWL))
 
         if BOWL < n or BOWL > m:
             break
@@ -55,7 +55,7 @@ def monitor(n, m):
 
 
 def main():
-    """CLI"""
+    '''CLI'''
 
     global BOWL, BOWL_LOCK
 
@@ -66,5 +66,5 @@ def main():
     thread.start_new_thread(pour, (8, 25))
     thread.start_new_thread(monitor, (2, 25))
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

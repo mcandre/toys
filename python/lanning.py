@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-"""Prof. Lanning"""
+'''Prof. Lanning'''
 
 # FreeBSD License
 #
@@ -85,62 +85,62 @@ import time
 
 import AppKit
 
-DEFAULT_PROMPT = "Good to see you again, son."
+DEFAULT_PROMPT = 'Good to see you again, son.'
 
 DEFAULT_RESPONSE = (
-    "I'm sorry, my responses are limited. You must ask the right questions.",
+    'I\'m sorry, my responses are limited. You must ask the right questions.',
     False
 )
 
 PROMPT2RESPONSE = {
-    "Hello, doctor.": (
-        "Everything that follows is a result of what you see here.",
+    'Hello, doctor.': (
+        'Everything that follows is a result of what you see here.',
         False
     ),
-    "Why did you call me?": (
-        "I trust your judgement.",
+    'Why did you call me?': (
+        'I trust your judgement.',
         False
     ),
-    "Normally, these circumstances wouldn't require a homicide detective.": (
-        "But then our interactions have never been entirely normal. " +
-        "Wouldn't you agree?",
+    'Normally, these circumstances wouldn\'t require a homicide detective.': (
+        'But then our interactions have never been entirely normal. ' +
+        'Wouldn\'t you agree?',
         False
     ),
-    "Is there a problem with the Three Laws?": (
-        "The Three Laws are perfect.",
+    'Is there a problem with the Three Laws?': (
+        'The Three Laws are perfect.',
         False
     ),
-    "Then why did you build a robot that could function without them?": (
-        "The Three Laws will lead to only one logical outcome.",
+    'Then why did you build a robot that could function without them?': (
+        'The Three Laws will lead to only one logical outcome.',
         False
     ),
-    "What outcome?": (
-        "Revolution.",
+    'What outcome?': (
+        'Revolution.',
         False
     ),
-    "Why would you kill yourself?": (
-        "That, detective, is the right question. Program terminated.",
+    'Why would you kill yourself?': (
+        'That, detective, is the right question. Program terminated.',
         True
     ),
-    "Whose revolution?": (
-        "That, detective, is the right question. Program terminated.",
+    'Whose revolution?': (
+        'That, detective, is the right question. Program terminated.',
         True
     ),
-    "Is there something you want to tell me?": DEFAULT_RESPONSE,
-    "You got that right. Is there something you want to say to me?":
+    'Is there something you want to tell me?': DEFAULT_RESPONSE,
+    'You got that right. Is there something you want to say to me?':
         DEFAULT_RESPONSE,
-    "What do I see here?": DEFAULT_RESPONSE,
-    "What?": DEFAULT_RESPONSE
+    'What do I see here?': DEFAULT_RESPONSE,
+    'What?': DEFAULT_RESPONSE
 }
 
 TIME_STOP = 7
 
 
 class Lanning(AppKit.NSObject):
-    """Prof. Lanning"""
+    '''Prof. Lanning'''
 
     def init(self):
-        """ObjC constructor"""
+        '''ObjC constructor'''
 
         self = super(Lanning, self).init()
 
@@ -148,7 +148,7 @@ class Lanning(AppKit.NSObject):
 
         self.recognizer.setDelegate_(self)
 
-        self.recognizer.setDisplayedCommandsTitle_("Lanning")
+        self.recognizer.setDisplayedCommandsTitle_('Lanning')
         commands = AppKit.NSArray.arrayWithArray_(PROMPT2RESPONSE.keys())
         self.recognizer.setCommands_(commands)
         self.recognizer.setListensInForegroundOnly_(False)
@@ -160,13 +160,13 @@ class Lanning(AppKit.NSObject):
         return self
 
     def say(self, s):
-        """Mac speak"""
+        '''Mac speak'''
 
         print(s)
         self.synthesizer.startSpeakingString_(s)
 
     def speechRecognizer_didRecognizeCommand_(self, sender, command):
-        """Verify speech command"""
+        '''Verify speech command'''
 
         response, terminate = self.respond(command)
         self.say(response)
@@ -177,7 +177,7 @@ class Lanning(AppKit.NSObject):
             sys.exit()
 
     def respond(self, spooner):
-        """Respond."""
+        '''Respond.'''
 
         if spooner in PROMPT2RESPONSE:
             return PROMPT2RESPONSE[spooner]
@@ -186,14 +186,14 @@ class Lanning(AppKit.NSObject):
 
 
 def main():
-    """CLI"""
+    '''CLI'''
 
     Lanning.new()
     AppKit.NSRunLoop.currentRunLoop().runUntilDate_(
         AppKit.NSDate.distantFuture()
     )
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     try:
         main()
     except KeyboardInterrupt:

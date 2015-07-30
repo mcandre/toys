@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 
-__author__ = "Andrew Pennebaker (andrew.pennebaker@gmail.com)"
-__date__ = "3 Nov 2005 - 14 Feb 2007"
-__copyright__ = "Copyright 2006 2007 Andrew Pennebaker"
-__version__ = "0.5"
-__URL__ = "http://snippets.dzone.com/posts/show/2887"
+__author__ = 'Andrew Pennebaker (andrew.pennebaker@gmail.com)'
+__date__ = '3 Nov 2005 - 14 Feb 2007'
+__copyright__ = 'Copyright 2006 2007 Andrew Pennebaker'
+__version__ = '0.5'
+__URL__ = 'http://snippets.dzone.com/posts/show/2887'
 
 from urllib import urlopen
 import os
@@ -15,10 +15,10 @@ from getopt import getopt
 def getURLName(url):
     directory = os.curdir
 
-    name = "%s%s%s" % (
+    name = '%s%s%s' % (
         directory,
         os.sep,
-        url.split("/")[-1]
+        url.split('/')[-1]
     )
 
     return name
@@ -27,9 +27,9 @@ def getURLName(url):
 def createDownload(url, proxy=None):
     instream = urlopen(url, None, proxy)
 
-    filename = instream.info().getheader("Content-Length")
+    filename = instream.info().getheader('Content-Length')
     if filename is None:
-        filename = "temp"
+        filename = 'temp'
 
     return (instream, filename)
 
@@ -41,11 +41,11 @@ def download(instream, outstream):
 
 
 def usage():
-    print("Usage: %s [options] <url1 url2 url3 ...>" % (sys.argv[0]))
-    print("\n--httpproxy <proxy>")
-    print("--ftpproxy <proxy>")
-    print("--gopherproxy <proxy>")
-    print("\n--help (usage)")
+    print('Usage: %s [options] <url1 url2 url3 ...>' % (sys.argv[0]))
+    print('\n--httpproxy <proxy>')
+    print('--ftpproxy <proxy>')
+    print('--gopherproxy <proxy>')
+    print('\n--help (usage)')
 
     sys.exit()
 
@@ -62,8 +62,8 @@ def main():
     try:
         optlist, args = getopt(
             systemArgs,
-            "",
-            ["url=", "httpproxy=", "ftpproxy=", "gopherproxy=", "help"]
+            '',
+            ['url=', 'httpproxy=', 'ftpproxy=', 'gopherproxy=', 'help']
         )
     except Exception:
         usage()
@@ -72,38 +72,38 @@ def main():
         usage()
 
     for option, value in optlist:
-        if option == "--help":
+        if option == '--help':
             usage()
 
-        elif option == "--httpproxy":
-            proxies["http"] = value
-        elif option == "--ftpproxy":
-            proxies["ftp"] = value
-        elif option == "--gopherproxy":
-            proxies["gopher"] = value
+        elif option == '--httpproxy':
+            proxies['http'] = value
+        elif option == '--ftpproxy':
+            proxies['ftp'] = value
+        elif option == '--gopherproxy':
+            proxies['gopher'] = value
 
     urls = args
 
     for url in urls:
         try:
-            outfile = open(getURLName(url), "wb")
+            outfile = open(getURLName(url), 'wb')
             fileName = outfile.name.split(os.sep)[-1]
 
             url, length = createDownload(url, proxies)
             if not length:
-                length = "?"
+                length = '?'
 
-            print("Downloading %s (%s bytes) ..." % (url.url, length))
-            if length != "?":
+            print('Downloading %s (%s bytes) ...' % (url.url, length))
+            if length != '?':
                 length = float(length)
             bytesRead = 0.0
 
             for line in url:
                 bytesRead += len(line)
 
-                if length != "?":
+                if length != '?':
                     print(
-                        "%s: %.02f/%.02f kb (%d%%)" % (
+                        '%s: %.02f/%.02f kb (%d%%)' % (
                             fileName,
                             bytesRead / 1024.0,
                             length / 1024.0,
@@ -116,10 +116,10 @@ def main():
             url.close()
             outfile.close()
 
-            print("Done")
+            print('Done')
 
         except Exception as e:
-            print("Error downloading %s: %s" % (url, e))
+            print('Error downloading %s: %s' % (url, e))
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

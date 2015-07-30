@@ -1,4 +1,4 @@
-"""Generate keys"""
+'''Generate keys'''
 
 import keycheck
 
@@ -6,9 +6,9 @@ from random import random
 
 
 def gen(length=16):
-    """Generator"""
+    '''Generator'''
 
-    number = ""
+    number = ''
 
     for i in range(length):
         number += str(int(random() * 10))

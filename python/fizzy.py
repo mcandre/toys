@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-"""FizzBuzz"""
+'''FizzBuzz'''
 
 # Backwards compatibility with Python 2;
 # Python 3 allows print() in lambdas.
@@ -10,22 +10,22 @@ import multiprocessing
 
 
 def fizzbuzz(n):
-    """FizzBuzz value of a given number"""
+    '''FizzBuzz value of a given number'''
 
     x, y = n % 3, n % 5
 
     if (x, y) == (0, 0):
-        return "FizzBuzz"
+        return 'FizzBuzz'
     elif x == 0:
-        return "Fizz"
+        return 'Fizz'
     elif y == 0:
-        return "Buzz"
+        return 'Buzz'
     else:
         return str(n)
 
 
 def main():
-    """Print FizzBuzz series"""
+    '''Print FizzBuzz series'''
 
     p = multiprocessing.Pool()
 
@@ -35,5 +35,5 @@ def main():
     ):
         print(s)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

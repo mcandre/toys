@@ -1,23 +1,23 @@
-"""Numbered UNO card"""
+'''Numbered UNO card'''
 
-__author__ = "Andrew Pennebaker (andrew.pennebaker@gmail.com)"
-__date__ = "6 Apr 2006"
-__copyright__ = "Copyright 2006 Andrew Pennebaker"
+__author__ = 'Andrew Pennebaker (andrew.pennebaker@gmail.com)'
+__date__ = '6 Apr 2006'
+__copyright__ = 'Copyright 2006 Andrew Pennebaker'
 
 from UNOCard import UNOCard
 
 
 class NumberedUNOCard(UNOCard):
-    ZERO = "Zero"
-    ONE = "One"
-    TWO = "Two"
-    THREE = "Three"
-    FOUR = "Four"
-    FIVE = "Five"
-    SIX = "Six"
-    SEVEN = "Seven"
-    EIGHT = "Eight"
-    NINE = "Nine"
+    ZERO = 'Zero'
+    ONE = 'One'
+    TWO = 'Two'
+    THREE = 'Three'
+    FOUR = 'Four'
+    FIVE = 'Five'
+    SIX = 'Six'
+    SEVEN = 'Seven'
+    EIGHT = 'Eight'
+    NINE = 'Nine'
 
     def __init__(self, color, number):
         self.setColor(color)
@@ -48,4 +48,4 @@ class NumberedUNOCard(UNOCard):
         return False
 
     def __str__(self):
-        return "%s %s" % (self.getColor(), self.getNumber())
+        return '%s %s' % (self.getColor(), self.getNumber())

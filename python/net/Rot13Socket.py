@@ -1,18 +1,18 @@
-"""ROT13 encryption for the fun of it."""
+'''ROT13 encryption for the fun of it.'''
 
-__author__ = "Andrew Pennebaker (andrew.pennebaker@gmail.com)"
-__date__ = "11 Nov 2005 - 12 Nov 2005"
-__copyright__ = "Copyright 2005 Andrew Pennebaker"
-__version__ = "0.2"
+__author__ = 'Andrew Pennebaker (andrew.pennebaker@gmail.com)'
+__date__ = '11 Nov 2005 - 12 Nov 2005'
+__copyright__ = 'Copyright 2005 Andrew Pennebaker'
+__version__ = '0.2'
 
 import socket
 
 
 class Rot13Socket(socket.socket):
-    """ROT13 socket"""
+    '''ROT13 socket'''
 
     def crypt(self, plain):
-        """ROT13 symmetric encryption algorithm"""
+        '''ROT13 symmetric encryption algorithm'''
 
         cipher = []
         c = 0
@@ -27,14 +27,14 @@ class Rot13Socket(socket.socket):
 
             cipher.append(chr(c))
 
-        return "".join(cipher)
+        return ''.join(cipher)
 
     def write(self, data):
-        """Write data"""
+        '''Write data'''
 
         self.send(self.crypt(data))
 
     def read(self, buffer):
-        """Read data"""
+        '''Read data'''
 
         return self.crypt(self.recv(buffer))

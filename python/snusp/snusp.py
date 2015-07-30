@@ -1,57 +1,57 @@
 #!/usr/bin/env python3
 
-"""A SNUSP interpreter"""
+'''A SNUSP interpreter'''
 
-__author__ = "Andrew Pennebaker (andrew.pennebaker@gmail.com)"
-__date__ = "27 Feb 2006 - 12 Mar 2006"
-__copyright__ = "Copyright 2006 Andrew Pennebaker"
-__version__ = "0.2"  # seems to work
+__author__ = 'Andrew Pennebaker (andrew.pennebaker@gmail.com)'
+__date__ = '27 Feb 2006 - 12 Mar 2006'
+__copyright__ = 'Copyright 2006 Andrew Pennebaker'
+__version__ = '0.2'  # seems to work
 
 import getopt
 import sys
 
 
 class SNUSPInterpreter:
-    """SNUSP interpreter"""
+    '''SNUSP interpreter'''
 
-    START = "$"
-    SUBPROCESS = "@"
-    RETURN = "#"
+    START = '$'
+    SUBPROCESS = '@'
+    RETURN = '#'
 
-    NEXT = ">"
-    PREVIOUS = "<"
-    ADD = "+"
-    SUBTRACT = "-"
-    WRITE = "."
-    READ = ","
+    NEXT = '>'
+    PREVIOUS = '<'
+    ADD = '+'
+    SUBTRACT = '-'
+    WRITE = '.'
+    READ = ','
 
-    SLASH = "/"
-    BACKSLASH = "\\"
-    JUMP = "!"
-    QUERY = "?"
+    SLASH = '/'
+    BACKSLASH = '\\'
+    JUMP = '!'
+    QUERY = '?'
 
-    NOP1 = " = "
-    NOP2 = "|"
-    NOP3 = "*"
+    NOP1 = ' = '
+    NOP2 = '|'
+    NOP3 = '*'
 
-    RIGHT = "R"
-    LEFT = "L"
-    DOWN = "D"
-    UP = "U"
+    RIGHT = 'R'
+    LEFT = 'L'
+    DOWN = 'D'
+    UP = 'U'
 
     tape = [0]  # dynamic length
     address = 0
 
     steps = 0
 
-    board = ["$#"]
-    stack = [(0, 0, "R")]
+    board = ['$#']
+    stack = [(0, 0, 'R')]
 
     def __init__(self, debug=False):
         self.debug = debug
 
     def print_board(self):
-        """Debug"""
+        '''Debug'''
 
         for row in range(len(self.board)):
             for column in range(len(self.board[row])):
@@ -59,14 +59,14 @@ class SNUSPInterpreter:
                     row2, column2, direction = self.stack[plate]
 
                     if row == row2 and column == column2:
-                        sys.stdout.write("%d" % (len(self.stack) - plate))
+                        sys.stdout.write('%d' % (len(self.stack) - plate))
                         break
                     else:
                         sys.stdout.write(self.board[row][column])
-                        sys.stdout.write("\n")
+                        sys.stdout.write('\n')
 
     def move(self):
-        """Move head"""
+        '''Move head'''
 
         row, column, direction = self.stack[0]
 
@@ -80,7 +80,7 @@ class SNUSPInterpreter:
             self.stack[0] = (row - 1, column, direction)
 
     def rotate(self, operator):
-        """Rotate head"""
+        '''Rotate head'''
 
         row, column, direction = self.stack[0]
 
@@ -106,7 +106,7 @@ class SNUSPInterpreter:
         self.stack[0] = (row, column, direction)
 
     def move_back(self):
-        """Reverse head"""
+        '''Reverse head'''
 
         row, column, direction = self.stack[0]
 
@@ -120,26 +120,26 @@ class SNUSPInterpreter:
             self.stack[0] = (row + 1, column, direction)
 
     def step(self):
-        """Tick"""
+        '''Tick'''
 
         self.steps += 1
 
         if self.debug:
-            print("Step: %d" % (self.steps))
-            print("Board:")
+            print('Step: %d' % (self.steps))
+            print('Board:')
             self.print_board()
-            print("Stack:")
+            print('Stack:')
             print(self.stack)
-            print("Tape: %s" % (" ".join(["%d" % (e) for e in self.tape])))
+            print('Tape: %s' % (' '.join(['%d' % (e) for e in self.tape])))
 
         row, column, direction = self.stack[0]
 
-        cmd = ""
+        cmd = ''
 
         try:
             cmd = self.board[row][column]
         except IndexError:
-            raise Exception("Board index out of range")
+            raise Exception('Board index out of range')
 
         if cmd == self.START:
             self.move()
@@ -172,7 +172,7 @@ class SNUSPInterpreter:
             self.address -= 1
 
             if self.address < 0:
-                raise Exception("Tape index out of range")
+                raise Exception('Tape index out of range')
 
             self.move()
         elif cmd == self.WRITE:
@@ -204,7 +204,7 @@ class SNUSPInterpreter:
             self.move()
 
     def find_start(self):
-        """Find start"""
+        '''Find start'''
 
         row = 0
         while row < len(self.board):
@@ -219,15 +219,15 @@ class SNUSPInterpreter:
         return (0, 0)  # start not found
 
     def run(self):
-        """Run SNUSP code"""
+        '''Run SNUSP code'''
 
         while len(self.stack) > 0:
             self.step()
 
     def compile(self, text):
-        """Prepare SNUSP code"""
+        '''Prepare SNUSP code'''
 
-        lines = text.split("\n")
+        lines = text.split('\n')
 
         for i in range(len(lines)):
             lines[i] = lines[i]
@@ -240,7 +240,7 @@ class SNUSPInterpreter:
 
         # insert spaces in shorter lines
         for i in range(len(lines)):
-            lines[i] += " " * (len(lines[longest]) - len(lines[i]))
+            lines[i] += ' ' * (len(lines[longest]) - len(lines[i]))
 
         self.board = []
         for line in lines:
@@ -252,18 +252,18 @@ class SNUSPInterpreter:
 
 
 def usage():
-    """Print usage message"""
+    '''Print usage message'''
 
-    print("Usage: %s [options] <sourcefile>" % (sys.argv[0]))
-    print("\n-d|--debug prints board for every move")
-    print("-n|--nowait step without pauses")
-    print("-h|--help (usage)")
+    print('Usage: %s [options] <sourcefile>' % (sys.argv[0]))
+    print('\n-d|--debug prints board for every move')
+    print('-n|--nowait step without pauses')
+    print('-h|--help (usage)')
 
     sys.exit()
 
 
 def main():
-    """CLI"""
+    '''CLI'''
 
     system_args = sys.argv[1:]  # ignore program name
 
@@ -276,8 +276,8 @@ def main():
     try:
         optlist, args = getopt.getopt(
             system_args,
-            "dnh",
-            ["debug", "nowait", "help"]
+            'dnh',
+            ['debug', 'nowait', 'help']
         )
     except getopt.GetoptError:
         usage()
@@ -286,18 +286,18 @@ def main():
         usage()
 
     for option, value in optlist:
-        if option == "-h" or option == "--help":
+        if option == '-h' or option == '--help':
             usage()
 
-        elif option == "-d" or option == "--debug":
+        elif option == '-d' or option == '--debug':
             debug = True
-        elif option == "-n" or option == "--nowait":
+        elif option == '-n' or option == '--nowait':
             wait = False
 
     src = args[0]
 
-    srcfile = open(src, "r")
-    code = "".join(srcfile.readlines())
+    srcfile = open(src, 'r')
+    code = ''.join(srcfile.readlines())
     srcfile.close()
 
     si = SNUSPInterpreter(debug)
@@ -311,7 +311,7 @@ def main():
             else:
                 si.run()
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     try:
         main()
     except KeyboardInterrupt:

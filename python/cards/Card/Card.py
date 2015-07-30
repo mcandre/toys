@@ -1,8 +1,8 @@
-"""Generic playing card interface"""
+'''Generic playing card interface'''
 
-__author__ = "Andrew Pennebaker (andrew.pennebaker@gmail.com)"
-__date__ = "1 Jan 2006 - 6 Apr 2006"
-__copyright__ = "Copyright 2006 Andrew Pennebaker"
+__author__ = 'Andrew Pennebaker (andrew.pennebaker@gmail.com)'
+__date__ = '1 Jan 2006 - 6 Apr 2006'
+__copyright__ = 'Copyright 2006 Andrew Pennebaker'
 
 
 class Card:

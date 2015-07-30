@@ -1,17 +1,17 @@
-"""Gtk progress window"""
+'''Gtk progress window'''
 
-__author__ = "Andrew Pennebaker (andrew.pennebaker@gmail.com)"
-__date__ = "13 Apr 2006 - 14 Apr 2006"
-__copyright__ = "Copyright 2006 Andrew Pennebaker"
+__author__ = 'Andrew Pennebaker (andrew.pennebaker@gmail.com)'
+__date__ = '13 Apr 2006 - 14 Apr 2006'
+__copyright__ = 'Copyright 2006 Andrew Pennebaker'
 
 import gtk
 
 
 class ProgressDialog:
-    PENDING = "Pending"
-    SUCCESS = "Success"
-    CANCEL = "Cancel"
-    FAILURE = "Failure"
+    PENDING = 'Pending'
+    SUCCESS = 'Success'
+    CANCEL = 'Cancel'
+    FAILURE = 'Failure'
 
     def __init__(
         self,
@@ -38,20 +38,20 @@ class ProgressDialog:
         self.progress_bar = gtk.ProgressBar()
         self.progress_bar.set_fraction(0.0)
         if not self.length:
-            self.length = "?"
-            self.progress_bar.set_text("0.00 kb")
+            self.length = '?'
+            self.progress_bar.set_text('0.00 kb')
         else:
             self.length = float(self.length)
             self.progress_bar.set_text(
-                "%.02f/%.02f kb (%d%%)" % (
+                '%.02f/%.02f kb (%d%%)' % (
                     self.bytes_read / 1024.0,
                     self.length / 1024.0,
                     100 * self.bytes_read / self.length
                 )
             )
 
-        self.cancel_button = gtk.Button("Cancel")
-        self.cancel_button.connect("clicked", self.cancel_button_event)
+        self.cancel_button = gtk.Button('Cancel')
+        self.cancel_button.connect('clicked', self.cancel_button_event)
 
         self.cancel_box = gtk.HBox()
         self.cancel_box.pack_start(self.cancel_button, expand=True, fill=False)
@@ -68,17 +68,17 @@ class ProgressDialog:
                     (self.instream.fp is not None)
             ):
                 line = self.instream.read(1024)
-                if line == "":
+                if line == '':
                     break
 
                 self.bytes_read += len(line)
 
-                if self.length != "?":
+                if self.length != '?':
                     self.progress_bar.set_fraction(
                         self.bytes_read / self.length
                     )
                     self.progress_bar.set_text(
-                        "%.02f/%.02f kb (%d%%)" % (
+                        '%.02f/%.02f kb (%d%%)' % (
                             self.bytes_read / 1024.0,
                             self.length / 1024.0,
                             100 * self.bytes_read / self.length
@@ -86,7 +86,7 @@ class ProgressDialog:
                     )
                 else:
                     self.progress_bar.set_text(
-                        "%.02f kb" % (self.bytes_read / 1024.0)
+                        '%.02f kb' % (self.bytes_read / 1024.0)
                     )
 
                 self.outstream.write(line)
@@ -102,7 +102,7 @@ class ProgressDialog:
 
                 self.progress_bar.set_fraction(1.0)
                 self.progress_bar.set_text(
-                    "%.02f kb" % (self.bytes_read / 1024.0)
+                    '%.02f kb' % (self.bytes_read / 1024.0)
                 )
 
                 self.delete_event()

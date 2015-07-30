@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 
-"""Thread demo"""
+'''Thread demo'''
 
 import threading
 
 
 class Dog(threading.Thread):
-    """Dog"""
+    '''Dog'''
 
     id = 0
 
@@ -20,21 +20,21 @@ class Dog(threading.Thread):
         self.bowl_lock = lock
 
     def run(self):
-        """Tick"""
+        '''Tick'''
 
         while True:
             self.bowl_lock.acquire()
             self.bowl -= self.n
             self.bowl_lock.release()
 
-            print("Dog %d Ate %d" % (self.myid, self.n))
+            print('Dog %d Ate %d' % (self.myid, self.n))
 
             if self.bowl < self.m:
                 break
 
 
 class Man(threading.Thread):
-    """Man"""
+    '''Man'''
 
     id = 0
 
@@ -48,23 +48,23 @@ class Man(threading.Thread):
         self.bowl_lock = lock
 
     def run(self):
-        """Tick"""
+        '''Tick'''
 
         while True:
             self.bowl_lock.acquire()
             self.bowl -= self.n
             self.bowl_lock.release()
 
-            print("Man %d Gave %d" % (self.myid, self.n))
+            print('Man %d Gave %d' % (self.myid, self.n))
 
             if self.bowl > self.m:
                 break
 
-        print("Man %d Quit" % (self.myid))
+        print('Man %d Quit' % (self.myid))
 
 
 class Monitor(threading.Thread):
-    """Monitor"""
+    '''Monitor'''
 
     id = 0
 
@@ -78,22 +78,22 @@ class Monitor(threading.Thread):
         self.bowl_lock = lock
 
     def run(self):
-        """Tick"""
+        '''Tick'''
 
         while True:
             self.bowl_lock.acquire()
             self.bowl_lock.release()
 
-            print("Monitor %d Contains %d" % (self.myid, self.bowl))
+            print('Monitor %d Contains %d' % (self.myid, self.bowl))
 
             if self.bowl < self.n or self.bowl > self.m:
                 break
 
-        print("Monitor %d Quit" % (self.myid))
+        print('Monitor %d Quit' % (self.myid))
 
 
 def main():
-    """CLI"""
+    '''CLI'''
 
     bowl_start = 15
     dog_speed = 2
@@ -116,5 +116,5 @@ def main():
     for t in threads:
         t.join()
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

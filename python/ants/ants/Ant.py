@@ -1,7 +1,7 @@
-__author__ = "Andrew Pennebaker (andrew.pennebaker@gmail.com)"
-__date__ = "18 May 2007"
-__copyright__ = "Copyright 2007 Andrew Pennebaker"
-__version__ = "0.0.1"
+__author__ = 'Andrew Pennebaker (andrew.pennebaker@gmail.com)'
+__date__ = '18 May 2007'
+__copyright__ = 'Copyright 2007 Andrew Pennebaker'
+__version__ = '0.0.1'
 
 import random
 
@@ -39,13 +39,13 @@ class Ant:
 
     def check_for_walls(self, env):
         if (
-                self.loc[0] >= env.lengths["right"] or
-                self.loc[0] <= env.lengths["left"]
+                self.loc[0] >= env.lengths['right'] or
+                self.loc[0] <= env.lengths['left']
         ):
             self.v[0] *= -1
         if (
-                self.loc[1] >= env.lengths["bottom"] or
-                self.loc[1] <= env.lengths["top"]
+                self.loc[1] >= env.lengths['bottom'] or
+                self.loc[1] <= env.lengths['top']
         ):
             self.v[1] *= -1
 

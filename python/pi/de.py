@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 
-"""Yet another Pi approximation"""
+'''Yet another Pi approximation'''
 
 import sys
 import getopt
 
 
 def t(t, mult, div):
-    """T calculation"""
+    '''T calculation'''
 
     m = 2
     d = 3
@@ -26,16 +26,16 @@ def t(t, mult, div):
 
 
 def usage():
-    """Print usage message"""
+    '''Print usage message'''
     print(
-        "Usage: %s [--n n] [--precision precision] [--help]" %
+        'Usage: %s [--n n] [--precision precision] [--help]' %
         (sys.argv[0])
     )
     sys.exit()
 
 
 def main():
-    """CLI"""
+    '''CLI'''
     system_args = sys.argv[1:]  # ignore program name
 
     po = 1
@@ -47,24 +47,24 @@ def main():
         optlist, args = getopt.getopt(
             system_args,
             None,
-            ["n=", "precision=", "help"]
+            ['n=', 'precision=', 'help']
         )
     except getopt.GetoptError:
         usage()
 
     for option, value in optlist:
-        if option == "--help":
+        if option == '--help':
             usage()
 
-        elif option == "--n":
+        elif option == '--n':
             n = int(value)
             if n < 5:
-                raise Exception("N is at least 1")
-        elif option == "--precision":
+                raise Exception('N is at least 1')
+        elif option == '--precision':
             po = int(value)
 
             if po < 1:
-                raise Exception("Precision is at least 1")
+                raise Exception('Precision is at least 1')
 
     for i in range(0, n - 5):
         po *= 10
@@ -73,7 +73,7 @@ def main():
 
     print(pi)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     try:
         main()
     except KeyboardInterrupt:

@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 
-"""Based on ping2.py by Ray Burr (ryb@nightmare.com)"""
+'''Based on ping2.py by Ray Burr (ryb@nightmare.com)'''
 
-__author__ = "Andrew Pennebaker (andrew.pennebaker@gmail.com)"
-__date__ = "27 Nov 2005 - 22 Jun 2006"
-__copyright__ = "Copyright 2006 Andrew Pennebaker"
-__version__ = "0.3"
+__author__ = 'Andrew Pennebaker (andrew.pennebaker@gmail.com)'
+__date__ = '27 Nov 2005 - 22 Jun 2006'
+__copyright__ = 'Copyright 2006 Andrew Pennebaker'
+__version__ = '0.3'
 
 import os
 import string
@@ -27,57 +27,57 @@ ICMP_SOURCE_QUENCH = 4
 ICMP_ECHO = 8
 ICMP_TIME_EXCEEDED = 11
 
-NULL_REPLY = (False, -1, "")
-INFINITE = "INFINITE"
+NULL_REPLY = (False, -1, '')
+INFINITE = 'INFINITE'
 STATUS = {
-    True: "up",
-    False: "down"
+    True: 'up',
+    False: 'down'
 }
 
 
 def encode_short(num):
-    """Converts short to 2-character string"""
+    '''Converts short to 2-character string'''
     return chr(num / 256) + chr(num % 256)
 
 
 def decode_short(s):
-    """Converts 2-character string to short"""
+    '''Converts 2-character string to short'''
     return ord(s[0]) * 256 + ord(s[1])
 
 
 def encode_long(num):
-    """Converts long to 4-character string"""
+    '''Converts long to 4-character string'''
     return encode_short(num / 65536) + encode_short(num % 65536)
 
 
 def decode_long(s):
-    """Converts 4-character string to long"""
+    '''Converts 4-character string to long'''
     return decode_short(s[0:2]) * 65536 + decode_short(s[2:4])
 
 
 def encode_address(dot_str):
-    """Converts dotted-octet into a four-character string"""
+    '''Converts dotted-octet into a four-character string'''
     s = []
 
-    for x in string.splitfields(dot_str, "."):
+    for x in string.splitfields(dot_str, '.'):
         s.append(chr(int(x)))
 
-    return "".join(s)
+    return ''.join(s)
 
 
 def decode_address(four_char):
-    """Converts four-character string into dotted-octet"""
+    '''Converts four-character string into dotted-octet'''
     s = []
 
     for x in four_char:
         s.append(ord(x))
 
-    return ".".join(["%d" % (e) for e in s])
+    return '.'.join(['%d' % (e) for e in s])
 
 
 # borrowed from tcpdump
 def checksum(data):
-    """TCP checksum"""
+    '''TCP checksum'''
 
     state = 0
 
@@ -93,7 +93,7 @@ def checksum(data):
 
 
 def create_icmp_packet(data):
-    """Pack bits into ICMP packet"""
+    '''Pack bits into ICMP packet'''
 
     packet = (
         chr(ICMP_ECHO) +                        # Type
@@ -111,18 +111,18 @@ def create_icmp_packet(data):
 
 
 def dump_packet(data):
-    """Debug packet"""
+    '''Debug packet'''
 
-    result = ""
+    result = ''
 
     col = -1
     while data:
         if col == 0:
-            result += "\n"
+            result += '\n'
         elif col < 0:
             col = 0
-            result += "%04x" % (decode_short(data[:2]))
-            result += " "
+            result += '%04x' % (decode_short(data[:2]))
+            result += ' '
             col = (col + 1) % 4
             data = data[2:]
 
@@ -130,14 +130,14 @@ def dump_packet(data):
 
 
 def send_echo_request(s, dest_inet_address, data):
-    """Send echo request"""
+    '''Send echo request'''
 
     packet = create_icmp_packet(data)
     s.sendto(packet, (dest_inet_address, socket.AF_INET))
 
 
 def catch_echo_reply(s, other_address, ident, time_limit):
-    """Catch echo reply"""
+    '''Catch echo reply'''
 
     updown = True
 
@@ -167,10 +167,10 @@ def catch_echo_reply(s, other_address, ident, time_limit):
 
         ihl = 20
 
-        if rdat[0] != "\x45":
+        if rdat[0] != '\x45':
             ihl = (rdat[0] & 0x0f) * 4
 
-        if rdat[ihl] != "\x00":
+        if rdat[ihl] != '\x00':
             continue
 
         if rdat[ihl + 4: ihl + 6] != identity_string:
@@ -190,7 +190,7 @@ def ping(
         length=56,
         ttl=128
 ):
-    """Send ping"""
+    '''Send ping'''
 
     dest_inet_address = None
 
@@ -199,7 +199,7 @@ def ping(
     except socket.gaierror:
         return NULL_REPLY
 
-    data = "\x00" * length
+    data = '\x00' * length
 
     s = socket.socket(socket.AF_INET, socket.SOCK_RAW, IPPROTO_ICMP)
     s.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_TTL, ttl)
@@ -215,22 +215,22 @@ def ping(
 
 
 def usage():
-    """Print usage message"""
+    '''Print usage message'''
 
-    print("Usage: %s [options] <host1 host2 host3 ...>" % (sys.argv[0]))
-    print("\n-w wait for timeout <seconds>")
-    print("-l length <even bytes>")
-    print("-t <ttl>")
-    print("-n number <number>")
-    print("-v verbose (dump packet)")
-    print("-i interval <interval>")
-    print("-h --help (usage)")
+    print('Usage: %s [options] <host1 host2 host3 ...>' % (sys.argv[0]))
+    print('\n-w wait for timeout <seconds>')
+    print('-l length <even bytes>')
+    print('-t <ttl>')
+    print('-n number <number>')
+    print('-v verbose (dump packet)')
+    print('-i interval <interval>')
+    print('-h --help (usage)')
 
     sys.exit()
 
 
 def main():
-    """CLI"""
+    '''CLI'''
 
     system_args = sys.argv[1:]  # ignore program name
 
@@ -246,7 +246,7 @@ def main():
     args = []
 
     try:
-        optlist, args = getopt.getopt(system_args, "w:l:t:n:vi:h", ["help"])
+        optlist, args = getopt.getopt(system_args, 'w:l:t:n:vi:h', ['help'])
     except getopt.GetoptError:
         usage()
 
@@ -254,36 +254,36 @@ def main():
         usage()
 
     for option, value in optlist:
-        if option == "-h" or option == "--help":
+        if option == '-h' or option == '--help':
             usage()
 
-        elif option == "-w":
+        elif option == '-w':
             timeout = int(value)
 
             if timeout < 1:
-                raise Exception("Timeout must be positive")
-        elif option == "-l":
+                raise Exception('Timeout must be positive')
+        elif option == '-l':
             length = int(value)
 
             if length < 1 or (length % 2) != 0:
-                raise Exception("Length must be an even number >= 1")
-        elif option == "-t":
+                raise Exception('Length must be an even number >= 1')
+        elif option == '-t':
             ttl = int(value)
 
             if ttl < 0 or ttl > 255:
-                raise Exception("TTL must be >= 1 and <= 255")
-        elif option == "-n":
+                raise Exception('TTL must be >= 1 and <= 255')
+        elif option == '-n':
             number = int(value)
 
             if number < 0:
-                raise Exception("Number must be >= 0")
-        elif option == "-v":
+                raise Exception('Number must be >= 0')
+        elif option == '-v':
             verbose = True
-        elif option == "-i":
+        elif option == '-i':
             interval = int(value)
 
             if interval < 0:
-                raise Exception("Interval must be >= 0")
+                raise Exception('Interval must be >= 0')
 
     hosts = args
 
@@ -292,15 +292,15 @@ def main():
         for host in hosts:
             updown, journey, packet = ping(host, timeout, length, ttl)
 
-            print("%s up: %s %d ms" % (host, STATUS[updown], journey))
+            print('%s up: %s %d ms' % (host, STATUS[updown], journey))
 
             if verbose:
-                print("Data:\n%s" % (packet))
+                print('Data:\n%s' % (packet))
 
         i += 1
         time.sleep(interval)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     try:
         main()
     except KeyboardInterrupt:

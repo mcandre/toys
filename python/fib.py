@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 
-"""Compute Fibonacci numbers"""
+'''Compute Fibonacci numbers'''
 
 import time
 
 
 def fib(n):
-    """fibonacci(n)"""
+    '''fibonacci(n)'''
 
     if n < 2:
         return n
@@ -25,7 +25,7 @@ def fib(n):
 
     # # recursion overhead is slow
     # def fib(n):
-    # """fibonacci(n)"""
+    # '''fibonacci(n)'''
     #     if n == 0:
     #         return 0
     #     elif n == 1:
@@ -33,10 +33,10 @@ def fib(n):
     #     else:
     #         return fib(n - 1) + fib(n - 2)
 
-if __name__ == "__main__":
-    N = int(input("N = "))
+if __name__ == '__main__':
+    N = int(input('N = '))
 
-    print("Running")
+    print('Running')
 
     START_TIME = time.time()
 
@@ -44,6 +44,6 @@ if __name__ == "__main__":
 
     END_TIME = time.time()
 
-    print("Fib %d = %d" % (N, X))
+    print('Fib %d = %d' % (N, X))
 
-    print("Time = %d sec" % (END_TIME - START_TIME))
+    print('Time = %d sec' % (END_TIME - START_TIME))
