@@ -15,26 +15,29 @@ __version__ = "0.1"
 import math
 import sys
 
-def approxpi(b = 1000L):
-  """Pi approximation"""
-  return 2L * math.atan(b)
+
+def approxpi(b=1000L):
+    """Pi approximation"""
+    return 2L * math.atan(b)
+
 
 def usage():
-  """Print usage message"""
-  print("Usage: %s <large number>" % (sys.argv[0]))
-  sys.exit()
+    """Print usage message"""
+    print("Usage: %s <large number>" % (sys.argv[0]))
+    sys.exit()
+
 
 def main():
-  """CLI"""
+    """CLI"""
 
-  n = 1000L
+    n = 1000L
 
-  n = long(sys.argv[1])
+    n = long(sys.argv[1])
 
-  if n < 0:
-    usage()
+    if n < 0:
+        usage()
 
-  print(approxpi(n))
+    print(approxpi(n))
 
 if __name__ == "__main__":
-  main()
+    main()

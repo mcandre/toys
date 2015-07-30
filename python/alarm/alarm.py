@@ -6,18 +6,19 @@ import time
 import os
 import sys
 
+
 def alert():
-  """Alert using OS-configured audio file"""
-  os.popen("open nads.wav")
+    """Alert using OS-configured audio file"""
+    os.popen("open nads.wav")
 
 if __name__ == "__main__":
-  SECS = int(sys.argv[1])
+    SECS = int(sys.argv[1])
 
-  START = time.time()
+    START = time.time()
 
-  while time.time() - START < SECS:
-    pass
+    while time.time() - START < SECS:
+        pass
 
-  alert()
+    alert()
 
-  sys.exit()
+    sys.exit()

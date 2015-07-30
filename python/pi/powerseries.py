@@ -24,52 +24,55 @@ getcontext().prec = 1000
 import sys
 import getopt
 
-def approxpi(n = 1000):
-  """Power series approximation"""
 
-  s = Decimal(0)
-  x = 0
-  while x <= n:
-    s += Decimal((-1) ** x) / Decimal(2 * x + 1)
-    x += 1
+def approxpi(n=1000):
+    """Power series approximation"""
 
-  pi = Decimal(4) * s
+    s = Decimal(0)
+    x = 0
+    while x <= n:
+        s += Decimal((-1) ** x) / Decimal(2 * x + 1)
+        x += 1
 
-  remainder = Decimal(4) / Decimal(2 * n + 3)
+    pi = Decimal(4) * s
 
-  return (pi, remainder)
+    remainder = Decimal(4) / Decimal(2 * n + 3)
+
+    return (pi, remainder)
+
 
 def usage():
-  """Print usage message"""
-  print("Usage: %s [--n n] [--help]" % (sys.argv[0]))
-  sys.exit()
+    """Print usage message"""
+    print("Usage: %s [--n n] [--help]" % (sys.argv[0]))
+    sys.exit()
+
 
 def main():
-  """CLI"""
-  system_args = sys.argv[1:] # ignore program name
+    """CLI"""
+    system_args = sys.argv[1:]  # ignore program name
 
-  n = 1000
+    n = 1000
 
-  optlist = []
+    optlist = []
 
-  try:
-    optlist, args = getopt.getopt(system_args, None, ["n=", "help"])
-  except getopt.GetoptError:
-    usage()
+    try:
+        optlist, args = getopt.getopt(system_args, None, ["n=", "help"])
+    except getopt.GetoptError:
+        usage()
 
-  for option, value in optlist:
-    if option == "--help":
-      usage()
+    for option, value in optlist:
+        if option == "--help":
+            usage()
 
-    elif option == "--n":
-      n = int(value)
-      if n < 0:
-        raise Exception("N must be at least 0")
+        elif option == "--n":
+            n = int(value)
+            if n < 0:
+                raise Exception("N must be at least 0")
 
-  result = approxpi(n)
+    result = approxpi(n)
 
-  print "Pi:\n%s\n" % (result[0])
-  print "Remainder:\n%s" % (result[1])
+    print "Pi:\n%s\n" % (result[0])
+    print "Remainder:\n%s" % (result[1])
 
 if __name__ == "__main__":
-  main()
+    main()

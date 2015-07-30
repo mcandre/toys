@@ -6,25 +6,26 @@ __copyright__ = "Copyright 2006 Andrew Pennebaker"
 
 from UNOCard import UNOCard
 
+
 class WildUNOCard(UNOCard):
-  UNSET = "Unset"
+    UNSET = "Unset"
 
-  DRAW_FOUR = "Draw Four"
-  ALL_DRAW = "All Draw"
+    DRAW_FOUR = "Draw Four"
+    ALL_DRAW = "All Draw"
 
-  def __init__(self, action = UNOCard.NO_ACTION):
-    self.setAction(action)
-    self.setColor(self.UNSET)
+    def __init__(self, action=UNOCard.NO_ACTION):
+        self.setAction(action)
+        self.setColor(self.UNSET)
 
-  def compare(self, other):
-    return self.getAction() == other.getAction()
+    def compare(self, other):
+        return self.getAction() == other.getAction()
 
-  # always matches
-  def match(self, other):
-    return True
+    # always matches
+    def match(self, other):
+        return True
 
-  def __str__(self):
-    if self.getAction() == self.NO_ACTION:
-      return "Wild"
+    def __str__(self):
+        if self.getAction() == self.NO_ACTION:
+            return "Wild"
 
-    return "Wild %s" % (self.getAction())
+        return "Wild %s" % (self.getAction())

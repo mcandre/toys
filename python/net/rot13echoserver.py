@@ -14,51 +14,55 @@ import echoconstants
 import socket
 import sys
 
-def start(host = "localhost", port = 8000):
-  """Start socket"""
 
-  server = Rot13Socket.Rot13Socket(socket.AF_INET, socket.SOCK_STREAM)
+def start(host="localhost", port=8000):
+    """Start socket"""
 
-  if host != "localhost":
-    host = socket.gethostname()
+    server = Rot13Socket.Rot13Socket(socket.AF_INET, socket.SOCK_STREAM)
 
-  print("binding to %s at %d" % (host, port))
-  server.bind((host, port))
-  print("bound")
+    if host != "localhost":
+        host = socket.gethostname()
 
-  print("listening for connections")
-  server.listen(5) # permits 5 threaded connections
-  listening = True
+    print("binding to %s at %d" % (host, port))
+    server.bind((host, port))
+    print("bound")
 
-  while listening:
-    try:
-      print("accepting connections")
-      (client, address) = server.accept()
-      print("accepted connection to %s" % (address[0]))
+    print("listening for connections")
+    server.listen(5)  # permits 5 threaded connections
+    listening = True
 
-      data = client.recv(echoconstants.BUFFER)
-      print("received: %s" % (data))
-      client.send(data)
-      while data != echoconstants.EXIT and data != echoconstants.SHUTDOWN:
-        data = client.recv(echoconstants.BUFFER)
-        print("received: %s" % (data))
-        client.send(data)
+    while listening:
+        try:
+            print("accepting connections")
+            (client, address) = server.accept()
+            print("accepted connection to %s" % (address[0]))
 
-      print("disconnecting from %s" % (address[0]))
-      client.close()
-      print("disconnected")
+            data = client.recv(echoconstants.BUFFER)
+            print("received: %s" % (data))
+            client.send(data)
+            while (
+                    data != echoconstants.EXIT and
+                    data != echoconstants.SHUTDOWN
+            ):
+                data = client.recv(echoconstants.BUFFER)
+                print("received: %s" % (data))
+                client.send(data)
 
-      if data == echoconstants.SHUTDOWN:
-        print("closing server")
-        server.close()
-        print("closed")
-        listening = False
+            print("disconnecting from %s" % (address[0]))
+            client.close()
+            print("disconnected")
 
-    except Exception, e:
-      print "error: %s" % (e)
+            if data == echoconstants.SHUTDOWN:
+                print("closing server")
+                server.close()
+                print("closed")
+                listening = False
+
+        except Exception, e:
+            print "error: %s" % (e)
 
 if __name__ == "__main__":
-  if len(sys.argv) > 2:
-    start(sys.argv[1], int(sys.argv[2]))
-  else:
-    start()
+    if len(sys.argv) > 2:
+        start(sys.argv[1], int(sys.argv[2]))
+    else:
+        start()

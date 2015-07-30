@@ -7,27 +7,31 @@ __copyright__ = "Copyright 2006 Andrew Pennebaker"
 from GoBananasCard import GoBananasCard
 from MonkeyCard import MonkeyCard
 
+
 class GotchaGatorCard(GoBananasCard):
-  WILD = "Wild"
+    WILD = "Wild"
 
-  def __init__(self, number):
-    self.setColor(GoBananasCard.GREEN)
-    self.setNumber(number)
+    def __init__(self, number):
+        self.setColor(GoBananasCard.GREEN)
+        self.setNumber(number)
 
-  def compare(self, other):
-    return self.__class__ == other.__class__ and self.getNumber() == other.getNumber()
+    def compare(self, other):
+        return (
+            self.__class__ == other.__class__ and
+            self.getNumber() == other.getNumber()
+        )
 
-  # matches monkey card if
-  # wild or
-  # same numbers
-  def match(self, other):
-    if other.__class__ == MonkeyCard(MonkeyCard.MILD, MonkeyCard.ONE).__class__:
-      if getNumber() == self.WILD:
-        return True
+    # matches monkey card if
+    # wild or
+    # same numbers
+    def match(self, other):
+        if isinstnce(other, MonkeyCard):
+            if getNumber() == self.WILD:
+                return True
 
-      return getNumber() == other.getNumber()
+            return getNumber() == other.getNumber()
 
-    return False
+        return False
 
-  def __str__(self):
-    return "Gotcha Gator %s" % (self.getNumber())
+    def __str__(self):
+        return "Gotcha Gator %s" % (self.getNumber())

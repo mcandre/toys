@@ -17,99 +17,106 @@ import getopt
 import urllib
 import configreader
 
+
 def tiny(url, settings):
-  """TinyURL"""
+    """TinyURL"""
 
-  try:
-    encodedurl = settings["posting url"] + urllib.urlencode({ "url": url })
-    instream = urllib.urlopen(encodedurl)
-    tinyurl = instream.read()
-    instream.close()
+    try:
+        encodedurl = settings["posting url"] + urllib.urlencode({"url": url})
+        instream = urllib.urlopen(encodedurl)
+        tinyurl = instream.read()
+        instream.close()
 
-    if len(tinyurl) == 0:
-      return url
+        if len(tinyurl) == 0:
+            return url
 
-    if settings["service"] == "urltea" and len(settings["description"]) > 0:
-      tinyurl += settings["description delimeter"] + settings["description"]
+        if (
+                settings["service"] == "urltea" and
+                len(settings["description"]) > 0
+        ):
+            tinyurl += settings["description delimeter"]
+            tinyurl += settings["description"]
 
-    return tinyurl
-  except IOError:
-    raise Exception("Could not connect.")
+        return tinyurl
+    except IOError:
+        raise Exception("Could not connect.")
+
 
 def usage():
-  """Print usage message"""
+    """Print usage message"""
 
-  print("Usage: %s [options] <url1> <url2> <url3> ..." % (sys.argv[0]))
-  print("\nDefaults to urlTea unless specified in options or a config file.")
-  print("\n-s|--service [tinyurl|urltea]")
-  print("-u|--custom-url <posting url>")
-  print("-d|--description <comment> May only be used with urltea.")
-  print("-c|--config <configfile>")
-  print("-h|--help (usage)")
+    print("Usage: %s [options] <url1> <url2> <url3> ..." % (sys.argv[0]))
+    print("\nDefaults to urlTea unless specified in options or a config file.")
+    print("\n-s|--service [tinyurl|urltea]")
+    print("-u|--custom-url <posting url>")
+    print("-d|--description <comment> May only be used with urltea.")
+    print("-c|--config <configfile>")
+    print("-h|--help (usage)")
 
-  sys.exit()
+    sys.exit()
+
 
 def main():
-  """CLI"""
+    """CLI"""
 
-  system_args = sys.argv[1:]
-  args = []
+    system_args = sys.argv[1:]
+    args = []
 
-  settings = {
-    "config": "tiny.conf",
-    "service": "urltea",
-    "urltea url": "http://urltea.com/api/text/?url=",
-    "tinyurl url": "http://tinyurl.com/api-create.php?",
-    "description delimeter": "?",
-    "description": ""
-  }
+    settings = {
+        "config": "tiny.conf",
+        "service": "urltea",
+        "urltea url": "http://urltea.com/api/text/?url=",
+        "tinyurl url": "http://tinyurl.com/api-create.php?",
+        "description delimeter": "?",
+        "description": ""
+    }
 
-  try:
-    optlist, args = getopt.getopt(
-      system_args,
-      "s:u:d:c:h",
-      ["service=", "custom-url=", "description=", "config=", "help"]
-    )
-  except getopt.GetoptError:
-    usage()
+    try:
+        optlist, args = getopt.getopt(
+            system_args,
+            "s:u:d:c:h",
+            ["service=", "custom-url=", "description=", "config=", "help"]
+        )
+    except getopt.GetoptError:
+        usage()
 
-  for option, value in optlist:
-    if option == "-c" or option == "--config":
-      settings["config"] = value
+    for option, value in optlist:
+        if option == "-c" or option == "--config":
+            settings["config"] = value
 
-  try:
-    configreader.load(open(settings["config"], "r"), settings)
-  except IOError:
-    pass
+    try:
+        configreader.load(open(settings["config"], "r"), settings)
+    except IOError:
+        pass
 
-  for option, value in optlist:
-    if option == "-h" or option == "--help":
-      usage()
-    elif option == "-s" or option == "--service":
-      settings["service"] = value
-    elif option == "-d" or option == "--description":
-      settings["description"] = value
+    for option, value in optlist:
+        if option == "-h" or option == "--help":
+            usage()
+        elif option == "-s" or option == "--service":
+            settings["service"] = value
+        elif option == "-d" or option == "--description":
+            settings["description"] = value
 
-  if settings["service"] != "urltea" and len(settings["description"]) > 0:
-    usage()
+    if settings["service"] != "urltea" and len(settings["description"]) > 0:
+        usage()
 
-  try:
-    settings["posting url"] = settings[settings["service"] + " url"]
-  except:
-    usage()
+    try:
+        settings["posting url"] = settings[settings["service"] + " url"]
+    except:
+        usage()
 
-  for option, value in optlist:
-    if option == "-u" or option == "--custom-url":
-      settings["posting url"] = value
+    for option, value in optlist:
+        if option == "-u" or option == "--custom-url":
+            settings["posting url"] = value
 
-  if len(args) < 1:
-    usage()
+    if len(args) < 1:
+        usage()
 
-  for u in args:
-    print tiny(u, settings)
+    for u in args:
+        print tiny(u, settings)
 
 if __name__ == "__main__":
-  try:
-    main()
-  except KeyboardInterrupt:
-    pass
+    try:
+        main()
+    except KeyboardInterrupt:
+        pass

@@ -8,6 +8,10 @@ import pygame
 import os
 import time
 
+
 def save(surface, directory):
-  timestring = ".".join(time.asctime().split(":"))
-  pygame.image.save(surface, directory + os.sep + "screenshot " + timestring + ".bmp")
+    timestring = ".".join(time.asctime().split(":"))
+    pygame.image.save(
+        surface,
+        directory + os.sep + "screenshot " + timestring + ".bmp"
+    )

@@ -18,7 +18,14 @@ window.set_title("Parent")
 window.connect("delete-event", gtk.main_quit)
 window.show_all()
 
-RESULT = ProgressDialog("Downloading", window, URL, FILE, "./output.txt", LENGTH)
+RESULT = ProgressDialog(
+    "Downloading",
+    window,
+    URL,
+    FILE,
+    "./output.txt",
+    LENGTH
+)
 
 print(RESULT.status)
 

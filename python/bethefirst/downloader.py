@@ -13,103 +13,112 @@ import os
 import sys
 from getopt import getopt
 
+
 def getURLName(url):
-  directory = os.curdir
+    directory = os.curdir
 
-  name = "%s%s%s" % (
-    directory,
-    os.sep,
-    url.split("/")[-1]
-  )
+    name = "%s%s%s" % (
+        directory,
+        os.sep,
+        url.split("/")[-1]
+    )
 
-  return name
+    return name
 
-def createDownload(url, proxy = None):
-  instream = urlopen(url, None, proxy)
 
-  filename = instream.info().getheader("Content-Length")
-  if filename is None:
-    filename = "temp"
+def createDownload(url, proxy=None):
+    instream = urlopen(url, None, proxy)
 
-  return (instream, filename)
+    filename = instream.info().getheader("Content-Length")
+    if filename is None:
+        filename = "temp"
+
+    return (instream, filename)
+
 
 def download(instream, outstream):
-  outstream.write(instream.read())
+    outstream.write(instream.read())
 
-  outstream.close()
+    outstream.close()
+
 
 def usage():
-  print "Usage: %s [options] <url1 url2 url3 ...>" % (sys.argv[0])
-  print "\n--httpproxy <proxy>"
-  print "--ftpproxy <proxy>"
-  print "--gopherproxy <proxy>"
-  print "\n--help (usage)"
+    print "Usage: %s [options] <url1 url2 url3 ...>" % (sys.argv[0])
+    print "\n--httpproxy <proxy>"
+    print "--ftpproxy <proxy>"
+    print "--gopherproxy <proxy>"
+    print "\n--help (usage)"
 
-  sys.exit()
+    sys.exit()
+
 
 def main():
-  systemArgs = sys.argv[1:] # ignore program name
+    systemArgs = sys.argv[1:]  # ignore program name
 
-  urls = []
-  proxies = {}
+    urls = []
+    proxies = {}
 
-  optlist = []
-  args = []
+    optlist = []
+    args = []
 
-  try:
-    optlist, args = getopt(systemArgs, "", ["url=", "httpproxy=", "ftpproxy=", "gopherproxy=", "help"])
-  except Exception, e:
-    usage()
-
-  if len(args) < 1:
-    usage()
-
-  for option, value in optlist:
-    if option == "--help":
-      usage()
-
-    elif option == "--httpproxy":
-      proxies["http"] = value
-    elif option == "--ftpproxy":
-      proxies["ftp"] = value
-    elif options == "--gopherproxy":
-      proxies["gopher"] = value
-
-  urls = args
-
-  for url in urls:
     try:
-      outfile = open(getURLName(url), "wb")
-      fileName = outfile.name.split(os.sep)[-1]
-
-      url, length = createDownload(url, proxies)
-      if not length:
-        length = "?"
-
-      print "Downloading %s (%s bytes) ..." % (url.url, length)
-      if length != "?":
-        length = float(length)
-      bytesRead = 0.0
-
-      for line in url:
-        bytesRead += len(line)
-
-        if length != "?":
-          print "%s: %.02f/%.02f kb (%d%%)" % (
-            fileName,
-            bytesRead / 1024.0,
-            length / 1024.0,
-            100 * bytesRead / length
-          )
-
-        outfile.write(line)
-
-      url.close()
-      outfile.close()
-      print "Done"
-
+        optlist, args = getopt(
+            systemArgs,
+            "",
+            ["url=", "httpproxy=", "ftpproxy=", "gopherproxy=", "help"]
+        )
     except Exception, e:
-      print "Error downloading %s: %s" % (url, e)
+        usage()
+
+    if len(args) < 1:
+        usage()
+
+    for option, value in optlist:
+        if option == "--help":
+            usage()
+
+        elif option == "--httpproxy":
+            proxies["http"] = value
+        elif option == "--ftpproxy":
+            proxies["ftp"] = value
+        elif options == "--gopherproxy":
+            proxies["gopher"] = value
+
+    urls = args
+
+    for url in urls:
+        try:
+            outfile = open(getURLName(url), "wb")
+            fileName = outfile.name.split(os.sep)[-1]
+
+            url, length = createDownload(url, proxies)
+            if not length:
+                length = "?"
+
+            print "Downloading %s (%s bytes) ..." % (url.url, length)
+            if length != "?":
+                length = float(length)
+            bytesRead = 0.0
+
+            for line in url:
+                bytesRead += len(line)
+
+                if length != "?":
+                    print "%s: %.02f/%.02f kb (%d%%)" % (
+                        fileName,
+                        bytesRead / 1024.0,
+                        length / 1024.0,
+                        100 * bytesRead / length
+                    )
+
+                outfile.write(line)
+
+            url.close()
+            outfile.close()
+            print "Done"
+
+        except Exception, e:
+            print "Error downloading %s: %s" % (url, e)
 
 if __name__ == "__main__":
-  main()
+    main()

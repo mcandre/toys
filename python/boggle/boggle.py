@@ -8,189 +8,194 @@ import random
 DEFAULT_DICT = "dict.txt"
 
 DICE = [
-  ["A", "O", "B", "B", "O", "J"],
-  ["W", "H", "G", "E", "E", "N"],
-  ["N", "R", "N", "Z", "H", "L"],
-  ["N", "A", "E", "A", "G", "E"],
-  ["D", "I", "Y", "S", "T", "T"],
-  ["I", "E", "S", "T", "S", "O"],
-  ["A", "O", "T", "T", "W", "O"],
-  ["H", "Qu", "U", "M", "N", "I"],
-  ["R", "Y", "T", "L", "T", "E"],
-  ["P", "O", "H", "C", "S", "A"],
-  ["L", "R", "E", "V", "Y", "D"],
-  ["E", "X", "L", "D", "I", "R"],
-  ["I", "E", "N", "S", "U", "E"],
-  ["S", "F", "F", "K", "A", "P"],
-  ["I", "O", "T", "M", "U", "C"],
-  ["E", "H", "W", "V", "T", "R"]
+    ["A", "O", "B", "B", "O", "J"],
+    ["W", "H", "G", "E", "E", "N"],
+    ["N", "R", "N", "Z", "H", "L"],
+    ["N", "A", "E", "A", "G", "E"],
+    ["D", "I", "Y", "S", "T", "T"],
+    ["I", "E", "S", "T", "S", "O"],
+    ["A", "O", "T", "T", "W", "O"],
+    ["H", "Qu", "U", "M", "N", "I"],
+    ["R", "Y", "T", "L", "T", "E"],
+    ["P", "O", "H", "C", "S", "A"],
+    ["L", "R", "E", "V", "Y", "D"],
+    ["E", "X", "L", "D", "I", "R"],
+    ["I", "E", "N", "S", "U", "E"],
+    ["S", "F", "F", "K", "A", "P"],
+    ["I", "O", "T", "M", "U", "C"],
+    ["E", "H", "W", "V", "T", "R"]
 ]
 
 CMD_STOP = "[stop]"
 PROMPT = "> "
 MIN_LENGTH = 3
 
+
 def chomp(line):
-  "Strip trailing line endings"""
+    "Strip trailing line endings"""
 
-  if line[-1] == "\n":
-    return line[:-1]
+    if line[-1] == "\n":
+        return line[:-1]
 
-  return line
+    return line
+
 
 def create_board():
-  """Initialize board"""
+    """Initialize board"""
 
-  # random faces
-  board = [random.choice(d) for d in DICE]
+    # random faces
+    board = [random.choice(d) for d in DICE]
 
-  # random places
-  board2 = []
-  while len(board) > 0:
-    board2.append(
-      board.pop(
-        random.choice(range(len(board)))
-      )
-    )
-  board = board2
+    # random places
+    board2 = []
+    while len(board) > 0:
+        board2.append(
+            board.pop(
+                random.choice(range(len(board)))
+            )
+        )
+    board = board2
 
-  # format 4x4
-  board = [
-    board[:4],
-    board[4:8],
-    board[8:12],
-    board[12:]
-  ]
+    # format 4x4
+    board = [
+        board[:4],
+        board[4:8],
+        board[8:12],
+        board[12:]
+    ]
 
-  lower = [
-    [e.lower() for e in line] for line in board
-  ]
+    lower = [
+        [e.lower() for e in line] for line in board
+    ]
 
-  return board, lower
+    return board, lower
+
 
 def find(board, word):
-  """Test existence of word in board"""
+    """Test existence of word in board"""
 
-  for i in range(len(board)):
-    for j in range(len(board[i])):
-      if word.startswith(board[i][j]):
-        t = trace(board, word, [(i, j)])
-        if t:
-          return t
+    for i in range(len(board)):
+        for j in range(len(board[i])):
+            if word.startswith(board[i][j]):
+                t = trace(board, word, [(i, j)])
+                if t:
+                    return t
 
-  return False
+    return False
+
 
 def trace(board, word, positions):
-  """Trie-based word lookup"""
+    """Trie-based word lookup"""
 
-  start = ""
-  for x, y in positions:
-    start += board[x][y]
-    rest = word[len(start):]
+    start = ""
+    for x, y in positions:
+        start += board[x][y]
+        rest = word[len(start):]
 
-  if start == word:
-    return positions
-  elif len(positions) > len(word):
+    if start == word:
+        return positions
+    elif len(positions) > len(word):
+        return False
+    else:
+        x, y = positions[-1]
+
+        for i in [x - 1, x, x + 1]:
+            for j in [y - 1, y, y + 1]:
+                if (
+                        i >= 0 and i < len(board) and
+                        j >= 0 and j < len(board[i]) and
+                        (i, j) not in positions and
+                        rest.startswith(board[i][j])
+                ):
+                    t = trace(board, word, positions + [(i, j)])
+                    if t:
+                        return t
+
     return False
-  else:
-    x, y = positions[-1]
 
-    for i in [x - 1, x, x + 1]:
-      for j in [y - 1, y, y + 1]:
-        if (
-            i >= 0 and i < len(board) and
-            j >= 0 and j < len(board[i]) and
-            (i, j) not in positions and
-            rest.startswith(board[i][j])
-        ):
-          t = trace(board, word, positions + [(i, j)])
-          if t:
-            return t
-
-  return False
 
 def main():
-  """Play a game of boggle"""
+    """Play a game of boggle"""
 
-  print("Loading dictionary")
+    print("Loading dictionary")
 
-  dictname = DEFAULT_DICT
+    dictname = DEFAULT_DICT
 
-  if len(sys.argv) > 1:
-    dictname = sys.argv[1]
+    if len(sys.argv) > 1:
+        dictname = sys.argv[1]
 
-  dictfile = open(dictname, "r")
+    dictfile = open(dictname, "r")
 
-  wordlist = []
+    wordlist = []
 
-  for line in dictfile:
-    wordlist.append(chomp(line))
+    for line in dictfile:
+        wordlist.append(chomp(line))
 
-  dictfile.close()
+    dictfile.close()
 
-  print("Done")
+    print("Done")
 
-  print("Creating board")
+    print("Creating board")
 
-  board, lower = create_board()
+    board, lower = create_board()
 
-  print("Done")
+    print("Done")
 
-  print("Enter words.", CMD_STOP, "when done.")
+    print("Enter words.", CMD_STOP, "when done.")
 
-  wordsfound = []
-
-  for line in board:
-    print line
-
-  word = raw_input(PROMPT)
-  while word != CMD_STOP:
-    word = word.lower()
-
-    if len(word) < MIN_LENGTH:
-      print "Too short"
-    elif word not in wordlist:
-      print "Not in dictionary"
-    elif word in wordsfound:
-      print "Already used"
-    else:
-      if find(lower, word):
-        wordsfound.append(word)
-        print("Accepted (%d words)" % (len(wordsfound)))
-      else:
-        print("Not on board")
+    wordsfound = []
 
     for line in board:
-      print(line)
+        print line
 
     word = raw_input(PROMPT)
+    while word != CMD_STOP:
+        word = word.lower()
 
-  print("You found %d words." % (len(wordsfound)))
+        if len(word) < MIN_LENGTH:
+            print "Too short"
+        elif word not in wordlist:
+            print "Not in dictionary"
+        elif word in wordsfound:
+            print "Already used"
+        else:
+            if find(lower, word):
+                wordsfound.append(word)
+                print("Accepted (%d words)" % (len(wordsfound)))
+            else:
+                print("Not on board")
 
-  raw_input("Press enter to find other words.")
+        for line in board:
+            print(line)
 
-  print("Finding words.")
+        word = raw_input(PROMPT)
 
-  compwords = []
+    print("You found %d words." % (len(wordsfound)))
 
-  for word in wordlist:
-    word = word.lower()
+    raw_input("Press enter to find other words.")
 
-    if len(word) >= MIN_LENGTH:
-      if find(lower, word):
-        compwords.append(word)
+    print("Finding words.")
 
-  print("Done")
+    compwords = []
 
-  print("Computer found %d words." % (len(compwords)))
+    for word in wordlist:
+        word = word.lower()
 
-  raw_input("Press enter to list words.")
+        if len(word) >= MIN_LENGTH:
+            if find(lower, word):
+                compwords.append(word)
 
-  for word in compwords:
-    print(word)
+    print("Done")
+
+    print("Computer found %d words." % (len(compwords)))
+
+    raw_input("Press enter to list words.")
+
+    for word in compwords:
+        print(word)
 
 if __name__ == "__main__":
-  try:
-    main()
-  except (KeyboardInterrupt, EOFError), e:
-    pass
+    try:
+        main()
+    except (KeyboardInterrupt, EOFError), e:
+        pass

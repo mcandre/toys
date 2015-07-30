@@ -1,29 +1,31 @@
 """Validate keys"""
 
+
 def cs(number):
-  """Checksum helper"""
+    """Checksum helper"""
 
-  s = 0
+    s = 0
 
-  alternate = True
+    alternate = True
 
-  while number > 0:
-    digit = number % 10
-    number /= 10
+    while number > 0:
+        digit = number % 10
+        number /= 10
 
-    if alternate:
-      digit *= 2
+        if alternate:
+            digit *= 2
 
-      if digit > 9:
-        digit -= 9
+            if digit > 9:
+                digit -= 9
 
-    s += digit
+        s += digit
 
-    alternate = not alternate
+        alternate = not alternate
 
-  return s
+    return s
+
 
 def check(number):
-  """Checksum"""
+    """Checksum"""
 
-  return cs(number) % 10 == 0
+    return cs(number) % 10 == 0

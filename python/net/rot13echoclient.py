@@ -13,34 +13,35 @@ import echoconstants
 import socket
 import sys
 
-def start(host = "localhost", port = 8000):
-  """Start socket"""
 
-  client = Rot13Socket.Rot13Socket(socket.AF_INET, socket.SOCK_STREAM)
+def start(host="localhost", port=8000):
+    """Start socket"""
 
-  print "connecting to %s at %d" % (host, port)
-  client.connect((host, port))
-  print "connected"
+    client = Rot13Socket.Rot13Socket(socket.AF_INET, socket.SOCK_STREAM)
 
-  print "Sent text, %s to quit." % (echoconstants.EXIT)
+    print "connecting to %s at %d" % (host, port)
+    client.connect((host, port))
+    print "connected"
 
-  data = raw_input("client> ")
+    print "Sent text, %s to quit." % (echoconstants.EXIT)
 
-  client.send(data)
-  data = client.recv(echoconstants.BUFFER)
-  print "server> %s" % (data)
-  while data != echoconstants.EXIT and data != echoconstants.SHUTDOWN:
     data = raw_input("client> ")
+
     client.send(data)
     data = client.recv(echoconstants.BUFFER)
     print "server> %s" % (data)
+    while data != echoconstants.EXIT and data != echoconstants.SHUTDOWN:
+        data = raw_input("client> ")
+        client.send(data)
+        data = client.recv(echoconstants.BUFFER)
+        print "server> %s" % (data)
 
-  print "closing connection"
-  client.close()
-  print "closed"
+    print "closing connection"
+    client.close()
+    print "closed"
 
 if __name__ == "__main__":
-  if len(sys.argv) > 2:
-    start(sys.argv[1], int(sys.argv[2]))
-  else:
-    start()
+    if len(sys.argv) > 2:
+        start(sys.argv[1], int(sys.argv[2]))
+    else:
+        start()

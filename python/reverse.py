@@ -4,39 +4,45 @@
 
 import random
 
+
 def flip(sequence, howmany):
-  """Flipper"""
+    """Flipper"""
 
-  a = sequence[:howmany]
-  a.reverse()
+    a = sequence[:howmany]
+    a.reverse()
 
-  return a + sequence[howmany:]
+    return a + sequence[howmany:]
+
 
 def disordered(sequence):
-  """Unsorted?"""
+    """Unsorted?"""
 
-  for i in range(1, len(sequence) - 1):
-    if sequence[i - 1] > sequence[i]:
-      return True
+    for i in range(1, len(sequence) - 1):
+        if sequence[i - 1] > sequence[i]:
+            return True
 
-  return False
+    return False
+
 
 def main():
-  """CLI"""
+    """CLI"""
 
-  inp = list(range(1, 10))
-  numbers = [inp.pop(random.randint(0, len(inp) - 1)) for i in range(len(inp))]
+    inp = list(range(1, 10))
+    numbers = [
+        inp.pop(random.randint(0, len(inp) - 1))
+        for i in range(len(inp))
+    ]
 
-  count = 0
+    count = 0
 
-  while disordered(numbers):
-    print(" ".join([str(e) for e in numbers]))
-    howmany = int(input("How many to flip? "))
-    howmany = int(howmany)
-    numbers = flip(numbers, howmany)
-    count += 1
+    while disordered(numbers):
+        print(" ".join([str(e) for e in numbers]))
+        howmany = int(input("How many to flip? "))
+        howmany = int(howmany)
+        numbers = flip(numbers, howmany)
+        count += 1
 
-  print("Done! That took you %d steps." % (count))
+    print("Done! That took you %d steps." % (count))
 
 if __name__ == "__main__":
-  main()
+    main()

@@ -6,7 +6,8 @@ __copyright__ = "Copyright 2006 Andrew Pennebaker"
 
 from UNOCard import UNOCard
 
+
 class UNOAttackCard(UNOCard):
-  HIT_TWO = "Hit Two"
-  TRADE_HANDS = "Trade Hands"
-  DISCARD_ALL = "Discard All"
+    HIT_TWO = "Hit Two"
+    TRADE_HANDS = "Trade Hands"
+    DISCARD_ALL = "Discard All"

@@ -2,11 +2,11 @@
 
 """Uses
 
-  oo
-  --
-6  >  (-1)^n / (n^2)
-  --
-  n = 1
+    oo
+    --
+6    >    (-1)^n / (n^2)
+    --
+    n = 1
 
 with remainder < 1 / (n+1)^2
 
@@ -15,78 +15,81 @@ to approximate Pi"""
 __author__ = "Andrew Pennebaker (andrew.pennebaker@gmail.com)"
 __date__ = "9 Feb 2006"
 __copyright__ = "Copyright 2006 Andrew Pennebaker"
-__version__ = "0.0.1" # not currently working
+__version__ = "0.0.1"  # not currently working
 
 from decimal import Decimal, getcontext
 
 import sys
 import getopt
 
-def approxpi(n = 1000, precision = 1000):
-  """Power series approximation"""
 
-  getcontext().prec = precision
+def approxpi(n=1000, precision=1000):
+    """Power series approximation"""
 
-  s = Decimal(0)
-  x = 1
-  while x <= n:
-    s += ((-1) ** x) / Decimal(x * x)
-    x += 1
+    getcontext().prec = precision
 
-  pi = abs(12 * s).sqrt()
+    s = Decimal(0)
+    x = 1
+    while x <= n:
+        s += ((-1) ** x) / Decimal(x * x)
+        x += 1
 
-  remainder = (12 / Decimal((n + 1) ** 2)).sqrt()
+    pi = abs(12 * s).sqrt()
 
-  return (pi, remainder)
+    remainder = (12 / Decimal((n + 1) ** 2)).sqrt()
+
+    return (pi, remainder)
+
 
 def usage():
-  """Print usage message"""
+    """Print usage message"""
 
-  print("Usage: %s [options]" % (sys.argv[0]))
-  print("\n--n large number n")
-  print("--precision digits")
-  print("--help (usage)")
+    print("Usage: %s [options]" % (sys.argv[0]))
+    print("\n--n large number n")
+    print("--precision digits")
+    print("--help (usage)")
 
-  sys.exit()
+    sys.exit()
+
 
 def main():
-  """CLI"""
+    """CLI"""
 
-  system_args = sys.argv[1:] # ignore program name
+    system_args = sys.argv[1:]  # ignore program name
 
-  n = 1000
-  p = 1000
+    n = 1000
+    p = 1000
 
-  optlist = []
+    optlist = []
 
-  try:
-    optlist, args = getopt.getopt(
-      system_args,
-      None,
-      ["n=", "precision=", "help"]
-    )
-  except getopt.GetoptError:
-    usage()
+    try:
+        optlist, args = getopt.getopt(
+            system_args,
+            None,
+            ["n=", "precision=", "help"]
+        )
+    except getopt.GetoptError:
+        usage()
 
-  for option, value in optlist:
-    if option == "--help":
-      usage()
+    for option, value in optlist:
+        if option == "--help":
+            usage()
 
-    elif option == "--n":
-      n = int(value)
+        elif option == "--n":
+            n = int(value)
 
-      if n < 1:
-        raise Exception("N must be at least 1")
-    elif option == "--precision":
-      p = int(value)
+            if n < 1:
+                raise Exception("N must be at least 1")
+        elif option == "--precision":
+            p = int(value)
 
-      if p < 1:
-        raise Exception("Precision must be at least 1")
+            if p < 1:
+                raise Exception("Precision must be at least 1")
 
-  result = approxpi(n, p)
+    result = approxpi(n, p)
 
-  print "Pi:\n%s\n" % (result[0])
-  print "Remainder:\n%s" % (result[1])
+    print "Pi:\n%s\n" % (result[0])
+    print "Remainder:\n%s" % (result[1])
 
 if __name__ == "__main__":
-  main()
+    main()

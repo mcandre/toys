@@ -6,6 +6,7 @@ __copyright__ = "Copyright 2006 Andrew Pennebaker"
 
 from UNOAttackCard import UNOAttackCard
 
+
 class WildUNOAttackCard(UNOAttackCard):
-  ALL_HIT = "All Hit"
-  HIT_FIRE = "Hit Fire"
+    ALL_HIT = "All Hit"
+    HIT_FIRE = "Hit Fire"

@@ -13,95 +13,100 @@ import getopt
 
 FIRST_SPACES = re.compile(r"(\s+)\S")
 
+
 def get_space_length(lines):
-  """Uses number of spaces in first line with leading spaces as tab length.
+    """Uses number of spaces in first line with leading spaces as tab length.
 Defaults to tab = 2 spaces."""
 
-  length = 2
+    length = 2
 
-  for line in lines:
-    m = FIRST_SPACES.match(line)
+    for line in lines:
+        m = FIRST_SPACES.match(line)
 
-    try:
-      length = len(m.group(1))
-      break
-    except Exception:
-      pass
+        try:
+            length = len(m.group(1))
+            break
+        except Exception:
+            pass
 
-  return length
+    return length
+
 
 def replace_spaces(lines, length):
-  """Replace spaces"""
+    """Replace spaces"""
 
-  mark = " " * length
-  newcode = []
-  for line in lines:
-    newcode.append(re.sub(mark, "\t", line))
+    mark = " " * length
+    newcode = []
+    for line in lines:
+        newcode.append(re.sub(mark, "\t", line))
 
-  return newcode
+    return newcode
 
-def space2tab(input, output, length = None):
-  """Convert spaces to hard tabs"""
 
-  f = open(input, "r")
-  text = f.readlines()
-  f.close()
+def space2tab(input, output, length=None):
+    """Convert spaces to hard tabs"""
 
-  if length is None:
-    length = get_space_length(text)
+    f = open(input, "r")
+    text = f.readlines()
+    f.close()
 
-  text = replace_spaces(text, length)
+    if length is None:
+        length = get_space_length(text)
 
-  f = open(output, "w")
-  f.write("".join(text))
-  f.close()
+    text = replace_spaces(text, length)
+
+    f = open(output, "w")
+    f.write("".join(text))
+    f.close()
+
 
 def usage():
-  """Pring usage message"""
+    """Pring usage message"""
 
-  print("Usage: %s [options] <inputfile> <outputfile>" % (sys.argv[0]))
-  print("\n-t|--tablength <specified length>")
-  print("-h|--help (usage)")
+    print("Usage: %s [options] <inputfile> <outputfile>" % (sys.argv[0]))
+    print("\n-t|--tablength <specified length>")
+    print("-h|--help (usage)")
 
-  sys.exit()
+    sys.exit()
+
 
 def main():
-  """CLI"""
+    """CLI"""
 
-  inputfile = None
-  outputfile = None
-  tablength = None
+    inputfile = None
+    outputfile = None
+    tablength = None
 
-  system_args = sys.argv[1:] # ignore program name
-  optlist = []
-  args = []
+    system_args = sys.argv[1:]  # ignore program name
+    optlist = []
+    args = []
 
-  try:
-    optlist, args = getopt.getopt(
-      system_args,
-      "t:h",
-      ["tablength=", "help"]
-    )
-  except getopt.GetoptError:
-    usage()
+    try:
+        optlist, args = getopt.getopt(
+            system_args,
+            "t:h",
+            ["tablength=", "help"]
+        )
+    except getopt.GetoptError:
+        usage()
 
-  if len(args) < 2:
-    usage()
+    if len(args) < 2:
+        usage()
 
-  inputfile = args[0]
-  outputfile = args[1]
+    inputfile = args[0]
+    outputfile = args[1]
 
-  for option, value in optlist:
-    if option == "-h" or option == "--help":
-      usage()
+    for option, value in optlist:
+        if option == "-h" or option == "--help":
+            usage()
 
-    elif option == "-t" or option == "--tablength":
-      tablength = int(value)
+        elif option == "-t" or option == "--tablength":
+            tablength = int(value)
 
-      if tablength < 1:
-        raise Exception("Tablength is at least 1")
+            if tablength < 1:
+                raise Exception("Tablength is at least 1")
 
-  space2tab(inputfile, outputfile, tablength)
+    space2tab(inputfile, outputfile, tablength)
 
 if __name__ == "__main__":
-  main()
+    main()

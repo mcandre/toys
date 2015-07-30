@@ -13,39 +13,41 @@ from makerange import makerange
 import sys
 import getopt
 
+
 def usage():
-  """Print usage message"""
-  print("Usage: %s <number/range> [--help]")
-  sys.exit()
+    """Print usage message"""
+    print("Usage: %s <number/range> [--help]")
+    sys.exit()
+
 
 def main():
-  """CLI"""
+    """CLI"""
 
-  system_args = sys.argv[1:] # ignore program name
-  optlist = []
-  args = []
+    system_args = sys.argv[1:]  # ignore program name
+    optlist = []
+    args = []
 
-  if len(args) < 1:
-    usage()
+    if len(args) < 1:
+        usage()
 
-  try:
-    optlist, args = getopt.getopt(system_args, None, ["help"])
-  except getopt.GetoptError:
-    usage()
+    try:
+        optlist, args = getopt.getopt(system_args, None, ["help"])
+    except getopt.GetoptError:
+        usage()
 
-  for option, value in optlist:
-    if option == "--help":
-      usage()
+    for option, value in optlist:
+        if option == "--help":
+            usage()
 
-  numbers = makerange(args[0], 1, 10 ** 25)
+    numbers = makerange(args[0], 1, 10 ** 25)
 
-  print("Factoring")
+    print("Factoring")
 
-  for n in numbers:
-    print(" ".join(get_all_factors(n)))
+    for n in numbers:
+        print(" ".join(get_all_factors(n)))
 
 if __name__ == "__main__":
-  try:
-    main()
-  except KeyboardInterrupt:
-    pass
+    try:
+        main()
+    except KeyboardInterrupt:
+        pass

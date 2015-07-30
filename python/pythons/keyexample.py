@@ -7,18 +7,19 @@ __version__ = "0.0.1"
 
 import pygame
 
+
 def main():
-  pygame.init()
+    pygame.init()
 
-  screen = pygame.display.set_mode((300, 400))
-  pygame.display.flip()
+    screen = pygame.display.set_mode((300, 400))
+    pygame.display.flip()
 
-  while True:
-    for event in pygame.event.get():
-      print str(event)
+    while True:
+        for event in pygame.event.get():
+            print str(event)
 
 if __name__ == "__main__":
-  try:
-    main()
-  except KeyboardInterrupt as e:
-    pass
+    try:
+        main()
+    except KeyboardInterrupt as e:
+        pass
