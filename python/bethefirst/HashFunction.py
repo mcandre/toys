@@ -87,10 +87,10 @@ class HashFunction:
 
 
 def usage():
-    print "Usage: %s [options] <file1 file2 file3 ... >" % (sys.argv[0])
-    print "\n-s --sum <sum>"
-    print "-t --test engine"
-    print "-h --help usage"
+    print("Usage: %s [options] <file1 file2 file3 ... >" % (sys.argv[0]))
+    print("\n-s --sum <sum>")
+    print("-t --test engine")
+    print("-h --help usage")
 
     sys.exit()
 
@@ -107,7 +107,7 @@ def main(hasher=HashFunction):
     optlist, args = [], []
     try:
         optlist, args = getopt(systemArgs, "s:th", ["sum=", "test", "help"])
-    except Exception, e:
+    except Exception:
         usage()
 
     if len(optlist) < 1 and len(args) < 1:
@@ -123,7 +123,7 @@ def main(hasher=HashFunction):
                 sum = hasher.unformatDigest(value)
                 if not hasher.sumValid(sum):
                     raise Exception
-            except Exception, e:
+            except Exception:
                 raise "Requires: %s" % (hasher.SUM_REQ)
 
     hasher = hasher()
@@ -132,7 +132,7 @@ def main(hasher=HashFunction):
         result = hasher.test()
 
         if result == hasher.OK:
-            print result
+            print(result)
         else:
             print("test data: " + result["test data"])
             print("test formatted hash: " + result["test formatted hash"])
@@ -145,8 +145,8 @@ def main(hasher=HashFunction):
             f = None
             try:
                 f = open(file, "rb")
-            except Exception, e:
-                print "Could not open %s" % (file)
+            except Exception:
+                print("Could not open %s" % (file))
             else:
                 hasher.reset()
 
@@ -155,7 +155,7 @@ def main(hasher=HashFunction):
 
                 f.close()
 
-                print hasher.formatDigest()
+                print(hasher.formatDigest())
 
 if __name__ == "__main__":
     main(HashFunction, "HashFunction.py")

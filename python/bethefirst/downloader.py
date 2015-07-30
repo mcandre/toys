@@ -43,11 +43,11 @@ def download(instream, outstream):
 
 
 def usage():
-    print "Usage: %s [options] <url1 url2 url3 ...>" % (sys.argv[0])
-    print "\n--httpproxy <proxy>"
-    print "--ftpproxy <proxy>"
-    print "--gopherproxy <proxy>"
-    print "\n--help (usage)"
+    print("Usage: %s [options] <url1 url2 url3 ...>" % (sys.argv[0]))
+    print("\n--httpproxy <proxy>")
+    print("--ftpproxy <proxy>")
+    print("--gopherproxy <proxy>")
+    print("\n--help (usage)")
 
     sys.exit()
 
@@ -67,7 +67,7 @@ def main():
             "",
             ["url=", "httpproxy=", "ftpproxy=", "gopherproxy=", "help"]
         )
-    except Exception, e:
+    except Exception:
         usage()
 
     if len(args) < 1:
@@ -81,7 +81,7 @@ def main():
             proxies["http"] = value
         elif option == "--ftpproxy":
             proxies["ftp"] = value
-        elif options == "--gopherproxy":
+        elif option == "--gopherproxy":
             proxies["gopher"] = value
 
     urls = args
@@ -95,7 +95,8 @@ def main():
             if not length:
                 length = "?"
 
-            print "Downloading %s (%s bytes) ..." % (url.url, length)
+            print("Downloading %s (%s bytes) ..." % (url.url, length))
+
             if length != "?":
                 length = float(length)
             bytesRead = 0.0
@@ -104,21 +105,24 @@ def main():
                 bytesRead += len(line)
 
                 if length != "?":
-                    print "%s: %.02f/%.02f kb (%d%%)" % (
-                        fileName,
-                        bytesRead / 1024.0,
-                        length / 1024.0,
-                        100 * bytesRead / length
+                    print(
+                        "%s: %.02f/%.02f kb (%d%%)" % (
+                            fileName,
+                            bytesRead / 1024.0,
+                            length / 1024.0,
+                            100 * bytesRead / length
+                        )
                     )
 
                 outfile.write(line)
 
             url.close()
             outfile.close()
-            print "Done"
 
-        except Exception, e:
-            print "Error downloading %s: %s" % (url, e)
+            print("Done")
+
+        except Exception as e:
+            print("Error downloading %s: %s" % (url, e))
 
 if __name__ == "__main__":
     main()

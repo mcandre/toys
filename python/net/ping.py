@@ -295,7 +295,7 @@ def main():
             print("%s up: %s %d ms" % (host, STATUS[updown], journey))
 
             if verbose:
-                print "Data:\n%s" % (packet)
+                print("Data:\n%s" % (packet))
 
         i += 1
         time.sleep(interval)

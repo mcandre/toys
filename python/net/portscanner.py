@@ -125,36 +125,36 @@ def main():
             if value in FAMILIES:
                 family = FAMILIES[value]
             else:
-                raise new TypeError("Family not valid")
+                raise TypeError("Family not valid")
         elif option == "--type":
             if value in TYPES:
                 t = TYPES[value]
             else:
-                raise new TypeError("Type not valid")
+                raise TypeError("Type not valid")
         elif option == "--port":
             try:
                 ports = makerange(value)
-            except Exception as e:
+            except Exception:
                 usage()
         elif option == "--verbose":
             v = True
 
     hosts = args
 
-    print "Scanning"
+    print("Scanning")
 
     for host in hosts:
-        print "%s:" % (host)
+        print("%s:" % (host))
 
         portinfo = scan(family, t, host, ports, v)
 
         if len(portinfo) < 1:
-            print "no open ports found"
+            print("no open ports found")
         else:
             for port in portinfo:
-                print "%d open" % (port)
+                print("%d open" % (port))
 
-        print ""
+        print("")
 
 if __name__ == "__main__":
     try:

@@ -38,8 +38,8 @@ def main():
     """CLI"""
     system_args = sys.argv[1:]  # ignore program name
 
-    po = 1L
-    n = 90000L  # n = 4000
+    po = 1
+    n = 90000  # n = 4000
 
     optlist = []
 
@@ -57,11 +57,11 @@ def main():
             usage()
 
         elif option == "--n":
-            n = long(value)
+            n = int(value)
             if n < 5:
                 raise Exception("N is at least 1")
         elif option == "--precision":
-            po = long(value)
+            po = int(value)
 
             if po < 1:
                 raise Exception("Precision is at least 1")

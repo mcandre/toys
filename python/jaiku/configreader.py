@@ -14,7 +14,7 @@ def read(configdata, settings):
     so ignores inability to read file.
     """
 
-    if isinstance(configdata, file):
+    if 'read' in dir(configdata):
         temp = "".join(configdata.readlines())
         configdata.close()
         configdata = temp
@@ -30,7 +30,7 @@ def read(configdata, settings):
                 key, value = line.split("=")
 
                 settings[key.strip()] = eval(value)
-    except IOError, e:
+    except IOError:
         pass
 
 
@@ -39,7 +39,7 @@ def main():
         d = {}
         read(open(name, "r"), d)
 
-        print str(d) + "\n"
+        print(str(d) + "\n")
 
 if __name__ == "__main__":
     main()

@@ -11,12 +11,12 @@ import pygame
 def main():
     pygame.init()
 
-    screen = pygame.display.set_mode((300, 400))
+    pygame.display.set_mode((300, 400))
     pygame.display.flip()
 
     while True:
         for event in pygame.event.get():
-            print str(event)
+            print(str(event))
 
 if __name__ == "__main__":
     try:

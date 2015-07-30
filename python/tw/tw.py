@@ -76,7 +76,7 @@ def set_status(settings, status):
     request.add_header("User-Agent", settings["useragent"])
 
     try:
-        response = opener.open(request)
+        opener.open(request)
     except IOError:
         raise "Could not connect."
 
@@ -171,5 +171,5 @@ def main():
 if __name__ == "__main__":
     try:
         main()
-    except KeyboardInterrupt, e:
+    except KeyboardInterrupt as e:
         pass

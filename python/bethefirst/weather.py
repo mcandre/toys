@@ -9,7 +9,6 @@ from Adler32 import Adler32
 
 import time
 import os
-import socket
 
 PAGE_URL = "http://www.gmu.edu"
 SEARCH_STRING = "Today at Mason"
@@ -18,7 +17,7 @@ SONG = "song 2.ogg"
 
 
 def message(text=""):
-    print "[%s] %s" % (time.asctime(), text)
+    print("[%s] %s" % (time.asctime(), text))
 
 
 def main():
@@ -64,9 +63,9 @@ def main():
             hasUpdated = (firstHash != currentHash)
             if not hasUpdated:
                 message("static")
-        except IOError, e:
+        except IOError:
             message("connection error")
-        except Exception, e:
+        except Exception as e:
             message(e)
 
     message("detected update")

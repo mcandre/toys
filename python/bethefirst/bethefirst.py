@@ -20,7 +20,7 @@ SOFTWARE_URL = "http://www.mozilla.com/products/download.html"
 
 
 def message(text=""):
-    print "[%s] %s" % (time.asctime(), text)
+    print("[%s] %s" % (time.asctime(), text))
 
 
 def main():
@@ -76,9 +76,9 @@ def main():
 
                 if not hasUpdated:
                     message("static")
-        except IOError, e:
+        except IOError:
             message("connection error")
-        except Exception, e:
+        except Exception as e:
             message(e)
 
     message("detected update")

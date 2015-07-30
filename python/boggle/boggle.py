@@ -146,18 +146,18 @@ def main():
     wordsfound = []
 
     for line in board:
-        print line
+        print(line)
 
-    word = raw_input(PROMPT)
+    word = input(PROMPT)
     while word != CMD_STOP:
         word = word.lower()
 
         if len(word) < MIN_LENGTH:
-            print "Too short"
+            print("Too short")
         elif word not in wordlist:
-            print "Not in dictionary"
+            print("Not in dictionary")
         elif word in wordsfound:
-            print "Already used"
+            print("Already used")
         else:
             if find(lower, word):
                 wordsfound.append(word)
@@ -168,11 +168,11 @@ def main():
         for line in board:
             print(line)
 
-        word = raw_input(PROMPT)
+        word = input(PROMPT)
 
     print("You found %d words." % (len(wordsfound)))
 
-    raw_input("Press enter to find other words.")
+    input("Press enter to find other words.")
 
     print("Finding words.")
 
@@ -189,7 +189,7 @@ def main():
 
     print("Computer found %d words." % (len(compwords)))
 
-    raw_input("Press enter to list words.")
+    input("Press enter to list words.")
 
     for word in compwords:
         print(word)
@@ -197,5 +197,5 @@ def main():
 if __name__ == "__main__":
     try:
         main()
-    except (KeyboardInterrupt, EOFError), e:
+    except (KeyboardInterrupt, EOFError) as e:
         pass

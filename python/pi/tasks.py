@@ -17,6 +17,11 @@ def pyflakes():
 
 
 @task
+def flake8():
+    run("flake8 .")
+
+
+@task
 def tidy():
     run(
         "find . -type d -name node_modules -prune -o"
@@ -29,6 +34,6 @@ def tidy():
     )
 
 
-@task(pre=[pep8, pylint, pyflakes, tidy])
+@task(pre=[pep8, pylint, pyflakes, flake8, tidy])
 def lint():
     pass

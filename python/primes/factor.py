@@ -10,9 +10,9 @@ def factor(x):
     """Find a factor of x"""
 
     if x == 1:
-        return 1L
+        return 1
 
-    i = 2L
+    i = 2
     while (x % i) != 0 and i < x ** 0.5:
         i += 1
 

@@ -27,7 +27,7 @@ class Dog(threading.Thread):
             self.bowl -= self.n
             self.bowl_lock.release()
 
-            print "Dog %d Ate %d" % (self.myid, self.n)
+            print("Dog %d Ate %d" % (self.myid, self.n))
 
             if self.bowl < self.m:
                 break
@@ -55,7 +55,7 @@ class Man(threading.Thread):
             self.bowl -= self.n
             self.bowl_lock.release()
 
-            print "Man %d Gave %d" % (self.myid, self.n)
+            print("Man %d Gave %d" % (self.myid, self.n))
 
             if self.bowl > self.m:
                 break
@@ -84,12 +84,12 @@ class Monitor(threading.Thread):
             self.bowl_lock.acquire()
             self.bowl_lock.release()
 
-            print "Monitor %d Contains %d" % (self.myid, self.bowl)
+            print("Monitor %d Contains %d" % (self.myid, self.bowl))
 
-            if self.bowl < n or self.bowl > m:
+            if self.bowl < self.n or self.bowl > self.m:
                 break
 
-        print "Monitor %d Quit" % (self.myid)
+        print("Monitor %d Quit" % (self.myid))
 
 
 def main():

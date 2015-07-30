@@ -113,7 +113,7 @@ def main():
         usage()
 
     for u in args:
-        print tiny(u, settings)
+        print(tiny(u, settings))
 
 if __name__ == "__main__":
     try:

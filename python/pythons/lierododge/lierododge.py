@@ -234,7 +234,7 @@ def main():
 
                 settings[key.strip()] = eval(value)
         configfile.close()
-    except IOError, e:
+    except IOError:
         pass
 
     screen = None
@@ -291,4 +291,4 @@ if __name__ == "__main__":
     except KeyboardInterrupt as e:
         pass
     except pygame.error as e:
-        print e
+        print(e)

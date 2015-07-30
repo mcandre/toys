@@ -80,9 +80,9 @@ def makeexec(filename, manual=None):
 def usage():
     """Print usage message"""
 
-    print "Usage: %s [options] <file1> <file2> <file3> <...>" % (sys.argv[0])
-    print "\n--manual <interpreter path>"
-    print "--help (usage)"
+    print("Usage: %s [options] <file1> <file2> <file3> <...>" % (sys.argv[0]))
+    print("\n--manual <interpreter path>")
+    print("--help (usage)")
 
     sys.exit()
 

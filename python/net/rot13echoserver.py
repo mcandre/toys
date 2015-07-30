@@ -58,8 +58,8 @@ def start(host="localhost", port=8000):
                 print("closed")
                 listening = False
 
-        except Exception, e:
-            print "error: %s" % (e)
+        except Exception as e:
+            print("error: %s" % (e))
 
 if __name__ == "__main__":
     if len(sys.argv) > 2:

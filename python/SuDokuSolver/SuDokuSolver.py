@@ -118,21 +118,21 @@ class SuDokuSolver:
 
 
 def usage():
-    print "Usage: " + sys.argv[0] + "[options] <file> <file2> <file3> ..."
-    print "\nSuDokus are read from files in the format:\n"
+    print("Usage: " + sys.argv[0] + "[options] <file> <file2> <file3> ...")
+    print("\nSuDokus are read from files in the format:\n")
 
-    print "[8][3][2][5][9][1][6][7][4]"
-    print "[4][9][6][3][8][7][2][5][1]"
-    print "[5][7][1][2][6][4][9][8][3]"
-    print "[1][8][5][7][4][6][3][9][2]"
-    print "[2][6][7][9][5][3][4][1][8]"
-    print "[9][4][3][8][1][2][7][6][5]"
-    print "[7][1][4][6][3][8][5][2][9]"
-    print "[3][2][9][1][7][5][8][4][6]"
-    print "[6][5][8][4][2][9][1][3]_0_"
+    print("[8][3][2][5][9][1][6][7][4]")
+    print("[4][9][6][3][8][7][2][5][1]")
+    print("[5][7][1][2][6][4][9][8][3]")
+    print("[1][8][5][7][4][6][3][9][2]")
+    print("[2][6][7][9][5][3][4][1][8]")
+    print("[9][4][3][8][1][2][7][6][5]")
+    print("[7][1][4][6][3][8][5][2][9]")
+    print("[3][2][9][1][7][5][8][4][6]")
+    print("[6][5][8][4][2][9][1][3]_0_")
 
-    print "\nWhere [x] is a cell with given value x and"
-    print "_x_ is a blank cell with guessed value x."
+    print("\nWhere [x] is a cell with given value x and")
+    print("_x_ is a blank cell with guessed value x.")
 
     sys.exit()
 
@@ -156,45 +156,45 @@ def main():
     filenames = args
 
     for filename in filenames:
-        print "Opening " + filename
+        print("Opening " + filename)
 
         f = open(filename)
 
-        print "Reading"
+        print("Reading")
 
         lines = f.readlines()
         f.close()
         lines = "".join(lines)
 
-        print "Closed"
+        print("Closed")
 
         sd = SuDoku()
 
-        print "Parsing"
+        print("Parsing")
 
         try:
             sd.text2sudoku(lines)
         except:
-            print filename + " improperly formatted"
+            print(filename + " improperly formatted")
             continue
 
         solver = SuDokuSolver(sd)
         solver.prepare()
 
-        print str(solver.getPossibilities()) + " possibilities"
+        print(str(solver.getPossibilities()) + " possibilities")
 
-        print "Solving"
+        print("Solving")
 
         try:
             solver.solve()
-        except KeyboardInterrupt, e:
-            print "Interrupted"
+        except KeyboardInterrupt:
+            print("Interrupted")
             continue
         except:
-            print filename + " unsolvable"
+            print(filename + " unsolvable")
             continue
 
-        print "Solution:\n" + str(solver.getSuDoku())
+        print("Solution:\n" + str(solver.getSuDoku()))
 
 if __name__ == "__main__":
     main()

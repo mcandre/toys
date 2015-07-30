@@ -7,7 +7,10 @@ __date__ = "12 Nov 2005 - 12 Feb 2006"
 __copyright__ = "Copyright 2006 Andrew Pennebaker"
 __version__ = "0.2"
 
-from socket import *
+from socket import (
+    has_ipv6,
+    socket
+)
 
 FAMILIES = {
     "appletalk": 5,
@@ -52,7 +55,7 @@ def listen(
         cert=None
 ):
     if family == FAMILIES["inet6"] and (not has_ipv6):
-        raise new Exception("Platform does not support IPv6")
+        raise Exception("Platform does not support IPv6")
 
     server = socket(family, t)
     if key and cert:
@@ -86,7 +89,7 @@ def connect(
         cert=None
 ):
     if family == FAMILIES["inet6"] and (not has_ipv6):
-        raise new Exception("Platform does not support IPv6")
+        raise Exception("Platform does not support IPv6")
 
     client = socket(family, t)
     if key and cert:
@@ -109,7 +112,7 @@ def scan(
         t=TYPES["tcp"]
 ):
     if family == FAMILIES["inet6"] and (not has_ipv6):
-        raise new Exception("Platform does not support IPv6")
+        raise Exception("Platform does not support IPv6")
 
     client = socket(family, t)
 
@@ -133,18 +136,18 @@ def scan(
 
 
 def usage():
-    print "Usage: %s [options] <host>" % (sys.argv[0])
-    print "\n--connect connect to server"
-    print "--family [appletalk decnet inet inet6 ipx sna unix unspec]"
-    print "--type [tcp udp rdm seq raw]"
-    print "--port <range> (default 4000)"
-    print "\n--listen create server"
-    print "--execute <command> on listen\n"
+    print("Usage: %s [options] <host>" % (sys.argv[0]))
+    print("\n--connect connect to server")
+    print("--family [appletalk decnet inet inet6 ipx sna unix unspec]")
+    print("--type [tcp udp rdm seq raw]")
+    print("--port <range> (default 4000)")
+    print("\n--listen create server")
+    print("--execute <command> on listen\n")
     "\t\t\tonly executes if GAPING_SECURITY_HOLE is configured"
-    print "\n--scan randomized ports for stealth"
-    print "\n--sslkey <ssl key file>"
-    print "--sslcert <ssl certificate file>"
-    print "\n--help (usage)"
+    print("\n--scan randomized ports for stealth")
+    print("\n--sslkey <ssl key file>")
+    print("--sslcert <ssl certificate file>")
+    print("\n--help (usage)")
 
     sys.exit()
 
@@ -199,22 +202,22 @@ def main():
             if value in FAMILIES:
                 family = FAMILIES[value]
             else:
-                raise new TypeError("Family not valid")
+                raise TypeError("Family not valid")
         elif option == "--type":
             if value in TYPES:
                 t = TYPES[value]
             else:
-                raise new TypeError("Type not valid")
+                raise TypeError("Type not valid")
         elif option == "--port":
             try:
                 ports = makerange(value)
-            except Exception, e:
+            except Exception:
                 usage()
         elif option == "--listen":
             mode = LISTEN_MODE
         elif option == "--execute":
             if not GAPING_SECURITY_HOLE:
-                raise new Exception(
+                raise Exception(
                     "GAPING_SECURITY_HOLE not configured"
                     " to allow command execution"
                 )
@@ -232,10 +235,10 @@ def main():
     elif mode == SCAN_MODE:
         openports = scan(host, ports, family, t)
         if len(openports) < 1:
-            print "no open ports found"
+            print("no open ports found")
         else:
             for port in openports:
-                print "%d open" % (port)
+                print("%d open" % (port))
 
 if __name__ == "__main__":
     try:

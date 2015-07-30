@@ -88,17 +88,17 @@ def main():
     my_total = total(my_hand)
 
     while True:
-        print "----------"
-        print "Your hand:"
-        print "\n".join(["%s" % (card) for card in my_hand])
-        print "Total: %d" % (my_total)
-        print "\nDealer shows:"
-        print "\n".join(["%s" % (card) for card in dealer_hand[1:]])
-        print "Dealer total: %d" % (total(dealer_hand[1:]))
-        print "Hit or stay? "
+        print("----------")
+        print("Your hand:")
+        print("\n".join(["%s" % (card) for card in my_hand]))
+        print("Total: %d" % (my_total))
+        print("\nDealer shows:")
+        print("\n".join(["%s" % (card) for card in dealer_hand[1:]]))
+        print("Dealer total: %d" % (total(dealer_hand[1:])))
+        print("Hit or stay? ")
         response = ""
 
-        response = raw_input()
+        response = input()
 
         if "h" in response.lower():
             my_hand.append(deck.deal(1)[0])
@@ -113,29 +113,29 @@ def main():
         dealer_hand.append(deck.deal(1)[0])
         dealer_total = total(dealer_hand)
 
-    print "=======\nResult:\n======="
+    print("=======\nResult:\n=======")
 
-    print "Your hand:"
-    print "\n".join(["%s" % (card) for card in my_hand])
-    print "Total: %d" % (my_total)
-    print "\nDealer hand:"
-    print "\n".join(["%s" % (card) for card in dealer_hand])
-    print "Dealer total: %d" % (total(dealer_hand))
+    print("Your hand:")
+    print("\n".join(["%s" % (card) for card in my_hand]))
+    print("Total: %d" % (my_total))
+    print("\nDealer hand:")
+    print("\n".join(["%s" % (card) for card in dealer_hand]))
+    print("Dealer total: %d" % (total(dealer_hand)))
 
-    print "======="
+    print("=======")
 
     if my_total > 21:
-        print "Busted!"
+        print("Busted!")
     elif dealer_total > 21:
-        print "Dealer busted. You win!"
+        print("Dealer busted. You win!")
     elif dealer_total == 21:
-        print "Dealer has 21. You lose."
+        print("Dealer has 21. You lose.")
     elif my_total == 21:
-        print "You won 21!"
+        print("You won 21!")
     elif dealer_total >= my_total:
-        print "Dealer won."
+        print("Dealer won.")
     elif dealer_total < my_total:
-        print "You win!"
+        print("You win!")
 
 if __name__ == "__main__":
     main()

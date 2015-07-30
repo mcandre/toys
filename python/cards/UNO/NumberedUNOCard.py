@@ -42,7 +42,7 @@ class NumberedUNOCard(UNOCard):
     def match(self, other):
         if self.getColor() == other.getColor():
             return True
-        elif isinstance(other, NumberedUNFOCard):
+        elif isinstance(other, NumberedUNOCard):
             return self.getNumber() == other.getNumber()
 
         return False

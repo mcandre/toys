@@ -116,7 +116,7 @@ class CRC32(HashFunction.HashFunction):
     def unformat(self, hash):
         """Parse sum"""
 
-        return long(hash, 16)
+        return int(hash, 16)
 
 if __name__ == "__main__":
     HashFunction.main(CRC32)

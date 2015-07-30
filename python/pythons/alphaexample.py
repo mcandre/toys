@@ -5,6 +5,7 @@ import pygame
 WIDTH = 800
 HEIGHT = 600
 bg = None
+font = None
 
 
 def Init():

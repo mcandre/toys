@@ -19,26 +19,31 @@ def start(host="localhost", port=8000):
 
     client = Rot13Socket.Rot13Socket(socket.AF_INET, socket.SOCK_STREAM)
 
-    print "connecting to %s at %d" % (host, port)
+    print("connecting to %s at %d" % (host, port))
     client.connect((host, port))
-    print "connected"
+    print("connected")
 
-    print "Sent text, %s to quit." % (echoconstants.EXIT)
+    print("Sent text, %s to quit." % (echoconstants.EXIT))
 
-    data = raw_input("client> ")
+    data = input("client> ")
 
     client.send(data)
     data = client.recv(echoconstants.BUFFER)
-    print "server> %s" % (data)
+
+    print("server> %s" % (data))
+
     while data != echoconstants.EXIT and data != echoconstants.SHUTDOWN:
-        data = raw_input("client> ")
+        data = input("client> ")
         client.send(data)
         data = client.recv(echoconstants.BUFFER)
-        print "server> %s" % (data)
 
-    print "closing connection"
+        print("server> %s" % (data))
+
+    print("closing connection")
+
     client.close()
-    print "closed"
+
+    print("closed")
 
 if __name__ == "__main__":
     if len(sys.argv) > 2:

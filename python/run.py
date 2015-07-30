@@ -36,7 +36,7 @@ class App:
             orient=Tkinter.VERTICAL,
             command=self.result_text.yview
         )
-        self.result_text.configure(yscrollcommand self.scroll_vert.set)
+        self.result_text.configure(yscrollcommand=self.scroll_vert.set)
         self.scroll_vert.pack(side=Tkinter.RIGHT, fill=Tkinter.Y)
 
         self.result_frame.pack(side=Tkinter.BOTTOM, fill=Tkinter.BOTH)

@@ -16,9 +16,9 @@ import math
 import sys
 
 
-def approxpi(b=1000L):
+def approxpi(b=1000):
     """Pi approximation"""
-    return 2L * math.atan(b)
+    return 2 * math.atan(b)
 
 
 def usage():
@@ -30,9 +30,9 @@ def usage():
 def main():
     """CLI"""
 
-    n = 1000L
+    n = 1000
 
-    n = long(sys.argv[1])
+    n = int(sys.argv[1])
 
     if n < 0:
         usage()

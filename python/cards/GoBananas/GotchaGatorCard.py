@@ -25,11 +25,11 @@ class GotchaGatorCard(GoBananasCard):
     # wild or
     # same numbers
     def match(self, other):
-        if isinstnce(other, MonkeyCard):
-            if getNumber() == self.WILD:
+        if isinstance(other, MonkeyCard):
+            if self.getNumber() == self.WILD:
                 return True
 
-            return getNumber() == other.getNumber()
+            return self.getNumber() == other.getNumber()
 
         return False
 

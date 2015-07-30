@@ -13,7 +13,7 @@ from Card.Deck import Deck
 
 class GoBananasDeck(Deck):
     def __init__(self, cards=None):
-        is cards is None:
+        if cards is None:
             cards = [
                 GotchaGatorCard(GotchaGatorCard.WILD),
                 GotchaGatorCard(GotchaGatorCard.ONE),

@@ -88,8 +88,8 @@ def main():
 
     result = approxpi(n, p)
 
-    print "Pi:\n%s\n" % (result[0])
-    print "Remainder:\n%s" % (result[1])
+    print("Pi:\n%s\n" % (result[0]))
+    print("Remainder:\n%s" % (result[1]))
 
 if __name__ == "__main__":
     main()
