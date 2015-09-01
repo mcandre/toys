@@ -12,6 +12,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <jdk.version>1.8</jdk.version>
   </properties>
 
   <profiles>
@@ -55,11 +56,22 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>2.3.2</version>
+        <version>3.3</version>
         <configuration>
           <source>${jdk.version}</source>
           <target>${jdk.version}</target>
-          <compilerArgument>-Xlint:all</compilerArgument>
+          <compilerArgs>
+            <arg>-Xlint:all</arg>
+            <arg>-Xdoclint:all</arg>
+          </compilerArgs>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <configuration>
+          <compilerArgs>
+            <arg>-Xdoclint:all</arg>
+          </compilerArgs>
         </configuration>
       </plugin>
       <!-- Lint with Checkstyle -->
@@ -118,6 +130,14 @@
 
   <reporting>
     <plugins>
+      <plugin>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <configuration>
+          <compilerArgs>
+            <arg>-Xdoclint:all</arg>
+          </compilerArgs>
+        </configuration>
+      </plugin>
       <!-- Hide spurious Checkstyle reporter warning -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
