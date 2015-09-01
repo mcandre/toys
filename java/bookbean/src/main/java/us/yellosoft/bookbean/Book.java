@@ -84,7 +84,10 @@ public class Book implements Serializable, Comparable {
     return compareTo(other) == 0;
   }
 
-  // Not necessary, but helpful for debugging
+  /**
+     Not necessary, but helpful for debugging
+     @return String simple, informative string representation of this object
+  */
   public String toString() {
     return this.title + " by " + this.author + " (ISBN " + this.isbn + ")";
   }
