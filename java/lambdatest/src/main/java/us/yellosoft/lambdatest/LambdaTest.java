@@ -1,3 +1,5 @@
+package us.yellosoft.lambdatest;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.util.stream.Stream;
@@ -20,5 +22,7 @@ public class LambdaTest {
     for (final Integer y : ys) {
       System.out.println(y);
     }
+
+    System.exit(0);
   }
 }
