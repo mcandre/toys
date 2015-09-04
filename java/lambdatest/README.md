@@ -6,7 +6,7 @@ Lambda example in Java
 
 ```
 $ mvn package
-$ mvn exec:java -Dexec.mainClass=us.yellosoft.lambdatest.LambdaTest
+$ bin/lambdatest
 0
 2
 4
