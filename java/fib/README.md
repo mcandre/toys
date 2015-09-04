@@ -6,14 +6,14 @@ Fibonacci example in Java
 
 ```
 $ mvn package
-$ mvn exec:java -Dexec.mainClass=us.yellosoft.fib.Fib
+$ bin/fib
 N = 10
 Fib 10 = 55
 ```
 
 # REQUIREMENTS
 
-* [JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 1.6+
+* [JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 1.8+
 
 # CODE COVERAGE
 
