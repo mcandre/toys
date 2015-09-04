@@ -6,13 +6,13 @@ Hello World in Java
 
 ```
 $ mvn package
-$ mvn exec:java -Dexec.mainClass=us.yellosoft.hello.Hello
+$ bin/hello
 Hello World
 ```
 
 # REQUIREMENTS
 
-* [JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 1.6+
+* [JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 1.7+
 
 # CODE COVERAGE
 
