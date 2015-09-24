@@ -1,0 +1,26 @@
+plugins {
+  id 'net.saliman.cobertura' version '2.2.8'
+  id 'com.github.johnrengelman.shadow' version '1.2.2'
+}
+
+apply plugin: 'java'
+apply plugin: 'checkstyle'
+apply plugin: 'pmd'
+apply plugin: 'net.saliman.cobertura'
+
+compileJava {
+  options.compilerArgs << '-Xlint:all'
+}
+
+checkstyle {
+  configProperties = [configDir: "${rootDir}/config"]
+}
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  testCompile 'junit:junit:4.12'
+  testCompile 'org.slf4j:slf4j-log4j12:1.7.12'
+}

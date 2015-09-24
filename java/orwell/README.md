@@ -7,7 +7,7 @@ Java [Enum](http://docs.oracle.com/javase/7/docs/api/java/lang/Enum.html)s are b
 # EXAMPLE
 
 ```
-$ mvn test
+$ gradle test
 
 $ cat src/main/java/us/yellosoft/orwell/Orwell.java
 package us.yellosoft.orwell;
@@ -44,12 +44,27 @@ public class OrwellTest {
 
 # REQUIREMENTS
 
-* [JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 1.6+
-* [Maven](http://maven.apache.org/) 3+
+* [JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 1.7+
+* [Gradle](http://gradle.org/) 2.1+
+
+E.g., `brew install gradle`
+
+# JAVADOCS
+
+```
+$ gradle javadoc
+$ open build/docs/javadoc/index.html
+```
 
 # CODE COVERAGE
 
 ```
-$ mvn site
-$ open target/site/coburtura/index.html
+$ gradle cobertura
+$ open build/reports/coburtura/index.html
+```
+
+# LINTING
+
+```
+$ gradle check
 ```
