@@ -32,7 +32,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 // A Bean for Books
-public class Book implements Serializable, Comparable {
+public class Book implements Serializable, Comparable<Book> {
+  public static final long serialVersionUID = 1L;
+
   // Attributes
   private String title;
   private String author;
@@ -49,7 +51,23 @@ public class Book implements Serializable, Comparable {
     this.isbn = "";
   }
 
-  // Setter/Getter boilerplate follows
+  // Not necessary for Beans, but helpful for anyone who hates calling
+  // .setThis(x), .setThat(y), .setTheOther(z) blah blah boilerplate code!
+  public Book(
+    String title,
+    String author,
+    String publisher,
+    Date published,
+    String isbn
+  ) {
+    this.title = title;
+    this.author = author;
+    this.publisher = publisher;
+    this.published = published;
+    this.isbn = isbn;
+  }
+
+  // Nasty setter/getter boilerplate follows
 
   public String getTitle() { return this.title; }
   public void setTitle(String title) { this.title = title; }
@@ -91,11 +109,26 @@ public class BookTest {
 # REQUIREMENTS
 
 * [JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 1.6+
-* [Maven](http://maven.apache.org/) 3+
+* [Gradle](http://gradle.org/) 2.1+
+
+E.g., `brew install gradle`
+
+# JAVADOCS
+
+```
+$ gradle javadoc
+$ open build/docs/javadoc/index.html
+```
 
 # CODE COVERAGE
 
 ```
-$ mvn site
-$ open target/site/coburtura/index.html
+$ gradle cobertura
+$ open build/reports/coburtura/index.html
+```
+
+# LINTING
+
+```
+$ gradle check
 ```

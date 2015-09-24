@@ -3,8 +3,10 @@ package us.yellosoft.bookbean;
 import java.io.Serializable;
 import java.util.Date;
 
-// A Bean for Books
+/** A Bean for Books */
 public class Book implements Serializable, Comparable {
+  public static final long serialVersionUID = 1L;
+
   // Attributes
   private String title;
   private String author;
@@ -12,7 +14,7 @@ public class Book implements Serializable, Comparable {
   private Date published;
   private String isbn;
 
-  // 0-ary default constructor with reasonable defaults
+  /** 0-ary default constructor with reasonable defaults */
   public Book() {
     this.title = "";
     this.author = "";
@@ -21,14 +23,21 @@ public class Book implements Serializable, Comparable {
     this.isbn = "";
   }
 
-  // Not necessary for Beans, but helpful for anyone who hates calling
-  // .setThis(x), .setThat(y), .setTheOther(z) blah blah boilerplate code!
+  /** All-at-once constructor. Not necessary for Beans, but helpful for anyone who hates calling
+      .setThis(x), .setThat(y), .setTheOther(z) blah blah boilerplate code!
+
+      @param title The book's title
+      @param author The book's author(s)
+      @param publisher The book's publisher
+      @param published The book's publication date
+      @param isbn The book's ISBN
+  */
   public Book(
-    String title,
-    String author,
-    String publisher,
-    Date published,
-    String isbn
+    final String title,
+    final String author,
+    final String publisher,
+    final Date published,
+    final String isbn
   ) {
     this.title = title;
     this.author = author;
@@ -39,49 +48,70 @@ public class Book implements Serializable, Comparable {
 
   // Nasty setter/getter boilerplate follows
 
+  /** @return The book's title */
   public String getTitle() {
     return this.title;
   }
-  public void setTitle(String title) {
+  /** @param title The book's title */
+  public void setTitle(final String title) {
     this.title = title;
   }
 
+  /** @return The book's author(s) */
   public String getAuthor() {
     return this.author;
   }
-  public void setAuthor(String author) {
+  /** @param author The book's author(s) */
+  public void setAuthor(final String author) {
     this.author = author;
   }
 
+  /** @return The book's publisher */
   public String getPublisher() {
     return this.publisher;
   }
-  public void setPublisher(String publisher) {
+  /** @param publisher The book's publisher */
+  public void setPublisher(final String publisher) {
     this.publisher = publisher;
   }
 
+  /** @return The book's publication date */
   public Date getPublished() {
     return this.published;
   }
-  public void setPublished(Date published) {
+  /** @param published The book's publication date */
+  public void setPublished(final Date published) {
     this.published = published;
   }
 
+  /** @return The book's ISBN */
   public String getISBN() {
     return this.isbn;
   }
-  public void setISBN(String isbn) {
+  /** @param isbn The book's ISBN */
+  public void setISBN(final String isbn) {
     this.isbn = isbn;
   }
 
   // Yuck! But now that's over, any external Java code can configure this Bean super easily.
 
-  // Not necessary, but helpful for sorting
-  public int compareTo(Object other) {
+  /** Compare by ISBN
+      @param other another Book
+      @return comparison value
+  */
+  public int compareTo(final Object other) {
     return this.isbn.compareTo(((Book) other).getISBN());
   }
-  public boolean equals(Object other) {
-    return compareTo(other) == 0;
+  /** Equate by ISBN
+      @param other another Object
+      @return equation value
+  */
+  public boolean equals(final Object other) {
+    return compareTo((Book) other) == 0;
+  }
+  /** @return a standardized hash code for this book */
+  public int hashCode() {
+    return new Long(Long.parseLong(this.isbn.replaceAll("-", ""))).hashCode();
   }
 
   /**

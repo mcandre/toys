@@ -11,8 +11,6 @@ import java.io.ObjectInputStream;
 import org.junit.Test;
 import org.junit.Assert;
 
-import us.yellosoft.bookbean.Book;
-
 public class BookTest {
   public static final Book BPWJFD = new Book(
     "Beginning Programming with Java for Dummies",
@@ -26,6 +24,16 @@ public class BookTest {
   public void testZeroConfiguration() {
     Book defaultBook = new Book();
     Assert.assertEquals(true, true); // No errors thrown
+  }
+
+  @Test
+  public void testUnequal() {
+    Book book1 = new Book();
+    book1.setISBN("1");
+    Book book2 = new Book();
+    book2.setISBN("2");
+
+    Assert.assertNotEquals(book1, book2);
   }
 
   @Test
@@ -47,6 +55,17 @@ public class BookTest {
   }
 
   @Test
+  public void testHashable() {
+    Book book = new Book();
+    book.setISBN("978-3-16-148410-0");
+
+    Assert.assertEquals(
+      new Long(9783161484100L).hashCode(),
+      book.hashCode()
+    );
+  }
+
+  @Test
   public void testConfigurability() {
     Calendar calendar = Calendar.getInstance();
 
@@ -64,5 +83,60 @@ public class BookTest {
     draft.setPublished(calendar.getTime());
 
     Assert.assertEquals(calendar.getTime(), draft.getPublished());
+  }
+
+  @Test
+  public void testConstructability() {
+    Calendar calendar = Calendar.getInstance();
+
+    Book draft = new Book(
+      "Working Title",
+      "Me",
+      "LuLu",
+      calendar.getTime(),
+      "1"
+    );
+
+    // 6 months later and we are already publishing a new edition
+    draft.setTitle("Working Title, 2nd Edition");
+    draft.setISBN("2");
+    calendar.add(Calendar.MONTH, 6);
+    draft.setPublished(calendar.getTime());
+
+    Assert.assertEquals(calendar.getTime(), draft.getPublished());
+  }
+
+  @Test
+  public void testGetAttributes() {
+    Calendar calendar = Calendar.getInstance();
+    Date date = calendar.getTime();
+    Book draft = new Book(
+      "Working Title",
+      "Me",
+      "LuLu",
+      date,
+      "1"
+    );
+
+    Assert.assertEquals("Working Title", draft.getTitle());
+    Assert.assertEquals("Me", draft.getAuthor());
+    Assert.assertEquals("LuLu", draft.getPublisher());
+    Assert.assertEquals(date, draft.getPublished());
+    Assert.assertEquals("1", draft.getISBN());
+  }
+
+  @Test
+  public void testPrinting() {
+    Calendar calendar = Calendar.getInstance();
+    Date date = calendar.getTime();
+    Book draft = new Book(
+      "Working Title",
+      "Me",
+      "LuLu",
+      date,
+      "1"
+    );
+
+    Assert.assertEquals("Working Title by Me (ISBN 1)", draft.toString());
   }
 }

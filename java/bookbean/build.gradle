@@ -16,12 +16,6 @@ checkstyle {
   configProperties = [configDir: "${rootDir}/config"]
 }
 
-jar {
-  manifest {
-    attributes 'Main-Class': 'us.yellosoft.hello.Hello'
-  }
-}
-
 repositories {
   mavenCentral()
 }
