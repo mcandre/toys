@@ -1,3 +1,5 @@
 *.class
 Gemfile.lock
 target/
+build/
+.gradle/

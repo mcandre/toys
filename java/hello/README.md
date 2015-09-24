@@ -5,7 +5,7 @@ Hello World in Java
 # EXAMPLE
 
 ```
-$ mvn package
+$ gradle shadowJar
 $ bin/hello
 Hello World
 ```
@@ -13,10 +13,11 @@ Hello World
 # REQUIREMENTS
 
 * [JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 1.7+
+* [Gradle](http://gradle.org/) 2.1+
 
 # CODE COVERAGE
 
 ```
-$ mvn site
-$ open target/site/coburtura/index.html
+$ gradle cobertura
+$ open build/reports/coburtura/index.html
 ```

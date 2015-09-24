@@ -1,2 +1,2 @@
 #!/bin/sh
-java -jar "${0%/*}"/../target/hello-0.0.1-jar-with-dependencies.jar "$@"
+java -jar "${0%/*}"/../build/libs/hello-all.jar "$@"
