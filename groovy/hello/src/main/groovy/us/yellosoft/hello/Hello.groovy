@@ -1,3 +1,3 @@
-package us.yellosoft.hello.groovy
+package us.yellosoft.hello
 
 println "Hello World!"

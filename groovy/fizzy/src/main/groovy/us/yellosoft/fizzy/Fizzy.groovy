@@ -1,4 +1,4 @@
-package us.yellosoft.fizzy.groovy
+package us.yellosoft.fizzy
 
 final def fizzy = { final n ->
   if (n % 15 == 0) {

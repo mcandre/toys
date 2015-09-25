@@ -1,3 +1,3 @@
-package us.yellosoft.args.groovy
+package us.yellosoft.args
 
 println args

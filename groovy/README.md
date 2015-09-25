@@ -6,12 +6,12 @@ Introductory programs in Groovy
 
 ```
 $ cd hello/
-$ mvn package
-$ mvn exec:java -Dexec.mainClass=us.yellosoft.hello.groovy.Hello
+$ gradle shadowJar
+$ bin/hello
 Hello World!
 ```
 
 # REQUIREMENTS
 
-* [Maven](http://maven.apache.org/) 3+
 * [JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 1.7+
+* [Gradle](https://docs.gradle.org/current/userguide/tutorial_groovy_projects.html) 2.1+

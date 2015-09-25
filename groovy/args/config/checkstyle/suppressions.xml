@@ -7,5 +7,5 @@
   <suppress checks="." files=".*\.class" />
   <suppress checks="." files=".*\.thrift" />
   <suppress checks="." files=".*\.html" />
-  <suppress checks="." files="HelloBSH.java" />
+  <suppress checks="." files=".*Test.*" />
 </suppressions>
