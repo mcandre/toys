@@ -14,7 +14,8 @@ compileJava {
 }
 
 checkstyle {
-  configProperties = [configDir: "${rootDir}/config"]
+  configFile = "${rootProject.projectDir}/config/checkstyle/checkstyle.xml" as File
+  configProperties = [configDir: "${rootProject.projectDir}/config"]
 }
 
 pmd { consoleOutput = true }
