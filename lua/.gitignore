@@ -1,10 +1,18 @@
-*.s
-*.bc
-# Created by https://www.gitignore.io/api/c
+bin/
+# Created by https://www.gitignore.io/api/lua
 
-### C ###
+### Lua ###
+# Compiled Lua sources
+luac.out
+
+# luarocks build files
+*.src.rock
+*.zip
+*.tar.gz
+
 # Object files
 *.o
+*.os
 *.ko
 *.obj
 *.elf
@@ -18,6 +26,8 @@
 *.a
 *.la
 *.lo
+*.def
+*.exp
 
 # Shared objects (inc. Windows DLLs)
 *.dll
@@ -32,6 +42,3 @@
 *.i*86
 *.x86_64
 *.hex
-
-# Debug files
-*.dSYM/

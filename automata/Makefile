@@ -1,10 +1,13 @@
+BIN=bin/automata
+
 default: test
 
-test: automata
-	./automata
+test: $(BIN)
+	$(BIN)
 
-automata: automata.c
-	gcc -O2 -Wall -o automata automata.c
+$(BIN): automata.c
+	mkdir -p bin/
+	gcc -O2 -Wall -o $(BIN) automata.c
 
 clean:
-	-rm automata
+	-rm $(BIN)

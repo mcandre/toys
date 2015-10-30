@@ -1,0 +1,6 @@
+# Created by https://www.gitignore.io/api/commonlisp
+
+### CommonLisp ###
+*.FASL
+*.fasl
+*.lisp-temp

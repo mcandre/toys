@@ -1,7 +1,7 @@
 bin/
-# Created by https://www.gitignore.io/api/objective-c
+# Created by https://www.gitignore.io/api/swift
 
-### Objective-C ###
+### Swift ###
 # Xcode
 #
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
@@ -35,9 +35,9 @@ xcuserdata
 #
 # We recommend against adding the Pods directory to your .gitignore. However
 # you should judge for yourself, the pros and cons are mentioned at:
-# http://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
+# http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control
 #
-#Pods/
+# Pods/
 
 # Carthage
 #
@@ -45,6 +45,3 @@ xcuserdata
 # Carthage/Checkouts
 
 Carthage/Build
-
-### Objective-C Patch ###
-*.xcscmblueprint

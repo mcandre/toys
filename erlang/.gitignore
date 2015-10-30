@@ -1,5 +1,13 @@
+# Created by https://www.gitignore.io/api/erlang
+
+### Erlang ###
+.eunit
+deps
+*.o
 *.beam
+*.plt
 erl_crash.dump
-*.access
-*.auth
-*.log
+ebin
+rel/example_project
+.concrete/DEV_MODE
+.rebar

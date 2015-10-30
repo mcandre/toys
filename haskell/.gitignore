@@ -1,11 +1,20 @@
 bin/
+# Created by https://www.gitignore.io/api/haskell
+
+### Haskell ###
+dist
+cabal-dev
 *.o
 *.hi
-Gemfile.lock
-maths
-experiment1
-experiment2
-experiment3
-experiment4
-fib1
-fib2
+*.chi
+*.chs.h
+*.dyn_o
+*.dyn_hi
+.hpc
+.hsenv
+.cabal-sandbox/
+cabal.sandbox.config
+*.prof
+*.aux
+*.hp
+.stack-work/
