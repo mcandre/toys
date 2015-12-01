@@ -2,9 +2,10 @@ package us.yellosoft.bookbean;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 /** A Bean for Books */
-public class Book implements Serializable, Comparable {
+public class Book implements Serializable, Comparable<Book> {
   public static final long serialVersionUID = 1L;
 
   // Attributes
@@ -95,29 +96,29 @@ public class Book implements Serializable, Comparable {
 
   // Yuck! But now that's over, any external Java code can configure this Bean super easily.
 
-  /** Compare by ISBN
-      @param other another Book
-      @return comparison value
-  */
-  public int compareTo(final Object other) {
-    return this.isbn.compareTo(((Book) other).getISBN());
-  }
-  /** Equate by ISBN
-      @param other another Object
-      @return equation value
-  */
-  public boolean equals(final Object other) {
-    return compareTo((Book) other) == 0;
-  }
-  /** @return a standardized hash code for this book */
-  public int hashCode() {
-    return new Long(Long.parseLong(this.isbn.replaceAll("-", ""))).hashCode();
+  @Override
+  public int compareTo(final Book other) {
+    return this.isbn.compareTo(other.getISBN());
   }
 
-  /**
-     Not necessary, but helpful for debugging
-     @return String simple, informative string representation of this object
-  */
+  @Override
+  public boolean equals(final Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Book book = (Book) o;
+    return Objects.equals(isbn, book.isbn);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(isbn);
+  }
+
+  @Override
   public String toString() {
     return this.title + " by " + this.author + " (ISBN " + this.isbn + ")";
   }

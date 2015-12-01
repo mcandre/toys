@@ -7,6 +7,7 @@ import java.io.PipedOutputStream;
 import java.io.PipedInputStream;
 import java.io.ObjectOutputStream;
 import java.io.ObjectInputStream;
+import java.util.Objects;
 
 import org.junit.Test;
 import org.junit.Assert;
@@ -24,6 +25,14 @@ public class BookTest {
   public void testZeroConfiguration() {
     Book defaultBook = new Book();
     Assert.assertEquals(true, true); // No errors thrown
+  }
+
+  @Test
+  public void testEqual() {
+    Book book1 = new Book();
+    book1.setISBN("1");
+
+    Assert.assertEquals(book1, book1);
   }
 
   @Test
@@ -60,7 +69,7 @@ public class BookTest {
     book.setISBN("978-3-16-148410-0");
 
     Assert.assertEquals(
-      new Long(9783161484100L).hashCode(),
+      Objects.hash("978-3-16-148410-0"),
       book.hashCode()
     );
   }
