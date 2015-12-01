@@ -134,5 +134,12 @@ $ open build/reports/jacoco/test/html/index.html
 # LINTING
 
 ```
+$ gradle check
+```
+
+## Optional: Sonar
+
+```
 $ gradle check sonar
+$ open http://localhost:9000/
 ```
