@@ -140,6 +140,7 @@ $ gradle check
 ## Optional: Sonar
 
 ```
+$ sonar start
 $ gradle check sonar
 $ open http://localhost:9000/
 ```
