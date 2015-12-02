@@ -6,6 +6,9 @@ import java.util.stream.Stream;
 import java.util.stream.Collectors;
 
 public class LambdaTest {
+  /** Utility class */
+  private LambdaTest() {}
+
   public static void main(String[] args) {
     final ArrayList<Integer> xsList = new ArrayList<Integer>();
 
