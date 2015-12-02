@@ -4,11 +4,11 @@ import java.io.IOException;
 
 /** YubNub launcher **/
 public final class YubNub {
-  /** utility class */
-  private YubNub() {}
-
   /** YubNub command URI */
   public static final String PARSER = "http://yubnub.org/parser/parse?command=";
+
+  /** utility class */
+  private YubNub() {}
 
   /**
      <p>Execute YubNub command in system default browser</p>
