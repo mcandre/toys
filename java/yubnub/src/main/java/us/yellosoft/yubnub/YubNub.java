@@ -25,16 +25,6 @@ public final class YubNub {
      @throws IOException on CLI error
   */
   public static void main(final String[] args) throws IOException {
-    if (args.length < 1) {
-      go("");
-    } else {
-      String command = args[0];
-
-      for (int i = 1; i < args.length; i++) {
-        command += "+" + args[i];
-      }
-
-      go(command);
-    }
+    go(String.join("+", args));
   }
 }

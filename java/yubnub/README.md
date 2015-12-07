@@ -39,6 +39,13 @@ $ open build/reports/jacoco/test/html/index.html
 $ gradle check
 ```
 
+## Optional: FindBugs
+
+```
+$ gradle check
+$ open build/reports/findbugs/main.html
+```
+
 ## Optional: Sonar
 
 ```
