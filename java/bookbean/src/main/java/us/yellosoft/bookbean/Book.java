@@ -15,15 +15,6 @@ public class Book implements Serializable, Comparable<Book> {
   private Date published;
   private String isbn;
 
-  /** 0-ary default constructor with reasonable defaults */
-  public Book() {
-    this.title = "";
-    this.author = "";
-    this.publisher = "";
-    this.published = new Date();
-    this.isbn = "";
-  }
-
   /** All-at-once constructor. Not necessary for Beans, but helpful for anyone who hates calling
       .setThis(x), .setThat(y), .setTheOther(z) blah blah boilerplate code!
 
@@ -43,8 +34,13 @@ public class Book implements Serializable, Comparable<Book> {
     this.title = title;
     this.author = author;
     this.publisher = publisher;
-    this.published = published;
+    this.published = new Date(published.getTime());
     this.isbn = isbn;
+  }
+
+  /** 0-ary default constructor with reasonable defaults */
+  public Book() {
+    this("", "", "", new Date(), "");
   }
 
   // Nasty setter/getter boilerplate follows
@@ -78,11 +74,11 @@ public class Book implements Serializable, Comparable<Book> {
 
   /** @return The book's publication date */
   public Date getPublished() {
-    return this.published;
+    return new Date(this.published.getTime());
   }
   /** @param published The book's publication date */
   public void setPublished(final Date published) {
-    this.published = published;
+    this.published = new Date(published.getTime());
   }
 
   /** @return The book's ISBN */

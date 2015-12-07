@@ -23,8 +23,7 @@ public class BookTest {
 
   @Test
   public void testZeroConfiguration() {
-    Book defaultBook = new Book();
-    Assert.assertEquals(true, true); // No errors thrown
+    Assert.assertEquals(new Book(), new Book());
   }
 
   @Test
