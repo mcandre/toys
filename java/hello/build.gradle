@@ -5,6 +5,7 @@ plugins {
 
 apply plugin: 'java'
 apply plugin: 'checkstyle'
+apply plugin: 'findbugs'
 apply plugin: 'pmd'
 apply plugin: 'jacoco'
 
@@ -17,6 +18,17 @@ compileJava {
 checkstyle {
   configFile = "${rootProject.projectDir}/config/checkstyle/checkstyle.xml" as File
   configProperties = [configDir: "${rootProject.projectDir}/config"]
+}
+
+findbugs {
+    sourceSets = [sourceSets.main]
+}
+
+tasks.withType(FindBugs) {
+  reports {
+    xml.enabled = false
+    html.enabled = true
+  }
 }
 
 pmd { consoleOutput = true }
