@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.io.*;
 
 import gnu.getopt.Getopt;
@@ -37,19 +38,14 @@ public class Brainfuck {
   public static void interactive(VM vm) {
     welcome();
 
-    try {
-      BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-      String line = br.readLine();
-
-      while (line != null) {
+    try (Scanner scanner = new Scanner(System.in)) {
+      while (scanner.hasNextLine()) {
+        String line = scanner.nextLine();
         String result = vm.eval(line);
 
         if (result.length() > 0) {
           System.out.println(result);
         }
-
-        line = br.readLine();
       }
     } catch (IOException e) {
       System.out.println("Error: " + e);
@@ -57,14 +53,10 @@ public class Brainfuck {
   }
 
   public static void scripted(VM vm, String script) {
-    try {
-      BufferedReader br = new BufferedReader(new FileReader(new File(script)));
-
-      String line = br.readLine();
-
-      while (line != null) {
+    try (Scanner scanner = new Scanner(new File(script))) {
+      while (scanner.hasNextLine()) {
+        String line = scanner.nextLine();
         vm.eval(line);
-        line = br.readLine();
       }
     } catch (IOException e) {
       System.out.println("Error reading file " + script);
