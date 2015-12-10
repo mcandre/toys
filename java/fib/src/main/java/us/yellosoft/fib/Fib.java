@@ -1,8 +1,7 @@
 package us.yellosoft.fib;
 
+import java.util.Scanner;
 import java.io.IOException;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
 /** Fibonacci */
@@ -40,20 +39,19 @@ public final class Fib {
   public static void main(final String[] args) throws IOException {
     System.out.print("N = ");
 
-    BufferedReader br = new BufferedReader(new InputStreamReader(System.in, StandardCharsets.UTF_8));
+    try (Scanner scanner = new Scanner(System.in, StandardCharsets.UTF_8.name())) {
+      int n = scanner.nextInt();
 
-    int n = Integer.parseInt(br.readLine());
-    br.close();
+      System.out.println("Running");
 
-    System.out.println("Running");
+      int startt = (int) System.currentTimeMillis();
 
-    int startt = (int) System.currentTimeMillis();
+      int x = fib(n);
 
-    int x = fib(n);
+      int endt = (int) System.currentTimeMillis();
 
-    int endt = (int) System.currentTimeMillis();
-
-    System.out.println("Fib " + n + " = " + x);
-    System.out.println("Time = " + ((endt - startt) / 1000) + " sec");
+      System.out.println("Fib " + n + " = " + x);
+      System.out.println("Time = " + ((endt - startt) / 1000) + " sec");
+    }
   }
 }
