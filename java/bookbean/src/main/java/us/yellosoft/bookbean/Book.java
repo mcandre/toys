@@ -116,6 +116,6 @@ public class Book implements Serializable, Comparable<Book> {
 
   @Override
   public String toString() {
-    return this.title + " by " + this.author + " (ISBN " + this.isbn + ")";
+    return String.format("%s by %s (ISBN %s)", title, author, isbn);
   }
 }
