@@ -50,8 +50,8 @@ public final class Fib {
 
       int endt = (int) System.currentTimeMillis();
 
-      System.out.println("Fib " + n + " = " + x);
-      System.out.println("Time = " + ((endt - startt) / 1000) + " sec");
+      System.out.println(String.format("Fib %d = %d", n, x));
+      System.out.println(String.format("Time = %d sec", (endt - startt) / 1000));
     }
   }
 }
