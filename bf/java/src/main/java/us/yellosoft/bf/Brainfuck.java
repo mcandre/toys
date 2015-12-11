@@ -1,26 +1,42 @@
+package us.yellosoft.bf;
+
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 import gnu.getopt.Getopt;
 import gnu.getopt.LongOpt;
 
-public class Brainfuck {
-  public static String APP = "Brainfuck";
-  public static String VERSION = "0.0.1";
-  public static String COPYRIGHT = "Copyright 2009 YelloSoft";
-  public static String WELCOME = "Use \'exit\' or Control-C to quit.";
-  public static String INTERACTIVE_EXIT = "exit";
+/** A Brainfuck interpreter in Java */
+public final class Brainfuck {
+  /** Utility class */
+  private Brainfuck() {}
 
+  /** Application name */
+  public static final String APP = "Brainfuck";
+  /** Version number */
+  public static final String VERSION = "0.0.1";
+  /** Copyright */
+  public static final String COPYRIGHT = "Copyright 2009 YelloSoft";
+  /** Welcome banner */
+  public static final String WELCOME = "Use \'exit\' or Control-C to quit.";
+  /** Exit command */
+  public static final String INTERACTIVE_EXIT = "exit";
+
+  /** Print version number */
   public static void version() {
     System.out.println(APP + " " + VERSION);
     System.exit(0);
   }
 
+  /** Print welcome banner */
   public static void welcome() {
     System.out.println(APP + " " + VERSION + " " + COPYRIGHT + "\n" + WELCOME);
   }
 
+  /** Print usage information */
   public static void usage() {
     System.out.println(
       "Usage: Brainfuck [options] [script]\n" +
@@ -35,10 +51,13 @@ public class Brainfuck {
     System.exit(0);
   }
 
-  public static void interactive(VM vm) {
+  /** Drive Brainfuck VM by REPL
+      @param vm a Brainfuck context
+   */
+  public static void interactive(final VM vm) {
     welcome();
 
-    try (Scanner scanner = new Scanner(System.in)) {
+    try (Scanner scanner = new Scanner(System.in, StandardCharsets.UTF_8.name())) {
       while (scanner.hasNextLine()) {
         String line = scanner.nextLine();
         String result = vm.eval(line);
@@ -47,13 +66,15 @@ public class Brainfuck {
           System.out.println(result);
         }
       }
-    } catch (IOException e) {
-      System.out.println("Error: " + e);
     }
   }
 
-  public static void scripted(VM vm, String script) {
-    try (Scanner scanner = new Scanner(new File(script))) {
+  /** Drive Brainfuck VM with script
+      @param vm a Brainfuck context
+      @param script Brainfuck code to execute
+   */
+  public static void scripted(final VM vm, final String script) {
+    try (Scanner scanner = new Scanner(new File(script), StandardCharsets.UTF_8.name())) {
       while (scanner.hasNextLine()) {
         String line = scanner.nextLine();
         vm.eval(line);
@@ -63,7 +84,10 @@ public class Brainfuck {
     }
   }
 
-  public static void main(String[] args) {
+  /** CLI entry point
+      @param args CLI flags
+   */
+  public static void main(final String[] args) {
     String mode = "scripted";
 
     String script = "";
@@ -73,8 +97,6 @@ public class Brainfuck {
     if (args.length < 1) {
       usage();
     }
-
-    StringBuffer valueBuffer = new StringBuffer();
 
     LongOpt[] longOpts = {
       new LongOpt("debug", LongOpt.NO_ARGUMENT, null, 'd'),
@@ -90,7 +112,7 @@ public class Brainfuck {
     while (c != -1) {
       switch (c) {
       case 'd':
-        vm.debug = true;
+        vm.setDebug(true);
         break;
 
       case 'v':
@@ -124,41 +146,3 @@ public class Brainfuck {
     }
   }
 }
-
-/*
-
-  def main
-  mode = :scripted
-
-  script=""
-
-  vm=VM.new
-
-  opts=GetoptLong.new(
-  ["--debug", "-d", GetoptLong::NO_ARGUMENT],
-  ["--help", "-h", GetoptLong::NO_ARGUMENT],
-  ["--version", "-v", GetoptLong::NO_ARGUMENT]
-  )
-
-  opts.each { |option, value|
-  case option
-  when "--debug"
-  vm.debug=true
-  when "--help"
-  RDoc::usage("Usage")
-  when "--version"
-  version
-  end
-  }
-
-  if ARGV.length<1
-  mode = :interactive
-  end
-
-  case mode
-  when :interactive
-  vm.interactive
-  when :scripted
-  vm.scripted(ARGV[0])
-  end
-  end */
