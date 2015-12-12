@@ -7,7 +7,7 @@ public final class Hello {
 
   /**
      <p>CLI</p>
-     @param args CLI args
+     @param args CLI args (unused)
   */
   public static void main(final String[] args) {
     System.out.println("Hello World");
