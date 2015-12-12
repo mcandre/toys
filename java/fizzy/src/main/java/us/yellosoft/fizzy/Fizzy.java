@@ -4,11 +4,15 @@ import java.util.stream.IntStream;
 import java.util.Arrays;
 
 /** Example FizzBuzz implementation, parallelized */
-public class Fizzy {
+public final class Fizzy {
   /** Utility class */
   private Fizzy() {}
 
-  public static String fizzbuzz(int i) {
+  /** Modulo-based FizzBuzz implementation
+      @param i Input number
+      @return fizzbuzz(i)
+   */
+  public static String fizzbuzz(final int i) {
     boolean m = i % 3 == 0, n = i % 5 == 0;
 
     if (m && n) {
