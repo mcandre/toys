@@ -1,13 +1,13 @@
 package us.yellosoft.bf;
 
+import java.util.Map;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
-import gnu.getopt.Getopt;
-import gnu.getopt.LongOpt;
+import org.docopt.Docopt;
 
 /** A Brainfuck interpreter in Java */
 public final class Brainfuck {
@@ -36,20 +36,20 @@ public final class Brainfuck {
     System.out.println(APP + " " + VERSION + " " + COPYRIGHT + "\n" + WELCOME);
   }
 
-  /** Print usage information */
-  public static void usage() {
-    System.out.println(
-      "Usage: Brainfuck [options] [script]\n" +
-      "--debug, -d:\n" +
-      "    enable debug mode\n" +
-      "--help, -h:\n" +
-      "    show help\n" +
-      "--version, -v\n" +
-      "    show version"
-    );
-
-    System.exit(0);
-  }
+  /** DocOpt usage spec */
+  public static final String DOC = String.join(
+    "\n",
+    new String[] {
+      "Usage:",
+      "  Brainfuck [--debug] [<script>]",
+      "  Brainfuck --version",
+      "  Brainfuck --help",
+      "Options:",
+      "  -d --debug    Enable debugging output",
+      "  -v --version  Show version information",
+      "  -h --help     Show usage information"
+    }
+  );
 
   /** Drive Brainfuck VM by REPL
       @param vm a Brainfuck context
@@ -88,61 +88,20 @@ public final class Brainfuck {
       @param args CLI flags
    */
   public static void main(final String[] args) {
-    String mode = "scripted";
+    final Map<String, Object> options = new Docopt(DOC).withVersion(VERSION).parse(args);
 
-    String script = "";
+    final String script = (String) options.get("<script>");
 
-    VM vm = new VM();
+    final VM vm = new VM();
 
-    if (args.length < 1) {
-      usage();
+    if ((Boolean) options.get("--debug")) {
+      vm.setDebug(true);
     }
 
-    LongOpt[] longOpts = {
-      new LongOpt("debug", LongOpt.NO_ARGUMENT, null, 'd'),
-      new LongOpt("help", LongOpt.NO_ARGUMENT, null, 'h'),
-      new LongOpt("version", LongOpt.NO_ARGUMENT, null, 'v')
-    };
-
-    Getopt g = new Getopt("Brainfuck", args, "dhv", longOpts);
-    g.setOpterr(false);
-
-    int c = g.getopt();
-
-    while (c != -1) {
-      switch (c) {
-      case 'd':
-        vm.setDebug(true);
-        break;
-
-      case 'v':
-        version();
-        break;
-
-      default:
-        usage();
-        break;
-      }
-
-      c = g.getopt();
-    }
-
-    ArrayList<String> leftoverArgs = new ArrayList<String>();
-
-    for (int i = g.getOptind(); i < args.length; i++) {
-      leftoverArgs.add(args[i]);
-    }
-
-    if (leftoverArgs.size() < 1) {
-      mode = "interactive";
-    } else {
-      script = leftoverArgs.get(0);
-    }
-
-    if (mode == "interactive") {
-      interactive(vm);
-    } else if (mode == "scripted") {
+    if (script != null) {
       scripted(vm, script);
+    } else {
+      interactive(vm);
     }
   }
 }
