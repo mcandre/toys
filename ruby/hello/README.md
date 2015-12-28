@@ -2,7 +2,7 @@
 
 # REQUIREMENTS
 
-* [Ruby](https://www.ruby-lang.org/) 2.0.0
+* [Ruby](https://www.ruby-lang.org/) 2.3+
 
 # EXAMPLE
 
