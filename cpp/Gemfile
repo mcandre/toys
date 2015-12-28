@@ -1,5 +1,7 @@
 source 'http://rubygems.org'
 
+ruby '2.3.0'
+
 group :development do
   gem 'guard', '~> 2.6'
   gem 'guard-shell', '~> 0.6'
