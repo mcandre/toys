@@ -4,9 +4,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include <stddef.h>
 #include <string.h>
 
-void fizzy(char* s, int i) {
+static void fizzy(char* s, size_t t, int i) {
   bool a = i % 3 == 0, b = i % 5 == 0;
 
   if (a && b) {
@@ -16,7 +17,7 @@ void fizzy(char* s, int i) {
   } else if (b) {
     strncpy(s, "Buzz", 4);
   } else {
-    sprintf(s, "%d", i);
+    (void) snprintf(s, t, "%d", i);
   }
 }
 
@@ -25,11 +26,14 @@ int main() {
 
   for (i = 1; i < 101; i++) {
     char* s = (char*) calloc(9, sizeof(char));
-    fizzy(s, i);
 
-    printf("%s\n", s);
+    if (s != NULL) {
+      fizzy(s, 9, i);
 
-    free(s);
+      printf("%s\n", s);
+
+      free(s);
+    }
   }
 
   return 0;
