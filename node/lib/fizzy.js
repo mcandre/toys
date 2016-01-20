@@ -2,7 +2,11 @@
 
 "use strict";
 
+require("es6-shim");
+
 function fizzBuzz(n) {
+  console.assert(Number.isInteger(n));
+
   var
   a = n % 3 === 0,
   b = n % 5 === 0;
