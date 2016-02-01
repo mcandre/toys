@@ -48,18 +48,16 @@ public class BookTest {
   public void testSerializable() throws IOException, ClassNotFoundException {
     Book book2;
 
-    PipedOutputStream pipedOut = new PipedOutputStream();
-    PipedInputStream pipedIn = new PipedInputStream(pipedOut);
+    try (PipedOutputStream pipedOut = new PipedOutputStream();
+         PipedInputStream pipedIn = new PipedInputStream(pipedOut);
+         ObjectOutputStream booksOut = new ObjectOutputStream(pipedOut);
+         ObjectInputStream booksIn = new ObjectInputStream(pipedIn)) {
 
-    ObjectOutputStream booksOut = new ObjectOutputStream(pipedOut);
-    ObjectInputStream booksIn = new ObjectInputStream(pipedIn);
+      booksOut.writeObject(BPWJFD);
+      book2 = (Book) booksIn.readObject();
 
-    booksOut.writeObject(BPWJFD);
-    book2 = (Book) booksIn.readObject();
-
-    booksOut.close();
-
-    Assert.assertEquals(BPWJFD, book2);
+      Assert.assertEquals(BPWJFD, book2);
+    }
   }
 
   @Test
