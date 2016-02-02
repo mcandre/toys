@@ -30,7 +30,10 @@ astyle:
 clean-astyle:
 	-find . -type f -name "*.orig" -exec rm {} \;
 
-lint: cppcheck splint vera++ astyle
+infer: clean
+	infer -- make
+
+lint: cppcheck splint vera++ astyle infer
 
 valgrind: $(BIN)
 	valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --track-fds=yes --dsymutil=yes ./$(BIN)
