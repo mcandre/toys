@@ -19,28 +19,34 @@ static /*@null@*/ char *hexTime() {
 
   local = localtime(&timer);
 
-  seconds = (unsigned int)(
-              (local->tm_hour * 3600 + local->tm_min * 60 + local->tm_sec) * 65536.0 / 86400.0
-            );
+  if (local != NULL) {
+    seconds = (unsigned int)(
+      (local->tm_hour * 3600 + local->tm_min * 60 + local->tm_sec) * 65536.0 / 86400.0
+    );
 
-  hhour = seconds / 4096;
+    hhour = seconds / 4096;
 
-  hmin = (seconds % 4096) / 16;
+    hmin = (seconds % 4096) / 16;
 
-  hsec = seconds % 16;
+    hsec = seconds % 16;
 
-  result = (char *) malloc(sizeof(char) * 7);
+    result = (char *) malloc(sizeof(char) * 7);
 
-  if (result != NULL) {
-    int remainder = snprintf(result, 7, "%x_%02x_%x", hhour, hmin, hsec);
+    if (result != NULL) {
+      int remainder = snprintf(result, 7, "%x_%02x_%x", hhour, hmin, hsec);
 
-    if (remainder < 0 || remainder >= 7) {
-      printf("Format error.\n");
+      if (remainder < 0 || remainder >= 7) {
+        printf("Format error.\n");
+      }
+
+      return result;
+    } else {
+      printf("Out of memory.\n");
+
+      return NULL;
     }
-
-    return result;
   } else {
-    printf("Out of memory.\n");
+    printf("Localtime returned NULL.\n");
 
     return NULL;
   }
