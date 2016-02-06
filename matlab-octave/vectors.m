@@ -19,3 +19,13 @@ uT = u';
 
 disp("u^t =");
 disp(uT);
+
+h = [1; 2; 3];
+
+disp("h =");
+disp(h);
+
+p = uT - h;
+
+disp("p = uT - h =");
+disp(p);
