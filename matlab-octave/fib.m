@@ -11,7 +11,7 @@ function f = fib(n)
 endfunction
 
 function main()
-  printf("%d\n", fib(10));
+  disp(fib(10));
 endfunction
 
 main();
