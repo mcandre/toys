@@ -1,3 +1,3 @@
 for arg in Process.arguments {
-  println("Arg: \(arg)")
+  print("Arg: \(arg)")
 }
