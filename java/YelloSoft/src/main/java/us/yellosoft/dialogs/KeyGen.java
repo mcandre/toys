@@ -10,7 +10,6 @@ import java.security.*;
 import java.security.spec.*;
 import javax.crypto.*;
 import javax.crypto.spec.*;
-import xjava.security.*;
 
 import java.awt.*;
 import java.awt.event.*;

@@ -35,13 +35,32 @@ public class BookTest {
   }
 
   @Test
-  public void testUnequal() {
+  public void testInequality() {
     Book book1 = new Book();
     book1.setISBN("1");
     Book book2 = new Book();
     book2.setISBN("2");
 
     Assert.assertNotEquals(book1, book2);
+  }
+
+  @Test
+  public void testComparable() {
+    Book book1 = new Book();
+    book1.setISBN("1");
+
+    Book book2 = new Book();
+    book2.setISBN("2");
+
+    Assert.assertTrue(book1.compareTo(book2) < 0);
+  }
+
+  @Test
+  public void testInequalityOthers() {
+    Book book = new Book();
+
+    Assert.assertNotEquals(book, null);
+    Assert.assertNotEquals(book, "");
   }
 
   @Test
