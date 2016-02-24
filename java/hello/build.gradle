@@ -21,7 +21,7 @@ checkstyle {
 }
 
 findbugs {
-    sourceSets = [sourceSets.main]
+  sourceSets = [sourceSets.main]
 }
 
 tasks.withType(FindBugs) {
