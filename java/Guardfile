@@ -1,9 +1,0 @@
-guard :shell do
-  watch(/^.*\.java$/) do |m|
-    title = 'Compile'
-    eager "javac -Xlint:all #{m[0]} 2>&1 && echo Success"
-    status = ($?.success? && :success) || :failed
-    n '', title, status
-    ''
-  end
-end
