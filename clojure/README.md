@@ -5,6 +5,8 @@ Introductory Clojure scripts
 # EXAMPLE
 
 ```
-$ lein exec hello.clj
+$ cd hello/
+$ gradle clean shadowJar
+$ java -jar build/libs/hello-all.jar
 Hello World!
 ```

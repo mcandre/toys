@@ -1,6 +1,4 @@
-":";exec lein exec $0 ${1+"$@"}
-
-(ns fizzy
+(ns us.yellosoft.fizzy.Fizzy
   (:gen-class))
 
 (defn fizzy [n]
@@ -13,6 +11,3 @@
 
 (defn -main [& args]
   (doall (map (comp println fizzy) (range 1 101))))
-
-(when (.contains (first *command-line-args*) *source-path*)
-  (apply -main (rest *command-line-args*)))
