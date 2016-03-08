@@ -9,4 +9,7 @@ shellcheck:
 checkbashisms:
 	-checkbashisms -n -p lib/*
 
-lint: shlint checkbashisms shellcheck
+bashate:
+	-bashate lib/*
+
+lint: shlint checkbashisms shellcheck bashate
