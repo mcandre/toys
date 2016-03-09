@@ -1,14 +1,14 @@
 ":"; exec csi -ss $0 ${1+"$@"}
 
-; Andrew Pennebaker
-; 13 Feb 2007 - 5 Jun 2007
+;; Andrew Pennebaker
+;; 13 Feb 2007 - 5 Jun 2007
 
 (define (fib n)
-	(cond
-		((= n 0) 0)
-		((= n 1) 1)
-		(else
-			(+ (fib (- n 1)) (fib (- n 2))))))
+  (cond
+   ((= n 0) 0)
+   ((= n 1) 1)
+   (else
+    (+ (fib (- n 1)) (fib (- n 2))))))
 
 (define (main args)
   (display "N = ")

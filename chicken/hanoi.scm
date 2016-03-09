@@ -1,8 +1,8 @@
 ":"; exec csi -ss $0 ${1+"$@"}
 
-; Andrew Pennebaker
-; 9 Feb 2007 - 12 Jun 2007
-; URL: http://snippets.dzone.com/posts/show/3492
+;; Andrew Pennebaker
+;; 9 Feb 2007 - 12 Jun 2007
+;; URL: http://snippets.dzone.com/posts/show/3492
 
 (define (main args)
   (display "N = ")
@@ -24,8 +24,8 @@
 
 (define (hanoi n start aux end)
   (if (= n 1)
-			(cons start end)
-			(cons
+      (cons start end)
+      (cons
        (cons
         (hanoi (- n 1) start aux end)
         start)
