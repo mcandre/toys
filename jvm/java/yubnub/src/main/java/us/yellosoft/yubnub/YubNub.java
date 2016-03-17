@@ -17,7 +17,7 @@ public final class YubNub {
      @throws InterruptedException on process error
   */
   public static void go(final String command) throws IOException, InterruptedException {
-    Process process = Runtime.getRuntime().exec("open " + PARSER + command);
+    Process process = Runtime.getRuntime().exec(String.format("open %s%s", PARSER + command));
     process.waitFor();
     process.destroy();
   }
