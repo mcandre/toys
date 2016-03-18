@@ -28,29 +28,35 @@ public class BookTest {
 
   @Test
   public void testEqual() {
-    Book book1 = new Book();
-    book1.setISBN("1");
+    Book book1 = new Book() {{
+      setISBN("1");
+    }};
 
     Assert.assertEquals(book1, book1);
   }
 
   @Test
   public void testInequality() {
-    Book book1 = new Book();
-    book1.setISBN("1");
-    Book book2 = new Book();
-    book2.setISBN("2");
+    Book book1 = new Book() {{
+      setISBN("1");
+    }};
+
+    Book book2 = new Book() {{
+      setISBN("2");
+    }};
 
     Assert.assertNotEquals(book1, book2);
   }
 
   @Test
   public void testComparable() {
-    Book book1 = new Book();
-    book1.setISBN("1");
+    Book book1 = new Book() {{
+      setISBN("1");
+    }};
 
-    Book book2 = new Book();
-    book2.setISBN("2");
+    Book book2 = new Book() {{
+      setISBN("2");
+    }};
 
     Assert.assertTrue(book1.compareTo(book2) < 0);
   }
@@ -81,8 +87,9 @@ public class BookTest {
 
   @Test
   public void testHashable() {
-    Book book = new Book();
-    book.setISBN("978-3-16-148410-0");
+    Book book = new Book() {{
+      setISBN("978-3-16-148410-0");
+    }};
 
     Assert.assertEquals(
       Objects.hash("978-3-16-148410-0"),
@@ -92,22 +99,24 @@ public class BookTest {
 
   @Test
   public void testConfigurability() {
-    Calendar calendar = Calendar.getInstance();
+    final Calendar calendar1 = Calendar.getInstance();
+    final Calendar calendar2 = Calendar.getInstance();
 
-    Book draft = new Book();
-    draft.setTitle("Working Title");
-    draft.setAuthor("Me");
-    draft.setPublisher("LuLu");
-    draft.setPublished(calendar.getTime());
-    draft.setISBN("1");
+    Book draft = new Book() {{
+      setTitle("Working Title");
+      setAuthor("Me");
+      setPublisher("LuLu");
+      setPublished(calendar1.getTime());
+      setISBN("1");
+    }};
 
     // 6 months later and we are already publishing a new edition
     draft.setTitle("Working Title, 2nd Edition");
     draft.setISBN("2");
-    calendar.add(Calendar.MONTH, 6);
-    draft.setPublished(calendar.getTime());
+    calendar2.add(Calendar.MONTH, 6);
+    draft.setPublished(calendar2.getTime());
 
-    Assert.assertEquals(calendar.getTime(), draft.getPublished());
+    Assert.assertEquals(calendar2.getTime(), draft.getPublished());
   }
 
   @Test
