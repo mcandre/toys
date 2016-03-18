@@ -1,5 +1,7 @@
 package us.yellosoft.fib;
 
+import com.google.common.base.Preconditions;
+
 import java.util.Scanner;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -15,6 +17,8 @@ public final class Fib {
      @return fib(n)
   */
   public static int fib(final int n) {
+    Preconditions.checkArgument(n >= 0);
+
     if (n < 2) {
       return n;
     } else {
