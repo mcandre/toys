@@ -5,7 +5,10 @@
 # JAT: The Joy of ASCII Art
 # http://codegolf.com/bob-ross-the-joy-of-ascii-art
 
+from contracts import *
 
+
+@contract(s='str')
 def chomp(s):
     '''Strip trailing line endings'''
 

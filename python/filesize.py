@@ -3,22 +3,21 @@
 '''Get file size in bytes'''
 
 import sys
+from contracts import *
 
 
-def get_size(file):
+@contract(filename='str')
+def get_size(filename):
     '''Calculate file size in bytes'''
 
-    f = open(file, 'rb')
+    with open(filename, 'rb') as f:
+        b = 0
 
-    b = 0
-
-    c = f.read(1)
-
-    while c != '':
-        b += 1
         c = f.read(1)
 
-    f.close()
+        while c != '':
+            b += 1
+            c = f.read(1)
 
     return b
 

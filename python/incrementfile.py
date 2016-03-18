@@ -3,6 +3,8 @@
 '''Increments numbers in file names.'''
 
 import re
+from contracts import *
+
 
 __author__ = 'Andrew Pennebaker (andrew.pennebaker@gmail.com)'
 __date__ = '22 Oct 2005 - 23 Oct 2005'
@@ -12,6 +14,7 @@ __version__ = '0.2'
 SEARCHER = re.compile(r'(.*\D)*(\d+)(\D.*)*$')
 
 
+@contract(filename='str', length='int')
 def increment_range(filename, length):
     '''List increasing filenames'''
 
@@ -24,6 +27,7 @@ def increment_range(filename, length):
     return '\n'.join(filenames)
 
 
+@contract(filename='str')
 def increment(filename):
     '''Searches for last set of integer(s), and increments it.'''
 

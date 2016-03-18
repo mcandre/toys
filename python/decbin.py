@@ -7,7 +7,10 @@ __author__ = 'Andrew Pennebaker (andrew.pennebaker@gmail.com)'
 __date__ = '9 Oct 2005 - 8 Nov 2005'
 __copyright__ = 'Copyright 2005 Andrew Pennebaker'
 
+from contracts import *
 
+
+@contract(decimal='int')
 def convert(decimal):
     '''Convert and print a decimal number in binary'''
 

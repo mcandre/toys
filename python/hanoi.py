@@ -3,12 +3,15 @@
 '''Solve Tower of Hanoi'''
 
 import time
+from contracts import *
+
 
 START = 0
 AUX = 1
 END = 2
 
 
+@contract(n='int', start='int', aux='int', end='int')
 def hanoi(n, start, aux, end):
     '''Recursive solution'''
 

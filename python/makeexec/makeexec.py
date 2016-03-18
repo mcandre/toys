@@ -8,6 +8,7 @@ __copyright__ = 'Copyright 2006 Andrew Pennebaker'
 
 import sys
 import getopt
+from contracts import *
 
 INTERPRETERS = {
     'py': '#!/usr/bin/env python',
@@ -34,12 +35,14 @@ def update():
         INTERPRETERS[key] = value
 
 
+@contract(filename='str')
 def get_extension(filename):
     '''Get a file's extension'''
 
     return filename[filename.rindex('.') + 1:]
 
 
+@contract(filename='str', manual='bool')
 def makeexec(filename, manual=None):
     '''Make a file properly executable'''
 

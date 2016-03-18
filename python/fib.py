@@ -3,8 +3,10 @@
 '''Compute Fibonacci numbers'''
 
 import time
+from contracts import *
 
 
+@contract(n='int,>=0')
 def fib(n):
     '''fibonacci(n)'''
 
