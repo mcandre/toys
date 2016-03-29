@@ -11,6 +11,7 @@ import java.util.Objects;
 
 import org.junit.Test;
 import org.junit.Assert;
+import org.hamcrest.Matchers;
 
 public class BookTest {
   public static final Book BPWJFD = new Book(
@@ -58,7 +59,7 @@ public class BookTest {
       setISBN("2");
     }};
 
-    Assert.assertTrue(book1.compareTo(book2) < 0);
+    Assert.assertThat(book1, Matchers.lessThan(book2));
   }
 
   @Test
