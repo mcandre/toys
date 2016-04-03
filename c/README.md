@@ -6,7 +6,11 @@ Introductory C programs
 
 ```
 $ cd hello/
-$ cmake . && make && make test
+
+$ cmake . && make
+
+$ bin/hello
+Hello World!
 ```
 
 # REQUIREMENTS
