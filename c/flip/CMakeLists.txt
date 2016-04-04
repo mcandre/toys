@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.4)
 
 project(flip)
 set(EXECUTABLE_OUTPUT_PATH "bin")
-add_executable(flip lib/flip.c)
 set(CMAKE_C_FLAGS "-O2 -Wall -Wextra -Wmost -Weverything")
+add_executable(flip lib/flip.c)
 
 enable_testing()
 add_test(NAME fliptest COMMAND flip test.txt && flip test.txt.flip && md5 test.txt test.txt.bak)

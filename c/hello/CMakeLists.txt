@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.4)
 
 project(hello)
 set(EXECUTABLE_OUTPUT_PATH "bin")
-add_executable(hello lib/hello.c)
 set(CMAKE_C_FLAGS "-O2 -Wall -Wextra -Wmost -Weverything")
+add_executable(hello lib/hello.c)
 
 enable_testing()
 add_test(NAME hellotest COMMAND hello)

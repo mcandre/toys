@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.4)
 
 project(echo)
 set(EXECUTABLE_OUTPUT_PATH "bin")
-add_executable(echo lib/echo.c)
 set(CMAKE_C_FLAGS "-O2 -Wall -Wextra -Wmost -Weverything")
+add_executable(echo lib/echo.c)
 
 enable_testing()
 add_test(NAME echotest COMMAND sh -c "$<TARGET_FILE:echo> < lib/echo.c")
