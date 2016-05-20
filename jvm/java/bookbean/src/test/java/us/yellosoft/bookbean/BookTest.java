@@ -29,42 +29,37 @@ public class BookTest {
 
   @Test
   public void testEqual() {
-    Book book1 = new Book() {{
-      setISBN("1");
-    }};
+    final Book book1 = new Book();
+    book1.setISBN("1");
 
     Assert.assertEquals(book1, book1);
   }
 
   @Test
   public void testInequality() {
-    Book book1 = new Book() {{
-      setISBN("1");
-    }};
+    final Book book1 = new Book();
+    book1.setISBN("1");
 
-    Book book2 = new Book() {{
-      setISBN("2");
-    }};
+    final Book book2 = new Book();
+    book2.setISBN("2");
 
     Assert.assertNotEquals(book1, book2);
   }
 
   @Test
   public void testComparable() {
-    Book book1 = new Book() {{
-      setISBN("1");
-    }};
+    final Book book1 = new Book();
+    book1.setISBN("1");
 
-    Book book2 = new Book() {{
-      setISBN("2");
-    }};
+    final Book book2 = new Book();
+    book2.setISBN("2");
 
     Assert.assertThat(book1, Matchers.lessThan(book2));
   }
 
   @Test
   public void testInequalityOthers() {
-    Book book = new Book();
+    final Book book = new Book();
 
     Assert.assertNotEquals(book, null);
     Assert.assertNotEquals(book, "");
@@ -72,7 +67,7 @@ public class BookTest {
 
   @Test
   public void testSerializable() throws IOException, ClassNotFoundException {
-    Book book2;
+    final Book book2;
 
     try (PipedOutputStream pipedOut = new PipedOutputStream();
          PipedInputStream pipedIn = new PipedInputStream(pipedOut);
@@ -88,9 +83,8 @@ public class BookTest {
 
   @Test
   public void testHashable() {
-    Book book = new Book() {{
-      setISBN("978-3-16-148410-0");
-    }};
+    final Book book = new Book();
+    book.setISBN("978-3-16-148410-0");
 
     Assert.assertEquals(
       Objects.hash("978-3-16-148410-0"),
@@ -103,13 +97,12 @@ public class BookTest {
     final Calendar calendar1 = Calendar.getInstance();
     final Calendar calendar2 = Calendar.getInstance();
 
-    Book draft = new Book() {{
-      setTitle("Working Title");
-      setAuthor("Me");
-      setPublisher("LuLu");
-      setPublished(calendar1.getTime());
-      setISBN("1");
-    }};
+    final Book draft = new Book();
+    draft.setTitle("Working Title");
+    draft.setAuthor("Me");
+    draft.setPublisher("LuLu");
+    draft.setPublished(calendar1.getTime());
+    draft.setISBN("1");
 
     // 6 months later and we are already publishing a new edition
     draft.setTitle("Working Title, 2nd Edition");
@@ -122,9 +115,9 @@ public class BookTest {
 
   @Test
   public void testConstructability() {
-    Calendar calendar = Calendar.getInstance();
+    final Calendar calendar = Calendar.getInstance();
 
-    Book draft = new Book(
+    final Book draft = new Book(
       "Working Title",
       "Me",
       "LuLu",
@@ -143,9 +136,9 @@ public class BookTest {
 
   @Test
   public void testGetAttributes() {
-    Calendar calendar = Calendar.getInstance();
-    Date date = calendar.getTime();
-    Book draft = new Book(
+    final Calendar calendar = Calendar.getInstance();
+    final Date date = calendar.getTime();
+    final Book draft = new Book(
       "Working Title",
       "Me",
       "LuLu",
@@ -162,9 +155,9 @@ public class BookTest {
 
   @Test
   public void testPrinting() {
-    Calendar calendar = Calendar.getInstance();
-    Date date = calendar.getTime();
-    Book draft = new Book(
+    final Calendar calendar = Calendar.getInstance();
+    final Date date = calendar.getTime();
+    final Book draft = new Book(
       "Working Title",
       "Me",
       "LuLu",
