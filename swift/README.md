@@ -16,3 +16,9 @@ Hello World!
 # REQUIREMENTS
 
 * [Xcode](https://developer.apple.com/xcode/) 6+
+
+## Optional
+
+* [swiftlint](https://github.com/realm/SwiftLint)
+
+E.g., `brew install swiftlint`

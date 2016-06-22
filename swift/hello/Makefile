@@ -10,7 +10,10 @@ bin/Hello: Hello.swift
 infer: clean
 	infer -- make
 
-lint: infer
+swiftlint:
+	swiftlint
+
+lint: infer swiftlint
 
 clean:
 	-rm -rf bin/
