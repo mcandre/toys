@@ -21,6 +21,11 @@ def flake8():
     run('flake8 .')
 
 
-@task(pre=[pep8, pylint, pyflakes, flake8])
+@task
+def bandit():
+    run('find . -name \'*.py\' | xargs bandit')
+
+
+@task(pre=[pep8, pylint, pyflakes, flake8, bandit])
 def lint():
     pass
