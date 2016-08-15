@@ -1,5 +1,5 @@
 plugins {
-  id 'com.github.johnrengelman.shadow' version '1.2.2'
+  id 'com.github.johnrengelman.shadow' version '1.2.3'
   id 'org.sonarqube' version '1.1'
 }
 
@@ -9,7 +9,7 @@ apply plugin: 'findbugs'
 apply plugin: 'pmd'
 apply plugin: 'jacoco'
 
-sourceCompatibility = '1.2'
+sourceCompatibility = '1.5'
 
 compileJava {
   options.compilerArgs << '-Xlint:all'
