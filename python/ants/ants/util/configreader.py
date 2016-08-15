@@ -6,6 +6,7 @@ __copyright__ = 'Copyright 2007 Andrew Pennebaker'
 __version__ = '0.0.1'
 
 import sys
+import ast
 
 
 def read(configdata, settings):
@@ -29,7 +30,7 @@ def read(configdata, settings):
             if line:
                 key, value = line.split('=')
 
-                settings[key.strip()] = eval(value)
+                settings[key.strip()] = ast.literal_eval(value)
     except IOError:
         pass
 

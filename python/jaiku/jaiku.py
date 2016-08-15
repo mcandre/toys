@@ -15,6 +15,9 @@ import getopt
 import urllib2
 import xmlrpclib
 
+import defusedxml
+defusedxml.debuse_stdlib()
+
 STATUS_MODE = 'STATUS'
 VIEW_MODE = 'VIEW'
 

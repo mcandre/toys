@@ -11,6 +11,7 @@ import pygame
 
 from random import random
 import sys
+import ast
 import time
 
 
@@ -232,7 +233,7 @@ def main():
             if line:
                 key, value = line.split('=')
 
-                settings[key.strip()] = eval(value)
+                settings[key.strip()] = ast.literal_eval(value)
         configfile.close()
     except IOError:
         pass

@@ -128,7 +128,7 @@ def scan(
             client.close()
             o.append(portrange[index])
         except Exception:
-            pass  # ignore closed ports
+            print('Port closed: %d' % portrange[index]
 
         portrange.pop(index)
 
