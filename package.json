@@ -11,7 +11,7 @@
     "lib": "."
   },
   "engines": {
-    "node": ">=0.8"
+    "node": ">=0.11.6"
   },
   "scripts": {},
   "dependencies": {},
@@ -21,7 +21,7 @@
     "grunt-exec": "~0.4.6",
     "jshint": ">=2.1.2",
     "jslint": ">= 0.8.1",
-    "eslint": ">= 0.15.0",
+    "eslint": ">= 0.16.0",
     "editorconfig-tools": ">= 0.1.1"
   }
 }
