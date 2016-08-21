@@ -6,6 +6,7 @@ test: $(BIN)
 	$(BIN) a b c
 
 $(BIN): args.go
+	mkdir -p bin
 	go build -o $(BIN) args.go
 
 clean:
