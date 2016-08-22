@@ -6,7 +6,6 @@ test: $(BIN)
 	$(BIN)
 
 $(BIN): fizzy.go
-	mkdir -p bin
 	go build -o $(BIN) fizzy.go
 
 clean:
