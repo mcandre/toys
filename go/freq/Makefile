@@ -1,12 +1,12 @@
-BIN=bin/dup
+BIN=bin/freq
 
 all: test
 
 test: $(BIN)
 	$(BIN) < example.txt
 
-$(BIN): dup.go
-	go build -o $(BIN) dup.go
+$(BIN): freq.go
+	go build -o $(BIN) freq.go
 
 clean:
 	-rm -rf bin
