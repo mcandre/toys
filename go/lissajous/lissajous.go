@@ -31,7 +31,7 @@ func lissajous(out io.Writer) {
 	)
 
 	frequency := rand.Float64() * 3.0
-	animation := gif.GIF{LoopCount: frames}
+	animation := gif.GIF{LoopCount: 0} // Loop forever
 	phaseDifference := 0.0
 
 	for i := 0; i < frames; i++ {
