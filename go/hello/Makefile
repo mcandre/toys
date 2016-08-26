@@ -9,7 +9,7 @@ $(BIN): hello.go
 	go build -o $(BIN) hello.go
 
 gofmt:
-	gofmt -w .
+	gofmt -s -w .
 
 lint: gofmt
 

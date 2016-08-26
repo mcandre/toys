@@ -9,7 +9,7 @@ $(BIN): uniq.go
 	go build -o $(BIN) uniq.go
 
 gofmt:
-	gofmt -w .
+	gofmt -s -w .
 
 lint: gofmt
 

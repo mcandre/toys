@@ -15,7 +15,7 @@ func main() {
 		uniqueLines[scanner.Text()] = true
 	}
 
-	for line, _ := range uniqueLines {
+	for line := range uniqueLines {
 		fmt.Println(line)
 	}
 }

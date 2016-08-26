@@ -9,7 +9,7 @@ $(BIN): freq.go
 	go build -o $(BIN) freq.go
 
 gofmt:
-	gofmt -w .
+	gofmt -s -w .
 
 lint: gofmt
 

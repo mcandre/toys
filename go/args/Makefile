@@ -9,7 +9,7 @@ $(BIN): args.go
 	go build -o $(BIN) args.go
 
 gofmt:
-	gofmt -w .
+	gofmt -s -w .
 
 lint: gofmt
 

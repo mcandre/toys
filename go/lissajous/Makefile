@@ -9,7 +9,7 @@ $(BIN): lissajous.go
 	go build -o $(BIN) lissajous.go
 
 gofmt:
-	gofmt -w .
+	gofmt -s -w .
 
 lint: gofmt
 
