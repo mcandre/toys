@@ -18,7 +18,7 @@ func fizzy(i int) string {
 }
 
 func main() {
-	for i := 1; i < 101; i += 1 {
+	for i := 1; i < 101; i++ {
 		fmt.Println(fizzy(i))
 	}
 }
