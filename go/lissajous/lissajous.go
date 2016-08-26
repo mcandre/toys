@@ -6,7 +6,6 @@ import (
 	"image/gif"
 	"io"
 	"math"
-	"math/rand"
 	"os"
 )
 
@@ -30,7 +29,7 @@ func lissajous(out io.Writer) {
 		frameDelay        = 8 // units: 10ms
 	)
 
-	frequency := rand.Float64() * 3.0
+	frequency := 8.0
 	animation := gif.GIF{LoopCount: 0} // Loop forever
 	phaseDifference := 0.0
 
