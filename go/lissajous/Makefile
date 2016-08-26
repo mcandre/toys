@@ -8,5 +8,10 @@ test: $(BIN)
 $(BIN): lissajous.go
 	go build -o $(BIN) lissajous.go
 
+gofmt:
+	gofmt -w .
+
+lint: gofmt
+
 clean:
 	-rm -rf bin

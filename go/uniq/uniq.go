@@ -1,21 +1,21 @@
 package main
 
 import (
-  "fmt"
-  "bufio"
-  "os"
+	"bufio"
+	"fmt"
+	"os"
 )
 
 func main() {
-  uniqueLines := make(map[string]bool)
+	uniqueLines := make(map[string]bool)
 
-  scanner := bufio.NewScanner(os.Stdin)
+	scanner := bufio.NewScanner(os.Stdin)
 
-  for scanner.Scan() {
-    uniqueLines[scanner.Text()] = true
-}
+	for scanner.Scan() {
+		uniqueLines[scanner.Text()] = true
+	}
 
-for line, _ := range uniqueLines {
-  fmt.Println(line)
-}
+	for line, _ := range uniqueLines {
+		fmt.Println(line)
+	}
 }

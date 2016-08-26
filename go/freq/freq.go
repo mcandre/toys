@@ -1,21 +1,21 @@
 package main
 
 import (
-  "fmt"
-  "bufio"
-  "os"
+	"bufio"
+	"fmt"
+	"os"
 )
 
 func main() {
-  frequencies := make(map[string]int)
+	frequencies := make(map[string]int)
 
-  scanner := bufio.NewScanner(os.Stdin)
+	scanner := bufio.NewScanner(os.Stdin)
 
-  for scanner.Scan() {
-    frequencies[scanner.Text()]++
-  }
+	for scanner.Scan() {
+		frequencies[scanner.Text()]++
+	}
 
-  for line, frequency := range frequencies {
-    fmt.Printf("%d\t%s\n", frequency, line)
-  }
+	for line, frequency := range frequencies {
+		fmt.Printf("%d\t%s\n", frequency, line)
+	}
 }

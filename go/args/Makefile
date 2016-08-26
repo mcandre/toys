@@ -8,5 +8,10 @@ test: $(BIN)
 $(BIN): args.go
 	go build -o $(BIN) args.go
 
+gofmt:
+	gofmt -w .
+
+lint: gofmt
+
 clean:
 	-rm -rf bin

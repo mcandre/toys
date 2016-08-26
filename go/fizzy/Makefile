@@ -8,5 +8,10 @@ test: $(BIN)
 $(BIN): fizzy.go
 	go build -o $(BIN) fizzy.go
 
+gofmt:
+	gofmt -w .
+
+lint: gofmt
+
 clean:
 	-rm -rf bin

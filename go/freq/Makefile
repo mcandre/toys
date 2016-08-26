@@ -8,6 +8,11 @@ test: $(BIN)
 $(BIN): freq.go
 	go build -o $(BIN) freq.go
 
+gofmt:
+	gofmt -w .
+
+lint: gofmt
+
 clean:
 	-rm -rf bin
 

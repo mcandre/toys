@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func fizzy(i int) string {
-	a, b := i % 3 == 0, i % 5 == 0
+	a, b := i%3 == 0, i%5 == 0
 
 	switch {
 	case a && b:

@@ -13,7 +13,7 @@ func fib(n int) int {
 	case 0, 1:
 		return n
 	default:
-		return fib(n - 1) + fib(n - 2)
+		return fib(n-1) + fib(n-2)
 	}
 }
 
