@@ -1,8 +1,10 @@
 package main
 
-import "fmt"
-import "os"
-import "strconv"
+import (
+	"fmt"
+	"os"
+	"strconv"
+)
 
 func usage() {
 	fmt.Println("fibber <n>")
