@@ -1,4 +1,11 @@
-BIN=bin/chop
+# Windows
+ifeq ($(OS),Windows_NT)
+	EXTENSION=.exe
+else
+	EXTENSION=
+endif
+
+BIN=bin/chop$(EXTENSION)
 
 all: test
 

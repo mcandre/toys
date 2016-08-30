@@ -1,4 +1,11 @@
-BIN=bin/uniq
+# Windows
+ifeq ($(OS),Windows_NT)
+	EXTENSION=.exe
+else
+	EXTENSION=
+endif
+
+BIN=bin/uniq$(EXTENSION)
 
 all: test
 

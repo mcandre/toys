@@ -1,4 +1,11 @@
-BIN=bin/args
+# Windows
+ifeq ($(OS),Windows_NT)
+	EXTENSION=.exe
+else
+	EXTENSION=
+endif
+
+BIN=bin/args$(EXTENSION)
 
 all: test
 

@@ -1,4 +1,11 @@
-BIN=bin/hello
+# Windows
+ifeq ($(OS),Windows_NT)
+	EXTENSION=.exe
+else
+	EXTENSION=
+endif
+
+BIN=bin/hello$(EXTENSION)
 
 all: test
 

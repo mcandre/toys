@@ -1,4 +1,11 @@
-BIN=bin/lissajous
+# Windows
+ifeq ($(OS),Windows_NT)
+	EXTENSION=.exe
+else
+	EXTENSION=
+endif
+
+BIN=bin/lissajous$(EXTENSION)
 
 all: test
 

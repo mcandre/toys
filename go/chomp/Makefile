@@ -1,4 +1,11 @@
-BIN=bin/chomp
+# Windows
+ifeq ($(OS),Windows_NT)
+	EXTENSION=.exe
+else
+	EXTENSION=
+endif
+
+BIN=bin/chomp$(EXTENSION)
 
 all: test
 

@@ -1,4 +1,11 @@
-BIN=bin/freq
+# Windows
+ifeq ($(OS),Windows_NT)
+	EXTENSION=.exe
+else
+	EXTENSION=
+endif
+
+BIN=bin/freq$(EXTENSION)
 
 all: test
 
