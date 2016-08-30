@@ -1,8 +1,10 @@
 # Windows
 ifeq ($(OS),Windows_NT)
 	EXTENSION=.exe
+	RM=cmd /c rmdir /s /q
 else
 	EXTENSION=
+	RM=rm -rf
 endif
 
 BIN=bin/chop$(EXTENSION)
@@ -16,4 +18,4 @@ $(BIN): chop.go
 	go build -o $(BIN) chop.go
 
 clean:
-	-rm -rf bin
+	-$(RM) bin

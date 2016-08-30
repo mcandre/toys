@@ -1,8 +1,10 @@
 # Windows
 ifeq ($(OS),Windows_NT)
 	EXTENSION=.exe
+	RM=cmd /c rmdir /s /q
 else
 	EXTENSION=
+	RM=rm -rf
 endif
 
 BIN=bin/freq$(EXTENSION)
@@ -21,5 +23,5 @@ gofmt:
 lint: gofmt
 
 clean:
-	-rm -rf bin
+	-$(RM) bin
 
