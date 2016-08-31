@@ -10,7 +10,7 @@ func usage() {
 	fmt.Println("fibber <n>")
 }
 
-func fib(n int) int {
+func fib(n uint) uint {
 	switch n {
 	case 0, 1:
 		return n
@@ -23,12 +23,12 @@ func main() {
 	if len(os.Args) < 2 {
 		usage()
 	} else {
-		n, err := strconv.Atoi(os.Args[1])
+		n, err := strconv.ParseUint(os.Args[1], 10, 0)
 
 		if err != nil {
 			usage()
 		} else {
-			fmt.Println(fib(n))
+			fmt.Println(fib(uint(n)))
 		}
 	}
 }
