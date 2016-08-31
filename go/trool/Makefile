@@ -7,15 +7,15 @@ else
 	RM=rm -rf
 endif
 
-BIN=bin/mool$(EXTENSION)
+BIN=bin/trool$(EXTENSION)
 
 all: test
 
 test: $(BIN)
 	$(BIN)
 
-$(BIN): mool.go
-	go build -o $(BIN) mool.go
+$(BIN): trool.go
+	go build -o $(BIN) trool.go
 
 gofmt:
 	gofmt -s -w .
