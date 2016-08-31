@@ -1,2 +1,3 @@
 PyContracts==1.7.6
+invoke==0.10.1
 bandit==1.1.0
