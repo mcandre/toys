@@ -3,8 +3,13 @@
 # EXAMPLE
 
 ```
-$ make
-go build -o bin/ddg ddg.go
+$ ddg g dogs
+...
+https://duckduckgo.com/?q=!g%20dogs
+https://encrypted.google.com/search?hl=en&q=dogs
+```
+# INSTALL
 
-bin/ddg g dogs
+```
+$ go get github.com/mcandre/mcandre/go/ddg
 ```
