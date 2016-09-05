@@ -2,13 +2,13 @@ package main
 
 import (
 	"github.com/skratchdot/open-golang/open"
-	"strings"
 	"os"
+	"strings"
 )
 
 const (
 	DuckDuckGo = "https://duckduckgo.com/?q=!"
-	Sep = "%20"
+	Sep        = "%20"
 )
 
 func main() {

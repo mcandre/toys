@@ -5,9 +5,9 @@ import "fmt"
 type Trool string
 
 const (
-	TriTrue Trool = "TriTrue"
-	TriFalse      = "TriFalse"
-	TriMeh        = "TriMeh"
+	TriTrue  Trool = "TriTrue"
+	TriFalse       = "TriFalse"
+	TriMeh         = "TriMeh"
 )
 
 func main() {

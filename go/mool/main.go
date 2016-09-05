@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-type Mool struct {}
+type Mool struct{}
 
 func (m Mool) String() string {
 	return "Mool"
