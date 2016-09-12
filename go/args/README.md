@@ -10,5 +10,7 @@ i: 3 v: c
 # INSTALL
 
 ```
-$ go get github.com/mcandre/mcandre/go/args
-`
+$ go get github.com/mcandre/mcandre/go/args/...
+```
+
+(Yes, include the ellipsis as well, it's the magic Go syntax for downloading, building, and installing all components of a package, including any libraries and command line tools.)
