@@ -1,0 +1,3 @@
+[submodule "go/ddg/vendor/github.com/skratchdot/open-golang"]
+	path = go/ddg/vendor/github.com/skratchdot/open-golang
+	url = https://github.com/skratchdot/open-golang.git
