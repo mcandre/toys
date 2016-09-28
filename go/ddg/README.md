@@ -8,6 +8,15 @@ $ ddg g dogs
 https://duckduckgo.com/?q=!g%20dogs
 https://encrypted.google.com/search?hl=en&q=dogs
 ```
+# DEPENDENCIES
+
+Set the environment variable `GOPATH` to some directory like `$HOME/go`, then:
+
+```
+$ git submodule init
+$ git submodule update
+```
+
 # INSTALL
 
 ```
