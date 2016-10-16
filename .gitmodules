@@ -1,3 +1,3 @@
-[submodule "go/ddg/vendor/github.com/skratchpad/open-golang"]
-	path = go/ddg/vendor/github.com/skratchpad/open-golang
+[submodule "go/ddg/vendor/github.com/skratchdot/open-golang"]
+	path = go/ddg/vendor/github.com/skratchdot/open-golang
 	url = git@github.com:skratchdot/open-golang.git
