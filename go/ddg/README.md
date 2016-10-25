@@ -11,7 +11,7 @@ https://encrypted.google.com/search?hl=en&q=dogs
 
 # REQUIREMENTS
 
-* [Go](https://golang.org/) 1.7+
+* [Go](https://golang.org) 1.7+ with [$GOPATH configured](https://gist.github.com/mcandre/ef73fb77a825bd153b7836ddbd9a6ddc)
 
 ## Optional
 
