@@ -6,7 +6,17 @@ $ uniq < example.txt
 :>
 ```
 
-# INSTALL
+# REQUIREMENTS
+
+* [Go](https://golang.org/) 1.7+
+
+## Optional
+
+* [Git](https://git-scm.com)
+* [Make](https://www.gnu.org/software/make/)
+* [Bash](https://www.gnu.org/software/bash/)
+
+# INSTALL FROM REMOTE GIT REPOSITORY
 
 ```
 $ go get github.com/mcandre/mcandre/go/uniq/...
@@ -14,8 +24,18 @@ $ go get github.com/mcandre/mcandre/go/uniq/...
 
 (Yes, include the ellipsis as well, it's the magic Go syntax for downloading, building, and installing all components of a package, including any libraries and command line tools.)
 
-# COMPILE AND INSTALL LOCALLY
+# INSTALL FROM LOCAL GIT REPOSITORY
 
 ```
+$ mkdir -p $GOPATH/src/github.com/mcandre
 $ git clone git@github.com:mcandre/mcandre.git $GOPATH/src/github.com/mcandre/mcandre
-$ sh -c 'cd go/uniq && go install'
+$ sh -c "cd $GOPATH/src/github.com/mcandre/mcandre/go/uniq && go install"
+```
+
+# LINT
+
+Keep the code tidy:
+
+```
+$ make lint
+```

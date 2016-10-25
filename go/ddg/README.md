@@ -8,15 +8,18 @@ $ ddg g dogs
 https://duckduckgo.com/?q=!g%20dogs
 https://encrypted.google.com/search?hl=en&q=dogs
 ```
-# DEPENDENCIES
 
-Set the environment variable `GOPATH` to some directory like `$HOME/go`, then:
+# REQUIREMENTS
 
-```
-$ git submodule update --init --recursive
-```
+* [Go](https://golang.org/) 1.7+
 
-# INSTALL
+## Optional
+
+* [Git](https://git-scm.com)
+* [Make](https://www.gnu.org/software/make/)
+* [Bash](https://www.gnu.org/software/bash/)
+
+# INSTALL FROM REMOTE GIT REPOSITORY
 
 ```
 $ go get github.com/mcandre/mcandre/go/ddg/...
@@ -24,8 +27,20 @@ $ go get github.com/mcandre/mcandre/go/ddg/...
 
 (Yes, include the ellipsis as well, it's the magic Go syntax for downloading, building, and installing all components of a package, including any libraries and command line tools.)
 
-# COMPILE AND INSTALL LOCALLY
+# INSTALL FROM LOCAL GIT REPOSITORY
 
 ```
+$ mkdir -p $GOPATH/src/github.com/mcandre
 $ git clone git@github.com:mcandre/mcandre.git $GOPATH/src/github.com/mcandre/mcandre
-$ sh -c 'cd go/ddg && go install'
+$ cd $GOPATh/src/github.com/mcandre/mcandre/go/ddg
+$ git submodule update --init --recursive
+$ go install
+```
+
+# LINT
+
+Keep the code tidy:
+
+```
+$ make lint
+```
