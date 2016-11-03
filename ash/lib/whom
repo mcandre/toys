@@ -1,2 +1,2 @@
 #!/usr/bin/env ash
-ps -hp $$ | awk '/sh/ {print $4}'
+ps -hp "$$" | awk '/sh/ {print $4}'
