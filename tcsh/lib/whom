@@ -1,0 +1,2 @@
+#!/bin/tcsh
+ps -hp "$$" | awk '/sh/ {print $4}'
