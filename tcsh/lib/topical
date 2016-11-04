@@ -1,0 +1,2 @@
+#!/bin/tcsh
+type $1
