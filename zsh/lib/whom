@@ -1,0 +1,2 @@
+#!/bin/zsh
+ps -hp "$$" | awk '/sh/ {print $4}'
