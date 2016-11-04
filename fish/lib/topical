@@ -1,0 +1,2 @@
+#!/usr/bin/env fish
+type $argv[1]
