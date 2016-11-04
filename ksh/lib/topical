@@ -1,0 +1,12 @@
+#!/bin/ksh
+
+usage() {
+    echo "Usage: $0 <name>"
+    exit 0
+}
+
+if [ "$#" -ne 1 ]; then
+    usage
+fi
+
+echo "$(type $1)"
