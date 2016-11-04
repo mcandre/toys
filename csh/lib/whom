@@ -1,0 +1,2 @@
+#!/bin/csh
+ps -hp "$$" | awk '/sh/ {print $4}'
