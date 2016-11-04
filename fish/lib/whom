@@ -1,0 +1,2 @@
+#!/usr/bin/env fish
+ps -hp %self | awk '/sh/ {print $4}'
