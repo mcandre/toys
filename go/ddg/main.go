@@ -1,9 +1,10 @@
 package main
 
 import (
-	"github.com/skratchdot/open-golang/open"
 	"os"
 	"strings"
+
+	"github.com/skratchdot/open-golang/open"
 )
 
 const (

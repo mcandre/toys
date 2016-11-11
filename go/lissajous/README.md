@@ -14,6 +14,7 @@ $ lissajous > example.gif
 * [Git](https://git-scm.com)
 * [Make](https://www.gnu.org/software/make/)
 * [Bash](https://www.gnu.org/software/bash/)
+* [goimports](https://godoc.org/golang.org/x/tools/cmd/goimports) (e.g. `go get golang.org/x/tools/cmd/goimports`)
 
 # INSTALL FROM REMOTE GIT REPOSITORY
 
