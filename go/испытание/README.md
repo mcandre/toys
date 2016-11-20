@@ -1,4 +1,4 @@
-# испытание! ("isptanye!")
+# испытание! ("ispitanye!")
 
 испытание is a simple program, structured to test Go's support for Unicode. Go boasts solid support for Unicode strings, but this project proves that Go is compatible with Unicode in other parts of the project, such as executable names (yes) and type names (no).
 
