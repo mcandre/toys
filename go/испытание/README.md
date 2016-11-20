@@ -1,6 +1,6 @@
 # испытание! ("ispitanye!") - test
 
-испытание is a simple program, structured to test Go's support for Unicode. Go boasts solid support for Unicode strings, but this project tests (испытание!) that Go is compatible with Unicode in other parts of the project:
+испытание is a simple program, structured to test Go's support for Unicode. Go boasts solid support for Unicode strings, but this project tests (испытание!) that Go is compatible with Unicode in other aspects projects:
 
 * strings ✓
 * import paths ✓
