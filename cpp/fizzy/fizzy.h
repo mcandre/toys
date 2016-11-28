@@ -1,5 +1,4 @@
-#ifndef FIZZY_H
-#define FIZZY_H
+#pragma once
 
 /* Copyright 2010 YelloSoft */
 
@@ -7,5 +6,3 @@
 
 std::string fizzy(int const n);
 void fizzbuzz();
-
-#endif
