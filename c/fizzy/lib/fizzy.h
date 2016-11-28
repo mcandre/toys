@@ -1,5 +1,4 @@
-#ifndef FIZZY_H
-#define FIZZY_H
+#pragma once
 
 /* Copyright 2016 YelloSoft */
 
@@ -7,5 +6,3 @@
 
 /*@unused@*/
 static void fizzy(char* s, size_t t, int i);
-
-#endif
