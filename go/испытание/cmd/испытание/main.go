@@ -7,5 +7,5 @@ import (
 )
 
 func main() {
-	fmt.Println(испытание.Испытание())
+	fmt.Println(испытание.Испытание().Строка)
 }

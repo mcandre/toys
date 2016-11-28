@@ -11,11 +11,13 @@
 * executable names ✓
 * type names ✗
 
+However, other development tools like git and WLS bash, may not feature varying degrees of Unicode support.
+
 # EXAMPLE
 
 ```
 $ испытание
-испытание!
+Испытание!
 ```
 
 # REQUIREMENTS
@@ -42,7 +44,7 @@ $ go get github.com/mcandre/mcandre/go/испытание/...
 ```
 $ mkdir -p $GOPATH/src/github.com/mcandre
 $ git clone git@github.com:mcandre/mcandre.git $GOPATH/src/github.com/mcandre/mcandre
-$ sh -c "cd $GOPATH/src/github.com/mcandre/mcandre/go/испытание && go install"
+$ sh -c "cd $GOPATH/src/github.com/mcandre/mcandre/go/испытание && go install ./..."
 ```
 
 # TEST REMOTELY

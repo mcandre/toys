@@ -7,7 +7,7 @@ import (
 )
 
 func TestИспытаниеReturnsИспытание(t *testing.T) {
-	wanted := "Испытание!"
+	wanted := Эксперимент{Строка: "Испытание!"}
 	observed := испытание.Испытание()
 
 	if observed != wanted {
