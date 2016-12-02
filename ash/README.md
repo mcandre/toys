@@ -14,7 +14,6 @@ Hello World!
 ## Optional
 
 * [shlint](https://github.com/duggan/shlint)
-* [ShellCheck](http://www.shellcheck.net/)
 
 # DEVELOPMENT
 
