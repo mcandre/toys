@@ -1,6 +1,6 @@
 # mcandre/coffeescript
 
-Introductory Coffeescript programs
+Introductory CoffeeScript programs
 
 # EXAMPLE
 
@@ -11,4 +11,4 @@ Hello World!
 
 # REQUIREMENTS
 
-* [Coffeescript](http://coffeescript.org/)
+* [CoffeeScript](http://coffeescript.org/)
