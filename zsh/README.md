@@ -7,7 +7,7 @@
 ## Optional
 
 * [shlint](https://github.com/duggan/shlint)
-* [ShellCheck](http://www.shellcheck.net/)
+* [shellcheck](http://www.shellcheck.net/)
 
 # DEVELOPMENT
 
