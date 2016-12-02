@@ -11,4 +11,4 @@ Hello World!
 
 # REQUIREMENTS
 
-* [emacs](http://www.gnu.org/software/emacs/)
+* [emacs](http://www.gnu.org/software/emacs/) 24+

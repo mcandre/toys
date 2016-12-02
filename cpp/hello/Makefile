@@ -9,7 +9,7 @@ test: $(BIN)
 	$(BIN)
 
 $(BIN): hello.cpp
-	mkdir -p bin/
+	mkdir -p bin
 	$(CC) $(FLAGS) -o $(BIN) hello.cpp
 
 cppcheck:
@@ -39,4 +39,4 @@ valgrind: $(BIN)
 	valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --track-fds=yes --dsymutil=yes ./$(BIN)
 
 clean: clean-astyle
-	-rm -rf bin/
+	-rm -rf bin

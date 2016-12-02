@@ -8,3 +8,7 @@ Introductory `awk` scripts
 $ cat /dev/null | awk -f hello.awk
 Hello World!
 ```
+
+# REQUIREMENTS
+
+* [coreutils](https://www.gnu.org/software/coreutils/coreutils.html)

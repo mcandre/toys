@@ -16,5 +16,4 @@ Hello World!
 # REQUIREMENTS
 
 * [dmd](http://dlang.org/) 2+
-
-Example: `brew install dmd`
+* [make](https://www.gnu.org/software/make/)

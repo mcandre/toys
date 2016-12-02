@@ -2,23 +2,25 @@
 
 # REQUIREMENTS
 
-* `dash`
+* [dash](http://www.in-ulm.de/~mascheck/various/ash/)
 
 ## Optional
 
 * [shlint](https://github.com/duggan/shlint)
-* [shellcheck](http://www.shellcheck.net/)
-* [guard](http://guardgem.org/)
 
 # DEVELOPMENT
 
 ## Lint
 
-    $ make lint
+```
+$ make lint
+```
 
 ## Guard
 
 Guard can monitor sh scripts for changes, automatically linting them.
 
-    $ guard
-    $ emacs .
+```
+$ guard
+$ emacs .
+```

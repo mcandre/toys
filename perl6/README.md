@@ -12,5 +12,3 @@ Hello World!
 # REQUIREMENTS
 
 * [Rakudo Star](http://rakudo.org/)
-
-E.g., `brew install rakudo-star` (Mac OS X)

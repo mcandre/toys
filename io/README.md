@@ -11,6 +11,4 @@ Hello world!
 
 # REQUIREMENTS
 
-* [Io](http://iolanguage.org/)
-
-E.g., `brew install io`
+* [io](http://iolanguage.org/)

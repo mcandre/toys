@@ -27,12 +27,12 @@ test: $(BIN)
 	$(BIN)
 
 $(BIN): $(OBJ)
-	mkdir -p bin/
+	mkdir -p bin
 	ld -o $(BIN) $(OBJ) $(ARCH) $(LIBS) $(MINV) $(ENTRY) $(PIE)
 
 $(OBJ): hello.asm
 	yasm $(FORMAT) -o $(OBJ) $(PREFIX) hello.asm
 
 clean:
-	-rm -rf bin/
+	-rm -rf bin
 	-rm $(OBJ)

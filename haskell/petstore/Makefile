@@ -10,11 +10,11 @@ test: $(CAT) $(PETSTORE)
 	$(PETSTORE)
 
 $(CAT): Cat.hs
-	mkdir -p bin/
+	mkdir -p bin
 	ghc $(FLAGS) -o $(CAT) -main-is Cat Cat.hs
 
 $(PETSTORE): Petstore.hs Cat.hs Dog.hs
-	mkdir -p bin/
+	mkdir -p bin
 	ghc $(FLAGS) -o $(PETSTORE) -main-is Petstore Petstore.hs Cat.hs Dog.hs
 
 hlint:
@@ -23,6 +23,6 @@ hlint:
 lint: hlint
 
 clean:
-	-rm -rf bin/
+	-rm -rf bin
 	-rm *.o
 	-rm *.hi

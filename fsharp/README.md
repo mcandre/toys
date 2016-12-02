@@ -12,5 +12,3 @@ Hello World!
 # REQUIREMENTS
 
 * [F#](http://fsharp.org/)
-
-E.g., `brew install fsharp`

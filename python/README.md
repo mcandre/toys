@@ -11,23 +11,12 @@ Hello World!
 
 # REQUIREMENTS
 
-* [Python](http://python.org/) 2.6+
-
-E.g., (built-in) (Debuntu, Mac OS X)
-
-E.g., `chocolatey install python` (Windows)
+* [Python](http://python.org/)
 
 ## OPTIONAL
 
-* [Python](http://python.org/) 3+
-* [Ruby](https://www.ruby-lang.org/en/)
-* [Guard](http://guardgem.org/)
-
-Install Guard:
-
-```
-$ bundle
-```
+* [coreutils](https://www.gnu.org/software/coreutils/coreutils.html)
+* [bandit](https://wiki.openstack.org/wiki/Security/Projects/Bandit)
 
 # USAGE
 
@@ -35,7 +24,7 @@ $ bundle
 $ python hello.py
 Hello World!
 ```
-    
+
 Unix shells can also do:
 
 ```

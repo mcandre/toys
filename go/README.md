@@ -12,5 +12,3 @@ Hello World!
 # REQUIREMENTS
 
 * [Go](http://golang.org/)
-
-E.g., `brew install go`

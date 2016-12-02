@@ -11,6 +11,4 @@ Hello World!
 
 # REQUIREMENTS
 
-* [Lua](http://www.lua.org/) 5+
-
-E.g., `brew install lua`
+* [lua](http://www.lua.org/) 5+

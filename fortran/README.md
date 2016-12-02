@@ -15,6 +15,4 @@ bin/hello
 
 # REQUIREMENTS
 
-* `gfortran` from `gcc`
-
-E.g., `brew install gcc`
+* [gcc](https://gcc.gnu.org)

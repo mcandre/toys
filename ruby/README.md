@@ -6,4 +6,4 @@ See `hello.rb`...
 
 # REQUIREMENTS
 
-* [Ruby](https://www.ruby-lang.org/) 2.3+
+* [ruby](https://www.ruby-lang.org/) 2.3+

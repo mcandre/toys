@@ -9,3 +9,7 @@ $ erlc hello.erl
 $ erl -s hello -noshell
 Hello World!
 ```
+
+# REQUIREMENTS
+
+* [Erlang](http://www.erlang.org)

@@ -4,7 +4,7 @@ test: bin/Hello
 	bin/Hello
 
 bin/Hello: Hello.swift
-	mkdir -p bin/
+	mkdir -p bin
 	swiftc -o bin/Hello Hello.swift
 
 infer: clean
@@ -16,4 +16,4 @@ swiftlint:
 lint: infer swiftlint
 
 clean:
-	-rm -rf bin/
+	-rm -rf bin

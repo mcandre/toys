@@ -13,8 +13,8 @@ test: $(BIN)
 	qemu-system-i386 $(QCURSES) -no-kvm -fda $(BIN) -boot a
 
 $(BIN): hello.asm
-	mkdir -p bin/
+	mkdir -p bin
 	nasm -o $(BIN) $(FORMAT) hello.asm
 
 clean:
-	-rm -rf bin/
+	-rm -rf bin

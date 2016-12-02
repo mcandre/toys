@@ -8,7 +8,7 @@ test: $(BIN)
 	$(BIN) 2d6
 
 $(BIN): Roll.hs
-	mkdir -p bin/
+	mkdir -p bin
 	ghc $(FLAGS) Roll.hs -package MissingH -package random-fu -package random-source
 
 hlint:
@@ -17,6 +17,6 @@ hlint:
 lint: hlint
 
 clean:
-	-rm -rf bin/
+	-rm -rf bin
 	-rm *.o
 	-rm *.hi

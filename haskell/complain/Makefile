@@ -8,7 +8,7 @@ test: $(BIN)
 	$(BIN)
 
 $(BIN): Complain.hs
-	mkdir -p bin/
+	mkdir -p bin
 	ghc $(FLAGS) Complain.hs
 
 hlint:
@@ -17,6 +17,6 @@ hlint:
 lint: hlint
 
 clean:
-	-rm -rf bin/
+	-rm -rf bin
 	-rm *.o
 	-rm *.hi

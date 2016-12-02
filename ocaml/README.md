@@ -16,5 +16,3 @@ Hello World!
 # REQUIREMENTS
 
 * [ocaml](http://caml.inria.fr/)
-
-E.g., `brew install ocaml`

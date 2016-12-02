@@ -9,13 +9,12 @@ Hello World!
 
 # REQUIREMENTS
 
-* `bash`, preferably 4+
+* [bash](https://www.gnu.org/software/bash/)
 
 ## Optional
 
 * [shlint](https://github.com/duggan/shlint)
 * [shellcheck](http://www.shellcheck.net/)
-* [guard](http://guardgem.org/)
 
 # DEVELOPMENT
 

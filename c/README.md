@@ -21,18 +21,12 @@ Hello World!
 
 # REQUIREMENTS
 
-## Compiler Collection
+* a [C compiler](https://en.wikipedia.org/wiki/List_of_compilers#C_compilers)
+* [cmake](https://cmake.org)
 
-* [clang](http://clang.llvm.org/)
+## Optional
 
-E.g. from Xcode
-
-* [gcc](https://gcc.gnu.org/)
-
-E.g. from Apt, Dnf, Homebrew, MinGW, Strawberry Perl
-
-## CMake
-
-* [cmake](https://cmake.org/)
-
-E.g. `brew install cmake`
+* [cppcheck](http://cppcheck.sourceforge.net)
+* [splint](http://www.splint.org)
+* [vera++](https://bitbucket.org/verateam/vera/wiki/Home)
+* [valgrind](http://valgrind.org)

@@ -11,6 +11,4 @@ Hello World!
 
 # REQUIREMENTS
 
-* `gforth`, from `gcc`
-
-E.g., `brew install gcc`
+* [gcc](https://gcc.gnu.org)

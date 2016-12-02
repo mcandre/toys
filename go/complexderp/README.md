@@ -19,11 +19,8 @@ Car2Pol128(Pol2Car128(zPolar)) = {5 0.9272952180016121}``
 
 ## Optional
 
-* [git](https://git-scm.com)
+* [coreutils](https://www.gnu.org/software/coreutils/coreutils.html)
 * [make](https://www.gnu.org/software/make/)
-* [bash](https://www.gnu.org/software/bash/)
-* [findutils](https://www.gnu.org/software/findutils/)
-* [grep](https://www.gnu.org/software/grep/manual/grep.html)
 * [goimports](https://godoc.org/golang.org/x/tools/cmd/goimports) (e.g. `go get golang.org/x/tools/cmd/goimports`)
 
 # INSTALL FROM REMOTE GIT REPOSITORY

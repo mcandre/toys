@@ -8,9 +8,9 @@ test: $(BIN)
 	$(BIN) a b c
 
 $(BIN): args.d
-	mkdir -p bin/
+	mkdir -p bin
 	dmd $(FLAGS) -of$(BIN) args
 
 clean:
-	-rm -rf bin/
+	-rm -rf bin
 	-rm *.o

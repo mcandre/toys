@@ -14,7 +14,7 @@ test: $(BIN)
 	$(BIN)
 
 $(BIN): fizzy.cpp
-	mkdir -p bin/
+	mkdir -p bin
 	$(CC) $(FLAGS) $(LINK_OPTIONS) -o $(BIN) fizzy.cpp
 
 cppcheck:
@@ -44,4 +44,4 @@ valgrind: $(BIN)
 	valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --track-fds=yes --dsymutil=yes ./$(BIN)
 
 clean: clean-astyle
-	-rm -rf bin/
+	-rm -rf bin

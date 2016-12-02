@@ -19,7 +19,7 @@ test: $(BIN)
 	$(BIN)
 
 $(BIN): Hello.m
-	mkdir -p bin/
+	mkdir -p bin
 	clang $(FLAGS) $(LINUX_FLAGS) -o $(BIN) Hello.m
 
 oclint: $(BIN)
@@ -43,4 +43,4 @@ valgrind: $(BIN)
 	valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --track-fds=yes --dsymutil=yes ./$(BIN)
 
 clean: clean-astyle
-	-rm -rf bin/
+	-rm -rf bin

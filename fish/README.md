@@ -16,8 +16,6 @@ Hello World!
 ## Optional
 
 * [shlint](https://github.com/duggan/shlint)
-* [shellcheck](http://www.shellcheck.net/)
-* [guard](http://guardgem.org/)
 
 # DEVELOPMENT
 

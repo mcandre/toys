@@ -4,7 +4,7 @@ test: bin/Args
 	bin/Args
 
 bin/Args: Args.swift
-	mkdir -p bin/
+	mkdir -p bin
 	swiftc -o bin/Args Args.swift
 
 infer: clean
@@ -16,4 +16,4 @@ swiftlint:
 lint: infer swiftlint
 
 clean:
-	-rm -rf bin/
+	-rm -rf bin

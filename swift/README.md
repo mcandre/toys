@@ -15,10 +15,11 @@ Hello World!
 
 # REQUIREMENTS
 
-* [Xcode](https://developer.apple.com/xcode/) 6+
+* [coreutils](https://www.gnu.org/software/coreutils/coreutils.html)
+* [Swift](https://swift.org)
+* [make](https://www.gnu.org/software/make/)
 
 ## Optional
 
 * [swiftlint](https://github.com/realm/SwiftLint)
-
-E.g., `brew install swiftlint`
+* [Infer](http://fbinfer.com)

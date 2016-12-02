@@ -35,5 +35,3 @@ Buzz
 # REQUIREMENTS
 
 * [LLVM](http://llvm.org/)
-
-E.g., `brew install llvm`

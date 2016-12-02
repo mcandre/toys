@@ -12,18 +12,13 @@ Hello World!
 
 # REQUIREMENTS
 
-* [Haskell Platform](http://www.haskell.org/platform/)
+* [coreutils](https://www.gnu.org/software/coreutils/coreutils.html)
+* [Haskell](https://www.haskell.org)
+* [make](https://www.gnu.org/software/make/)
 
 ## OPTIONAL
 
-* [Ruby](https://www.ruby-lang.org/en/)
-* [Guard](http://guardgem.org/)
-
-Install Guard:
-
-```
-$ bundle
-```
+* [hlint](http://hackage.haskell.org/package/hlint)
 
 # USAGE
 

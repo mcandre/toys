@@ -8,12 +8,12 @@ test: $(BIN)
 	$(BIN)
 
 $(BIN): $(OBJ)
-	mkdir -p bin/
+	mkdir -p bin
 	ld -o $(BIN) $(OBJ)
 
 $(OBJ): hello.s
 	as -o $(OBJ) hello.s
 
 clean:
-	-rm -rf bin/
+	-rm -rf bin
 	-rm $(OBJ)
