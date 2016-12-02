@@ -8,10 +8,10 @@ test: $(BIN)
 $(BIN): fizzy.ll
 	llvm-as fizzy.ll
 	llc fizzy.bc
-	mkdir -p bin/
+	mkdir -p bin
 	gcc -o $(BIN) fizzy.s
 
 clean:
-	-rm -rf bin/
+	-rm -rf bin
 	-rm *.s
 	-rm *.bc

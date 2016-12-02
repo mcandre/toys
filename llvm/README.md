@@ -34,4 +34,7 @@ Buzz
 
 # REQUIREMENTS
 
+* [coreutils](https://www.gnu.org/software/coreutils/coreutils.html)
 * [LLVM](http://llvm.org/)
+* [gcc](https://gcc.gnu.org)
+* [make](https://www.gnu.org/software/make/)
