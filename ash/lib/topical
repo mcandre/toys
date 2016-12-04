@@ -9,4 +9,4 @@ if [ "$#" -ne 1 ]; then
     usage
 fi
 
-echo "$(type $1)"
+type "$1"
