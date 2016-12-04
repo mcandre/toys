@@ -8,3 +8,5 @@
 
 source_up
 source "$HOME/.bashrc.d/direnv/jenv.sh"
+source "$HOME/.bashrc.d/direnv/chruby.sh"
+source "$HOME/.bashrc.d/direnv/pyenv.sh"
