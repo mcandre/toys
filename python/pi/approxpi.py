@@ -1,12 +1,5 @@
 #!/usr/bin/env python
 
-'''Uses
-            . b
-4 lim      |    1/(x^2+1) dx
-  b -> oo .   0
-
-to approximate Pi'''
-
 __author__ = 'Andrew Pennebaker (andrew.pennebaker@gmail.com)'
 __date__ = '17 Jan 2006 - 12 Feb 2006'
 __copyright__ = 'Copyright 2006 Andrew Pennebaker'

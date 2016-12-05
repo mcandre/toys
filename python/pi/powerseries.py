@@ -1,17 +1,5 @@
 #!/usr/bin/env python
 
-'''Uses
-
-  oo
-  --
-4 >  (-1)^n / (2n+1)
-  --
-  n=0
-
-with remainder < 1/(2n+3)
-
-to approximate Pi'''
-
 __author__ = 'Andrew Pennebaker (andrew.pennebaker@gmail.com)'
 __date__ = '9 Feb 2006'
 __copyright__ = 'Copyright 2006 Andrew Pennebaker'
