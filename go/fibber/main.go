@@ -8,6 +8,7 @@ import (
 
 func usage() {
 	fmt.Println("fibber <n>")
+	os.Exit(0)
 }
 
 func fib(n uint) uint {
@@ -27,8 +28,8 @@ func main() {
 
 		if err != nil {
 			usage()
-		} else {
-			fmt.Println(fib(uint(n)))
 		}
+
+		fmt.Println(fib(uint(n)))
 	}
 }
