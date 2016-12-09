@@ -16,6 +16,6 @@ func main() {
 	}
 
 	for line, frequency := range frequencies {
-		fmt.Printf("%d\t%s\n", frequency, line)
+		fmt.Println(frequency, line)
 	}
 }
