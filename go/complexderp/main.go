@@ -57,8 +57,8 @@ func main() {
 	zCartesian := 3 + 4i
 	zPolar := Car2Pol128(zCartesian)
 
-	fmt.Printf("zCartesian = %f\n", zCartesian)
-	fmt.Printf("zPolar = Car2Pol128(zCartesian) = %v\n\n", zPolar)
-	fmt.Printf("Pol2Car128(Car2Pol128(zCartesian)) = %f\n", Pol2Car128(Car2Pol128(zCartesian)))
-	fmt.Printf("Car2Pol128(Pol2Car128(zPolar)) = %v\n", Car2Pol128(Pol2Car128(zPolar)))
+	fmt.Println("zCartesian =", zCartesian)
+	fmt.Println("zPolar = Car2Pol128(zCartesian) =", zPolar)
+	fmt.Println("Pol2Car128(Car2Pol128(zCartesian)) =", Pol2Car128(Car2Pol128(zCartesian)))
+	fmt.Println("Car2Pol128(Pol2Car128(zPolar)) =", Car2Pol128(Pol2Car128(zPolar)))
 }
