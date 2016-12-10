@@ -18,6 +18,7 @@ https://encrypted.google.com/search?hl=en&q=dogs
 * [coreutils](https://www.gnu.org/software/coreutils/coreutils.html)
 * [make](https://www.gnu.org/software/make/)
 * [goimports](https://godoc.org/golang.org/x/tools/cmd/goimports) (e.g. `go get golang.org/x/tools/cmd/goimports`)
+* [golint](https://github.com/golang/lint) (e.g. `go get github.com/golang/lint/golint`)
 
 # INSTALL FROM REMOTE GIT REPOSITORY
 
