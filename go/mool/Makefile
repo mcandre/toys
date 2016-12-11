@@ -12,4 +12,10 @@ golint:
 gofmt:
 	find . -path '*/vendor/*' -prune -o -name '*.go' -type f -exec gofmt -s -w {} \;
 
-lint: govet gofmt
+goimport:
+	find . -path '*/vendor/*' -prune -o -name '*.go' -type f -exec goimports -w {} \;
+
+errcheck:
+	find . -path '*/vendor/*' -prune -o -name '*.go' -type f -exec errcheck {} \;
+
+lint: govet gofmt goimport errcheck

@@ -25,6 +25,8 @@ Take one down, pass it around,
 * [coreutils](https://www.gnu.org/software/coreutils/coreutils.html)
 * [make](https://www.gnu.org/software/make/)
 * [goimports](https://godoc.org/golang.org/x/tools/cmd/goimports) (e.g. `go get golang.org/x/tools/cmd/goimports`)
+* [golint](https://github.com/golang/lint) (e.g. `go get github.com/golang/lint/golint`)
+* [errcheck](https://github.com/kisielk/errcheck) (e.g. `go get github.com/kisielk/errcheck`)
 
 # INSTALL FROM REMOTE GIT REPOSITORY
 

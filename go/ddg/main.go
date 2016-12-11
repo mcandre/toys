@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"os"
 	"strings"
 
@@ -13,5 +14,9 @@ const (
 )
 
 func main() {
-	open.Run(DuckDuckGo + strings.Join(os.Args[1:], Sep))
+	err := open.Run(DuckDuckGo + strings.Join(os.Args[1:], Sep))
+
+	if err != nil {
+		log.Panic(err)
+	}
 }

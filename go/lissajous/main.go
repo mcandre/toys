@@ -5,6 +5,7 @@ import (
 	"image/color"
 	"image/gif"
 	"io"
+	"log"
 	"math"
 	"os"
 )
@@ -51,5 +52,9 @@ func lissajous(out io.Writer) {
 		animation.Image = append(animation.Image, image)
 	}
 
-	gif.EncodeAll(out, &animation)
+	err := gif.EncodeAll(out, &animation)
+
+	if err != nil {
+		log.Panic(err)
+	}
 }
