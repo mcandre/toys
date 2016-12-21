@@ -1,3 +1,5 @@
+# applecart - a generalizable iterator pattern example in Go
+
 # EXAMPLE
 
 ```
