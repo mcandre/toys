@@ -7,20 +7,19 @@ type Apple struct {
 }
 
 func main() {
-	cart := make(chan Apple)
 	apples := []Apple{
 		{Name: "red"},
 		{Name: "green"},
 		{Name: "wormy"},
 	}
 
-	go func() {
-		for _, apple := range apples {
-			cart <- apple
-		}
+	cart := make(chan Apple, len(apples))
 
-		close(cart)
-	}()
+	for _, apple := range apples {
+		cart <- apple
+	}
+
+	close(cart)
 
 	for apple := range cart {
 		fmt.Println(apple.Name)
