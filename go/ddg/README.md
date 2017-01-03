@@ -9,6 +9,10 @@ https://duckduckgo.com/?q=!g%20dogs
 https://encrypted.google.com/search?hl=en&q=dogs
 ```
 
+# DOCUMENTATION
+
+https://godoc.org/github.com/mcandre/mcandre/go/ddg
+
 # REQUIREMENTS
 
 * [Go](https://golang.org) 1.7+ with [$GOPATH configured](https://gist.github.com/mcandre/ef73fb77a825bd153b7836ddbd9a6ddc)
