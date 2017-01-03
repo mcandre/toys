@@ -1,3 +1,4 @@
+// Package main provides a freq executable demonstrating statistical data for line text input.
 package main
 
 import (
@@ -6,6 +7,7 @@ import (
 	"os"
 )
 
+// main is the entrypoint for this application.
 func main() {
 	frequencies := make(map[string]int)
 
