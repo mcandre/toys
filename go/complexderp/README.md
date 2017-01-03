@@ -13,6 +13,10 @@ Pol2Car128(Car2Pol128(zCartesian)) = (3.000000+4.000000i)
 Car2Pol128(Pol2Car128(zPolar)) = {5 0.9272952180016121}``
 ```
 
+# DOCUMENTATION
+
+https://godoc.org/github.com/mcandre/mcandre/go/complexderp
+
 # REQUIREMENTS
 
 * [Go](https://golang.org) 1.7+ with [$GOPATH configured](https://gist.github.com/mcandre/ef73fb77a825bd153b7836ddbd9a6ddc)
