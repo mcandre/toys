@@ -1,11 +1,14 @@
+// Package main provides an applecart executable, which demonstrates a Go pattern for potentially asynchronous iteration of arbitrary Go types, via the `range` interface.
 package main
 
 import "fmt"
 
+// Apple is a placeholder for generally any Go type.
 type Apple struct {
 	Name string
 }
 
+// main is the entrypoint for this application.
 func main() {
 	apples := []Apple{
 		{Name: "red"},
