@@ -1,3 +1,4 @@
+// Package main offers a lissajous executable based on "The Go Programming Language" by Donovan and Kernighan.
 package main
 
 import (
@@ -10,17 +11,21 @@ import (
 	"os"
 )
 
+// palette lists some colors for the GIF artifact.
 var palette = []color.Color{color.White, color.Black}
 
+// Palette indices.
 const (
 	whiteIndex = 0
 	blackIndex = 1
 )
 
+// main is the entrypoint for this application.
 func main() {
 	lissajous(os.Stdout)
 }
 
+// Given an output stream, generate an animated lissajous GIF and emit to the stream.
 func lissajous(out io.Writer) {
 	const (
 		cycles            = 5
