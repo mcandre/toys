@@ -1,3 +1,4 @@
+// Package main provides a basic `uniq` executable in Go.
 package main
 
 import (
@@ -6,6 +7,7 @@ import (
 	"os"
 )
 
+// main is the entrypoint for this application.
 func main() {
 	uniqueLines := make(map[string]bool)
 
