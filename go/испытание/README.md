@@ -13,7 +13,7 @@
 * local go docs ✓
 * godoc.org ✗
 
-However, other development tools like git and WLS bash, may not feature varying degrees of Unicode support.
+However, other development tools like git and WLS bash, may feature varying degrees of Unicode support.
 
 # EXAMPLE
 
