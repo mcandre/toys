@@ -1,4 +1,4 @@
-# mcandre - personal scripts
+# mcandre/toys - hello world 4 ur stax
 
 # EXAMPLE
 

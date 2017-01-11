@@ -11,7 +11,7 @@ https://encrypted.google.com/search?hl=en&q=dogs
 
 # DOCUMENTATION
 
-https://godoc.org/github.com/mcandre/mcandre/go/ddg
+https://godoc.org/github.com/mcandre/toys/go/ddg
 
 # REQUIREMENTS
 
@@ -28,7 +28,7 @@ https://godoc.org/github.com/mcandre/mcandre/go/ddg
 # INSTALL FROM REMOTE GIT REPOSITORY
 
 ```
-$ go get github.com/mcandre/mcandre/go/ddg/...
+$ go get github.com/mcandre/toys/go/ddg/...
 ```
 
 (Yes, include the ellipsis as well, it's the magic Go syntax for downloading, building, and installing all components of a package, including any libraries and command line tools.)
@@ -37,8 +37,8 @@ $ go get github.com/mcandre/mcandre/go/ddg/...
 
 ```
 $ mkdir -p $GOPATH/src/github.com/mcandre
-$ git clone git@github.com:mcandre/mcandre.git $GOPATH/src/github.com/mcandre/mcandre
-$ cd $GOPATh/src/github.com/mcandre/mcandre/go/ddg
+$ git clone git@github.com:mcandre/toys.git $GOPATH/src/github.com/mcandre/toys
+$ cd $GOPATh/src/github.com/mcandre/toys/go/ddg
 $ git submodule update --init --recursive
 $ go install
 ```

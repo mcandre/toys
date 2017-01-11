@@ -15,7 +15,7 @@ Car2Pol128(Pol2Car128(zPolar)) = {5 0.9272952180016121}``
 
 # DOCUMENTATION
 
-https://godoc.org/github.com/mcandre/mcandre/go/complexderp
+https://godoc.org/github.com/mcandre/toys/go/complexderp
 
 # REQUIREMENTS
 
@@ -32,7 +32,7 @@ https://godoc.org/github.com/mcandre/mcandre/go/complexderp
 # INSTALL FROM REMOTE GIT REPOSITORY
 
 ```
-$ go get github.com/mcandre/mcandre/go/complexderp/...
+$ go get github.com/mcandre/toys/go/complexderp/...
 ```
 
 (Yes, include the ellipsis as well, it's the magic Go syntax for downloading, building, and installing all components of a package, including any libraries and command line tools.)
@@ -41,8 +41,8 @@ $ go get github.com/mcandre/mcandre/go/complexderp/...
 
 ```
 $ mkdir -p $GOPATH/src/github.com/mcandre
-$ git clone git@github.com:mcandre/mcandre.git $GOPATH/src/github.com/mcandre/mcandre
-$ sh -c "cd $GOPATH/src/github.com/mcandre/mcandre/go/complexderp && go install"
+$ git clone git@github.com:mcandre/toys.git $GOPATH/src/github.com/mcandre/toys
+$ sh -c "cd $GOPATH/src/github.com/mcandre/toys/go/complexderp && go install"
 ```
 
 # LINT

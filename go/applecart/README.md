@@ -11,7 +11,7 @@ wormy
 
 # DOCUMENTATION
 
-https://godoc.org/github.com/mcandre/mcandre/go/applecart
+https://godoc.org/github.com/mcandre/toys/go/applecart
 
 # REQUIREMENTS
 
@@ -28,7 +28,7 @@ https://godoc.org/github.com/mcandre/mcandre/go/applecart
 # INSTALL FROM REMOTE GIT REPOSITORY
 
 ```
-$ go get github.com/mcandre/mcandre/go/applecart/...
+$ go get github.com/mcandre/toys/go/applecart/...
 ```
 
 (Yes, include the ellipsis as well, it's the magic Go syntax for downloading, building, and installing all components of a package, including any libraries and command line tools.)
@@ -37,8 +37,8 @@ $ go get github.com/mcandre/mcandre/go/applecart/...
 
 ```
 $ mkdir -p $GOPATH/src/github.com/mcandre
-$ git clone git@github.com:mcandre/mcandre.git $GOPATH/src/github.com/mcandre/mcandre
-$ sh -c "cd $GOPATH/src/github.com/mcandre/mcandre/go/applecart && go install"
+$ git clone git@github.com:mcandre/toys.git $GOPATH/src/github.com/mcandre/toys
+$ sh -c "cd $GOPATH/src/github.com/mcandre/toys/go/applecart && go install"
 ```
 
 # LINT

@@ -3,11 +3,11 @@ package испытание_test
 import (
 	"testing"
 
-	"github.com/mcandre/mcandre/go/испытание"
+	"github.com/mcandre/toys/go/испытание"
 )
 
 func TestИспытаниеReturnsИспытание(t *testing.T) {
-	wanted := Эксперимент{Строка: "Испытание!"}
+	wanted := испытание.Эксперимент{Строка: "Испытание!"}
 	observed := испытание.Испытание()
 
 	if observed != wanted {

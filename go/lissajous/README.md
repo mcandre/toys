@@ -7,7 +7,7 @@ $ lissajous > example.gif
 
 # DOCUMENTATION
 
-https://godoc.org/github.com/mcandre/mcandre/go/lissajous
+https://godoc.org/github.com/mcandre/toys/go/lissajous
 
 # REQUIREMENTS
 
@@ -24,7 +24,7 @@ https://godoc.org/github.com/mcandre/mcandre/go/lissajous
 # INSTALL FROM REMOTE GIT REPOSITORY
 
 ```
-$ go get github.com/mcandre/mcandre/go/lissajous/...
+$ go get github.com/mcandre/toys/go/lissajous/...
 ```
 
 (Yes, include the ellipsis as well, it's the magic Go syntax for downloading, building, and installing all components of a package, including any libraries and command line tools.)
@@ -33,8 +33,8 @@ $ go get github.com/mcandre/mcandre/go/lissajous/...
 
 ```
 $ mkdir -p $GOPATH/src/github.com/mcandre
-$ git clone git@github.com:mcandre/mcandre.git $GOPATH/src/github.com/mcandre/mcandre
-$ sh -c "cd $GOPATH/src/github.com/mcandre/mcandre/go/lissajous && go install"
+$ git clone git@github.com:mcandre/toys.git $GOPATH/src/github.com/mcandre/toys
+$ sh -c "cd $GOPATH/src/github.com/mcandre/toys/go/lissajous && go install"
 ```
 
 # LINT

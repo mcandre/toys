@@ -35,7 +35,7 @@ $ испытание
 # INSTALL FROM REMOTE GIT REPOSITORY
 
 ```
-$ go get github.com/mcandre/mcandre/go/испытание/...
+$ go get github.com/mcandre/toys/go/испытание/...
 ```
 
 (Yes, include the ellipsis as well, it's the magic Go syntax for downloading, building, and installing all components of a package, including any libraries and command line tools.)
@@ -44,14 +44,14 @@ $ go get github.com/mcandre/mcandre/go/испытание/...
 
 ```
 $ mkdir -p $GOPATH/src/github.com/mcandre
-$ git clone git@github.com:mcandre/mcandre.git $GOPATH/src/github.com/mcandre/mcandre
-$ sh -c "cd $GOPATH/src/github.com/mcandre/mcandre/go/испытание && go install ./..."
+$ git clone git@github.com:mcandre/toys.git $GOPATH/src/github.com/mcandre/toys
+$ sh -c "cd $GOPATH/src/github.com/mcandre/toys/go/испытание && go install ./..."
 ```
 
 # TEST REMOTELY
 
 ```
-$ go test github.com/mcandre/испытание/...
+$ go test github.com/mcandre/toys/go/испытание/...
 ```
 
 # TEST LOCALLY

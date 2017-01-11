@@ -12,7 +12,7 @@ $ magic
 
 # DOCUMENTATION
 
-https://godoc.org/github.com/mcandre/mcandre/go/magic
+https://godoc.org/github.com/mcandre/toys/go/magic
 
 # REQUIREMENTS
 
@@ -29,7 +29,7 @@ https://godoc.org/github.com/mcandre/mcandre/go/magic
 # INSTALL FROM REMOTE GIT REPOSITORY
 
 ```
-$ go get github.com/mcandre/mcandre/go/magic/...
+$ go get github.com/mcandre/toys/go/magic/...
 ```
 
 (Yes, include the ellipsis as well, it's the magic Go syntax for downloading, building, and installing all components of a package, including any libraries and command line tools.)
@@ -38,8 +38,8 @@ $ go get github.com/mcandre/mcandre/go/magic/...
 
 ```
 $ mkdir -p $GOPATH/src/github.com/mcandre
-$ git clone git@github.com:mcandre/mcandre.git $GOPATH/src/github.com/mcandre/mcandre
-$ sh -c "cd $GOPATH/src/github.com/mcandre/mcandre/go/magic && go install"
+$ git clone git@github.com:mcandre/toys.git $GOPATH/src/github.com/mcandre/toys
+$ sh -c "cd $GOPATH/src/github.com/mcandre/toys/go/magic && go install"
 ```
 
 # LINT
