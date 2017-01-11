@@ -1,4 +1,4 @@
-# mcandre/lua
+# toys/lua
 
 Introductory programs in Lua
 

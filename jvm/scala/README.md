@@ -1,4 +1,4 @@
-# mcandre/scala - a collection of example Scala programs
+# toys/jvm/scala - a collection of example Scala programs
 
 # EXAMPLE
 

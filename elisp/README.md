@@ -1,4 +1,4 @@
-# mcandre/elisp
+# toys/elisp
 
 Introductory Emacs Lisp programs
 

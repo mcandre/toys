@@ -1,4 +1,4 @@
-# mcandre/llvm
+# toys/llvm
 
 Introductory programming in LLVM
 

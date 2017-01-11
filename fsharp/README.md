@@ -1,4 +1,4 @@
-# mcandre/fsharp
+# toys/fsharp
 
 Introductory F# programs
 

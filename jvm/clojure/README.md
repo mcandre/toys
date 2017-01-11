@@ -1,4 +1,4 @@
-# mcandre/clojure
+# toys/jvm/clojure
 
 Introductory Clojure scripts
 

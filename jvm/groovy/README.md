@@ -1,4 +1,4 @@
-# mcandre/groovy
+# toys/jvm/groovy
 
 Introductory programs in Groovy
 

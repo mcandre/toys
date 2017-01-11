@@ -1,4 +1,4 @@
-# mcandre/perl
+# toys/perl
 
 Introductory Perl programs
 

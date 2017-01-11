@@ -1,4 +1,4 @@
-# mcandre/io
+# toys/io
 
 Introductory Io programs
 

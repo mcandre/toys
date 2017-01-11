@@ -1,4 +1,4 @@
-# mcandre/ocaml
+# toys/ocaml
 
 Introductory OCaml programs
 

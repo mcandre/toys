@@ -1,4 +1,4 @@
-# mcandre/latex
+# toys/latex
 
 Introductory LaTeX programs/documents
 

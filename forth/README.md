@@ -1,4 +1,4 @@
-# mcandre/forth
+# toys/forth
 
 Introductory Forth programs
 

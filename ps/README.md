@@ -1,4 +1,4 @@
-# mcandre/ps
+# toys/ps
 
 Introductory PostScript programs
 

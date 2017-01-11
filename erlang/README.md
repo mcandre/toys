@@ -1,4 +1,4 @@
-# mcandre/erlang
+# toys/erlang
 
 Introductory Erlang programs
 

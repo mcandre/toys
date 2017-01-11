@@ -1,4 +1,4 @@
-# mcandre/fortran
+# toys/fortran
 
 Introductory Fortran programs
 

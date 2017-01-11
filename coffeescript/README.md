@@ -1,4 +1,4 @@
-# mcandre/coffeescript
+# toys/coffeescript
 
 Introductory CoffeeScript programs
 

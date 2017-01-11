@@ -1,4 +1,4 @@
-# mcandre/chicken
+# toys/chicken
 
 Introductory Chicken Scheme scripts
 

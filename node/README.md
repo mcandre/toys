@@ -1,4 +1,4 @@
-# mcandre/node
+# toys/node
 
 Introductory Node.js programs
 

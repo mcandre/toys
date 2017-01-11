@@ -1,4 +1,4 @@
-# mcandre/objc
+# toys/objc
 
 Introductory Objective C programs
 

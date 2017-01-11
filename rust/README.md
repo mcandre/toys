@@ -1,4 +1,4 @@
-# mcandre/rust/
+# toys/rust
 
 Introductory Rust programs
 

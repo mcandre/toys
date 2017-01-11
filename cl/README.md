@@ -1,4 +1,4 @@
-# mcandre/cl
+# toys/cl
 
 Introductory scripts in Common Lisp (with a preference for CLISP)
 

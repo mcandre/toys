@@ -1,4 +1,4 @@
-# mcandre/css
+# toys/css
 
 Programming in CSS
 

@@ -1,4 +1,4 @@
-# mcandre/bf
+# toys/bf
 
 Introductory programs in BF
 

@@ -1,4 +1,4 @@
-# mcandre/less
+# toys/less
 
 Programming in Less
 

@@ -1,4 +1,4 @@
-# mcandre/ruby
+# toys/ruby
 
 Example Ruby code snippets.
 

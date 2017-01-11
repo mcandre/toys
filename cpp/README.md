@@ -1,4 +1,4 @@
-# mcandre/cpp
+# toys/cpp
 
 Introductory C++ programs
 

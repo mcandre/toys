@@ -1,4 +1,4 @@
-# mcandre/make
+# toys/make
 
 Introductory programming in Make
 

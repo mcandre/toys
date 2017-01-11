@@ -1,4 +1,4 @@
-# mcandre/racket
+# toys/racket
 
 Introductory Racket programs
 

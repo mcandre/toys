@@ -1,4 +1,4 @@
-# mcandre/haskell
+# toys/haskell
 
 Introductory Haskell programs
 

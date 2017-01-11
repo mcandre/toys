@@ -1,4 +1,4 @@
-# mcandre/perl6
+# toys/perl6
 
 Introductory Perl 6 programs
 

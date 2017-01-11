@@ -1,4 +1,4 @@
-# mcandre/awk
+# toys/awk
 
 Introductory `awk` scripts
 

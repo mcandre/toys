@@ -1,4 +1,4 @@
-# mcandre/java/yubnub
+# toys/jvm/java/yubnub
 
 YubNub CLI launcher in Java
 

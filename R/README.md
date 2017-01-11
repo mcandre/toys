@@ -1,4 +1,4 @@
-# mcandre/R - introductory R scripts
+# toys/R - introductory R scripts
 
 # EXAMPLE
 

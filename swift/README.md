@@ -1,4 +1,4 @@
-# mcandre/swift
+# toys/swift
 
 Introductory Swift programs
 

@@ -1,4 +1,4 @@
-# mcandre/php
+# toys/php
 
 Introductory PHP programs
 

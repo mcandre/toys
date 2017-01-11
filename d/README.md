@@ -1,4 +1,4 @@
-# mcandre/d
+# toys/d
 
 Introductory D programs
 
