@@ -4,7 +4,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/mcandre/mcandre/go/испытание"
+	"github.com/mcandre/toys/go/испытание"
 )
 
 // main is the entrypoint for this application.
