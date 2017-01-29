@@ -8,6 +8,7 @@
 
 * [shlint](https://github.com/duggan/shlint)
 * [shellcheck](http://www.shellcheck.net/)
+* [pup](https://github.com/ericchiang/pup)
 
 # DEVELOPMENT
 

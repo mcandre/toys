@@ -1,0 +1,30 @@
+#!/bin/sh
+
+usage() {
+    echo "Usage: $0 \"<text>\""
+    echo "Example:"
+    echo "
+$ pupsay hrey
+<pre>
+ / \__
+  (    @\___
+  /         O
+ /   (_____/
+/_____/   U
+</pre>
+<pre>
+hrey
+<pre>
+"
+    exit 0
+}
+
+if [ -z "$1" ]; then
+    usage
+fi
+
+N="$(((RANDOM % 57) + 1))"
+
+curl -s http://www.ascii-code.com/ascii-art/animals/dogs.php | pup "div#workarea" div "div:nth-child($N) pre"
+
+echo "<pre>\n$1\n<pre>"
