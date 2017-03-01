@@ -1,5 +1,5 @@
 CC=clang++
-FLAGS=-std=c++11 -stdlib=libc++ -O2 -Wall -Wextra -Weffc++ -Wmost -Weverything -Wno-c++98-compat
+FLAGS=-std=c++11 -stdlib=libc++ -O2 -Wall -Wextra -pedantic -Weffc++ -Wmost -Weverything -Wno-c++98-compat
 
 BIN=bin/args
 
