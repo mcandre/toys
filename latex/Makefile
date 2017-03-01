@@ -16,7 +16,10 @@ lacheck:
 style-check:
 	-style-check.rb *.tex
 
-lint: lacheck style-check
+chktex:
+	chktex .
+
+lint: lacheck style-check chktex
 
 clean:
 	-rm *.out

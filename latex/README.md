@@ -19,6 +19,7 @@ $ open fizzy.pdf
 
 * [guard](http://guardgem.org/)
 * `lacheck`
+* [chktex](http://baruch.ev-en.org/proj/chktex/)
 
 Install `guard` (requires [Ruby](https://www.ruby-lang.org/)):
 
