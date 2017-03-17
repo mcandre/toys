@@ -4,7 +4,7 @@ test:
 	lissajous > example.gif
 
 govet:
-	go list ./... | grep -v vendor | xargs go vet -v
+	find . -path "*/vendor*" -prune -o -name "*.go" -type f -exec go tool vet -shadow {} \;
 
 golint:
 	find . -path '*/vendor/*' -prune -o -name '*.go' -type f -exec golint {} \;
