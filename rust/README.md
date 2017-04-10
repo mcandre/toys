@@ -4,11 +4,10 @@ Introductory Rust programs
 
 # EXAMPLE
 
-```
-$ cd hello/
+```console
+$ cd hello
 $ make
-mkdir -p bin/
-rustc -o bin/hello hello.rs -O -W missing-doc -W non-uppercase-statics -W unnecessary-qualification -W unnecessary-typecast -W unused-result
+cargo build
 bin/hello
 Hello World!
 ```
@@ -16,3 +15,9 @@ Hello World!
 # REQUIREMENTS
 
 * [rust](http://www.rust-lang.org/) 1.16.0+
+
+# UNIT TEST
+
+```console
+$ cargo test
+```
