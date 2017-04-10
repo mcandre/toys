@@ -1,0 +1,5 @@
+[package]
+
+name = "vectest"
+version = "0.0.1"
+authors = ["Andrew Pennebaker <andrew.pennebaker@gmail.com>"]

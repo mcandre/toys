@@ -1,16 +1,14 @@
 FLAGS=-O
 
-BIN=bin/fizzy
+BIN=target/debug/fizzy
 
 all: test
 
 test: $(BIN)
 	$(BIN)
 
-$(BIN): fizzy.rs
-	mkdir -p bin
-	rustc -o $(BIN) fizzy.rs $(FLAGS)
+$(BIN): src/bin/fizzy.rs
+	cargo build
 
 clean:
-	-rm -rf bin
-	-rm -rf *.dSYM
+	-rm -rf target

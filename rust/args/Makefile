@@ -1,16 +1,14 @@
 FLAGS=-O
 
-BIN=bin/args
+BIN=target/debug/args
 
 all: test
 
 test: $(BIN)
 	$(BIN) a b c
 
-$(BIN): args.rs
-	mkdir -p bin
-	rustc -o $(BIN) args.rs $(FLAGS)
+$(BIN): src/bin/args.rs
+	cargo build
 
 clean:
-	-rm -rf bin
-	-rm -rf *.dSYM
+	-rm -rf target

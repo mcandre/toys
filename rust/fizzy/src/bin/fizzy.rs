@@ -1,6 +1,6 @@
 //! FizzBuzz
 
-fn fizzbuzz(n: int) -> String {
+fn fizzbuzz(n: i64) -> String {
   let mod3 = n % 3 == 0;
   let mod5 = n % 5 == 0;
 
@@ -19,7 +19,7 @@ fn fizzbuzz(n: int) -> String {
 }
 
 fn main() {
-  for n in range(1i, 101i) {
+  for n in 1..101 {
     println!("{}", fizzbuzz(n));
   }
 }

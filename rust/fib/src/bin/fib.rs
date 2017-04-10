@@ -1,8 +1,6 @@
 //! Fibonacci
 
-#![crate_id(name = "fib")]
-
-fn fib(n : int) -> int {
+fn fib(n : i64) -> i64 {
   if n == 0 {
     return 0;
   }

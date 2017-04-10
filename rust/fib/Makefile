@@ -1,16 +1,14 @@
 FLAGS=-O
 
-BIN=bin/fib
+BIN=target/debug/fib
 
 all: test
 
 test: $(BIN)
 	$(BIN)
 
-$(BIN): fib.rs
-	mkdir -p bin
-	rustc -o $(BIN) fib.rs $(FLAGS)
+$(BIN): src/bin/fib.rs
+	cargo build
 
 clean:
-	-rm -rf bin
-	-rm -rf *.dSYM
+	-rm -rf target
