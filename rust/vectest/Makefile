@@ -8,9 +8,9 @@ test: $(BIN)
 	$(BIN)
 
 $(BIN): vectest.rs
-	mkdir -p bin/
+	mkdir -p bin
 	rustc -o $(BIN) vectest.rs $(FLAGS)
 
 clean:
-	-rm -rf bin/
+	-rm -rf bin
 	-rm -rf *.dSYM
