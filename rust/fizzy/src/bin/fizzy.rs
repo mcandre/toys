@@ -18,6 +18,13 @@ fn fizzbuzz(n: i64) -> String {
   }
 }
 
+#[test]
+fn smoketest() {
+  assert_eq!(fizzbuzz(3), "Fizz");
+  assert_eq!(fizzbuzz(5), "Buzz");
+  assert_eq!(fizzbuzz(15), "FizzBuzz");
+}
+
 fn main() {
   for n in 1..101 {
     println!("{}", fizzbuzz(n));
