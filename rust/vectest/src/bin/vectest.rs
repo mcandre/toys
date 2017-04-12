@@ -1,4 +1,4 @@
-//! Vector test
+//! Arg vector test
 
 use std::env;
 use std::option::Option;
