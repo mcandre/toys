@@ -18,5 +18,5 @@ fn first_five_elements_are_correct() {
 }
 
 fn main() {
-  println!("Fib 40 = {}", fib(40).to_string());
+  println!("Fib 40 = {}", fib(40));
 }
