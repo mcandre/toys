@@ -1,23 +1,33 @@
 //! FizzBuzz
 
-fn fizzbuzz(n: i64) -> String {
+// FB provides a more specific return type for fizzbuzz() than a String,
+// as well as using a tad less memory to model this information.
+#[derive(PartialEq, Eq, Debug)]
+enum FB {
+  Value(i64),
+  Fizz,
+  Buzz,
+  FizzBuzz,
+}
+
+fn fizzbuzz(n: i64) -> FB {
   return match (n % 3 == 0, n % 5 == 0) {
-    (true, true) => "FizzBuzz".to_string(),
-    (true, _) => "Fizz".to_string(),
-    (_, true) => "Buzz".to_string(),
-    _ => n.to_string()
+    (true, true) => FB::FizzBuzz,
+    (true, _) => FB::Fizz,
+    (_, true) => FB::Buzz,
+    _ => FB::Value(n)
   };
 }
 
 #[test]
 fn smoketest() {
-  assert_eq!(fizzbuzz(3), "Fizz");
-  assert_eq!(fizzbuzz(5), "Buzz");
-  assert_eq!(fizzbuzz(15), "FizzBuzz");
+  assert_eq!(fizzbuzz(3), FB::Fizz);
+  assert_eq!(fizzbuzz(5), FB::Buzz);
+  assert_eq!(fizzbuzz(15), FB::FizzBuzz);
 }
 
 fn main() {
   for n in 1..101 {
-    println!("{}", fizzbuzz(n));
+    println!("{:?}", fizzbuzz(n));
   }
 }
