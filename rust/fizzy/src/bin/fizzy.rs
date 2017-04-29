@@ -2,6 +2,9 @@
 
 // FB provides a more specific return type for fizzbuzz() than a String,
 // as well as using a tad less memory to model this information.
+//
+// Props to J. M. Archer for the idea!
+// https://www.youtube.com/watch?v=sv9fTlU7SCA
 #[derive(PartialEq, Eq, Debug)]
 enum FB {
   Value(i64),
