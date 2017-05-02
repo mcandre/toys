@@ -1,16 +1,14 @@
-FLAGS=-O -W missing-doc -W non-uppercase-statics -W unnecessary-qualification -W unnecessary-typecast -W unused-result
+FLAGS=-O
 
-BIN=bin/hello
+BIN=target/debug/hello
 
 all: test
 
 test: $(BIN)
 	$(BIN)
 
-$(BIN): hello.rs
-	mkdir -p bin/
-	rustc -o $(BIN) hello.rs $(FLAGS)
+$(BIN): src/bin/hello.rs
+	cargo build
 
 clean:
-	-rm -rf bin/
-	-rm -rf *.dSYM
+	-rm -rf target

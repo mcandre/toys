@@ -1,16 +1,14 @@
-FLAGS=-O -W missing-doc -W non-uppercase-statics -W unnecessary-qualification -W unnecessary-typecast -W unused-result
+FLAGS=-O
 
-BIN=bin/vectest
+BIN=target/debug/vectest
 
 all: test
 
 test: $(BIN)
 	$(BIN)
 
-$(BIN): vectest.rs
-	mkdir -p bin/
-	rustc -o $(BIN) vectest.rs $(FLAGS)
+$(BIN): src/bin/vectest.rs
+	cargo build
 
 clean:
-	-rm -rf bin/
-	-rm -rf *.dSYM
+	-rm -rf target
