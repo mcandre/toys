@@ -1,4 +1,5 @@
 #!/usr/bin/env dash
+set -eu
 
 usage() {
     echo "Usage: $0 <name>"

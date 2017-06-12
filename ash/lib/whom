@@ -1,2 +1,4 @@
 #!/usr/bin/env ash
+set -eu
+
 ps -hp "$$" | awk '/sh/ {print $4}'

@@ -1,4 +1,6 @@
 #!/bin/sh
+set -euo pipefail
+#
 #
 # A poor man's NTP proxy, where the clock's wrong and NTP is firewalled.
 #

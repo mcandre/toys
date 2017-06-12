@@ -1,4 +1,5 @@
 #!/bin/ksh
+set -euo pipefail
 
 div3() {
     echo $((($1 % 3) == 0))

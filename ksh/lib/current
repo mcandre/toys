@@ -1,2 +1,4 @@
 #!/bin/ksh
+set -euo pipefail
+
 echo "${0%/*}"

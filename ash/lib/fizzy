@@ -1,4 +1,5 @@
 #!/usr/bin/env ash
+set -eu
 
 div3() {
     echo $((($1 % 3) == 0))

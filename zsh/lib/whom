@@ -1,2 +1,4 @@
 #!/bin/zsh
+set -euo pipefail
+
 ps -hp "$$" | awk '/sh/ {print $4}'

@@ -1,2 +1,4 @@
 #!/usr/bin/env ash
+set -eu
+
 echo "Hello World!"

@@ -1,2 +1,4 @@
 #!/usr/bin/env dash
+set -eu
+
 echo "Hello World!"
