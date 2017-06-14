@@ -12,9 +12,9 @@ public final class Fib {
   private Fib() {}
 
   /**
-     <p>Fibonacci</p>
-     @param n input
-     @return fib(n)
+    <p>Fibonacci</p>
+    @param n input
+    @return fib(n)
   */
   public static int fib(final int n) {
     Preconditions.checkArgument(n >= 0);
@@ -36,9 +36,9 @@ public final class Fib {
   }
 
   /**
-     <p>Timed Fibonacci test</p>
-     @param args CLI args
-     @throws IOException on CLI read error
+    <p>Timed Fibonacci test</p>
+    @param args CLI args
+    @throws IOException on CLI read error
   */
   public static void main(final String[] args) throws IOException {
     System.out.print("N = ");

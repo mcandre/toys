@@ -8,4 +8,4 @@
    (t (format "%d" n))))
 
 (mapcar '(lambda (n) (message (fizzy n)))
-	(number-sequence 1 100))
+ (number-sequence 1 100))

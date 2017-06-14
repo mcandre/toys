@@ -70,9 +70,10 @@ public class BookTest {
     final Book book2;
 
     try (PipedOutputStream pipedOut = new PipedOutputStream();
-         PipedInputStream pipedIn = new PipedInputStream(pipedOut);
-         ObjectOutputStream booksOut = new ObjectOutputStream(pipedOut);
-         ObjectInputStream booksIn = new ObjectInputStream(pipedIn)) {
+      PipedInputStream pipedIn = new PipedInputStream(pipedOut);
+      ObjectOutputStream booksOut = new ObjectOutputStream(pipedOut);
+      ObjectInputStream booksIn = new ObjectInputStream(pipedIn)
+    ) {
 
       booksOut.writeObject(BPWJFD);
       book2 = (Book) booksIn.readObject();

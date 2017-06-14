@@ -1,4 +1,4 @@
 /**
-   Example Fibonacci implementation
+  Example Fibonacci implementation
  */
 package us.yellosoft.fib;

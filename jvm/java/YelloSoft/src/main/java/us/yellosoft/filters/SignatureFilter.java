@@ -6,10 +6,10 @@ import javax.swing.filechooser.FileFilter;
 /** Signature filetype filter */
 public class SignatureFilter extends FileFilter {
   /**
-     <p>Accept directories and signatures</p>
-     @param f file
-     @return whether the file is acceptable
-  */
+   * <p>Accept directories and signatures</p>
+   * @param f file
+   * @return whether the file is acceptable
+   */
   public final boolean accept(final File f) {
     // display all directories
     if (f.isDirectory()) {
@@ -23,18 +23,18 @@ public class SignatureFilter extends FileFilter {
   }
 
   /**
-     <p>Get description</p>
-     @return description
-  */
+   * <p>Get description</p>
+   * @return description
+   */
   public final String getDescription() {
     return "Signature files";
   }
 
   /**
-     <p>Get file extension</p>
-     @param f file
-     @return file extension (lowercase)
-  */
+   * <p>Get file extension</p>
+   * @param f file
+   * @return file extension (lowercase)
+   */
   private String getExtension(final File f) {
     String s = f.getName();
     int i = s.lastIndexOf('.');

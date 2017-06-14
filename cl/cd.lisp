@@ -41,15 +41,15 @@
 
 (defun update (selector &key title artist rating (ripped nil ripped-p))
   (setq *db*
-	(mapcar
-	 #'(lambda (cd)
-	   (when (funcall selector cd)
-	     (if title (setf (getf cd :title) title))
-	     (if artist (setf (getf cd :artist) artist))
-	     (if rating (setf (getf cd :rating) rating))
-	     (if ripped-p (setf (getf cd :ripped) ripped)))
-	   cd)
-	 *db*)))
+    (mapcar
+      #'(lambda (cd)
+        (when (funcall selector cd)
+          (if title (setf (getf cd :title) title))
+          (if artist (setf (getf cd :artist) artist))
+          (if rating (setf (getf cd :rating) rating))
+          (if ripped-p (setf (getf cd :ripped) ripped)))
+          cd)
+      *db*)))
 
 (defun delete-rows (selector)
   (setq *db* (remove-if selector *db*)))

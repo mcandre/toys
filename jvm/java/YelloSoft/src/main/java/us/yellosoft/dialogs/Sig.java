@@ -123,9 +123,9 @@ public class Sig extends JPanel implements ActionListener {
   }
 
   /**
-     <p>Respond to GUI event</p>
-     @param e GUI event
-  */
+   * <p>Respond to GUI event</p>
+   * @param e GUI event
+   */
   public final void actionPerformed(final ActionEvent e) {
     if (e.getSource() == keyBox) {
       String keyAlg = (String) keyBox.getSelectedItem();
@@ -159,13 +159,12 @@ public class Sig extends JPanel implements ActionListener {
   }
 
   /**
-     <p>Sign</p>
-     @param keyAlgorithm key algorithm
-     @param mdAlgorithm message digest algorithm
-     @param hasPassphrase whether the key is protected by a passphrase
-  */
-  public final void sign(final String keyAlgorithm, final String mdAlgorithm,
-                         final boolean hasPassphrase) {
+   * <p>Sign</p>
+   * @param keyAlgorithm key algorithm
+   * @param mdAlgorithm message digest algorithm
+   * @param hasPassphrase whether the key is protected by a passphrase
+   */
+  public final void sign(final String keyAlgorithm, final String mdAlgorithm, final boolean hasPassphrase) {
     boolean useCryptix = false;
     String instance = "";
 
@@ -467,10 +466,10 @@ public class Sig extends JPanel implements ActionListener {
   }
 
   /**
-     <p>Verify</p>
-     @param keyAlgorithm key algorithm
-     @param mdAlgorithm message digest algorithm
-  */
+   * <p>Verify</p>
+   * @param keyAlgorithm key algorithm
+   * @param mdAlgorithm message digest algorithm
+   */
   public final void verify(final String keyAlgorithm, final String mdAlgorithm) {
     boolean useCryptix = false;
     String instance = "";
@@ -654,10 +653,10 @@ public class Sig extends JPanel implements ActionListener {
   }
 
   /**
-     <p>Get file extension</p>
-     @param f file
-     @return file extension (lowercase)
-  */
+   * <p>Get file extension</p>
+   * @param f file
+   * @return file extension (lowercase)
+   */
   public final String getExtension(final File f) {
     String s = f.getName();
     int i = s.lastIndexOf('.');
@@ -670,10 +669,10 @@ public class Sig extends JPanel implements ActionListener {
   }
 
   /**
-     <p>Detect an input stream's availability for reading</p>
-     @param is an input stream
-     @return availability
-  */
+   * <p>Detect an input stream's availability for reading</p>
+   * @param is an input stream
+   * @return availability
+   */
   public final boolean isAvailable(final InputStream is) {
     try {
       return is.available() != 0;
@@ -683,10 +682,10 @@ public class Sig extends JPanel implements ActionListener {
   }
 
   /**
-     <p>Buffer and read all data from an input stream</p>
-     @param in an input stream
-     @return data, in bytes
-  */
+   * <p>Buffer and read all data from an input stream</p>
+   * @param in an input stream
+   * @return data, in bytes
+   */
   public static final byte[] getAllData(final InputStream in) {
     byte[] buf;
 
@@ -701,9 +700,9 @@ public class Sig extends JPanel implements ActionListener {
   }
 
   /**
-     <p>Launch GUI</p>
-     @param args CLI args
-  */
+   * <p>Launch GUI</p>
+   * @param args CLI args
+   */
   public static void main(final String[] args) {
     JFrame.setDefaultLookAndFeelDecorated(true);
     JDialog.setDefaultLookAndFeelDecorated(true);

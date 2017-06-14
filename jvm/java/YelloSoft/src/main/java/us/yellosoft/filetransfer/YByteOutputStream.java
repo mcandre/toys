@@ -5,9 +5,9 @@ import java.io.*;
 /** Mock of a byte output stream */
 public class YByteOutputStream extends ByteArrayOutputStream {
   /**
-     <p>Construct a mock</p>
-     @param newBuf buffer
-  */
+   * <p>Construct a mock</p>
+   * @param newBuf buffer
+   */
   public YByteOutputStream(final byte[] newBuf) {
     super();
 
@@ -15,9 +15,9 @@ public class YByteOutputStream extends ByteArrayOutputStream {
   }
 
   /**
-     <p>Get buffer</p>
-     @return buffer
-  */
+   * <p>Get buffer</p>
+   * @return buffer
+   */
   public final byte[] getBytes() {
     return buf;
   }

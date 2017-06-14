@@ -20,25 +20,25 @@ public class PerformingOperationDialog extends JPanel {
   private JLabel label = null;
 
   /**
-     <p>Set title</p>
-     @param t title
-  */
+   * <p>Set title</p>
+   * @param t title
+   */
   public final void setTitle(final String t) {
     title = t;
   }
 
   /**
-     <p>Set label text</p>
-     @param l label text
-  */
+   * <p>Set label text</p>
+   * @param l label text
+   */
   public final void setLabelText(final String l) {
     labelText = l;
   }
 
   /**
-     <p>Show tracker</p>
-     @param parent GUI parent widget
-  */
+   * <p>Show tracker</p>
+   * @param parent GUI parent widget
+   */
   public final void show(final Component parent) {
     Frame frame = (Frame) SwingUtilities.getAncestorOfClass(Frame.class, parent);
 

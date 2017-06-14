@@ -37,32 +37,32 @@ public class PassphraseDialog extends JPanel implements ActionListener {
   private int returnValue = CANCEL_OPTION;
 
   /**
-     <p>Present GUI confirmation dialog</p>
-     @param parent GUI parent widget
-     @param s confirmation text
-     @return GUI response
-  */
+   * <p>Present GUI confirmation dialog</p>
+   * @param parent GUI parent widget
+   * @param s confirmation text
+   * @return GUI response
+   */
   public final int showConfirmDialog(final Component parent, final String s) {
     return showDialog(parent, s, CONFIRM_DIALOG);
   }
 
   /**
-     <p>Present single GUI dialog</p>
-     @param parent GUI parent widget
-     @param s message text
-     @return GUI response
-  */
+   * <p>Present single GUI dialog</p>
+   * @param parent GUI parent widget
+   * @param s message text
+   * @return GUI response
+   */
   public final int showSingleDialog(final Component parent, final String s) {
     return showDialog(parent, s, SINGLE_DIALOG);
   }
 
   /**
-     <p>Present GUI dialog</p>
-     @param parent GUI parent widget
-     @param s message text
-     @param b toggle double/single
-     @return GUI response
-  */
+   * <p>Present GUI dialog</p>
+   * @param parent GUI parent widget
+   * @param s message text
+   * @param b toggle double/single
+   * @return GUI response
+   */
   public final int showDialog(final Component parent, final String s,
                               final boolean b) {
     isDouble = b;
@@ -117,17 +117,17 @@ public class PassphraseDialog extends JPanel implements ActionListener {
   }
 
   /**
-     <p>Get passphrase</p>
-     @return passphrase, in characters
-  */
+   * <p>Get passphrase</p>
+   * @return passphrase, in characters
+   */
   public final char[] getPassphrase() {
     return passphrase;
   }
 
   /**
-     <p>Generate button panel</p>
-     @return panel
-  */
+   * <p>Generate button panel</p>
+   * @return panel
+   */
   private JPanel makeButtonPanel() {
     JPanel panel = new JPanel();
 
@@ -143,9 +143,9 @@ public class PassphraseDialog extends JPanel implements ActionListener {
   }
 
   /**
-     <p>Respond to GUI events</p>
-     @param e GUI event
-  */
+   * <p>Respond to GUI events</p>
+   * @param e GUI event
+   */
   public final void actionPerformed(final ActionEvent e) {
     if (e.getSource() == okButton) {
       char[] temp1 = password1.getPassword();

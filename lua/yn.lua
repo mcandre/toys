@@ -10,7 +10,7 @@ main = function()
 end
 
 if type(package.loaded[(...)]) ~= "userdata" then
-	main(arg)
+  main(arg)
 else
-	module(..., package.seeall)
+  module(..., package.seeall)
 end

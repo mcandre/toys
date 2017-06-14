@@ -1,11 +1,11 @@
 (*
-	Bertrand Russel's conjecture
-	Andrew Pennebaker
-	2 Nov 2011
+  Bertrand Russel's conjecture
+  Andrew Pennebaker
+  2 Nov 2011
 
-	Example:
+  Example:
 
-	coqtop -l bertrand.v
+  coqtop -l bertrand.v
 *)
 
 Inductive nat : Set :=

@@ -31,16 +31,16 @@ public class VM {
   }
 
   /** Configure debug mode
-      @param debug whether or not to print debugging statements during VM evaluation
+   *  @param debug whether or not to print debugging statements during VM evaluation
    */
   public void setDebug(final boolean debug) {
     this.debug = debug;
   }
 
   /** Count occurences of c in s
-      @param s a haystack
-      @param c the needle
-      @return frequency of c in s
+   *  @param s a haystack
+   *  @param c the needle
+   *  @return frequency of c in s
    */
   public static int count(final String s, final char c) {
     int count = 0;
@@ -55,18 +55,18 @@ public class VM {
   }
 
   /** Validate Brainfuck code
-      @param level a segment of Brainfuck code
-      @return whether the segment is valid
+   *  @param level a segment of Brainfuck code
+   *  @return whether the segment is valid
    */
   public static boolean valid(final String level) {
     return count(level, '[') == count(level, ']');
   }
 
   /**
-     Extract a subroutine within a level
-     Note: Assumes level is valid.
-     @param level the overall level
-     @return a sublevel
+   * Extract a subroutine within a level
+   * Note: Assumes level is valid.
+   * @param level the overall level
+   * @return a sublevel
    */
   public static String sublevel(final String level) {
     int i = 1;
@@ -80,9 +80,9 @@ public class VM {
   }
 
   /** Execute Brainfuck machine
-      @param level a segment of Brainfuck code
-      @param position initial read position
-      @return the read position after evaluation
+   *  @param level a segment of Brainfuck code
+   *  @param position initial read position
+   *  @return the read position after evaluation
    */
   public int run(final String level, final int position) {
     int currentPosition = position;
@@ -164,18 +164,18 @@ public class VM {
   }
 
   /**
-     Execute Brainfuck code
-     @param level a segment of Brainfuck code
-     @return the read position after evaluation
+   * Execute Brainfuck code
+   * @param level a segment of Brainfuck code
+   * @return the read position after evaluation
    */
   public int run(final String level) {
     return run(level, 0);
   }
 
   /**
-     Add a segment to the current Brainfuck context
-     @param command a new Brainfuck segment
-     @return the current tape value
+   * Add a segment to the current Brainfuck context
+   * @param command a new Brainfuck segment
+   * @return the current tape value
    */
   public String eval(final String command) {
     String result = "";
@@ -196,8 +196,8 @@ public class VM {
   }
 
   /**
-     Debug state
-     @return state
+   * Debug state
+   * @return state
    */
   public String textSystem() {
     StringBuilder stringBuilder = new StringBuilder(

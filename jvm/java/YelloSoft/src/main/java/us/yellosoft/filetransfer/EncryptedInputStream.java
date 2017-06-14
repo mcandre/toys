@@ -8,21 +8,18 @@ public class EncryptedInputStream extends InputStream {
   private /*Cipher*/BufferedInputStream in;
 
   /**
-     <p>Wrap an input stream in encryption</p>
-     @param is input stream
-     @param c cipher
-  */
+   * <p>Wrap an input stream in encryption</p>
+   * @param is input stream
+   * @param c cipher
+   */
   public EncryptedInputStream(final InputStream is, final Cipher c) {
-    in = /*new CipherInputStream(*/
-      new BufferedInputStream(is)/*,
-                                   c
-                                   )*/;
+    in = new BufferedInputStream(is);
   }
 
   /**
-     <p>Read an integer</p>
-     @return an integer
-  */
+   * <p>Read an integer</p>
+   * @return an integer
+   */
   public final int read() {
     try {
       return in.read();
@@ -33,10 +30,10 @@ public class EncryptedInputStream extends InputStream {
   }
 
   /**
-     <p>Read a string</p>
-     @return a string
-     @throws Exception on read error
-  */
+   * <p>Read a string</p>
+   * @return a string
+   * @throws Exception on read error
+   */
   public final String readString() throws Exception {
     int len = (int) read();
 

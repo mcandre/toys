@@ -6,10 +6,10 @@ import javax.swing.filechooser.FileFilter;
 /** Private key file selector */
 public class PrivateKeyFilter extends FileFilter {
   /**
-     <p>Accept only private key files</p>
-     @param f file
-     @return acceptibility
-  */
+   * <p>Accept only private key files</p>
+   * @param f file
+   * @return acceptibility
+   */
   public final boolean accept(final File f) {
     // display all directories
     if (f.isDirectory()) {
@@ -23,18 +23,18 @@ public class PrivateKeyFilter extends FileFilter {
   }
 
   /**
-     <p>Get description</p>
-     @return description
-  */
+   * <p>Get description</p>
+   * @return description
+   */
   public final String getDescription() {
     return "Private Key Files";
   }
 
   /**
-     <p>Get file extension</p>
-     @param f file
-     @return file extension (lowercase)
-  */
+   * <p>Get file extension</p>
+   * @param f file
+   * @return file extension (lowercase)
+   */
   private String getExtension(final File f) {
     String s = f.getName();
     int i = s.lastIndexOf('.');

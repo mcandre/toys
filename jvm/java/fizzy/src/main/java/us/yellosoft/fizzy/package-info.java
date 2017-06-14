@@ -1,4 +1,4 @@
 /**
-   FizzBuzz implementation
+  FizzBuzz implementation
  */
 package us.yellosoft.fizzy;

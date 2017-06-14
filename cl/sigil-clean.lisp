@@ -48,11 +48,11 @@ exec clisp -q -q $0 $0 ${1+"$@"}
   (zip:with-zipfile (iz in-filename)
     (zip:with-output-to-zipfile (oz out-filename :if-exists :supersede)
       (zip:do-zipfile-entries (name entry iz)
-	(let ((newname (clean name)) (content (zip:zipfile-entry-contents entry)))
-	  (if (funcall test-f newname)
-	      (zip-write-bytes oz newname (flexi-streams:string-to-octets (funcall filter-f (flexi-streams:octets-to-string content)) :external-format :utf-8))
-	      (zip-write-bytes oz newname content))
-	  (delete-file *temp-filename*))))))
+        (let ((newname (clean name)) (content (zip:zipfile-entry-contents entry)))
+          (if (funcall test-f newname)
+              (zip-write-bytes oz newname (flexi-streams:string-to-octets (funcall filter-f (flexi-streams:octets-to-string content)) :external-format :utf-8))
+              (zip-write-bytes oz newname content))
+          (delete-file *temp-filename*))))))
 
 (defun clean (html)
   (values

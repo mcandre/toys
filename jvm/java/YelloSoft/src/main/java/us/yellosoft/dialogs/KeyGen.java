@@ -93,9 +93,9 @@ public class KeyGen extends JPanel implements ActionListener {
   }
 
   /**
-     <p>Respond to GUI event</p>
-     @param e GUI event
-  */
+   * <p>Respond to GUI event</p>
+   * @param e GUI event
+   */
   public final void actionPerformed(final ActionEvent e) {
     if (e.getSource() == genButton) {
       String alg = ALGORITHMS[algList.getSelectedIndex()];
@@ -115,10 +115,10 @@ public class KeyGen extends JPanel implements ActionListener {
   }
 
   /**
-     <p>Generate keypair</p>
-     @param algorithm key algorithm
-     @param usePassphrase optionally protect private key with a passphrase
-  */
+   * <p>Generate keypair</p>
+   * @param algorithm key algorithm
+   * @param usePassphrase optionally protect private key with a passphrase
+   */
   public final void generateKeyPair(final String algorithm,
                                     final boolean usePassphrase) {
     KeyPairGenerator kpg = null;
@@ -338,10 +338,10 @@ public class KeyGen extends JPanel implements ActionListener {
   }
 
   /**
-     <p>Generate secret key</p>
-     @param algorithm key algorithm
-     @param usePassphrase optionally protect key with a passphrase
-  */
+   * <p>Generate secret key</p>
+   * @param algorithm key algorithm
+   * @param usePassphrase optionally protect key with a passphrase
+   */
   public final void generateSecretKey(final String algorithm,
                                       final boolean usePassphrase) {
     KeyGenerator kg = null;
@@ -583,10 +583,10 @@ public class KeyGen extends JPanel implements ActionListener {
   }
 
   /**
-     <p>Get file extension</p>
-     @param f file
-     @return file extension (lowercase)
-  */
+   * <p>Get file extension</p>
+   * @param f file
+   * @return file extension (lowercase)
+   */
   public final String getExtension(final File f) {
     String s = f.getName();
     int i = s.lastIndexOf('.');
@@ -599,11 +599,11 @@ public class KeyGen extends JPanel implements ActionListener {
   }
 
   /**
-     <p>Get PBE output</p>
-     @param c cipher
-     @param input input
-     @return bytes
-  */
+   * <p>Get PBE output</p>
+   * @param c cipher
+   * @param input input
+   * @return bytes
+   */
   public final byte[] getPBEOutput(final Cipher c, final byte[] input) {
     try {
       return c.doFinal(input);
@@ -613,9 +613,9 @@ public class KeyGen extends JPanel implements ActionListener {
   }
 
   /**
-     <p>Launch GUI app</p>
-     @param args CLI args
-  */
+   * <p>Launch GUI app</p>
+   * @param args CLI args
+   */
   public static void main(final String[] args) {
     JFrame.setDefaultLookAndFeelDecorated(true);
     JDialog.setDefaultLookAndFeelDecorated(true);

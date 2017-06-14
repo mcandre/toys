@@ -10,9 +10,9 @@ public final class Windows {
   private Windows() {}
 
   /**
-     <p>Center window on screen</p>
-     @param window a window
-  */
+   * <p>Center window on screen</p>
+   * @param window a window
+   */
   public static void centerOnScreen(final Window window) {
     Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
     window.setLocation(

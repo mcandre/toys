@@ -43,11 +43,11 @@ public class KeyLengthDialog extends JPanel implements ActionListener {
   private int returnValue = CANCEL_OPTION;
 
   /**
-     <p>Construct GUI dialog</p>
-     @param objs objects
-     @param i index for default choice
-     @param b customizable
-  */
+   * <p>Construct GUI dialog</p>
+   * @param objs objects
+   * @param i index for default choice
+   * @param b customizable
+   */
   public KeyLengthDialog(final Object[] objs, final int i, final boolean b) {
     choices = objs;
 
@@ -59,9 +59,9 @@ public class KeyLengthDialog extends JPanel implements ActionListener {
   }
 
   /**
-     <p>Set multiple</p>
-     @param i index
-  */
+   * <p>Set multiple</p>
+   * @param i index
+   */
   public final void setMultiple(final int i) {
     if (i > 0) {
       multiple = i;
@@ -69,10 +69,10 @@ public class KeyLengthDialog extends JPanel implements ActionListener {
   }
 
   /**
-     <p>Set selection bounds</p>
-     @param a minimum
-     @param b maximum
-  */
+   * <p>Set selection bounds</p>
+   * @param a minimum
+   * @param b maximum
+   */
   public final void setBounds(final int a, final int b) {
     if (a > 0 && b > a) {
       min = a;
@@ -81,11 +81,11 @@ public class KeyLengthDialog extends JPanel implements ActionListener {
   }
 
   /**
-     <p>Present GUI</p>
-     @param parent GUI parent widget
-     @param s message text
-     @return GUI response
-  */
+   * <p>Present GUI</p>
+   * @param parent GUI parent widget
+   * @param s message text
+   * @return GUI response
+   */
   public final int showDialog(final Component parent, final String s) {
     Frame frame = (Frame) SwingUtilities.getAncestorOfClass(Frame.class, parent);
 
@@ -133,17 +133,17 @@ public class KeyLengthDialog extends JPanel implements ActionListener {
   }
 
   /**
-     <p>Get selection</p>
-     @return object
-  */
+   * <p>Get selection</p>
+   * @return object
+   */
   public final Object getChoice() {
     return choice;
   }
 
   /**
-     <p>Make button panel</p>
-     @return panel
-  */
+   * <p>Make button panel</p>
+   * @return panel
+   */
   private JPanel makeButtonPanel() {
     JPanel panel = new JPanel();
 
@@ -159,9 +159,9 @@ public class KeyLengthDialog extends JPanel implements ActionListener {
   }
 
   /**
-     <p>Respond to GUI event</p>
-     @param e GUI event
-  */
+   * <p>Respond to GUI event</p>
+   * @param e GUI event
+   */
   public final void actionPerformed(final ActionEvent e) {
     if (allowCustom && e.getSource() == bitLengthBox) {
       String newLength = (String) bitLengthBox.getSelectedItem();
