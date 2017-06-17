@@ -1,5 +1,4 @@
 #!/bin/sh
-set -euo pipefail
 
 # From Adam Jacob Muller's /bin/pidof
 # http://www.macosxhints.com/article.php?story=20030618114543169

@@ -1,6 +1,4 @@
 #!/bin/sh
-set -euo pipefail
-
 echo "argv: $*"
 echo "program: $0"
 

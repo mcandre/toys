@@ -1,21 +1,21 @@
-#!/bin/sh
+#!/bin/bash
 set -euo pipefail
 
 usage() {
     echo "Usage: $0 \"<text>\""
     echo "Example:"
     echo "
-$ pupsay hrey
-<pre>
- / \__
-  (    @\___
-  /         O
- /   (_____/
-/_____/   U
-</pre>
-<pre>
-hrey
-<pre>
+    $ pupsay hrey
+    <pre>
+    ~~/ \__
+    ~~(    @\___
+    ~~/         O
+    ~/   (_____/
+    /_____/   U
+    </pre>
+    <pre>
+    hrey
+    <pre>
 "
     exit 0
 }
