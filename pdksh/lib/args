@@ -1,0 +1,4 @@
+#!/bin/pdksh
+set -euo pipefail
+
+echo "$@"

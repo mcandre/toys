@@ -1,8 +1,10 @@
-# Example (POSIX) ksh scripts
+# Example POSIX pdsh scripts
 
 # REQUIREMENTS
 
-* [ksh](http://www.kornshell.com)
+* [pdksh](https://directory.fsf.org/wiki/Pdksh)
+
+For example, the Docker image [mcandre/docker-pdksh](https://hub.docker.com/r/mcandre/docker-pdksh/) offers pdksh.
 
 ## Optional
 
