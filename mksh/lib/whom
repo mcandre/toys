@@ -1,0 +1,4 @@
+#!/usr/bin/env mksh
+set -euo pipefail
+
+ps -hp "$$" | awk '/sh/ {print $4}'
