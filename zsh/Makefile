@@ -1,6 +1,12 @@
 all: lint
 
-bashate:
-	find . \( -wholename '*/.git/*' -o -wholename '*/node_modules*' -o -name '*.bat' \) -prune -o -type f \( -wholename '*/lib/*' -o -wholename '*/hooks/*' -o -name '*.sh' -o -name '*.bashrc*' -o -name '.*profile*' -o -name '*.envrc*' \) -print | xargs bashate
+shfmt:
+	stank lib | xargs shfmt -w -i 4
 
-lint: bashate
+bashate:
+	stank lib | xargs bashate
+
+sh-syntax:
+	stank lib | xargs zsh -n
+
+lint: shfmt bashate sh-syntax
