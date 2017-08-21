@@ -1,0 +1,4 @@
+#!/usr/bin/env ksh93
+set -euo pipefail
+
+echo "Hello World!"
