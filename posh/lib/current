@@ -1,0 +1,4 @@
+#!/usr/bin/env posh
+set -eu
+
+echo "${0%/*}"
