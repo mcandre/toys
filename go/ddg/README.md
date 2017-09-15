@@ -37,7 +37,7 @@ $ go get github.com/mcandre/toys/go/ddg/...
 
 ```
 $ mkdir -p $GOPATH/src/github.com/mcandre
-$ git clone git@github.com:mcandre/toys.git $GOPATH/src/github.com/mcandre/toys
+$ git clone https://github.com/mcandre/toys.git $GOPATH/src/github.com/mcandre/toys
 $ cd $GOPATh/src/github.com/mcandre/toys/go/ddg
 $ git submodule update --init --recursive
 $ go install

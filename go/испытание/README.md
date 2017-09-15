@@ -46,7 +46,7 @@ $ go get github.com/mcandre/toys/go/испытание/...
 
 ```
 $ mkdir -p $GOPATH/src/github.com/mcandre
-$ git clone git@github.com:mcandre/toys.git $GOPATH/src/github.com/mcandre/toys
+$ git clone https://github.com/mcandre/toys.git $GOPATH/src/github.com/mcandre/toys
 $ sh -c "cd $GOPATH/src/github.com/mcandre/toys/go/испытание && go install ./..."
 ```
 
