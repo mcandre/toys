@@ -18,4 +18,7 @@ goimport:
 errcheck:
 	errcheck -blank
 
-lint: govet gofmt goimport errcheck
+nakedret:
+	nakedret -l 0 ./...
+
+lint: govet gofmt goimport errcheck nakedret
