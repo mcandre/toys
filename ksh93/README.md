@@ -8,7 +8,7 @@ For example, the Docker image [mcandre/docker-ksh93](https://hub.docker.com/r/mc
 
 ## Optional
 
-* [shfmt](https://github.com/mvdan/sh) (e.g. `go get github.com/mvdan/sh/cmd/shfmt)
+* [shfmt](https://github.com/mvdan/sh) (e.g. `go get github.com/mvdan/sh/cmd/shfmt`)
 * [bashate](https://pypi.python.org/pypi/bashate/0.5.1)
 * [shlint](https://rubygems.org/gems/shlint)
 * [checkbashisms](https://sourceforge.net/projects/checkbaskisms/)
