@@ -13,7 +13,7 @@ $ open http://127.0.0.1:8124/
 
 # REQUIREMENTS
 
-* [Node.js](http://nodejs.org/) 0.11.6+
+* [Node.js](http://nodejs.org/) 6.9.1+
 
 # DEVELOPMENT
 

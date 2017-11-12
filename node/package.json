@@ -8,7 +8,7 @@
   },
   "author": "Andrew Pennebaker <andrew.pennebaker@gmail.com> (http://www.yellosoft.us/)",
   "engines": {
-    "node": ">=0.11.6"
+    "node": ">=6.9.1"
   },
   "scripts": {
     "exec": "exec"
