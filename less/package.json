@@ -7,7 +7,7 @@
     "lib": "."
   },
   "engines": {
-    "node": ">=0.11.6"
+    "node": ">=6.9.1"
   },
   "devDependencies": {
     "grunt": "~0.4.5",
