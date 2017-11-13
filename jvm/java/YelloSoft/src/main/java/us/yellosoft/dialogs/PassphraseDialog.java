@@ -155,8 +155,7 @@ public class PassphraseDialog extends JPanel implements ActionListener {
         temp2 = password2.getPassword();
       }
 
-      if (new String(temp1).equals("") || (isDouble &&
-                                           new String(temp2).equals(""))) {
+      if (new String(temp1).equals("") || (isDouble && new String(temp2).equals(""))) {
         JOptionPane.showMessageDialog(
           this,
           "Passphrase(s) blank",
