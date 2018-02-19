@@ -1,3 +1,3 @@
 @echo off
 
-echo %CD%
+echo %~dpn0
