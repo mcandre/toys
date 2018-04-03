@@ -22,14 +22,13 @@ $ испытание
 Испытание!
 ```
 
-# REQUIREMENTS
+# BUILDTIME REQUIREMENTS
 
-* [Go](https://golang.org) 1.7+ with [$GOPATH configured](https://gist.github.com/mcandre/ef73fb77a825bd153b7836ddbd9a6ddc)
+* [Go](http://golang.org/) 1.9+
 
-## Optional
+## Recommended
 
-* [coreutils](https://www.gnu.org/software/coreutils/coreutils.html)
-* [make](https://www.gnu.org/software/make/)
+* [Mage](https://magefile.org/) (e.g., `go get github.com/magefile/mage`)
 * [goimports](https://godoc.org/golang.org/x/tools/cmd/goimports) (e.g. `go get golang.org/x/tools/cmd/goimports`)
 * [golint](https://github.com/golang/lint) (e.g. `go get github.com/golang/lint/golint`)
 * [errcheck](https://github.com/kisielk/errcheck) (e.g. `go get github.com/kisielk/errcheck`)
@@ -37,36 +36,32 @@ $ испытание
 
 # INSTALL FROM REMOTE GIT REPOSITORY
 
-```
-$ go get github.com/mcandre/toys/go/испытание/...
+```console
+$ go get github.com/mcandre/toys/go/uniq/...
 ```
 
 (Yes, include the ellipsis as well, it's the magic Go syntax for downloading, building, and installing all components of a package, including any libraries and command line tools.)
 
 # INSTALL FROM LOCAL GIT REPOSITORY
 
-```
-$ mkdir -p $GOPATH/src/github.com/mcandre
-$ git clone https://github.com/mcandre/toys.git $GOPATH/src/github.com/mcandre/toys
-$ sh -c "cd $GOPATH/src/github.com/mcandre/toys/go/испытание && go install ./..."
-```
-
-# TEST REMOTELY
-
-```
-$ go test github.com/mcandre/toys/go/испытание/...
+```console
+$ mkdir -p "$GOPATH/src/github.com/mcandre"
+$ git clone https://github.com/mcandre/toys.git "$GOPATH/src/github.com/mcandre/toys"
+$ cd "$GOPATH/src/github.com/mcandre/toys/go/испытание"
+$ git submodule update --init --recursive
+$ go install ./...
 ```
 
-# TEST LOCALLY
+# TEST
 
-```
-$ go test
+```console
+$ mage test
 ```
 
 # LINT
 
 Keep the code tidy:
 
-```
-$ make lint
+```console
+$ mage lint
 ```

@@ -1,3 +1,51 @@
 [submodule "go/ddg/vendor/github.com/skratchdot/open-golang"]
 	path = go/ddg/vendor/github.com/skratchdot/open-golang
 	url = https://github.com/skratchdot/open-golang.git
+[submodule "go/99bottles/vendor/github.com/mcandre/mage-extras"]
+	path = go/99bottles/vendor/github.com/mcandre/mage-extras
+	url = https://github.com/mcandre/mage-extras
+[submodule "go/applecart/vendor/github.com/mcandre/mage-extras"]
+	path = go/applecart/vendor/github.com/mcandre/mage-extras
+	url = https://github.com/mcandre/mage-extras
+[submodule "go/args/vendor/github.com/mcandre/mage-extras"]
+	path = go/args/vendor/github.com/mcandre/mage-extras
+	url = https://github.com/mcandre/mage-extras
+[submodule "go/ddg/vendor/github.com/mcandre/mage-extras"]
+	path = go/ddg/vendor/github.com/mcandre/mage-extras
+	url = https://github.com/mcandre/mage-extras
+[submodule "go/fibber/vendor/github.com/mcandre/mage-extras"]
+	path = go/fibber/vendor/github.com/mcandre/mage-extras
+	url = https://github.com/mcandre/mage-extras
+[submodule "go/complexderp/vendor/github.com/mcandre/mage-extras"]
+	path = go/complexderp/vendor/github.com/mcandre/mage-extras
+	url = https://github.com/mcandre/mage-extras
+[submodule "go/fizzy/vendor/github.com/mcandre/mage-extras"]
+	path = go/fizzy/vendor/github.com/mcandre/mage-extras
+	url = https://github.com/mcandre/mage-extras
+[submodule "go/freq/vendor/github.com/mcandre/mage-extras"]
+	path = go/freq/vendor/github.com/mcandre/mage-extras
+	url = https://github.com/mcandre/mage-extras
+[submodule "go/hello/vendor/github.com/mcandre/mage-extras"]
+	path = go/hello/vendor/github.com/mcandre/mage-extras
+	url = https://github.com/mcandre/mage-extras
+[submodule "go/hello-timers/vendor/github.com/mcandre/mage-extras"]
+	path = go/hello-timers/vendor/github.com/mcandre/mage-extras
+	url = https://github.com/mcandre/mage-extras
+[submodule "go/lissajous/vendor/github.com/mcandre/mage-extras"]
+	path = go/lissajous/vendor/github.com/mcandre/mage-extras
+	url = https://github.com/mcandre/mage-extras
+[submodule "go/magic/vendor/github.com/mcandre/mage-extras"]
+	path = go/magic/vendor/github.com/mcandre/mage-extras
+	url = https://github.com/mcandre/mage-extras
+[submodule "go/mool/vendor/github.com/mcandre/mage-extras"]
+	path = go/mool/vendor/github.com/mcandre/mage-extras
+	url = https://github.com/mcandre/mage-extras
+[submodule "go/trool/vendor/github.com/mcandre/mage-extras"]
+	path = go/trool/vendor/github.com/mcandre/mage-extras
+	url = https://github.com/mcandre/mage-extras
+[submodule "go/uniq/vendor/github.com/mcandre/mage-extras"]
+	path = go/uniq/vendor/github.com/mcandre/mage-extras
+	url = https://github.com/mcandre/mage-extras
+[submodule "go/испытание/vendor/github.com/mcandre/mage-extras"]
+	path = go/испытание/vendor/github.com/mcandre/mage-extras
+	url = https://github.com/mcandre/mage-extras

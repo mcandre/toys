@@ -1,6 +1,6 @@
 # EXAMPLE
 
-```
+```console
 $ fizzy
 1
 2
@@ -14,14 +14,17 @@ Buzz
 
 https://godoc.org/github.com/mcandre/toys/go/fizzy
 
-# REQUIREMENTS
+# RUNTIME REQUIREMENTS
 
-* [Go](https://golang.org) 1.7+ with [$GOPATH configured](https://gist.github.com/mcandre/ef73fb77a825bd153b7836ddbd9a6ddc)
+(None)
 
-## Optional
+# BUILDTIME REQUIREMENTS
 
-* [coreutils](https://www.gnu.org/software/coreutils/coreutils.html)
-* [make](https://www.gnu.org/software/make/)
+* [Go](http://golang.org/) 1.9+
+
+## Recommended
+
+* [Mage](https://magefile.org/) (e.g., `go get github.com/magefile/mage`)
 * [goimports](https://godoc.org/golang.org/x/tools/cmd/goimports) (e.g. `go get golang.org/x/tools/cmd/goimports`)
 * [golint](https://github.com/golang/lint) (e.g. `go get github.com/golang/lint/golint`)
 * [errcheck](https://github.com/kisielk/errcheck) (e.g. `go get github.com/kisielk/errcheck`)
@@ -29,7 +32,7 @@ https://godoc.org/github.com/mcandre/toys/go/fizzy
 
 # INSTALL FROM REMOTE GIT REPOSITORY
 
-```
+```console
 $ go get github.com/mcandre/toys/go/fizzy/...
 ```
 
@@ -37,16 +40,24 @@ $ go get github.com/mcandre/toys/go/fizzy/...
 
 # INSTALL FROM LOCAL GIT REPOSITORY
 
+```console
+$ mkdir -p "$GOPATH/src/github.com/mcandre"
+$ git clone https://github.com/mcandre/toys.git "$GOPATH/src/github.com/mcandre/toys"
+$ cd "$GOPATH/src/github.com/mcandre/toys/go/fizzy"
+$ git submodule update --init --recursive
+$ go install ./...
 ```
-$ mkdir -p $GOPATH/src/github.com/mcandre
-$ git clone https://github.com.mcandre/toys.git $GOPATH/src/github.com/mcandre/toys
-$ sh -c "cd $GOPATH/src/github.com/mcandre/toys/go/fizzy && go install"
+
+# TEST
+
+```console
+$ mage test
 ```
 
 # LINT
 
 Keep the code tidy:
 
-```
-$ make lint
+```console
+$ mage lint
 ```
