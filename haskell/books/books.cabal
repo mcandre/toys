@@ -1,0 +1,24 @@
+name:           books
+version:        0.0.1
+category:       Tutorial
+synopsis:       simple data modeling
+description:    an example of modeling with Haskell GADT's
+license:        BSD3
+license-file:   LICENSE.md
+author:         Andrew Pennebaker
+maintainer:     andrew.pennebaker@gmail.com
+build-type:     Simple
+cabal-version:  >=1.8
+
+source-repository head
+  type:     git
+  location: git://github.com/mcandre/toys.git
+
+library
+  build-depends:
+    base              >= 4.6.0.1 && < 5
+
+  exposed-modules: Book
+
+  ghc-options: -Wall -fwarn-tabs
+  hs-source-dirs: src

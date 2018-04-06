@@ -4,41 +4,48 @@ Introductory Haskell programs
 
 # EXAMPLE
 
-```
-$ cd hello/
-hello (master)$ runhaskell Hello.hs
+```console
+$ cd hello
+$ cabal install
+$ hello
 Hello World!
 ```
 
-# REQUIREMENTS
+# RUNTIME REQUIREMENTS
 
-* [coreutils](https://www.gnu.org/software/coreutils/coreutils.html)
-* [Haskell](https://www.haskell.org)
-* [make](https://www.gnu.org/software/make/)
+(None)
 
-## OPTIONAL
+# BUILDTIME REQUIREMENTS
 
-* [hlint](http://hackage.haskell.org/package/hlint)
+* [GHC Haskell](http://www.haskell.org/) 8+
 
-# USAGE
+## Recommended
 
-```
-$ runhaskell hello.hs
-Hello World
-```
+* [shake](https://shakebuild.com/) (e.g., `cabal install shake`)
+* [hlint](https://hackage.haskell.org/package/hlint) (e.g., `cabal install happy; cabal install hlint`)
 
-Unix shells can run also scripts this way:
+# BUILD
 
-```
-$ ./hello.hs
-Hello World
+```console
+$ cabal install --only-dependencies --enable-documentation
+$ cabal install --only-dependencies --enable-tests
+$ shake
 ```
 
-# GUARD
+# LINT
 
-Guard can automatically provide tips for improving Haskell code.
-
+```console
+$ shake lint
 ```
-$ guard
-$ emacs .
+
+# TEST
+
+```console
+$ shake test
+```
+
+# PUBLISH
+
+```console
+$ shake publish
 ```

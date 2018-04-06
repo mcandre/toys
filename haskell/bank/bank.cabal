@@ -1,0 +1,24 @@
+name:           bank
+version:        0.0.1
+category:       Tutorial
+synopsis:       STM example
+description:    A bank simulation using Software Transactional Memory
+license:        BSD3
+license-file:   LICENSE.md
+author:         Andrew Pennebaker
+maintainer:     andrew.pennebaker@gmail.com
+build-type:     Simple
+cabal-version:  >=1.8
+
+source-repository head
+  type:     git
+  location: git://github.com/mcandre/toys.git
+
+executable bank
+  build-depends:
+    base >= 4.3.1.0 && < 5,
+    stm >= 2.4.5.0 && < 3
+
+  main-is: Bank.hs
+  hs-source-dirs: src
+  ghc-options: -Wall -fwarn-tabs
