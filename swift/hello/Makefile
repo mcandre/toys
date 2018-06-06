@@ -1,3 +1,5 @@
+.PHONY: clean-bin clean-infer
+
 all: test
 
 test: bin/Hello
@@ -15,5 +17,10 @@ swiftlint:
 
 lint: infer swiftlint
 
-clean:
+clean: clean-bin clean-infer
+
+clean-bin:
 	-rm -rf bin
+
+clean-infer:
+	-rm -rf infer-out
