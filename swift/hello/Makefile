@@ -1,26 +1,25 @@
-.PHONY: clean-bin clean-infer
+.PHONY: test clean-artifacts clean-infer
+
+.build/release/hello: Package.swift Source/hello/main.swift
+	swift build -c release
 
 all: test
 
-test: bin/Hello
-	bin/Hello
+test: .build/release/hello
+	.build/release/hello
 
-bin/Hello: Hello.swift
-	mkdir -p bin
-	swiftc -o bin/Hello Hello.swift
+clean-artifacts:
+	-rm -rf .build
 
-infer: clean
-	infer -- make
+clean-infer:
+	-rm -rf infer-out
+
+clean: clean-artifacts clean-infer
 
 swiftlint:
 	swiftlint
 
-lint: infer swiftlint
+infer: clean
+	infer -- make
 
-clean: clean-bin clean-infer
-
-clean-bin:
-	-rm -rf bin
-
-clean-infer:
-	-rm -rf infer-out
+lint: swiftlint infer

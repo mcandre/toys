@@ -7,9 +7,7 @@ Introductory Swift programs
 ```
 $ cd hello
 $ make
-mkdir -p bin
-swiftc -o bin/Hello Hello.swift
-bin/Hello
+$ .build/release/hello
 Hello World!
 ```
 
