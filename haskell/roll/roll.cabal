@@ -26,3 +26,19 @@ executable roll
   main-is: Roll.hs
   hs-source-dirs: src
   ghc-options: -Wall -fwarn-tabs
+
+test-suite reference
+  build-depends:
+    base                        >= 4.3.1.0 && < 5,
+    parallel                    >= 3.2.0.3 && < 4,
+    random                      >= 1.1 && < 2,
+    random-shuffle              >= 0.0.4 && < 0.0.5,
+    split                       >= 0.2.3.3 && < 0.3,
+    MissingH                    >= 1.4.0.1 && < 2.0,
+    hlint                       >= 2.1.10 && < 3,
+    shake                       >= 0.16.4 && < 0.17
+
+  ghc-options:        -Wall -fwarn-tabs
+  hs-source-dirs:     src
+  main-is:            Roll.hs
+  type:               exitcode-stdio-1.0

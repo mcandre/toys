@@ -41,8 +41,8 @@ main = do
   bob <- newAccount 10000
   alice <- newAccount 4000
 
-  beginBob <- atomically (readTVar bob)
-  beginAlice <- atomically (readTVar alice)
+  beginBob <- readTVarIO bob
+  beginAlice <- readTVarIO alice
 
   putStrLn $ "Bob began with " ++ show beginBob ++ " in his account."
   putStrLn $ "Alice began with " ++ show beginAlice ++ " in her account."
@@ -53,8 +53,8 @@ main = do
 
   atomically $ transfer check bob alice
 
-  endBob <- atomically (readTVar bob)
-  endAlice <- atomically (readTVar alice)
+  endBob <- readTVarIO bob
+  endAlice <- readTVarIO alice
 
   putStrLn $ "Bob ended with " ++ show endBob ++ " in his account." -- should be 8000
   putStrLn $ "Alice ended with " ++ show endAlice ++ " in her account." -- should be 6000

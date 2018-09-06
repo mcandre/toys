@@ -16,7 +16,9 @@ source-repository head
 
 library
   build-depends:
-    base >= 4.3.1.0 && < 5
+    base           >= 4.3.1.0 && < 5,
+    generic-random >= 1.2.0.0 && < 2.0,
+    QuickCheck     >= 2.11.3 && < 2.13
 
   exposed-modules: Mool
 
@@ -25,9 +27,30 @@ library
 
 executable mool
   build-depends:
-    base >= 4.3.1.0 && < 5
+    base           >= 4.3.1.0 && < 5,
+    generic-random >= 1.2.0.0 && < 2.0,
+    QuickCheck     >= 2.11.3 && < 2.13
 
   main-is: CLI.hs
   other-modules: Mool
   hs-source-dirs: src
   ghc-options: -Wall -fwarn-tabs
+
+test-suite reference
+  build-depends:
+    base                        >= 4.3.1.0 && < 5,
+    hlint                       >= 2.1.10 && < 3,
+    shake                       >= 0.16.4 && < 0.17,
+    QuickCheck                  >= 2.11.3 && < 2.13,
+    generic-random              >= 1.2.0.0 && < 2.0,
+    test-framework,
+    test-framework-hunit,
+    test-framework-quickcheck2,
+    HUnit
+
+  other-modules: Mool, MoolTest
+
+  ghc-options:        -Wall -fwarn-tabs
+  hs-source-dirs:     testsuite/tests, testsuite, src, .
+  main-is:            testsuite/TestRunner.hs
+  type:               exitcode-stdio-1.0

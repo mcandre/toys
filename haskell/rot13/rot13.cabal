@@ -37,6 +37,8 @@ executable rot13
 test-suite reference
   build-depends:
     base                        >= 4.3.1.0 && < 5,
+    hlint                       >= 2.1.10 && < 3,
+    shake                       >= 0.16.4 && < 0.17,
     QuickCheck                  >= 2.11.3 && < 3,
     test-framework,
     test-framework-hunit,

@@ -14,6 +14,12 @@ main = do
     phony "lint" $
       need ["hlint"]
 
+    phony "unitTest" $
+      cmd_ "cabal" "test"
+
+    phony "test" $
+      need ["unitTest"]
+
     phony "install" $
       cmd_ "cabal" "install"
 

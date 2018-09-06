@@ -32,3 +32,14 @@ executable fibber
   ghc-options: -Wall -fwarn-tabs
   main-is: CLI.hs
   hs-source-dirs: src
+
+test-suite reference
+  build-depends:
+    base                        >= 4.3.1.0 && < 5,
+    hlint                       >= 2.1.10 && < 3,
+    shake                       >= 0.16.4 && < 0.17
+
+  ghc-options:        -Wall -fwarn-tabs
+  hs-source-dirs:     src
+  main-is:            CLI.hs
+  type:               exitcode-stdio-1.0
