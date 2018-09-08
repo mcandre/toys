@@ -1,5 +1,7 @@
 module Main where
 
+import Data.Monoid (mempty)
+
 import Test.Framework.Runners.Console
 import Test.Framework.Providers.QuickCheck2
 
