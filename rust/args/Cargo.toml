@@ -3,3 +3,19 @@
 name = "args"
 version = "0.0.1"
 authors = ["Andrew Pennebaker <andrew.pennebaker@gmail.com>"]
+
+[dependencies]
+tinyrick = { version = "0.0.9", optional = true }
+tinyrick_extras = { version = "0.0.3", optional = true }
+
+[features]
+letmeout = ["tinyrick", "tinyrick_extras"]
+
+[[bin]]
+name = "args"
+path = "src/bin/args.rs"
+
+[[bin]]
+name = "tinyrick"
+path = "tinyrick.rs"
+required-features = ["letmeout"]

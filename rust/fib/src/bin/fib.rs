@@ -1,11 +1,11 @@
 //! Fibonacci
 
 fn fib(n : i64) -> i64 {
-  return match n {
+  match n {
     0 => 0,
     1 => 1,
     _ => fib(n - 1) + fib(n - 2)
-  };
+  }
 }
 
 #[test]

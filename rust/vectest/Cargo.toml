@@ -3,3 +3,19 @@
 name = "vectest"
 version = "0.0.1"
 authors = ["Andrew Pennebaker <andrew.pennebaker@gmail.com>"]
+
+[dependencies]
+tinyrick = { version = "0.0.9", optional = true }
+tinyrick_extras = { version = "0.0.3", optional = true }
+
+[features]
+letmeout = ["tinyrick", "tinyrick_extras"]
+
+[[bin]]
+name = "vectest"
+path = "src/bin/vectest.rs"
+
+[[bin]]
+name = "tinyrick"
+path = "tinyrick.rs"
+required-features = ["letmeout"]

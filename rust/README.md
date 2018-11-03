@@ -6,18 +6,15 @@ Introductory Rust programs
 
 ```console
 $ cd hello
-$ make
-cargo build
-bin/hello
+$ tinyrick
+$ hello
 Hello World!
 ```
 
-# REQUIREMENTS
+# RUNTIME REQUIREMENTS
 
-* [rust](http://www.rust-lang.org/) 1.16.0+
+(None)
 
-# UNIT TEST
+# CONTRIBUTING
 
-```console
-$ cargo test
-```
+For more details on developing Rust projects, see DEVELOPMENT.md.

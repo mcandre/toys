@@ -14,12 +14,12 @@ enum FB {
 }
 
 fn fizzbuzz(n: i64) -> FB {
-  return match (n % 3 == 0, n % 5 == 0) {
+  match (n % 3 == 0, n % 5 == 0) {
     (true, true) => FB::FizzBuzz,
     (true, _) => FB::Fizz,
     (_, true) => FB::Buzz,
     _ => FB::Value(n)
-  };
+  }
 }
 
 #[test]
