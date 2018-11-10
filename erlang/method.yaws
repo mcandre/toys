@@ -3,13 +3,13 @@
 Start yaws:
 
 $ cd erlang/
-$ yaws --conf .yaws -->
+$ yaws #45;#45;conf .yaws -->
 
 <erl>
 method(Arg) ->
-  Rec = Arg#arg.req,
-  Rec#http_request.method.
+    Rec = Arg#arg.req,
+    Rec#http_request.method.
 
 out(Arg) ->
-  {ehtml, f("Method: ~s", [method(Arg)])}.
+    {ehtml, f("Method: ~s", [method(Arg)])}.
 </erl>

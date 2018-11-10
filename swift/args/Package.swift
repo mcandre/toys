@@ -2,12 +2,12 @@
 import PackageDescription
 
 let package = Package(
-  name: "Args",
-  products: [
-    .executable(name: "args", targets: ["args"])
-  ],
-  dependencies: [],
-  targets: [
-    .target(name: "args", dependencies: [])
-  ]
+    name: "Args",
+    products: [
+        .executable(name: "args", targets: ["args"])
+    ],
+    dependencies: [],
+    targets: [
+        .target(name: "args", dependencies: [])
+    ]
 )

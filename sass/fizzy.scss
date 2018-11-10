@@ -1,38 +1,38 @@
 body {
-  counter-reset: i;
+    counter-reset: i;
 }
 
 div {
-  counter-increment: i;
-
-  &:after {
-    content: '' counter(i);
-  }
-
-  &:nth-child(3n) {
-    visibility: hidden;
+    counter-increment: i;
 
     &:after {
-      content: 'Fizz';
-      visibility: visible;
+        content: '' counter(i);
     }
-  }
 
-  &:nth-child(5n) {
-    visibility: hidden;
+    &:nth-child(3n) {
+        visibility: hidden;
 
-    &:after {
-      content: 'Buzz';
-      visibility: visible;
+        &:after {
+            content: 'Fizz';
+            visibility: visible;
+        }
     }
-  }
 
-  &:nth-child(15n) {
-    visibility: hidden;
+    &:nth-child(5n) {
+        visibility: hidden;
 
-    &:after {
-      content: 'FizzBuzz';
-      visibility: visible;
+        &:after {
+            content: 'Buzz';
+            visibility: visible;
+        }
     }
-  }
+
+    &:nth-child(15n) {
+        visibility: hidden;
+
+        &:after {
+            content: 'FizzBuzz';
+            visibility: visible;
+        }
+    }
 }

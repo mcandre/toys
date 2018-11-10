@@ -1,196 +1,196 @@
 var
-  black = 0,
-  white = 255,
-  cc,
-  bounds,
-  steps,
-  stepSpan = document.getElementById("steps"),
-  playPauseButton = document.getElementById("pause"),
-  currentState,
-  currentStep,
-  currentScale,
-  cachedRule,
-  looping,
-  factor = 4.0;
+    black = 0,
+    white = 255,
+    cc,
+    bounds,
+    steps,
+    stepSpan = document.getElementById("steps"),
+    playPauseButton = document.getElementById("pause"),
+    currentState,
+    currentStep,
+    currentScale,
+    cachedRule,
+    looping,
+    factor = 4.0;
 
 processing.setup = function () {
-  cc = document.getElementById("center-canvas");
-  bounds = cc.getAttribute("width");
-  steps = cc.getAttribute("height");
+    cc = document.getElementById("center-canvas");
+    bounds = cc.getAttribute("width");
+    steps = cc.getAttribute("height");
 
-  size(bounds, steps);
+    size(bounds, steps);
 
-  bounds /= factor;
-  steps /= factor;
+    bounds /= factor;
+    steps /= factor;
 
-  currentStep = 0;
-  currentState = initState(bounds);
+    currentStep = 0;
+    currentState = initState(bounds);
 
-  currentScale = factor;
-  looping = true;
+    currentScale = factor;
+    looping = true;
 
-  background(white);
-  noStroke();
+    background(white);
+    noStroke();
 }
 
 function shrink() {
-  var newScale = currentScale * 0.5;
+    var newScale = currentScale * 0.5;
 
-  if (newScale > 0.0625 * factor) {
-    background(white);
+    if (newScale > 0.0625 * factor) {
+        background(white);
 
-    currentScale = newScale;
-    steps *= 2;
-    bounds *= 2;
+        currentScale = newScale;
+        steps *= 2;
+        bounds *= 2;
 
-    currentState = initState(bounds);
-    currentStep = 0;
-  }
-  // Scale makes graphics effectively invisible
-  else {
-    noLoop();
-  }
+        currentState = initState(bounds);
+        currentStep = 0;
+    }
+    // Scale makes graphics effectively invisible
+    else {
+        noLoop();
+    }
 }
 
 window.screenshot = function () {
-  save("23-tm-step-" + (currentStep + 1) + ".png");
+    save("23-tm-step-" + (currentStep + 1) + ".png");
 }
 
 function upTriangle(x, y) {
-  fill(black);
-  triangle(x, y + 1, x + 1, y + 1, x + 0.5, y);
+    fill(black);
+    triangle(x, y + 1, x + 1, y + 1, x + 0.5, y);
 }
 
 function downTriangle(x, y) {
-  fill(black);
-  triangle(x, y, x + 0.5, y + 1, x + 1, y);
+    fill(black);
+    triangle(x, y, x + 0.5, y + 1, x + 1, y);
 }
 
 processing.draw = function () {
-  scale(currentScale);
+    scale(currentScale);
 
-  drawState(currentState, currentStep);
+    drawState(currentState, currentStep);
 
-  stepSpan.innerHTML = "" + (currentStep + 1);
+    stepSpan.innerHTML = "" + (currentStep + 1);
 
-  currentState = step(currentState);
+    currentState = step(currentState);
 
-  currentStep++;
+    currentStep++;
 
-  if (currentStep >= steps) { shrink(); }
+    if (currentStep >= steps) { shrink(); }
 }
 
 window.playPause = function () {
-  if (looping) {
-    noLoop();
-    looping = false;
-    playPauseButton.innerHTML = "Play";
-  }
-  else {
-    loop();
-    looping = true;
-    playPauseButton.innerHTML = "Pause";
-  }
+    if (looping) {
+        noLoop();
+        looping = false;
+        playPauseButton.innerHTML = "Play";
+    }
+    else {
+        loop();
+        looping = true;
+        playPauseButton.innerHTML = "Pause";
+    }
 }
 
 function initState(bounds) {
-  var s = [];
+    var s = [];
 
-  for (var i = 0; i < bounds; i++) {
-    s.push( i == bounds / 2 ? [1, 0] : [0, 0]);
-  }
+    for (var i = 0; i < bounds; i++) {
+        s.push( i == bounds / 2 ? [1, 0] : [0, 0]);
+    }
 
-  return s;
+    return s;
 }
 
 function drawState(state, row) {
-  for (var i = 0; i < state.length; i++) {
-    var
-      s = state[i],
-      headPos = s[0],
-      color = s[1];
+    for (var i = 0; i < state.length; i++) {
+        var
+            s = state[i],
+            headPos = s[0],
+            color = s[1];
 
-    if (color == 1) { fill(255, 226, 130); }
-    else if (color == 2) { fill(245, 183, 110); }
+        if (color == 1) { fill(255, 226, 130); }
+        else if (color == 2) { fill(245, 183, 110); }
 
-    if (color != 0) { rect(i, row, 1, 1); }
+        if (color != 0) { rect(i, row, 1, 1); }
 
-    if (headPos == 1) { upTriangle(i, row); }
-    else if (headPos == 2) { downTriangle(i, row); }
-  }
+        if (headPos == 1) { upTriangle(i, row); }
+        else if (headPos == 2) { downTriangle(i, row); }
+    }
 }
 
 function moveHead(state, head) {
-  var
-    i = head - 1 > 0 ? head - 1 : head.length - 1,
-    j = head,
-    k = head + 1 < state.length ? head + 1 : 0,
-    h = state[head],
-    pos = h[0],
-    color = h[1],
-    left = 0,
-    right = 1,
-    posPrime,
-    locPrime,
-    colorPrime;
+    var
+        i = head - 1 > 0 ? head - 1 : head.length - 1,
+        j = head,
+        k = head + 1 < state.length ? head + 1 : 0,
+        h = state[head],
+        pos = h[0],
+        color = h[1],
+        left = 0,
+        right = 1,
+        posPrime,
+        locPrime,
+        colorPrime;
 
-  // Head up
-  if (pos == 1) {
-    if (color == 2) {
-      posPrime = 1;
-      locPrime = left;
-      colorPrime = 1;
+    // Head up
+    if (pos == 1) {
+        if (color == 2) {
+            posPrime = 1;
+            locPrime = left;
+            colorPrime = 1;
+        }
+        else if (color == 1) {
+            posPrime = 1;
+            locPrime = left;
+            colorPrime = 2;
+        }
+        else {
+            posPrime = 2;
+            locPrime = right;
+            colorPrime = 1;
+        }
     }
-    else if (color == 1) {
-      posPrime = 1;
-      locPrime = left;
-      colorPrime = 2;
+    // Head down
+    else {
+        if (color == 2) {
+            posPrime = 1;
+            locPrime = right;
+            colorPrime = 0;
+        }
+        else if (color == 1) {
+            posPrime = 2;
+            locPrime = right;
+            colorPrime = 2;
+        }
+        else {
+            posPrime = 1;
+            locPrime = left;
+            colorPrime = 2;
+        }
+    }
+
+    state[head] = [0, colorPrime];
+
+    if (locPrime == left) {
+        state[i][0] = posPrime;
     }
     else {
-      posPrime = 2;
-      locPrime = right;
-      colorPrime = 1;
+        state[k][0] = posPrime;
     }
-  }
-  // Head down
-  else {
-    if (color == 2) {
-      posPrime = 1;
-      locPrime = right;
-      colorPrime = 0;
-    }
-    else if (color == 1) {
-      posPrime = 2;
-      locPrime = right;
-      colorPrime = 2;
-    }
-    else {
-      posPrime = 1;
-      locPrime = left;
-      colorPrime = 2;
-    }
-  }
-
-  state[head] = [0, colorPrime];
-
-  if (locPrime == left) {
-    state[i][0] = posPrime;
-  }
-  else {
-    state[k][0] = posPrime;
-  }
 }
 
 function step(state) {
-  var head = 0;
+    var head = 0;
 
-  for (var i = 0; i < state.length; i++) {
-    var s = state[i];
+    for (var i = 0; i < state.length; i++) {
+        var s = state[i];
 
-    if (s[0] != 0) { head = i; }
-  }
+        if (s[0] != 0) { head = i; }
+    }
 
-  moveHead(state, head);
+    moveHead(state, head);
 
-  return state;
+    return state;
 }

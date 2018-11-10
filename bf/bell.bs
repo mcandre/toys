@@ -1,6 +1,6 @@
 add seven
 while not zero
-  putchar
-  minus one
+    putchar
+    minus one
 
 +++++++[!-]

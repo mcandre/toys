@@ -9,5 +9,5 @@ import TroolTest
 
 main :: IO ()
 main = defaultMainWithOpts [
-  testProperty "reflexivity" testReflexivity
-  ] mempty
+    testProperty "reflexivity" testReflexivity
+    ] mempty

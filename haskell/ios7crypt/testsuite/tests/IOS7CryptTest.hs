@@ -1,6 +1,6 @@
 module IOS7CryptTest (
-  propReversible
-  ) where
+    propReversible
+    ) where
 
 import qualified IOS7Crypt
 

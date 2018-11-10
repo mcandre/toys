@@ -10,5 +10,5 @@
 %% c
 
 for i = 1:nvarargin
-  disp(varargin{i});
+    disp(varargin{i});
 end

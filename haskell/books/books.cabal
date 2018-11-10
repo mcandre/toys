@@ -11,35 +11,35 @@ build-type:     Simple
 cabal-version:  >=1.8
 
 source-repository head
-  type:     git
-  location: git://github.com/mcandre/toys.git
+    type:     git
+    location: https://github.com/mcandre/toys.git
 
 library
-  build-depends:
-    base           >= 4.6.0.1 && < 5,
-    generic-random >= 1.2.0.0 && < 2.0,
-    QuickCheck     >= 2.11.3 && < 2.13
+    build-depends:
+        base           >= 4.6.0.1 && < 5,
+        generic-random >= 1.2.0.0 && < 2.0,
+        QuickCheck     >= 2.11.3 && < 2.13
 
-  exposed-modules: Book
+    exposed-modules: Book
 
-  ghc-options: -Wall -fwarn-tabs
-  hs-source-dirs: src
+    ghc-options: -Wall -fwarn-tabs
+    hs-source-dirs: src
 
 test-suite reference
-  build-depends:
-    base                        >= 4.3.1.0 && < 5,
-    hlint                       >= 2.1.10 && < 3,
-    shake                       >= 0.16.4 && < 0.17,
-    QuickCheck                  >= 2.11.3 && < 2.13,
-    generic-random              >= 1.2.0.0 && < 2.0,
-    test-framework,
-    test-framework-hunit,
-    test-framework-quickcheck2,
-    HUnit
+    build-depends:
+        base                        >= 4.3.1.0 && < 5,
+        hlint                       >= 2.1.10 && < 3,
+        shake                       >= 0.16.4 && < 0.17,
+        QuickCheck                  >= 2.11.3 && < 2.13,
+        generic-random              >= 1.2.0.0 && < 2.0,
+        test-framework,
+        test-framework-hunit,
+        test-framework-quickcheck2,
+        HUnit
 
-  other-modules: Book, BookTest
+    other-modules: Book, BookTest
 
-  ghc-options:        -Wall -fwarn-tabs
-  hs-source-dirs:     testsuite/tests, testsuite, src, .
-  main-is:            testsuite/TestRunner.hs
-  type:               exitcode-stdio-1.0
+    ghc-options:        -Wall -fwarn-tabs
+    hs-source-dirs:     testsuite/tests, testsuite, src, .
+    main-is:            testsuite/TestRunner.hs
+    type:               exitcode-stdio-1.0

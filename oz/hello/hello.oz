@@ -8,9 +8,9 @@
 
 functor
 import
-  System
-  Application
+    System
+    Application
 define
-  {System.printInfo "Hello World!\n"}
-  {Application.exit 0}
+    {System.printInfo "Hello World!\n"}
+    {Application.exit 0}
 end

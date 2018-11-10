@@ -8,8 +8,8 @@ blaspheme (C.Cat name weight owner) = D.Dog name weight owner
 
 main :: IO ()
 main = do
-  let jerry = C.Cat "Jerry" 5 "Tom"
-  let rover = D.Dog "Rover" 10 "Col. Husky"
+    let jerry = C.Cat "Jerry" 5 "Tom"
+    let rover = D.Dog "Rover" 10 "Col. Husky"
 
-  putStrLn $ D.name (blaspheme jerry)
-  putStrLn $ D.name rover
+    putStrLn $ D.name (blaspheme jerry)
+    putStrLn $ D.name rover

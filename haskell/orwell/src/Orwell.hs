@@ -9,13 +9,13 @@ import Test.QuickCheck as QC
 
 -- | Orwell uses only government approved nomenclature.
 data Orwell
-  = DoublePlusUnGood
-  | DoubleUnGood
-  | UnGood
-  | Good
-  | DoubleGood
-  | DoublePlusGood
-  deriving (Eq, Ord, Show, Read, Generic)
+    = DoublePlusUnGood
+    | DoubleUnGood
+    | UnGood
+    | Good
+    | DoubleGood
+    | DoublePlusGood
+    deriving (Eq, Ord, Show, Read, Generic)
 
 instance QC.Arbitrary Orwell where
-  arbitrary = GR.genericArbitraryU
+    arbitrary = GR.genericArbitraryU

@@ -2,9 +2,9 @@ use StdIO: all;
 use Array: all;
 
 int main() {
-  print(reshape([5], [1, 2, 3, 4, 5]));
-  print(reshape([3, 2], [1, 2, 3, 4, 5, 6]));
-  print(reshape([3, 2, 1], [1, 2, 3, 4, 5, 6]));
+    print(reshape([5], [1, 2, 3, 4, 5]));
+    print(reshape([3, 2], [1, 2, 3, 4, 5, 6]));
+    print(reshape([3, 2, 1], [1, 2, 3, 4, 5, 6]));
 
-  return(0);
+    return(0);
 }

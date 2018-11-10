@@ -7,11 +7,11 @@ import Network.Shpider.Curl.Opts
 
 main :: IO ()
 main = do
-  (result, page) <- runShpiderWithOptions [CurlUserAgent "Windows Mozilla"] $
-    download "http://google.com/index.html"
+    (result, page) <- runShpiderWithOptions [CurlUserAgent "Windows Mozilla"] $
+        download "http://google.com/index.html"
 
-  case result of
-    Ok -> putStrLn "Ok"
-    _ -> putStrLn "Error"
+    case result of
+        Ok -> putStrLn "Ok"
+        _ -> putStrLn "Error"
 
-  putStrLn $ source page
+    putStrLn $ source page

@@ -20,5 +20,5 @@ import Control.Concurrent (threadDelay)
 
 main :: IO ()
 main = handle (\e -> when (e == UserInterrupt) exitFailure) $ forever $ do
-  putStrLn "Repeating"
-  threadDelay 10000000 {- µs -}
+    putStrLn "Repeating"
+    threadDelay 10000000 {- µs -}

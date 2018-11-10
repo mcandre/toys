@@ -10,36 +10,36 @@ require 'open-uri'
 require 'htmlentities'
 
 def main
-  coder = HTMLEntities.new
+    coder = HTMLEntities.new
 
-  url = 'http://www.channel4.com/entertainment/tv/microsites/I/itcrowd/quote_generator/'
+    url = 'http://www.channel4.com/entertainment/tv/microsites/I/itcrowd/quote_generator/'
 
-  doc = nil
+    doc = nil
 
-  begin
-    doc = open(url) { |f| Hpricot(f) }
-  rescue
-    raise "Could not access #{url}"
-  end
+    begin
+        doc = open(url) { |f| Hpricot(f) }
+    rescue
+        raise "Could not access #{url}"
+    end
 
-  section = doc / 'blockquote' / 'p'
-  citation = (section / 'cite' / 'a').inner_html
-  (section / 'cite').remove
-  quote = section.inner_html
+    section = doc / 'blockquote' / 'p'
+    citation = (section / 'cite' / 'a').inner_html
+    (section / 'cite').remove
+    quote = section.inner_html
 
-  # remove leading whitespace
-  quote.gsub!(/^\s+/, '')
+    # remove leading whitespace
+    quote.gsub!(/^\s+/, '')
 
-  # remove trailing whitespace
-  quote.gsub!(/\s+$/, '')
+    # remove trailing whitespace
+    quote.gsub!(/\s+$/, '')
 
-  # remove dash
-  quote.gsub!(/\s\-\s+$/, '').chomp
+    # remove dash
+    quote.gsub!(/\s\-\s+$/, '').chomp
 
-  # decode HTML entities
-  quote = coder.decode(quote)
+    # decode HTML entities
+    quote = coder.decode(quote)
 
-  puts "#{quote} - #{citation}"
+    puts "#{quote} - #{citation}"
 end
 
 main if $PROGRAM_NAME == __FILE__

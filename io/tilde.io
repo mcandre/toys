@@ -1,11 +1,11 @@
 tildeExpandsTo := block(
-  platform := System platform
+    platform := System platform
 
-  if(platform == "windows" or platform == "mingw",
-    # Windows
-    System getEnvironmentVariable("UserProfile"),
+    if(platform == "windows" or platform == "mingw",
+        # Windows
+        System getEnvironmentVariable("UserProfile"),
 
-    # Unix
-    System getEnvironmentVariable("HOME")
-  )
+        # Unix
+        System getEnvironmentVariable("HOME")
+    )
 )

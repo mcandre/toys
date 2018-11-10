@@ -5,10 +5,10 @@ import Control.Parallel (par, pseq)
 
 main :: IO ()
 main = a `par` b `par` c `pseq` printf "A = %d\nB = %d\nC = %d\n" a b c
-  where
-    a = ack 3 10
-    b = fac 42
-    c = fib 34
+    where
+        a = ack 3 10
+        b = fac 42
+        c = fib 34
 
 fac :: Integer -> Integer
 fac 0 = 1

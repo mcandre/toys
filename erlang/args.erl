@@ -10,5 +10,5 @@
 -export([start/0]).
 
 start() ->
-  io:format("~p~n", [init:get_plain_arguments()]),
-  init:stop().
+    io:format("~p~n", [init:get_plain_arguments()]),
+    init:stop().

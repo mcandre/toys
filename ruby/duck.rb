@@ -9,11 +9,11 @@
 # fetch <command>
 
 def main
-  parser = 'https://duckduckgo.com/?q='
+    parser = 'https://duckduckgo.com/?q='
 
-  command = ARGV.join '+'
+    command = ARGV.join '+'
 
-  system "open #{parser}#{command}"
+    system "open #{parser}#{command}"
 end
 
 main if $PROGRAM_NAME == __FILE__

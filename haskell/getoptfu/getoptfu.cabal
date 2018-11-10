@@ -11,15 +11,15 @@ build-type:     Simple
 cabal-version:  >=1.8
 
 source-repository head
-  type:     git
-  location: git://github.com/mcandre/toys.git
+    type:     git
+    location: https://github.com/mcandre/toys.git
 
 library
-  build-depends:
-    base >= 4.6.0.1 && < 5,
-    syb  >= 0.7 && < 0.8
+    build-depends:
+        base >= 4.6.0.1 && < 5,
+        syb  >= 0.7 && < 0.8
 
-  exposed-modules: GetOptFu
+    exposed-modules: GetOptFu
 
-  ghc-options: -Wall -fwarn-tabs
-  hs-source-dirs: src
+    ghc-options: -Wall -fwarn-tabs
+    hs-source-dirs: src

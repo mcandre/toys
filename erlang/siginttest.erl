@@ -11,5 +11,5 @@
 -export([start/0]).
 
 start() ->
-  io:format("Looping... Exit with Control+C.~n"),
-  start().
+    io:format("Looping... Exit with Control+C.~n"),
+    start().

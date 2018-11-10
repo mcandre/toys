@@ -21,64 +21,64 @@ include Contracts
 
 Contract Num, Num => Hash
 def self.create_rule_26(start, n)
-  rule = {}
+    rule = {}
 
-  (start .. (start + 26)).each do |b|
-    rule[b] = (b + n - start) % 26 + start
-  end
+    (start .. (start + 26)).each do |b|
+        rule[b] = (b + n - start) % 26 + start
+    end
 
-  rule
+    rule
 end
 
 Contract Num => Hash
 def create_rule(n = 13)
-  create_rule_26('a'.ord, n).merge(create_rule_26('A'.ord, n))
+    create_rule_26('a'.ord, n).merge(create_rule_26('A'.ord, n))
 end
 
 Contract Hash, Num => Num
 def self.crypt(rule, b)
-  if rule.include?(b)
-    rule[b]
-  else
-    b
-  end
+    if rule.include?(b)
+        rule[b]
+    else
+        b
+    end
 end
 
 Contract nil => IO
 def main
-  shift = 13
+    shift = 13
 
-  begin
-    opts = GetoptLong.new(
-      ['--help', '-h', GetoptLong::NO_ARGUMENT],
-      ['--shift', '-s', GetoptLong::REQUIRED_ARGUMENT]
-    )
+    begin
+        opts = GetoptLong.new(
+            ['--help', '-h', GetoptLong::NO_ARGUMENT],
+            ['--shift', '-s', GetoptLong::REQUIRED_ARGUMENT]
+        )
 
-    opts.each do |option, value|
-      case option
-      when '--help'
-        usage
-      when '--shift'
-        shift = value.to_i
-      else
-        usage
-      end
+        opts.each do |option, value|
+            case option
+            when '--help'
+                usage
+            when '--shift'
+                shift = value.to_i
+            else
+                usage
+            end
+        end
+    rescue
+        system "less #{$PROGRAM_NAME}"
     end
-  rescue
-    system "less #{$PROGRAM_NAME}"
-  end
 
-  rule = create_rule(shift)
+    rule = create_rule(shift)
 
-  STDIN.each_byte do |b|
-    putc crypt(rule, b)
-  end
+    STDIN.each_byte do |b|
+        putc crypt(rule, b)
+    end
 end
 
 if $PROGRAM_NAME == __FILE__
-  begin
-    main
-  rescue Interrupt
-    nil
-  end
+    begin
+        main
+    rescue Interrupt
+        nil
+    end
 end

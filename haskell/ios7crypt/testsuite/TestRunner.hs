@@ -9,5 +9,5 @@ import qualified IOS7CryptTest
 
 main :: IO ()
 main = defaultMainWithOpts [
-  testProperty "reversible" IOS7CryptTest.propReversible
-  ] mempty
+    testProperty "reversible" IOS7CryptTest.propReversible
+    ] mempty

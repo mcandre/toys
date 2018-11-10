@@ -1,95 +1,96 @@
+---
 American Express:
-  short: amex
-  prefixes: [34, 37]
-  lengths: [15]
-  sum: luhn
+    short: amex
+    prefixes: [34, 37]
+    lengths: [15]
+    sum: luhn
 
 Bankcard:
-  short: bc
-  prefixes: [560221, 560222, 560223, 560224, 560225]
-  lengths: [16]
-  sum: luhn
+    short: bc
+    prefixes: [560221, 560222, 560223, 560224, 560225]
+    lengths: [16]
+    sum: luhn
 
 China Union Pay:
-  short: cup
-  prefixes: !ruby/range 622126..622925
-  lengths: [16, 17, 18, 19]
-  sum: any # unknown checksum method
+    short: cup
+    prefixes: !ruby/range 622126..622925
+    lengths: [16, 17, 18, 19]
+    sum: any # unknown checksum method
 
 Diners Club Carte Blanche:
-  short: dc-cb
-  prefixes: [300, 301, 302, 303, 304, 305]
-  lengths: [14]
-  sum: luhn
+    short: dc-cb
+    prefixes: [300, 301, 302, 303, 304, 305]
+    lengths: [14]
+    sum: luhn
 
 Diners Club enRoute:
-  short: dc-er
-  prefixes: [2014, 2149]
-  lengths: [15]
-  sum: any
+    short: dc-er
+    prefixes: [2014, 2149]
+    lengths: [15]
+    sum: any
 
 Diners Club International:
-  short: dc-int
-  prefixes: [36]
-  lengths: [14]
-  sum: luhn
+    short: dc-int
+    prefixes: [36]
+    lengths: [14]
+    sum: luhn
 
 Diners Club US & Canada:
-  short: dc-uc
-  prefixes: [55]
-  lengths: [16]
-  sum: luhn
+    short: dc-uc
+    prefixes: [55]
+    lengths: [16]
+    sum: luhn
 
 Discover:
-  short: disc
-  prefixes: [6011, 65]
-  lengths: [16]
-  sum: luhn
+    short: disc
+    prefixes: [6011, 65]
+    lengths: [16]
+    sum: luhn
 
 JCB 1:
-  short: jcb1
-  prefixes: [35]
-  lengths: [16]
-  sum: luhn
+    short: jcb1
+    prefixes: [35]
+    lengths: [16]
+    sum: luhn
 
 JCB 2:
-  short: jcb2
-  prefixes: [1800, 2131]
-  lengths: [15]
-  sum: luhn
+    short: jcb2
+    prefixes: [1800, 2131]
+    lengths: [15]
+    sum: luhn
 
 Maestro:
-  short: maes
-  prefixes: [5020, 5038, 6304, 6759]
-  lengths: [16, 18]
-  sum: luhn
+    short: maes
+    prefixes: [5020, 5038, 6304, 6759]
+    lengths: [16, 18]
+    sum: luhn
 
 MasterCard:
-  short: mc
-  prefixes: 51..55
-  lengths: [16]
-  sum: luhn
+    short: mc
+    prefixes: 51..55
+    lengths: [16]
+    sum: luhn
 
 Solo:
-  short: solo
-  prefixes: [6334, 6767]
-  lengths: [16, 18, 19]
-  sum: luhn
+    short: solo
+    prefixes: [6334, 6767]
+    lengths: [16, 18, 19]
+    sum: luhn
 
 Switch:
-  short: swch
-  prefixes: [4903, 4905, 4911, 4936, 564182, 633110, 6333, 6759]
-  lengths: [16, 18, 19]
-  sum: luhn
+    short: swch
+    prefixes: [4903, 4905, 4911, 4936, 564182, 633110, 6333, 6759]
+    lengths: [16, 18, 19]
+    sum: luhn
 
 Visa:
-  short: visa
-  prefixes: [4]
-  lengths: [13, 16]
-  sum: luhn
+    short: visa
+    prefixes: [4]
+    lengths: [13, 16]
+    sum: luhn
 
 Visa Electron:
-  short: visae # actual shortname is "Visa"
-  prefixes: [417500, 4917, 4913, 4508]
-  lengths: [16]
-  sum: luhn
+    short: visae # actual shortname is "Visa"
+    prefixes: [417500, 4917, 4913, 4508]
+    lengths: [16]
+    sum: luhn

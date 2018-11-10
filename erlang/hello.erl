@@ -11,5 +11,5 @@
 -export([start/0]).
 
 start() ->
-  io:format("Hello World!~n"),
-  init:stop().
+    io:format("Hello World!~n"),
+    init:stop().

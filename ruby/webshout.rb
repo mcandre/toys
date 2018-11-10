@@ -3,17 +3,17 @@
 require 'open-uri'
 
 def main
-  data = ''
+    data = ''
 
-  while data == ''
-    begin
-      data = open('http://www.google.com/').read
-    rescue
-      nil
+    while data == ''
+        begin
+            data = open('http://www.google.com/').read
+        rescue
+            nil
+        end
     end
-  end
 
-  system 'say You are now online.'
+    system 'say You are now online.'
 end
 
 main if $PROGRAM_NAME == __FILE__

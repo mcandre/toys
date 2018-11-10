@@ -1,19 +1,19 @@
 {
-  "name": "javascript",
-  "version": "0.0.0",
-  "homepage": "https://github.com/mcandre/toys",
-  "authors": [
-    "Andrew Pennebaker <andrew.pennebaker@gmail.com>"
-  ],
-  "license": "FreeBSD",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
-  "dependencies": {
-    "Processing.js": "1.1.0"
-  }
+    "name": "javascript",
+    "version": "0.0.0",
+    "homepage": "https://github.com/mcandre/toys",
+    "authors": [
+        "Andrew Pennebaker <andrew.pennebaker@gmail.com>"
+    ],
+    "license": "FreeBSD",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "Processing.js": "1.1.0"
+    }
 }

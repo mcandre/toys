@@ -1,9 +1,0 @@
-guard :shell do
-  watch(/^.*\.tex$/) do |m|
-    title = 'Compile'
-    eager "make \`basename #{m[0]} .tex\`.pdf"
-    status = ($?.success? && :success) || :failed
-    n '', title, status
-    ''
-  end
-end

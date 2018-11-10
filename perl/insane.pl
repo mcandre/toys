@@ -3,4 +3,4 @@ use strict;
 use warnings;
 
 die "Insane in the brain!"
-  unless 2 + 2 == 4;
+    unless 2 + 2 == 4;

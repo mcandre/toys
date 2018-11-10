@@ -16,7 +16,7 @@ Fixpoint fibber (n : nat) : nat :=
 match n with
 | O => O
 | S n' => match n' with
-  | O => S O
-  | S m' => plus (fibber n') (fibber m')
-  end
+    | O => S O
+    | S m' => plus (fibber n') (fibber m')
+    end
 end.

@@ -1,6 +1,6 @@
 module DBoolTest (
-  testReflexivity
-  ) where
+    testReflexivity
+    ) where
 
 import qualified DBool
 

@@ -3,5 +3,5 @@
 import std.stdio;
 
 void main(const string[] args) {
-  writeln("Hello World!");
+    writeln("Hello World!");
 }

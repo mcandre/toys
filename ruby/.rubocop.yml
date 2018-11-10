@@ -1,13 +1,14 @@
+---
 LineLength:
-  Max: 130
+    Max: 130
 MethodLength:
-  Max: 60
+    Max: 60
 CyclomaticComplexity:
-  Max: 20
+    Max: 20
 Metrics/PerceivedComplexity:
-  Enabled: false
+    Enabled: false
 SpecialGlobalVars:
-  Enabled: false
+    Enabled: false
 Style/FileName:
-  Exclude:
-    - '**/Guardfile*'
+    Exclude:
+        - '**/Guardfile*'

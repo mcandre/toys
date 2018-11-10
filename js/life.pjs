@@ -1,183 +1,183 @@
 var
-  black = 0,
-  white = 255,
-  speedInput = document.getElementById("speed"),
-  cc,
-  playPauseButton = document.getElementById("pause"),
-  currentState,
-  looping,
-  factor = 4.0,
-  rows,
-  cols;
+    black = 0,
+    white = 255,
+    speedInput = document.getElementById("speed"),
+    cc,
+    playPauseButton = document.getElementById("pause"),
+    currentState,
+    looping,
+    factor = 4.0,
+    rows,
+    cols;
 
 processing.setup = function () {
-  window.setSpeed();
+    window.setSpeed();
 
-  cc = document.getElementById("center-canvas");
-  var
-    width = cc.getAttribute("width");
-    height = cc.getAttribute("height"),
-    rows = width/4,
-    cols = height/4;
-
-  looping = true;
-
-  size(width, height);
-  background(white);
-  fill(black);
-  noStroke();
-
-  currentState = initState(rows, cols);
-
-  var blocks = 1 + Math.floor(Math.random() * 4);
-  for (var i = 0; i < blocks; i++) {
+    cc = document.getElementById("center-canvas");
     var
-      row = Math.floor(Math.random() * rows),
-      col = Math.floor(Math.random() * cols);
+        width = cc.getAttribute("width");
+        height = cc.getAttribute("height"),
+        rows = width/4,
+        cols = height/4;
 
-    block(row, col);
-  }
+    looping = true;
 
-  var blinkers = 1 + Math.floor(Math.random() * 4);
-  for (var i = 0; i < blinkers; i++) {
+    size(width, height);
+    background(white);
+    fill(black);
+    noStroke();
+
+    currentState = initState(rows, cols);
+
+    var blocks = 1 + Math.floor(Math.random() * 4);
+    for (var i = 0; i < blocks; i++) {
+        var
+            row = Math.floor(Math.random() * rows),
+            col = Math.floor(Math.random() * cols);
+
+        block(row, col);
+    }
+
+    var blinkers = 1 + Math.floor(Math.random() * 4);
+    for (var i = 0; i < blinkers; i++) {
+        var
+            row = Math.floor(Math.random() * rows),
+            col = Math.floor(Math.random() * cols);
+
+        blinker(row, col);
+    }
+
     var
-      row = Math.floor(Math.random() * rows),
-      col = Math.floor(Math.random() * cols);
+        row = Math.floor(Math.random() * rows),
+        col = Math.floor(Math.random() * cols);
 
-    blinker(row, col);
-  }
-
-  var
-    row = Math.floor(Math.random() * rows),
-    col = Math.floor(Math.random() * cols);
-
-  f_pentomino(row, col);
+    f_pentomino(row, col);
 }
 
 processing.draw = function () {
-  drawState(currentState);
-  currentState = step(currentState);
+    drawState(currentState);
+    currentState = step(currentState);
 }
 
 window.setSpeed = function () {
-  noLoop();
+    noLoop();
 
-  var s = parseInt(speedInput.value, 10);
+    var s = parseInt(speedInput.value, 10);
 
-  if (isNaN(s) || s < 1) {
-    println("Speed is a positive integer");
-  }
-  else {
-    frameRate(s);
-    loop();
-  }
+    if (isNaN(s) || s < 1) {
+        println("Speed is a positive integer");
+    }
+    else {
+        frameRate(s);
+        loop();
+    }
 }
 
 window.screenshot = function () {
-  save("game-of-life.png");
+    save("game-of-life.png");
 }
 
 window.playPause = function () {
-  if (looping) {
-    noLoop();
-    looping = false;
-    playPauseButton.innerHTML = "Play";
-  }
-  else {
-    loop();
-    looping = true;
-    playPauseButton.innerHTML = "Pause";
-  }
+    if (looping) {
+        noLoop();
+        looping = false;
+        playPauseButton.innerHTML = "Play";
+    }
+    else {
+        loop();
+        looping = true;
+        playPauseButton.innerHTML = "Pause";
+    }
 }
 
 function block(x, y) {
-  currentState[x % rows][y % cols] = 1;
-  currentState[x % rows][(y + 1) % cols] = 1;
-  currentState[(x + 1) % rows][y % cols] = 1;
-  currentState[(x + 1) % rows][(y + 1) % cols] = 1;
+    currentState[x % rows][y % cols] = 1;
+    currentState[x % rows][(y + 1) % cols] = 1;
+    currentState[(x + 1) % rows][y % cols] = 1;
+    currentState[(x + 1) % rows][(y + 1) % cols] = 1;
 }
 
 function blinker(x, y) {
-  if (Math.random() > 0.5) {
-    currentState[x % rows][y % cols] = 1;
-    currentState[(x + 1) % rows][y % cols] = 1;
-    currentState[(x + 2) % rows][y % cols] = 1;
-  }
-  else {
-    currentState[x % rows][y % cols] = 1;
-    currentState[x % rows][(y + 1) % cols] = 1;
-    currentState[x % rows][(y + 2) % cols] = 1;
-  }
+    if (Math.random() > 0.5) {
+        currentState[x % rows][y % cols] = 1;
+        currentState[(x + 1) % rows][y % cols] = 1;
+        currentState[(x + 2) % rows][y % cols] = 1;
+    }
+    else {
+        currentState[x % rows][y % cols] = 1;
+        currentState[x % rows][(y + 1) % cols] = 1;
+        currentState[x % rows][(y + 2) % cols] = 1;
+    }
 }
 
 function f_pentomino(x, y) {
-  currentState[(x + 1) % rows][y % cols] = 1;
-  currentState[(x + 2) % rows][y % cols] = 1;
-  currentState[x % rows][(y + 1) % cols] = 1;
-  currentState[x % rows][(y + 1) % cols] = 1;
-  currentState[(x + 1) % rows][(y + 1) % cols] = 1;
-  currentState[(x + 1) % rows][(y + 2) % cols] = 1;
+    currentState[(x + 1) % rows][y % cols] = 1;
+    currentState[(x + 2) % rows][y % cols] = 1;
+    currentState[x % rows][(y + 1) % cols] = 1;
+    currentState[x % rows][(y + 1) % cols] = 1;
+    currentState[(x + 1) % rows][(y + 1) % cols] = 1;
+    currentState[(x + 1) % rows][(y + 2) % cols] = 1;
 }
 
 function initState(width, height) {
-  var s = [];
+    var s = [];
 
-  for (var i = 0; i < width; i++) {
-    var row = [];
+    for (var i = 0; i < width; i++) {
+        var row = [];
 
-    for (var j = 0; j < height; j++) {
-      row.push(0);
+        for (var j = 0; j < height; j++) {
+            row.push(0);
+        }
+
+        s.push(row);
     }
 
-    s.push(row);
-  }
-
-  return s;
+    return s;
 }
 
 function drawState(state) {
-  scale(factor);
+    scale(factor);
 
-  background(white);
+    background(white);
 
-  for (var i = 0; i < state.length; i++) {
-    var row = state[i];
+    for (var i = 0; i < state.length; i++) {
+        var row = state[i];
 
-    for (var j = 0; j < row.length; j++) {
-      if (state[i][j] == 1) { rect(i, j, 1, 1); }
+        for (var j = 0; j < row.length; j++) {
+            if (state[i][j] == 1) { rect(i, j, 1, 1); }
+        }
     }
-  }
 }
 
 function step(state) {
-  var
-    rows = state.length,
-    cols = state[0].length,
-    statePrime = [];
+    var
+        rows = state.length,
+        cols = state[0].length,
+        statePrime = [];
 
-  for (var i = 0; i < rows; i++) {
-    var rowPrime = [];
+    for (var i = 0; i < rows; i++) {
+        var rowPrime = [];
 
-    for (var j = 0; j < cols; j++) {
-      // Indices from Phil Shaw
-      // http://okshaw.com/tools/life/life.htm
-      var
-        ul = state[(i - 1 + rows) % rows][(j - 1 + cols) % cols],
-        um = state[(i - 1 + rows) % rows][j],
-        ur = state[(i - 1 + rows) % rows][(j + 1 + cols) % cols],
-        cl = state[i][(j - 1 + cols) % cols],
-        cm = state[i][j],
-        cr = state[i][(j + 1 + cols) % cols],
-        dl = state[(i + 1 + rows) % rows][(j - 1 + cols) % cols],
-        dm = state[(i + 1 + rows) % rows][j],
-        dr = state[(i + 1 + rows) % rows][(j + 1 + cols) % cols],
-        ns = [ul, um, ur, cl, cr, dl, dm, dr].reduce(function (x, y) { return x + y; }, 0);
+        for (var j = 0; j < cols; j++) {
+            // Indices from Phil Shaw
+            // http://okshaw.com/tools/life/life.htm
+            var
+                ul = state[(i - 1 + rows) % rows][(j - 1 + cols) % cols],
+                um = state[(i - 1 + rows) % rows][j],
+                ur = state[(i - 1 + rows) % rows][(j + 1 + cols) % cols],
+                cl = state[i][(j - 1 + cols) % cols],
+                cm = state[i][j],
+                cr = state[i][(j + 1 + cols) % cols],
+                dl = state[(i + 1 + rows) % rows][(j - 1 + cols) % cols],
+                dm = state[(i + 1 + rows) % rows][j],
+                dr = state[(i + 1 + rows) % rows][(j + 1 + cols) % cols],
+                ns = [ul, um, ur, cl, cr, dl, dm, dr].reduce(function (x, y) { return x + y; }, 0);
 
-      rowPrime.push( (cm == 1 && (ns == 2 || ns == 3)) || (cm == 0 && ns == 3) ? 1 : 0 );
+            rowPrime.push( (cm == 1 && (ns == 2 || ns == 3)) || (cm == 0 && ns == 3) ? 1 : 0 );
+        }
+
+        statePrime.push(rowPrime);
     }
 
-    statePrime.push(rowPrime);
-  }
-
-  return statePrime;
+    return statePrime;
 }

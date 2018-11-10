@@ -44,15 +44,15 @@ suffixes = ["bag", "wipe", "muncher", "bomb", "tard", "gobbler", "fucker", "suck
 
 philabuster :: IO String
 philabuster = do
-  stdGen <- Random.getStdGen
+    stdGen <- Random.getStdGen
 
-  let feature = head $ Shuffle.shuffle' features (length features) stdGen
-  let species = head $ Shuffle.shuffle' animals (length animals) stdGen
-  let genital = head $ Shuffle.shuffle' genitalia (length genitalia) stdGen
-  let excretion = head $ Shuffle.shuffle' excretions (length excretions) stdGen
-  let suffix = head $ Shuffle.shuffle' suffixes (length suffixes) stdGen
+    let feature = head $ Shuffle.shuffle' features (length features) stdGen
+    let species = head $ Shuffle.shuffle' animals (length animals) stdGen
+    let genital = head $ Shuffle.shuffle' genitalia (length genitalia) stdGen
+    let excretion = head $ Shuffle.shuffle' excretions (length excretions) stdGen
+    let suffix = head $ Shuffle.shuffle' suffixes (length suffixes) stdGen
 
-  return $ "Your " ++ feature ++ " " ++ species ++ " " ++ genital ++ ", you " ++ excretion ++ "-" ++ suffix ++ "!"
+    return $ "Your " ++ feature ++ " " ++ species ++ " " ++ genital ++ ", you " ++ excretion ++ "-" ++ suffix ++ "!"
 
 main :: IO ()
 main = putStrLn =<< philabuster

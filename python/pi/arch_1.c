@@ -1,9 +1,9 @@
 /*
-   Name: Pi Calculator Beta, using Archimedes' Method.
-   Author: Shamashis Sengupta (shamashis@peacefulaction.org).
-   Description: This program calculates the value of Pi using Archimedes' Method.
-   Date: Monday, January 6, 2003.
-   Copyright: This program is distributed under the GNU General Public License.
+Name: Pi Calculator Beta, using Archimedes' Method.
+Author: Shamashis Sengupta (shamashis@peacefulaction.org).
+Description: This program calculates the value of Pi using Archimedes' Method.
+Date: Monday, January 6, 2003.
+Copyright: This program is distributed under the GNU General Public License.
 */
 
 /*
@@ -29,41 +29,41 @@ case and is increased by 1 during each calculation.
 #include<math.h>
 
 int main() {
-  int count, div, num, c;
-  long double perimeter_outer, perimeter_inner, circumference, adha_dhar_bhetorer;
-  long double adha_dhar_bahirer, radius, cos_halfangle, sin_halfangle,
-       tan_halfangle;
-  long double cos_of_stan, sin_of_stan, sides = 1.0;
-  printf("Enter the radius of the circle.\n");
-  scanf("%Lf", &radius);
+    int count, div, num, c;
+    long double perimeter_outer, perimeter_inner, circumference, adha_dhar_bhetorer;
+    long double adha_dhar_bahirer, radius, cos_halfangle, sin_halfangle,
+    tan_halfangle;
+    long double cos_of_stan, sin_of_stan, sides = 1.0;
+    printf("Enter the radius of the circle.\n");
+    scanf("%Lf", &radius);
 
-  for (num = 1; num <= 16; num++) {
-    sides = 1.0;
-    div = num;
+    for (num = 1; num <= 16; num++) {
+        sides = 1.0;
+        div = num;
 
-    for (c = 1; c <= div + 3; c++) {
-      sides = sides * 2.0;
+        for (c = 1; c <= div + 3; c++) {
+            sides = sides * 2.0;
+        }
+
+        cos_of_stan = 1.0 / sqrt(2.0);
+
+        for (count = 1; count <= div; count++) {
+            cos_of_stan = sqrt((cos_of_stan + 1.0) / 2.0);
+        }
+
+        printf("\n%2.0d. Taking a polygon with %6.0Lf sides,", num, sides);
+        cos_halfangle = sqrt((cos_of_stan + 1.0) / 2.0);
+        sin_halfangle = sqrt(1.0 - (cos_halfangle * cos_halfangle));
+        adha_dhar_bhetorer = radius * sin_halfangle;
+        perimeter_inner = 2.0 * adha_dhar_bhetorer * sides;
+        tan_halfangle = sin_halfangle / cos_halfangle;
+        adha_dhar_bahirer = radius * tan_halfangle;
+        perimeter_outer = 2.0 * adha_dhar_bahirer * sides;
+        circumference = (perimeter_outer + perimeter_inner) / 2.0;
+        printf(" pi calculated is %.10Lf", circumference / (2.0 * radius));
     }
 
-    cos_of_stan = 1.0 / sqrt(2.0);
-
-    for (count = 1; count <= div; count++) {
-      cos_of_stan = sqrt((cos_of_stan + 1.0) / 2.0);
-    }
-
-    printf("\n%2.0d. Taking a polygon with %6.0Lf sides,", num, sides);
-    cos_halfangle = sqrt((cos_of_stan + 1.0) / 2.0);
-    sin_halfangle = sqrt(1.0 - (cos_halfangle * cos_halfangle));
-    adha_dhar_bhetorer = radius * sin_halfangle;
-    perimeter_inner = 2.0 * adha_dhar_bhetorer * sides;
-    tan_halfangle = sin_halfangle / cos_halfangle;
-    adha_dhar_bahirer = radius * tan_halfangle;
-    perimeter_outer = 2.0 * adha_dhar_bahirer * sides;
-    circumference = (perimeter_outer + perimeter_inner) / 2.0;
-    printf(" pi calculated is %.10Lf", circumference / (2.0 * radius));
-  }
-
-  printf("\nPlease press 0 then press enter\n");
-  scanf("%Lf", &radius);
-  return (0);
+    printf("\nPlease press 0 then press enter\n");
+    scanf("%Lf", &radius);
+    return (0);
 }

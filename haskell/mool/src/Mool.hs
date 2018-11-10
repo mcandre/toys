@@ -11,4 +11,4 @@ import Test.QuickCheck as QC
 data Mool = Mool deriving (Eq, Ord, Show, Read, Generic)
 
 instance QC.Arbitrary Mool where
-  arbitrary = GR.genericArbitraryU
+    arbitrary = GR.genericArbitraryU

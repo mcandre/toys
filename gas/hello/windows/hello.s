@@ -12,16 +12,16 @@ msg: .asciz "Hello World!\n"
 .text
 
 Start:
-  push $stdouthandle
-  call GetStdHandle
-  mov %eax, stdout
+    push $stdouthandle
+    call GetStdHandle
+    mov %eax, stdout
 
-  push $0
-  push $charswritten
-  push $len
-  push $msg
-  push stdout
-  call WriteConsoleA
+    push $0
+    push $charswritten
+    push $len
+    push $msg
+    push stdout
+    call WriteConsoleA
 
-  push $0
-  call ExitProcess
+    push $0
+    call ExitProcess

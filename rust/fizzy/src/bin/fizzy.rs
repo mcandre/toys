@@ -7,30 +7,30 @@
 // https://www.youtube.com/watch?v=sv9fTlU7SCA
 #[derive(PartialEq, Eq, Debug)]
 enum FB {
-  Value(i64),
-  Fizz,
-  Buzz,
-  FizzBuzz,
+    Value(i64),
+    Fizz,
+    Buzz,
+    FizzBuzz,
 }
 
 fn fizzbuzz(n: i64) -> FB {
-  match (n % 3 == 0, n % 5 == 0) {
-    (true, true) => FB::FizzBuzz,
-    (true, _) => FB::Fizz,
-    (_, true) => FB::Buzz,
-    _ => FB::Value(n)
-  }
+    match (n % 3 == 0, n % 5 == 0) {
+        (true, true) => FB::FizzBuzz,
+        (true, _) => FB::Fizz,
+        (_, true) => FB::Buzz,
+        _ => FB::Value(n)
+    }
 }
 
 #[test]
 fn smoketest() {
-  assert_eq!(fizzbuzz(3), FB::Fizz);
-  assert_eq!(fizzbuzz(5), FB::Buzz);
-  assert_eq!(fizzbuzz(15), FB::FizzBuzz);
+    assert_eq!(fizzbuzz(3), FB::Fizz);
+    assert_eq!(fizzbuzz(5), FB::Buzz);
+    assert_eq!(fizzbuzz(15), FB::FizzBuzz);
 }
 
 fn main() {
-  for n in 1..101 {
-    println!("{:?}", fizzbuzz(n));
-  }
+    for n in 1..101 {
+        println!("{:?}", fizzbuzz(n));
+    }
 }

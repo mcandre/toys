@@ -34,18 +34,18 @@ Fixpoint lte (n m : nat) : Prop :=
 match n with
 | O => True
 | S n' => match m with
-  | O => False
-  | S m' => lte n' m'
-  end
+    | O => False
+    | S m' => lte n' m'
+    end
 end.
 
 Fixpoint gt (n m : nat) : Prop :=
 match n with
 | O => False
 | S n' => match m with
-  | O => True
-  | S m' => gt n' m'
-  end
+    | O => True
+    | S m' => gt n' m'
+    end
 end.
 
 Definition prime (n : nat) : Prop := gt n one /\ (forall (q : nat), divides q n -> n = one \/ divides q n -> n = n).

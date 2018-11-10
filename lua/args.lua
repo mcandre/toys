@@ -2,13 +2,13 @@
 
 local main
 main = function(arg)
-  for i, value in ipairs(arg) do
-    print("Arg[" .. i .. "] = " .. value)
-  end
+    for i, value in ipairs(arg) do
+        print("Arg[" .. i .. "] = " .. value)
+    end
 end
 
 if type(package.loaded[(...)]) ~= "userdata" then
-  main(arg)
+    main(arg)
 else
-  module(..., package.seeall)
+    module(..., package.seeall)
 end

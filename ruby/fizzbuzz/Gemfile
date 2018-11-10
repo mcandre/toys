@@ -6,5 +6,5 @@ gem 'parallel', '~> 1.2'
 gem 'contracts', '~> 0.4'
 
 group :development do
-  gem 'rspec', '~> 3.0'
+    gem 'rspec', '~> 3.0'
 end

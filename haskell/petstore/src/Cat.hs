@@ -3,9 +3,9 @@ module Cat where
 
 -- | Cat encompasses all of feli-kind.
 data Cat = Cat {
-  name :: String,
-  weight :: Double,
-  owner :: String
+    name :: String,
+    weight :: Double,
+    owner :: String
 } deriving (Eq, Ord, Show, Read)
 
 -- | catapult is cruel.

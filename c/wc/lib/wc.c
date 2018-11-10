@@ -7,37 +7,37 @@ From Michael Plexousakis' http://www.tem.uoc.gr/~plex/EM191/wordcount.c */
 #include <ctype.h>
 
 int main() {
-  int IN = 1;
-  int OUT = 0;
+    int IN = 1;
+    int OUT = 0;
 
-  int characters = 0;
-  int words = 0;
-  int lines = 0;
+    int characters = 0;
+    int words = 0;
+    int lines = 0;
 
-  int state = OUT;
+    int state = OUT;
 
-  int c = getchar();
+    int c = getchar();
 
-  while (c != EOF) {
-    characters++;
+    while (c != EOF) {
+        characters++;
 
-    if ((char) c == '\n') {
-      lines++;
+        if ((char) c == '\n') {
+            lines++;
+        }
+
+        if (isspace(c)) {
+            state = OUT;
+        } else if (state == OUT) {
+            words++;
+            state = IN;
+        }
+
+        c = getchar();
     }
 
-    if (isspace(c)) {
-      state = OUT;
-    } else if (state == OUT) {
-      words++;
-      state = IN;
-    }
+    printf("Characters: %d\n", characters);
+    printf("Words: %d\n", words);
+    printf("Lines: %d\n", lines);
 
-    c = getchar();
-  }
-
-  printf("Characters: %d\n", characters);
-  printf("Words: %d\n", words);
-  printf("Lines: %d\n", lines);
-
-  return 0;
+    return EXIT_SUCCESS;
 }

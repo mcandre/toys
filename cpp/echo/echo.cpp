@@ -7,13 +7,13 @@ using std::cin;
 using std::noskipws;
 
 int main() {
-  char c;
-  cin >> noskipws >> c;
-
-  while (cin) {
-    cout << c;
+    char c;
     cin >> noskipws >> c;
-  }
 
-  return 0;
+    while (cin) {
+        cout << c;
+        cin >> noskipws >> c;
+    }
+
+    return 0;
 }

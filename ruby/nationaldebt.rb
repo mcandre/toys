@@ -11,25 +11,25 @@ include Contracts
 
 Contract nil => String
 def get_debt
-  f = open 'http://www.brillig.com/debt_clock/'
-  data = f.read
-  f.close
+    f = open 'http://www.brillig.com/debt_clock/'
+    data = f.read
+    f.close
 
-  h = Hpricot(data)
+    h = Hpricot(data)
 
-  (h / 'body' / 'blockquote' / 'center' / 'p' / 'table' / 'tr' / 'td' / 'img').first[:alt].split(' ').join('')
+    (h / 'body' / 'blockquote' / 'center' / 'p' / 'table' / 'tr' / 'td' / 'img').first[:alt].split(' ').join('')
 end
 
 def main
-  puts get_debt
+    puts get_debt
 end
 
 if $PROGRAM_NAME == __FILE__
-  begin
-    main
-  rescue Timeout::Error
-    puts 'Could not connect.'
-  rescue Interrupt
-    nil
-  end
+    begin
+        main
+    rescue Timeout::Error
+        puts 'Could not connect.'
+    rescue Interrupt
+        nil
+    end
 end

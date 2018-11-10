@@ -1,4 +1,4 @@
 /**
- * CLI YubNub plugin
- */
+* CLI YubNub plugin
+*/
 package us.yellosoft.yubnub;

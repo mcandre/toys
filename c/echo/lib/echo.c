@@ -1,14 +1,15 @@
 // Copyright (C) YelloSoft
 
 #include <stdio.h>
+#include <stdlib.h>
 
 int main() {
-  int c = getchar();
+    int c = getchar();
 
-  while (c != EOF) {
-    (void) putchar(c);
-    c = getchar();
-  }
+    while (c != EOF) {
+        (void) putchar(c);
+        c = getchar();
+    }
 
-  return 0;
+    return EXIT_SUCCESS;
 }

@@ -5,15 +5,15 @@
 CREATE OR REPLACE FUNCTION bottles(n integer) RETURNS text
 LANGUAGE plpgsql AS $$
 BEGIN
-  IF n >= 3 THEN
-    RETURN format('%s bottles of beer on the wall, %s bottles of beer.\n', n, n) ||
-      format('Take one down, pass it around, %s bottles of beer on the wall.\n\n', n - 1);
-  ELSIF n > 1 THEN
-    RETURN '2 bottles of beer on the wall, 2 bottle of beer.\n' ||
-								 'Take one down, pass it around, 1 bottle of beer on the wall.\n\n';
-  ELSE
-    RETURN '1 bottle of beer on the wall, 1 bottle of beer.\n' ||
-								 'Go to the store and buy some more, 99 bottles of beer on the wall.';
-  END IF;
+    IF n >= 3 THEN
+        RETURN format('%s bottles of beer on the wall, %s bottles of beer.\n', n, n) ||
+            format('Take one down, pass it around, %s bottles of beer on the wall.\n\n', n - 1);
+    ELSIF n > 1 THEN
+        RETURN '2 bottles of beer on the wall, 2 bottle of beer.\n' ||
+            'Take one down, pass it around, 1 bottle of beer on the wall.\n\n';
+    ELSE
+        RETURN '1 bottle of beer on the wall, 1 bottle of beer.\n' ||
+            'Go to the store and buy some more, 99 bottles of beer on the wall.';
+    END IF;
 END;
 $$;

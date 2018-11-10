@@ -2,15 +2,15 @@
 
 local main
 main = function()
-  local parser="http://yubnub.org/parser/parse?command="
+    local parser="http://yubnub.org/parser/parse?command="
 
-  local command=table.concat(arg, "+")
+    local command=table.concat(arg, "+")
 
-  os.execute("open " .. parser .. command)
+    os.execute("open " .. parser .. command)
 end
 
 if type(package.loaded[(...)]) ~= "userdata" then
-  main(arg)
+    main(arg)
 else
-  module(..., package.seeall)
+    module(..., package.seeall)
 end

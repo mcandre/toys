@@ -11,25 +11,25 @@ build-type:     Simple
 cabal-version:  >=1.8
 
 source-repository head
-  type:     git
-  location: git://github.com/mcandre/toys.git
+    type:     git
+    location: https://github.com/mcandre/toys.git
 
 executable bank
-  build-depends:
-    base >= 4.3.1.0 && < 5,
-    stm >= 2.4.5.0 && < 3
+    build-depends:
+        base >= 4.3.1.0 && < 5,
+        stm >= 2.4.5.0 && < 3
 
-  main-is: Bank.hs
-  hs-source-dirs: src
-  ghc-options: -Wall -fwarn-tabs
+    main-is: Bank.hs
+    hs-source-dirs: src
+    ghc-options: -Wall -fwarn-tabs
 
 test-suite reference
-  build-depends:
-    base                        >= 4.3.1.0 && < 5,
-    hlint                       >= 2.1.10 && < 3,
-    shake                       >= 0.16.4 && < 0.17
+    build-depends:
+        base                        >= 4.3.1.0 && < 5,
+        hlint                       >= 2.1.10 && < 3,
+        shake                       >= 0.16.4 && < 0.17
 
-  ghc-options:        -Wall -fwarn-tabs
-  hs-source-dirs:     src
-  main-is:            Bank.hs
-  type:               exitcode-stdio-1.0
+    ghc-options:        -Wall -fwarn-tabs
+    hs-source-dirs:     src
+    main-is:            Bank.hs
+    type:               exitcode-stdio-1.0

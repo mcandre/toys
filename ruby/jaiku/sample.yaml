@@ -1,3 +1,4 @@
+---
 debug: false
 post_domain: api.jaiku.com
 post_api: /json

@@ -1,3 +1,3 @@
 for arg in CommandLine.arguments {
-  print("Arg: \(arg)")
+    print("Arg: \(arg)")
 }

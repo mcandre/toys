@@ -1,25 +1,25 @@
 body
-  counter-reset i
+    counter-reset i
 
 div
-  counter-increment i
+    counter-increment i
 div:after
-  content: "" counter(i)
+    content: "" counter(i)
 
 div:nth-child(3n)
-  visibility hidden
+    visibility hidden
 div:nth-child(3n):after
-  visibility visible
-  content "Fizz"
+    visibility visible
+    content "Fizz"
 
 div:nth-child(5n)
-  visibility hidden
+    visibility hidden
 div:nth-child(5n):after
-  visibility visible
-  content "Buzz"
+    visibility visible
+    content "Buzz"
 
 div:nth-child(15n)
-  visibility hidden
+    visibility hidden
 div:nth-child(15n):after
-  visibility visible
-  content "FizzBuzz"
+    visibility visible
+    content "FizzBuzz"

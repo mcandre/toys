@@ -11,24 +11,24 @@ include Contracts
 
 Contract nil => String
 def get_level
-  f = open('http://www.dhs.gov/dhspublic/getAdvisoryCondition')
-  data = f.read
-  f.close
+    f = open('http://www.dhs.gov/dhspublic/getAdvisoryCondition')
+    data = f.read
+    f.close
 
-  h = Hpricot(data)
-  h.search('threat_advisory').first[:condition]
+    h = Hpricot(data)
+    h.search('threat_advisory').first[:condition]
 end
 
 def main
-  puts get_level
+    puts get_level
 end
 
 if $PROGRAM_NAME == __FILE__
-  begin
-    main
-  rescue Timeout::Error
-    puts 'Could not connect'
-  rescue Interrupt
-    nil
-  end
+    begin
+        main
+    rescue Timeout::Error
+        puts 'Could not connect'
+    rescue Interrupt
+        nil
+    end
 end

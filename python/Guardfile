@@ -1,9 +1,0 @@
-guard :shell do
-  watch(/^.*\.py$/) do |m|
-    title = 'Lint'
-    eager 'invoke lint'
-    status = ($?.success? && :success) || :failed
-    n '', title, status
-    ''
-  end
-end

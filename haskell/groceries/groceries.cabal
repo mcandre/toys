@@ -11,28 +11,28 @@ build-type:     Simple
 cabal-version:  >=1.8
 
 source-repository head
-  type:     git
-  location: git://github.com/mcandre/toys.git
+    type:     git
+    location: https://github.com/mcandre/toys.git
 
 executable groceries
-  build-depends:
-    base     >= 4.3.1.0 && < 5,
-    getoptfu >= 0.0.1 && < 0.0.2,
-    syb      >= 0.7 && < 0.8
+    build-depends:
+        base     >= 4.3.1.0 && < 5,
+        getoptfu >= 0.0.1 && < 0.0.2,
+        syb      >= 0.7 && < 0.8
 
-  main-is: Groceries.hs
-  hs-source-dirs: src
-  ghc-options: -Wall -fwarn-tabs
+    main-is: Groceries.hs
+    hs-source-dirs: src
+    ghc-options: -Wall -fwarn-tabs
 
 test-suite reference
-  build-depends:
-    base                        >= 4.3.1.0 && < 5,
-    getoptfu                    >= 0.0.1 && < 0.0.2,
-    syb                         >= 0.7 && < 0.8,
-    hlint                       >= 2.1.10 && < 3,
-    shake                       >= 0.16.4 && < 0.17
+    build-depends:
+        base                        >= 4.3.1.0 && < 5,
+        getoptfu                    >= 0.0.1 && < 0.0.2,
+        syb                         >= 0.7 && < 0.8,
+        hlint                       >= 2.1.10 && < 3,
+        shake                       >= 0.16.4 && < 0.17
 
-  ghc-options:        -Wall -fwarn-tabs
-  hs-source-dirs:     src
-  main-is:            Groceries.hs
-  type:               exitcode-stdio-1.0
+    ghc-options:        -Wall -fwarn-tabs
+    hs-source-dirs:     src
+    main-is:            Groceries.hs
+    type:               exitcode-stdio-1.0

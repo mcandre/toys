@@ -11,24 +11,24 @@ build-type:     Simple
 cabal-version:  >=1.8
 
 source-repository head
-  type:     git
-  location: git://github.com/mcandre/toys.git
+    type:     git
+    location: git://github.com/mcandre/toys.git
 
 executable nat
-  build-depends:
-    base >= 4.3.1.0 && < 5
+    build-depends:
+        base >= 4.3.1.0 && < 5
 
-  main-is: Nat.hs
-  hs-source-dirs: src
-  ghc-options: -Wall -fwarn-tabs
+    main-is: Nat.hs
+    hs-source-dirs: src
+    ghc-options: -Wall -fwarn-tabs
 
 test-suite reference
-  build-depends:
-    base                        >= 4.3.1.0 && < 5,
-    hlint                       >= 2.1.10 && < 3,
-    shake                       >= 0.16.4 && < 0.17
+    build-depends:
+        base                        >= 4.3.1.0 && < 5,
+        hlint                       >= 2.1.10 && < 3,
+        shake                       >= 0.16.4 && < 0.17
 
-  ghc-options:        -Wall -fwarn-tabs
-  hs-source-dirs:     src
-  main-is:            Nat.hs
-  type:               exitcode-stdio-1.0
+    ghc-options:        -Wall -fwarn-tabs
+    hs-source-dirs:     src
+    main-is:            Nat.hs
+    type:               exitcode-stdio-1.0

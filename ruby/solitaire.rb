@@ -20,7 +20,8 @@
 # --decrypt, -d:
 #    decryption mode
 #
-# --key, -k <key>
+# --key, -k <key>:
+#    declare a key value
 
 require 'enumerator'
 require 'contracts'
@@ -30,75 +31,75 @@ include Contracts
 # Card
 #
 class Card
-  attr_reader :suit, :face
+    attr_reader :suit, :face
 
-  SUITS = [:clubs, :diamonds, :hearts, :spades]
-  BASE_VALUES = [0, 13, 26, 39]
-  FACES = [:ace, :two, :three, :four, :five, :six, :seven, :eight, :nine, :ten, :jack, :queen, :king]
+    SUITS = [:clubs, :diamonds, :hearts, :spades]
+    BASE_VALUES = [0, 13, 26, 39]
+    FACES = [:ace, :two, :three, :four, :five, :six, :seven, :eight, :nine, :ten, :jack, :queen, :king]
 
-  Contract Symbol, Symbol => Symbol
-  def initialize(suit, face)
-    @suit = suit
-    @face = face
-  end
-
-  Contract nil => ArrayOf[Symbol]
-  def self.suits
-    SUITS
-  end
-
-  Contract nil => ArrayOf[Symbol]
-  def self.faces
-    FACES
-  end
-
-  Contract nil => Num
-  def face_value
-    FACES.index(@face) + 1
-  end
-
-  Contract nil => Num
-  def base_value
-    BASE_VALUES[SUITS.index(@suit)]
-  end
-
-  Contract nil => Num
-  def value
-    if @suit == :joker
-      53
-    else
-      base_value + face_value
+    Contract Symbol, Symbol => Symbol
+    def initialize(suit, face)
+        @suit = suit
+        @face = face
     end
-  end
 
-  Contract nil => String
-  def to_s
-    if @suit == :joker
-      "#{@face} joker [#{value}]"
-    else
-      "#{@face} of #{@suit} [#{value}]"
+    Contract nil => ArrayOf[Symbol]
+    def self.suits
+        SUITS
     end
-  end
+
+    Contract nil => ArrayOf[Symbol]
+    def self.faces
+        FACES
+    end
+
+    Contract nil => Num
+    def face_value
+        FACES.index(@face) + 1
+    end
+
+    Contract nil => Num
+    def base_value
+        BASE_VALUES[SUITS.index(@suit)]
+    end
+
+    Contract nil => Num
+    def value
+        if @suit == :joker
+            53
+        else
+            base_value + face_value
+        end
+    end
+
+    Contract nil => String
+    def to_s
+        if @suit == :joker
+            "#{@face} joker [#{value}]"
+        else
+            "#{@face} of #{@suit} [#{value}]"
+        end
+    end
 end
 
 Contract String => String
 def encrypt(message)
-  message = (message + ('X' * 5)).upcase.gsub(/[^A-Z]/, '')
+    message = (message + ('X' * 5)).upcase.gsub(/[^A-Z]/, '')
 
-  p message
+    p message
 
-  plainbytes = Enumerable::Enumerator.new(message, :each_byte).map { |n| n - 'A'[0] + 1 }
+    plainbytes = Enumerable::Enumerator.new(message, :each_byte).map { |n| n - 'A'[0] + 1 }
 
-  p plainbytes
+    p plainbytes
 end
 
 # Contract String, String => String
 # def decrypt(message, key)
-#   # ...
+#     # ...
 # end
 
 def main
-  encrypt 'Boy howdy!\nI do declare.'
+    encrypt 'Boy howdy!\nI do declare.'
 end
 
 main if $PROGRAM_NAME == __FILE__

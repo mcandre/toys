@@ -4,19 +4,19 @@ import System.Directory as Dir
 
 main :: IO ()
 main = do
-  homeDir <- Dir.getHomeDirectory
+    homeDir <- Dir.getHomeDirectory
 
-  shakeArgs shakeOptions{ shakeFiles="" } $ do
-    want ["fizzy.js"]
+    shakeArgs shakeOptions{ shakeFiles="" } $ do
+        want ["fizzy.js"]
 
-    "fizzy.js" %> \out ->
-      cmd_ "fay" "fizzy.hs"
+        "fizzy.js" %> \out ->
+            cmd_ "fay" "fizzy.hs"
 
-    phony "hlint" $
-      cmd_ "hlint" "."
+        phony "hlint" $
+            cmd_ "hlint" "."
 
-    phony "lint" $
-      need ["hlint"]
+        phony "lint" $
+            need ["hlint"]
 
-    phony "clean" $
-      removeFilesAfter "" ["//*.js"]
+        phony "clean" $
+            removeFilesAfter "" ["//*.js"]

@@ -3,12 +3,12 @@ module Main where
 import qualified Cat as C
 
 main :: IO ()
-main = let
-    odie = Nothing :: Maybe C.Cat
-    c1 = C.Cat "Whiskers" 8.0 "Prof. Boring"
-    c2 = C.Cat "Garfield" 11.5 "Jon Arbuckle"
-    c3 = C.Cat "Galeanthrope" 7.0 "Nero"
-  in do
+main = do
+    let odie = Nothing :: Maybe C.Cat
+    let c1 = C.Cat "Whiskers" 8.0 "Prof. Boring"
+    let c2 = C.Cat "Garfield" 11.5 "Jon Arbuckle"
+    let c3 = C.Cat "Galeanthrope" 7.0 "Nero"
+
     putStrLn $ "Odie = " ++ show odie
     putStrLn $ "C1 = " ++ show c1
     putStrLn $ "C2 = " ++ show c2

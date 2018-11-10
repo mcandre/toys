@@ -11,4 +11,4 @@ import Test.QuickCheck as QC
 data DBool = DoubleTrue | DoubleFalse deriving (Eq, Ord, Show, Read, Generic)
 
 instance QC.Arbitrary DBool where
-  arbitrary = GR.genericArbitraryU
+    arbitrary = GR.genericArbitraryU

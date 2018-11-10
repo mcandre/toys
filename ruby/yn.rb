@@ -9,11 +9,11 @@
 # yn <command>
 
 def main
-  parser = 'http://yubnub.org/parser/parse?command='
+    parser = 'http://yubnub.org/parser/parse?command='
 
-  command = ARGV.join '+'
+    command = ARGV.join '+'
 
-  system "open #{parser}#{command}"
+    system "open #{parser}#{command}"
 end
 
 main if $PROGRAM_NAME == __FILE__

@@ -1,6 +1,6 @@
 module OrwellTest (
-  testReflexivity
-  ) where
+    testReflexivity
+    ) where
 
 import qualified Orwell
 

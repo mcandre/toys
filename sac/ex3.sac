@@ -2,13 +2,13 @@ use StdIO: all;
 use Array: all;
 
 int main() {
-  print(genarray([5, 2, 2], 3) - reshape([5, 2, 2], [
-    3, 3, 3, 3,
-    2, 3, 3, 3,
-    3, 2, 3, 3,
-    3, 3, 2, 3,
-    3, 3, 3, 2
-  ]));
+    print(genarray([5, 2, 2], 3) - reshape([5, 2, 2], [
+        3, 3, 3, 3,
+        2, 3, 3, 3,
+        3, 2, 3, 3,
+        3, 3, 2, 3,
+        3, 3, 3, 2
+    ]));
 
-  return(0);
+    return(0);
 }

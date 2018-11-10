@@ -1,121 +1,121 @@
 var
-  black = 0,
-  white = 255,
-  cc,
-  bounds,
-  steps,
-  outputSpan = document.getElementById("output"),
-  playPauseButton = document.getElementById("pause"),
-  currentState,
-  currentStep,
-  cachedRule,
-  looping;
+    black = 0,
+    white = 255,
+    cc,
+    bounds,
+    steps,
+    outputSpan = document.getElementById("output"),
+    playPauseButton = document.getElementById("pause"),
+    currentState,
+    currentStep,
+    cachedRule,
+    looping;
 
 processing.setup = function () {
-  cc = document.getElementById("center-canvas");
-  bounds = cc.getAttribute("width");
-  steps = cc.getAttribute("height");
-  currentStep = 0;
+    cc = document.getElementById("center-canvas");
+    bounds = cc.getAttribute("width");
+    steps = cc.getAttribute("height");
+    currentStep = 0;
 
-  currentState = initState(bounds);
-  cachedRule = cacheRule(30);
+    currentState = initState(bounds);
+    cachedRule = cacheRule(30);
 
-  size(bounds, steps);
-  background(white);
-  fill(black);
-  noStroke();
+    size(bounds, steps);
+    background(white);
+    fill(black);
+    noStroke();
 
-  looping = true;
+    looping = true;
 }
 
 function wipe() {
-  background(white);
-  currentStep = 0;
+    background(white);
+    currentStep = 0;
 }
 
 processing.draw = function () {
-  drawState(currentState, currentStep);
+    drawState(currentState, currentStep);
 
-  outputSpan.innerHTML = "" + currentState[currentState.length/2];
+    outputSpan.innerHTML = "" + currentState[currentState.length/2];
 
-  currentState = step(currentState);
+    currentState = step(currentState);
 
-  currentStep++;
+    currentStep++;
 
-  if (currentStep >= steps) { wipe(); }
+    if (currentStep >= steps) { wipe(); }
 }
 
 window.screenshot = function () {
-  save("rule-30-randomness.png");
+    save("rule-30-randomness.png");
 }
 
 window.playPause = function () {
-  if (looping) {
-    noLoop();
-    looping = false;
-    playPauseButton.innerHTML = "Play";
-  }
-  else {
-    loop();
-    looping = true;
-    playPauseButton.innerHTML = "Pause";
-  }
+    if (looping) {
+        noLoop();
+        looping = false;
+        playPauseButton.innerHTML = "Play";
+    }
+    else {
+        loop();
+        looping = true;
+        playPauseButton.innerHTML = "Pause";
+    }
 }
 
 function initState(bounds) {
-  var s = [];
+    var s = [];
 
-  // The null initial condition leads to predictable output.
-  // [0, 0, 0 ...] -> [0, 0, 0, ...]
-  while (s.indexOf(1) == -1) {
-    for (var i = 0; i < bounds; i++) {
-      s.push(Math.random() > 0.5 ? 1 : 0);
+    // The null initial condition leads to predictable output.
+    // [0, 0, 0 ...] -> [0, 0, 0, ...]
+    while (s.indexOf(1) == -1) {
+        for (var i = 0; i < bounds; i++) {
+            s.push(Math.random() > 0.5 ? 1 : 0);
+        }
     }
-  }
 
-  return s;
+    return s;
 }
 
 function cacheRule(rule) {
-  var result = {};
+    var result = {};
 
-  var bitRule = rule.toString(2).split("").map(function (x) { return x == "1" ? 1 : 0; });
-  while (bitRule.length < 8) { bitRule = [0].concat(bitRule); }
+    var bitRule = rule.toString(2).split("").map(function (x) { return x == "1" ? 1 : 0; });
+    while (bitRule.length < 8) { bitRule = [0].concat(bitRule); }
 
-  [0, 1].map(function (i) {
-    [0, 1].map(function (j) {
-      [0, 1].map(function (k) {
-        var key = [i, j, k];
+    [0, 1].map(function (i) {
+        [0, 1].map(function (j) {
+            [0, 1].map(function (k) {
+                var key = [i, j, k];
 
-        // Wolfram ordering is inverted and backwards.
-        var invertedKey = key.map(function (x) { return x == 1 ? 0 : 1; });
-        invertedKey.reverse();
+                // Wolfram ordering is inverted and backwards.
+                var invertedKey = key.map(function (x) { return x == 1 ? 0 : 1; });
+                invertedKey.reverse();
 
-        result[key] = bitRule[invertedKey[0] + invertedKey[1] * 2 + invertedKey[2] * 4];
-      });
+                result[key] = bitRule[invertedKey[0] + invertedKey[1] * 2 + invertedKey[2] * 4];
+            });
+        });
     });
-  });
 
-  return result;
+    return result;
 }
 
 function drawState(state, row) {
-  for (var i = 0; i < state.length; i++) {
-    if (state[i] == 1) { rect(i, row, 1, 1); }
-  }
+    for (var i = 0; i < state.length; i++) {
+        if (state[i] == 1) { rect(i, row, 1, 1); }
+    }
 }
 
 function step(state) {
-  var statePrime = [];
+    var statePrime = [];
 
-  for (var i = 0; i < state.length; i++) {
-    var
-      a = i - 1 > 0 ? i - 1 : state.length - 1,
-      b = i,
-      c = i + 1 < state.length ? i + 1 : 0;
+    for (var i = 0; i < state.length; i++) {
+        var
+        a = i - 1 > 0 ? i - 1 : state.length - 1,
+        b = i,
+        c = i + 1 < state.length ? i + 1 : 0;
 
-    statePrime.push(cachedRule[ [state[a], state[b], state[c]] ]);
-  }
+        statePrime.push(cachedRule[ [state[a], state[b], state[c]] ]);
+    }
 
-  return statePrime;
+    return statePrime;
 }

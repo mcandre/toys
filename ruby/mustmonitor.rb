@@ -9,25 +9,25 @@ include Contracts
 
 Contract nil => Bool
 def must_blocking_or_offline?
-  f = open 'http://icanhazip.com/'
-  data = f.read
-  f.close
+    f = open 'http://icanhazip.com/'
+    data = f.read
+    f.close
 
-  octets = data.split('.')
+    octets = data.split('.')
 
-  fail unless octets.length == 4
+    fail unless octets.length == 4
 rescue
-  true
+    true
 else
-  false
+    false
 end
 
 def main
-  if must_blocking_or_offline?
-    puts '-OFFLINE'
-  else
-    puts '+ONLINE'
-  end
+    if must_blocking_or_offline?
+        puts '-OFFLINE'
+    else
+        puts '+ONLINE'
+    end
 end
 
 main if $PROGRAM_NAME == __FILE__

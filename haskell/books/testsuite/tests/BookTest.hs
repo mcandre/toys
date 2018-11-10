@@ -1,6 +1,6 @@
 module BookTest (
-  testReflexivity
-  ) where
+    testReflexivity
+    ) where
 
 import qualified Book
 

@@ -1,11 +1,11 @@
 (*
-  An explicit proof of Peirce's Law
-  Andrew Pennebaker
-  2 Nov 2011
+    An explicit proof of Peirce's Law
+    Andrew Pennebaker
+    2 Nov 2011
 
-  Example:
+    Example:
 
-  coqtop -l peirce.v
+    coqtop -l peirce.v
 *)
 
 Require Import Classical.
@@ -16,10 +16,10 @@ Proof.
 intros.
 apply imply_to_or in H.
 elim H.
-  intros.
-  apply not_imply_elim in H0.
-  assumption.
+    intros.
+    apply not_imply_elim in H0.
+    assumption.
 
-  intros.
-  assumption.
+    intros.
+    assumption.
 Qed.

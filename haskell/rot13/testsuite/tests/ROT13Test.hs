@@ -1,6 +1,6 @@
 module ROT13Test (
-  propReversible
-  ) where
+    propReversible
+    ) where
 
 import qualified ROT13
 

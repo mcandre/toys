@@ -1,6 +1,6 @@
 module TroolTest (
-  testReflexivity
-  ) where
+    testReflexivity
+    ) where
 
 import qualified Trool
 

@@ -4,44 +4,44 @@ import System.Directory as Dir
 
 main :: IO ()
 main = do
-  let tarball = "dist/gnomes-0.0.1.tar.gz"
-  homeDir <- Dir.getHomeDirectory
+    let tarball = "dist/gnomes-0.0.1.tar.gz"
+    homeDir <- Dir.getHomeDirectory
 
-  shakeArgs shakeOptions{ shakeFiles="dist" } $ do
-    want ["dist/bin/gnomes" <.> exe]
+    shakeArgs shakeOptions{ shakeFiles="dist" } $ do
+        want ["dist/bin/gnomes" <.> exe]
 
-    "dist/bin/gnomes" <.> exe %> \out ->
-      cmd_ "cabal" "install" "--bindir" "dist/bin"
+        "dist/bin/gnomes" <.> exe %> \out ->
+            cmd_ "cabal" "install" "--bindir" "dist/bin"
 
-    phony "hlint" $
-      cmd_ "hlint" "."
+        phony "hlint" $
+            cmd_ "hlint" "."
 
-    phony "lint" $
-      need ["hlint"]
+        phony "lint" $
+            need ["hlint"]
 
-    phony "test" $ do
-      need ["dist/bin/gnomes" <.> exe]
-      cmd_ $ "dist/bin/gnomes" <.> exe
+        phony "test" $ do
+            need ["dist/bin/gnomes" <.> exe]
+            cmd_ $ "dist/bin/gnomes" <.> exe
 
-    phony "install" $
-      cmd_ "cabal" "install"
+        phony "install" $
+            cmd_ "cabal" "install"
 
-    phony "uninstall" $
-      removeFilesAfter homeDir ["/.cabal/bin/gnomes" <.> exe]
+        phony "uninstall" $
+            removeFilesAfter homeDir ["/.cabal/bin/gnomes" <.> exe]
 
-    phony "build" $
-      cmd_ "cabal" "build"
+        phony "build" $
+            cmd_ "cabal" "build"
 
-    tarball %> \_ -> do
-      need ["build"]
-      cmd_ "cabal" "sdist"
+        tarball %> \_ -> do
+            need ["build"]
+            cmd_ "cabal" "sdist"
 
-    phony "sdist" $
-      need [tarball]
+        phony "sdist" $
+            need [tarball]
 
-    phony "publish" $ do
-      need ["sdist"]
-      cmd_ "cabal" "upload" tarball
+        phony "publish" $ do
+            need ["sdist"]
+            cmd_ "cabal" "upload" tarball
 
-    phony "clean" $
-      cmd_ "cabal" "clean"
+        phony "clean" $
+            cmd_ "cabal" "clean"

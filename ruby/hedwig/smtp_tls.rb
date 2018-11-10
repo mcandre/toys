@@ -2,62 +2,61 @@ require 'openssl'
 require 'net/smtp'
 
 Net::SMTP.class_eval do
+    private
 
-  private
+    def do_start(helodomain, user, secret, authtype)
+        fail IOError, 'SMTP session already started' if @started
+        check_auth_args user, secret, authtype if user || secret
 
-  def do_start(helodomain, user, secret, authtype)
-    fail IOError, 'SMTP session already started' if @started
-    check_auth_args user, secret, authtype if user || secret
+        sock = timeout(@open_timeout) { TCPSocket.open(@address, @port) }
+        @socket = Net::InternetMessageIO.new(sock)
+        @socket.read_timeout = 60 # @read_timeout
+        @socket.debug_output = @debug_output
 
-    sock = timeout(@open_timeout) { TCPSocket.open(@address, @port) }
-    @socket = Net::InternetMessageIO.new(sock)
-    @socket.read_timeout = 60 # @read_timeout
-    @socket.debug_output = @debug_output
+        check_response(critical { recv_response })
+        do_helo(helodomain)
 
-    check_response(critical { recv_response })
-    do_helo(helodomain)
+        fail 'openssl library not installed' unless defined?(OpenSSL)
 
-    fail 'openssl library not installed' unless defined?(OpenSSL)
+        starttls
 
-    starttls
+        ssl = OpenSSL::SSL::SSLSocket.new(sock)
+        ssl.sync_close = true
+        ssl.connect
 
-    ssl = OpenSSL::SSL::SSLSocket.new(sock)
-    ssl.sync_close = true
-    ssl.connect
+        @socket = Net::InternetMessageIO.new(ssl)
+        @socket.read_timeout = 60 # @read_timeout
+        @socket.debug_output = @debug_output
 
-    @socket = Net::InternetMessageIO.new(ssl)
-    @socket.read_timeout = 60 # @read_timeout
-    @socket.debug_output = @debug_output
+        do_helo(helodomain)
 
-    do_helo(helodomain)
+        authenticate user, secret, authtype if user
 
-    authenticate user, secret, authtype if user
-
-    @started = true
-  ensure
-    unless @started
-      # authentication failed, cancel connection.
-      @socket.close if !@started && @socket && !@socket.closed?
-      @socket = nil
+        @started = true
+    ensure
+        unless @started
+            # authentication failed, cancel connection.
+            @socket.close if !@started && @socket && !@socket.closed?
+            @socket = nil
+        end
     end
-  end
 
-  def do_helo(helodomain)
-    if @esmtp
-      ehlo helodomain
-    else
-      helo helodomain
+    def do_helo(helodomain)
+        if @esmtp
+            ehlo helodomain
+        else
+            helo helodomain
+        end
+    rescue Net::ProtocolError
+        if @esmtp
+            @esmtp = false
+            @error_occured = false
+
+            retry
+        end
     end
-  rescue Net::ProtocolError
-    if @esmtp
-      @esmtp = false
-      @error_occured = false
 
-      retry
+    def starttls
+        getok('STARTTLS')
     end
-  end
-
-  def starttls
-    getok('STARTTLS')
-  end
 end

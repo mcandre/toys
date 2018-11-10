@@ -9,11 +9,11 @@
 # fetch <command>
 
 def main
-  parser = 'http://fetch.yellosoft.us/?fetch='
+    parser = 'http://fetch.yellosoft.us/?fetch='
 
-  command = ARGV.join '+'
+    command = ARGV.join '+'
 
-  system "open #{parser}#{command}"
+    system "open #{parser}#{command}"
 end
 
 main if $PROGRAM_NAME == __FILE__

@@ -7,9 +7,9 @@ import Data.BloomFilter.Easy
 
 main :: IO ()
 main = do
-  let fpr = 0.2
+    let fpr = 0.2
 
-  let names = [
+    let names = [
         "Barry",
         "Derrick",
         "Jerry",
@@ -19,9 +19,9 @@ main = do
         "Terry"
         ]
 
-  let bf = easyList fpr names
+    let bf = easyList fpr names
 
-  let queries = [
+    let queries = [
         "Jerry",
         "Kerry",
         "Larry",
@@ -30,4 +30,4 @@ main = do
         "Sandy"
         ]
 
-  mapM_ (\q -> putStrLn $ show q ++ " in filter? " ++ show (elem q bf)) queries
+    mapM_ (\q -> putStrLn $ show q ++ " in filter? " ++ show (elem q bf)) queries

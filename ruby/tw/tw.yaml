@@ -1,29 +1,20 @@
-Direct Text:
-  d <username> <message>
+---
+Direct Text: "d <username> <message>"
 
-Public Reply:
-  @<username> <message>
+Public Reply: "@<username> <message>"
 
-Receive updates:
-  follow <username>
+Receive updates: "follow <username>"
 
-Stop receiving updates:
-  leave <username>
+Stop receiving updates: "leave <username>"
 
-Stop receiving all updates:
-  leave all
+Stop receiving all updates: "leave all"
 
-Get latest update:
-  get <username>
+Get latest update: "get <username>"
 
-Get all latest updates:
-  get
+Get all latest updates: "get"
 
-Ask what user is up to:
-  nudge <username>
+Ask what user is up to: "nudge <username>"
 
-Get bio:
-  whois <username>
+Get bio: "whois <username>"
 
-Send text invite:
-  add <phonenumber>
+Send text invite: "add <phonenumber>"
