@@ -1,7 +1,3 @@
-#light (*
-    exec fsharpi --exec "$0" --quiet
-*)
-
 namespace Fizzy
 
 module Fizzy =

@@ -1,7 +1,3 @@
-#light (*
-    exec fsharpi --exec "$0" --quiet
-*)
-
 let main =
     let args = System.Environment.GetCommandLineArgs()
 
