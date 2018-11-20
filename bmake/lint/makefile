@@ -1,8 +1,8 @@
 #
-# Run with `make`
+# Run with `bmake`
 #
 # If this makefile contains any syntax errors, make will report them.
-# A `make lint` task would be superfluous for this reason.
+# An extra lint task would be superfluous for this reason.
 
 all:
 	@make -n makefile
