@@ -5,7 +5,8 @@ Introductory programming in Make
 # EXAMPLE
 
 ```
-$ make -f hello.mf
+$ cd hello
+$ make
 Hello World!
 ```
 

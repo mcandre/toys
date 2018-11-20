@@ -1,8 +1,0 @@
-#
-# Run with `make -f lint.mf`.
-#
-# If lint.mf contains any syntax errors, make will report them.
-# A `make lint` task would be superfluous for this reason.
-
-all:
-	@make -n -f lint.mf
