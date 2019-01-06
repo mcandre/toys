@@ -14,7 +14,3 @@ Hello World!
 # RUNTIME REQUIREMENTS
 
 (None)
-
-# CONTRIBUTING
-
-For more details on developing Rust projects, see DEVELOPMENT.md.
