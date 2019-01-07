@@ -1,2 +1,1 @@
-define(`greeting', `Hello World!')dnl
-greeting()
+Hello World!
