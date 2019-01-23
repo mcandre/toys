@@ -1,2 +1,2 @@
 #!/bin/sh
-java -jar "${0%/*}"/../build/libs/mool-all.jar "$@"
+java -jar "${0%/*}"/../build/libs/mool.jar "$@"

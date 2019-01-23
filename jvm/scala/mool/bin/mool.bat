@@ -1,1 +1,1 @@
-@java -jar "%~dpn0"\..\build\libs\mool-all.jar %*
+@java -jar "%~dpn0"\..\build\libs\mool.jar %*

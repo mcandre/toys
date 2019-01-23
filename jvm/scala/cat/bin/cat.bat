@@ -1,1 +1,1 @@
-@java -jar "%~dpn0"\..\build\libs\cat-all.jar %*
+@java -jar "%~dpn0"\..\build\libs\cat.jar %*
