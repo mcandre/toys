@@ -17,13 +17,17 @@ public final class Fizzy {
 
         if (m && n) {
             return "FizzBuzz";
-        } else if (m) {
-            return "Fizz";
-        } else if (n) {
-            return "Buzz";
-        } else {
-            return String.valueOf(i);
         }
+
+        if (m) {
+            return "Fizz";
+        }
+
+        if (n) {
+            return "Buzz";
+        }
+
+        return String.valueOf(i);
     }
 
     /** CLI entry point
