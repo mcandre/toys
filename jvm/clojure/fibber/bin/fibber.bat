@@ -1,1 +1,1 @@
-@java -jar "%~dpn0"\..\build\libs\fibber-all.jar %*
+@java -jar "%~dpn0"\..\build\libs\fibber.jar %*

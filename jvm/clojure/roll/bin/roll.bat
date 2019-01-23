@@ -1,1 +1,1 @@
-@java -jar "%~dpn0"\..\build\libs\roll-all.jar %*
+@java -jar "%~dpn0"\..\build\libs\roll.jar %*

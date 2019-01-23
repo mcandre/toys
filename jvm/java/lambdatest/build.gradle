@@ -23,6 +23,7 @@ checkstyle {
 
 spotbugs {
     sourceSets = [sourceSets.main]
+    excludeFilter = file("${rootProject.projectDir}/config/spotbugs/exclude.xml")
 }
 
 tasks.withType(com.github.spotbugs.SpotBugsTask) {
