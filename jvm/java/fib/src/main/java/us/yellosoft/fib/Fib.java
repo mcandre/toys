@@ -21,19 +21,19 @@ public final class Fib {
 
         if (n < 2) {
             return n;
-        } else {
-            int a = 0;
-            int b = 1;
-            final int m = n - 1;
-
-            for (int i = 0; i < m; i++) {
-                final int c = a;
-                a = b;
-                b = c + b;
-            }
-
-            return b;
         }
+
+        int a = 0;
+        int b = 1;
+        final int m = n - 1;
+
+        for (int i = 0; i < m; i++) {
+            final int c = a;
+            a = b;
+            b = c + b;
+        }
+
+        return b;
     }
 
     /**
