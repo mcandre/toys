@@ -1,2 +1,2 @@
 #!/bin/sh
-java -jar "${0%/*}"/../build/libs/toucan-all.jar "$@"
+java -jar "${0%/*}"/../build/libs/toucan.jar "$@"
