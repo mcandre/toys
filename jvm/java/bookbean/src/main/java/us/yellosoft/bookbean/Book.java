@@ -5,24 +5,29 @@ import java.util.Date;
 import java.util.Objects;
 
 /** A Bean for Books */
-public class Book implements Serializable, Comparable<Book> {
+public final class Book implements Serializable, Comparable<Book> {
     public static final long serialVersionUID = 1L;
 
-    // Attributes
+    /** The name of the book */
     private String title;
+    /** The ones who write the book */
     private String author;
+    /** The ones who receive money for the book */
     private String publisher;
+    /** When the book was made */
     private Date published;
+    /** The unique book identifier */
     private String isbn;
 
-    /** All-at-once constructor. Not necessary for Beans, but helpful for anyone who hates calling
-            .setThis(x), .setThat(y), .setTheOther(z) blah blah boilerplate code!
+    /** All-at-once constructor. Not necessary for Beans,
+        but helpful for anyone who hates calling .setThis(x),
+        .setThat(y), .setTheOther(z), etc. boilerplate code!
 
-            @param title The book's title
-            @param author The book's author(s)
-            @param publisher The book's publisher
-            @param published The book's publication date
-            @param isbn The book's ISBN
+        @param title The book's title
+        @param author The book's author(s)
+        @param publisher The book's publisher
+        @param published The book's publication date
+        @param isbn The book's ISBN
     */
     public Book(
         final String title,
@@ -82,19 +87,20 @@ public class Book implements Serializable, Comparable<Book> {
     }
 
     /** @return The book's ISBN */
-    public String getISBN() {
+    public String getIsbn() {
         return this.isbn;
     }
     /** @param isbn The book's ISBN */
-    public void setISBN(final String isbn) {
+    public void setIsbn(final String isbn) {
         this.isbn = isbn;
     }
 
-    // Yuck! But now that's over, any external Java code can configure this Bean super easily.
+    // Yuck! But now that's over,
+    // any external Java code can configure this Bean super easily.
 
     @Override
     public int compareTo(final Book other) {
-        return this.isbn.compareTo(other.getISBN());
+        return this.isbn.compareTo(other.getIsbn());
     }
 
     @Override
@@ -105,7 +111,8 @@ public class Book implements Serializable, Comparable<Book> {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Book book = (Book) o;
+
+        final Book book = (Book) o;
         return Objects.equals(isbn, book.isbn);
     }
 

@@ -10,6 +10,6 @@ public final class Hello {
         @param args CLI args (unused)
     */
     public static void main(final String[] args) {
-        System.out.println("Hello World");
+        System.out.println("Hello World!");
     }
 }

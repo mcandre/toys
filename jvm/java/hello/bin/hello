@@ -1,2 +1,2 @@
 #!/bin/sh
-java -jar "${0%/*}"/../build/libs/hello-all.jar "$@"
+java -jar "${0%/*}"/../build/libs/hello.jar "$@"

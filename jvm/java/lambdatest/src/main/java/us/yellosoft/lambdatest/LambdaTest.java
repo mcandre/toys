@@ -4,7 +4,7 @@ import java.util.stream.IntStream;
 import java.util.Arrays;
 
 /** Example use of Java 8 lambdas */
-public class LambdaTest {
+public final class LambdaTest {
     /** Utility class */
     private LambdaTest() {}
 

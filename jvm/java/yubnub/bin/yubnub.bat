@@ -1,1 +1,1 @@
-@java -jar "%~dpn0"\..\build\libs\yubnub-all.jar %*
+@java -jar "%~dpn0"\..\build\libs\yubnub.jar %*

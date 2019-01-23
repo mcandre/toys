@@ -30,7 +30,7 @@ public class BookTest {
     @Test
     public void testEqual() {
         final Book book1 = new Book();
-        book1.setISBN("1");
+        book1.setIsbn("1");
 
         Assert.assertEquals(book1, book1);
     }
@@ -38,10 +38,10 @@ public class BookTest {
     @Test
     public void testInequality() {
         final Book book1 = new Book();
-        book1.setISBN("1");
+        book1.setIsbn("1");
 
         final Book book2 = new Book();
-        book2.setISBN("2");
+        book2.setIsbn("2");
 
         Assert.assertNotEquals(book1, book2);
     }
@@ -49,10 +49,10 @@ public class BookTest {
     @Test
     public void testComparable() {
         final Book book1 = new Book();
-        book1.setISBN("1");
+        book1.setIsbn("1");
 
         final Book book2 = new Book();
-        book2.setISBN("2");
+        book2.setIsbn("2");
 
         Assert.assertThat(book1, Matchers.lessThan(book2));
     }
@@ -85,7 +85,7 @@ public class BookTest {
     @Test
     public void testHashable() {
         final Book book = new Book();
-        book.setISBN("978-3-16-148410-0");
+        book.setIsbn("978-3-16-148410-0");
 
         Assert.assertEquals(
             Objects.hash("978-3-16-148410-0"),
@@ -103,11 +103,11 @@ public class BookTest {
         draft.setAuthor("Me");
         draft.setPublisher("LuLu");
         draft.setPublished(calendar1.getTime());
-        draft.setISBN("1");
+        draft.setIsbn("1");
 
         // 6 months later and we are already publishing a new edition
         draft.setTitle("Working Title, 2nd Edition");
-        draft.setISBN("2");
+        draft.setIsbn("2");
         calendar2.add(Calendar.MONTH, 6);
         draft.setPublished(calendar2.getTime());
 
@@ -119,16 +119,16 @@ public class BookTest {
         final Calendar calendar = Calendar.getInstance();
 
         final Book draft = new Book(
-            "Working Title",
+            "*That Book*",
             "Me",
-            "LuLu",
+            "Dublisher Publishing",
             calendar.getTime(),
             "1"
         );
 
         // 6 months later and we are already publishing a new edition
-        draft.setTitle("Working Title, 2nd Edition");
-        draft.setISBN("2");
+        draft.setTitle("*That Book*, 2nd Edition");
+        draft.setIsbn("2");
         calendar.add(Calendar.MONTH, 6);
         draft.setPublished(calendar.getTime());
 
@@ -140,18 +140,18 @@ public class BookTest {
         final Calendar calendar = Calendar.getInstance();
         final Date date = calendar.getTime();
         final Book draft = new Book(
-            "Working Title",
+            "The Not A Book Book",
             "Me",
-            "LuLu",
+            "PQR Publishing",
             date,
             "1"
         );
 
-        Assert.assertEquals("Working Title", draft.getTitle());
+        Assert.assertEquals("The Not A Book Book", draft.getTitle());
         Assert.assertEquals("Me", draft.getAuthor());
-        Assert.assertEquals("LuLu", draft.getPublisher());
+        Assert.assertEquals("PQR Publishing", draft.getPublisher());
         Assert.assertEquals(date, draft.getPublished());
-        Assert.assertEquals("1", draft.getISBN());
+        Assert.assertEquals("1", draft.getIsbn());
     }
 
     @Test
@@ -159,13 +159,13 @@ public class BookTest {
         final Calendar calendar = Calendar.getInstance();
         final Date date = calendar.getTime();
         final Book draft = new Book(
-            "Working Title",
+            "Yet Another Book",
             "Me",
-            "LuLu",
+            "We Make Books, Inc.",
             date,
             "1"
         );
 
-        Assert.assertEquals("Working Title by Me (ISBN 1)", draft.toString());
+        Assert.assertEquals("Yet Another Book by Me (ISBN 1)", draft.toString());
     }
 }

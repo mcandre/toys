@@ -6,20 +6,20 @@ Java [Enum](http://docs.oracle.com/javase/7/docs/api/java/lang/Enum.html)s are b
 
 # EXAMPLE
 
-```
-$ gradle test
+```console
+$ gradle --warning-mode all test
 
 $ cat src/main/java/us/yellosoft/orwell/Orwell.java
 package us.yellosoft.orwell;
 
 // An Enum for Orwellian Newspeak concepts
 public enum Orwell {
-  DOUBLE_PLUS_UNGOOD,
-  DOUBLE_UNGOOD,
-  UNGOOD,
-  GOOD,
-  DOUBLE_GOOD,
-  DOUBLE_PLUS_GOOD
+    DOUBLE_PLUS_UNGOOD,
+    DOUBLE_UNGOOD,
+    UNGOOD,
+    GOOD,
+    DOUBLE_GOOD,
+    DOUBLE_PLUS_GOOD
 }
 
 $ less src/test/java/us/yellosoft/orwell/OrwellTest.java
@@ -31,66 +31,78 @@ import org.junit.Assert;
 import us.yellosoft.orwell.Orwell;
 
 public class OrwellTest {
+    @Test
+    public void testCanSwitchOverOrwells() {
+        final Orwell o = Orwell.GOOD;
 
-  @Test
-  public void testCanSwitchOverOrwells() {
-    switch(Orwell.GOOD) {
-      default:
-        Assert.assertTrue(true);
+        switch (o) {
+        case DOUBLE_PLUS_UNGOOD:
+            Assert.assertTrue(true);
+            break;
+        case DOUBLE_UNGOOD:
+            Assert.assertTrue(true);
+            break;
+        case UNGOOD:
+            Assert.assertTrue(true);
+            break;
+        case GOOD:
+            Assert.assertTrue(true);
+            break;
+        case DOUBLE_GOOD:
+            Assert.assertTrue(true);
+            break;
+        case DOUBLE_PLUS_GOOD:
+            Assert.assertTrue(true);
+        default:
+            Assert.assertTrue(false);
+        }
     }
-  }
 ...
 ```
 
 # REQUIREMENTS
 
-* [JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 1.7+
-* [Gradle](http://gradle.org/) 2.1+
+* [JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 1.8+
+* [Gradle](http://gradle.org/) 5+
 
 ## Optional
 
 * [Sonar](http://www.sonarqube.org/)
 * [Infer](http://fbinfer.com/)
 
-E.g., `brew install gradle sonar sonar-runner infer`
+E.g., `brew cask install java && brew install gradle sonar sonar-runner infer`
 
 # JAVADOCS
 
-```
-$ gradle javadoc
+```console
+$ gradle --warning-mode all javadoc
 $ open build/docs/javadoc/index.html
 ```
 
 # TEST + CODE COVERAGE
 
-```
-$ gradle test jacoco
+```console
+$ gradle --warning-mode all test jacoco
 $ open build/reports/jacoco/test/html/index.html
 ```
 
 # LINTING
 
-```
-$ gradle check
-```
-
-## Optional: FindBugs
-
-```
-$ gradle check
-$ open build/reports/findbugs/main.html
+```console
+$ gradle --warning-mode all check
+$ open build/reports/{checkstyle,pmd,spotbugs}/main.html
 ```
 
 ## Optional: Sonar
 
-```
+```console
 $ sonar start
-$ gradle check sonar
+$ gradle --warning-mode all check sonar
 $ open http://localhost:9000/
 ```
 
 ## Optional: Infer
 
-```
-$ infer -- gradle clean build
+```console
+$ infer -- gradle --warning-mode all clean build
 ```

@@ -1,2 +1,2 @@
 #!/bin/sh
-java -jar "${0%/*}"/../build/libs/yubnub-all.jar "$@"
+java -jar "${0%/*}"/../build/libs/yubnub.jar "$@"

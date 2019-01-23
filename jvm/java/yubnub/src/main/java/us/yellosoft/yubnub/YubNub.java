@@ -17,7 +17,7 @@ public final class YubNub {
         @throws InterruptedException on process error
     */
     public static void go(final String command) throws IOException, InterruptedException {
-        Process process = Runtime.getRuntime().exec(String.format("open %s%s", PARSER, command));
+        final Process process = Runtime.getRuntime().exec(String.format("open %s%s", PARSER, command));
         process.waitFor();
         process.destroy();
     }
@@ -25,9 +25,10 @@ public final class YubNub {
     /**
         <p>CLI</p>
         @param args CLI arguments
-        @throws Exception on process error
+        @throws IOException on I/O error
+        @throws InterruptedException on signal error
     */
-    public static void main(final String[] args) throws Exception {
+    public static void main(final String[] args) throws IOException, InterruptedException {
         go(String.join("+", args));
     }
 }

@@ -22,8 +22,8 @@ Java beans follow the [Hollywood Principle](http://en.wikipedia.org/wiki/Hollywo
 
 # EXAMPLE
 
-```
-$ mvn test
+```console
+$ gradle --warning-mode all test
 
 $ less src/main/java/us/yellosoft/bookbean/Book.java
 package us.yellosoft.bookbean;
@@ -108,54 +108,47 @@ public class BookTest {
 
 # REQUIREMENTS
 
-* [JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 1.7+
-* [Gradle](http://gradle.org/) 2.1+
+* [JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 1.8+
+* [Gradle](http://gradle.org/) 5+
 
 ## Optional
 
 * [Sonar](http://www.sonarqube.org/)
 * [Infer](http://fbinfer.com/)
 
-E.g., `brew install gradle sonar sonar-runner`
+E.g., `brew cask install java && brew install gradle sonar sonar-runner`
 
 # JAVADOCS
 
-```
-$ gradle javadoc
+```console
+$ gradle --warning-mode all javadoc
 $ open build/docs/javadoc/index.html
 ```
 
 # TEST + CODE COVERAGE
 
-```
-$ gradle test jacoco
+```console
+$ gradle --warning-mode all test jacoco
 $ open build/reports/jacoco/test/html/index.html
 ```
 
 # LINTING
 
-```
-$ gradle check
-
-```
-
-## Optional: FindBugs
-
-```
-$ gradle check
-$ open build/reports/findbugs/main.html
+```console
+$ gradle --warning-mode all check
+$ open build/reports/{checkstyle,pmd,spotbugs}/main.html
 ```
 
 ## Optional: Sonar
 
-```
+```console
 $ sonar start
-$ gradle check sonar
+$ gradle --warning-mode all check sonar
 $ open http://localhost:9000/
 ```
 
 ## Optional: Infer
 
-```
-$ infer -- gradle clean build
+```console
+$ infer -- gradle --warning-mode all clean build
 ```

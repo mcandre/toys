@@ -1,7 +1,6 @@
 package us.yellosoft.fizzy;
 
 import java.util.stream.IntStream;
-import java.util.Arrays;
 
 /** Example FizzBuzz implementation, parallelized */
 public final class Fizzy {
@@ -13,7 +12,8 @@ public final class Fizzy {
         @return fizzbuzz(i)
     */
     public static String fizzbuzz(final int i) {
-        boolean m = i % 3 == 0, n = i % 5 == 0;
+        final boolean m = i % 3 == 0;
+        final boolean n = i % 5 == 0;
 
         if (m && n) {
             return "FizzBuzz";
@@ -30,9 +30,14 @@ public final class Fizzy {
         @param args CLI flags (unused)
     */
     public static void main(final String[] args) {
-        final IntStream xs = IntStream.range(1, 101).parallel();
-        final String[] ys = xs.mapToObj(Fizzy::fizzbuzz).toArray(String[]::new);
+        final Iterable<String> strings = () -> IntStream
+            .range(1, 101)
+            .parallel()
+            .mapToObj(Fizzy::fizzbuzz)
+            .iterator();
 
-        System.out.println(Arrays.toString(ys));
+        for (final String s: strings) {
+            System.out.println(s);
+        }
     }
 }

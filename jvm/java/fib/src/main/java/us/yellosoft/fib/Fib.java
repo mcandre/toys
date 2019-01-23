@@ -22,11 +22,12 @@ public final class Fib {
         if (n < 2) {
             return n;
         } else {
-            int a = 0, b = 1;
-            int m = n - 1;
+            int a = 0;
+            int b = 1;
+            final int m = n - 1;
 
             for (int i = 0; i < m; i++) {
-                int c = a;
+                final int c = a;
                 a = b;
                 b = c + b;
             }
@@ -44,15 +45,13 @@ public final class Fib {
         System.out.print("N = ");
 
         try (Scanner scanner = new Scanner(System.in, StandardCharsets.UTF_8.name())) {
-            int n = scanner.nextInt();
+            final int n = scanner.nextInt();
 
             System.out.println("Running");
 
-            int startt = (int) System.currentTimeMillis();
-
-            int x = fib(n);
-
-            int endt = (int) System.currentTimeMillis();
+            final int startt = (int) System.currentTimeMillis();
+            final int x = fib(n);
+            final int endt = (int) System.currentTimeMillis();
 
             System.out.println(String.format("Fib %d = %d", n, x));
             System.out.println(String.format("Time = %d sec", (endt - startt) / 1000));

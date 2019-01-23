@@ -1,1 +1,1 @@
-@java -jar "%~dpn0"\..\build\libs\lambdatest-all.jar %*
+@java -jar "%~dpn0"\..\build\libs\lambdatest.jar %*
