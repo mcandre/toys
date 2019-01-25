@@ -2,6 +2,11 @@ from invoke import run, task
 
 
 @task
+def safety():
+    run('safety check')
+
+
+@task
 def pep8():
     run('pep8 .')
 
@@ -34,6 +39,6 @@ def tidy():
     )
 
 
-@task(pre=[pep8, pylint, pyflakes, flake8, tidy])
+@task(pre=[safety, pep8, pylint, pyflakes, flake8, tidy])
 def lint():
     pass
