@@ -23,7 +23,7 @@ https://godoc.org/github.com/mcandre/toys/go/complexderp
 
 # BUILDTIME REQUIREMENTS
 
-* [Go](http://golang.org/) 1.9+
+* [Go](http://golang.org/) 1.11+
 
 ## Recommended
 
@@ -32,6 +32,7 @@ https://godoc.org/github.com/mcandre/toys/go/complexderp
 * [golint](https://github.com/golang/lint) (e.g. `go get github.com/golang/lint/golint`)
 * [errcheck](https://github.com/kisielk/errcheck) (e.g. `go get github.com/kisielk/errcheck`)
 * [nakedret](https://github.com/alexkohler/nakedret) (e.g. `go get github.com/alexkohler/nakedret`)
+* [shadow](golang.org/x/tools/go/analysis/passes/shadow/cmd/shadow) (e.g. `go get -u golang.org/x/tools/go/analysis/passes/shadow/cmd/shadow`)
 
 # INSTALL FROM REMOTE GIT REPOSITORY
 

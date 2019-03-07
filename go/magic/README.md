@@ -1,6 +1,6 @@
 # EXAMPLE
 
-```
+```console
 $ magic
 09 f9 11 02 9d 74 e3 5b d8 41 56 c5 63 56 88 bd
 09 f9 11 02 9d 74 e3 5b d8 41 56 c5 63 56 88 be
@@ -16,7 +16,7 @@ https://godoc.org/github.com/mcandre/toys/go/magic
 
 # BUILDTIME REQUIREMENTS
 
-* [Go](http://golang.org/) 1.9+
+* [Go](http://golang.org/) 1.11+
 
 ## Recommended
 
@@ -25,6 +25,7 @@ https://godoc.org/github.com/mcandre/toys/go/magic
 * [golint](https://github.com/golang/lint) (e.g. `go get github.com/golang/lint/golint`)
 * [errcheck](https://github.com/kisielk/errcheck) (e.g. `go get github.com/kisielk/errcheck`)
 * [nakedret](https://github.com/alexkohler/nakedret) (e.g. `go get github.com/alexkohler/nakedret`)
+* [shadow](golang.org/x/tools/go/analysis/passes/shadow/cmd/shadow) (e.g. `go get -u golang.org/x/tools/go/analysis/passes/shadow/cmd/shadow`)
 
 # INSTALL FROM REMOTE GIT REPOSITORY
 
