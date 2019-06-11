@@ -1,4 +1,4 @@
 #!/bin/bash
 set -euo pipefail
 
-echo "${0%/*}"
+echo "$(dirname "$BASH_SOURCE[0]")"
