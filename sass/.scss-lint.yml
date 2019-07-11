@@ -2,9 +2,9 @@
 exclude: 'node_modules/*'
 
 linters:
-    EmptyLineBetweenBlocks:
-        enabled: false
-    Indentation:
-        enabled: false
-    SingleLinePerSelector:
-        enabled: false
+  EmptyLineBetweenBlocks:
+    enabled: false
+  Indentation:
+    enabled: false
+  SingleLinePerSelector:
+    enabled: false
