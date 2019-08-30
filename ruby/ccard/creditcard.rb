@@ -15,7 +15,7 @@ class CreditCard
         @sum = sum
     end
 
-    Contract File => ArrayOf[CreditCard]
+    Contract File => HashOf[String => CreditCard]
     def self.load_services(stream)
         require 'yaml'
 

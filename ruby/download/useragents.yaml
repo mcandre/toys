@@ -1,66 +1,66 @@
 ---
 # Browsers
 
-Firefox 2 Win Vista: Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US; rv:1.8.1.6) Gecko/20070725 Firefox/2.0.0.6
-Firefox 2 Win XP: Mozilla/5.0 (Windows; U; Windows NT 5.1; tr; rv:1.8.1.6) Gecko/20070725 Firefox/2.0.0.6
-Firefox 2 Mac OS X: Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en-US; rv:1.8.1.6) Gecko/20070725 Firefox/2.0.0.6
-Firefox 2 Ubuntu: Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.6) Gecko/20070804 Firefox/2.0.0.6
-Opera Linux: Opera/9.23 (X11; Linux i686; U; en)
-Opera Win XP: Opera/9.23 (Windows NT 5.1; U; en)
-Opera Mac OS X: Opera/9.23 (Mac OS X; en)
-Netscape Linux: Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.7.5) Gecko/20070321 Netscape/9.0
-Safari Win Vista: Mozilla/5.0 (Windows; U; Windows NT 6.0; en) AppleWebKit/522.15.5 (KHTML, like Gecko) Version/3.0.3 Safari/522.15.5
-Safari Mac OS X: Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en) AppleWebKit/523.2+ (KHTML, like Gecko) Version/3.0.3 Safari/522.12.1
-Safari iPhone: Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit/420+ (KHTML, like Gecko) Version/3.0 Mobile/1A543a Safari/419.3
-IE 7 Win Vista: Mozilla/5.0 (compatible; MSIE 7.0b; Windows NT 6.0)
-IE 7 Win XP: Mozilla/5.0 (compatible; MSIE 7.0; Windows NT 5.1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)
-AOL Win XP: Mozilla/4.0 (compatible; MSIE 7.0; AOL 9.0; Windows NT 5.1; InfoPath.1)
-Dillo: Dillo/0.8.5
+Firefox 2 Win Vista: "Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US; rv:1.8.1.6) Gecko/20070725 Firefox/2.0.0.6"
+Firefox 2 Win XP: "Mozilla/5.0 (Windows; U; Windows NT 5.1; tr; rv:1.8.1.6) Gecko/20070725 Firefox/2.0.0.6"
+Firefox 2 Mac OS X: "Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en-US; rv:1.8.1.6) Gecko/20070725 Firefox/2.0.0.6"
+Firefox 2 Ubuntu: "Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.6) Gecko/20070804 Firefox/2.0.0.6"
+Opera Linux: "Opera/9.23 (X11; Linux i686; U; en)"
+Opera Win XP: "Opera/9.23 (Windows NT 5.1; U; en)"
+Opera Mac OS X: "Opera/9.23 (Mac OS X; en)"
+Netscape Linux: "Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.7.5) Gecko/20070321 Netscape/9.0"
+Safari Win Vista: "Mozilla/5.0 (Windows; U; Windows NT 6.0; en) AppleWebKit/522.15.5 (KHTML, like Gecko) Version/3.0.3 Safari/522.15.5"
+Safari Mac OS X: "Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en) AppleWebKit/523.2+ (KHTML, like Gecko) Version/3.0.3 Safari/522.12.1"
+Safari iPhone: "Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit/420+ (KHTML, like Gecko) Version/3.0 Mobile/1A543a Safari/419.3"
+IE 7 Win Vista: "Mozilla/5.0 (compatible; MSIE 7.0b; Windows NT 6.0)"
+IE 7 Win XP: "Mozilla/5.0 (compatible; MSIE 7.0; Windows NT 5.1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)"
+AOL Win XP: "Mozilla/4.0 (compatible; MSIE 7.0; AOL 9.0; Windows NT 5.1; InfoPath.1)"
+Dillo: "Dillo/0.8.5"
 
 # Mobiles / Consoles
-PS3: Mozilla/5.0 (PLAYSTATION 3; 2.00)
-PSP: Mozilla/4.0 (PSP (PlayStation Portable); 2.00)
-Wii: Opera/9.00 (Nintendo Wii; U; ; 1038-58; Wii Internet Channel/1.0; en)
-Blackberry: BlackBerry7730/3.7.1 UP.Link/5.1.2.5
-Nokia32220: Nokia3220/2.0 (03.30) Profile/MIDP-2.0 Configuration/CLDC-1.1 (Google WAP Proxy/1.0)
-NokiaN-Gage: NokiaN-Gage/1.0 (4.03) SymbianOS/6.1 Series60/0.9 Profile/MIDP-1.0 Configuration/CLDC-1.0
-Xbox: Mozilla/4.0 (compatible; MSIE 7.0b; Xbox-OS2) Obsidian
-Nintendo64: Nintendo64/1.7 (SuperMarioOS with Sun 15K Y-MP Emulation)
+PS3: "Mozilla/5.0 (PLAYSTATION 3; 2.00)"
+PSP: "Mozilla/4.0 (PSP (PlayStation Portable); 2.00)"
+Wii: "Opera/9.00 (Nintendo Wii; U; ; 1038-58; Wii Internet Channel/1.0; en)"
+Blackberry: "BlackBerry7730/3.7.1 UP.Link/5.1.2.5"
+Nokia32220: "Nokia3220/2.0 (03.30) Profile/MIDP-2.0 Configuration/CLDC-1.1 (Google WAP Proxy/1.0)"
+NokiaN-Gage: "NokiaN-Gage/1.0 (4.03) SymbianOS/6.1 Series60/0.9 Profile/MIDP-1.0 Configuration/CLDC-1.0"
+Xbox: "Mozilla/4.0 (compatible; MSIE 7.0b; Xbox-OS2) Obsidian"
+Nintendo64: "Nintendo64/1.7 (SuperMarioOS with Sun 15K Y-MP Emulation)"
 
 # Downloaders
-download demon: Download Demon/3.5.0.11
-Lynx 6: Lynxy/6.6.6dev.8 libwww-FM/3.14159FM
-Wget: Wget/1.9.1
+download demon: "Download Demon/3.5.0.11"
+Lynx 6: "Lynxy/6.6.6dev.8 libwww-FM/3.14159FM"
+Wget: "Wget/1.9.1"
 
 # Bots
-Bloglines: Bloglines/3.0-rho (http://www.bloglines.com; 3 subscribers)
-Cocoal.icio.us: Cocoal.icio.us/1.0 (v43) (Mac OS X; http://www.scifihifi.com/cocoalicious)
-FurlBot: Mozilla/4.0 compatible FurlBot/Furl Search 2.0 (FurlBot; http://www.furl.net; wn.furlbot@looksmart.net)
-Googlebot: Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)
-Googlebot-Image: Googlebot-Image/1.0
-Google FeedFetcher: FeedFetcher-Google; (+http://www.google.com/feedfetcher.html)
-grub client: Mozilla/4.0 (compatible; grub-client-2.6.0
-msnBot: msnbot/1.0 (+http://search.msn.com/msnbot.htm)
-Thumbnail.CZ robot: Thumbnail.CZ robot 1.1 (http://thumbnail.cz/why-no-robots-txt.html)
-W3C Validator: W3C_Validator/1.432.2.5
-Yahoo! Slurp: Mozilla/5.0 (compatible; Yahoo! Slurp; http://help.yahoo.com/help/us/ysearch/slurp)
-Yahoo! Slurp China: Mozilla/5.0 (compatible; Yahoo! Slurp China; http://misc.yahoo.com.cn/help.html)
-YahooSeeker: YahooSeeker/1.2 (compatible; Mozilla 4.0; MSIE 5.5; yahooseeker at yahoo-inc dot com ; http://help.yahoo.com/help/us/shop/merchant/)
-YahooSeeker-Testing: YahooSeeker-Testing/v3.9 (compatible; Mozilla 4.0; MSIE 5.5; http://search.yahoo.com/)
+Bloglines: "Bloglines/3.0-rho (http://www.bloglines.com; 3 subscribers)"
+Cocoal.icio.us: "Cocoal.icio.us/1.0 (v43) (Mac OS X; http://www.scifihifi.com/cocoalicious)"
+FurlBot: "Mozilla/4.0 compatible FurlBot/Furl Search 2.0 (FurlBot; http://www.furl.net; wn.furlbot@looksmart.net)"
+Googlebot: "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
+Googlebot-Image: "Googlebot-Image/1.0"
+Google FeedFetcher: "FeedFetcher-Google; (+http://www.google.com/feedfetcher.html)"
+grub client: "Mozilla/4.0 (compatible; grub-client-2.6.0"
+msnBot: "msnbot/1.0 (+http://search.msn.com/msnbot.htm)"
+Thumbnail.CZ robot: "Thumbnail.CZ robot 1.1 (http://thumbnail.cz/why-no-robots-txt.html)"
+W3C Validator: "W3C_Validator/1.432.2.5"
+Yahoo! Slurp: "Mozilla/5.0 (compatible; Yahoo! Slurp; http://help.yahoo.com/help/us/ysearch/slurp)"
+Yahoo! Slurp China: "Mozilla/5.0 (compatible; Yahoo! Slurp China; http://misc.yahoo.com.cn/help.html)"
+YahooSeeker: "YahooSeeker/1.2 (compatible; Mozilla 4.0; MSIE 5.5; yahooseeker at yahoo-inc dot com ; http://help.yahoo.com/help/us/shop/merchant/)"
+YahooSeeker-Testing: "YahooSeeker-Testing/v3.9 (compatible; Mozilla 4.0; MSIE 5.5; http://search.yahoo.com/)"
 
 # Languages
-Java: Java/1.6.0
-Perl: libwww-perl/5.805
-Python: Python-urllib/2.5 # alternatively, PycURL/7.13.2
-Ruby: Ruby/1.8.6
+Java: "Java/1.6.0"
+Perl: "libwww-perl/5.805"
+Python: "Python-urllib/2.5" # alternatively, "PycURL/7.13.2"
+Ruby: "Ruby/1.8.6"
 
 # Misc
-GoogleToolbar Win XP: Mozilla/4.0 (compatible; GoogleToolbar 2.0.111-big; Windows XP 5.1)
-del.ici.ous api: delicious-backup.rb v0.1
-AIM: AIM/30 (Mozilla 1.24b; Windows; I; 32-bit)
-iTunes Mac OS X: iTunes/7.3 (Macintosh; U; Intel Mac OS X 10.4)
-Frontpage 6: Mozilla/4.0 (compatible; MS FrontPage 6.0)
-Privoxy: Privoxy/3.0 (Anonymous)
-Shockwave Flash: Shockwave Flash
-Wordpress: WordPress/1.2.1 PHP/4.3.9-1
-Thunderbird Win XP: Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.3) Gecko/20070326 Thunderbird/2.0.0.0
+GoogleToolbar Win XP: "Mozilla/4.0 (compatible; GoogleToolbar 2.0.111-big; Windows XP 5.1)"
+del.ici.ous api: "delicious-backup.rb v0.1"
+AIM: "AIM/30 (Mozilla 1.24b; Windows; I; 32-bit)"
+iTunes Mac OS X: "iTunes/7.3 (Macintosh; U; Intel Mac OS X 10.4)"
+Frontpage 6: "Mozilla/4.0 (compatible; MS FrontPage 6.0)"
+Privoxy: "Privoxy/3.0 (Anonymous)"
+Shockwave Flash: "Shockwave Flash"
+Wordpress: "WordPress/1.2.1 PHP/4.3.9-1"
+Thunderbird Win XP: "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.3) Gecko/20070326 Thunderbird/2.0.0.0"
