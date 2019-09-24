@@ -17,6 +17,7 @@
         "es6-shim": "0.34.1"
     },
     "devDependencies": {
+        "esformatter-braces": "~1.2.1",
         "esformatter-quotes": "~1.1.0",
         "grunt": "~0.4.5",
         "grunt-cli": "~0.1.13",
