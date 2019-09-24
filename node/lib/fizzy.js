@@ -1,26 +1,22 @@
 #!/usr/bin/env node
 
-"use strict";
+'use strict';
 
-require("es6-shim");
+require('es6-shim');
 
 function fizzBuzz(n) {
     console.assert(Number.isInteger(n));
 
-    var
-    a = n % 3 === 0,
-    b = n % 5 === 0;
+    var a = n % 3 === 0,
+        b = n % 5 === 0;
 
     if (a && b) {
-        return "FizzBuzz";
-    }
-    else if (a) {
-        return "Fizz";
-    }
-    else if (b) {
-        return "Buzz";
-    }
-    else {
+        return 'FizzBuzz';
+    } else if (a) {
+        return 'Fizz';
+    } else if (b) {
+        return 'Buzz';
+    } else {
         return n.toString();
     }
 }
