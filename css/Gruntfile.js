@@ -4,7 +4,7 @@ module.exports = function(grunt) {
     grunt.initConfig({
         exec: {
             csslint: 'node node_modules/csslint/cli.js .',
-            jsfmt: 'find . -type d -name node_modules -prune -o -type f -name "*[.-]min.js" -prune -o -type f -name "*.js" -exec node node_modules/.bin/jsfmt -w {} \\;',
+            jsfmt: 'find . -type d -name node_modules -prune -o -type f -name "*[.-]min.js" -prune -o \\( -type f -name "*.js" -o -type f -path "*/bin/*" \\) -exec node node_modules/.bin/jsfmt -w {} \\;',
             scssLint: 'scss-lint .',
             tidy: 'find . -type d -name node_modules -prune -o -type f -name "*.html" \\( -exec tidy -qe {} \\; -o -print \\) 2>&1 | grep -v "canvas>" | grep -v "proprietary attribute"; true'
         }
