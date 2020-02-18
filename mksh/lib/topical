@@ -1,4 +1,5 @@
 #!/usr/bin/env mksh
+# shellcheck shell=ksh
 set -euo pipefail
 
 usage() {

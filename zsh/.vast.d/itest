@@ -2,7 +2,7 @@
 
 DIR="${0%/*}"
 
-# "${DIR}/../lib/args" a b c
+"${DIR}/../lib/args" a b c
 
 "${DIR}/../lib/current"
 

@@ -1,11 +1,19 @@
 # Example mksh scripts
 
+# Hello World
+
+```console
+$ ./lib/hello
+Hello World!
+```
+
 # REQUIREMENTS
 
 * [mksh](https://www.mirbsd.org/mksh.htm)
 
-## Optional
+## Recommended
 
+* [vast](http://github.com/mcandre/vast)
 * [shfmt](https://github.com/mvdan/sh) (e.g. `go get github.com/mvdan/sh/cmd/shfmt`)
 * [bashate](https://pypi.python.org/pypi/bashate/0.5.1)
 * [shlint](https://rubygems.org/gems/shlint)
@@ -15,17 +23,20 @@
 
 # DEVELOPMENT
 
+## Build: Lint and Test
+
+```console
+$ vast
+```
+
+## Test
+
+```console
+$ vast itest
+```
+
 ## Lint
 
-```
-$ make lint
-```
-
-## Guard
-
-Guard can monitor sh scripts for changes, automatically linting them.
-
-```
-$ guard
-$ emacs .
+```console
+$ vast lint
 ```

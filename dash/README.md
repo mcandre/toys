@@ -1,4 +1,4 @@
-# Example POSIX sh scripts
+# Example dash scripts
 
 # Hello World
 
