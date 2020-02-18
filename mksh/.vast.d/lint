@@ -1,6 +1,9 @@
 #!/bin/sh
-v-shfmt &&
-    v-bashate &&
+
+# Pending https://github.com/mvdan/sh/issues/511
+# v-shfmt &&
+
+v-bashate &&
     v-shlint &&
     v-checkbashisms &&
     v-shellcheck
