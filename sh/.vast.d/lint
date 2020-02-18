@@ -3,4 +3,5 @@ v-shfmt &&
     v-bashate &&
     v-shlint &&
     v-checkbashisms &&
-    v-shellcheck
+    v-shellcheck &&
+    v-slick
