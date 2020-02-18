@@ -1,0 +1,11 @@
+#!/bin/sh
+
+DIR="${0%/*}"
+
+# "${DIR}/../lib/args" a b c
+
+"${DIR}/../lib/current"
+
+"${DIR}/../lib/fizzy"
+
+"${DIR}/../lib/hello"

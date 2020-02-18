@@ -1,13 +1,19 @@
 # Example ksh93 scripts
 
+# Hello World
+
+```console
+$ ./lib/hello
+Hello World!
+```
+
 # REQUIREMENTS
 
 * [ksh93](http://www.kornshell.com/doc/ksh93.html), often packaged as "ksh".
 
-For example, the Docker image [mcandre/docker-ksh93](https://hub.docker.com/r/mcandre/docker-ksh93/) offers ksh93.
+## Recommended
 
-## Optional
-
+* [vast](http://github.com/mcandre/vast)
 * [shfmt](https://github.com/mvdan/sh) (e.g. `go get github.com/mvdan/sh/cmd/shfmt`)
 * [bashate](https://pypi.python.org/pypi/bashate/0.5.1)
 * [shlint](https://rubygems.org/gems/shlint)
@@ -17,17 +23,20 @@ For example, the Docker image [mcandre/docker-ksh93](https://hub.docker.com/r/mc
 
 # DEVELOPMENT
 
+## Build: Lint and Test
+
+```console
+$ vast
+```
+
+## Test
+
+```console
+$ vast itest
+```
+
 ## Lint
 
-```
-$ make lint
-```
-
-## Guard
-
-Guard can monitor sh scripts for changes, automatically linting them.
-
-```
-$ guard
-$ emacs .
+```console
+$ vast lint
 ```

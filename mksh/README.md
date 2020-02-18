@@ -1,4 +1,4 @@
-# Example POSIX sh scripts
+# Example mksh scripts
 
 # REQUIREMENTS
 

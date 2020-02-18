@@ -1,4 +1,5 @@
-#!/bin/pdksh
+#!/usr/bin/env pdksh
+# shellcheck shell=ksh
 set -euo pipefail
 
 echo "${0%/*}"

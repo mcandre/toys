@@ -1,4 +1,5 @@
 #!/usr/bin/env posh
+# shellcheck shell=sh
 set -eu
 
 echo "${0%/*}"

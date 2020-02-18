@@ -1,4 +1,5 @@
 #!/usr/bin/env ash
+# shellcheck shell=ash
 set -eu
 
 ps -hp "$$" | awk '/sh/ {print $4}'

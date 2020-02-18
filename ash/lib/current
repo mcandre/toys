@@ -1,4 +1,5 @@
 #!/usr/bin/env ash
+# shellcheck shell=ash
 set -eu
 
 echo "${0%/*}"
