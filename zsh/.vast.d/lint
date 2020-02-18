@@ -1,6 +1,0 @@
-#!/bin/sh
-v-shfmt &&
-    v-bashate &&
-    v-shlint &&
-    v-checkbashisms &&
-    v-shellcheck
