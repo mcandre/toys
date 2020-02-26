@@ -2,58 +2,48 @@
 
 #include "fizzy.h"
 
+#include <array>
 #include <future>
 #include <iostream>
-#include <string>
 #include <sstream>
-#include <vector>
-#include <numeric>
+#include <string>
 
-using std::cout;
-using std::endl;
 using std::string;
-using std::stringstream;
-using std::vector;
-using std::future;
-using std::launch;
 
 string fizzy(int const n) {
     int a = n % 3, b = n % 5;
 
     if (a == 0 && b == 0) {
         return "FizzBuzz";
-    }
-    else if (a == 0) {
+    } else if (a == 0) {
         return "Fizz";
-    }
-    else if (b == 0) {
+    } else if (b == 0) {
         return "Buzz";
     }
     else {
-        stringstream out;
+        std::stringstream out;
         out << n;
         return out.str();
     }
 }
 
 void fizzbuzz() {
-    vector<int> range(100, 0);
-    iota(range.begin(), range.end(), 0);
+    std::array<std::future<string>, 100> strings;
 
-    vector<future<string>> strings(range.size());
-
-    for (auto i : range) {
-        strings[(size_t) i] = std::async(
-            launch::async,
+    for (auto i = 0; i < 100; i++) {
+        strings[size_t(i)] = std::async(
+            std::launch::async,
             [=]() -> string {
-                return fizzy((int) (i + 1));
+                return fizzy(i + 1);
             }
         );
     }
 
-    for (auto& s : strings) {
-        cout << s.get() << endl;
+    for (auto &e : strings) {
+        std::cout << e.get() << std::endl;
     }
 }
 
-int main() { fizzbuzz(); }
+int main() {
+    fizzbuzz();
+}

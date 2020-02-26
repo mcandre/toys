@@ -1,7 +1,8 @@
 /* Copyright 2014 YelloSoft */
 
-#include <iostream>
 #include <ios>
+#include <iostream>
+
 using std::cout;
 using std::cin;
 using std::noskipws;
