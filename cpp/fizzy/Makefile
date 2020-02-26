@@ -21,13 +21,13 @@ cppcheck:
 	cppcheck --quiet --enable=all --suppressions-list=$$HOME/suppressions.cfg .
 
 cpplint:
-	find . -type f -name '*.cpp' -o -name '*.[ch]' -exec cpplint --filter=-readability/streams,-build/header_guard,-whitespace/parens,-readability/braces,-whitespace/newline,-legal/copyright {} \;
+	find . -type f -iname '*.cpp' -o -iname '*.cc' -o -iname '*.cxx' -o -iname '*.c' -o -iname '*.hh' -o -iname '*.hxx' -o -iname '*.h' -exec cpplint --filter=-readability/streams,-build/header_guard,-whitespace/parens,-readability/braces,-whitespace/newline,-legal/copyright {} \;
 
 splint:
-	find . -type f -name '*.c' -exec splint {} \;
+	find . -type f -iname '*.c' -exec splint {} \;
 
 vera++:
-	find . -type f -name '*.cpp' -o -name '*.[ch]' -exec vera++ -s {} \;
+	find . -type f -iname '*.cpp' -o -iname '*.cc' -o -iname '*.cxx' -o -iname '*.c' -o -iname '*.hh' -o -iname '*.hxx' -o -iname '*.h' -exec vera++ -s {} \;
 
 astyle-apply:
 	-find . -type d -name android -prune -o -type f -name "*.java" -o -name "*.cpp" -o -name "*.[chm]" -exec astyle {} \; | grep -v Unchanged

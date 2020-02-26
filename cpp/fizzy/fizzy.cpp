@@ -1,6 +1,6 @@
 /* Copyright 2010 YelloSoft */
 
-#include "fizzy.h"
+#include "fizzy.hh"
 
 #include <array>
 #include <future>
@@ -19,8 +19,7 @@ string fizzy(int const n) {
         return "Fizz";
     } else if (b == 0) {
         return "Buzz";
-    }
-    else {
+    } else {
         std::stringstream out;
         out << n;
         return out.str();

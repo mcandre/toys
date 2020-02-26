@@ -9,6 +9,7 @@ using std::noskipws;
 
 int main() {
     char c;
+
     cin >> noskipws >> c;
 
     while (cin) {
