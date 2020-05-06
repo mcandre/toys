@@ -1,4 +1,5 @@
 #!/usr/bin/env ksh93
 set -euo pipefail
+IFS=$'\n\t '
 
 echo "$@"

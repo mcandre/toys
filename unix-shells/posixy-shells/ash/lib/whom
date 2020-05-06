@@ -1,5 +1,8 @@
 #!/usr/bin/env ash
 # shellcheck shell=ash
 set -eu
+IFS="$(printf '%b_' '\n\t ')"
+IFS="${IFS%_}"
 
-ps -hp "$$" | awk '/sh/ {print $4}'
+ps -hp "$$" |
+    awk '/sh/ {print $4}'

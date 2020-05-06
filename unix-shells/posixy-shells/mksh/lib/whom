@@ -1,5 +1,6 @@
 #!/usr/bin/env mksh
 # shellcheck shell=ksh
 set -euo pipefail
+IFS=$'\n\t '
 
 ps -hp "$$" | awk '/sh/ {print $4}'

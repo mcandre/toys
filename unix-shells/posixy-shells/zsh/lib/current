@@ -1,5 +1,6 @@
 #!/bin/zsh
 # shellcheck shell=bash
-set -euo pipefail
+set -eEuo pipefail
+IFS=$'\n\t '
 
 echo "${0%/*}"

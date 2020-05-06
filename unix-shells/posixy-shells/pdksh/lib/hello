@@ -1,5 +1,6 @@
 #!/usr/bin/env pdksh
 # shellcheck shell=ksh
 set -euo pipefail
+IFS=$'\n\t '
 
 echo "Hello World!"

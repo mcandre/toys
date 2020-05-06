@@ -21,8 +21,11 @@
 # $ xdg-open "http://time.is/"
 # ...
 # Your clock is 0.3 seconds behind.
+set -eu
+IFS="$(printf '%b_' '\n\t ')"
+IFS="${IFS%_}"
 
-sudo wget \
+wget \
     -S \
     -O /dev/null \
     google.com 2>&1 |

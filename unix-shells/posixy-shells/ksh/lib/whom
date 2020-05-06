@@ -1,4 +1,6 @@
 #!/bin/ksh
 set -euo pipefail
+IFS=$'\n\t '
 
-ps -hp "$$" | awk '/sh/ {print $4}'
+ps -hp "$$" |
+    awk '/sh/ {print $4}'

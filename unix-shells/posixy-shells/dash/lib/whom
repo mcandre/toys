@@ -1,4 +1,7 @@
 #!/usr/bin/env dash
 set -eu
+IFS="$(printf '%b_' '\n\t ')"
+IFS="${IFS%_}"
 
-ps -hp "$$" | awk '/sh/ {print $4}'
+ps -hp "$$" |
+    awk '/sh/ {print $4}'

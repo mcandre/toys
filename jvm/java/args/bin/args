@@ -1,2 +1,4 @@
 #!/bin/sh
+set -eu
+IFS="\n\t "
 java -jar "${0%/*}"/../build/libs/args.jar "$@"

@@ -1,6 +1,7 @@
 #!/bin/zsh
 # shellcheck shell=bash
-set -euo pipefail
+set -eEuo pipefail
+IFS=$'\n\t '
 
 div3() {
     echo $((($1 % 3) == 0))

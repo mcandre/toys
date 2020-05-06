@@ -1,6 +1,7 @@
 #!/usr/bin/env mksh
 # shellcheck shell=ksh
 set -euo pipefail
+IFS=$'\n\t '
 
 div3() {
     echo $((($1 % 3) == 0))

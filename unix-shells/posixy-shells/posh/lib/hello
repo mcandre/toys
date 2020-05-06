@@ -1,5 +1,5 @@
 #!/usr/bin/env posh
 # shellcheck shell=sh
 set -eu
-
+IFS=$'\n\t '
 echo "Hello World!"

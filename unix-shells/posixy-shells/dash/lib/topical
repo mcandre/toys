@@ -1,5 +1,7 @@
 #!/usr/bin/env dash
 set -eu
+IFS="$(printf '%b_' '\n\t ')"
+IFS="${IFS%_}"
 
 usage() {
     echo "Usage: $0 <name>"

@@ -1,4 +1,6 @@
 #!/usr/bin/env dash
 set -eu
+IFS="$(printf '%b_' '\n\t ')"
+IFS="${IFS%_}"
 
 echo "$@"

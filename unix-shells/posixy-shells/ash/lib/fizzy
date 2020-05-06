@@ -1,6 +1,8 @@
 #!/usr/bin/env ash
 # shellcheck shell=ash
 set -eu
+IFS="$(printf '%b_' '\n\t ')"
+IFS="${IFS%_}"
 
 div3() {
     echo $((($1 % 3) == 0))

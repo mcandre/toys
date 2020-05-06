@@ -1,4 +1,7 @@
 #!/bin/sh
+set -eu
+IFS="$(printf '%b_' '\n\t ')"
+IFS="${IFS%_}"
 
 # Pending https://github.com/mvdan/sh/issues/511
 # v-shfmt &&
@@ -8,4 +11,4 @@ v-bashate &&
     v-checkbashisms &&
     v-shellcheck &&
     v-funk
-    v-slick
+v-slick
