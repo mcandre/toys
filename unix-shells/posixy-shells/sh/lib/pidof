@@ -1,7 +1,6 @@
 #!/bin/sh
+unset IFS
 set -eu
-IFS="$(printf '%b_' '\n\t ')"
-IFS="${IFS%_}"
 
 # From Adam Jacob Muller's /bin/pidof
 # http://www.macosxhints.com/article.php?story=20030618114543169

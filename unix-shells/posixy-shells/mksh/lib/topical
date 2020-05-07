@@ -1,7 +1,7 @@
 #!/usr/bin/env mksh
 # shellcheck shell=ksh
+unset IFS
 set -euo pipefail
-IFS=$'\n\t '
 
 usage() {
     echo "Usage: $0 <name>"

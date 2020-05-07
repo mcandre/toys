@@ -1,6 +1,5 @@
 #!/usr/bin/env dash
+unset IFS
 set -eu
-IFS="$(printf '%b_' '\n\t ')"
-IFS="${IFS%_}"
 
 echo "${0%/*}"

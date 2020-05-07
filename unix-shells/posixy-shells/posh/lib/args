@@ -1,6 +1,6 @@
 #!/usr/bin/env posh
 # shellcheck shell=sh
+unset IFS
 set -eu
-IFS=$'\n\t '
 
 echo "$@"

@@ -1,7 +1,7 @@
 #!/bin/zsh
 # shellcheck shell=bash
+unset IFS
 set -eEuo pipefail
-IFS=$'\n\t '
 
 usage() {
     echo "Usage: $0 <name>"

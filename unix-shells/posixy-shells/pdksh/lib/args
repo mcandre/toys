@@ -1,6 +1,6 @@
 #!/usr/bin/env pdksh
 # shellcheck shell=ksh
+unset IFS
 set -euo pipefail
-IFS=$'\n\t '
 
 echo "$@"

@@ -1,6 +1,6 @@
 #!/bin/bash
-set -euo pipefail
-IFS=$'\n\t '
+unset IFS
+set -eEuo pipefail
 
 div3() {
     echo $((($1 % 3) == 0))

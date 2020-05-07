@@ -1,5 +1,5 @@
 #!/bin/ksh
+unset IFS
 set -euo pipefail
-IFS=$'\n\t '
 
 echo "${0%/*}"

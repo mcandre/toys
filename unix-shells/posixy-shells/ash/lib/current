@@ -1,7 +1,6 @@
 #!/usr/bin/env ash
 # shellcheck shell=ash
+unset IFS
 set -eu
-IFS="$(printf '%b_' '\n\t ')"
-IFS="${IFS%_}"
 
 echo "${0%/*}"

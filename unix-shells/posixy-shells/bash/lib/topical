@@ -1,6 +1,6 @@
 #!/bin/bash
-set -euo pipefail
-IFS=$'\n\t '
+unset IFS
+set -eEuo pipefail
 
 usage() {
     echo "Usage: $0 <name>"

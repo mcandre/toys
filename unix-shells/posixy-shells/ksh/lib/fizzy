@@ -1,6 +1,6 @@
 #!/bin/ksh
+unset IFS
 set -euo pipefail
-IFS=$'\n\t '
 
 div3() {
     echo $((($1 % 3) == 0))

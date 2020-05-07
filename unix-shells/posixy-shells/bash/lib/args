@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euo pipefail
-IFS=$'\n\t '
+unset IFS
+set -eEuo pipefail
 
 echo "$@"
