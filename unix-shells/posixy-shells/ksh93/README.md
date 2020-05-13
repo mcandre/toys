@@ -9,7 +9,7 @@ Hello World!
 
 # REQUIREMENTS
 
-* [ksh93](http://www.kornshell.com/doc/ksh93.html), often packaged as "ksh".
+* [ksh93](http://www.kornshell.com/), sometimes packaged as "ksh".
 
 # DEVELOPMENT
 

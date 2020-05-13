@@ -1,7 +1,7 @@
 #!/bin/zsh
 # shellcheck shell=bash
 unset IFS
-set -eEuo pipefail
+set -eufEo pipefail
 
 div3() {
     echo $((($1 % 3) == 0))

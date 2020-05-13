@@ -1,7 +1,7 @@
 #!/usr/bin/env ash
 # shellcheck shell=ash
 unset IFS
-set -eu
+set -euf
 
 ps -hp "$$" |
     awk '/sh/ {print $4}'

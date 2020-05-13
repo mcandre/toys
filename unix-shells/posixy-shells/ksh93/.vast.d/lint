@@ -1,8 +1,8 @@
 #!/bin/sh
 unset IFS
-set -eu
+set -euf
 
-v-shfmt
+# v-shfmt
 v-bashate
 v-shlint
 v-checkbashisms

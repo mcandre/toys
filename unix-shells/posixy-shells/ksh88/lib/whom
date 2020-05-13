@@ -1,0 +1,6 @@
+#!/usr/bin/env ksh88
+unset IFS
+set -euf
+
+ps -hp "$$" |
+    awk '/sh/ {print $4}'

@@ -22,7 +22,7 @@
 # ...
 # Your clock is 0.3 seconds behind.
 unset IFS
-set -eu
+set -euf
 
 wget \
     -S \

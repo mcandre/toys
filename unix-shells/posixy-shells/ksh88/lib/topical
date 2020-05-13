@@ -1,0 +1,14 @@
+#!/usr/bin/env ksh88
+unset IFS
+set -euf
+
+usage() {
+    echo "Usage: $0 <name>"
+    exit 0
+}
+
+if [ "$#" -ne 1 ]; then
+    usage
+fi
+
+type "$1"

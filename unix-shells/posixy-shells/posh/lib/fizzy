@@ -1,7 +1,7 @@
 #!/usr/bin/env posh
 # shellcheck shell=sh
 unset IFS
-set -eu
+set -euf
 
 div3() {
     echo $((($1 % 3) == 0))
