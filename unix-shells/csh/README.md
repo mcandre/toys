@@ -6,8 +6,6 @@
 
 ## Optional
 
-* [shlint](https://github.com/duggan/shlint)
-
 # DEVELOPMENT
 
 ## Lint
