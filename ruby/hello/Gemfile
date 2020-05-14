@@ -1,9 +1,9 @@
 source 'http://rubygems.org'
 
-ruby '2.3.0'
+ruby '2.7.1'
 
 group :development do
-    gem 'rake'
+    gem 'rake', '~> 12.3.3'
     gem 'reek'
     gem 'flay'
     gem 'flog'

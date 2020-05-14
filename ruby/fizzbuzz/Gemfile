@@ -1,10 +1,11 @@
 source 'http://rubygems.org'
 
-ruby '2.3.0'
+ruby '2.7.1'
 
 gem 'parallel', '~> 1.2'
 gem 'contracts', '~> 0.4'
 
 group :development do
+    gem 'rake', '~> 12.3.3'
     gem 'rspec', '~> 3.0'
 end
