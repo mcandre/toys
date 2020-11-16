@@ -2,64 +2,31 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
 
 #define uint unsigned int
 
-static /*@null@*/ char *hexTime() {
-    time_t timer;
-    struct tm *local;
-    uint seconds;
-    uint hhour;
-    uint hmin;
-    uint hsec;
-    char *result;
+static /*@null@*/ char *hex_time(char* result) {
+    time_t timer = time(NULL);
+    struct tm tbuf;
+    struct tm *local = localtime_r(&timer, &tbuf);
 
-    timer = time(NULL);
+    uint seconds = (unsigned int)(
+        (local->tm_hour * 3600 + local->tm_min * 60 + local->tm_sec) * 65536.0 / 86400.0
+    );
 
-    local = localtime(&timer);
+    uint hhour = seconds / 4096;
+    uint hmin = (seconds % 4096) / 16;
+    uint hsec = seconds % 16;
 
-    if (local != NULL) {
-        seconds = (unsigned int)(
-            (local->tm_hour * 3600 + local->tm_min * 60 + local->tm_sec) * 65536.0 / 86400.0
-        );
-
-        hhour = seconds / 4096;
-
-        hmin = (seconds % 4096) / 16;
-
-        hsec = seconds % 16;
-
-        result = (char *) malloc(sizeof(char) * 7);
-
-        if (result != NULL) {
-            int remainder = snprintf(result, 7, "%x_%02x_%x", hhour, hmin, hsec);
-
-            if (remainder < 0 || remainder >= 7) {
-                printf("Format error.\n");
-            }
-
-            return result;
-        } else {
-            printf("Out of memory.\n");
-
-            return NULL;
-        }
-    } else {
-        printf("Localtime returned NULL.\n");
-
-        return NULL;
-    }
+    (void) snprintf(result, sizeof(result)-1, "%x_%02x_%x", hhour, hmin, hsec);
+    return result;
 }
 
 int main() {
-    char *h = hexTime();
-
-    if (h != NULL) {
-        printf("%s\n", h);
-
-        free(h);
-    }
-
-    return 0;
+    char result[7];
+    memset(result, 0, sizeof(result));
+    printf("%s\n", hex_time(result));
+    return EXIT_SUCCESS;
 }
