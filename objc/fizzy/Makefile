@@ -18,12 +18,12 @@ all: test
 test: $(BIN)
 	$(BIN)
 
-$(BIN): Fizzy.m
+$(BIN): Fizzy.mm
 	mkdir -p bin
-	clang $(FLAGS) $(LINUX_FLAGS) -o $(BIN) Fizzy.m
+	clang $(FLAGS) $(LINUX_FLAGS) -o $(BIN) Fizzy.mm
 
 oclint: $(BIN)
-	oclint -rc=SHORT_VARIABLE_NAME=1 Fizzy.m -- $(FLAGS) -o $(BIN)
+	oclint -rc=SHORT_VARIABLE_NAME=1 Fizzy.mm -- $(FLAGS) -o $(BIN)
 
 astyle-apply:
 	-find . -type d -name android -prune -o -type f -name "*.java" -o -name "*.cpp" -o -name "*.[chm]" -exec astyle {} \; | grep -v Unchanged

@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-#import "Fizzy.h"
+#import "Fizzy.mhh"
 
 @implementation Fizzy
 + (NSString *) fizzy: (const NSInteger) n {

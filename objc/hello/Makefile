@@ -18,12 +18,12 @@ all: test
 test: $(BIN)
 	$(BIN)
 
-$(BIN): Hello.m
+$(BIN): Hello.mm
 	mkdir -p bin
-	clang $(FLAGS) $(LINUX_FLAGS) -o $(BIN) Hello.m
+	clang $(FLAGS) $(LINUX_FLAGS) -o $(BIN) Hello.mm
 
 oclint: $(BIN)
-	oclint Hello.m -- $(FLAGS) -o $(BIN)
+	oclint Hello.mm -- $(FLAGS) -o $(BIN)
 
 astyle-apply:
 	-find . -type d -name android -prune -o -type f -name "*.java" -o -name "*.cpp" -o -name "*.[chm]" -exec astyle {} \; | grep -v Unchanged
