@@ -9,9 +9,7 @@ int main() {
         0xd8, 0x41, 0x56, 0xc5, 0x63, 0x56, 0x88, 0xbc
     };
 
-    int i;
-
-    for (i = 0; i < 7; i++) {
+    for (int i = 0; i < 7; i++) {
         magic[15]++;
 
         if (i != 3) {

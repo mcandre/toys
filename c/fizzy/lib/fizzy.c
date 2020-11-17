@@ -25,9 +25,7 @@ int main() {
     char s[9];
     memset(s, 0, sizeof(s));
 
-    int i;
-
-    for (i = 1; i < 101; i++) {
+    for (int i = 1; i < 101; i++) {
         fizzy(s, 9, i);
         printf("%s\n", s);
     }
