@@ -19,4 +19,4 @@ $ magic
 
 # CONTRIBUTING
 
-For more details on developing tinyrick itself, see [DEVELOPMENT.md](DEVELOPMENT.md).
+For more details on developing magic itself, see [DEVELOPMENT.md](DEVELOPMENT.md).

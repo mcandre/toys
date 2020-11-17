@@ -14,4 +14,4 @@ $ echo <README.md
 
 # CONTRIBUTING
 
-For more details on developing tinyrick itself, see [DEVELOPMENT.md](DEVELOPMENT.md).
+For more details on developing echo itself, see [DEVELOPMENT.md](DEVELOPMENT.md).
