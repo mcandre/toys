@@ -58,10 +58,11 @@ if(
     "${CMAKE_GNU_C_MACHINE}" MATCHES "uclibc"
 )
     add_custom_target(lint DEPENDS)
+elseif(MSVC)
+    add_custom_target(lint DEPENDS cppcheck)
 elseif(CMAKE_SYSTEM_VERSION MATCHES "HBSD")
     add_custom_target(lint DEPENDS cpplint)
 elseif(
-    MSVC OR
     CMAKE_SYSTEM_NAME MATCHES "OpenBSD" OR
     CMAKE_SYSTEM_VERSION MATCHES "gentoo" OR
     LSB_RELEASE MATCHES "Void"
