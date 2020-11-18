@@ -2,6 +2,5 @@
 
 int main() {
     NSLog(@"Hello World!\n");
-
     return 0;
 }
