@@ -1,4 +1,6 @@
-/* Copyright 2010 YelloSoft */
+/**
+ * @copyright 2020 YelloSoft
+ */
 
 #include "fizzy.hh"
 
@@ -9,6 +11,12 @@
 
 using std::string;
 
+/**
+ * @brief fizzy reports the appropriate answer given a game state.
+ *
+ * @param n game state
+ * @returns answer
+ */
 string fizzy(int const n) {
     auto a = n % 3, b = n % 5;
 
@@ -23,7 +31,10 @@ string fizzy(int const n) {
     }
 }
 
-void fizzbuzz() {
+/**
+ * @brief CLI entrypoint playing a game of FizzBuzz
+ */
+int main() {
     std::array<std::future<string>, 100> strings;
 
     for (auto i = 0; i < 100; i++) {
@@ -38,8 +49,6 @@ void fizzbuzz() {
     for (auto &e : strings) {
         std::cout << e.get() << std::endl;
     }
-}
 
-int main() {
-    fizzbuzz();
+    return EXIT_SUCCESS;
 }

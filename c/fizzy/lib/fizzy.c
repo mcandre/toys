@@ -15,10 +15,10 @@
  *
  * @param s answer buffer
  * @param t answer buffer length, in characters
- * @param i game state
+ * @param n game state
  */
-void fizzy(char* s, size_t t, int i) {
-    bool a = i % 3 == 0, b = i % 5 == 0;
+void fizzy(char* s, size_t t, int n) {
+    bool a = n % 3 == 0, b = n % 5 == 0;
 
     if (a && b) {
         strncpy(s, "FizzBuzz", 9);
@@ -27,7 +27,7 @@ void fizzy(char* s, size_t t, int i) {
     } else if (b) {
         strncpy(s, "Buzz", 5);
     } else {
-        (void) snprintf(s, t, "%d", i);
+        (void) snprintf(s, t, "%d", n);
     }
 }
 
