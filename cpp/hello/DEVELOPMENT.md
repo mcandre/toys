@@ -2,48 +2,52 @@
 
 * [Docker](https://www.docker.com/)
 
+## Recommended
+
+* [karp](https://github.com/mcandre/karp) (`go get github.com/mcandre/karp/...`)
+
 # PREBUILD
 
 ```console
 $ docker build -t mcandre/cpp-hello-buildbot .
 $ docker run --rm -it -v "$(pwd):/src" mcandre/cpp-hello-buildbot sh
-$ cd /src
-$ cmake .
+# cd /src
+# cmake .
 ```
 
 # LINT
 
 ```console
-$ cmake --build . --target lint
+# cmake --build . --target lint
 ```
 
 # COMPILE
 
 ```console
-$ cmake --build . --config Release
+# cmake --build . --config Release
 ```
 
 # LEAK CHECK
 
 ```console
-$ cmake --build . --target leaks
+# cmake --build . --target leaks
 ```
 
 # TEST
 
 ```console
-$ CTEST_OUTPUT_ON_FAILURE=1 ctest -C Release
+# CTEST_OUTPUT_ON_FAILURE=1 ctest -C Release
 ```
 
 # DOCUMENT
 
 ```console
-$ cmake --build . --target doc
+# cmake --build . --target doc
 $ karp html/index.html
 ```
 
 # CLEAN
 
 ```console
-$ ./clean-cmake.sh
+# ./clean-cmake.sh
 ```

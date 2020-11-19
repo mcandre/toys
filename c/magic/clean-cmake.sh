@@ -4,10 +4,10 @@ set -euf
 
 rm -rf html || :
 rm -rf latex || :
-
+rm -f debug.log || :
 rm -rf bin || :
 rm -rf Testing || :
-rm Makefile || :
+rm -f Makefile || :
 
 /usr/bin/find . \
     -iwholename '*cmake*' \
