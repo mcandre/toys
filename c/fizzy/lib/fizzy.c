@@ -1,13 +1,23 @@
-/* Copyright 2016 YelloSoft */
+/**
+ * @copyright 2016 YelloSoft
+ */
 
 #include "fizzy.h"
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
 #include <stddef.h>
 #include <string.h>
 
-static void fizzy(char* s, size_t t, int i) {
+/**
+ * @brief fizzy reports the appropriate answer given a game state.
+ *
+ * @param s answer buffer
+ * @param t answer buffer length, in characters
+ * @param i game state
+ */
+void fizzy(char* s, size_t t, int i) {
     bool a = i % 3 == 0, b = i % 5 == 0;
 
     if (a && b) {
@@ -21,6 +31,10 @@ static void fizzy(char* s, size_t t, int i) {
     }
 }
 
+/**
+ * @brief CLI entrypoint to play a game of FizzBuzz
+ *
+ */
 int main() {
     char s[9];
     memset(s, 0, sizeof(s));

@@ -1,18 +1,6 @@
 # BUILDTIME REQUIREMENTS
 
-* a [C](https://en.wikipedia.org/wiki/List_of_compilers#C_compilers) compiler
-
-## Recommended
-
-* [cmake](https://cmake.org/)
-* [coreutils](https://www.gnu.org/software/coreutils/)
-* [cppcheck](http://cppcheck.sourceforge.net/)
-* [cpplint](https://github.com/cpplint/cpplint)
 * [Docker](https://www.docker.com/)
-* [findutils](https://www.gnu.org/software/findutils/)
-* [sail](https://github.com/mcandre/sail)
-* [Valgrind](https://valgrind.org/)
-* [vera++](https://bitbucket.org/verateam/vera/wiki/Home)
 
 # PREBUILD
 
@@ -45,6 +33,13 @@ $ cmake --build . --target leaks
 
 ```console
 $ CTEST_OUTPUT_ON_FAILURE=1 ctest -C Release
+```
+
+# DOCUMENT
+
+```console
+$ cmake --build . --target doc
+$ karp html/index.html
 ```
 
 # CLEAN

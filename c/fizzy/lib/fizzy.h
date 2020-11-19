@@ -1,8 +1,15 @@
 #pragma once
 
-/* Copyright 2016 YelloSoft */
+/**
+ * @copyright 2016 YelloSoft
+ *
+ * @mainpage
+ *
+ * \ref fizzy reports the appropriate answer given a game state.
+ *
+ * \ref main plays a game of FizzBuzz.
+ */
 
 #include <stddef.h>
 
-/*@unused@*/
-static void fizzy(char* s, size_t t, int i);
+void fizzy(char* s, size_t t, int i);

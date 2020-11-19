@@ -5,7 +5,6 @@ project(hextime)
 
 set(EXECUTABLE_OUTPUT_PATH "bin")
 set(LSB_RELEASE "")
-set(ETC_RELEASE "")
 
 if(MSVC)
     set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${EXECUTABLE_OUTPUT_PATH}")
@@ -19,7 +18,6 @@ if(MSVC)
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE "${EXECUTABLE_OUTPUT_PATH}")
 elseif(CMAKE_SYSTEM_NAME MATCHES "Linux")
     execute_process(COMMAND lsb_release -a OUTPUT_VARIABLE LSB_RELEASE)
-    execute_process(COMMAND cat /etc/*release* OUTPUT_VARIABLE ETC_RELEASE)
 endif()
 
 set(WINDOWS_C_FLAGS "${CMAKE_C_FLAGS} /O2 /WX /W4 /wd4204")
@@ -104,5 +102,7 @@ if(
 else()
     add_custom_target(leaks DEPENDS valgrind)
 endif()
+
+add_custom_target(doc COMMAND doxygen Doxyfile)
 
 add_custom_target(clean-cmake COMMAND sh clean-cmake.sh)

@@ -1,8 +1,17 @@
-// Copyright 2014 YelloSoft
+/**
+ * @copyright 2020 YelloSoft
+ *
+ * @mainpage
+ *
+ * @ref main shows magic numbers.
+ */
 
 #include <stdio.h>
 #include <stdlib.h>
 
+/**
+ * @brief CLI entrypoint for showing magic numbers.
+ */
 int main() {
     unsigned int magic[16] = {
         0x09, 0xf9, 0x11, 0x02, 0x9d, 0x74, 0xe3, 0x5b,

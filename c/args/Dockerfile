@@ -5,7 +5,9 @@ RUN apt-get update && \
         clang \
         cmake \
         cppcheck \
+        doxygen \
         git \
+        graphviz \
         make \
         python3-pip \
         python3-setuptools \

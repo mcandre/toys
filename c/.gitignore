@@ -1,3 +1,5 @@
+html/
+latex/
 bin/
 CTestTestfile.cmake
 Testing/
