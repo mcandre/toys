@@ -39,7 +39,7 @@ else()
     set(CMAKE_C_FLAGS "${UNIX_C_FLAGS}")
 endif()
 
-add_executable(hello lib/hello.c)
+add_executable(hello lib/main.c)
 
 add_test(NAME hello_unit_test COMMAND bin/hello)
 

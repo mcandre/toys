@@ -39,7 +39,7 @@ else()
     set(CMAKE_C_FLAGS "${UNIX_C_FLAGS}")
 endif()
 
-add_executable(hextime lib/hextime.c)
+add_executable(hextime lib/main.c lib/hextime.c)
 
 add_test(NAME hextime_unit_test COMMAND bin/hextime)
 

@@ -39,7 +39,7 @@ else()
     set(CMAKE_C_FLAGS "${UNIX_C_FLAGS}")
 endif()
 
-add_executable(args lib/args.c)
+add_executable(args lib/main.c)
 
 add_test(NAME args_unit_test COMMAND bin/args a b c)
 

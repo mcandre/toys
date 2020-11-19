@@ -39,7 +39,7 @@ else()
     set(CMAKE_C_FLAGS "${UNIX_C_FLAGS}")
 endif()
 
-add_executable(echo lib/echo.c)
+add_executable(echo lib/main.c)
 
 add_test(NAME echo_unit_test COMMAND bin/echo <README.md)
 

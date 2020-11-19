@@ -48,7 +48,7 @@ else()
     set(CMAKE_CXX_FLAGS "${UNIX_CXX_FLAGS}")
 endif()
 
-add_executable(fizzy lib/fizzy.cpp)
+add_executable(fizzy lib/main.cpp lib/fizzy.cpp)
 target_link_libraries(fizzy "-lpthread")
 
 add_test(NAME fizzy_unit_test COMMAND bin/fizzy)

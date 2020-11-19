@@ -39,7 +39,7 @@ else()
     set(CMAKE_C_FLAGS "${UNIX_C_FLAGS}")
 endif()
 
-add_executable(fizzy lib/fizzy.c)
+add_executable(fizzy lib/main.c lib/fizzy.c)
 
 add_test(NAME fizzy_unit_test COMMAND bin/fizzy)
 

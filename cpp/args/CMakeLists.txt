@@ -48,7 +48,7 @@ else()
     set(CMAKE_CXX_FLAGS "${UNIX_CXX_FLAGS}")
 endif()
 
-add_executable(args lib/args.cpp)
+add_executable(args lib/main.cpp)
 
 add_test(NAME args_unit_test COMMAND bin/args a b c)
 

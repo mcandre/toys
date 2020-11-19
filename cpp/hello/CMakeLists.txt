@@ -48,7 +48,7 @@ else()
     set(CMAKE_CXX_FLAGS "${UNIX_CXX_FLAGS}")
 endif()
 
-add_executable(hello lib/hello.cpp)
+add_executable(hello lib/main.cpp)
 
 add_test(NAME hello_unit_test COMMAND bin/hello)
 
