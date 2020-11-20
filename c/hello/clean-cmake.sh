@@ -6,6 +6,7 @@ rm -rf html || :
 rm -rf latex || :
 rm -f debug.log || :
 rm -rf bin || :
+rm -rf debug || :
 rm -rf Testing || :
 rm -f Makefile || :
 
