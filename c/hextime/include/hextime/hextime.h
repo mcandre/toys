@@ -1,3 +1,5 @@
+#pragma once
+
 /**
  * @copyright 2020 YelloSoft
  * @mainpage
