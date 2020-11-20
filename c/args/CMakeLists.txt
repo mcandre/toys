@@ -21,12 +21,10 @@ elseif(CMAKE_SYSTEM_NAME MATCHES "Linux")
 endif()
 
 set(WINDOWS_C_FLAGS "${CMAKE_C_FLAGS} /O2 /WX /W4 /wd4204")
-
 set(UNIX_C_FLAGS "${CMAKE_C_FLAGS} -O2 -Werror")
 set(GNU_C_FLAGS "${UNIX_C_FLAGS} -std=gnu99 -Wextra -Wall -pedantic")
 set(LLVM_FLAGS "-Wmost -Weverything -Wno-documentation-unknown-command")
 set(CLANG_C_FLAGS "${GNU_C_FLAGS} ${LLVM_FLAGS}")
-set(CLANG_CXX_FLAGS "${GNU_CXX_FLAGS} ${LLVM_FLAGS} -Wno-c++98-compat")
 
 if(MSVC)
     set(CMAKE_C_FLAGS "${WINDOWS_C_FLAGS}")
