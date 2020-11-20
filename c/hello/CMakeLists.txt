@@ -24,7 +24,9 @@ set(WINDOWS_C_FLAGS "${CMAKE_C_FLAGS} /O2 /WX /W4 /wd4204")
 
 set(UNIX_C_FLAGS "${CMAKE_C_FLAGS} -O2 -Werror")
 set(GNU_C_FLAGS "${UNIX_C_FLAGS} -std=gnu99 -Wextra -Wall -pedantic")
-set(CLANG_C_FLAGS "${GNU_C_FLAGS} -Wmost -Weverything")
+set(LLVM_FLAGS "-Wmost -Weverything -Wno-documentation-unknown-command")
+set(CLANG_C_FLAGS "${GNU_C_FLAGS} ${LLVM_FLAGS}")
+set(CLANG_CXX_FLAGS "${GNU_CXX_FLAGS} ${LLVM_FLAGS} -Wno-c++98-compat")
 
 if(MSVC)
     set(CMAKE_C_FLAGS "${WINDOWS_C_FLAGS}")
@@ -39,13 +41,13 @@ else()
     set(CMAKE_C_FLAGS "${UNIX_C_FLAGS}")
 endif()
 
-add_executable(hello lib/main.c)
+add_executable(hello src/cmd/hello/main.c)
 
 add_test(NAME hello_unit_test COMMAND bin/hello)
 
-add_custom_target(cppcheck COMMAND cppcheck -q --enable=all --inline-suppr --suppressions-list=suppressions.cfg -DX_PATH_MAX=1024 --error-exitcode=1 lib)
-add_custom_target(cpplint COMMAND sail lib | xargs -n 1 cpplint)
-add_custom_target(vera++ COMMAND sail lib | xargs -n 1 vera++)
+add_custom_target(cppcheck COMMAND cppcheck -q --enable=all --inline-suppr --suppressions-list=suppressions.cfg -DX_PATH_MAX=1024 --error-exitcode=1 src)
+add_custom_target(cpplint COMMAND sail src | xargs -n 1 cpplint)
+add_custom_target(vera++ COMMAND sail src | xargs -n 1 vera++)
 
 # Missing linter ports
 if(
