@@ -2,6 +2,7 @@ html/
 latex/
 debug.log
 bin/
+debug/
 CTestTestfile.cmake
 Testing/
 
