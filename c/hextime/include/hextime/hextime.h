@@ -24,6 +24,6 @@ char *hex_now(char *result, size_t n);
  *
  * @param result answer buffer
  * @param n answer buffer length, including zero terminal
- * @param t a given time
+ * @param t UTC
  */
 char *hex_time(char* result, size_t n, struct tm *t);
