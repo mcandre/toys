@@ -4,17 +4,20 @@
  * @copyright 2020 YelloSoft
  * @mainpage
  *
- * @ref fizzy reports the appropriate answer given a game state.
+ * @ref fizzy controls a drinking game.
  */
 
 #include <string>
 
-using std::string;
-
 /**
- * @brief fizzy reports the appropriate answer given a game state.
- *
- * @param n game state
- * @returns answer
+ * fizzy controls a drinking game.
  */
-string fizzy(int const n);
+namespace fizzy {
+    /**
+     * @brief Fizzy reports the appropriate answer given a game state.
+     *
+     * @param n game state
+     * @returns answer
+     */
+    std::string Fizzy(int const n);
+}

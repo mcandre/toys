@@ -9,13 +9,13 @@
 #include "fizzy/fizzy.hpp"
 
 int main() {
-    std::array<std::future<string>, 100> strings;
+    std::array<std::future<std::string>, 100> strings;
 
     for (auto i = 0; i < 100; i++) {
         strings[size_t(i)] = std::async(
             std::launch::async,
-            [=]() -> string {
-                return fizzy(i + 1);
+            [=]() -> std::string {
+                return fizzy::Fizzy(i+1);
             }
         );
     }
