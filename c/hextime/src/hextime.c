@@ -15,6 +15,10 @@ int hex_now(char *result, size_t result_size) {
 }
 
 int hex_time(char* result, size_t result_size, struct tm *t) {
+    if (result_size < 6) {
+        return -1;
+    }
+
     double beats = (
         t->tm_hour * 3600 +
         t->tm_min * 60 +
