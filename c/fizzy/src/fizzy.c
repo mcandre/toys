@@ -2,6 +2,7 @@
  * @copyright 2016 YelloSoft
  */
 
+#include <math.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
@@ -13,14 +14,21 @@ static char *fizz = "Fizz";
 static char *buzz = "Buzz";
 
 int fizzy(char *answer, size_t answer_size, int n) {
+    if (answer_size < 1 + strlen(fizz_buzz) || log(n) > (double) answer_size - 2) {
+        return -1;
+    }
+
     bool a = n % 3 == 0, b = n % 5 == 0;
 
     if (a && b) {
-        return snprintf(answer, strlen(fizz_buzz)+1, "%s", fizz_buzz);
+        strncpy(answer, fizz_buzz, strlen(fizz_buzz));
+        return 1 + (int) strlen(fizz_buzz);
     } else if (a) {
-        return snprintf(answer, strlen(fizz)+1, "%s", fizz);
+        strncpy(answer, fizz, strlen(fizz));
+        return 1 + (int) strlen(fizz);
     } else if (b) {
-        return snprintf(answer, strlen(buzz)+1, "%s", buzz);
+        strncpy(answer, buzz, strlen(buzz));
+        return 1 + (int) strlen(buzz);
     }
 
     return snprintf(answer, answer_size, "%d", n);

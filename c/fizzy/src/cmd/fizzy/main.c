@@ -13,6 +13,7 @@ int main() {
     char s[9];
 
     for (int i = 1; i < 101; i++) {
+        memset(s, 0, sizeof(s));
         int bytes_written = fizzy(s, sizeof(s)/sizeof(char), i);
 
         if (bytes_written < 0 || bytes_written > (int) sizeof(s)) {

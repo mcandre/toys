@@ -42,6 +42,7 @@ endif()
 include_directories(include)
 
 add_executable(fizzy src/cmd/fizzy/main.c src/fizzy.c)
+target_link_libraries(fizzy m)
 
 add_test(NAME fizzy_unit_test COMMAND bin/fizzy)
 

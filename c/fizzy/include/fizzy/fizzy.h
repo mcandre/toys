@@ -14,7 +14,7 @@
  *
  * @param answer buffer
  * @param answer_size buffer size (bytes)
- * @param n game state
+ * @param n game state.
  *
  * @returns byte write count. A value outside of [0, answer_size] indicates error.
  */
