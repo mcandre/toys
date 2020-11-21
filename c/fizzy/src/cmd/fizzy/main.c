@@ -14,7 +14,7 @@ int main() {
     memset(s, 0, sizeof(s));
 
     for (int i = 1; i < 101; i++) {
-        fizzy(s, 9, i);
+        fizzy(s, sizeof(s)/sizeof(char), i);
         printf("%s\n", s);
     }
 
