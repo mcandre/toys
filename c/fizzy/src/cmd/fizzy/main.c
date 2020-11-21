@@ -14,7 +14,13 @@ int main() {
     memset(s, 0, sizeof(s));
 
     for (int i = 1; i < 101; i++) {
-        fizzy(s, sizeof(s)/sizeof(char), i);
+        int bytes_written = fizzy(s, sizeof(s)/sizeof(char), i);
+
+        if (bytes_written < 0 || bytes_written > (int) (sizeof(s)/sizeof(char))) {
+            fprintf(stderr, "error writing to buffer\n");
+            return EXIT_FAILURE;
+        }
+
         printf("%s\n", s);
     }
 

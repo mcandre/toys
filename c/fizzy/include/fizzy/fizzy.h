@@ -12,8 +12,10 @@
 /**
  * @brief fizzy reports the appropriate answer given a game state.
  *
- * @param s answer buffer
- * @param t answer buffer length, in characters
+ * @param answer buffer
+ * @param t answer buffer length (byte count)
  * @param n game state
+ *
+ * @returns byte write count A value outside of [0, t] indicates error.
  */
-void fizzy(char* s, size_t t, int n);
+int fizzy(char *answer, size_t t, int n);
