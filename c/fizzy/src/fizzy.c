@@ -12,7 +12,7 @@ static char *fizz_buzz = "FizzBuzz";
 static char *fizz = "Fizz";
 static char *buzz = "Buzz";
 
-int fizzy(char *answer, size_t t, int n) {
+int fizzy(char *answer, size_t answer_size, int n) {
     bool a = n % 3 == 0, b = n % 5 == 0;
 
     if (a && b) {
@@ -23,5 +23,5 @@ int fizzy(char *answer, size_t t, int n) {
         return snprintf(answer, strlen(buzz)+1, "%s", buzz);
     }
 
-    return snprintf(answer, t, "%d", n);
+    return snprintf(answer, answer_size, "%d", n);
 }

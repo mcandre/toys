@@ -4,7 +4,7 @@
 
 ```console
 $ hextime
-0_12_3
+b_9_7
 ```
 
 # RUNTIME REQUIREMENTS

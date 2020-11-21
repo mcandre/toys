@@ -9,8 +9,14 @@
 #include "hextime/hextime.h"
 
 int main() {
-    char result[5];
-    memset(result, 0, sizeof(result));
-    printf("%s\n", hex_now(result, sizeof(result)/sizeof(char)));
+    char result[6];
+    int bytes_written = hex_now(result, sizeof(result)/sizeof(char));
+
+    if (bytes_written < 0 || bytes_written > (int) sizeof(result)) {
+        fprintf(stderr, "error writing to buffer\n");
+        return EXIT_FAILURE;
+    }
+
+    printf("%s\n", result);
     return EXIT_SUCCESS;
 }

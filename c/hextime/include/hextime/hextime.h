@@ -14,16 +14,20 @@
 /**
  * @brief renders the current time in hexadecimal
  *
- * @param result answer buffer
- * @param n answer buffer length, including zero terminal
+ * @param result buffer
+ * @param result_size buffer size (bytes)
+ *
+ * @returns bytes written. A value outside of [0, result_size] indicates error.
  */
-char *hex_now(char *result, size_t n);
+int hex_now(char *result, size_t result_size);
 
 /**
  * @brief renders a given time to hexadecimal
  *
- * @param result answer buffer
- * @param n answer buffer length, including zero terminal
+ * @param result buffer
+ * @param result_size buffer size (bytes)
  * @param t UTC
+ *
+ * @returns bytes written. A value outside of [0, result_size] indicates error.
  */
-char *hex_time(char* result, size_t n, struct tm *t);
+int hex_time(char* result, size_t result_size, struct tm *t);
