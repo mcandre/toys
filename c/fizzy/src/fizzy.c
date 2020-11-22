@@ -17,22 +17,23 @@ int fizzy(char *answer, unsigned int n) {
     bool a = n % 3 == 0, b = n % 5 == 0;
 
     if (a && b) {
-        strncpy(answer, fizz_buzz, strlen(fizz_buzz));
-        return 1 + (int) strlen(fizz_buzz);
+        memcpy(answer, fizz_buzz, 1 + strlen(fizz_buzz));
+        return 0;
     } else if (a) {
-        strncpy(answer, fizz, strlen(fizz));
-        return 1 + (int) strlen(fizz);
+        memcpy(answer, fizz, 1 + strlen(fizz));
+        return 0;
     } else if (b) {
-        strncpy(answer, buzz, strlen(buzz));
-        return 1 + (int) strlen(buzz);
+        memcpy(answer, buzz, 1 + strlen(buzz));
+        return 0;
     }
 
     size_t sz = (size_t) (2 + log(n));
     int bytes_written = snprintf(answer, sz, "%u", n);
 
-    if (bytes_written < 0 || bytes_written > (int) sz) {
+    if (bytes_written < 0 || (size_t) bytes_written > sz) {
         return -1;
     }
 
+    answer[sz - 1] = '\0';
     return 0;
 }

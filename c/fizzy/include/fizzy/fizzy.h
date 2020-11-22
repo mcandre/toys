@@ -12,7 +12,7 @@
 /**
  * @brief fizzy reports the appropriate answer given a game state.
  *
- * @param answer buffer (2 + log(n) bytes)
+ * @param answer buffer max(9, 2 + log(n)) bytes
  * @param n game state.
  *
  * @returns zero. -1 indicates error.

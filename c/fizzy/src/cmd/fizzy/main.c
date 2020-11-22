@@ -12,8 +12,6 @@ int main() {
     char buf[9];
 
     for (unsigned int i = 1; i < 101; i++) {
-        memset(buf, 0, sizeof(buf));
-
         if (fizzy(buf, i) < 0) {
             fprintf(stderr, "error writing to buffer\n");
             return EXIT_FAILURE;
