@@ -9,17 +9,17 @@
 #include "fizzy/fizzy.h"
 
 int main() {
-    char s[9];
+    char buf[9];
 
     for (unsigned int i = 1; i < 101; i++) {
-        memset(s, 0, sizeof(s));
+        memset(buf, 0, sizeof(buf));
 
-        if (fizzy(s, i) < 0) {
+        if (fizzy(buf, i) < 0) {
             fprintf(stderr, "error writing to buffer\n");
             return EXIT_FAILURE;
         }
 
-        printf("%s\n", s);
+        printf("%s\n", buf);
     }
 
     return EXIT_SUCCESS;

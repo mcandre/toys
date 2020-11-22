@@ -25,18 +25,18 @@ int hex_time(char* result, struct tm *t) {
     int hmin = (int) (beats - hhour * 256) / 16;
     int hsec = (int) beats - hhour * 256 - hmin * 16;
 
-    size_t len = 6;
+    size_t sz = 6;
 
     int bytes_written = snprintf(
         result,
-        len,
+        sz,
         "%x_%x_%x",
         hhour,
         hmin,
         hsec
     );
 
-    if (bytes_written < 0 || bytes_written > (int) len) {
+    if (bytes_written < 0 || bytes_written > (int) sz) {
         return -1;
     }
 

@@ -27,10 +27,10 @@ int fizzy(char *answer, unsigned int n) {
         return 1 + (int) strlen(buzz);
     }
 
-    size_t len = (size_t) (2 + log(n));
-    int bytes_written = snprintf(answer, len, "%u", n);
+    size_t sz = (size_t) (2 + log(n));
+    int bytes_written = snprintf(answer, sz, "%u", n);
 
-    if (bytes_written < 0 || bytes_written > (int) len) {
+    if (bytes_written < 0 || bytes_written > (int) sz) {
         return -1;
     }
 

@@ -9,13 +9,13 @@
 #include "hextime/hextime.h"
 
 int main() {
-    char result[6];
+    char buf[6];
 
-    if (hex_now(result) < 0) {
+    if (hex_now(buf) < 0) {
         fprintf(stderr, "error writing to buffer\n");
         return EXIT_FAILURE;
     }
 
-    printf("%s\n", result);
+    printf("%s\n", buf);
     return EXIT_SUCCESS;
 }
