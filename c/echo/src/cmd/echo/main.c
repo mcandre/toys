@@ -8,7 +8,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/** @private */
 int main() {
     int c = getchar();
 

@@ -10,9 +10,8 @@
 
 int main() {
     char result[6];
-    int bytes_written = hex_now(result, sizeof(result)/sizeof(char));
 
-    if (bytes_written < 0 || bytes_written > (int) sizeof(result)) {
+    if (hex_now(result) < 0) {
         fprintf(stderr, "error writing to buffer\n");
         return EXIT_FAILURE;
     }
