@@ -36,7 +36,7 @@ int hex_time(char* result, struct tm *t) {
         hsec
     );
 
-    if (bytes_written < 0 || bytes_written > (int) sz) {
+    if (bytes_written < 0 || (size_t) bytes_written > sz) {
         return -1;
     }
 
