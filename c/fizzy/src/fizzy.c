@@ -34,6 +34,5 @@ int fizzy(char *answer, unsigned int n) {
         return -1;
     }
 
-    answer[sz - 1] = '\0';
     return 0;
 }
