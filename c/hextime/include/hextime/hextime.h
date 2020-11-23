@@ -14,7 +14,7 @@
 /**
  * @brief renders the current time in hexadecimal
  *
- * @param result buffer (7 bytes)
+ * @param result buffer (6 bytes)
  *
  * @returns zero. -1 indicates error.
  */
@@ -23,7 +23,7 @@ int hex_now(char *result);
 /**
  * @brief renders a given time to hexadecimal
  *
- * @param result buffer (7 bytes)
+ * @param result buffer (6 bytes)
  * @param t UTC
  *
  * @returns zero. -1 indicates error.

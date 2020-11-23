@@ -9,7 +9,7 @@
 #include "hextime/hextime.h"
 
 int main() {
-    char buf[7];
+    char buf[6];
 
     if (hex_now(buf) < 0) {
         fprintf(stderr, "error writing to buffer\n");
