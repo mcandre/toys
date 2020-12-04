@@ -33,9 +33,9 @@ add_executable(echo src/cmd/echo/main.c)
 
 enable_testing()
 
-add_custom_target(cppcheck COMMAND cppcheck -q --force --enable=all --inline-suppr --suppressions-list=suppressions.cfg --error-exitcode=1 -I include src)
-add_custom_target(cpplint COMMAND sail include src | xargs -n 1 cpplint)
-add_custom_target(vera++ COMMAND sail include src | xargs -n 1 vera++)
+add_custom_target(cppcheck COMMAND cppcheck -q --force --enable=all --inline-suppr --suppressions-list=suppressions.cfg --error-exitcode=1 src)
+add_custom_target(cpplint COMMAND sail src | xargs -n 1 cpplint)
+add_custom_target(vera++ COMMAND sail src | xargs -n 1 vera++)
 
 # Missing linter ports
 if(MSVC)
