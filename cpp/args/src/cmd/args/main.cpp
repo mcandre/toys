@@ -14,5 +14,5 @@ int main(int const argc, char** const argv) {
         std::cout << s << std::endl;
     }
 
-    return 0;
+    return EXIT_SUCCESS;
 }

@@ -10,13 +10,11 @@
 
 int main() {
     char buf[9];
+    size_t buf_sz = sizeof(buf);
 
     for (unsigned int i = 1; i < 101; i++) {
-        if (fizzy(buf, i) < 0) {
-            fprintf(stderr, "error writing to buffer\n");
-            return EXIT_FAILURE;
-        }
-
+        memset(buf, 0, buf_sz);
+        fizzy(buf, i);
         printf("%s\n", buf);
     }
 

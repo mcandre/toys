@@ -13,7 +13,7 @@ std::string fizzy::Fizzy(int const n) {
         return "Fizz";
     } else if (b == 0) {
         return "Buzz";
-    } else {
-        return std::to_string(n);
     }
+
+    return std::to_string(n);
 }

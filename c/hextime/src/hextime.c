@@ -7,14 +7,14 @@
 
 #include "hextime/hextime.h"
 
-int hex_now(char *result) {
+void hex_now(char *result) {
     time_t timer = time(NULL);
     struct tm tbuf;
     struct tm *now = gmtime_r(&timer, &tbuf);
-    return hex_time(result, now);
+    hex_time(result, now);
 }
 
-int hex_time(char* result, struct tm *t) {
+void hex_time(char* result, struct tm *t) {
     double beats = (
         t->tm_hour * 3600 +
         t->tm_min * 60 +
@@ -27,7 +27,7 @@ int hex_time(char* result, struct tm *t) {
 
     size_t sz = 6;
 
-    int bytes_written = snprintf(
+    (void) snprintf(
         result,
         sz,
         "%x_%x_%x",
@@ -35,10 +35,4 @@ int hex_time(char* result, struct tm *t) {
         hmin,
         hsec
     );
-
-    if (bytes_written < 0 || (size_t) bytes_written > sz) {
-        return -1;
-    }
-
-    return 0;
 }

@@ -3,7 +3,6 @@ latex/
 debug.log
 bin/
 debug/
-crash-*
 CTestTestfile.cmake
 Testing/
 

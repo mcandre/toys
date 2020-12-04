@@ -10,7 +10,7 @@
 #include <string>
 
 /**
- * fizzy controls a drinking game.
+ * @brief fizzy controls a drinking game.
  */
 namespace fizzy {
     /**

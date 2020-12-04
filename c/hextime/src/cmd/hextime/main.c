@@ -10,12 +10,7 @@
 
 int main() {
     char buf[6];
-
-    if (hex_now(buf) < 0) {
-        fprintf(stderr, "error writing to buffer\n");
-        return EXIT_FAILURE;
-    }
-
+    hex_now(buf);
     printf("%s\n", buf);
     return EXIT_SUCCESS;
 }

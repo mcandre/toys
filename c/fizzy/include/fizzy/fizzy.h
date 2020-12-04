@@ -14,7 +14,5 @@
  *
  * @param answer buffer max(9, 2 + log(n)) bytes
  * @param n game state.
- *
- * @returns zero. -1 indicates error.
  */
-int fizzy(char *answer, unsigned int n);
+void fizzy(char *answer, unsigned int n);

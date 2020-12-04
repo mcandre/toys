@@ -9,30 +9,29 @@
 
 #include "fizzy/fizzy.h"
 
-static char *fizz_buzz = "FizzBuzz";
-static char *fizz = "Fizz";
-static char *buzz = "Buzz";
+static char fizz_buzz[9] = "FizzBuzz";
+static size_t fizz_buzz_sz = sizeof(fizz_buzz);
 
-int fizzy(char *answer, unsigned int n) {
+static char fizz[5] = "Fizz";
+static size_t fizz_sz = sizeof(fizz);
+
+static char buzz[5] = "Buzz";
+static size_t buzz_sz = sizeof(buzz);
+
+void fizzy(char *answer, unsigned int n) {
     bool a = n % 3 == 0, b = n % 5 == 0;
 
     if (a && b) {
-        memcpy(answer, fizz_buzz, 1 + strlen(fizz_buzz));
-        return 0;
+        (void) snprintf(answer, fizz_buzz_sz, "%s", fizz_buzz);
+        return;
     } else if (a) {
-        memcpy(answer, fizz, 1 + strlen(fizz));
-        return 0;
+        (void) snprintf(answer, fizz_sz, "%s", fizz);
+        return;
     } else if (b) {
-        memcpy(answer, buzz, 1 + strlen(buzz));
-        return 0;
+        (void) snprintf(answer, buzz_sz, "%s", buzz);
+        return;
     }
 
     size_t sz = (size_t) (2 + log(n));
-    int bytes_written = snprintf(answer, sz, "%u", n);
-
-    if (bytes_written < 0 || (size_t) bytes_written > sz) {
-        return -1;
-    }
-
-    return 0;
+    (void) snprintf(answer, sz, "%u", n);
 }
