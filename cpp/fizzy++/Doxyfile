@@ -1,12 +1,14 @@
 # Doxyfile 1.8.20
 
-PROJECT_NAME           = "args"
+PROJECT_NAME           = "fizzy++"
 
 EXTRACT_ALL            = YES
 QUIET                  = YES
 WARN_AS_ERROR          = YES
 
-INPUT                  = src/cmd/args
+INPUT                  = include/fizzy++ \
+                            src \
+                            src/cmd/fizzy++
 
 GENERATE_LATEX         = NO
 

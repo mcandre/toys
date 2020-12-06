@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.4)
 set(CMAKE_MESSAGE_LOG_LEVEL "WARNING")
 set(EXECUTABLE_OUTPUT_PATH "bin")
-project(args)
+project(hello++)
 
 if(MSVC)
     set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${EXECUTABLE_OUTPUT_PATH}")
@@ -36,10 +36,10 @@ else()
     endif()
 endif()
 
-add_executable(args src/cmd/args/main.cpp)
+add_executable(hello++ src/cmd/hello++/main.cpp)
 
 enable_testing()
-add_test(NAME args_unit_test COMMAND bin/args a b c)
+add_test(NAME hello_unit_test COMMAND bin/hello++)
 
 add_custom_target(cppcheck COMMAND cppcheck -q --force --enable=all --inline-suppr --suppressions-list=suppressions.cfg --error-exitcode=1 src)
 add_custom_target(cpplint COMMAND sail src | xargs -n 1 cpplint)
@@ -52,7 +52,7 @@ else()
     add_custom_target(lint DEPENDS cppcheck cpplint vera++)
 endif()
 
-add_custom_target(valgrind_test COMMAND valgrind --error-exitcode=1 --leak-check=full bin/args a b c)
+add_custom_target(valgrind_test COMMAND valgrind --error-exitcode=1 --leak-check=full bin/hello++)
 add_custom_target(valgrind DEPENDS valgrind_test)
 
 # Broken or missing valgrind

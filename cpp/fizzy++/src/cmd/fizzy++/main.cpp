@@ -6,7 +6,7 @@
 #include <future>
 #include <iostream>
 
-#include "fizzy/fizzy.hpp"
+#include "fizzy++/fizzy++.hpp"
 
 int main() {
     std::array<std::future<std::string>, 100> strings;

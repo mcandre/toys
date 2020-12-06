@@ -1,12 +1,12 @@
 # Doxyfile 1.8.20
 
-PROJECT_NAME           = "hello"
+PROJECT_NAME           = "hello++"
 
 EXTRACT_ALL            = YES
 QUIET                  = YES
 WARN_AS_ERROR          = YES
 
-INPUT                  = src/cmd/hello
+INPUT                  = src/cmd/hello++
 
 GENERATE_LATEX         = NO
 

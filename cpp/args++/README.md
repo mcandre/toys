@@ -1,10 +1,10 @@
-# args: Echo the given command line arguments
+# args++: Echo the given command line arguments
 
 # EXAMPLE
 
 ```console
-$ args a b c
-args
+$ args++ a b c
+args++
 a
 b
 c

@@ -1,9 +1,9 @@
-# hello: Welcome to C++ programming
+# hello++: Welcome to C++ programming
 
 # EXAMPLE
 
 ```console
-$ hello
+$ hello++
 Hello World!
 ```
 

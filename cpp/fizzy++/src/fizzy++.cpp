@@ -2,7 +2,7 @@
  * @copyright 2020 YelloSoft
  */
 
-#include "fizzy/fizzy.hpp"
+#include "fizzy++/fizzy++.hpp"
 
 std::string fizzy::Fizzy(int const n) {
     auto a = n % 3, b = n % 5;

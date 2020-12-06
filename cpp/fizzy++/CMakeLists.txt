@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.4)
 set(CMAKE_MESSAGE_LOG_LEVEL "WARNING")
 set(EXECUTABLE_OUTPUT_PATH "bin")
-project(hello)
+project(fizzy++)
 
 if(MSVC)
     set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${EXECUTABLE_OUTPUT_PATH}")
@@ -36,14 +36,17 @@ else()
     endif()
 endif()
 
-add_executable(hello src/cmd/hello/main.cpp)
+include_directories(include)
+
+add_executable(fizzy++ src/cmd/fizzy++/main.cpp src/fizzy++.cpp)
+target_link_libraries(fizzy++ "-lpthread")
 
 enable_testing()
-add_test(NAME hello_unit_test COMMAND bin/hello)
+add_test(NAME fizzy_unit_test COMMAND bin/fizzy++)
 
-add_custom_target(cppcheck COMMAND cppcheck -q --force --enable=all --inline-suppr --suppressions-list=suppressions.cfg --error-exitcode=1 src)
-add_custom_target(cpplint COMMAND sail src | xargs -n 1 cpplint)
-add_custom_target(vera++ COMMAND sail src | xargs -n 1 vera++)
+add_custom_target(cppcheck COMMAND cppcheck -q --force --enable=all --inline-suppr --suppressions-list=suppressions.cfg --error-exitcode=1 -I include src)
+add_custom_target(cpplint COMMAND sail include src | xargs -n 1 cpplint)
+add_custom_target(vera++ COMMAND sail include src | xargs -n 1 vera++)
 
 # Missing linter ports
 if(MSVC)
@@ -52,7 +55,7 @@ else()
     add_custom_target(lint DEPENDS cppcheck cpplint vera++)
 endif()
 
-add_custom_target(valgrind_test COMMAND valgrind --error-exitcode=1 --leak-check=full bin/hello)
+add_custom_target(valgrind_test COMMAND valgrind --error-exitcode=1 --leak-check=full bin/fizzy++)
 add_custom_target(valgrind DEPENDS valgrind_test)
 
 # Broken or missing valgrind

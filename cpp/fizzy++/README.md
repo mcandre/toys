@@ -1,9 +1,9 @@
-# fizzy: a drinking game
+# fizzy++: a drinking game
 
 # EXAMPLE
 
 ```console
-$ fizzy
+$ fizzy++
 1
 2
 Fizz
