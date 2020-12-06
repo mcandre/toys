@@ -13,6 +13,10 @@ $ magic
 09 f9 11 02 9d 74 e3 5b d8 41 56 c5 63 56 88 c3
 ```
 
+# DOCUMENTATION
+
+https://mcandre.github.io/toys/c/magic/
+
 # RUNTIME REQUIREMENTS
 
 (None)

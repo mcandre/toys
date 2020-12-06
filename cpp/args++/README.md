@@ -10,6 +10,10 @@ b
 c
 ```
 
+# DOCUMENTATION
+
+https://mcandre.github.io/toys/cpp/args++/
+
 # RUNTIME REQUIREMENTS
 
 (None)

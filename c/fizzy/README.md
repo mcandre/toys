@@ -12,6 +12,10 @@ Buzz
 ...
 ```
 
+# DOCUMENTATION
+
+https://mcandre.github.io/toys/c/fizzy/
+
 # RUNTIME REQUIREMENTS
 
 (None)

@@ -7,6 +7,10 @@ $ hextime
 b_9_7
 ```
 
+# DOCUMENTATION
+
+https://mcandre.github.io/toys/c/hextime/
+
 # RUNTIME REQUIREMENTS
 
 (None)

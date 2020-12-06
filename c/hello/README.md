@@ -7,6 +7,10 @@ $ hello
 Hello World!
 ```
 
+# DOCUMENTATION
+
+https://mcandre.github.io/toys/c/hello/
+
 # RUNTIME REQUIREMENTS
 
 (None)

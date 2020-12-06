@@ -7,6 +7,10 @@ $ hello++
 Hello World!
 ```
 
+# DOCUMENTATION
+
+https://mcandre.github.io/toys/cpp/hello++/
+
 # RUNTIME REQUIREMENTS
 
 (None)

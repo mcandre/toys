@@ -8,6 +8,10 @@ $ echo <README.md
 ...
 ```
 
+# DOCUMENTATION
+
+https://mcandre.github.io/toys/c/echo/
+
 # RUNTIME REQUIREMENTS
 
 (None)
