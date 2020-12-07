@@ -30,5 +30,5 @@ env:
   global:
     # gem install travis
     # travis login [--pro] [--github-token <personal-access-token>]
-    # travis encrypt [--pro] <personal-access-token>
+    # travis encrypt [--pro] "GH_REPO_TOKEN=<personal-access-token>"
     secure: "VGoIp1vAcED0L/LVam1V63z31YE1DG7c505gxuUnwqiOyfNRivd/6ITl3AWoCcNPuJQiySgXRvq+KvpodB2eiM/HBNLgQk2MeFvaAFJ5d3Ecks8ut+w1kYO6XKUHoNYHATL/2ajFIJL/+jA2egWd3ui/V+YlI/hXLHQEGu6MgEMrlXkmeMcbzkShQbsgYQVDff2rqCFaPSNO7L2ybOV/Y9+9bi8jP1M/fhGXljBPnQmnv0EzKTBOyP5jQSrwE2qEhUsc1fZPvFlJ0lzGmwLyQ2ZARyuvz67dtcyTJOQTfHR6/J2LvkLzvNlj5NZoC/5FBoqKMxHYT1RSBo7eokM196zn8Lw+C4I7M7CmXAx0obJitYplQaS+adg3bQUZv6h8fgRNu6lW4/U6yDUuoTCKb+oHeCexPCR6ajz72DJMMC0YpmXYD+cghVRALMtb+znrAeFMwnJQl/y8dhol7Na2J/I0ADgo/1XpCu5QuRQYF/B9HwrXmidfIy251eP9CWZmbHqckgGtqU6vmYLzqeOBhopge5t1BZgnDtv51/oH458bkm0Nk28MCn+AMqM9JjZEQj3MJCDUivGPDRTpKhDYZ47XEbAesYKmLtDpTekPYqzKRZBoLdoZwaLrB8tU1tgOWFFqsm/VkyfQsi+FU3ci37K3zjN8zLCGzVqVLOFpl3k="
