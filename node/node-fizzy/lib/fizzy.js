@@ -3,7 +3,7 @@
 'use strict';
 
 /**
- * @brief fizzBuzz plays a round of the famous drinking game.
+ * fizzBuzz plays a round of the famous drinking game.
  *
  * @param {number} n current game state
  *
