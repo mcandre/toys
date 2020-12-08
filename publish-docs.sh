@@ -34,6 +34,7 @@ for PACKAGEJSON_FILE in $PACKAGEJSON_FILES; do
     PROJECT="$(readlink -f "$PROJECT_BASE")"
 
     cd "${PROJECT}"
+    npm install
     grunt doc
     mkdir -p "${PAGE_REPO}/${PROJECT_BASE}"
     cp -r html/. "${PAGE_REPO}/${PROJECT_BASE}/"
