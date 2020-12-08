@@ -1,6 +1,7 @@
 ---
-# generic
-language: "cpp"
+language: "node_js"
+node_js:
+- "14"
 
 os: "linux"
 dist: "focal"
