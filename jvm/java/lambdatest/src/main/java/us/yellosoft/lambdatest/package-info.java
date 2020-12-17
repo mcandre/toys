@@ -1,4 +1,4 @@
 /**
-Java 8 lambda examples
-*/
+ * Java 8 lambda examples
+ */
 package us.yellosoft.lambdatest;

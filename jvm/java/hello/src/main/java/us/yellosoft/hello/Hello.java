@@ -6,9 +6,10 @@ public final class Hello {
     private Hello() {}
 
     /**
-        <p>CLI</p>
-        @param args CLI args (unused)
-    */
+     * <p>CLI</p>
+     *
+     * @param args CLI args (unused)
+     */
     public static void main(final String[] args) {
         System.out.println("Hello World!");
     }

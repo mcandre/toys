@@ -8,7 +8,7 @@ import us.yellosoft.orwell.Orwell;
 public class OrwellTest {
     @Test
     public void testCanSwitchOverOrwells() {
-        final Orwell o = Orwell.GOOD;
+        final var o = Orwell.GOOD;
 
         switch (o) {
         case DOUBLE_PLUS_UNGOOD:
@@ -35,13 +35,13 @@ public class OrwellTest {
 
     @Test
     public void testCanEnumerateAllValues() {
-        final Orwell[] values = Orwell.values();
+        final var values = Orwell.values();
         Assert.assertEquals(6, values.length);
     }
 
     @Test
     public void canPrintAndReadOrwells() {
-        for (final Orwell orwell : Orwell.values()) {
+        for (final var orwell : Orwell.values()) {
             Assert.assertEquals(orwell, Orwell.valueOf(orwell.toString()));
         }
     }

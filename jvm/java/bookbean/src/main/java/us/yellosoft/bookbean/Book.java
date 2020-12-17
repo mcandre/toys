@@ -19,16 +19,17 @@ public final class Book implements Serializable, Comparable<Book> {
     /** The unique book identifier */
     private String isbn;
 
-    /** All-at-once constructor. Not necessary for Beans,
-        but helpful for anyone who hates calling .setThis(x),
-        .setThat(y), .setTheOther(z), etc. boilerplate code!
-
-        @param title The book's title
-        @param author The book's author(s)
-        @param publisher The book's publisher
-        @param published The book's publication date
-        @param isbn The book's ISBN
-    */
+    /**
+     * All-at-once constructor. Not necessary for Beans,
+     * but helpful for anyone who hates calling .setThis(x),
+     * .setThat(y), .setTheOther(z), etc. boilerplate code!
+     *
+     * @param title The book's title
+     * @param author The book's author(s)
+     * @param publisher The book's publisher
+     * @param published The book's publication date
+     * @param isbn The book's ISBN
+     */
     public Book(
         final String title,
         final String author,
@@ -108,11 +109,12 @@ public final class Book implements Serializable, Comparable<Book> {
         if (this == o) {
             return true;
         }
+
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
 
-        final Book book = (Book) o;
+        final var book = (Book) o;
         return Objects.equals(isbn, book.isbn);
     }
 

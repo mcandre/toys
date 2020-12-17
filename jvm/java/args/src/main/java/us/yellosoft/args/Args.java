@@ -8,8 +8,8 @@ public final class Args {
     private Args() {}
 
     /** CLI entry point
-        @param args CLI flags
-    */
+     * @param args CLI flags
+     */
     public static void main(final String[] args) {
         System.out.println(Arrays.toString(args));
     }

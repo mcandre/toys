@@ -12,8 +12,8 @@ $ bin/lambdatest
 
 # REQUIREMENTS
 
-* [JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 1.8+
-* [Gradle](http://gradle.org/) 5+
+* [JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 1.11+
+* [Gradle](http://gradle.org/) 6+
 
 ## Optional
 

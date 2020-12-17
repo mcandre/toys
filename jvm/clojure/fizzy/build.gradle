@@ -1,15 +1,12 @@
 plugins {
-    id 'gradle-clojure.clojure' version '0.5.0-alpha.1'
+    id 'checkstyle'
+    id 'dev.clojurephant.clojure' version '0.6.0-alpha.4'
     id 'com.github.johnrengelman.shadow' version '4.0.4'
-    id 'com.github.spotbugs' version '1.6.9'
+    id 'com.github.spotbugs' version '4.6.0'
+    id 'jacoco'
     id 'org.sonarqube' version '2.7'
+    id 'pmd'
 }
-
-apply plugin: 'gradle-clojure.clojure'
-apply plugin: 'checkstyle'
-apply plugin: 'com.github.spotbugs'
-apply plugin: 'pmd'
-apply plugin: 'jacoco'
 
 compileJava {
     options.compilerArgs << '-Xlint:all'
@@ -29,15 +26,7 @@ checkstyle {
 }
 
 spotbugs {
-    sourceSets = [sourceSets.main]
     excludeFilter = file("${rootProject.projectDir}/config/spotbugs/exclude.xml")
-}
-
-tasks.withType(com.github.spotbugs.SpotBugsTask) {
-    reports {
-        xml.enabled = false
-        html.enabled = true
-    }
 }
 
 pmd {

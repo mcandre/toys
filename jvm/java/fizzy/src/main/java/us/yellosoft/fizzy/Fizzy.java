@@ -8,12 +8,14 @@ public final class Fizzy {
     private Fizzy() {}
 
     /** Modulo-based FizzBuzz implementation
-        @param i Input number
-        @return fizzbuzz(i)
-    */
+     *
+     * @param i Input number
+     *
+     * @return fizzbuzz(i)
+     */
     public static String fizzbuzz(final int i) {
-        final boolean m = i % 3 == 0;
-        final boolean n = i % 5 == 0;
+        final var m = i % 3 == 0;
+        final var n = i % 5 == 0;
 
         if (m && n) {
             return "FizzBuzz";
@@ -31,8 +33,8 @@ public final class Fizzy {
     }
 
     /** CLI entry point
-        @param args CLI flags (unused)
-    */
+     *  @param args CLI flags (unused)
+     */
     public static void main(final String[] args) {
         final Iterable<String> strings = () -> IntStream
             .range(1, 101)
@@ -40,7 +42,7 @@ public final class Fizzy {
             .mapToObj(Fizzy::fizzbuzz)
             .iterator();
 
-        for (final String s: strings) {
+        for (final var s: strings) {
             System.out.println(s);
         }
     }

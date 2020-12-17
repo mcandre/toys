@@ -1,4 +1,4 @@
 /**
-    Example CLI access in Java
-*/
+ * Example CLI access in Java
+ */
 package us.yellosoft.args;

@@ -12,10 +12,12 @@ public final class Fib {
     private Fib() {}
 
     /**
-        <p>Fibonacci</p>
-        @param n input
-        @return fib(n)
-    */
+     * <p>Fibonacci</p>
+     *
+     * @param n input
+     *
+     * @return fib(n)
+     */
     public static int fib(final int n) {
         Preconditions.checkArgument(n >= 0);
 
@@ -23,12 +25,12 @@ public final class Fib {
             return n;
         }
 
-        int a = 0;
-        int b = 1;
-        final int m = n - 1;
+        var a = 0;
+        var b = 1;
+        final var m = n - 1;
 
-        for (int i = 0; i < m; i++) {
-            final int c = a;
+        for (var i = 0; i < m; i++) {
+            final var c = a;
             a = b;
             b = c + b;
         }
@@ -37,21 +39,23 @@ public final class Fib {
     }
 
     /**
-        <p>Timed Fibonacci test</p>
-        @param args CLI args
-        @throws IOException on CLI read error
-    */
+     * <p>Timed Fibonacci test</p>
+     *
+     * @param args CLI args
+     *
+     * @throws IOException on CLI read error
+     */
     public static void main(final String[] args) throws IOException {
         System.out.print("N = ");
 
         try (Scanner scanner = new Scanner(System.in, StandardCharsets.UTF_8.name())) {
-            final int n = scanner.nextInt();
+            final var n = scanner.nextInt();
 
             System.out.println("Running");
 
-            final int startt = (int) System.currentTimeMillis();
-            final int x = fib(n);
-            final int endt = (int) System.currentTimeMillis();
+            final var startt = (int) System.currentTimeMillis();
+            final var x = fib(n);
+            final var endt = (int) System.currentTimeMillis();
 
             System.out.println(String.format("Fib %d = %d", n, x));
             System.out.println(String.format("Time = %d sec", (endt - startt) / 1000));

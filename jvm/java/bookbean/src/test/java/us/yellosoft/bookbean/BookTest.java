@@ -1,12 +1,13 @@
 package us.yellosoft.bookbean;
 
 import java.util.Date;
-import java.util.Calendar;
 import java.io.IOException;
 import java.io.PipedOutputStream;
 import java.io.PipedInputStream;
 import java.io.ObjectOutputStream;
 import java.io.ObjectInputStream;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Objects;
 
 import org.junit.Test;
@@ -14,11 +15,13 @@ import org.junit.Assert;
 import org.hamcrest.Matchers;
 
 public class BookTest {
+    private static final ZoneId ZONE_ID = ZoneId.systemDefault();
+
     public static final Book BPWJFD = new Book(
         "Beginning Programming with Java for Dummies",
         "Barry Burd",
         "Wiley",
-        new Date(1403481600L),
+        new Date(1_403_481_600L),
         "978-1118407813"
     );
 
@@ -29,7 +32,7 @@ public class BookTest {
 
     @Test
     public void testEqual() {
-        final Book book1 = new Book();
+        final var book1 = new Book();
         book1.setIsbn("1");
 
         Assert.assertEquals(book1, book1);
@@ -37,10 +40,10 @@ public class BookTest {
 
     @Test
     public void testInequality() {
-        final Book book1 = new Book();
+        final var book1 = new Book();
         book1.setIsbn("1");
 
-        final Book book2 = new Book();
+        final var book2 = new Book();
         book2.setIsbn("2");
 
         Assert.assertNotEquals(book1, book2);
@@ -48,10 +51,10 @@ public class BookTest {
 
     @Test
     public void testComparable() {
-        final Book book1 = new Book();
+        final var book1 = new Book();
         book1.setIsbn("1");
 
-        final Book book2 = new Book();
+        final var book2 = new Book();
         book2.setIsbn("2");
 
         Assert.assertThat(book1, Matchers.lessThan(book2));
@@ -59,7 +62,7 @@ public class BookTest {
 
     @Test
     public void testInequalityOthers() {
-        final Book book = new Book();
+        final var book = new Book();
 
         Assert.assertNotEquals(book, null);
         Assert.assertNotEquals(book, "");
@@ -67,8 +70,6 @@ public class BookTest {
 
     @Test
     public void testSerializable() throws IOException, ClassNotFoundException {
-        final Book book2;
-
         try (PipedOutputStream pipedOut = new PipedOutputStream();
             PipedInputStream pipedIn = new PipedInputStream(pipedOut);
             ObjectOutputStream booksOut = new ObjectOutputStream(pipedOut);
@@ -76,7 +77,7 @@ public class BookTest {
         ) {
 
             booksOut.writeObject(BPWJFD);
-            book2 = (Book) booksIn.readObject();
+            final var book2 = (Book) booksIn.readObject();
 
             Assert.assertEquals(BPWJFD, book2);
         }
@@ -84,7 +85,7 @@ public class BookTest {
 
     @Test
     public void testHashable() {
-        final Book book = new Book();
+        final var book = new Book();
         book.setIsbn("978-3-16-148410-0");
 
         Assert.assertEquals(
@@ -95,51 +96,55 @@ public class BookTest {
 
     @Test
     public void testConfigurability() {
-        final Calendar calendar1 = Calendar.getInstance();
-        final Calendar calendar2 = Calendar.getInstance();
+        final var localDate1 = LocalDate.now();
+        final var date1 = Date.from(localDate1.atStartOfDay(ZONE_ID).toInstant());
 
-        final Book draft = new Book();
+        final var draft = new Book();
         draft.setTitle("Working Title");
         draft.setAuthor("Me");
         draft.setPublisher("LuLu");
-        draft.setPublished(calendar1.getTime());
+        draft.setPublished(date1);
         draft.setIsbn("1");
 
         // 6 months later and we are already publishing a new edition
+        final var localDate2 = localDate1.plusMonths(6);
+        final var date2 = Date.from(localDate2.atStartOfDay(ZONE_ID).toInstant());
         draft.setTitle("Working Title, 2nd Edition");
+        draft.setPublished(date2);
         draft.setIsbn("2");
-        calendar2.add(Calendar.MONTH, 6);
-        draft.setPublished(calendar2.getTime());
 
-        Assert.assertEquals(calendar2.getTime(), draft.getPublished());
+        Assert.assertEquals(date2, draft.getPublished());
     }
 
     @Test
     public void testConstructability() {
-        final Calendar calendar = Calendar.getInstance();
+        final var localDate1 = LocalDate.now();
+        final var date1 = Date.from(localDate1.atStartOfDay(ZONE_ID).toInstant());
 
-        final Book draft = new Book(
+        final var draft = new Book(
             "*That Book*",
             "Me",
             "Dublisher Publishing",
-            calendar.getTime(),
+             date1,
             "1"
         );
 
         // 6 months later and we are already publishing a new edition
+        final var localDate2 = localDate1.plusMonths(6);
+        final var date2 = Date.from(localDate2.atStartOfDay(ZONE_ID).toInstant());
         draft.setTitle("*That Book*, 2nd Edition");
         draft.setIsbn("2");
-        calendar.add(Calendar.MONTH, 6);
-        draft.setPublished(calendar.getTime());
+        draft.setPublished(date2);
 
-        Assert.assertEquals(calendar.getTime(), draft.getPublished());
+        Assert.assertEquals(date2, draft.getPublished());
     }
 
     @Test
     public void testGetAttributes() {
-        final Calendar calendar = Calendar.getInstance();
-        final Date date = calendar.getTime();
-        final Book draft = new Book(
+        final var localDate = LocalDate.now();
+        final var date = Date.from(localDate.atStartOfDay(ZONE_ID).toInstant());
+
+        final var draft = new Book(
             "The Not A Book Book",
             "Me",
             "PQR Publishing",
@@ -156,13 +161,13 @@ public class BookTest {
 
     @Test
     public void testPrinting() {
-        final Calendar calendar = Calendar.getInstance();
-        final Date date = calendar.getTime();
-        final Book draft = new Book(
+        final var date = LocalDate.now();
+
+        final var draft = new Book(
             "Yet Another Book",
             "Me",
             "We Make Books, Inc.",
-            date,
+            Date.from(date.atStartOfDay(ZONE_ID).toInstant()),
             "1"
         );
 
