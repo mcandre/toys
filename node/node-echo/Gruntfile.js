@@ -12,7 +12,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-exec');
     grunt.registerTask('default', ['exec:tidy']);
 
-    grunt.registerTask('doc', ['exec:eslint']);
+    grunt.registerTask('doc', ['exec:jsdoc']);
     grunt.registerTask('lint', [
         'exec:eslint',
         'exec:tidy'
