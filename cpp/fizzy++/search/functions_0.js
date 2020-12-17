@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['fizzy_9',['Fizzy',['../namespacefizzy.html#a1070a3f8eb55b0da47ff7c73785d6381',1,'fizzy']]]
+  ['fizzy_9',['Fizzy',['../namespacefizzy.html#a79a40972cab282a5c5f204733702031b',1,'fizzy']]]
 ];
