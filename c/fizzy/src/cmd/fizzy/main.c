@@ -10,7 +10,7 @@
 
 int main() {
     char buf[9];
-    size_t buf_sz = sizeof(buf);
+    const size_t buf_sz = sizeof(buf);
 
     for (unsigned int i = 1; i < 101; i++) {
         memset(buf, 0, buf_sz);

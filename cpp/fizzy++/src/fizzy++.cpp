@@ -4,8 +4,8 @@
 
 #include "fizzy++/fizzy++.hpp"
 
-std::string fizzy::Fizzy(int const n) {
-    auto a = n % 3, b = n % 5;
+std::string fizzy::Fizzy(int n) {
+    const auto a = n % 3, b = n % 5;
 
     if (a == 0 && b == 0) {
         return "FizzBuzz";

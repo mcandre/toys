@@ -19,7 +19,7 @@ static char buzz[5] = "Buzz";
 static size_t buzz_sz = sizeof(buzz);
 
 void fizzy(char *answer, unsigned int n) {
-    bool a = n % 3 == 0, b = n % 5 == 0;
+    const bool a = n % 3 == 0, b = n % 5 == 0;
 
     if (a && b) {
         (void) snprintf(answer, fizz_buzz_sz, "%s", fizz_buzz);
@@ -32,6 +32,6 @@ void fizzy(char *answer, unsigned int n) {
         return;
     }
 
-    size_t sz = (size_t) (2 + log(n));
+    const size_t sz = (size_t) (2 + log(n));
     (void) snprintf(answer, sz, "%u", n);
 }
