@@ -12,6 +12,7 @@
     <rule ref="category/java/codestyle.xml">
         <exclude name="AtLeastOneConstructor" />
         <exclude name="AvoidFinalLocalVariable" />
+        <exclude name="ConfusingTernary" />
         <exclude name="OnlyOneReturn" />
         <exclude name="ShortClassName" />
         <exclude name="ShortMethodName" />
