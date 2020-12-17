@@ -12,7 +12,7 @@
 function fizzBuzz(n) {
     console.assert(Number.isInteger(n));
 
-    var a = n % 3 === 0,
+    const a = n % 3 === 0,
         b = n % 5 === 0;
 
     if (a && b) {
@@ -21,15 +21,15 @@ function fizzBuzz(n) {
         return 'Fizz';
     } else if (b) {
         return 'Buzz';
-    } else {
-        return n.toString();
     }
+
+    return n.toString();
 }
 
 exports.fizzBuzz = fizzBuzz;
 
 function main() {
-    for (var i = 1; i < 101; i++) {
+    for (let i = 1; i < 101; i++) {
         console.log(fizzBuzz(i));
     }
 }

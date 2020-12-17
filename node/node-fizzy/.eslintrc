@@ -1,4 +1,7 @@
 {
+    "parserOptions": {
+        "ecmaVersion": 6
+    },
     "env": {
         "node": true,
         "browser": true,
@@ -6,8 +9,22 @@
         "jquery": true
     },
     "rules": {
-        "global-strict": true,
-        "no-mixed-requires": true,
-        "no-unused-vars": true
+        "strict": [
+            "error",
+            "global"
+        ],
+        "no-mixed-requires": [
+            "error"
+        ],
+        "no-unused-vars": [
+            "error",
+            {
+                "argsIgnorePattern": "^_"
+            }
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ]
     }
 }
