@@ -14,10 +14,16 @@ object Magic {
             case _ => {
                 var pieces = ""
 
-                ((NUMBERS.head + n) :: NUMBERS.tail).reverse.map((byte : Int) =>
-                    String.format("%02x", Integer.valueOf(byte)).foreach (piece =>
-                        pieces += piece + " "
+                ((NUMBERS.head + n) :: NUMBERS.tail)
+                    .reverse
+                    .map((byte : Int) =>
+                        String.format(
+                            "%02x",
+                            Integer.valueOf(byte)
                     ))
+                        .foreach (piece =>
+                            pieces += piece + " "
+                        )
 
                 pieces
             }
