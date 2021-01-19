@@ -1,4 +1,4 @@
-# toys/haskell
+# toys/ml/haskell
 
 Introductory Haskell programs
 

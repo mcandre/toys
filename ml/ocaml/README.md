@@ -1,4 +1,4 @@
-# toys/ocaml
+# toys/ml/ocaml
 
 Introductory OCaml programs
 

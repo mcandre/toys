@@ -1,4 +1,4 @@
-# toys/erlang
+# toys/ml/erlang
 
 Introductory Erlang programs
 
