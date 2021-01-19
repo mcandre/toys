@@ -1,4 +1,4 @@
-# toys/racket
+# toys/lisp/scheme/racket
 
 Introductory Racket programs
 

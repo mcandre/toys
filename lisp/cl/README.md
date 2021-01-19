@@ -1,6 +1,6 @@
-# toys/cl
+# toys/lisp/cl
 
-Introductory scripts in Common Lisp (with a preference for CLISP)
+Introductory scripts in Common Lisp. Tested with CLISP.
 
 # EXAMPLE
 

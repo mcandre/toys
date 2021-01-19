@@ -1,4 +1,4 @@
-# toys/elisp
+# toys/lisp/elisp
 
 Introductory Emacs Lisp programs
 

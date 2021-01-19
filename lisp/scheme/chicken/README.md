@@ -1,4 +1,4 @@
-# toys/chicken
+# toys/lisp/scheme/chicken
 
 Introductory Chicken Scheme scripts
 
