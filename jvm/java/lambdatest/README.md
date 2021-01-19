@@ -1,4 +1,4 @@
-# mcandre/java/lambdatest
+# toys/jvm/java/lambdatest
 
 A basic lambda example in Java
 

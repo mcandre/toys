@@ -1,3 +1,3 @@
-# mcandre/scripting
+# toys/scripting
 
 General purpose scripting languages.

@@ -1,4 +1,4 @@
-# mcandre/maths/octave
+# toys/maths/octave
 
 # REQUIREMENTS
 

@@ -1,4 +1,4 @@
-# mcandre/jvm: JVM examples
+# toys/jvm: JVM examples
 
 # EXAMPLE
 

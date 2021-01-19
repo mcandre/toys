@@ -1,4 +1,4 @@
-# mcandre/java/orwell - Java Enum demo
+# toys/jvm/java/orwell - Java Enum demo
 
 # ABOUT
 

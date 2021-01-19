@@ -1,4 +1,4 @@
-# mcandre/maths
+# toys/maths
 
 Mathematical languages.
 

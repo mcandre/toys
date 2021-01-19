@@ -1,4 +1,4 @@
-# mcandre/scripting/python
+# toys/scripting/python
 
 Introductory Python programs
 

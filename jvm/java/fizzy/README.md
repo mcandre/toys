@@ -1,4 +1,4 @@
-# mcandre/java/fizzy
+# toys/jvm/java/fizzy
 
 FizzBuzz example in Java
 

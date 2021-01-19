@@ -1,4 +1,4 @@
-# mcandre/java/hello
+# toys/jvm/java/hello
 
 Hello World in Java
 

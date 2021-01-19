@@ -1,4 +1,4 @@
-# mcandre/lisp
+# toys/lisp
 
 A collection of LISP examples.
 

@@ -1,4 +1,4 @@
-# mcandre/lisp/newlisp
+# toys/lisp/newlisp
 
 # REQUIREMENTS
 

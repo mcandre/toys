@@ -1,4 +1,4 @@
-# mcandre/java/bookbean - Java Bean demo
+# toys/jvm/java/bookbean - Java Bean demo
 
 # ABOUT
 

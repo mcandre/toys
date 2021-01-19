@@ -1,4 +1,4 @@
-# mcandre/kotlin/hello
+# toys/jvm/kotlin/hello
 
 Hello World in Kotlin
 

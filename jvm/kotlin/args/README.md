@@ -1,4 +1,4 @@
-# mcandre/kotlin/args
+# toys/jvm/kotlin/args
 
 CLI argument processing in Kotlin
 

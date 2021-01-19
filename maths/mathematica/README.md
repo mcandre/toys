@@ -1,4 +1,4 @@
-# mcandre/maths/mathematica
+# toys/maths/mathematica
 
 # REQUIREMENTS
 

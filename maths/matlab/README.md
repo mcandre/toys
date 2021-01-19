@@ -1,4 +1,4 @@
-# mcandre/maths/matlab
+# toys/maths/matlab
 
 # REQUIREMENTS
 
