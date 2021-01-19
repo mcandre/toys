@@ -1,10 +1,10 @@
-# toys/bf
+# bf
 
-Introductory programs in BF
+Introductory programs in Brainfuck
 
 # EXAMPLE
 
-```
+```console
 $ cat hello.bf
 ++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>>.
 

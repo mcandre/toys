@@ -1,4 +1,4 @@
-# automata
+# cellular automata
 
 Wolfram automata modulinos
 

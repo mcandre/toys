@@ -1,4 +1,4 @@
-# toys/latex
+# LaTeX
 
 Introductory LaTeX programs/documents
 
