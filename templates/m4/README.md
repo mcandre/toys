@@ -1,4 +1,4 @@
-# mcandre/m4
+# toys/templates/m4
 
 # EXAMPLE
 
