@@ -1,4 +1,4 @@
-# toys/shell/unix/tcsh: Example tcsh scripts
+# tcsh: Example tcsh scripts
 
 # REQUIREMENTS
 

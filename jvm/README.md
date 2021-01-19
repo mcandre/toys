@@ -1,4 +1,4 @@
-# toys/jvm: JVM examples
+# jvm: JVM examples
 
 # EXAMPLE
 

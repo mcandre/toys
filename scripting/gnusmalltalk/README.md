@@ -1,4 +1,4 @@
-# toys/scripting/gnusmalltalk
+# gnusmalltalk
 
 # REQUIREMENTS
 

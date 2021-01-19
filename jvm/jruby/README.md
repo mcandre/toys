@@ -1,4 +1,4 @@
-# toys/jvm/jruby
+# jruby
 
 # REQUIREMENTS
 

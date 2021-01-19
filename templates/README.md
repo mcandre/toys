@@ -1,1 +1,1 @@
-# toys/templates: Macro languages
+# templates: Macro languages

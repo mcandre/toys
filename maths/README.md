@@ -1,4 +1,4 @@
-# toys/maths
+# maths
 
 Mathematical languages.
 

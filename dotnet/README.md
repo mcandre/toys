@@ -1,1 +1,1 @@
-# toys/dotnet: .NET runtime languages
+# dotnet: .NET runtime languages

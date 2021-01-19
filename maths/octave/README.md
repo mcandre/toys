@@ -1,4 +1,4 @@
-# toys/maths/octave
+# octave
 
 # REQUIREMENTS
 

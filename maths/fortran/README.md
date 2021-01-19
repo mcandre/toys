@@ -1,4 +1,4 @@
-# toys/maths/fortran
+# fortran
 
 Introductory Fortran programs
 

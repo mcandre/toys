@@ -1,4 +1,4 @@
-# toys/templates/m4
+# m4
 
 # EXAMPLE
 

@@ -1,4 +1,4 @@
-# toys/jvm/jython
+# jython
 
 # REQUIREMENTS
 

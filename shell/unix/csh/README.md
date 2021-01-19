@@ -1,4 +1,4 @@
-# toys/shells/unix/csh: Example csh scripts
+# csh: Example csh scripts
 
 # REQUIREMENTS
 

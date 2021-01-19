@@ -1,32 +1,7 @@
-# toys/shell/unix/posix/bash: Example GNU bash scripts
+# bash: bash-like languages
 
-# Hello World
-
-```console
-$ ./lib/hello
-Hello World!
-```
-
-# REQUIREMENTS
-
-* [GNU bash](https://www.gnu.org/software/bash/)
-
-# DEVELOPMENT
-
-## Build: Lint and Test
-
-```console
-$ vast
-```
-
-## Test
-
-```console
-$ vast itest
-```
-
-## Lint
-
-```console
-$ vast lint
-```
+* ash (subset)
+* GNU bash (official)
+* dash (subset)
+* posh (subset)
+* zsh (superset)

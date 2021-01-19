@@ -1,3 +1,3 @@
-# toys/scripting
+# scripting
 
 General purpose scripting languages.

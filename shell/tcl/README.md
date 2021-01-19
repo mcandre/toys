@@ -1,4 +1,4 @@
-# toys/shell/tcl
+# tcl
 
 # REQUIREMENTS
 

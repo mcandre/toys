@@ -1,4 +1,4 @@
-# toys/maths/j
+# J
 
 # REQUIREMENTS
 

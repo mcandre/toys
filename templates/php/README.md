@@ -1,4 +1,4 @@
-# toys/templates/php
+# php
 
 Introductory PHP programs
 

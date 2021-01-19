@@ -1,4 +1,4 @@
-# toys/scripting/io
+# io
 
 Introductory Io programs
 

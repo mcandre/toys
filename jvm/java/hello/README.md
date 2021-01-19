@@ -1,4 +1,4 @@
-# toys/jvm/java/hello
+# hello
 
 Hello World in Java
 

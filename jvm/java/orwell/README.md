@@ -1,4 +1,4 @@
-# toys/jvm/java/orwell - Java Enum demo
+# orwell - Java Enum demo
 
 # ABOUT
 

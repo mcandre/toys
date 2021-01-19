@@ -1,4 +1,4 @@
-# toys/shell/unix/lksh: Example legacy ksh scripts
+# lksh: Example legacy ksh scripts
 
 # REQUIREMENTS
 

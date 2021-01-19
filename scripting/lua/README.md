@@ -1,4 +1,4 @@
-# toys/scripting/lua
+# lua
 
 Introductory programs in Lua
 

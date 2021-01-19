@@ -1,4 +1,4 @@
-# toys/scripting/python
+# python
 
 Introductory Python programs
 

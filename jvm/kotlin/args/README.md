@@ -1,4 +1,4 @@
-# toys/jvm/kotlin/args
+# args
 
 CLI argument processing in Kotlin
 

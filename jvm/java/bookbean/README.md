@@ -1,4 +1,4 @@
-# toys/jvm/java/bookbean - Java Bean demo
+# bookbean - Java Bean demo
 
 # ABOUT
 

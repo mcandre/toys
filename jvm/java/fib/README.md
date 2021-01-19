@@ -1,4 +1,4 @@
-# toys/jvm/java/fib
+# fib
 
 Fibonacci example in Java
 

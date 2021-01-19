@@ -1,4 +1,4 @@
-# toys/jvm/kotlin/fib
+# fib
 
 Fibonacci in Kotlin
 

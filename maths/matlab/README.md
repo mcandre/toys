@@ -1,4 +1,4 @@
-# toys/maths/matlab
+# matlab
 
 # REQUIREMENTS
 

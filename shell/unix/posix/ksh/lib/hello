@@ -1,5 +1,0 @@
-#!/bin/ksh
-unset IFS
-set -euf
-
-echo "Hello World!"

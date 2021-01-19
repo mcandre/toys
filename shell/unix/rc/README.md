@@ -1,4 +1,4 @@
-# toys/shell/unix/rc: Example rc scripts
+# rc: Example rc scripts
 
 # REQUIREMENTS
 

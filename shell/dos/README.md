@@ -1,4 +1,4 @@
-# toys/shell/dos
+# dos
 
 # REQUIREMENTS
 

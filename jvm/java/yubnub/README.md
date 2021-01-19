@@ -1,4 +1,4 @@
-# toys/jvm/java/yubnub
+# yubnub
 
 YubNub CLI launcher in Java
 

@@ -1,4 +1,4 @@
-# toys/shell/unix/posix/sh: Example POSIX sh scripts
+# sh: Example POSIX sh scripts
 
 # Hello World
 

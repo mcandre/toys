@@ -1,1 +1,1 @@
-# toys/shell/unix: scripts you can probably dot slash!
+# unix: scripts you can probably dot slash!

@@ -1,4 +1,4 @@
-# toys/jvm/kotlin/hello
+# hello
 
 Hello World in Kotlin
 

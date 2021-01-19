@@ -1,4 +1,4 @@
-# toys/scripting/node
+# node
 
 Introductory Node.js programs
 

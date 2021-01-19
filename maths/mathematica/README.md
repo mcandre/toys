@@ -1,4 +1,4 @@
-# toys/maths/mathematica
+# mathematica
 
 # REQUIREMENTS
 

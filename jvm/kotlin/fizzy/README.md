@@ -1,4 +1,4 @@
-# toys/jvm/kotlin/fizzy
+# fizzy
 
 FizzBuzz in Kotlin
 

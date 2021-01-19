@@ -1,4 +1,4 @@
-# toys/jvm/java/args
+# args
 
 Command line argument printing in Java
 

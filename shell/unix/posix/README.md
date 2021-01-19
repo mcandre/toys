@@ -1,4 +1,4 @@
-# toys/shell/unix/posix: The family of POSIX-compatible shell languages
+# posix: The family of POSIX-compatible shell languages
 
 # Recommended
 
