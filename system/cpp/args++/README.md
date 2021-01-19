@@ -12,7 +12,7 @@ c
 
 # DOCUMENTATION
 
-https://mcandre.github.io/toys/cpp/args++/
+https://mcandre.github.io/toys/system/cpp/args++/
 
 # RUNTIME REQUIREMENTS
 

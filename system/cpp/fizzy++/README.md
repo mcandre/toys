@@ -14,7 +14,7 @@ Buzz
 
 # DOCUMENTATION
 
-https://mcandre.github.io/toys/cpp/fizzy++/
+https://mcandre.github.io/toys/system/cpp/fizzy++/
 
 # RUNTIME REQUIREMENTS
 

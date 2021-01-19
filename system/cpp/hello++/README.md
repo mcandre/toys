@@ -9,7 +9,7 @@ Hello World!
 
 # DOCUMENTATION
 
-https://mcandre.github.io/toys/cpp/hello++/
+https://mcandre.github.io/toys/system/cpp/hello++/
 
 # RUNTIME REQUIREMENTS
 
