@@ -1,6 +1,6 @@
-# toys/llvm
+# LLVM
 
-Introductory programming in LLVM
+Introductory programming in raw LLVM assembler.
 
 # EXAMPLE
 
