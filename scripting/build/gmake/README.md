@@ -1,4 +1,4 @@
-# toys/gmake
+# gmake
 
 Introductory programming in (GNU) make
 

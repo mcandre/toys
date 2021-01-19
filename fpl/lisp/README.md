@@ -7,4 +7,4 @@ A collection of LISP examples.
 * newLISP
 * Scheme
 
-Especially well Gradle-integrated JVM target LISPs are included in [mcandre/jvm](mcandre/jvm).
+Especially well Gradle-integrated JVM target LISPs are included in [jvm](jvm).

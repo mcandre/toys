@@ -1,4 +1,4 @@
-# toys/bmake
+# bmake
 
 Introductory programming in bmake
 

@@ -1,3 +1,3 @@
 # scripting
 
-General purpose scripting languages.
+Primarily dynamically interpreted languages for automation.

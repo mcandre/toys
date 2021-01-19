@@ -5,4 +5,4 @@
 * Oz (Polish)
 * stack languages (reverse Polish)
 
-Some related languages are available in [mcandre/dotnet](mcandre/dotnet) and [mcandre/jvm](mcandre/jvm).
+Some related languages are available in [dotnet](dotnet) and [jvm](jvm).
