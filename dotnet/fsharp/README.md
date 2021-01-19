@@ -1,4 +1,4 @@
-# toys/fsharp
+# toys/dotnet/fsharp
 
 Introductory F# programs
 
