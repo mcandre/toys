@@ -1,4 +1,4 @@
-# toys/perl6
+# toys/scripting/perl6
 
 Introductory Perl 6 programs
 

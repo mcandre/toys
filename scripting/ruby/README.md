@@ -1,4 +1,4 @@
-# toys/ruby
+# toys/scripting/ruby
 
 Example Ruby code snippets.
 

@@ -1,4 +1,4 @@
-# toys/perl
+# toys/scripting/perl
 
 Introductory Perl programs
 

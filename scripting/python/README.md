@@ -1,4 +1,4 @@
-# mcandre/python
+# mcandre/scripting/python
 
 Introductory Python programs
 

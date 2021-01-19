@@ -1,4 +1,4 @@
-# toys/R - introductory R scripts
+# toys/maths/r - introductory R scripts
 
 # EXAMPLE
 
