@@ -15,12 +15,12 @@ int main() {
         strings[size_t(i)] = std::async(
             std::launch::async,
             [=]() -> std::string {
-                return fizzy::Fizzy(1 + i);
+                return fizzy::Fizzy(i + 1);
             }
         );
     }
 
-    for (auto& e : strings) {
+    for (auto &e : strings) {
         std::cout << e.get() << std::endl;
     }
 

@@ -7,11 +7,11 @@
 std::string fizzy::Fizzy(int n) {
     const auto a = n % 3, b = n % 5;
 
-    if (a == 0 && b == 0) {
+    if (!(a|b)) {
         return "FizzBuzz";
-    } else if (a == 0) {
+    } else if (!a) {
         return "Fizz";
-    } else if (b == 0) {
+    } else if (!b) {
         return "Buzz";
     }
 

@@ -9,7 +9,7 @@
 #include <string_view>
 #include <vector>
 
-int main(int const argc, char** const argv) {
+int main(const int argc, const char** argv) {
     for (auto s : std::vector<std::string_view>{argv, argv+argc}) {
         std::cout << s << std::endl;
     }
