@@ -20,7 +20,7 @@ int main() {
         );
     }
 
-    for (auto &e : strings) {
+    for (auto& e : strings) {
         std::cout << e.get() << std::endl;
     }
 

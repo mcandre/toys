@@ -9,14 +9,14 @@
 
 #include "fizzy/fizzy.h"
 
-static char fizz_buzz[9] = "FizzBuzz";
-static size_t fizz_buzz_sz = sizeof(fizz_buzz);
+static const char fizz_buzz[9] = "FizzBuzz";
+static const size_t fizz_buzz_sz = sizeof(fizz_buzz);
 
-static char fizz[5] = "Fizz";
-static size_t fizz_sz = sizeof(fizz);
+static const char fizz[5] = "Fizz";
+static const size_t fizz_sz = sizeof(fizz);
 
-static char buzz[5] = "Buzz";
-static size_t buzz_sz = sizeof(buzz);
+static const char buzz[5] = "Buzz";
+static const size_t buzz_sz = sizeof(buzz);
 
 void fizzy(char *answer, unsigned int n) {
     const bool a = n % 3 == 0, b = n % 5 == 0;

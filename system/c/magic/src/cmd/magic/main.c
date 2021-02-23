@@ -17,16 +17,17 @@ int main() {
     for (int i = 0; i < 7; i++) {
         magic[15]++;
 
-        if (i != 3) {
-            printf(
-                "%02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x\n",
-                magic[0], magic[1], magic[2], magic[3], magic[4], magic[5], magic[6], magic[7],
-                magic[8], magic[9], magic[10], magic[11], magic[12], magic[13], magic[14],
-                magic[15]
-            );
-        } else {
+        if (i == 3) {
             printf("                 [ redacted ]\n");
+            continue;
         }
+
+        printf(
+            "%02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x\n",
+            magic[0], magic[1], magic[2], magic[3], magic[4], magic[5], magic[6], magic[7],
+            magic[8], magic[9], magic[10], magic[11], magic[12], magic[13], magic[14],
+            magic[15]
+        );
     }
 
     return EXIT_SUCCESS;

@@ -5,16 +5,25 @@
  * Mirrors STDIN.
  */
 
+
+#include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
 
 int main() {
-    int c = getchar();
+    while (1) {
+        int c = getchar();
 
-    while (c != EOF) {
+        if (c == EOF) {
+            return EXIT_SUCCESS;
+        }
+
+        errno = 0;
         (void) putchar(c);
-        c = getchar();
-    }
 
-    return EXIT_SUCCESS;
+        if (ferror(stdout)) {
+            fprintf(stderr, "error writing character\n");
+            return EXIT_FAILURE;
+        }
+    }
 }
