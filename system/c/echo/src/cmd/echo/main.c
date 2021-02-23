@@ -7,11 +7,12 @@
 
 
 #include <errno.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 
 int main() {
-    while (1) {
+    while (true) {
         int c = getchar();
 
         if (c == EOF) {
