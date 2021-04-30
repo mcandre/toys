@@ -51,7 +51,7 @@ GEM
       ruby_parser (>= 3.5.0, < 4.0)
       sexp_processor (~> 4.4)
     regexp_parser (2.0.3)
-    rexml (3.2.4)
+    rexml (3.2.5)
     roodi (4.1.1)
       ruby_parser (~> 3.2, >= 3.2.2)
     rspec (3.10.0)
