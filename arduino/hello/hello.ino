@@ -164,6 +164,7 @@ void flash_char(char ascii, int scale_ms) {
     delay(scale_ms);
 }
 
+// flash_morse emits an ASCII string.
 void flash_morse(char* ascii, int scale_ms) {
     size_t ascii_len = strlen(ascii);
     for (size_t i = 0; i < ascii_len; i++) {
