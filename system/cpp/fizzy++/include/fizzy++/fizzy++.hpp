@@ -13,11 +13,11 @@
  * @brief fizzy controls a drinking game.
  */
 namespace fizzy {
-    /**
-     * @brief Fizzy reports the appropriate answer given a game state.
-     *
-     * @param n game state
-     * @returns answer
-     */
-    std::string Fizzy(int n);
+/**
+ * @brief Fizzy reports the appropriate answer given a game state.
+ *
+ * @param n game state
+ * @returns answer
+ */
+std::string Fizzy(int n);
 }
