@@ -1,9 +1,10 @@
-FROM library/debian:buster
+FROM library/debian:bullseye-slim
 ENV PATH $PATH:/root/.local/bin:/root/sail/bin
 COPY requirements-dev.txt /tmp
 RUN apt-get update && \
     apt-get install -y \
         clang \
+        clang-format \
         cmake \
         cppcheck \
         doxygen \

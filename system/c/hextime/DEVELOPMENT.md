@@ -10,6 +10,7 @@
 
 ```console
 $ docker build -t mcandre/hextime-buildbot .
+$ docker scan --accept-license mcandre/hextime-buildbot
 $ docker run --rm -it -v "$(pwd):/src" mcandre/hextime-buildbot sh
 # cd /src
 # cmake .

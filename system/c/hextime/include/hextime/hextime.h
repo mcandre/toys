@@ -24,4 +24,4 @@ void hex_now(char *result);
  * @param result buffer (6 bytes)
  * @param t UTC
  */
-void hex_time(char* result, const struct tm *t);
+void hex_time(char *result, const struct tm *t);
