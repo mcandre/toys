@@ -40,12 +40,13 @@ add_test(NAME fizzy_unit_test COMMAND bin/fizzy)
 add_custom_target(cppcheck COMMAND cppcheck -q --force --enable=all --inline-suppr --suppressions-list=suppressions.cfg --error-exitcode=1 -I include src)
 add_custom_target(cpplint COMMAND sail include src | xargs -n 1 cpplint)
 add_custom_target(vera++ COMMAND sail include src | xargs -n 1 vera++)
+add_custom_target(clang-format COMMAND sail include src | xargs -n 1 clang-format -i)
 
 # Missing linter ports
 if(MSVC)
     add_custom_target(lint DEPENDS cppcheck)
 else()
-    add_custom_target(lint DEPENDS cppcheck cpplint vera++)
+    add_custom_target(lint DEPENDS cppcheck cpplint vera++ clang-format)
 endif()
 
 add_custom_target(valgrind_test COMMAND valgrind --error-exitcode=1 --leak-check=full bin/fizzy)
