@@ -18,25 +18,22 @@ static const size_t fizz_sz = sizeof(fizz);
 static const char buzz[5] = "Buzz";
 static const size_t buzz_sz = sizeof(buzz);
 
-void fizzy(char *answer, unsigned int n) {
+int fizzy(char *answer, unsigned int n) {
     const bool a = n % 3 == 0,
                b = n % 5 == 0;
 
     if (a && b) {
-        (void) snprintf(answer, fizz_buzz_sz, "%s", fizz_buzz);
-        return;
+        return snprintf(answer, fizz_buzz_sz, "%s", fizz_buzz);
     }
 
     if (a) {
-        (void) snprintf(answer, fizz_sz, "%s", fizz);
-        return;
+        return snprintf(answer, fizz_sz, "%s", fizz);
     }
 
     if (b) {
-        (void) snprintf(answer, buzz_sz, "%s", buzz);
-        return;
+        return snprintf(answer, buzz_sz, "%s", buzz);
     }
 
     const size_t sz = (size_t)(2 + log(n));
-    (void) snprintf(answer, sz, "%u", n);
+    return snprintf(answer, sz, "%u", n);
 }

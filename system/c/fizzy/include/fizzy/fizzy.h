@@ -13,6 +13,7 @@
  * @brief fizzy reports the appropriate answer given a game state.
  *
  * @param answer buffer max(9, 2 + log(n)) bytes
- * @param n game state.
+ * @param n game state
+ * @returns negative value on error
  */
-void fizzy(char *answer, unsigned int n);
+int fizzy(char *answer, unsigned int n);

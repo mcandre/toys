@@ -11,17 +11,15 @@
 #include <stdlib.h>
 
 int main() {
-    while (true) {
-        int c = getchar();
+    int c; // NOLINT(cppcoreguidelines-init-variables)
 
-        if (c == EOF) {
+    while (true) {
+        if ((c = getchar()) == EOF) {
             return EXIT_SUCCESS;
         }
 
         errno = 0;
-        (void) putchar(c);
-
-        if (ferror(stdout)) {
+        if (putchar(c) == EOF) {
             fprintf(stderr, "error writing character\n");
             return EXIT_FAILURE;
         }
