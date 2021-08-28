@@ -10,7 +10,7 @@
 
 ```console
 $ docker build -t mcandre/echo-buildbot .
-$ docker scan --accept-license mcandre/echo-buildbot
+$ docker scan --accept-license -f Dockerfile mcandre/echo-buildbot
 $ docker run --rm -it -v "$(pwd):/src" mcandre/echo-buildbot sh
 # cd /src
 # cmake .

@@ -10,7 +10,7 @@
 
 ```console
 $ docker build -t mcandre/cpp-fizzy-buildbot .
-$ docker scan --accept-license mcandre/cpp-fizzy-buildbot
+$ docker scan --accept-license -f Dockerfile mcandre/cpp-fizzy-buildbot
 $ docker run --rm -it -v "$(pwd):/src" mcandre/cpp-fizzy-buildbot sh
 # cd /src
 # cmake .

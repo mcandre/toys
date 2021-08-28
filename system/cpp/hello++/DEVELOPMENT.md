@@ -10,7 +10,7 @@
 
 ```console
 $ docker build -t mcandre/cpp-hello-buildbot .
-$ docker scan --accept-license mcandre/cpp-hello-buildbot
+$ docker scan --accept-license -f Dockerfile mcandre/cpp-hello-buildbot
 $ docker run --rm -it -v "$(pwd):/src" mcandre/cpp-hello-buildbot sh
 # cd /src
 # cmake .

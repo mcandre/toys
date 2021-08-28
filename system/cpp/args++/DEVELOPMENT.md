@@ -10,7 +10,7 @@
 
 ```console
 $ docker build -t mcandre/cpp-args-buildbot .
-$ docker scan --accept-license mcandre/cpp-args-buildbot
+$ docker scan --accept-license -f Dockerfile mcandre/cpp-args-buildbot
 $ docker run --rm -it -v "$(pwd):/src" mcandre/cpp-args-buildbot sh
 # cd /src
 # cmake .
