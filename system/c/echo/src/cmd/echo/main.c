@@ -10,7 +10,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main() {
+int main(void) {
     int c; // NOLINT(cppcoreguidelines-init-variables)
 
     while (true) {

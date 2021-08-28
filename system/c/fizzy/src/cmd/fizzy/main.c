@@ -8,7 +8,7 @@
 
 #include "fizzy/fizzy.h"
 
-int main() {
+int main(void) {
     char buf[9];
     const size_t buf_sz = sizeof(buf);
 

@@ -8,7 +8,7 @@
 
 #include "hextime/hextime.h"
 
-int main() {
+int main(void) {
     char buf[6];
     hex_now(buf);
     printf("%s\n", buf);
