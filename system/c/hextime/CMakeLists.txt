@@ -24,6 +24,10 @@ else()
 
     if(CMAKE_C_COMPILER_ID MATCHES "Clang")
         set(CMAKE_C_FLAGS "${CLANG_C_FLAGS}")
+
+        if(NOT CMAKE_SYSTEM_NAME MATCHES "Darwin")
+            set(CMAKE_C_CLANG_TIDY clang-tidy -header-filter=${CMAKE_SOURCE_DIR})
+        endif()
     else()
         set(CMAKE_C_FLAGS "${GNU_C_FLAGS}")
     endif()

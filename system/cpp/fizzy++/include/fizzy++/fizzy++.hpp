@@ -19,5 +19,5 @@ namespace fizzy {
  * @param n game state
  * @returns answer
  */
-std::string Fizzy(int n);
+std::string Fizzy(uint n);
 }
