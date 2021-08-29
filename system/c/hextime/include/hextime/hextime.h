@@ -15,13 +15,15 @@
  * @brief renders the current time in hexadecimal
  *
  * @param result buffer (6 bytes)
+ * @returns negative value on error
  */
-void hex_now(char *result);
+int hex_now(char *result);
 
 /**
  * @brief renders a given time to hexadecimal
  *
  * @param result buffer (6 bytes)
  * @param t UTC
+ * @returns negative value on error
  */
-void hex_time(char *result, const struct tm *t);
+int hex_time(char *result, const struct tm *t);

@@ -10,7 +10,12 @@
 
 int main(void) {
     char buf[6];
-    hex_now(buf);
+
+    if (hex_now(buf) < 0) {
+        fprintf(stderr, "error encoding\n");
+        return EXIT_FAILURE;
+    }
+
     printf("%s\n", buf);
     return EXIT_SUCCESS;
 }
