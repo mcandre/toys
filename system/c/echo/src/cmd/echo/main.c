@@ -11,9 +11,9 @@
 #include <stdlib.h>
 
 int main(void) {
-    int c; // NOLINT(cppcoreguidelines-init-variables)
-
     while (true) {
+        int c; // NOLINT(cppcoreguidelines-init-variables)
+
         if ((c = getchar()) == EOF) {
             return EXIT_SUCCESS;
         }
