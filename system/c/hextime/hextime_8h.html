@@ -96,22 +96,22 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aefb8221d72e2caba4d3d161eaa52f374"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hextime_8h.html#aefb8221d72e2caba4d3d161eaa52f374">hex_now</a> (char *result)</td></tr>
-<tr class="memdesc:aefb8221d72e2caba4d3d161eaa52f374"><td class="mdescLeft">&#160;</td><td class="mdescRight">renders the current time in hexadecimal  <a href="hextime_8h.html#aefb8221d72e2caba4d3d161eaa52f374">More...</a><br /></td></tr>
-<tr class="separator:aefb8221d72e2caba4d3d161eaa52f374"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3bc485f4655e48c40638a0062615737a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hextime_8h.html#a3bc485f4655e48c40638a0062615737a">hex_time</a> (char *result, const struct tm *t)</td></tr>
-<tr class="memdesc:a3bc485f4655e48c40638a0062615737a"><td class="mdescLeft">&#160;</td><td class="mdescRight">renders a given time to hexadecimal  <a href="hextime_8h.html#a3bc485f4655e48c40638a0062615737a">More...</a><br /></td></tr>
-<tr class="separator:a3bc485f4655e48c40638a0062615737a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad47fe18ac83dababe424035dd912b083"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hextime_8h.html#ad47fe18ac83dababe424035dd912b083">hex_now</a> (char *result)</td></tr>
+<tr class="memdesc:ad47fe18ac83dababe424035dd912b083"><td class="mdescLeft">&#160;</td><td class="mdescRight">renders the current time in hexadecimal  <a href="hextime_8h.html#ad47fe18ac83dababe424035dd912b083">More...</a><br /></td></tr>
+<tr class="separator:ad47fe18ac83dababe424035dd912b083"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a469cb339a27fc20e354e4648c054e196"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hextime_8h.html#a469cb339a27fc20e354e4648c054e196">hex_time</a> (char *result, const struct tm *t)</td></tr>
+<tr class="memdesc:a469cb339a27fc20e354e4648c054e196"><td class="mdescLeft">&#160;</td><td class="mdescRight">renders a given time to hexadecimal  <a href="hextime_8h.html#a469cb339a27fc20e354e4648c054e196">More...</a><br /></td></tr>
+<tr class="separator:a469cb339a27fc20e354e4648c054e196"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="aefb8221d72e2caba4d3d161eaa52f374"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aefb8221d72e2caba4d3d161eaa52f374">&#9670;&nbsp;</a></span>hex_now()</h2>
+<a id="ad47fe18ac83dababe424035dd912b083"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad47fe18ac83dababe424035dd912b083">&#9670;&nbsp;</a></span>hex_now()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void hex_now </td>
+          <td class="memname">int hex_now </td>
           <td>(</td>
           <td class="paramtype">char *&#160;</td>
           <td class="paramname"><em>result</em></td><td>)</td>
@@ -123,22 +123,23 @@ Functions</h2></td></tr>
 <p>renders the current time in hexadecimal </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">result</td><td>buffer (6 bytes)</td></tr>
+    <tr><td class="paramname">result</td><td>buffer (6 bytes) </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>negative value on error</dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>2020 YelloSoft </dd></dl>
 
 </div>
 </div>
-<a id="a3bc485f4655e48c40638a0062615737a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3bc485f4655e48c40638a0062615737a">&#9670;&nbsp;</a></span>hex_time()</h2>
+<a id="a469cb339a27fc20e354e4648c054e196"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a469cb339a27fc20e354e4648c054e196">&#9670;&nbsp;</a></span>hex_time()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void hex_time </td>
+          <td class="memname">int hex_time </td>
           <td>(</td>
           <td class="paramtype">char *&#160;</td>
           <td class="paramname"><em>result</em>, </td>
@@ -165,6 +166,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>negative value on error </dd></dl>
 
 </div>
 </div>
