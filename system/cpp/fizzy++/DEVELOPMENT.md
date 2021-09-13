@@ -1,54 +1,65 @@
 # BUILDTIME REQUIREMENTS
 
-* [Docker](https://www.docker.com/)
+* a C/C++ 17 compiler
+* [cmake](https://cmake.org/) 3+
 
 ## Recommended
 
-* [karp](https://github.com/mcandre/karp) (`go get github.com/mcandre/karp/...`)
+* [GNU coreutils](https://www.gnu.org/software/coreutils/), [GNU findutils](https://www.gnu.org/software/findutils/), such as from [WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
+* [clang-format](https://clang.llvm.org/docs/ClangFormat.html)
+* [clang-tidy](https://clang.llvm.org/extra/clang-tidy/)
+* [cppcheck](https://cppcheck.sourceforge.io/)
+* [cpplint](https://pypi.org/project/cpplint/)
+* [Doxygen](https://www.doxygen.nl/index.html)
+* [sail](https://github.com/mcandre/sail)
+* [vera++](https://bitbucket.org/verateam/vera/wiki/Home)
 
-# PREBUILD
+# BUILD
 
 ```console
-$ docker build -t mcandre/cpp-fizzy-buildbot .
-$ docker scan --accept-license -f Dockerfile mcandre/cpp-fizzy-buildbot
-$ docker run --rm -it -v "$(pwd):/src" mcandre/cpp-fizzy-buildbot sh
-# cd /src
-# cmake .
+$ cmake .
+$ cmake --build . --config Release
+```
+
+# INSTALL
+
+```console
+$ cmake --build . --target install
+```
+
+# UNINSTALL
+
+```console
+$ cmake --build . --target uninstall
 ```
 
 # LINT
 
 ```console
-# cmake --build . --target lint
-```
-
-# COMPILE
-
-```console
-# cmake --build . --config Release
-```
-
-# LEAK CHECK
-
-```console
-# cmake --build . --target leaks
+$ cmake --build . --target lint
 ```
 
 # TEST
 
 ```console
-# CTEST_OUTPUT_ON_FAILURE=1 ctest -C Release
+$ CTEST_OUTPUT_ON_FAILURE=1 ctest -C Release
+```
+
+# LEAK CHECK
+
+```console
+$ cmake --build . --target leaks
 ```
 
 # DOCUMENT
 
 ```console
-# cmake --build . --target doc
+$ cmake --build . --target doc
 $ karp html/index.html
 ```
 
 # CLEAN
 
 ```console
-# ./clean-cmake.sh
+$ ./clean.sh
 ```

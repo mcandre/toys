@@ -35,6 +35,25 @@ endif()
 
 add_executable(hello src/cmd/hello/main.c)
 
+if(MSVC)
+    set(HOME "$ENV{HOMEDRIVE}$ENV{HOMEPATH}")
+    set(ARTIFACT hello.exe)
+else()
+    set(HOME "$ENV{HOME}")
+    set(ARTIFACT hello)
+endif()
+
+file(TO_NATIVE_PATH "${HOME}/bin" INSTALL_DIR)
+file(TO_NATIVE_PATH "${INSTALL_DIR}/${ARTIFACT}" INSTALL_FILE)
+
+install(PROGRAMS $<TARGET_FILE:hello> DESTINATION "${INSTALL_DIR}")
+
+if(MSVC)
+    add_custom_target(uninstall COMMAND del /s /q "${INSTALL_FILE}")
+else()
+    add_custom_target(uninstall COMMAND rm -f "${INSTALL_FILE}")
+endif()
+
 enable_testing()
 add_test(NAME hello_unit_test COMMAND bin/hello)
 

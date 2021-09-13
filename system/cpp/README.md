@@ -15,14 +15,9 @@ Hello World!
 
 # REQUIREMENTS
 
-* [coreutils](https://www.gnu.org/software/coreutils/coreutils.html)
-* a [C++ compiler](https://en.wikipedia.org/wiki/List_of_compilers#C.2B.2B_compilers)
-* [make](https://www.gnu.org/software/make/)
+* a C/C++ 17 compiler
+* [cmake](https://cmake.org/) 3+
 
-## Optional
+# Recommended
 
-* [cppcheck](http://cppcheck.sourceforge.net)
-* [splint](http://www.splint.org)
-* [vera++](https://bitbucket.org/verateam/vera/wiki/Home)
-* [valgrind](http://valgrind.org)
-* [astyle](http://astyle.sourceforge.net)
+* [accio](https://github.com/mcandre/accio) 0.0.2

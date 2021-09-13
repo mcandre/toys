@@ -35,6 +35,25 @@ endif()
 
 add_executable(echo src/cmd/echo/main.c)
 
+if(MSVC)
+    set(HOME "$ENV{HOMEDRIVE}$ENV{HOMEPATH}")
+    set(ARTIFACT echo.exe)
+else()
+    set(HOME "$ENV{HOME}")
+    set(ARTIFACT echo)
+endif()
+
+file(TO_NATIVE_PATH "${HOME}/bin" INSTALL_DIR)
+file(TO_NATIVE_PATH "${INSTALL_DIR}/${ARTIFACT}" INSTALL_FILE)
+
+install(PROGRAMS $<TARGET_FILE:echo> DESTINATION "${INSTALL_DIR}")
+
+if(MSVC)
+    add_custom_target(uninstall COMMAND del /s /q "${INSTALL_FILE}")
+else()
+    add_custom_target(uninstall COMMAND rm -f "${INSTALL_FILE}")
+endif()
+
 enable_testing()
 
 add_custom_target(cppcheck COMMAND cppcheck -q --force --enable=all --inline-suppr --suppressions-list=suppressions.cfg --error-exitcode=1 src)

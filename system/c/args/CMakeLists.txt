@@ -35,6 +35,25 @@ endif()
 
 add_executable(args src/cmd/args/main.c)
 
+if(MSVC)
+    set(HOME "$ENV{HOMEDRIVE}$ENV{HOMEPATH}")
+    set(ARTIFACT args.exe)
+else()
+    set(HOME "$ENV{HOME}")
+    set(ARTIFACT args)
+endif()
+
+file(TO_NATIVE_PATH "${HOME}/bin" INSTALL_DIR)
+file(TO_NATIVE_PATH "${INSTALL_DIR}/${ARTIFACT}" INSTALL_FILE)
+
+install(PROGRAMS $<TARGET_FILE:args> DESTINATION "${INSTALL_DIR}")
+
+if(MSVC)
+    add_custom_target(uninstall COMMAND del /s /q "${INSTALL_FILE}")
+else()
+    add_custom_target(uninstall COMMAND rm -f "${INSTALL_FILE}")
+endif()
+
 enable_testing()
 add_test(NAME args_unit_test COMMAND bin/args a b c)
 

@@ -46,6 +46,25 @@ include_directories(include)
 add_executable(fizzy++ src/cmd/fizzy++/main.cpp src/fizzy++.cpp)
 target_link_libraries(fizzy++ "-lpthread")
 
+if(MSVC)
+    set(HOME "$ENV{HOMEDRIVE}$ENV{HOMEPATH}")
+    set(ARTIFACT fizzy++.exe)
+else()
+    set(HOME "$ENV{HOME}")
+    set(ARTIFACT fizzy++)
+endif()
+
+file(TO_NATIVE_PATH "${HOME}/bin" INSTALL_DIR)
+file(TO_NATIVE_PATH "${INSTALL_DIR}/${ARTIFACT}" INSTALL_FILE)
+
+install(PROGRAMS $<TARGET_FILE:fizzy++> DESTINATION "${INSTALL_DIR}")
+
+if(MSVC)
+    add_custom_target(uninstall COMMAND del /s /q "${INSTALL_FILE}")
+else()
+    add_custom_target(uninstall COMMAND rm -f "${INSTALL_FILE}")
+endif()
+
 enable_testing()
 add_test(NAME fizzy_unit_test COMMAND bin/fizzy++)
 

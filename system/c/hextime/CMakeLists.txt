@@ -37,6 +37,27 @@ include_directories(include)
 
 add_executable(hextime src/cmd/hextime/main.c src/hextime.c)
 
+if(MSVC)
+    set(HOME "$ENV{HOMEDRIVE}$ENV{HOMEPATH}")
+    set(ARTIFACT hextime.exe)
+else()
+    set(HOME "$ENV{HOME}")
+    set(ARTIFACT hextime)
+endif()
+
+file(TO_NATIVE_PATH "${HOME}/bin" INSTALL_DIR)
+file(TO_NATIVE_PATH "${INSTALL_DIR}/${ARTIFACT}" INSTALL_FILE)
+
+install(PROGRAMS $<TARGET_FILE:hextime> DESTINATION "${INSTALL_DIR}")
+
+if(MSVC)
+    add_custom_target(uninstall COMMAND del /s /q "${INSTALL_FILE}")
+else()
+    add_custom_target(uninstall COMMAND rm -f "${INSTALL_FILE}")
+endif()
+
+enable_testing()
+
 enable_testing()
 add_test(NAME hextime_unit_test COMMAND bin/hextime)
 
