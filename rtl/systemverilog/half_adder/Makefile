@@ -4,7 +4,11 @@ all: test
 
 $(ARTIFACT): test_half_adder.sv half_adder.sv
 	@mkdir -p bin
-	@iverilog -o $(ARTIFACT) -g2012 test_half_adder.sv -Wall
+	@iverilog \
+		-o $(ARTIFACT) \
+		-g2012 \
+		test_half_adder.sv \
+		-Wall
 
 test: $(ARTIFACT)
 	@! vvp -n $(ARTIFACT) | \

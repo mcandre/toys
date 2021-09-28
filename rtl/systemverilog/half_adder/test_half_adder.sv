@@ -1,33 +1,25 @@
 `include "half_adder.sv"
 
 module test_half_adder;
-    wire sum00,
-         carry00;
-    half_adder ha00(1'b0, 1'b0, sum00, carry00);
+    reg c = 0,
+        a = 0,
+        b = 0;
+    always #4 c = !c;
+    always #2 a = !a;
+    always #1 b = !b;
 
-    wire sum01,
-         carry01;
-    half_adder ha01(1'b0, 1'b1, sum01, carry01);
+    wire sum,
+        carry;
+    half_adder ha(a, b, sum, carry);
 
-    wire sum10,
-         carry10;
-    half_adder ha10(1'b1, 1'b0, sum10, carry10);
+    always #1 begin
+        #0 begin
+            $display("A: %0d, B: %0d, Sum: %0d, Carry: %0d", a, b, sum, carry);
 
-    wire sum11,
-         carry11;
-    half_adder ha11(1'b1, 1'b1, sum11, carry11);
+            if (sum != a ^ b) $error("corrupt sum");
+            if (carry != a & b) $error("corrupt carry");
 
-    initial begin
-        #1 assert (sum00 == 0);
-        #1 assert (carry00 == 0);
-
-        #1 assert (sum01 == 1);
-        #1 assert (carry01 == 0);
-
-        #1 assert (sum10 == 1);
-        #1 assert (carry10 == 0);
-
-        #1 assert (sum11 == 0);
-        #1 assert (carry11 == 1);
+            if (c == 1'b1) $finish();
+        end
     end
 endmodule
