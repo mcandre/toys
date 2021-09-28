@@ -1,14 +1,12 @@
 module half_adder(
     input a,
-    input b,
-    output reg sum,
-    output reg carry
+    b,
+    output sum,
+    carry
 );
-    always @*
-        begin
-            sum <= a ^ b;
-            carry <= a & b;
-        end
+
+    assign sum = a ^ b;
+    assign carry = a & b;
 endmodule
 
 module test_half_adder;
