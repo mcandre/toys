@@ -17,8 +17,8 @@ $
 
 # REQUIREMENTS
 
-* [iverilog](http://iverilog.icarus.com/)
+* [iverilog](http://iverilog.icarus.com/) 12+
 
 ## Recommended
 
-* [GNU make](https://www.gnu.org/software/make/)
+* [GNU make](https://www.gnu.org/software/make/) 4+
