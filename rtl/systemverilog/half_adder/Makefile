@@ -1,6 +1,6 @@
 ARTIFACT=bin/half_adder
 
-all: $(ARTIFACT)
+all: test
 
 $(ARTIFACT): test_half_adder.sv half_adder.sv
 	@mkdir -p bin
