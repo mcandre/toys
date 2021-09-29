@@ -12,4 +12,6 @@ $ make
 
 ## Recommended
 
+* [coreutils](https://www.gnu.org/software/coreutils/)
 * [GNU make](https://www.gnu.org/software/make/) 4+
+* [grep](https://www.gnu.org/software/grep/)
