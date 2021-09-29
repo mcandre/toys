@@ -14,11 +14,8 @@ module test_half_adder;
 
     always #1 begin
         #0 begin
-            $display("A: %0d, B: %0d, Sum: %0d, Carry: %0d", a, b, sum, carry);
-
             if (sum != a ^ b) $error("corrupt sum");
             if (carry != a & b) $error("corrupt carry");
-
             if (c == 1'b1) $finish();
         end
     end
