@@ -1,8 +1,6 @@
 `include "wholeass.sv"
 
-module test_wholeass;
-    parameter N = 3;
-
+module test_wholeass #(parameter N = 3);
     reg c = 0,
         carry_in = 0;
     reg [N-1:0] a = 0,
