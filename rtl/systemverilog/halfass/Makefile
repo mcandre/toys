@@ -1,13 +1,13 @@
-ARTIFACT=bin/half_adder
+ARTIFACT=bin/halfass
 
 all: test
 
-$(ARTIFACT): test_half_adder.sv half_adder.sv
+$(ARTIFACT): test_halfass.sv halfass.sv
 	@mkdir -p bin
 	@iverilog \
 		-o $(ARTIFACT) \
 		-g2012 \
-		test_half_adder.sv \
+		test_halfass.sv \
 		-Wall
 
 test: $(ARTIFACT)

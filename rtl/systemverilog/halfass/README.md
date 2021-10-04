@@ -1,4 +1,4 @@
-# half_adder: a two bit adding machine
+# halfass: a two bit adding machine
 
 # TEST
 

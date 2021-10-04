@@ -1,6 +1,6 @@
-`include "half_adder.sv"
+`include "halfass.sv"
 
-module test_half_adder;
+module test_halfass;
     reg c = 0,
         a = 0,
         b = 0;
@@ -10,7 +10,7 @@ module test_half_adder;
 
     wire sum,
         carry;
-    half_adder ha(a, b, sum, carry);
+    halfass ha(a, b, sum, carry);
 
     always #1 begin
         #0 begin
