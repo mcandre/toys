@@ -1,18 +1,22 @@
-ARTIFACT=bin/wholeass
+ARTIFACT=obj_dir/Vtest_wholeass
 
 all: test
 
-$(ARTIFACT): test_wholeass.sv wholeass.sv
-	@mkdir -p bin
-	@iverilog \
-		-o $(ARTIFACT) \
-		-g2012 \
-		test_wholeass.sv \
-		-Wall
+$(ARTIFACT): main.cpp test_wholeass.sv wholeass.sv
+	@verilator \
+		-Wall \
+		--cc \
+		--exe \
+		main.cpp \
+		test_wholeass.sv
+	@make \
+		-j \
+		-C obj_dir \
+		-f Vtest_wholeass.mk \
+		Vtest_wholeass
 
 test: $(ARTIFACT)
-	@! vvp -n $(ARTIFACT) | \
-		grep 'ERROR' -A 1
+	@$(ARTIFACT)
 
 clean:
-	-rm -rf bin
+	-rm -rf obj_dir

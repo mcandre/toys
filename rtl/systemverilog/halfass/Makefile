@@ -1,18 +1,22 @@
-ARTIFACT=bin/halfass
+ARTIFACT=obj_dir/Vtest_halfass
 
 all: test
 
-$(ARTIFACT): test_halfass.sv halfass.sv
-	@mkdir -p bin
-	@iverilog \
-		-o $(ARTIFACT) \
-		-g2012 \
-		test_halfass.sv \
-		-Wall
+$(ARTIFACT): main.cpp test_halfass.sv halfass.sv
+	@verilator \
+		-Wall \
+		--cc \
+		--exe \
+		main.cpp \
+		test_halfass.sv
+	@make \
+		-j \
+		-C obj_dir \
+		-f Vtest_halfass.mk \
+		Vtest_halfass
 
 test: $(ARTIFACT)
-	@! vvp -n $(ARTIFACT) | \
-		grep 'ERROR' -A 1
+	@$(ARTIFACT)
 
 clean:
-	-rm -rf bin
+	-rm -rf obj_dir
