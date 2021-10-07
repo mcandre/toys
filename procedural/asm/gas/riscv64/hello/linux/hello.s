@@ -1,9 +1,9 @@
 .global _start
 
 _start:
-    addi a0, x0, 1 # stdout
+    addi a0, x0, %lo(stdout)
     la a1, msg
-    addi a2, x0, 13
+    addi a2, x0, %lo(len)
     addi a7, x0, 64 # sys_write
     ecall
 
@@ -11,7 +11,9 @@ _start:
     addi a7, x0, 93 # sys_exit
     ecall
 
-.data
+.section .rodata
 
-msg:
-.ascii "Hello World!\n"
+.equ stdout, 1
+
+msg: .ascii "Hello World!\n"
+.equ len, .-msg
