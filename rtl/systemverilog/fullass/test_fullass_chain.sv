@@ -1,7 +1,7 @@
 `include "fullass_chain.sv"
 
 module test_fullass_chain;
-    parameter WIDTH = 3;
+    parameter WIDTH = 8;
     reg [WIDTH-1:0] a /* verilator public */,
                     b /* verilator public */;
     reg carry_in /* verilator public */;
