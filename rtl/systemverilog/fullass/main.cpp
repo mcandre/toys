@@ -8,14 +8,14 @@ int main(int argc, char **argv) {
 
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
-            auto *top = new Vtest_fullass{"top"};
-            top->test_fullass->a = i;
-            top->test_fullass->b = j;
-            top->test_fullass->carry_in = 0;
-            top->eval();
-            assert(top->test_fullass->sum == ((i + j) % 8));
-            assert(top->test_fullass->carry_out == ((i + j) > 7));
-            delete top;
+            Vtest_fullass top{"top"};
+            auto *fa = top.test_fullass;
+            fa->a = i;
+            fa->b = j;
+            fa->carry_in = 0;
+            top.eval();
+            assert(fa->sum == ((i + j) % 8));
+            assert(fa->carry_out == ((i + j) > 7));
         }
     }
 
