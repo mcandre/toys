@@ -1,5 +1,9 @@
 # wholeass: an n-bit adding machine
 
+Alternative title: *The world's dumbest ISA*
+
+wholeass implements basic integer addition with raw logic gates (ignores any available DSP components).
+
 # TEST
 
 ```console
