@@ -1,19 +1,19 @@
-ARTIFACT=obj_dir/Vtest_wholeass
+ARTIFACT=obj_dir/Vtest_fullass
 
 all: test
 
-$(ARTIFACT): main.cpp test_wholeass.sv wholeass.sv
+$(ARTIFACT): main.cpp test_fullass.sv fullass.sv
 	@verilator \
 		-Wall \
 		--cc \
 		--exe \
 		main.cpp \
-		test_wholeass.sv
+		test_fullass.sv
 	@make \
 		-j \
 		-C obj_dir \
-		-f Vtest_wholeass.mk \
-		Vtest_wholeass
+		-f Vtest_fullass.mk \
+		Vtest_fullass
 
 test: $(ARTIFACT)
 	@$(ARTIFACT)
