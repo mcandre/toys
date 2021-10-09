@@ -2,7 +2,7 @@
 
 Alternative title: *The world's dumbest ISA*
 
-wholeass implements basic integer addition with raw logic gates (ignores any available DSP components).
+wholeass implements basic unsigned integer addition with raw logic gates (ignores any available DSP components).
 
 # TEST
 
