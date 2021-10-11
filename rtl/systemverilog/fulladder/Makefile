@@ -4,7 +4,7 @@ ARTIFACT=obj_dir/Vfulladder_chain
 
 all: test
 
-$(ARTIFACT): main.cpp fulladder_chain.sv fulladder.sv
+$(ARTIFACT): Makefile main.cpp fulladder_chain.sv fulladder.sv
 	@verilator \
 		-Wall \
 		-Wno-UNOPTFLat \
