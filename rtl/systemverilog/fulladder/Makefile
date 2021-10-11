@@ -5,6 +5,7 @@ all: test
 $(ARTIFACT): main.cpp test_fulladder_chain.sv fulladder_chain.sv fulladder.sv
 	@verilator \
 		-Wall \
+		-Wno-UNOPTFLat \
 		--cc \
 		--exe \
 		main.cpp \
