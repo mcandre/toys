@@ -2,7 +2,7 @@
 
 Alternative title: *The world's dumbest ISA*
 
-fulladder_chain implements basic integer addition with raw logic gates (ignores any available DSP components).
+fulladder_chain implements basic integer addition and subtraction via raw logic gates (ignores any available DSP components).
 
 Both unsigned and two's complement signed format are accepted.
 
