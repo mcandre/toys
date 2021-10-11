@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['fizzy',['fizzy',['../namespacefizzy.html',1,'']]]
+  ['fizzy_5',['fizzy',['../namespacefizzy.html',1,'']]]
 ];
