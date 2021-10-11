@@ -1,9 +1,9 @@
-`include "halfass.sv"
+`include "halfadder.sv"
 
-module test_halfass;
+module test_halfadder;
     reg a /* verilator public */,
         b /* verilator public */;
     wire sum /* verilator public */,
         carry /* verilator public */;
-    halfass ha(a, b, sum, carry);
+    halfadder ha(a, b, sum, carry);
 endmodule

@@ -1,8 +1,8 @@
-# fullass: an n-bit adding machine
+# fulladder: an n-bit adding machine
 
 Alternative title: *The world's dumbest ISA*
 
-fullass implements basic unsigned integer addition with raw logic gates (ignores any available DSP components).
+fulladder implements basic unsigned integer addition with raw logic gates (ignores any available DSP components).
 
 # TEST
 
