@@ -1,19 +1,19 @@
-ARTIFACT=obj_dir/Vtest_halfadder
+ARTIFACT=obj_dir/Vhalfadder
 
 all: test
 
-$(ARTIFACT): main.cpp test_halfadder.sv halfadder.sv
+$(ARTIFACT): Makefile main.cpp halfadder.sv
 	@verilator \
 		-Wall \
 		--cc \
 		--exe \
 		main.cpp \
-		test_halfadder.sv
+		halfadder.sv
 	@make \
 		-j \
 		-C obj_dir \
-		-f Vtest_halfadder.mk \
-		Vtest_halfadder
+		-f Vhalfadder.mk \
+		Vhalfadder
 
 test: $(ARTIFACT)
 	@$(ARTIFACT)
