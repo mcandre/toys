@@ -4,11 +4,11 @@ Alternative title: *The world's dumbest ISA*
 
 fulladder_chain implements basic integer addition and subtraction via raw logic gates (ignores any available DSP components).
 
-Both unsigned and two's complement signed format are accepted.
+Subraction is implemented in terms of negative inputs.
+
+Binary format: Either unsigned or two's complement.
 
 If you want to add n-bit negative values and/or subtract n-bit values, then expand `WIDTH` to 2n.
-
-Subraction is implemented in terms of negative inputs.
 
 # PRECONDITIONS
 
