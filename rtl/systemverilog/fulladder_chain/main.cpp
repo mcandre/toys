@@ -10,7 +10,7 @@ constexpr int min_signed = -1 * (1 << (WIDTH - 1));
 constexpr int max_signed = (1 << (WIDTH - 1)) - 1;
 constexpr int mask = max_unsigned;
 
-int to_2c(int x) {
+static int to_2c(int x) {
     if (x > -1) {
         return x;
     }
@@ -21,7 +21,7 @@ int to_2c(int x) {
     return x;
 }
 
-int from_2c(int x) {
+static int from_2c(int x) {
     if (!(x >> WIDTH)) {
         return x;
     }
