@@ -6,7 +6,7 @@ fulladder implements basic unsigned integer addition with raw logic gates (ignor
 
 # PRECONDITIONS
 
-* `WIDTH` > 1
+* `WIDTH` > 0
 
 # TEST
 
