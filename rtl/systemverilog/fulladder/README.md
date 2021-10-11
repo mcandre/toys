@@ -4,6 +4,10 @@ Alternative title: *The world's dumbest ISA*
 
 fulladder implements basic unsigned integer addition with raw logic gates (ignores any available DSP components).
 
+# PRECONDITIONS
+
+* `WIDTH` > 1
+
 # TEST
 
 ```console

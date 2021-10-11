@@ -1,20 +1,23 @@
-ARTIFACT=obj_dir/Vtest_fulladder_chain
+WIDTH=8
+
+ARTIFACT=obj_dir/Vfulladder_chain
 
 all: test
 
-$(ARTIFACT): main.cpp test_fulladder_chain.sv fulladder_chain.sv fulladder.sv
+$(ARTIFACT): main.cpp fulladder_chain.sv fulladder.sv
 	@verilator \
 		-Wall \
 		-Wno-UNOPTFLat \
+		-GWIDTH=$(WIDTH) \
 		--cc \
 		--exe \
 		main.cpp \
-		test_fulladder_chain.sv
-	@make \
+		fulladder_chain.sv
+	@CXXFLAGS=-DWIDTH=$(WIDTH) make \
 		-j \
 		-C obj_dir \
-		-f Vtest_fulladder_chain.mk \
-		Vtest_fulladder_chain
+		-f Vfulladder_chain.mk \
+		Vfulladder_chain
 
 test: $(ARTIFACT)
 	@$(ARTIFACT)
