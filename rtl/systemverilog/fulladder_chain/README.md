@@ -8,6 +8,8 @@ Subraction is implemented in terms of negative inputs.
 
 Binary format: Either unsigned or two's complement.
 
+Discard carry_out when using two's complement.
+
 If you want to add n-bit negative values and/or subtract n-bit values, then expand `WIDTH` to 2n.
 
 # PRECONDITIONS

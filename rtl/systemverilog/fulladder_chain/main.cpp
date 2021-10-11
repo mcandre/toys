@@ -45,10 +45,7 @@ int main(int argc, char **argv) {
             top.eval();
             carry_out = top.carry_out;
             assert(carry_out == ((i + j) > max_unsigned));
-
-            if (!carry_out) {
-                assert(top.sum == ((i + j) % len));
-            }
+            assert(top.sum == ((i + j) % len));
         }
     }
 
@@ -61,6 +58,7 @@ int main(int argc, char **argv) {
             top.a = to_2c(i);
             top.b = to_2c(j);
             top.eval();
+            carry_out = top.carry_out;
             sum = from_2c(top.sum);
             assert(sum == ((i + j) & mask));
         }
