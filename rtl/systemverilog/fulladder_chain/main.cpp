@@ -32,35 +32,26 @@ static int from_2c(int x) {
 }
 
 int main(int argc, char **argv) {
-    int carry_out = 0;
-
     Verilated::commandArgs(argc, argv);
+    Vfulladder_chain top{"top"};
+    top.carry_in = 0;
 
     for (int i = min_unsigned; i <= max_unsigned; i++) {
         for (int j = min_unsigned; j <= max_unsigned; j++) {
-            Vfulladder_chain top{"top"};
-            top.carry_in = 0;
             top.a = i;
             top.b = j;
             top.eval();
-            carry_out = top.carry_out;
-            assert(carry_out == ((i + j) > max_unsigned));
+            assert(top.carry_out == ((i + j) > max_unsigned));
             assert(top.sum == ((i + j) % len));
         }
     }
 
-    int sum = 0;
-
     for (int i = min_signed; i <= max_signed; i++) {
         for (int j = min_signed; j <= max_signed; j++) {
-            Vfulladder_chain top{"top"};
-            top.carry_in = 0;
             top.a = to_2c(i);
             top.b = to_2c(j);
             top.eval();
-            carry_out = top.carry_out;
-            sum = from_2c(top.sum);
-            assert(sum == ((i + j) & mask));
+            assert(from_2c(top.sum) == ((i + j) & mask));
         }
     }
 
