@@ -13,9 +13,14 @@ uint64_t htonll(uint64_t x) {
     return (htonl(1) == 1) ? x : (uint64_t(htonl(x >> 32UL)) | uint64_t(htonl(uint32_t(x))));
 }
 
+void SH2::Pad() {
+    content_buf[count] = 0x80;
+    content_buf[63] = htonll(len_bits);
+}
+
 void SH2::Mutate() {
     (void) std::memset(w, 0, sizeof(w));
-    (void) std::memcpy(w, content_buf + offset, size_t(64));
+    (void) std::memcpy(w, content_buf, size_t(64));
 
     uint32_t s0 = 0,
              s1 = 0;
@@ -85,38 +90,35 @@ void SH2::Encrypt(const std::string &path) {
     }
 
     while (true) {
-        count = fread(content_buf, 1, 64, f);
-        len_bits += 8 * count;
+        (void) std::memset(content_buf, 0, sizeof(content_buf));
+        count = fread(content_buf, 1, 56, f);
+        len_bits = 8 * count;
 
         if (ferror(f)) {
             throw std::runtime_error("error reading file: "s + path);
         }
 
-        if (feof(f)) {
+        if (count == 0) {
             break;
         }
 
+        Pad();
         Mutate();
+
+        if (feof(f)) {
+            break;
+        }
     }
 
     if (fclose(f) == EOF) {
         throw std::runtime_error("error closing file: "s + path);
     }
 
-    content_buf[count++] = 0xa0;
-
-    while (count % 64 != 0) {
-        content_buf[count++] = 0;
+    if (count == 0) {
+        return;
     }
 
-    count -= 8;
-    content_buf[count] = htonll(len_bits);
-    count += 8;
+    Pad();
     Mutate();
-
-    if (count > 64) {
-        offset = 64;
-        Mutate();
-    }
 }
 }
