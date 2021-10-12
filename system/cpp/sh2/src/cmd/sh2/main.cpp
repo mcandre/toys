@@ -1,0 +1,35 @@
+#include <cstdlib>
+#include <iomanip>
+#include <iostream>
+#include <string>
+
+#include "sh2/sh2.hpp"
+
+static void usage(const char *program) {
+    std::cerr << "usage: " << program << " <path>" << std::endl;
+}
+
+int main(int argc, char **argv) {
+    if (argc != 2) {
+        usage(argv[0]);
+        return EXIT_FAILURE;
+    }
+
+    const std::string path{argv[1]};
+    sh2::SH2 digest{};
+
+    try {
+        digest.Encrypt(path);
+        std::cout << std::hex << std::setw(32) << std::setfill('0');
+
+        for (int i = 0; i < 8; i++) {
+            std::cout << digest.hash;
+        }
+
+        std::cout << std::endl;
+        return EXIT_SUCCESS;
+    } catch (const std::exception &e) {
+        std::cerr << e.what() << std::endl;
+        return EXIT_FAILURE;
+    }
+}
