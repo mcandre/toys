@@ -91,7 +91,7 @@ void SH2::Encrypt(const std::string &path) {
 
     while (true) {
         (void) std::memset(content_buf, 0, sizeof(content_buf));
-        count = fread(content_buf, 1, 64, f);
+        count = fread(content_buf, 1, sizeof(content_buf), f);
         len_bits = 8 * count;
 
         if (ferror(f)) {
@@ -112,11 +112,5 @@ void SH2::Encrypt(const std::string &path) {
     if (fclose(f) == EOF) {
         throw std::runtime_error("error closing file: "s + path);
     }
-
-    if (count == 0) {
-        return;
-    }
-
-    Mutate();
 }
 }
