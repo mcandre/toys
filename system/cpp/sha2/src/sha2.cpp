@@ -1,6 +1,12 @@
 #include <cstdint>
 #include <cstdlib>
 #include <cstring>
+
+
+
+
+#include <iostream>
+
 #include <stdexcept>
 #include <string>
 
@@ -10,7 +16,7 @@ using std::literals::string_literals::operator""s;
 
 namespace sha2 {
 uint64_t htonll(uint64_t x) {
-    return (htonl(1) == 1) ? x : (uint64_t(htonl(x >> 32UL)) | uint64_t(htonl(uint32_t(x))));
+    return (htonl(1UL) == 1UL) ? x : ((uint64_t(htonl(x >> 32UL)) << 32UL) | uint64_t(htonl(uint32_t(x))));
 }
 
 void SHA2::Pad() {
@@ -21,6 +27,11 @@ void SHA2::Pad() {
         count++;
     }
 
+
+
+
+    std::cerr << "len_bits: " << len_bits << std::endl;
+
     content_buf[count-2] = htonll(len_bits);
 }
 
@@ -28,6 +39,10 @@ void SHA2::Mutate() {
     Pad();
 
     (void) std::memset(w, 0, sizeof(w));
+
+
+    std::cerr << "count: " << count << std::endl;
+
     (void) std::memcpy(w, content_buf, size_t(count));
 
     uint32_t s0 = 0,
