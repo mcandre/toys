@@ -3,7 +3,6 @@
 #include <cstring>
 #include <stdexcept>
 #include <string>
-#include <xmmintrin.h>
 
 using std::literals::string_literals::operator""s;
 
@@ -15,15 +14,15 @@ uint64_t htonll(uint64_t x) {
 }
 
 void SH2::Mutate() {
-    (void) std::memcpy(w, content_buf + offset, 64);
-    (void) std::memset(w + 64, 0, 192);
+    (void) std::memset(w, 0, sizeof(w));
+    (void) std::memcpy(w, content_buf + offset, size_t(64));
 
     uint32_t s0 = 0,
              s1 = 0;
 
-    for (int i = 16; i < 64; i++) {
-        s0 = _rotr(w[i-15], 7) ^ _rotr(w[i-15], 18) ^ (w[i-15] >> 3);
-        s1 = _rotr(w[i-2], 17) ^ _rotr(w[i-2], 19) ^ (w[i-2] >> 10);
+    for (auto i = size_t(16); i < size_t(64); i++) {
+        s0 = __builtin_rotateright32(w[i-15], 7) ^ __builtin_rotateright32(w[i-15], 18) ^ (w[i-15] >> 3UL);
+        s1 = __builtin_rotateright32(w[i-2], 17) ^ __builtin_rotateright32(w[i-2], 19) ^ (w[i-2] >> 10UL);
         w[i] = w[i-16] + s0 + w[i-7] + s1;
     }
 
@@ -40,11 +39,11 @@ void SH2::Mutate() {
              g = hash[6],
              h = hash[7];
 
-    for (int i = 0; i < 64; i++) {
-        s1 = _rotr(e, 6) ^ _rotr(e, 11) ^ _rotr(e, 25);
+    for (auto i = size_t(0); i < size_t(64); i++) {
+        s1 = __builtin_rotateright32(e, 6) ^ __builtin_rotateright32(e, 11) ^ __builtin_rotateright32(e, 25);
         ch = (e & f) ^ ((~e) & g);
         temp1 = h + s1 + ch + k[i] + w[i];
-        s0 = _rotr(a, 2) ^ _rotr(a, 13) ^ _rotr(a, 22);
+        s0 = __builtin_rotateright32(a, 2) ^ __builtin_rotateright32(a, 13) ^ __builtin_rotateright32(a, 22);
         maj = (a & b) ^ (a & c) ^ (b & c);
         temp2 = s0 + maj;
         h = g;

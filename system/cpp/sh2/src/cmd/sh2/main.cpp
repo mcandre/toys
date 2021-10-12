@@ -20,13 +20,17 @@ int main(int argc, char **argv) {
 
     try {
         digest.Encrypt(path);
-        std::cout << std::hex << std::setw(32) << std::setfill('0');
 
-        for (int i = 0; i < 8; i++) {
-            std::cout << digest.hash;
+        for (const uint32_t h : digest.hash) {
+            std::cout <<
+                std::hex <<
+                std::noshowbase <<
+                std::setw(8) <<
+                std::setfill('0') <<
+                h;
         }
 
-        std::cout << std::endl;
+        std::cout << "  " << path << std::endl;
         return EXIT_SUCCESS;
     } catch (const std::exception &e) {
         std::cerr << e.what() << std::endl;
