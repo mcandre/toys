@@ -32,7 +32,7 @@ void SHA2::Pad() {
 
     std::cerr << "len_bits: " << len_bits << std::endl;
 
-    content_buf[count-4] = htonll(len_bits);
+    content_buf[count-8] = htonll(len_bits);
 }
 
 void SHA2::Mutate() {
