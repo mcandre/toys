@@ -16,7 +16,8 @@ uint64_t htonll(uint64_t x) {
 void SH2::Mutate() {
     (void) std::memset(w, 0, sizeof(w));
     (void) std::memcpy(w, content_buf, size_t(count));
-    w[(count++) * sizeof(uint32_t)] = 0x80;
+    w[count] = 0x80;
+    count++;
 
     while (count % 64 != 0) {
         count++;
