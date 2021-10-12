@@ -48,7 +48,7 @@ void SHA2::Mutate() {
     uint32_t s0 = 0,
              s1 = 0;
 
-    for (auto i = size_t(16); i < size_t(64); i++) {
+    for (auto i = 16UL; i < 64UL; i++) {
         s0 = __builtin_rotateright32(w[i-15], 7UL) ^ __builtin_rotateright32(w[i-15], 18UL) ^ (w[i-15] >> 3UL);
         s1 = __builtin_rotateright32(w[i-2], 17UL) ^ __builtin_rotateright32(w[i-2], 19UL) ^ (w[i-2] >> 10UL);
         w[i] = w[i-16] + s0 + w[i-7] + s1;
@@ -67,7 +67,7 @@ void SHA2::Mutate() {
              g = hash[6],
              h = hash[7];
 
-    for (auto i = size_t(0); i < size_t(64); i++) {
+    for (auto i = 0UL; i < 64UL; i++) {
         s1 = __builtin_rotateright32(e, 6UL) ^ __builtin_rotateright32(e, 11UL) ^ __builtin_rotateright32(e, 25UL);
         ch = (e & f) ^ ((~e) & g);
         temp1 = h + s1 + ch + k[i] + w[i];
