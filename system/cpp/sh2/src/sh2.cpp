@@ -34,12 +34,12 @@ void SH2::Mutate() {
              s1 = 0;
 
     for (auto i = size_t(16); i < size_t(64); i++) {
-        s0 = __builtin_rotateright32(w[i-15], 7) ^ __builtin_rotateright32(w[i-15], 18) ^ (w[i-15] >> 3UL);
-        s1 = __builtin_rotateright32(w[i-2], 17) ^ __builtin_rotateright32(w[i-2], 19) ^ (w[i-2] >> 10UL);
+        s0 = __builtin_rotateright32(w[i-15], 7UL) ^ __builtin_rotateright32(w[i-15], 18UL) ^ (w[i-15] >> 3UL);
+        s1 = __builtin_rotateright32(w[i-2], 17UL) ^ __builtin_rotateright32(w[i-2], 19UL) ^ (w[i-2] >> 10UL);
         w[i] = w[i-16] + s0 + w[i-7] + s1;
     }
 
-    uint64_t ch = 0,
+    uint32_t ch = 0,
              maj = 0,
              temp1 = 0,
              temp2 = 0,
@@ -53,10 +53,10 @@ void SH2::Mutate() {
              h = hash[7];
 
     for (auto i = size_t(0); i < size_t(64); i++) {
-        s1 = __builtin_rotateright32(e, 6) ^ __builtin_rotateright32(e, 11) ^ __builtin_rotateright32(e, 25);
+        s1 = __builtin_rotateright32(e, 6UL) ^ __builtin_rotateright32(e, 11UL) ^ __builtin_rotateright32(e, 25UL);
         ch = (e & f) ^ ((~e) & g);
         temp1 = h + s1 + ch + k[i] + w[i];
-        s0 = __builtin_rotateright32(a, 2) ^ __builtin_rotateright32(a, 13) ^ __builtin_rotateright32(a, 22);
+        s0 = __builtin_rotateright32(a, 2UL) ^ __builtin_rotateright32(a, 13UL) ^ __builtin_rotateright32(a, 22UL);
         maj = (a & b) ^ (a & c) ^ (b & c);
         temp2 = s0 + maj;
         h = g;
