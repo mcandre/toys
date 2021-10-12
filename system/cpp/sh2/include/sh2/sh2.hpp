@@ -22,7 +22,7 @@ struct SH2 {
     uint64_t len_bits = 0;
     size_t count = 0;
     uint32_t hash[8] = { 0 };
-    uint8_t content_buf[64] = { 0 };
+    uint8_t content_buf[128] = { 0 };
     uint32_t w[64] = { 0 };
 
     void Pad();

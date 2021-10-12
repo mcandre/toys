@@ -13,18 +13,22 @@ uint64_t htonll(uint64_t x) {
     return (htonl(1) == 1) ? x : (uint64_t(htonl(x >> 32UL)) | uint64_t(htonl(uint32_t(x))));
 }
 
-void SH2::Mutate() {
-    (void) std::memset(w, 0, sizeof(w));
-    (void) std::memcpy(w, content_buf, size_t(count));
-    w[count] = 0x80;
+void SH2::Pad() {
+    content_buf[count] = 0x80;
     count++;
 
     while (count % 64 != 0) {
         count++;
     }
 
-    count -= 8;
-    w[count] = htonll(len_bits);
+    content_buf[count-2] = htonll(len_bits);
+}
+
+void SH2::Mutate() {
+    Pad();
+
+    (void) std::memset(w, 0, sizeof(w));
+    (void) std::memcpy(w, content_buf, size_t(count));
 
     uint32_t s0 = 0,
              s1 = 0;
@@ -92,7 +96,7 @@ void SH2::Encrypt(const std::string &path) {
 
     while (true) {
         (void) std::memset(content_buf, 0, sizeof(content_buf));
-        count = fread(content_buf, 1, sizeof(content_buf), f);
+        count = fread(content_buf, size_t(1), size_t(64), f);
         len_bits = 8 * count;
 
         if (ferror(f)) {
