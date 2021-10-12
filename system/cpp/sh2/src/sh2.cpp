@@ -91,7 +91,7 @@ void SH2::Encrypt(const std::string &path) {
 
     while (true) {
         (void) std::memset(content_buf, 0, sizeof(content_buf));
-        count = fread(content_buf, 1, 56, f);
+        count = fread(content_buf, 1, 64, f);
         len_bits = 8 * count;
 
         if (ferror(f)) {
