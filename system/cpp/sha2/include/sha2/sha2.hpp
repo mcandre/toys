@@ -4,7 +4,7 @@
 #include <cstdint>
 #include <string>
 
-namespace sh2 {
+namespace sha2 {
 uint64_t htonll(uint64_t x);
 
 const static uint32_t k[64] = {
@@ -18,7 +18,7 @@ const static uint32_t k[64] = {
     0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2
 };
 
-struct SH2 {
+struct SHA2 {
     uint64_t len_bits = 0;
     size_t count = 0;
     uint32_t hash[8] = { 0 };

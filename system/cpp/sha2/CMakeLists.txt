@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.4)
 set(CMAKE_MESSAGE_LOG_LEVEL "WARNING")
 set(EXECUTABLE_OUTPUT_PATH "bin")
-project(sh2)
+project(sha2)
 
 if(MSVC)
     set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${EXECUTABLE_OUTPUT_PATH}")
@@ -43,20 +43,20 @@ endif()
 
 include_directories(include)
 
-add_executable(sh2 src/cmd/sh2/main.cpp src/sh2.cpp)
+add_executable(sha2 src/cmd/sha2/main.cpp src/sha2.cpp)
 
 if(MSVC)
     set(HOME "$ENV{HOMEDRIVE}$ENV{HOMEPATH}")
-    set(ARTIFACT sh2.exe)
+    set(ARTIFACT sha2.exe)
 else()
     set(HOME "$ENV{HOME}")
-    set(ARTIFACT sh2++)
+    set(ARTIFACT sha2)
 endif()
 
 file(TO_NATIVE_PATH "${HOME}/bin" INSTALL_DIR)
 file(TO_NATIVE_PATH "${INSTALL_DIR}/${ARTIFACT}" INSTALL_FILE)
 
-install(PROGRAMS $<TARGET_FILE:sh2> DESTINATION "${INSTALL_DIR}")
+install(PROGRAMS $<TARGET_FILE:sha2> DESTINATION "${INSTALL_DIR}")
 
 if(MSVC)
     add_custom_target(uninstall COMMAND del /s /q "${INSTALL_FILE}")
@@ -65,7 +65,7 @@ else()
 endif()
 
 enable_testing()
-add_test(NAME hello_unit_test COMMAND bin/sh2 bin/sh2)
+add_test(NAME sha2_unit_test COMMAND bin/sha2 bin/sha2)
 
 add_custom_target(cppcheck COMMAND cppcheck -q --force --enable=all --inline-suppr --suppressions-list=suppressions.cfg --error-exitcode=1 src)
 add_custom_target(cpplint COMMAND sail src | xargs -n 1 cpplint)

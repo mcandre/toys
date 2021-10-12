@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 
-#include "sh2/sh2.hpp"
+#include "sha2/sha2.hpp"
 
 static void usage(const char *program) {
     std::cerr << "usage: " << program << " <path>" << std::endl;
@@ -16,7 +16,7 @@ int main(int argc, char **argv) {
     }
 
     const std::string path{argv[1]};
-    sh2::SH2 digest{};
+    sha2::SHA2 digest{};
 
     try {
         digest.Encrypt(path);

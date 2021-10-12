@@ -6,14 +6,14 @@
 
 using std::literals::string_literals::operator""s;
 
-#include "sh2/sh2.hpp"
+#include "sha2/sha2.hpp"
 
-namespace sh2 {
+namespace sha2 {
 uint64_t htonll(uint64_t x) {
     return (htonl(1) == 1) ? x : (uint64_t(htonl(x >> 32UL)) | uint64_t(htonl(uint32_t(x))));
 }
 
-void SH2::Pad() {
+void SHA2::Pad() {
     content_buf[count] = 0x80;
     count++;
 
@@ -24,7 +24,7 @@ void SH2::Pad() {
     content_buf[count-2] = htonll(len_bits);
 }
 
-void SH2::Mutate() {
+void SHA2::Mutate() {
     Pad();
 
     (void) std::memset(w, 0, sizeof(w));
@@ -78,7 +78,7 @@ void SH2::Mutate() {
     }
 }
 
-void SH2::Encrypt(const std::string &path) {
+void SHA2::Encrypt(const std::string &path) {
     hash[0] = 0x6a09e667;
     hash[1] = 0xbb67ae85;
     hash[2] = 0x3c6ef372;
