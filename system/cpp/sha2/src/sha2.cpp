@@ -72,7 +72,7 @@ uint32_t RotR32(uint32_t x, uint32_t places) {
 
 void SHA2::Pad() {
     content_buf[count_bytes++] = 0x80;
-    count_bytes = (count_bytes > 112) ? 128UL : 64UL;
+    count_bytes = (count_bytes > size_t(112)) ? size_t(128) : size_t(64);
     const auto total_count_bits = EnsureEndianness64(8ULL * total_count_bytes, Endian::BIG);
     (void) memcpy(content_buf + count_bytes - 8, &total_count_bits, 8);
 }
