@@ -67,7 +67,7 @@ uint32_t Maj(uint32_t x, uint32_t y, uint32_t z) {
 }
 
 uint32_t RotR32(uint32_t x, uint32_t places) {
-    return (x >> places) | (x << (32UL - places));
+    return __builtin_rotateright32(x, places);
 }
 
 void SHA2::Pad() {
