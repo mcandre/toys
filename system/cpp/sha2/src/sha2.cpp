@@ -71,16 +71,17 @@ uint32_t RotR32(uint32_t x, uint32_t places) {
 }
 
 void SHA2::Pad() {
-    content_buf[count_bytes] = 0x80;
-    count_bytes++;
+    content_buf[count_bytes++] = 0x80;
 
     while (count_bytes % 64 != 0) {
         count_bytes++;
     }
 
     const auto total_count_bits = 8ULL * total_count_bytes;
-    const uint64_t total_counts[1] = { EnsureEndianness64(total_count_bits, Endian::BIG) };
-    (void) memcpy(content_buf+count_bytes-8, total_counts, 8);
+
+    for (auto i = 8UL; i > 0UL; i--) {
+        content_buf[count_bytes-i] = uint8_t(total_count_bits >> (8UL * (i - 1UL)));
+    }
 }
 
 void SHA2::Mutate() {
