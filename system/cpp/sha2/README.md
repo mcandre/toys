@@ -17,6 +17,10 @@ $ sha2 /tmp/as.txt
 cdc76e5c9914fb9281a1c7e284d73e67f1809a48a497200e046d39ccc7112cd0  /tmp/as.txt
 ```
 
+# REQUIREMENTS
+
+* [clang](https://clang.llvm.org/) 10+
+
 # RESOURCES
 
 https://www.nist.gov/itl/ssd/software-quality-group/nsrl-test-data
