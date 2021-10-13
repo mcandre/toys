@@ -1,5 +1,9 @@
 # sha2: NIST SHA-256 implementation
 
+# WARNING
+
+This is a toy implementation. Do not use this in production. Use a standard implementation.
+
 # EXAMPLE
 
 ```console
