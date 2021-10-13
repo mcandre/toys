@@ -16,19 +16,22 @@ using std::literals::string_literals::operator""s;
 
 namespace sha2 {
 void SHA2::Pad() {
-    content_buf[count] = 0x80;
-    count++;
+    content_buf[count_bytes] = 0x80;
+    count_bytes++;
 
-    while (count % 64 != 0) {
-        count++;
+    while (count_bytes % 64 != 0) {
+        count_bytes++;
     }
 
 
+    std::cerr << "total_count_bytes: " << total_count_bytes << std::endl;
 
-    std::cerr << "len_bits: " << len_bits << std::endl;
+    const auto total_count_bits = 8 * total_count_bytes;
 
-    for (auto i = size_t(8); i > 0; i--) {
-        content_buf[count-i] = (len_bits >> uint64_t(i - size_t(1))) & uint8_t(0xff);
+    std::cerr << "total_count_bits: " << total_count_bits << std::endl;
+
+    for (int i = 7; i >= 0; i--) {
+        content_buf[count_bytes-i-1] = uint8_t(total_count_bits >> (8ULL * uint64_t(i)));
     }
 }
 
@@ -36,9 +39,9 @@ void SHA2::Mutate() {
     (void) std::memset(w, 0, sizeof(w));
 
 
-    std::cerr << "count: " << count << std::endl;
+    std::cerr << "count_bytes: " << count_bytes << std::endl;
 
-    (void) std::memcpy(w, content_buf, size_t(count));
+    (void) std::memcpy(w, content_buf, size_t(count_bytes));
 
     uint32_t s0 = 0,
              s1 = 0;
@@ -108,8 +111,8 @@ void SHA2::Encrypt(const std::string &path) {
 
     while (true) {
         (void) std::memset(content_buf, 0, sizeof(content_buf));
-        count = fread(content_buf, size_t(1), size_t(64), f);
-        len_bits += 8 * count;
+        count_bytes = fread(content_buf, size_t(1), size_t(64), f);
+        total_count_bytes += count_bytes;
 
         if (ferror(f)) {
             throw std::runtime_error("error reading file: "s + path);
