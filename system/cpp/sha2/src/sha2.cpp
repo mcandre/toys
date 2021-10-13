@@ -20,19 +20,20 @@ uint64_t htonll(uint64_t x) {
 }
 
 void SHA2::Pad() {
-    content_buf[count] = 0x80;
-    count++;
-
-    while (count % 64 != 0) {
+    if (count < 64) {
+        content_buf[count] = 0x80;
         count++;
+
+        while ((count * 8) % 512 != 0) {
+            count++;
+        }
+
+
+
+        std::cerr << "len_bits: " << len_bits << std::endl;
+
+        content_buf[count-8] = htonll(len_bits);
     }
-
-
-
-
-    std::cerr << "len_bits: " << len_bits << std::endl;
-
-    content_buf[count-8] = htonll(len_bits);
 }
 
 void SHA2::Mutate() {
@@ -114,7 +115,7 @@ void SHA2::Encrypt(const std::string &path) {
     while (true) {
         (void) std::memset(content_buf, 0, sizeof(content_buf));
         count = fread(content_buf, size_t(1), size_t(64), f);
-        len_bits = 8 * count;
+        len_bits += 8 * count;
 
         if (ferror(f)) {
             throw std::runtime_error("error reading file: "s + path);
