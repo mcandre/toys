@@ -31,7 +31,7 @@ void SHA2::Pad() {
     std::cerr << "total_count_bits: " << total_count_bits << std::endl;
 
     for (int i = 8; i > 0; i--) {
-        content_buf[count_bytes-i] = uint8_t(total_count_bits >> (4ULL * uint64_t(i)));
+        content_buf[count_bytes-i] = uint8_t(total_count_bits >> (8ULL * uint64_t(i)));
     }
 }
 
