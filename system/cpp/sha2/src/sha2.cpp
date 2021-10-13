@@ -48,6 +48,34 @@ uint64_t EnsureEndianness64(uint64_t x, Endian target) {
     return __builtin_bswap64(x);
 }
 
+uint32_t sigma0(uint32_t x) {
+    return RotR32(x, 7UL) ^ RotR32(x, 18UL) ^ (x >> 3UL);
+}
+
+uint32_t sigma1(uint32_t x) {
+    return RotR32(x, 17UL) ^ RotR32(x, 19UL) ^ (x >> 10UL);
+}
+
+uint32_t Sigma0(uint32_t x) {
+    return RotR32(x, 2UL) ^ RotR32(x, 13UL) ^ RotR32(x, 22UL);
+}
+
+uint32_t Sigma1(uint32_t x) {
+    return RotR32(x, 6UL) ^ RotR32(x, 11UL) ^ RotR32(x, 25UL);
+}
+
+uint32_t Ch(uint32_t x, uint32_t y, uint32_t z) {
+    return (x & y) ^ (~(x) & z);
+}
+
+uint32_t Maj(uint32_t x, uint32_t y, uint32_t z) {
+    return (x & y) ^ (x & z) ^ (y & z);
+}
+
+uint32_t RotR32(uint32_t x, uint32_t places) {
+    return (x >> places) | (x << (32UL - places));
+}
+
 void SHA2::Pad() {
     content_buf[count_bytes] = 0x80;
     count_bytes++;
@@ -78,26 +106,19 @@ void SHA2::Mutate() {
 
     (void) std::memcpy(w, content_buf + offset, 64);
 
-    if (ntohl(1UL) != 1UL) {
-        for (auto i = size_t(0); i < size_t(16); i++) {
-            w[i] = EnsureEndianness32(w[i], Endian::BIG);
-        }
-    }
-
-    uint32_t s0 = 0,
-             s1 = 0;
-
     for (auto i = size_t(16); i < size_t(64); i++) {
-        s0 = __builtin_rotateright32(w[i-15], 7UL) ^ __builtin_rotateright32(w[i-15], 18UL) ^ (w[i-15] >> 3UL);
-        s1 = __builtin_rotateright32(w[i-2], 17UL) ^ __builtin_rotateright32(w[i-2], 19UL) ^ (w[i-2] >> 10UL);
-        w[i] = w[i-16] + s0 + w[i-7] + s1;
+        w[i] = EnsureEndianness32(
+                (
+                    sigma1(EnsureEndianness32(w[i-2], Endian::BIG)) +
+                    EnsureEndianness32(w[i-7], Endian::BIG) +
+                    sigma0(EnsureEndianness32(w[i-15], Endian::BIG)) +
+                    EnsureEndianness32(w[i-16], Endian::BIG)
+                ),
+                Endian::BIG
+        );
     }
 
-    uint32_t ch = 0,
-             maj = 0,
-             S0 = 0,
-             S1 = 0,
-             temp1 = 0,
+    uint32_t temp1 = 0,
              temp2 = 0,
              a = hash[0],
              b = hash[1],
@@ -109,12 +130,8 @@ void SHA2::Mutate() {
              h = hash[7];
 
     for (auto i = size_t(0); i < size_t(64); i++) {
-        S1 = __builtin_rotateright32(e, 6UL) ^ __builtin_rotateright32(e, 11UL) ^ __builtin_rotateright32(e, 25UL);
-        ch = (e & f) ^ ((~e) & g);
-        temp1 = h + S1 + ch + k[i] + w[i];
-        S0 = __builtin_rotateright32(a, 2UL) ^ __builtin_rotateright32(a, 13UL) ^ __builtin_rotateright32(a, 22UL);
-        maj = (a & b) ^ (a & c) ^ (b & c);
-        temp2 = S0 + maj;
+        temp1 = h + Sigma1(e) + Ch(e, f, g) + k[i] + EnsureEndianness32(w[i], Endian::BIG);
+        temp2 = Sigma0(a) + Maj(a, b, c);
         h = g;
         g = f;
         f = e;
@@ -123,15 +140,16 @@ void SHA2::Mutate() {
         c = b;
         b = a;
         a = temp1 + temp2;
-        hash[0] += a;
-        hash[1] += b;
-        hash[2] += c;
-        hash[3] += d;
-        hash[4] += e;
-        hash[5] += f;
-        hash[6] += g;
-        hash[7] += h;
     }
+
+    hash[0] += a;
+    hash[1] += b;
+    hash[2] += c;
+    hash[3] += d;
+    hash[4] += e;
+    hash[5] += f;
+    hash[6] += g;
+    hash[7] += h;
 }
 
 void SHA2::Encrypt(const std::string &path) {

@@ -4,18 +4,32 @@
 #include <string>
 
 namespace sha2 {
-    enum class Endian {
-        LITTLE,
-        BIG
-    };
+enum class Endian {
+    LITTLE,
+    BIG
+};
 
-    Endian HostEndianness();
+Endian HostEndianness();
 
-    uint16_t EnsureEndianness16(uint16_t x, Endian target);
+uint16_t EnsureEndianness16(uint16_t x, Endian target);
 
-    uint32_t EnsureEndianness32(uint32_t x, Endian target);
+uint32_t EnsureEndianness32(uint32_t x, Endian target);
 
-    uint64_t EnsureEndianness64(uint64_t x, Endian target);
+uint64_t EnsureEndianness64(uint64_t x, Endian target);
+
+uint32_t sigma0(uint32_t x);
+
+uint32_t sigma1(uint32_t x);
+
+uint32_t Sigma0(uint32_t x);
+
+uint32_t Sigma1(uint32_t x);
+
+uint32_t Ch(uint32_t x, uint32_t y, uint32_t z);
+
+uint32_t Maj(uint32_t x, uint32_t y, uint32_t z);
+
+uint32_t RotR32(uint32_t x, uint32_t places);
 
 const static uint32_t k[64] = {
     0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
