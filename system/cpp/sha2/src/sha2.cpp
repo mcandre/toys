@@ -16,7 +16,7 @@ using std::literals::string_literals::operator""s;
 
 namespace sha2 {
 uint64_t htonll(uint64_t x) {
-    return (htonl(1UL) == 1UL) ? x : ((uint64_t(htonl(x >> 32UL)) << 32UL) | uint64_t(htonl(uint32_t(x))));
+    return (htonl(1UL) == 1UL) ? x : ((uint64_t(htonl(x >> 32UL)) << 32UL) | uint64_t(htonl(uint32_t(x & 0xffffffff))));
 }
 
 void SHA2::Pad() {
