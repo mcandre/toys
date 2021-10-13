@@ -16,27 +16,23 @@ using std::literals::string_literals::operator""s;
 
 namespace sha2 {
 void SHA2::Pad() {
-    if (count < 64) {
-        content_buf[count] = 0x80;
+    content_buf[count] = 0x80;
+    count++;
+
+    while ((count * 8) % 512 != 0) {
         count++;
-
-        while ((count * 8) % 512 != 0) {
-            count++;
-        }
+    }
 
 
 
-        std::cerr << "len_bits: " << len_bits << std::endl;
+    std::cerr << "len_bits: " << len_bits << std::endl;
 
-        for (auto i = size_t(8); i > 0; i--) {
-            content_buf[count-i] = (len_bits >> uint64_t(i - size_t(1))) & uint8_t(0xff);
-        }
+    for (auto i = size_t(8); i > 0; i--) {
+        content_buf[count-i] = (len_bits >> uint64_t(i - size_t(1))) & uint8_t(0xff);
     }
 }
 
 void SHA2::Mutate() {
-    Pad();
-
     (void) std::memset(w, 0, sizeof(w));
 
 
@@ -119,16 +115,15 @@ void SHA2::Encrypt(const std::string &path) {
             throw std::runtime_error("error reading file: "s + path);
         }
 
-        if (count == 0) {
+        if (feof(f)) {
             break;
         }
 
         Mutate();
-
-        if (feof(f)) {
-            break;
-        }
     }
+
+    Pad();
+    Mutate();
 
     if (fclose(f) == EOF) {
         throw std::runtime_error("error closing file: "s + path);
