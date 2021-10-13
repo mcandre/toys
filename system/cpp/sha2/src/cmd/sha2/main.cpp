@@ -28,7 +28,8 @@ int main(int argc, char **argv) {
                 std::noshowbase <<
                 std::setw(8) <<
                 std::setfill('0') <<
-                sha2::EnsureEndianness32(h, sha2::Endian::BIG);
+                h;
+                // sha2::EnsureEndianness32(h, sha2::Endian::BIG);
         }
 
         std::cout << "  " << path << std::endl;
