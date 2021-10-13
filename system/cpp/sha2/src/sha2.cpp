@@ -2,19 +2,8 @@
 #include <cstdint>
 #include <cstdlib>
 #include <cstring>
-
-
-
-#include <iomanip>
-#include <iostream>
-
 #include <stdexcept>
 #include <string>
-
-
-
-
-#include <sstream>
 
 using std::literals::string_literals::operator""s;
 
@@ -89,39 +78,13 @@ void SHA2::Pad() {
         count_bytes++;
     }
 
-
-    std::cerr << "total_count_bytes: " << total_count_bytes << std::endl;
-
-    auto total_count_bits = 8 * total_count_bytes;
-
-    std::cerr << "total_count_bits: " << total_count_bits << std::endl;
-
-    total_count_bits = EnsureEndianness64(total_count_bits, Endian::BIG);
-    const uint64_t total_counts[1] = { total_count_bits };
+    const auto total_count_bits = 8ULL * total_count_bytes;
+    const uint64_t total_counts[1] = { EnsureEndianness64(total_count_bits, Endian::BIG) };
     (void) memcpy(content_buf+count_bytes-8, total_counts, 8);
 }
 
 void SHA2::Mutate() {
     (void) std::memset(w, 0, sizeof(w));
-
-
-    std::cerr << "count_bytes: " << count_bytes << std::endl;
-
-    std::cerr << "Message:" << std::endl;
-
-    std::stringstream ss{};
-
-    for (auto i = size_t(0); i < size_t(64); i++) {
-        const uint8_t b = content_buf[offset + i];
-        ss << std::hex <<
-              std::noshowbase <<
-              std::setw(2) <<
-              std::setfill('0') <<
-              int(b);
-    }
-
-    std::cerr << ss.str() << std::endl;
-
     (void) std::memcpy(w, content_buf + offset, 64);
 
     for (auto i = size_t(16); i < size_t(64); i++) {
@@ -210,8 +173,6 @@ void SHA2::Encrypt(const std::string &path) {
     Mutate();
 
     if (count_bytes > size_t(64)) {
-        std::cerr << "offset." << std::endl;
-
         offset = size_t(64);
         Mutate();
     }
