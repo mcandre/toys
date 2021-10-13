@@ -5,11 +5,16 @@
 
 
 
-
+#include <iomanip>
 #include <iostream>
 
 #include <stdexcept>
 #include <string>
+
+
+
+
+#include <sstream>
 
 using std::literals::string_literals::operator""s;
 
@@ -106,6 +111,21 @@ void SHA2::Mutate() {
 
     (void) std::memcpy(w, content_buf + offset, 64);
 
+    std::cerr << "Message:" << std::endl;
+
+    std::stringstream ss{};
+    ss << std::hex <<
+          std::noshowbase <<
+          std::setw(2) <<
+          std::setfill('0');
+
+    for (auto i = size_t(0); i < 64; i++) {
+        const auto b = content_buf[offset + i];
+        ss << uint32_t(b);
+    }
+
+    std::cerr << ss.str() << std::endl;
+
     for (auto i = size_t(16); i < size_t(64); i++) {
         w[i] = EnsureEndianness32(
                 (
@@ -191,7 +211,9 @@ void SHA2::Encrypt(const std::string &path) {
     Pad();
     Mutate();
 
-    if (count_bytes == size_t(128)) {
+    if (count_bytes > size_t(64)) {
+        std::cerr << "offset." << std::endl;
+
         offset = size_t(64);
         Mutate();
     }
