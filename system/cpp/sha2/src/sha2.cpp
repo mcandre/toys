@@ -16,6 +16,38 @@ using std::literals::string_literals::operator""s;
 #include "sha2/sha2.hpp"
 
 namespace sha2 {
+Endian HostEndianness() {
+    if (htonl(1UL) != 1UL) {
+        return Endian::LITTLE;
+    }
+
+    return Endian::BIG;
+}
+
+uint16_t EnsureEndianness16(uint16_t x, Endian target) {
+    if (HostEndianness() == target) {
+        return x;
+    }
+
+    return htons(x);
+}
+
+uint32_t EnsureEndianness32(uint32_t x, Endian target) {
+    if (HostEndianness() == target) {
+        return x;
+    }
+
+    return htonl(x);
+}
+
+uint64_t EnsureEndianness64(uint64_t x, Endian target) {
+    if (HostEndianness() == target) {
+        return x;
+    }
+
+    return __builtin_bswap64(x);
+}
+
 void SHA2::Pad() {
     content_buf[count_bytes] = 0x80;
     count_bytes++;
@@ -27,12 +59,14 @@ void SHA2::Pad() {
 
     std::cerr << "total_count_bytes: " << total_count_bytes << std::endl;
 
-    const auto total_count_bits = 8 * total_count_bytes;
+    auto total_count_bits = 8 * total_count_bytes;
 
     std::cerr << "total_count_bits: " << total_count_bits << std::endl;
 
-    for (int i = 7; i >= 0; i--) {
-        content_buf[count_bytes-i-1] = uint8_t(total_count_bits >> (8ULL * uint64_t(i)));
+    total_count_bits = EnsureEndianness64(total_count_bits, Endian::BIG);
+
+    for (auto i = 7; i >= 0; i--) {
+        content_buf[count_bytes-i-1] = uint8_t(total_count_bits >> (8UL * i));
     }
 }
 
@@ -42,11 +76,11 @@ void SHA2::Mutate() {
 
     std::cerr << "count_bytes: " << count_bytes << std::endl;
 
-    (void) std::memcpy(w, content_buf, size_t(count_bytes));
+    (void) std::memcpy(w, content_buf + offset, 64);
 
     if (ntohl(1UL) != 1UL) {
         for (auto i = size_t(0); i < size_t(16); i++) {
-            w[i] = htonl(w[i]);
+            w[i] = EnsureEndianness32(w[i], Endian::BIG);
         }
     }
 
@@ -101,6 +135,10 @@ void SHA2::Mutate() {
 }
 
 void SHA2::Encrypt(const std::string &path) {
+    total_count_bytes = 0;
+    count_bytes = 0;
+    offset = 0;
+
     hash[0] = 0x6a09e667UL;
     hash[1] = 0xbb67ae85UL;
     hash[2] = 0x3c6ef372UL;
@@ -134,6 +172,11 @@ void SHA2::Encrypt(const std::string &path) {
 
     Pad();
     Mutate();
+
+    if (count_bytes == size_t(128)) {
+        offset = size_t(64);
+        Mutate();
+    }
 
     if (fclose(f) == EOF) {
         throw std::runtime_error("error closing file: "s + path);

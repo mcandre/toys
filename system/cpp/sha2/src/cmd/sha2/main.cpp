@@ -18,19 +18,17 @@ int main(int argc, char **argv) {
 
     const std::string path{argv[1]};
     sha2::SHA2 digest{};
-    uint8_t sum[32] = { 0 };
 
     try {
         digest.Encrypt(path);
-        (void) memcpy(sum, digest.hash, 32);
 
-        for (const uint8_t s : sum) {
+        for (const auto h : digest.hash) {
             std::cout <<
                 std::hex <<
                 std::noshowbase <<
-                std::setw(2) <<
+                std::setw(8) <<
                 std::setfill('0') <<
-                uint32_t(s);
+                sha2::EnsureEndianness32(h, sha2::Endian::BIG);
         }
 
         std::cout << "  " << path << std::endl;

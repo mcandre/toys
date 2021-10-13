@@ -4,6 +4,19 @@
 #include <string>
 
 namespace sha2 {
+    enum class Endian {
+        LITTLE,
+        BIG
+    };
+
+    Endian HostEndianness();
+
+    uint16_t EnsureEndianness16(uint16_t x, Endian target);
+
+    uint32_t EnsureEndianness32(uint32_t x, Endian target);
+
+    uint64_t EnsureEndianness64(uint64_t x, Endian target);
+
 const static uint32_t k[64] = {
     0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
     0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3, 0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174,
@@ -18,6 +31,7 @@ const static uint32_t k[64] = {
 struct SHA2 {
     uint64_t total_count_bytes = 0;
     size_t count_bytes = 0;
+    size_t offset = 0;
     uint32_t hash[8] = { 0 };
     uint8_t content_buf[128] = { 0 };
     uint32_t w[64] = { 0 };
