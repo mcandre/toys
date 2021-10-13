@@ -119,9 +119,9 @@ void SHA2::Mutate() {
           std::setw(2) <<
           std::setfill('0');
 
-    for (auto i = size_t(0); i < 64; i++) {
+    for (auto i = size_t(0); i < size_t(64); i++) {
         const auto b = content_buf[offset + i];
-        ss << uint32_t(b);
+        ss << uint16_t(b);
     }
 
     std::cerr << ss.str() << std::endl;
