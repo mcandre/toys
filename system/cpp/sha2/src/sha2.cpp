@@ -19,7 +19,7 @@ void SHA2::Pad() {
     content_buf[count] = 0x80;
     count++;
 
-    while ((count * 8) % 512 != 0) {
+    while (count % 64 != 0) {
         count++;
     }
 
