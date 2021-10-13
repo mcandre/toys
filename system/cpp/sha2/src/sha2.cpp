@@ -15,10 +15,6 @@ using std::literals::string_literals::operator""s;
 #include "sha2/sha2.hpp"
 
 namespace sha2 {
-uint64_t htonll(uint64_t x) {
-    return (htonl(1UL) == 1UL) ? x : ((uint64_t(htonl(x >> 32UL)) << 32UL) | uint64_t(htonl(uint32_t(x & 0xffffffff))));
-}
-
 void SHA2::Pad() {
     if (count < 64) {
         content_buf[count] = 0x80;
@@ -32,7 +28,9 @@ void SHA2::Pad() {
 
         std::cerr << "len_bits: " << len_bits << std::endl;
 
-        content_buf[count-8] = htonll(len_bits);
+        for (auto i = size_t(8); i > 0; i--) {
+            content_buf[count-i] = (len_bits >> uint64_t(i - size_t(1))) & uint8_t(0xff);
+        }
     }
 }
 
