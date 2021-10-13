@@ -7,7 +7,7 @@
 #include "sha2/sha2.hpp"
 
 static void usage(const char *program) {
-    std::cerr << "usage: " << program << " <path>" << std::endl;
+    std::cerr << "Usage: " << program << " <path>" << std::endl;
 }
 
 int main(int argc, char **argv) {
