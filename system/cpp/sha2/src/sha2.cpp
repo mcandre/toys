@@ -97,10 +97,8 @@ void SHA2::Pad() {
     std::cerr << "total_count_bits: " << total_count_bits << std::endl;
 
     total_count_bits = EnsureEndianness64(total_count_bits, Endian::BIG);
-
-    for (auto i = 7; i >= 0; i--) {
-        content_buf[count_bytes-i-1] = uint8_t(total_count_bits >> (8UL * i));
-    }
+    const uint64_t total_counts[1] = { total_count_bits };
+    (void) memcpy(content_buf+count_bytes-8, total_counts, 8);
 }
 
 void SHA2::Mutate() {
@@ -109,22 +107,22 @@ void SHA2::Mutate() {
 
     std::cerr << "count_bytes: " << count_bytes << std::endl;
 
-    (void) std::memcpy(w, content_buf + offset, 64);
-
     std::cerr << "Message:" << std::endl;
 
     std::stringstream ss{};
-    ss << std::hex <<
-          std::noshowbase <<
-          std::setw(2) <<
-          std::setfill('0');
 
     for (auto i = size_t(0); i < size_t(64); i++) {
-        const auto b = content_buf[offset + i];
-        ss << uint16_t(b);
+        const uint8_t b = content_buf[offset + i];
+        ss << std::hex <<
+              std::noshowbase <<
+              std::setw(2) <<
+              std::setfill('0') <<
+              int(b);
     }
 
     std::cerr << ss.str() << std::endl;
+
+    (void) std::memcpy(w, content_buf + offset, 64);
 
     for (auto i = size_t(16); i < size_t(64); i++) {
         w[i] = EnsureEndianness32(
