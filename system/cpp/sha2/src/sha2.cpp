@@ -96,14 +96,14 @@ void SHA2::Mutate() {
 }
 
 void SHA2::Encrypt(const std::string &path) {
-    hash[0] = 0x6a09e667UL;
-    hash[1] = 0xbb67ae85UL;
-    hash[2] = 0x3c6ef372UL;
-    hash[3] = 0xa54ff53aUL;
-    hash[4] = 0x510e527fUL;
-    hash[5] = 0x9b05688cUL;
-    hash[6] = 0x1f83d9abUL;
-    hash[7] = 0x5be0cd19UL;
+    hash[0] = 0x6a09e667;
+    hash[1] = 0xbb67ae85;
+    hash[2] = 0x3c6ef372;
+    hash[3] = 0xa54ff53a;
+    hash[4] = 0x510e527f;
+    hash[5] = 0x9b05688c;
+    hash[6] = 0x1f83d9ab;
+    hash[7] = 0x5be0cd19;
 
     FILE *f = fopen(path.c_str(), "rbe");
 
