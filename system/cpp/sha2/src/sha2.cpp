@@ -91,7 +91,7 @@ void SHA2::Pad() {
 
 void SHA2::Mutate() {
     (void) std::memset(w, 0, sizeof(w));
-    (void) std::memcpy(w, content_buf + offset, 64);
+    (void) std::memcpy(w, content_buf + offset, size_t(64));
 
     for (auto i = size_t(16); i < size_t(64); i++) {
         w[i] = EnsureEndianness32(
