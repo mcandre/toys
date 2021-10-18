@@ -80,8 +80,13 @@ void SHA2::Pad() {
         count_bytes = 64;
     }
 
-    const auto total_count_bits = EnsureEndianness64(8ULL * total_count_bytes, Endian::BIG);
-    (void) memcpy(content_buf + count_bytes - 8, &total_count_bits, 8);
+    const auto total_count_bits = 8ULL * total_count_bytes;
+
+    for (auto i = size_t(0); i < size_t(8); i++) {
+        content_buf[count_bytes - 8 + i] = uint8_t(
+            total_count_bits >> (8ULL * (7ULL - i))
+        );
+    }
 }
 
 void SHA2::Mutate() {
