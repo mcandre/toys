@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-ruby '2.7.1'
+ruby '3.0.3'
 
 gem 'contracts', '~> 0.4'
 
