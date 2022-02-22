@@ -10,6 +10,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/**
+ * @brief main is the entrypoint.
+ *
+ * @returns CLI exit code
+ */
 int main(void) {
     while (true) {
         int c = 0;

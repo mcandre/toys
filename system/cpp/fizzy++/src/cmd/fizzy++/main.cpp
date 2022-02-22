@@ -8,6 +8,13 @@
 
 #include "fizzy++/fizzy++.hpp"
 
+/**
+ * @brief main is the entrypoint.
+ *
+ * @param argc argument count
+ * @param argv CLI arguments
+ * @returns CLI exit code
+ */
 int main() {
     std::array<std::future<std::string>, 100> strings;
 

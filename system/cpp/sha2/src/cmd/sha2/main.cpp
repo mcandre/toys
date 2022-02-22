@@ -7,10 +7,22 @@
 
 #include "sha2/sha2.hpp"
 
-static void usage(const std::string &program) {
+/**
+ * @brief Usage emits operational documentation.
+ *
+ * @param program the invoked name of this program
+ */
+static void Usage(const std::string &program) {
     std::cerr << "Usage: " << program << " <path>" << std::endl;
 }
 
+/**
+ * @brief main is the entrypoint.
+ *
+ * @param argc argument count
+ * @param argv CLI arguments
+ * @returns CLI exit code
+ */
 int main(int argc, char **argv) {
     const std::vector<std::string> args{ argv, argv + argc };
 
@@ -20,7 +32,7 @@ int main(int argc, char **argv) {
     }
 
     if (args.size() < 2) {
-        usage(args[0]);
+        Usage(args[0]);
         return EXIT_FAILURE;
     }
 

@@ -8,6 +8,11 @@
 
 #include "hextime/hextime.h"
 
+/**
+ * @brief main is the entrypoint.
+ *
+ * @returns CLI exit code
+ */
 int main(void) {
     char buf[6];
 

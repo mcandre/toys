@@ -8,6 +8,11 @@
 
 #include "fizzy/fizzy.h"
 
+/**
+ * @brief main is the entrypoint.
+ *
+ * @returns CLI exit code
+ */
 int main(void) {
     char buf[9];
     const size_t buf_sz = sizeof(buf);
