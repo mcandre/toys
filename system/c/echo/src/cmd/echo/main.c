@@ -12,16 +12,16 @@
 
 int main(void) {
     while (true) {
-        int c; // NOLINT(cppcoreguidelines-init-variables)
+        int c = 0;
 
-        if ((c = getchar()) == EOF) {
-            return EXIT_SUCCESS;
+        while ((c = getchar()) != EOF) {
+            errno = 0;
+            if (putchar(c) == EOF) {
+                fprintf(stderr, "error writing character\n");
+                return EXIT_FAILURE;
+            }
         }
 
-        errno = 0;
-        if (putchar(c) == EOF) {
-            fprintf(stderr, "error writing character\n");
-            return EXIT_FAILURE;
-        }
+        return EXIT_SUCCESS;
     }
 }

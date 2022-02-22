@@ -3,20 +3,28 @@
 #include <iomanip>
 #include <iostream>
 #include <string>
+#include <vector>
 
 #include "sha2/sha2.hpp"
 
-static void usage(const char *program) {
+static void usage(const std::string &program) {
     std::cerr << "Usage: " << program << " <path>" << std::endl;
 }
 
 int main(int argc, char **argv) {
-    if (argc != 2) {
-        usage(argv[0]);
+    const std::vector<std::string> args{ argv, argv + argc };
+
+    if (args.empty()) {
+        std::cerr << "error: missing program name" << std::endl;
         return EXIT_FAILURE;
     }
 
-    const std::string path{argv[1]};
+    if (args.size() < 2) {
+        usage(args[0]);
+        return EXIT_FAILURE;
+    }
+
+    const std::string path{args[1]};
     sha2::SHA2 digest{};
 
     try {
