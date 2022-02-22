@@ -17,6 +17,10 @@ const (
 
 // main is the entrypoint for this application.
 func main() {
+	if len(os.Args) == 0 {
+		log.Fatalf("error: missing program name\n")
+	}
+
 	err := open.Run(DuckDuckGo + strings.Join(os.Args[1:], Sep))
 
 	if err != nil {
