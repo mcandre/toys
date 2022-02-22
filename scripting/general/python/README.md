@@ -11,7 +11,7 @@ Hello World!
 
 # REQUIREMENTS
 
-* [Python](http://python.org/)
+* [Python](http://python.org/) 3.10.0+
 
 ## OPTIONAL
 
