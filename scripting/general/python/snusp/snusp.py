@@ -9,6 +9,7 @@ __version__ = '0.2'  # seems to work
 
 import getopt
 import sys
+import os
 
 
 class SNUSPInterpreter:
@@ -259,11 +260,13 @@ def usage():
     print('-n|--nowait step without pauses')
     print('-h|--help (usage)')
 
-    sys.exit()
-
 
 def main():
     '''CLI'''
+
+    if len(sys.argv) == 0:
+        print('error: missing program name')
+        os.exit(1)
 
     system_args = sys.argv[1:]  # ignore program name
 
@@ -281,9 +284,11 @@ def main():
         )
     except getopt.GetoptError:
         usage()
+        sys.exit(1)
 
     if len(args) < 1:
         usage()
+        sys.exit(0)
 
     for option, value in optlist:
         if option == '-h' or option == '--help':
@@ -310,6 +315,7 @@ def main():
                 input()
             else:
                 si.run()
+
 
 if __name__ == '__main__':
     try:

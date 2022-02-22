@@ -23,6 +23,10 @@ def usage():
 def main():
     '''CLI'''
 
+    if len(sys.argv) == 0:
+        print('error: missing program name')
+        os.exit(1)
+
     system_args = sys.argv[1:]  # ignore program name
     optlist = []
     args = []
@@ -45,6 +49,7 @@ def main():
 
     for n in numbers:
         print(' '.join(get_all_factors(n)))
+
 
 if __name__ == '__main__':
     try:

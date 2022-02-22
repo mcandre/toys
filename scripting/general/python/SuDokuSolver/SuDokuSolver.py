@@ -7,10 +7,10 @@ __version__ = '0.0.1'
 from SuDokuCell import SuDokuCell
 from SuDoku import SuDoku
 
+import getopt
 import random
-
 import sys
-from getopt import getopt
+import os
 
 
 class SuDokuSolver:
@@ -134,24 +134,29 @@ def usage():
     print('\nWhere [x] is a cell with given value x and')
     print('_x_ is a blank cell with guessed value x.')
 
-    sys.exit()
-
 
 def main():
+    if len(sys.argv) == 0:
+        print('error: missing program name')
+        os.exit(1)
+
     systemArgs = sys.argv[1:]
 
     optlist, args = [], []
     try:
-        optlist, args = getopt(systemArgs, 'h', ['help'])
+        optlist, args = getopt.getopt(systemArgs, 'h', ['help'])
     except:
         usage()
+        sys.exit(1)
 
     if len(args) < 1:
         usage()
+        sys.exit(1)
 
     for option, value in optlist:
         if option == '-h' or option == '--help':
             usage()
+            sys.exit(0)
 
     filenames = args
 
@@ -195,6 +200,7 @@ def main():
             continue
 
         print('Solution:\n' + str(solver.getSuDoku()))
+
 
 if __name__ == '__main__':
     main()

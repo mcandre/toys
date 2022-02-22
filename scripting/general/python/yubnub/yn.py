@@ -2,6 +2,15 @@
 
 '''YubNub client'''
 
+from contracts import *
+import sys
+import getopt
+from urllib import urlopen
+import webbrowser
+from html2txt import html2txt
+
+import os
+
 __author__ = 'Andrew Pennebaker (andrew.pennebaker@gmail.com)'
 __date__ = '9 Dec 2006 - 7 Aug 2007'
 __copyright__ = 'Copyright 2006 2007 Andrew Pennebaker'
@@ -10,14 +19,6 @@ __credits__ = 'Based on Yubnub for Windows'
 ' (http://www.opbarnes.com/blog/Programming/OPB/Utilities/yubnub.html)'
 __URL__ = 'http://snippets.dzone.com/posts/show/3120'
 
-from html2txt import html2txt
-
-import webbrowser
-from urllib import urlopen
-
-import getopt
-import sys
-from contracts import *
 
 PARSER = 'http://yubnub.org/parser/parse?command='
 
@@ -88,11 +89,13 @@ def usage():
     print('\n--parser <parser>\n\tcustomize parser URL')
     print('\n-h --help')
 
-    sys.exit()
-
 
 def main():
     '''CLI'''
+
+    if len(sys.argv) == 0:
+        print('error: missing program name')
+        os.exit(1)
 
     mode = BROWSER_MODE
     clean = True
@@ -107,10 +110,12 @@ def main():
         )
     except getopt.GetoptError:
         usage()
+        sys.exit(1)
 
     for option, value in optlist:
         if option == '-h' or option == '--help':
             usage()
+            sys.exit(0)
 
         elif option == '-b' or option == '--browser':
             mode = BROWSER_MODE
@@ -129,6 +134,7 @@ def main():
         for line in yubnub_plain(command, clean):
             sys.stdout.write(line)
             print('')
+
 
 if __name__ == '__main__':
     main()

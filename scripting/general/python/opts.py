@@ -2,8 +2,9 @@
 
 '''Getopt demo'''
 
-import sys
 import getopt
+import sys
+import os
 
 
 def usage():
@@ -23,6 +24,10 @@ def usage():
 
 def main():
     '''CLI'''
+
+    if len(sys.argv) == 0:
+        print('error: missing program name')
+        os.exit(1)
 
     optlist, args = getopt.getopt(
         sys.argv[1:],
@@ -51,6 +56,7 @@ def main():
 
     for arg in args:
         print('additional argument %s' % (arg))
+
 
 if __name__ == '__main__':
     main()

@@ -2,8 +2,9 @@
 
 '''Trie-based boggle solver'''
 
-import sys
 import random
+import sys
+import os
 
 DEFAULT_DICT = 'dict.txt'
 
@@ -121,6 +122,10 @@ def main():
 
     dictname = DEFAULT_DICT
 
+    if len(sys.argv) == 0:
+        print('error: missing program name')
+        os.exit(1)
+
     if len(sys.argv) > 1:
         dictname = sys.argv[1]
 
@@ -193,6 +198,7 @@ def main():
 
     for word in compwords:
         print(word)
+
 
 if __name__ == '__main__':
     try:
