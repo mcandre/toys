@@ -3,6 +3,7 @@
 #include <iomanip>
 #include <iostream>
 #include <string>
+#include <string_view>
 #include <vector>
 
 #include "sha2/sha2.hpp"
@@ -12,7 +13,7 @@
  *
  * @param program the invoked name of this program
  */
-static void Usage(const std::string &program) {
+static void Usage(const std::string_view &program) {
     std::cerr << "Usage: " << program << " <path>" << std::endl;
 }
 
@@ -23,8 +24,8 @@ static void Usage(const std::string &program) {
  * @param argv CLI arguments
  * @returns CLI exit code
  */
-int main(int argc, char **argv) {
-    const std::vector<std::string> args{ argv, argv + argc };
+int main(int argc, const char **argv) {
+    const std::vector<std::string_view> args{ argv, argv + argc };
 
     if (args.empty()) {
         std::cerr << "error: missing program name" << std::endl;
