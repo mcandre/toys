@@ -21,9 +21,13 @@ $ sha2 /tmp/as.txt
 cdc76e5c9914fb9281a1c7e284d73e67f1809a48a497200e046d39ccc7112cd0  /tmp/as.txt
 ```
 
-# REQUIREMENTS
+# RUNTIME REQUIREMENTS
 
-* [clang](https://clang.llvm.org/) 10+
+(None)
+
+# CONTRIBUTING
+
+For more details on developing args itself, see [DEVELOPMENT.md](DEVELOPMENT.md).
 
 # RESOURCES
 

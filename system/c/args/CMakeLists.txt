@@ -85,4 +85,3 @@ else()
 endif()
 
 add_custom_target(doc COMMAND doxygen Doxyfile)
-add_custom_target(clean-cmake COMMAND sh clean-cmake.sh)

@@ -11,55 +11,49 @@
 * [cppcheck](https://cppcheck.sourceforge.io/)
 * [cpplint](https://pypi.org/project/cpplint/)
 * [Doxygen](https://www.doxygen.nl/index.html)
+* [rez](https://github.com/mcandre/rez) v0.0.9
 * [sail](https://github.com/mcandre/sail)
 * [vera++](https://bitbucket.org/verateam/vera/wiki/Home)
-
-# BUILD
-
-```console
-$ cmake .
-$ cmake --build . --config Release
-```
-
-# INSTALL
-
-```console
-$ cmake --build . --target install
-```
-
-# UNINSTALL
-
-```console
-$ cmake --build . --target uninstall
-```
 
 # LINT
 
 ```console
-$ cmake --build . --target lint
+$ rez lint
 ```
 
 # TEST
 
 ```console
-$ CTEST_OUTPUT_ON_FAILURE=1 ctest -C Release
+$ rez [test]
+```
+
+# INSTALL
+
+```console
+$ rez install
+```
+
+# UNINSTALL
+
+```console
+$ rez uninstall
 ```
 
 # LEAK CHECK
 
 ```console
-$ cmake --build . --target leaks
+$ rez leaks
 ```
 
 # DOCUMENT
 
 ```console
-$ cmake --build . --target doc
+$ rez doc
 $ karp html/index.html
 ```
 
 # CLEAN
 
 ```console
-$ ./clean.sh
+$ rez clean
 ```

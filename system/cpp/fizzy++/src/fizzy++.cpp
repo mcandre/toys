@@ -4,7 +4,7 @@
 
 #include "fizzy++/fizzy++.hpp"
 
-std::string fizzy::Fizzy(uint n) {
+std::string fizzy::Fizzy(unsigned int n) {
     const auto a = n % 3, b = n % 5;
 
     if (!(a | b)) {

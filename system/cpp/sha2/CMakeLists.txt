@@ -93,5 +93,3 @@ if(
 else()
     add_custom_target(leaks DEPENDS valgrind)
 endif()
-
-add_custom_target(clean-cmake COMMAND sh clean-cmake.sh)

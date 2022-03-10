@@ -21,10 +21,10 @@
 $ rez lint
 ```
 
-# TEST
+# BUILD
 
 ```console
-$ rez [test]
+$ rez [build]
 ```
 
 # INSTALL
@@ -43,13 +43,6 @@ $ rez uninstall
 
 ```console
 $ rez leaks
-```
-
-# DOCUMENT
-
-```console
-$ rez doc
-$ karp html/index.html
 ```
 
 # CLEAN
