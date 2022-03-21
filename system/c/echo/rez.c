@@ -27,7 +27,7 @@
 #include <sys/types.h>
 
 #if !defined(_MSC_VER)
-static int remove_cb(const char *path, const struct stat *sb, int typeflag, struct FTW *ftwbuf) {
+static int remove_cb(const char *path, __attribute__ ((unused)) const struct stat *sb, __attribute__ ((unused)) int typeflag, __attribute__ ((unused)) struct FTW *ftwbuf) {
     errno = 0;
     int status = remove(path);
 
@@ -209,15 +209,6 @@ static int clean_junk_extensions(const char *path) {
 static int clean_msvc() {
     remove_all_abortable("x64");
     remove_all_abortable("x86");
-
-    const char *junk_extensions[] = {
-        ".dir",
-        ".filters",
-        ".obj",
-        ".sln",
-        ".vcxproj"
-    };
-    const size_t junk_extensions_sz = sizeof(junk_extensions)/sizeof(char*);
 
     errno = 0;
     char *cwd = malloc(sizeof(char) * PATH_MAX);
