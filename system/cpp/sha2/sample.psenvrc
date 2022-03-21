@@ -21,5 +21,7 @@ foreach {
     }
 }
 
-$Env:CXXFLAGS = "/std:c++17 /EHsc /Ox /Wv:18"
+$Env:CPPFLAGS = "/EHsc /Ox /Wv:18 /INCREMENTAL:NO /WX /W4 /wd4204"
+$Env:CXXFLAGS = "/std:c++17"
+$Env:CFLAGS = "/std:c17"
 $Env:CTEST_OUTPUT_ON_FAILURE = "1"

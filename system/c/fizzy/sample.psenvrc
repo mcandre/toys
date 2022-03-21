@@ -21,6 +21,6 @@ foreach {
     }
 }
 
-$Env:CFLAGS = "/EHsc /Ox /Wv:18 /INCREMENTAL:NO /WX /W4 /wd4204"
-$Env:CMAKE_C_STANDARD = "/std:c17 "
+$Env:CPPFLAGS = "/EHsc /Ox /Wv:18 /INCREMENTAL:NO /WX /W4 /wd4204"
+$Env:CFLAGS = "/std:c17"
 $Env:CTEST_OUTPUT_ON_FAILURE = "1"
