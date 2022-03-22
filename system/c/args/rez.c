@@ -112,6 +112,16 @@ static int cmake_init() {
     return system("cmake .");
 }
 
+static int lint() {
+    const int status = cmake_init();
+
+    if (status != EXIT_SUCCESS) {
+        return status;
+    }
+
+    return system("cmake --build . --target lint");
+}
+
 static int build() {
     const int status = cmake_init();
 
@@ -317,6 +327,7 @@ int main(int argc, const char **argv) {
         "clean_cmake",
         "clean_msvc",
         "cmake_init",
+        "lint",
         "build",
         "doc",
         "leaks",
@@ -332,6 +343,7 @@ int main(int argc, const char **argv) {
         &clean_cmake,
         &clean_msvc,
         &cmake_init,
+        &lint,
         &build,
         &doc,
         &leaks,
