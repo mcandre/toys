@@ -1,3 +1,10 @@
+/**
+ * @copyright 2021 YelloSoft
+ * @mainpage
+ *
+ * A basic SHA2 implementation.
+ */
+
 #include <arpa/inet.h>
 #include <cstdint>
 #include <cstdlib>
@@ -18,28 +25,12 @@ Endian HostEndianness() {
     return Endian::BIG;
 }
 
-uint16_t EnsureEndianness16(uint16_t x, Endian target) {
-    if (HostEndianness() == target) {
-        return x;
-    }
-
-    return htons(x);
-}
-
 uint32_t EnsureEndianness32(uint32_t x, Endian target) {
     if (HostEndianness() == target) {
         return x;
     }
 
     return htonl(x);
-}
-
-uint64_t EnsureEndianness64(uint64_t x, Endian target) {
-    if (HostEndianness() == target) {
-        return x;
-    }
-
-    return __builtin_bswap64(x);
 }
 
 uint32_t sigma0(uint32_t x) {
@@ -59,7 +50,7 @@ uint32_t Sigma1(uint32_t x) {
 }
 
 uint32_t Ch(uint32_t x, uint32_t y, uint32_t z) {
-    return (x & y) ^ (~(x) & z);
+    return (x & y) ^ (~(x) &z);
 }
 
 uint32_t Maj(uint32_t x, uint32_t y, uint32_t z) {
@@ -84,8 +75,7 @@ void SHA2::Pad() {
 
     for (auto i = size_t(0); i < size_t(8); i++) {
         content_buf[count_bytes - 8 + i] = uint8_t(
-            total_count_bits >> (8ULL * (7ULL - i))
-        );
+            total_count_bits >> (8ULL * (7ULL - i)));
     }
 }
 
@@ -95,30 +85,27 @@ void SHA2::Mutate() {
 
     for (auto i = size_t(16); i < size_t(64); i++) {
         w[i] = EnsureEndianness32(
-                (
-                    sigma1(EnsureEndianness32(w[i-2], Endian::BIG)) +
-                    EnsureEndianness32(w[i-7], Endian::BIG) +
-                    sigma0(EnsureEndianness32(w[i-15], Endian::BIG)) +
-                    EnsureEndianness32(w[i-16], Endian::BIG)
-                ),
-                Endian::BIG
-        );
+            (
+                sigma1(EnsureEndianness32(w[i - 2], Endian::BIG)) +
+                EnsureEndianness32(w[i - 7], Endian::BIG) +
+                sigma0(EnsureEndianness32(w[i - 15], Endian::BIG)) +
+                EnsureEndianness32(w[i - 16], Endian::BIG)),
+            Endian::BIG);
     }
 
-    uint32_t temp1 = 0,
-             temp2 = 0,
-             a = hash[0],
-             b = hash[1],
-             c = hash[2],
-             d = hash[3],
-             e = hash[4],
-             f = hash[5],
-             g = hash[6],
-             h = hash[7];
+    uint32_t
+        a = hash[0],
+        b = hash[1],
+        c = hash[2],
+        d = hash[3],
+        e = hash[4],
+        f = hash[5],
+        g = hash[6],
+        h = hash[7];
 
     for (auto i = size_t(0); i < size_t(64); i++) {
-        temp1 = h + Sigma1(e) + Ch(e, f, g) + k[i] + EnsureEndianness32(w[i], Endian::BIG);
-        temp2 = Sigma0(a) + Maj(a, b, c);
+        uint32_t temp1 = h + Sigma1(e) + Ch(e, f, g) + k[i] + EnsureEndianness32(w[i], Endian::BIG);
+        uint32_t temp2 = Sigma0(a) + Maj(a, b, c);
         h = g;
         g = f;
         f = e;

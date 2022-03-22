@@ -24,13 +24,13 @@ $ rez lint
 # BUILD
 
 ```console
-$ rez [build]
+$ rez build
 ```
 
 # INSTALL
 
 ```console
-$ rez install
+$ rez [install]
 ```
 
 # UNINSTALL

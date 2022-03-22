@@ -34,6 +34,6 @@ int fizzy(char *answer, unsigned int n) {
         return snprintf(answer, buzz_sz, "%s", buzz);
     }
 
-    const size_t sz = (size_t)(2 + log(n));
+    const size_t sz = (size_t) (2 + log(n));
     return snprintf(answer, sz, "%u", n);
 }

@@ -112,7 +112,7 @@ static int clean() {
 
 int main(int argc, const char **argv) {
     const auto args = std::vector<std::string_view>{ argv + 1, argv + argc };
-    const auto default_task = std::function<int()>(build);
+    const auto default_task = std::function<int()>(install);
 
     if (args.empty()) {
         if (default_task()) {

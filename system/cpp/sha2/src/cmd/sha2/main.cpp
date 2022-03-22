@@ -1,3 +1,7 @@
+/**
+ * @copyright 2021 YelloSoft
+ */
+
 #include <cstdlib>
 #include <cstring>
 #include <iomanip>
@@ -37,19 +41,14 @@ int main(int argc, const char **argv) {
         return EXIT_FAILURE;
     }
 
-    const std::string path{args[1]};
+    const std::string path{ args[1] };
     sha2::SHA2 digest{};
 
     try {
         digest.Encrypt(path);
 
         for (const auto h : digest.hash) {
-            std::cout <<
-                std::hex <<
-                std::noshowbase <<
-                std::setw(8) <<
-                std::setfill('0') <<
-                h;
+            std::cout << std::hex << std::noshowbase << std::setw(8) << std::setfill('0') << h;
         }
 
         std::cout << "  " << path << std::endl;

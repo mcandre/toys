@@ -1,5 +1,9 @@
 #pragma once
 
+/**
+ * @copyright 2021 YelloSoft
+ */
+
 #include <cstdint>
 #include <string>
 
@@ -11,11 +15,7 @@ enum class Endian {
 
 Endian HostEndianness();
 
-uint16_t EnsureEndianness16(uint16_t x, Endian target);
-
 uint32_t EnsureEndianness32(uint32_t x, Endian target);
-
-uint64_t EnsureEndianness64(uint64_t x, Endian target);
 
 uint32_t sigma0(uint32_t x);
 
