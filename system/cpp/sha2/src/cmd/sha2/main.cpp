@@ -47,7 +47,7 @@ int main(int argc, const char **argv) {
     try {
         digest.Encrypt(path);
 
-        for (const auto h : digest.hash) {
+        for (const uint32_t h : digest.hash) {
             std::cout << std::hex << std::noshowbase << std::setw(8) << std::setfill('0') << h;
         }
 

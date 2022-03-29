@@ -43,12 +43,12 @@ const static uint32_t k[64] = {
 };
 
 struct SHA2 {
-    uint64_t total_count_bytes = 0;
-    size_t count_bytes = 0;
-    size_t offset = 0;
-    uint32_t hash[8] = { 0 };
-    uint8_t content_buf[128] = { 0 };
-    uint32_t w[64] = { 0 };
+    uint64_t total_count_bytes{ 0 };
+    size_t count_bytes{ 0 };
+    size_t offset{ 0 };
+    uint32_t hash[8]{ 0 };
+    uint8_t content_buf[128]{ 0 };
+    uint32_t w[64]{ 0 };
 
     void Pad();
     void Mutate();

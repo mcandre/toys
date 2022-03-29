@@ -71,9 +71,9 @@ void SHA2::Pad() {
         count_bytes = 64;
     }
 
-    const auto total_count_bits = 8ULL * total_count_bytes;
+    const unsigned long long total_count_bits{ 8ULL * total_count_bytes };
 
-    for (auto i = size_t(0); i < size_t(8); i++) {
+    for (size_t i{ 0 }; i < size_t(8); i++) {
         content_buf[count_bytes - 8 + i] = uint8_t(
             total_count_bits >> (8ULL * (7ULL - i)));
     }
@@ -83,7 +83,7 @@ void SHA2::Mutate() {
     (void) std::memset(w, 0, sizeof(w));
     (void) std::memcpy(w, content_buf + offset, size_t(64));
 
-    for (auto i = size_t(16); i < size_t(64); i++) {
+    for (size_t i{ 16 }; i < size_t(64); i++) {
         w[i] = EnsureEndianness32(
             (
                 sigma1(EnsureEndianness32(w[i - 2], Endian::BIG)) +
@@ -94,18 +94,18 @@ void SHA2::Mutate() {
     }
 
     uint32_t
-        a = hash[0],
-        b = hash[1],
-        c = hash[2],
-        d = hash[3],
-        e = hash[4],
-        f = hash[5],
-        g = hash[6],
-        h = hash[7];
+        a{ hash[0] },
+        b{ hash[1] },
+        c{ hash[2] },
+        d{ hash[3] },
+        e{ hash[4] },
+        f{ hash[5] },
+        g{ hash[6] },
+        h{ hash[7] };
 
-    for (auto i = size_t(0); i < size_t(64); i++) {
-        uint32_t temp1 = h + Sigma1(e) + Ch(e, f, g) + k[i] + EnsureEndianness32(w[i], Endian::BIG);
-        uint32_t temp2 = Sigma0(a) + Maj(a, b, c);
+    for (size_t i{ 0 }; i < size_t(64); i++) {
+        uint32_t temp1{ h + Sigma1(e) + Ch(e, f, g) + k[i] + EnsureEndianness32(w[i], Endian::BIG) };
+        uint32_t temp2{ Sigma0(a) + Maj(a, b, c) };
         h = g;
         g = f;
         f = e;
@@ -140,7 +140,7 @@ void SHA2::Encrypt(const std::string &path) {
     hash[6] = 0x1f83d9abUL;
     hash[7] = 0x5be0cd19UL;
 
-    FILE *f = fopen(path.c_str(), "rbe");
+    FILE *f{ fopen(path.c_str(), "rbe") };
 
     if (f == nullptr) {
         throw std::runtime_error("error opening file: "s + path);

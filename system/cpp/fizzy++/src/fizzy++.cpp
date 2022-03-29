@@ -5,7 +5,7 @@
 #include "fizzy++/fizzy++.hpp"
 
 std::string fizzy::Fizzy(unsigned int n) {
-    const auto a = n % 3, b = n % 5;
+    const unsigned int a{ n % 3 }, b{ n % 5 };
 
     if (!(a | b)) {
         return "FizzBuzz";

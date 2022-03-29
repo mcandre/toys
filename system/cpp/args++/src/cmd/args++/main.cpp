@@ -17,7 +17,9 @@
  * @returns CLI exit code
  */
 int main(int argc, const char **argv) {
-    for (auto s : std::vector<std::string_view>{ argv, argv + argc }) {
+    const std::vector<std::string_view> args{ argv, argv + argc };
+
+    for (const std::string_view s : args) {
         std::cout << s << std::endl;
     }
 
