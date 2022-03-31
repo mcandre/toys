@@ -1,6 +1,6 @@
 # BUILDTIME REQUIREMENTS
 
-* a C/C++ 17 compiler
+* [clang](https://clang.llvm.org/) 10+
 * [cmake](https://cmake.org/) 3+
 
 ## Recommended
