@@ -71,7 +71,7 @@ void SHA2::Pad() {
         count_bytes = 64;
     }
 
-    const unsigned long long total_count_bits{ 8ULL * total_count_bytes };
+    const uint64_t total_count_bits{ 8ULL * total_count_bytes };
 
     for (size_t i{ 0 }; i < size_t(8); i++) {
         content_buf[count_bytes - 8 + i] = uint8_t(
