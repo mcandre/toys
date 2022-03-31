@@ -11,7 +11,7 @@ Hello World!
 
 # REQUIREMENTS
 
-* [JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 1.11+
+* [JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 1.14
 * [Gradle](https://gradle.org/) 6+
 
 ## Optional
