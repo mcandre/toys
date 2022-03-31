@@ -17,11 +17,12 @@ Buzz
 
 # REQUIREMENTS
 
-* [JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 1.11+
-* [Gradle](http://gradle.org/) 6+
+* [JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 1.14
+* [Gradle](http://gradle.org/) 7
 
-## Optional
+## Recommended
 
+* [accio](https://github.com/mcandre/accio) 0.0.2
 * [Sonar](http://www.sonarqube.org/)
 * [Infer](http://fbinfer.com/)
 
@@ -31,21 +32,26 @@ E.g., `brew cask install java && brew install gradle sonar sonar-runner infer`
 
 ```console
 $ gradle --warning-mode all javadoc
-$ open build/docs/javadoc/index.html
+$ karp build/docs/javadoc/index.html
 ```
 
-# TEST + CODE COVERAGE
+# TEST
 
 ```console
-$ gradle --warning-mode all test jacoco
-$ open build/reports/jacoco/test/html/index.html
+$ gradle --warning-mode all test
+```
+
+# SECURITY SCAN
+
+```console
+$ gradle audit
 ```
 
 # LINTING
 
 ```console
 $ gradle --warning-mode all check
-$ open build/reports/{checkstyle,pmd,spotbugs}/main.html
+$ karp build/reports/checkstyle/main.html
 ```
 
 ## Optional: Sonar
@@ -53,7 +59,7 @@ $ open build/reports/{checkstyle,pmd,spotbugs}/main.html
 ```console
 $ sonar start
 $ gradle --warning-mode all check sonar
-$ open http://localhost:9000/
+$ karp http://localhost:9000/
 ```
 
 ## Optional: Infer

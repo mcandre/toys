@@ -12,7 +12,6 @@ import java.util.Objects;
 
 import org.junit.Test;
 import org.junit.Assert;
-import org.hamcrest.Matchers;
 
 public class BookTest {
     private static final ZoneId ZONE_ID = ZoneId.systemDefault();
@@ -57,7 +56,7 @@ public class BookTest {
         final var book2 = new Book();
         book2.setIsbn("2");
 
-        Assert.assertThat(book1, Matchers.lessThan(book2));
+        Assert.assertTrue(book1.compareTo(book2) < 0);
     }
 
     @Test
