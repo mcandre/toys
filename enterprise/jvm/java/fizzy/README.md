@@ -17,7 +17,7 @@ Buzz
 
 # REQUIREMENTS
 
-* [JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 1.16
+* [JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 1.18
 * [Gradle](http://gradle.org/) 7
 
 ## Recommended
