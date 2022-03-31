@@ -8,7 +8,6 @@ import java.io.ObjectOutputStream;
 import java.io.ObjectInputStream;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Objects;
 
 import org.junit.Test;
 import org.junit.Assert;
@@ -31,38 +30,27 @@ public class BookTest {
 
     @Test
     public void testEqual() {
-        final var book1 = new Book();
-        book1.setIsbn("1");
-
+        final var book1 = new Book("", "", "", new Date(), "1");
         Assert.assertEquals(book1, book1);
     }
 
     @Test
     public void testInequality() {
-        final var book1 = new Book();
-        book1.setIsbn("1");
-
-        final var book2 = new Book();
-        book2.setIsbn("2");
-
+        final var book1 = new Book("", "", "", new Date(), "1");
+        final var book2 = new Book("", "", "", new Date(), "2");
         Assert.assertNotEquals(book1, book2);
     }
 
     @Test
     public void testComparable() {
-        final var book1 = new Book();
-        book1.setIsbn("1");
-
-        final var book2 = new Book();
-        book2.setIsbn("2");
-
+        final var book1 = new Book("", "", "", new Date(), "1");
+        final var book2 = new Book("", "", "", new Date(), "2");
         Assert.assertTrue(book1.compareTo(book2) < 0);
     }
 
     @Test
     public void testInequalityOthers() {
         final var book = new Book();
-
         Assert.assertNotEquals(book, null);
         Assert.assertNotEquals(book, "");
     }
@@ -77,18 +65,16 @@ public class BookTest {
 
             booksOut.writeObject(BPWJFD);
             final var book2 = (Book) booksIn.readObject();
-
             Assert.assertEquals(BPWJFD, book2);
         }
     }
 
     @Test
     public void testHashable() {
-        final var book = new Book();
-        book.setIsbn("978-3-16-148410-0");
+        final var book = new Book("", "", "", new Date(), "978-3-16-148410-0");
 
         Assert.assertEquals(
-            Objects.hash("978-3-16-148410-0"),
+            "978-3-16-148410-0".hashCode(),
             book.hashCode()
         );
     }
@@ -97,30 +83,20 @@ public class BookTest {
     public void testConfigurability() {
         final var localDate1 = LocalDate.now();
         final var date1 = Date.from(localDate1.atStartOfDay(ZONE_ID).toInstant());
-
-        final var draft = new Book();
-        draft.setTitle("Working Title");
-        draft.setAuthor("Me");
-        draft.setPublisher("LuLu");
-        draft.setPublished(date1);
-        draft.setIsbn("1");
+        final var draft1 = new Book("Working Title", "Me", "LuLu", date1, "1");
 
         // 6 months later and we are already publishing a new edition
         final var localDate2 = localDate1.plusMonths(6);
         final var date2 = Date.from(localDate2.atStartOfDay(ZONE_ID).toInstant());
-        draft.setTitle("Working Title, 2nd Edition");
-        draft.setPublished(date2);
-        draft.setIsbn("2");
-
-        Assert.assertEquals(date2, draft.getPublished());
+        final var draft2 = new Book("Working Title, 2nd Edition", "Me", "LuLu", date2, "2");
+        Assert.assertEquals(date2, draft2.published());
     }
 
     @Test
     public void testConstructability() {
         final var localDate1 = LocalDate.now();
         final var date1 = Date.from(localDate1.atStartOfDay(ZONE_ID).toInstant());
-
-        final var draft = new Book(
+        final var draft1 = new Book(
             "*That Book*",
             "Me",
             "Dublisher Publishing",
@@ -131,18 +107,14 @@ public class BookTest {
         // 6 months later and we are already publishing a new edition
         final var localDate2 = localDate1.plusMonths(6);
         final var date2 = Date.from(localDate2.atStartOfDay(ZONE_ID).toInstant());
-        draft.setTitle("*That Book*, 2nd Edition");
-        draft.setIsbn("2");
-        draft.setPublished(date2);
-
-        Assert.assertEquals(date2, draft.getPublished());
+        final var draft2 = new Book("*That Book*, 2nd Edition", "Me", "Dublisher Publishing", date2, "2");
+        Assert.assertEquals(date2, draft2.published());
     }
 
     @Test
     public void testGetAttributes() {
         final var localDate = LocalDate.now();
         final var date = Date.from(localDate.atStartOfDay(ZONE_ID).toInstant());
-
         final var draft = new Book(
             "The Not A Book Book",
             "Me",
@@ -151,17 +123,16 @@ public class BookTest {
             "1"
         );
 
-        Assert.assertEquals("The Not A Book Book", draft.getTitle());
-        Assert.assertEquals("Me", draft.getAuthor());
-        Assert.assertEquals("PQR Publishing", draft.getPublisher());
-        Assert.assertEquals(date, draft.getPublished());
-        Assert.assertEquals("1", draft.getIsbn());
+        Assert.assertEquals("The Not A Book Book", draft.title());
+        Assert.assertEquals("Me", draft.author());
+        Assert.assertEquals("PQR Publishing", draft.publisher());
+        Assert.assertEquals(date, draft.published());
+        Assert.assertEquals("1", draft.isbn());
     }
 
     @Test
     public void testPrinting() {
         final var date = LocalDate.now();
-
         final var draft = new Book(
             "Yet Another Book",
             "Me",

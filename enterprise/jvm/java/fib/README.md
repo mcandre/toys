@@ -13,7 +13,7 @@ Fib 10 = 55
 
 # REQUIREMENTS
 
-* [JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 1.14
+* [JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 1.16
 * [Gradle](http://gradle.org/) 7
 
 ## Recommended
