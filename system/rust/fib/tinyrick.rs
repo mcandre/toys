@@ -8,6 +8,11 @@ fn doc() {
     tinyrick_extras::doc();
 }
 
+/// Security audit
+fn audit() {
+    tinyrick::exec!("cargo", &["audit"]);
+}
+
 /// Run clippy
 fn clippy() {
     tinyrick_extras::clippy();
@@ -71,6 +76,7 @@ fn main() {
 
     tinyrick::wubba_lubba_dub_dub!(
         build;
+        audit,
         doc,
         clippy,
         lint,
