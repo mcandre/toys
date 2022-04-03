@@ -1,3 +1,4 @@
+//go:build mage
 // +build mage
 
 package main
@@ -5,7 +6,6 @@ package main
 import (
 	"fmt"
 	"os"
-	"path"
 
 	"github.com/magefile/mage/mg"
 	"github.com/mcandre/mage-extras"
@@ -91,23 +91,11 @@ var portBasename = fmt.Sprintf("zipc-%s", zipc.Version)
 // repoNamespace identifies the Go namespace for this project.
 var repoNamespace = "github.com/mcandre/zipc"
 
-// Goxcart cross-compiles Go binaries with additional targets enabled.
-func Goxcart() error {
-	return mageextras.Goxcart(
-		artifactsPath,
-		"-repo",
-		repoNamespace,
-		"-banner",
-		portBasename,
-	)
-}
+// Factorio cross-compiles Go binaries for a multitude of platforms.
+func Factorio() error { return mageextras.Factorio(portBasename) }
 
 // Port builds and compresses artifacts.
-func Port() error {
-	mg.Deps(Goxcart)
-	archiveFilename := fmt.Sprintf("%s.zip", portBasename)
-	return zipc.Compress(path.Join("bin", archiveFilename), []string{portBasename}, artifactsPath)
-}
+func Port() error { mg.Deps(Factorio); return mageextras.Archive(portBasename, artifactsPath) }
 
 // Install builds and installs Go applications.
 func Install() error { return mageextras.Install() }

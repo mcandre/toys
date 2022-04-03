@@ -1,11 +1,11 @@
 # BUILDTIME REQUIREMENTS
 
-* [Go](https://golang.org/) 1.13+
+* [Go](https://golang.org/) 1.17+
 * a POSIX compatible shell (e.g., `bash`, `ksh`, `sh`, `zsh`)
 * Go development tools (`sh acquire`)
 * [Docker](https://www.docker.com/) 19+
 
-# INSTALL FROM SOURCE
+# INSTALL
 
 ```console
 $ mage install

@@ -17,6 +17,9 @@ var artifactsPath = "bin"
 // Default references the default build task.
 var Default = Test
 
+// Audit runs a security audit.
+func Audit() error { return mageextras.SnykTest() }
+
 // Test executes the integration test suite.
 func Test() error {
 	mg.Deps(Install)
