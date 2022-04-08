@@ -41,10 +41,10 @@ $ karp build/docs/javadoc/index.html
 $ gradle --warning-mode all test
 ```
 
-# SECURITY SCAN
+# SECURITY AUDIT
 
 ```console
-$ gradle audit
+$ gradle audit snyk-test
 ```
 
 # LINTING

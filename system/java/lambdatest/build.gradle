@@ -1,6 +1,7 @@
 plugins {
     id 'com.github.johnrengelman.shadow' version '4.0.4'
     id 'com.palantir.baseline-checkstyle' version '4.87.0'
+    id 'io.snyk.gradle.plugin.snykplugin' version '0.4'
     id 'net.ossindex.audit' version '0.4.11'
     id 'org.sonarqube' version '2.7'
 }

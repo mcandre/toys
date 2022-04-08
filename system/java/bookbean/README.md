@@ -24,86 +24,6 @@ Java beans follow the [Hollywood Principle](http://en.wikipedia.org/wiki/Hollywo
 
 ```console
 $ gradle --warning-mode all test
-
-$ less src/main/java/us/yellosoft/bookbean/Book.java
-package us.yellosoft.bookbean;
-
-import java.io.Serializable;
-import java.util.Date;
-
-// A Bean for Books
-public class Book implements Serializable, Comparable<Book> {
-  public static final long serialVersionUID = 1L;
-
-  // Attributes
-  private String title;
-  private String author;
-  private String publisher;
-  private Date published;
-  private String isbn;
-
-  // 0-ary default constructor with reasonable defaults
-  public Book() {
-    this.title = "";
-    this.author = "";
-    this.publisher = "";
-    this.published = new Date();
-    this.isbn = "";
-  }
-
-  // Not necessary for Beans, but helpful for anyone who hates calling
-  // .setThis(x), .setThat(y), .setTheOther(z) blah blah boilerplate code!
-  public Book(
-    String title,
-    String author,
-    String publisher,
-    Date published,
-    String isbn
-  ) {
-    this.title = title;
-    this.author = author;
-    this.publisher = publisher;
-    this.published = published;
-    this.isbn = isbn;
-  }
-
-  // Nasty setter/getter boilerplate follows
-
-  public String getTitle() { return this.title; }
-  public void setTitle(String title) { this.title = title; }
-  ...
-
-$ less src/test/java/us/yellosoft/bookbean/BookTest.java
-package us.yellosoft.bookbean;
-
-import java.util.Date;
-import java.util.Calendar;
-import java.io.IOException;
-import java.io.PipedOutputStream;
-import java.io.PipedInputStream;
-import java.io.ObjectOutputStream;
-import java.io.ObjectInputStream;
-
-import org.junit.Test;
-import org.junit.Assert;
-
-import us.yellosoft.bookbean.Book;
-
-public class BookTest {
-  public static final Book BPWJFD = new Book(
-    "Beginning Programming with Java for Dummies",
-    "Barry Burd",
-    "Wiley",
-    new Date(1403481600L),
-    "978-1118407813"
-  );
-
-  @Test
-  public void testZeroConfiguration() {
-    Book defaultBook = new Book();
-    Assert.assertEquals(true, true); // No errors thrown
-  }
-...
 ```
 
 # REQUIREMENTS
@@ -132,10 +52,10 @@ $ karp build/docs/javadoc/index.html
 $ gradle --warning-mode all test
 ```
 
-# SECURITY SCAN
+# SECURITY AUDIT
 
 ```console
-$ gradle audit
+$ gradle audit snyk-test
 ```
 
 # LINTING
