@@ -1,6 +1,10 @@
 task :default => [:lint] do
 end
 
+task :audit => [] do
+    sh 'snyk test --all-projects'
+end
+
 task :ruby => [] do
     begin
         sh 'for f in **/*.rb; do ruby -wc $f 2>&1 | grep -v "Syntax OK" | grep -v openssl | grep -v rubygems; done'
@@ -10,10 +14,6 @@ end
 
 task :reek => [] do
     sh 'bundle exec reek -q .; true'
-end
-
-task :flay => [] do
-    sh 'bundle exec flay .'
 end
 
 task :roodi => [] do
@@ -36,5 +36,5 @@ task :tailor => [] do
     sh 'bundle exec tailor'
 end
 
-task :lint => [:ruby, :reek, :flay, :roodi, :cane, :excellent, :rubocop, :tailor] do
+task :lint => [:ruby, :reek, :roodi, :cane, :excellent, :rubocop, :tailor] do
 end

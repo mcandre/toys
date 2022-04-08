@@ -1,10 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'contracts'
-include Contracts
-
 module Beer
-    Contract Num => String
     def self.beer(i)
         if i >= 3
             "#{i} bottles of beer on the wall, #{i} bottles of beer.\n" +

@@ -2,14 +2,11 @@
 
 require 'rubygems'
 require 'parallel'
-require 'contracts'
-include Contracts
 
 #
 # FizzBuzz
 #
 class Fixnum
-    Contract Num => String
     def fizz
         x, y = self % 3, self % 5
 
