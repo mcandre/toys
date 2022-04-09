@@ -7,10 +7,8 @@
 from __future__ import print_function
 
 import multiprocessing
-from contracts import *
 
 
-@contract(n='int')
 def fizzbuzz(n):
     '''FizzBuzz value of a given number'''
 

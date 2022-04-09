@@ -2,7 +2,6 @@
 
 '''YubNub client'''
 
-from contracts import *
 import sys
 import getopt
 from urllib import urlopen
@@ -26,26 +25,22 @@ BROWSER_MODE = 'BROWSER'
 PLAIN_MODE = 'PLAIN'
 
 
-@contract(s='str')
 def space2plus(s):
     '''Convert spaces to plusses'''
     return '+'.join(s.split())
 
 
-@contract(command='str')
 def yubnub(command=''):
     '''Execute YubNub command'''
     return PARSER + space2plus(command)
 
 
-@contract(command='str')
 def yubnub_browser(command):
     '''Open YubNub result in browser'''
 
     return webbrowser.open(yubnub(command))
 
 
-@contract(html='str')
 def clean_html(html):
     '''Strip HTML tags'''
 
@@ -56,7 +51,6 @@ def clean_html(html):
     return h.output()
 
 
-@contract(command='str', clean='bool')
 def yubnub_plain(command, clean=True):
     '''Output YubNub result to stdout'''
 
