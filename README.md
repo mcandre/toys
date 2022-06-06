@@ -1,4 +1,4 @@
-# toys: introductory code for new programmers
+# toys: code demos for newbies
 
 # ABOUT
 
