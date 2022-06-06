@@ -1,13 +1,15 @@
-# toys - hello world 4 ur stax
+# toys: introductory code for new programmers
+
+# ABOUT
+
+The toys project provides free, open source demos of simple projects to help new programmers master programming syntax. We include a large variety of programming languages and techniques, to cover a range of different competencies. Try the exercises out for yourself! Whether you're a veteran software engineer or just starting to code, there's something to learn for everyone.
 
 # EXAMPLE
 
 ```console
 $ cd system/c/hello
+
 $ make
-mkdir -p bin
-clang -O2 -Wall -Wextra -Wmost -Weverything -o bin/hello hello.c
-bin/hello
 Hello World!
 ```
 
