@@ -4,7 +4,7 @@ vectest's own compilation process is compatible with standard cargo. We wrap som
 
 # BUILDTIME REQUIREMENTS
 
-* [Rust](https://www.rust-lang.org/en-US/) 1.59+
+* [Rust](https://www.rust-lang.org/en-US/) 1.63+
 
 ## Recommended
 

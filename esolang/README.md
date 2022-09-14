@@ -1,1 +1,0 @@
-# esolang: Esoteric programming languages
