@@ -15,7 +15,7 @@ Hello World!
 
 # REQUIREMENTS
 
-## Optional
+## Recommended
 
 * [ASDF](https://asdf-vm.com/) 0.10
 * [make](https://www.gnu.org/software/make/)

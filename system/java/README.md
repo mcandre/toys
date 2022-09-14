@@ -11,11 +11,12 @@ Hello World!
 
 # REQUIREMENTS
 
-* [JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 1.18
-* [Gradle](https://gradle.org/) 6+
+* [OpenJDK](https://openjdk.org/) 18.0.2.1
+* [Gradle](https://gradle.org/) 7.5.1
 
-## Optional
+## Recommended
 
+* [ASDF](https://asdf-vm.com/) 0.10
 * [Python](https://www.python.org/) 3+
 * [GHC Haskell](https://www.haskell.org/) 8+
 * [Go](https://golang.org/) 1.9+
