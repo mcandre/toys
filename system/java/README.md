@@ -21,4 +21,3 @@ Hello World!
 * [GHC Haskell](https://www.haskell.org/) 8+
 * [Go](https://golang.org/) 1.9+
 * [GNU make](https://www.gnu.org/software/make/)
-* [checkbashisms](https://sourceforge.net/projects/checkbaskisms/)

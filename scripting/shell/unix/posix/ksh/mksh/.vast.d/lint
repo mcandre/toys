@@ -4,6 +4,5 @@ set -euf
 
 # v-shfmt
 v-bashate
-v-checkbashisms
 v-shellcheck
 v-funk
