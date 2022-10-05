@@ -1,6 +1,6 @@
 module github.com/mcandre/toys/system/go/fizzy
 
-go 1.17
+go 1.19
 
 require (
 	github.com/magefile/mage v1.11.0
