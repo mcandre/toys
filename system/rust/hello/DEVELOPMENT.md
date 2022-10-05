@@ -8,6 +8,7 @@ hello's own compilation process is compatible with standard cargo. We wrap some 
 
 ## Recommended
 
+* [ASDF](https://asdf-vm.com/) 0.10 (run `asdf reshim` after each Rust application binary installation)
 * [cargo-audit](https://crates.io/crates/cargo-audit) 0.16
 * [clippy](https://github.com/rust-lang-nursery/rust-clippy)
 * [tinyrick](https://github.com/mcandre/tinyrick) (e.g., `cargo install tinyrick`)
