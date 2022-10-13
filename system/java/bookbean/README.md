@@ -34,8 +34,9 @@ $ gradle --warning-mode all test
 ## Recommended
 
 * [accio](https://github.com/mcandre/accio) 0.0.2
-* [Sonar](http://www.sonarqube.org/)
 * [Infer](http://fbinfer.com/)
+* [snyk](https://www.npmjs.com/package/snyk) 1.996.0 (`npm install -g snyk@1.996.0`)
+* [Sonar](http://www.sonarqube.org/)
 
 E.g., `brew cask install java && brew install gradle sonar sonar-runner infer`
 
