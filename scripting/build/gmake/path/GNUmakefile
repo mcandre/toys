@@ -1,12 +1,6 @@
 .PHONY: all lint test clean
 
-#
-# Help debug environment, identifying
-# the PATH as make sees it.
-#
-
-all:
-	@echo $$PATH
+all: test
 
 checkmake:
 	@find . \
@@ -22,8 +16,9 @@ checkmake:
 
 lint: checkmake
 
+# Implicitly assumes a UNIX environment.
 test:
-	@echo "nothing to do"
+	@readlink -f .
 
 clean:
 	@echo "nothing to do"

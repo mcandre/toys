@@ -1,13 +1,12 @@
 .PHONY: all lint test clean
 
 #
-# Run as `gmake ARGS="<arg arg arg...>"`
+# Run as `[g]make ARGS="<arg arg arg...>"`
 #
 # Make treats raw arguments as targets, requiring
 # manual variable assignment to pass arguments.
 
-all:
-	@echo ${ARGS}
+all: test
 
 checkmake:
 	@find . \
@@ -24,7 +23,7 @@ checkmake:
 lint: checkmake
 
 test:
-	@echo "nothing to do"
+	@echo ${ARGS}
 
 clean:
 	@echo "nothing to do"

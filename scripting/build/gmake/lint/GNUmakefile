@@ -1,12 +1,10 @@
 .PHONY: all lint test clean
 
-#
-# Run with `gmake`
-#
-# If this makefile contains any syntax errors, make will report them.
-# An extra lint task would be superfluous for this reason.
+all: test
 
-all:
+# If this makefile contains any syntax errors, make will report them.
+# This task is therefore often superfluous.
+self-lint:
 	@make -n GNUmakefile
 
 checkmake:
@@ -21,10 +19,9 @@ checkmake:
 		-print0 | \
 		xargs -0 -n 1 checkmake
 
-lint: checkmake
+lint: self-lint checkmake
 
-test:
-	@echo "nothing to do"
+test: lint
 
 clean:
 	@echo "nothing to do"

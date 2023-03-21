@@ -1,7 +1,6 @@
 .PHONY: all lint test clean
 
-all:
-	@echo "Hello World!"
+all: test
 
 checkmake:
 	@find . \
@@ -18,7 +17,7 @@ checkmake:
 lint: checkmake
 
 test:
-	@echo "nothing to do"
+	@echo "Hello World!"
 
 clean:
 	@echo "nothing to do"

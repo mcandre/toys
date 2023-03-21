@@ -1,13 +1,12 @@
 #
-# Run as `bmake ARGS="<arg arg arg...>"`
+# Run as `[b]make ARGS="<arg arg arg...>"`
 #
 # Make treats raw arguments as targets, requiring
 # manual variable assignment to pass arguments.
 
 .PHONY: all lint test clean
 
-all:
-	@echo ${ARGS}
+all: test
 
 checkmake:
 	@find . \
@@ -24,7 +23,7 @@ checkmake:
 lint: checkmake
 
 test:
-	@echo "nothing to do"
+	@echo ${ARGS}
 
 clean:
 	@echo "nothing to do"

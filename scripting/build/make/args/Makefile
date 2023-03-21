@@ -1,11 +1,12 @@
 .PHONY: all lint test clean
 
-all: test
+#
+# Run as `make ARGS="<arg arg arg...>"`
+#
+# Make treats raw arguments as targets, requiring
+# manual variable assignment to pass arguments.
 
-# If this makefile contains any syntax errors, make will report them.
-# This task is therefore often superfluous.
-self-lint:
-	@make -n makefile
+all: test
 
 checkmake:
 	@find . \
@@ -19,9 +20,10 @@ checkmake:
 		-print0 | \
 		xargs -0 -n 1 checkmake
 
-lint: self-lint checkmake
+lint: checkmake
 
-test: lint
+test:
+	@echo ${ARGS}
 
 clean:
 	@echo "nothing to do"

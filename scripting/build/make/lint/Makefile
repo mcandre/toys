@@ -5,7 +5,7 @@ all: test
 # If this makefile contains any syntax errors, make will report them.
 # This task is therefore often superfluous.
 self-lint:
-	@make -n makefile
+	@make -n Makefile
 
 checkmake:
 	@find . \
