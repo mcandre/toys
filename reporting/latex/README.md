@@ -13,19 +13,15 @@ $ open fizzy.pdf
 
 # REQUIREMENTS
 
-* `pdflatex`
+* [pdflatex](https://linux.die.net/man/1/pdflatex)
 
 ## Optional
 
-* [guard](http://guardgem.org/)
-* `lacheck`
+* [lacheck](https://www.ctan.org/pkg/lacheck)
 * [chktex](http://baruch.ev-en.org/proj/chktex/)
-
-Install `guard` (requires [Ruby](https://www.ruby-lang.org/)):
-
-```
-$ bundle
-```
+* [checkmake](https://github.com/mrtazz/checkmake)
+* [GNU findutils](https://www.gnu.org/software/findutils/)
+* [GNU make](https://www.gnu.org/software/make/)
 
 # DEVELOPMENT
 

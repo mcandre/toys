@@ -1,3 +1,5 @@
+.PHONY: all lint test clean
+
 ARTIFACT=obj_dir/Vhalfadder
 
 all: test
@@ -14,6 +16,20 @@ $(ARTIFACT): Makefile main.cpp halfadder.sv
 		-C obj_dir \
 		-f Vhalfadder.mk \
 		Vhalfadder
+
+checkmake:
+	@find . \
+		-type f \
+		\( \
+			-iname Makefile -o \
+			-iname GNUmakefile -o \
+			-iname '*.mk' -o \
+			-iname '*.make' \
+		\) \
+		-print0 | \
+		xargs -0 -n 1 checkmake
+
+lint: checkmake
 
 test: $(ARTIFACT)
 	@$(ARTIFACT)

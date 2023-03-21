@@ -1,10 +1,24 @@
+.PHONY: all lint test clean
+
 all: lint
 
-lint: luac
-
 luac:
-	mkdir -p bin/
-	for f in *.lua; do luac -o bin/`basename $$f .lua`.luac $$f; done
+	mkdir -p bin
+	for f in *.lua; do luac -o bin/$$(basename $$f .lua).luac $$f; done
+
+checkmake:
+	@find . \
+		-type f \
+		\( \
+			-iname Makefile -o \
+			-iname GNUmakefile -o \
+			-iname '*.mk' -o \
+			-iname '*.make' \
+		\) \
+		-print0 | \
+		xargs -0 -n 1 checkmake
+
+lint: luac checkmake
 
 clean:
-	-rm -rf bin/
+	-rm -rf bin

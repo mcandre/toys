@@ -11,12 +11,3 @@
 ```console
 $ make lint
 ```
-
-## Guard
-
-Guard can monitor sh scripts for changes, automatically linting them.
-
-```console
-$ guard
-$ emacs .
-```

@@ -1,6 +1,29 @@
+.PHONY: all lint test clean
+
 all: lint
 
 bashate:
-	find . \( -wholename '*/.git/*' -o -wholename '*/node_modules*' -o -name '*.bat' \) -prune -o -type f \( -wholename '*/lib/*' -o -wholename '*/hooks/*' -o -name '*.sh' -o -name '*.bashrc*' -o -name '.*profile*' -o -name '*.envrc*' \) -print | xargs bashate
+	stank . | xargs bashate
 
-lint: bashate
+funk:
+	funk
+
+checkmake:
+	@find . \
+		-type f \
+		\( \
+			-iname Makefile -o \
+			-iname GNUmakefile -o \
+			-iname '*.mk' -o \
+			-iname '*.make' \
+		\) \
+		-print0 | \
+		xargs -0 -n 1 checkmake
+
+lint: bashate funk checkmake
+
+test:
+	@echo "nothing to do"
+
+clean:
+	@echo "nothing to do"

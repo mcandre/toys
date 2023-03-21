@@ -13,12 +13,3 @@
 ```
 $ make lint
 ```
-
-## Guard
-
-Guard can monitor sh scripts for changes, automatically linting them.
-
-```
-$ guard
-$ emacs .
-```

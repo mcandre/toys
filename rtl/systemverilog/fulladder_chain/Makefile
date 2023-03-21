@@ -1,3 +1,5 @@
+.PHONY: all lint test clean
+
 WIDTH=8
 
 ARTIFACT=obj_dir/Vfulladder_chain
@@ -18,6 +20,20 @@ $(ARTIFACT): Makefile main.cpp fulladder_chain.sv fulladder.sv
 		-C obj_dir \
 		-f Vfulladder_chain.mk \
 		Vfulladder_chain
+
+checkmake:
+	@find . \
+		-type f \
+		\( \
+			-iname Makefile -o \
+			-iname GNUmakefile -o \
+			-iname '*.mk' -o \
+			-iname '*.make' \
+		\) \
+		-print0 | \
+		xargs -0 -n 1 checkmake
+
+lint: checkmake
 
 test: $(ARTIFACT)
 	@$(ARTIFACT)

@@ -1,10 +1,14 @@
 # GNU Assembler
 
+(Examples limited to GNU/Linux for focus.)
+
 # REQUIREMENTS
 
 * [coreutils](https://www.gnu.org/software/coreutils/coreutils.html)
 * [binutils](https://www.gnu.org/software/binutils/)
-* [make](https://www.gnu.org/software/make/)
+* [checkmake](https://github.com/mrtazz/checkmake)
+* [GNU findutils](https://www.gnu.org/software/findutils/)
+* [GNU make](https://www.gnu.org/software/make/)
 
 ## Windows
 

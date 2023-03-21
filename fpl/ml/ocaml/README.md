@@ -4,10 +4,10 @@ Introductory OCaml programs
 
 # EXAMPLE
 
-```
-$ cd hello/
+```console
+$ cd hello
 $ make
-mkdir -p bin/
+mkdir -p bin
 ocamlc -w +a -o bin/hello hello.ml
 bin/hello
 Hello World!
@@ -15,4 +15,7 @@ Hello World!
 
 # REQUIREMENTS
 
-* [ocaml](http://caml.inria.fr/)
+* [OCaml](http://caml.inria.fr/)
+* [checkmake](https://github.com/mrtazz/checkmake)
+* [GNU findutils](https://www.gnu.org/software/findutils/)
+* [GNU make](https://www.gnu.org/software/make/)

@@ -7,5 +7,7 @@
 ## Optional
 
 * [coreutils](https://www.gnu.org/software/coreutils/coreutils.html)
-* [make](https://www.gnu.org/software/make/)
+* [checkmake](https://github.com/mrtazz/checkmake)
+* [GNU findutils](https://www.gnu.org/software/findutils/)
+* [GNU make](https://www.gnu.org/software/make/)
 * [pgsanity](https://pypi.python.org/pypi/pgsanity)
