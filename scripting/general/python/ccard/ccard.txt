@@ -1,7 +1,0 @@
-Credit card numbers conform to the Luhn algorithm, which is just a simple checksum test on the number. What you do is start from the right and double each second digit (1111 becomes 2121), then add them all together, and you should end with a number evenly divisible by ten. If it doesn’t, it’s not a valid credit card number.
-
-The first digit of the number is the Major Industry Identifier. 1/2 are for airlines, 3 is for travel/entertainment, 4/5 for banking and financial, 6 for merchandizing and financial, 7 for petroleum, 8 for telecommunications. 0 and 9 are for other assignments but you’ll likely never see them. If you look at an American Express card, you’ll see it starts with a 3, a throwback to their travel/entertainment roots.
-
-The first six digits will correspond to the issuer, including the major industry identifier. 34xxxx/37xxxx are for American Express, 4xxxxx is for Visa, 51-55xxxx is for MasterCard, and 6011xx is for Discover.
-
-The rest of the digits (except the last one, which is a checksum digit) is your account number.

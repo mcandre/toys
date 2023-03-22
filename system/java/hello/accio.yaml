@@ -1,4 +1,0 @@
----
-packages:
-- name: "github.com/mcandre/karp/cmd/karp"
-  version: "v0.0.4"

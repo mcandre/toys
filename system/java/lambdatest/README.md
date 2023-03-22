@@ -12,17 +12,14 @@ $ bin/lambdatest
 
 # REQUIREMENTS
 
-* [OpenJDK](https://openjdk.org/) 18.0.2.1
-* [Gradle](https://gradle.org/) 7.5.1
+* [OpenJDK](https://openjdk.org/) 18.0.2.1+
+* [Gradle](https://gradle.org/) 7.5.1+
+* [Node.js](https://nodejs.org/en) 16.14.2+ with `npm install -g snyk@1.996.0`
 
 ## Recommended
 
-* [accio](https://github.com/mcandre/accio) 0.0.2
 * [Infer](http://fbinfer.com/)
-* [snyk](https://www.npmjs.com/package/snyk) 1.996.0 (`npm install -g snyk@1.996.0`)
 * [Sonar](http://www.sonarqube.org/)
-
-E.g., `brew cask install java && brew install gradle sonar sonar-runner infer`
 
 # JAVADOCS
 

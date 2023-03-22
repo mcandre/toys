@@ -24,6 +24,26 @@ static int lint() {
     return system("cmake --build . --target lint");
 }
 
+static int safety() {
+    const int status{ cmake_init() };
+
+    if (status) {
+        return status;
+    }
+
+    return system("cmake --build . --target safety");
+}
+
+static int audit() {
+    const int status{ cmake_init() };
+
+    if (status) {
+        return status;
+    }
+
+    return system("cmake --build . --target audit");
+}
+
 static int doc() {
     const int status{ cmake_init() };
 
@@ -156,6 +176,8 @@ int main(int argc, const char **argv) {
         { "clean_msvc"sv, clean_msvc },
         { "cmake_init"sv, cmake_init },
         { "lint"sv, lint },
+        { "safety"sv, safety },
+        { "audit"sv, audit },
         { "doc"sv, doc },
         { "build"sv, build },
         { "install"sv, install },

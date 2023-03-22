@@ -34,6 +34,36 @@ static int build() {
     return system("cmake --build . --config Release");
 }
 
+static int safety() {
+    const int status{ cmake_init() };
+
+    if (status) {
+        return status;
+    }
+
+    return system("cmake --build . --target safety");
+}
+
+static int audit() {
+    const int status{ cmake_init() };
+
+    if (status) {
+        return status;
+    }
+
+    return system("cmake --build . --target audit");
+}
+
+static int doc() {
+    const int status{ cmake_init() };
+
+    if (status) {
+        return status;
+    }
+
+    return system("cmake --build . --target doc");
+}
+
 static int install() {
     const int status{ build() };
 
@@ -62,6 +92,11 @@ static int leaks() {
     }
 
     return system("cmake --build . --target leaks");
+}
+
+static int clean_doc() {
+    std::filesystem::remove_all("html");
+    return EXIT_SUCCESS;
 }
 
 static int clean_bin() {
@@ -104,6 +139,7 @@ static int clean_cmake() {
 }
 
 static int clean() {
+    clean_doc();
     clean_bin();
     clean_msvc();
     clean_cmake();
@@ -124,12 +160,16 @@ int main(int argc, const char **argv) {
 
     const std::map<std::string_view, std::function<int()>> tasks{
         { "clean"sv, clean },
+        { "clean_doc"sv, clean_doc },
         { "clean_bin"sv, clean_bin },
         { "clean_cmake"sv, clean_cmake },
         { "clean_msvc"sv, clean_msvc },
         { "cmake_init"sv, cmake_init },
         { "lint"sv, lint },
         { "build"sv, build },
+        { "safety"sv, safety },
+        { "audit"sv, audit },
+        { "doc"sv, doc },
         { "install"sv, install },
         { "leaks"sv, leaks },
         { "uninstall"sv, uninstall }

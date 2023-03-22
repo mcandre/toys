@@ -16,6 +16,5 @@ Hello World!
 # REQUIREMENTS
 
 * [dmd](http://dlang.org/) 2+
-* [checkmake](https://github.com/mrtazz/checkmake)
 * [GNU findutils](https://www.gnu.org/software/findutils/)
 * [GNU make](https://www.gnu.org/software/make/)

@@ -9,4 +9,5 @@ Introductory C programs
 
 # Recommended
 
-* [accio](https://github.com/mcandre/accio) 0.0.2
+* [ASDF](https://asdf-vm.com/) 0.10
+* [direnv](https://direnv.net/) 2

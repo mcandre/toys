@@ -132,6 +132,26 @@ static int build() {
     return system("cmake --build . --config Release");
 }
 
+static int safety() {
+    const int status = cmake_init();
+
+    if (status != EXIT_SUCCESS) {
+        return status;
+    }
+
+    return system("cmake --build . --target safety");
+}
+
+static int audit() {
+    const int status = cmake_init();
+
+    if (status != EXIT_SUCCESS) {
+        return status;
+    }
+
+    return system("cmake --build . --target audit");
+}
+
 static int doc() {
     const int status = cmake_init();
 
@@ -329,6 +349,8 @@ int main(int argc, const char **argv) {
         "cmake_init",
         "lint",
         "build",
+        "safety",
+        "audit",
         "doc",
         "leaks",
         "install",
@@ -345,6 +367,8 @@ int main(int argc, const char **argv) {
         &cmake_init,
         &lint,
         &build,
+        &safety,
+        &audit,
         &doc,
         &leaks,
         &install,

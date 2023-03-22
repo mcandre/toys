@@ -1,3 +1,7 @@
 # shell
 
-Scripts for manipulating command line resources.
+* MS-DOS
+* Fish
+* PowerShell
+* Tcl
+* UNIX shells

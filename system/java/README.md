@@ -11,13 +11,16 @@ Hello World!
 
 # REQUIREMENTS
 
-* [OpenJDK](https://openjdk.org/) 18.0.2.1
-* [Gradle](https://gradle.org/) 7.5.1
+* [OpenJDK](https://openjdk.org/) 18.0.2.1+
+* [Gradle](https://gradle.org/) 7.5.1+
+* [Node.js](https://nodejs.org/en) 16.14.2+ with `npm install -g snyk@1.996.0`
+
+## Recommended
+
+* [Infer](http://fbinfer.com/)
+* [Sonar](http://www.sonarqube.org/)
 
 ## Recommended
 
 * [ASDF](https://asdf-vm.com/) 0.10
-* [Python](https://www.python.org/) 3+
-* [GHC Haskell](https://www.haskell.org/) 8+
-* [Go](https://golang.org/) 1.9+
-* [GNU make](https://www.gnu.org/software/make/)
+* [direnv](https://direnv.net/) 2

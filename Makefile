@@ -22,8 +22,7 @@ checkmake:
 
 lint: funk yamllint checkmake
 
-test:
-	@echo "nothing to do"
+test: lint
 
 clean:
 	@echo "nothing to do"
