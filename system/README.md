@@ -6,5 +6,4 @@ Here, "system" languages indicates languages used for either embedded systems de
 * C++
 * D
 * Go
-* Java
 * Rust
