@@ -4,9 +4,7 @@ hello's own compilation process is compatible with standard cargo. We wrap some 
 
 # BUILDTIME REQUIREMENTS
 
-* [Rust](https://www.rust-lang.org/en-US/) 1.63+ with `cargo install tinyrick@v0.0.9`
-* [cargo-audit](https://crates.io/crates/cargo-audit) 0.16
-* [clippy](https://github.com/rust-lang-nursery/rust-clippy)
+* [Rust](https://www.rust-lang.org/en-US/) 1.63+ with `rustup component add clippy-preview` and `cargo install cargo-audit@0.17.5 tinyrick@0.0.9`
 
 ## Recommended
 
@@ -23,6 +21,12 @@ $ tinyrick install
 
 ```console
 $ tinyrick uninstall
+```
+
+# SECURITY AUDIT
+
+```console
+$ tinyrick audit
 ```
 
 # BUILD: Doc, Lint, Test, and Compile
