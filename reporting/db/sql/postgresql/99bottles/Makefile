@@ -3,11 +3,14 @@
 all: test
 
 test: 99bottles.psql
-	psql -f 99bottles.psql
-	psql -c 'SELECT bottles(generate_series(99, 1, -1));'
+	@psql -f 99bottles.psql
+	@psql -c 'SELECT bottles(generate_series(99, 1, -1));'
 
 pgsanity:
-	find . -type f -name "*.psql" | xargs pgsanity
+	@find . \
+		-type f \
+		-name "*.psql" | \
+		xargs -n 1 pgsanity
 
 checkmake:
 	@find . \
@@ -19,7 +22,7 @@ checkmake:
 			-iname '*.make' \
 		\) \
 		-print0 | \
-		xargs -0 -n 1 checkmake
+			xargs -0 -n 1 checkmake
 
 lint: pgsanity checkmake
 

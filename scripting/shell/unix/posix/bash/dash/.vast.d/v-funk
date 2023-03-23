@@ -1,4 +1,4 @@
 #!/bin/sh
 unset IFS
 set -euf
-exec funk .
+funk .

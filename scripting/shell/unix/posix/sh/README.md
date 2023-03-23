@@ -9,7 +9,7 @@ Hello World!
 
 # REQUIREMENTS
 
-* [coreutils](https://www.gnu.org/software/coreutils/coreutils.html)
+* a POSIX compatible [sh](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/sh.html) implementation
 
 # DEVELOPMENT
 
@@ -19,14 +19,14 @@ Hello World!
 $ vast
 ```
 
-## Test
-
-```console
-$ vast itest
-```
-
 ## Lint
 
 ```console
-$ vast lint
+$ vast v-lint
+```
+
+## Test
+
+```console
+$ vast v-test
 ```

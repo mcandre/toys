@@ -2,4 +2,4 @@
 
 # REQUIREMENTS
 
-* [j](http://www.jsoftware.com)
+* [J](http://www.jsoftware.com)

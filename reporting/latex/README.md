@@ -14,47 +14,28 @@ $ open fizzy.pdf
 # REQUIREMENTS
 
 * [pdflatex](https://linux.die.net/man/1/pdflatex)
-
-## Optional
-
 * [lacheck](https://www.ctan.org/pkg/lacheck)
 * [chktex](http://baruch.ev-en.org/proj/chktex/)
-* [checkmake](https://github.com/mrtazz/checkmake)
-* [GNU findutils](https://www.gnu.org/software/findutils/)
-* [GNU make](https://www.gnu.org/software/make/)
+* [GNU make](https://www.gnu.org/software/make/) 3+
+* a POSIX compatible [sh](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/sh.html) implementation
+* GNU compatible [findutils](https://www.gnu.org/software/findutils/)
 
 # DEVELOPMENT
 
 ## Build
 
-```
+```console
 $ make fizzy.pdf
 ```
 
 ## Clean
 
-```
+```console
 $ make clean
 ```
 
 ## Lint
 
-```
+```console
 $ for f in *.tex; do lacheck $f; done
-```
-
-## Guard
-
-Guard can monitor .tex files for changes, automatically recompiling them into PDFs.
-
-```
-$ guard
-$ emacs .
-```
-
-Guard can also automatically lint .tex files.
-
-```
-$ guard -G Guardfile-lint
-$ emacs .
 ```

@@ -1,3 +1,3 @@
 # REQUIREMENTS
 
-* [coreutils](https://www.gnu.org/software/coreutils/coreutils.html)
+* a GNU compatible [sed](https://www.gnu.org/software/sed/) implementation

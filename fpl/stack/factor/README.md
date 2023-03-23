@@ -2,4 +2,4 @@
 
 # REQUIREMENTS
 
-* [factor](http://factorcode.org)
+* [Factor](http://factorcode.org)

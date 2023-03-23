@@ -1,10 +1,10 @@
-# forth
+# (GNU) forth
 
-Introductory GNU Forth programs
+Introductory Forth programs
 
 # EXAMPLE
 
-```
+```console
 $ gforth hello.fth
 Hello World!
 ```

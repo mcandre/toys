@@ -5,6 +5,10 @@ Introductory PostScript programs
 # EXAMPLE
 
 ```
-$ open hello.ps
+$ karp hello.ps
 ...
 ```
+
+# RECOMMENDED
+
+https://github.com/mcandre/karp

@@ -4,8 +4,3 @@
 * POSIX sh family
 * rc
 * tcsh
-
-# Requirements
-
-* [GNU findutils](https://www.gnu.org/software/findutils/)
-* [GNU make](https://www.gnu.org/software/make/)

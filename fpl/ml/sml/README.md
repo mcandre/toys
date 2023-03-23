@@ -2,4 +2,4 @@
 
 # REQUIREMENTS
 
-* [sml](http://www.smlnj.org)
+* [SML](http://www.smlnj.org)

@@ -13,8 +13,8 @@ Hello World!
 # REQUIREMENTS
 
 * [bmake](http://crufty.net/help/sjg/bmake.html)
-* [GNU findutils](https://www.gnu.org/software/findutils/)
-* [GNU make](https://www.gnu.org/software/make/)
+* a POSIX compatible [sh](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/sh.html) implementation
+* GNU compatible [findutils](https://www.gnu.org/software/findutils/)
 
 ## Optional
 

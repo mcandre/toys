@@ -1,5 +1,0 @@
-#!/usr/bin/env ksh88
-unset IFS
-set -euf
-
-echo "$@"

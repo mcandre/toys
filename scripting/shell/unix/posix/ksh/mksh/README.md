@@ -16,17 +16,17 @@ Hello World!
 ## Build: Lint and Test
 
 ```console
-$ vast
+$ vast [v-build]
 ```
 
 ## Test
 
 ```console
-$ vast itest
+$ vast v-test
 ```
 
 ## Lint
 
 ```console
-$ vast lint
+$ vast v-lint
 ```

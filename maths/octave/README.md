@@ -2,4 +2,4 @@
 
 # REQUIREMENTS
 
-* [octave](https://www.gnu.org/software/octave/)
+* [Octave](https://www.gnu.org/software/octave/)

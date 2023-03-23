@@ -3,13 +3,13 @@
 documents: fizzy.pdf magicnumbers.pdf naivesettheory.pdf
 
 fizzy.pdf: fizzy.tex
-	pdflatex -interaction=nonstopmode fizzy
+	@pdflatex -interaction=nonstopmode fizzy
 
 magicnumbers.pdf: magicnumbers.tex
-	pdflatex -interaction=nonstopmode magicnumbers
+	@pdflatex -interaction=nonstopmode magicnumbers
 
 naivesettheory.pdf: naivesettheory.tex
-	pdflatex -interaction=nonstopmode naivesettheory
+	@pdflatex -interaction=nonstopmode naivesettheory
 
 lacheck:
 	-for f in *.tex; do lacheck $$f; done
@@ -18,7 +18,7 @@ style-check:
 	-style-check.rb *.tex
 
 chktex:
-	chktex .
+	@chktex .
 
 checkmake:
 	@find . \
@@ -30,7 +30,7 @@ checkmake:
 			-iname '*.make' \
 		\) \
 		-print0 | \
-		xargs -0 -n 1 checkmake
+			xargs -0 -n 1 checkmake
 
 lint: lacheck style-check chktex checkmake
 

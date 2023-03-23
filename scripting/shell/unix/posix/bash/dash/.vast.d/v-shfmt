@@ -2,5 +2,6 @@
 unset IFS
 set -euf
 
-stank . |
-    xargs shfmt -w -i 4
+stank -exInterp zsh . |
+    grep -v node_modules |
+    xargs -n 1 shfmt -w -i 4

@@ -11,4 +11,4 @@ Hello World!
 
 # REQUIREMENTS
 
-* [racket](http://racket-lang.org/)
+* [Racket](http://racket-lang.org/)

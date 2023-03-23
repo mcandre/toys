@@ -1,11 +1,13 @@
 #!/bin/sh
 
-export vast_tasks="build \
-    lint \
-    v-shfmt \
-    v-bashate \
-    v-shellcheck \
-    v-funk \
-    itest"
+export vast_tasks='
+    v-build
+    v-lint
+    v-bashate
+    v-shellcheck
+    v-shfmt
+    v-funk
+    v-test
+'
 
-export vast_origin='build'
+export vast_origin='v-build'

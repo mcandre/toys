@@ -7,11 +7,11 @@ BIN=bin/hello
 all: test
 
 test: $(BIN)
-	$(BIN)
+	@$(BIN)
 
 $(BIN): hello.d
-	mkdir -p bin
-	dmd $(FLAGS) -of$(BIN) hello
+	@mkdir -p bin
+	@dmd $(FLAGS) -of$(BIN) hello
 
 checkmake:
 	@find . \
@@ -23,7 +23,7 @@ checkmake:
 			-iname '*.make' \
 		\) \
 		-print0 | \
-		xargs -0 -n 1 checkmake
+			xargs -0 -n 1 checkmake
 
 lint: checkmake
 

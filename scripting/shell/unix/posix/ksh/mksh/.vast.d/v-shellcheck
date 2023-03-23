@@ -4,4 +4,4 @@ set -euf
 
 stank -exInterp zsh . |
     grep -v node_modules |
-    xargs shellcheck
+    xargs -n 1 shellcheck

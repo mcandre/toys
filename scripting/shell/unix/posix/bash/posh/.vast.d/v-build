@@ -1,0 +1,6 @@
+#!/bin/sh
+unset IFS
+set -euf
+
+v-lint
+v-test

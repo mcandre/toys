@@ -11,4 +11,4 @@ Hello from main!
 
 # REQUIREMENTS
 
-* a [Common Lisp](http://www.cliki.net/Common+Lisp+implementation) flavor
+* a [Common Lisp](http://www.cliki.net/Common+Lisp+implementation) implementation

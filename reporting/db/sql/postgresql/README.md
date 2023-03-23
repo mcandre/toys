@@ -3,11 +3,7 @@
 # REQUIREMENTS
 
 * [PostgreSQL](https://www.postgresql.org)
-
-## Optional
-
-* [coreutils](https://www.gnu.org/software/coreutils/coreutils.html)
-* [checkmake](https://github.com/mrtazz/checkmake)
-* [GNU findutils](https://www.gnu.org/software/findutils/)
-* [GNU make](https://www.gnu.org/software/make/)
 * [pgsanity](https://pypi.python.org/pypi/pgsanity)
+* [GNU make](https://www.gnu.org/software/make/) 3+
+* a POSIX compatible [sh](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/sh.html) implementation
+* GNU compatible [findutils](https://www.gnu.org/software/findutils/)

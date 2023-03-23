@@ -10,6 +10,6 @@
 
 ## Lint
 
-```
+```console
 $ make lint
 ```

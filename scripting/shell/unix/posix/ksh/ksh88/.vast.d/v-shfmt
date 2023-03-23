@@ -1,6 +1,0 @@
-#!/bin/sh
-unset IFS
-set -euf
-
-stank . |
-    xargs shfmt -w -i 4

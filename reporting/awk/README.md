@@ -11,4 +11,4 @@ Hello World!
 
 # REQUIREMENTS
 
-* [coreutils](https://www.gnu.org/software/coreutils/coreutils.html)
+* a GNU compatible [awk](https://www.gnu.org/software/gawk/manual/gawk.html) implementation

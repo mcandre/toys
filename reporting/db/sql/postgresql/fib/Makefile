@@ -3,11 +3,14 @@
 all: test
 
 test: fib.psql
-	psql -f fib.psql
-	time -p psql -c 'SELECT fib(20);'
+	@psql -f fib.psql
+	@time -p psql -c 'SELECT fib(20);'
 
 pgsanity:
-	find . -type f -name "*.psql" | xargs pgsanity
+	@find . \
+		-type f \
+		-name "*.psql" | \
+		xargs -n 1 pgsanity
 
 checkmake:
 	@find . \
@@ -19,6 +22,6 @@ checkmake:
 			-iname '*.make' \
 		\) \
 		-print0 | \
-		xargs -0 -n 1 checkmake
+			xargs -0 -n 1 checkmake
 
 lint: pgsanity checkmake

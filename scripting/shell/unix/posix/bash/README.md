@@ -1,7 +1,7 @@
 # bash: bash-like languages
 
-* ash (subset)
-* GNU bash (official)
-* dash (subset)
-* posh (subset)
+* ash (bash subset)
+* GNU bash
+* dash (bash subset)
+* posh (bash subset)
 * zsh (superset)
