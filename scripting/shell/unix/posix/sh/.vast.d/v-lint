@@ -2,7 +2,8 @@
 unset IFS
 set -euf
 
-v-shfmt
 v-bashate
 v-shellcheck
+v-shfmt
+v-slick
 v-funk
