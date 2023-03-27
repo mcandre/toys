@@ -14,14 +14,14 @@ OBJ=hello.o
 all: test
 
 test: $(BIN)
-	$(BIN)
+	@$(BIN)
 
 $(BIN): $(OBJ)
-	mkdir -p bin
-	$(TOOLCHAIN_PREFIX)ld -o $(BIN) $(OBJ)
+	@mkdir -p bin
+	@$(TOOLCHAIN_PREFIX)ld -o $(BIN) $(OBJ)
 
 $(OBJ): hello.s
-	$(TOOLCHAIN_PREFIX)as -o $(OBJ) hello.s
+	@$(TOOLCHAIN_PREFIX)as -o $(OBJ) hello.s
 
 checkmake:
 	@find . \

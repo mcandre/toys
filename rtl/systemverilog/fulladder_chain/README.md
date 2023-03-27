@@ -10,7 +10,7 @@ $ make
 
 * [verilator](https://www.veripool.org/verilator/) 4.212-48-g2560fc86 or higher
 * [g++](https://gcc.gnu.org/) 9+
-* [GNU make](https://www.gnu.org/software/make/)
+* [make](https://pubs.opengroup.org/onlinepubs/009695299/utilities/make.html)
 * GNU compatible [findutils](https://www.gnu.org/software/findutils/)
 * [Go](https://golang.org/) 1.20.2+ with `go install github.com/mcandre/accio/cmd/accio@v0.0.4` and `accio -install`
 * [Python](https://www.python.org/) 3.11.2+ with `pip[3] install --upgrade pip setuptools` and `pip[3] install -r requirements-dev.txt`

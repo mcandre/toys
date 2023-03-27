@@ -7,14 +7,14 @@ OBJ=hello.o
 all: test
 
 test: $(BIN)
-	$(BIN)
+	@$(BIN)
 
 $(BIN): $(OBJ)
-	mkdir -p bin
-	ld -o $(BIN) $(OBJ)
+	@mkdir -p bin
+	@ld -o $(BIN) $(OBJ)
 
 $(OBJ): hello.s
-	as -o $(OBJ) hello.s
+	@as -o $(OBJ) hello.s
 
 checkmake:
 	@find . \
