@@ -4,7 +4,7 @@ vectest's own compilation process is compatible with standard cargo. We wrap som
 
 # BUILDTIME REQUIREMENTS
 
-* [Rust](https://www.rust-lang.org/en-US/) 1.63+ with `rustup component add clippy-preview` and `cargo install cargo-audit@0.17.5 tinyrick@0.0.9`
+* [Rust](https://www.rust-lang.org/en-US/) 1.63+ with `rustup component add clippy` and `cargo install cargo-audit@0.17.5 tinyrick@0.0.9`
 
 ## Recommended
 
