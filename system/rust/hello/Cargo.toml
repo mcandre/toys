@@ -6,7 +6,7 @@ authors = ["Andrew Pennebaker <andrew.pennebaker@gmail.com>"]
 
 [dependencies]
 tinyrick = { version = "0.0.9", optional = true }
-tinyrick_extras = { version = "0.0.5", optional = true }
+tinyrick_extras = { version = "0.0.6", optional = true }
 
 [features]
 letmeout = ["tinyrick", "tinyrick_extras"]

@@ -18,7 +18,7 @@ fn fizzbuzz(n: i64) -> FB {
         (true, true) => FB::FizzBuzz,
         (true, _) => FB::Fizz,
         (_, true) => FB::Buzz,
-        _ => FB::Value(n)
+        _ => FB::Value(n),
     }
 }
 

@@ -18,10 +18,16 @@ fn clippy() {
     tinyrick_extras::clippy();
 }
 
+/// Run rustfmt
+fn rustfmt() {
+    tinyrick_extras::rustfmt();
+}
+
 /// Validate documentation and run linters
 fn lint() {
     tinyrick::deps(doc);
     tinyrick::deps(clippy);
+    tinyrick::deps(rustfmt);
 }
 
 /// Install binaries
@@ -79,6 +85,7 @@ fn main() {
         audit,
         doc,
         clippy,
+        rustfmt,
         lint,
         install,
         uninstall,
