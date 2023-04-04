@@ -4,7 +4,7 @@ fib's own compilation process is compatible with standard cargo. We wrap some co
 
 # BUILDTIME REQUIREMENTS
 
-* [Rust](https://www.rust-lang.org/en-US/) 1.63+ with `rustup component add clippy` and `cargo install cargo-audit@0.17.5 tinyrick@0.0.9`
+* [Rust](https://www.rust-lang.org/en-US/) 1.68.2+ with `rustup component add clippy` and `cargo install cargo-audit@0.17.5 tinyrick@0.0.9`
 
 ## Recommended
 
