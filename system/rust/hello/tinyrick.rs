@@ -40,16 +40,15 @@ fn uninstall() {
     tinyrick_extras::uninstall_binaries();
 }
 
-/// Doc, lint, and run tests
+/// Run tests
 fn test() {
-    tinyrick::deps(lint);
     tinyrick::deps(install);
-
     tinyrick::exec!("hello");
 }
 
 /// Doc, lint, test, and compile
 fn build() {
+    tinyrick::deps(lint);
     tinyrick::deps(test);
     tinyrick_extras::build();
 }

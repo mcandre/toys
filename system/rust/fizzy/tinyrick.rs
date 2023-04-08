@@ -40,21 +40,18 @@ fn uninstall() {
     tinyrick_extras::uninstall_binaries();
 }
 
-/// Doc, lint, and run unit tests
+/// Run unit tests
 fn unit_test() {
-    tinyrick::deps(lint);
     tinyrick_extras::unit_test();
 }
 
-/// Doc, lint, and run integration tests
+/// Run integration tests
 fn integration_test() {
-    tinyrick::deps(lint);
     tinyrick::deps(install);
-
     tinyrick::exec!("fizzy");
 }
 
-/// Doc, lint, and run tests
+/// Run tests
 fn test() {
     tinyrick::deps(unit_test);
     tinyrick::deps(integration_test);
@@ -62,6 +59,7 @@ fn test() {
 
 /// Doc, lint, test, and compile
 fn build() {
+    tinyrick::deps(lint);
     tinyrick::deps(test);
     tinyrick_extras::build();
 }
