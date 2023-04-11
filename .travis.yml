@@ -25,7 +25,7 @@ addons:
 
 script:
 - "cd \"$TRAVIS_BUILD_DIR\""
-- "sh publish-docs.sh"
+- "./publish-docs"
 
 env:
   global:
