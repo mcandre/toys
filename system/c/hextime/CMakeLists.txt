@@ -58,7 +58,7 @@ add_test(NAME hextime_unit_test COMMAND bin/hextime)
 
 add_custom_target(safety COMMAND safety check)
 add_custom_target(cppcheck COMMAND cppcheck -q --force --enable=all --inline-suppr --suppressions-list=suppressions.cfg --error-exitcode=1 -I include src)
-add_custom_target(cpplint COMMAND sail include src | xargs -n 1 cpplint)
+add_custom_target(cpplint COMMAND cpplint --recursive include src)
 add_custom_target(clang-format COMMAND sail include src | xargs -n 1 clang-format -i)
 
 # Missing linter ports

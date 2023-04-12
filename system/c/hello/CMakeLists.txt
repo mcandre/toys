@@ -54,7 +54,7 @@ add_test(NAME hello_unit_test COMMAND bin/hello)
 
 add_custom_target(safety COMMAND safety check)
 add_custom_target(cppcheck COMMAND cppcheck -q --force --enable=all --inline-suppr --suppressions-list=suppressions.cfg --error-exitcode=1 src)
-add_custom_target(cpplint COMMAND sail src | xargs -n 1 cpplint)
+add_custom_target(cpplint COMMAND cpplint --recursive src)
 add_custom_target(clang-format COMMAND sail src | xargs -n 1 clang-format -i)
 
 # Missing linter ports
