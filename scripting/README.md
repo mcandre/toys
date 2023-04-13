@@ -1,4 +1,3 @@
 # scripting
 
-* build
 * shell
