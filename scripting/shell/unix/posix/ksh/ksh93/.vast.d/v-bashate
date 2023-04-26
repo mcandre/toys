@@ -1,6 +1,0 @@
-#!/bin/sh
-unset IFS
-set -euf
-
-stank . |
-    xargs -n 1 bashate -i E006

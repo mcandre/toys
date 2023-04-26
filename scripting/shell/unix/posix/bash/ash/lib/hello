@@ -1,6 +1,0 @@
-#!/usr/bin/env ash
-# shellcheck shell=ash
-unset IFS
-set -euf
-
-echo "Hello World!"

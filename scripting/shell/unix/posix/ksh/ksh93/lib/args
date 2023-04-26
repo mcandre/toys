@@ -1,5 +1,0 @@
-#!/usr/bin/env ksh93
-unset IFS
-set -eufo pipefail
-
-echo "$@"

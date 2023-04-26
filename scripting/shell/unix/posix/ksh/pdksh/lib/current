@@ -1,6 +1,0 @@
-#!/usr/bin/env pdksh
-# shellcheck shell=ksh
-unset IFS
-set -eufo pipefail
-
-echo "${0%/*}"

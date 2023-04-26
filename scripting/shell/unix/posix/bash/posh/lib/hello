@@ -1,6 +1,0 @@
-#!/usr/bin/env posh
-# shellcheck shell=sh
-unset IFS
-set -euf
-
-echo "Hello World!"
