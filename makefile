@@ -10,6 +10,7 @@ yamllint:
 
 unmake:
 	@unmake makefile
+	@unmake install.mk
 
 lint: funk yamllint unmake
 
