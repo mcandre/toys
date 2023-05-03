@@ -1,1 +1,0 @@
-SELECT columnfamily_name FROM system.schema_columnfamilies;

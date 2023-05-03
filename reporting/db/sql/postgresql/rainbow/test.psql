@@ -1,6 +1,0 @@
---() { :; }; exec psql -f "$0"
-
-SELECT * FROM "rainbow" WHERE "hash" IN (
-    '5f4dcc3b5aa765d61d8327deb882cf99',
-    '21232f297a57a5a743894a0e4a801fc3'
-);

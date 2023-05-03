@@ -1,20 +1,16 @@
-.PHONY: all lint test clean
+.POSIX:
+.SILENT:
+.PHONY: all lint funk unmake yamllint
 
 all: lint
 
 funk:
-	@funk .
-
-yamllint:
-	@yamllint -s .yamllint .
+	funk .
 
 unmake:
-	@unmake makefile
-	@unmake install.mk
+	unmake .
+
+yamllint:
+	yamllint -s .yamllint .
 
 lint: funk yamllint unmake
-
-test: lint
-
-clean:
-	@echo "nothing to do"
