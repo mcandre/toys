@@ -1,6 +1,10 @@
 .POSIX:
 .SILENT:
-.PHONY: all lint funk unmake yamllint
+.PHONY: all \
+	lint \
+	funk \
+	unmake \
+	yamllint
 
 all: lint
 
@@ -13,4 +17,4 @@ unmake:
 yamllint:
 	yamllint -s .yamllint .
 
-lint: funk yamllint unmake
+lint: funk unmake yamllint

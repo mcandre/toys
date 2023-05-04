@@ -3,7 +3,7 @@
 .PHONY: all
 
 all:
-	cargo install --force unmake@0.0.10
+	cargo install --force unmake@0.0.11
 
 	go install github.com/mcandre/stank/...@v0.0.24
 	go install mvdan.cc/sh/v3/cmd/shfmt@latest
