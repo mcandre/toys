@@ -17,7 +17,7 @@ Hello World!
 
 ## Recommended
 
-* [ASDF](https://asdf-vm.com/) 0.10
+* [ASDF](https://asdf-vm.com/) 0.10 (run `asdf reshim` after provisioning)
 * [direnv](https://direnv.net/) 2
 * [Go](https://go.dev/) 1.20.2+
 * [Node.js](https://www.npmjs.com/) 16.14.2+
