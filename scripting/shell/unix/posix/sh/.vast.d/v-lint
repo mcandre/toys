@@ -1,9 +1,0 @@
-#!/bin/sh
-unset IFS
-set -euf
-
-v-bashate
-v-shellcheck
-v-shfmt
-v-slick
-v-funk

@@ -13,20 +13,14 @@ Hello World!
 
 # DEVELOPMENT
 
-## Build: Lint and Test
+## Audit
 
 ```console
-$ vast [v-build]
-```
-
-## Test
-
-```console
-$ vast v-test
+$ make audit
 ```
 
 ## Lint
 
 ```console
-$ vast v-lint
+$ make [lint]
 ```

@@ -1,6 +1,0 @@
-#!/bin/sh
-unset IFS
-set -euf
-
-stank -exInterp zsh . |
-    xargs -n 1 shfmt -w -i 4
