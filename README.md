@@ -13,6 +13,10 @@ $ make
 Hello World!
 ```
 
+# LICENSE
+
+BSD-2-Clause
+
 # REQUIREMENTS
 
 ## Recommended
