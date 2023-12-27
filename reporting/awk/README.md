@@ -11,4 +11,4 @@ Hello World!
 
 # REQUIREMENTS
 
-* a GNU compatible [awk](https://www.gnu.org/software/gawk/manual/gawk.html) implementation
+* GNU [awk](https://www.gnu.org/software/gawk/manual/gawk.html) v5+
