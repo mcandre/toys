@@ -23,9 +23,9 @@ BSD-2-Clause
 
 * [ASDF](https://asdf-vm.com/) 0.10 (run `asdf reshim` after provisioning)
 * [direnv](https://direnv.net/) 2
-* [Go](https://go.dev/) 1.20.2+
+* [Go](https://go.dev/) 1.21.5+
 * [Node.js](https://www.npmjs.com/) 16.14.2+
-* [Python](https://www.python.org/) 3.11.2+
+* [Python](https://www.python.org/) 3.12.1+
 * [Rust](https://www.rust-lang.org/en-US/) 1.68.2+
 * [GNU findutils](https://www.gnu.org/software/findutils/)
 * [GNU grep](https://www.gnu.org/software/grep/)
