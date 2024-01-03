@@ -1,0 +1,15 @@
+---
+name: "Audit"
+on:
+  push:
+  pull_request:
+  schedule:
+  - cron: "0 0 * * 1"
+jobs:
+  Audit:
+    runs-on: "ubuntu-latest"
+    steps:
+    - uses: "actions/checkout"
+    - run: "apt-get install -y golang rust"
+    - run: "make -f install.mk"
+    - run: "make audit"
