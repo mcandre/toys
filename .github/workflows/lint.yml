@@ -7,7 +7,7 @@ jobs:
   Lint:
     runs-on: "ubuntu-latest"
     env:
-      GOPATH: "/usr/local/go"
+      GOPATH: "/home/runner/go"
     steps:
     - run: "echo \"${PATH}:${GOPATH}/bin\" >> $GITHUB_PATH"
     - uses: "actions/checkout@v4"
