@@ -17,7 +17,7 @@ all: lint
 audit: safety
 
 bashate:
-	stank . | \
+	stank -exInterp zsh . | \
 		grep -v .sample | \
 		xargs -n 1 bashate -i E006
 
