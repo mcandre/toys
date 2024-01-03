@@ -3,8 +3,8 @@
 .PHONY: all \
 	audit \
 	bashate \
-	lint \
 	funk \
+	lint \
 	safety \
 	shellcheck \
 	shfmt \
@@ -24,13 +24,14 @@ bashate:
 funk:
 	funk .
 
-unmake:
-	unmake .
-
-yamllint:
-	yamllint -s .yamllint .
-
-lint: bashate funk shellcheck shfmt slick unmake yamllint
+lint: \
+	bashate \
+	funk \
+	shellcheck \
+	shfmt \
+	slick \
+	unmake \
+	yamllint
 
 safety:
 	safety check
@@ -49,3 +50,9 @@ slick:
 	stank -sh . | \
 		grep -v .sample | \
 		xargs -n 1 slick
+
+unmake:
+	unmake .
+
+yamllint:
+	yamllint -s .yamllint .
