@@ -7,7 +7,7 @@ jobs:
   Lint:
     runs-on: "ubuntu-latest"
     env:
-      GOHOME: "${{ runner.home }}/go"
+      GOHOME: "${{ env.HOME }}/go"
       PATH: "${{ env.PATH }}:${{ env.GOHOME }}/bin"
     steps:
     - uses: "actions/checkout@v4"
