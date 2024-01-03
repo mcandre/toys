@@ -14,4 +14,3 @@ rules:
 ignore: |
   node_modules
   vendor
-  .github/workflows
