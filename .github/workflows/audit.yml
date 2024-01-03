@@ -12,6 +12,11 @@ jobs:
     - uses: "actions/checkout@v4"
     - run: "sudo apt-get install -y make"
     - run: "pip3 install -r requirements-dev.txt"
+    #
     # Debian-based Ubuntu GitHub Actions base OS is
     # expected to present unresolvable CVE's.
-    - run: "make audit;:"
+    # Disabling (GitHub Actions Hosted) runner step for now.
+    # Care when merging pull requests.
+    # In any case, all CI/CD jobs can be peformed locally.
+    #
+    # - run: "make audit"
