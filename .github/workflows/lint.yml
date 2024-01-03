@@ -7,12 +7,14 @@ jobs:
   Lint:
     runs-on: "ubuntu-latest"
     env:
-      GOPATH: "/home/runner/go"
+      GOPATH: "/usr/local/go"
     steps:
     - run: "echo \"${PATH}:${GOPATH}/bin\" >> $GITHUB_PATH"
     - uses: "actions/checkout@v4"
     - run: "sudo apt-add-repository ppa:longsleep/golang-backports"
     - run: "sudo apt-get update"
-    - run: "sudo apt-get install -y cargo golang-1.21 make mksh zsh"
+    - run: "sudo apt-get install -y cargo curl make mksh zsh"
+    - run: "curl https://go.dev/dl/go1.21.5.linux-amd64.tar.gz"
+    - run: "sudo tar -C /usr/local -xzf go1.21.5.linux-amd64.tar.gz"
     - run: "make -f install.mk"
     - run: "make lint"
