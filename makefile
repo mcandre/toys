@@ -18,6 +18,7 @@ audit: safety
 
 bashate:
 	stank . | \
+		grep -v .sample | \
 		xargs -n 1 bashate -i E006
 
 funk:
