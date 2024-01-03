@@ -8,6 +8,6 @@ jobs:
     runs-on: "ubuntu-latest"
     steps:
     - uses: "actions/checkout@v4"
-    - run: "sudo apt-get install -y golang rust"
+    - run: "sudo apt-get install -y cargo golang make"
     - run: "make -f install.mk"
     - run: "make lint"
