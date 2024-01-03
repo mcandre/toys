@@ -6,6 +6,9 @@ on:
 jobs:
   Lint:
     runs-on: "ubuntu-latest"
+    env:
+      GOHOME: "${HOME}/go"
+      PATH: "${PATH}:${GOHOME}/bin"
     steps:
     - uses: "actions/checkout@v4"
     - run: "sudo apt-add-repository ppa:longsleep/golang-backports"
