@@ -7,9 +7,9 @@ jobs:
   Lint:
     runs-on: "ubuntu-latest"
     env:
-      GOHOME: "${{ env.HOME }}/go"
-      PATH: "${{ env.PATH }}:${{ env.GOHOME }}/bin"
+      GOHOME: "/home/runner/go"
     steps:
+    - run: "echo \"${PATH}:${GOHOME}/bin\" >> $GITHUB_PATH"
     - uses: "actions/checkout@v4"
     - run: "sudo apt-add-repository ppa:longsleep/golang-backports"
     - run: "sudo apt-get update"
