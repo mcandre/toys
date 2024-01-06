@@ -1,7 +1,0 @@
-digraph {
-graph [rankdir=LR, bgcolor=transparent];
-node [shape=box, fillcolor=white, style=filled];
-1 [label="Collect underpants"];
-3 [label=Profit];
-1 -> 3 [label="?"];
-}

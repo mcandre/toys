@@ -1,5 +1,0 @@
-#!/bin/bash
-unset IFS
-set -eufEo pipefail
-
-echo "$@"

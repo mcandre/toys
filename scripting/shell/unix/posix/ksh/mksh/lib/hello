@@ -1,6 +1,0 @@
-#!/usr/bin/env mksh
-# shellcheck shell=ksh
-unset IFS
-set -eufo pipefail
-
-echo "Hello World!"

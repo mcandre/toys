@@ -1,6 +1,0 @@
-# Created by https://www.gitignore.io/api/coq
-
-### Coq ###
-*.vo
-*.glob
-*.v.d

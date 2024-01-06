@@ -1,5 +1,0 @@
-#!/bin/bash
-unset IFS
-set -eufEo pipefail
-
-dirname "${BASH_SOURCE[0]}"

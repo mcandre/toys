@@ -1,5 +1,0 @@
-#!/usr/bin/env dash
-unset IFS
-set -euf
-
-echo "${0%/*}"

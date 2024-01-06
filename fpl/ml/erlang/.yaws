@@ -1,8 +1,0 @@
-<server localhost>
-    port = 3000
-    listen = 0.0.0.0
-    docroot = .
-    dir_listings = true
-    auth_log = true
-    statistics = true
-</server>

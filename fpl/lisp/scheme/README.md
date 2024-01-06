@@ -1,4 +1,0 @@
-# scheme
-
-* Chicken
-* Racket

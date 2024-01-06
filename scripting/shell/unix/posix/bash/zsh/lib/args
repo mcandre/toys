@@ -1,6 +1,0 @@
-#!/bin/zsh
-# shellcheck shell=bash
-unset IFS
-set -eufEo pipefail
-
-echo "$@"
