@@ -7,7 +7,7 @@ ARTIFACT=obj_dir/Vhalfadder
 
 all: test
 
-$(ARTIFACT): Makefile main.cpp halfadder.sv
+$(ARTIFACT): main.cpp halfadder.sv
 	verilator \
 		-Wall \
 		--cc \
