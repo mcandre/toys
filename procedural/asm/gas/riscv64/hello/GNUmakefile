@@ -1,4 +1,9 @@
-.PHONY: all lint test clean
+.PHONY: \
+	all \
+	lint \
+	test \
+	unmake \
+	clean
 
 HOST_ARCH=$(shell uname -m)
 
@@ -14,28 +19,19 @@ OBJ=hello.o
 all: test
 
 test: $(BIN)
-	@$(BIN)
+	$(BIN)
 
 $(BIN): $(OBJ)
-	@mkdir -p bin
-	@$(TOOLCHAIN_PREFIX)ld -o $(BIN) $(OBJ)
+	mkdir -p bin
+	$(TOOLCHAIN_PREFIX)ld -o $(BIN) $(OBJ)
 
 $(OBJ): hello.s
-	@$(TOOLCHAIN_PREFIX)as -o $(OBJ) hello.s
+	$(TOOLCHAIN_PREFIX)as -o $(OBJ) hello.s
 
-checkmake:
-	@find . \
-		-type f \
-		\( \
-			-iname Makefile -o \
-			-iname GNUmakefile -o \
-			-iname '*.mk' -o \
-			-iname '*.make' \
-		\) \
-		-print0 | \
-			xargs -0 -n 1 checkmake
+unmake:
+	unmake .
 
-lint: checkmake
+lint: unmake
 
 clean:
 	-rm -rf bin

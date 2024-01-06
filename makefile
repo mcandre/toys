@@ -53,6 +53,7 @@ slick:
 
 unmake:
 	unmake .
+	unmake -n .
 
 yamllint:
 	yamllint -s .yamllint .

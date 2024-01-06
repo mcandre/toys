@@ -1,18 +1,16 @@
 .POSIX:
-.PHONY: all lint funk unmake test clean
+.PHONY: \
+	all \
+	lint \
+	funk \
+	unmake
 
 all: lint
 
 funk:
-	@funk .
+	funk .
 
 unmake:
-	@unmake .
+	unmake .
 
-lint: funk checkmake
-
-test:
-	@echo "nothing to do"
-
-clean:
-	@echo "nothing to do"
+lint: funk unmake

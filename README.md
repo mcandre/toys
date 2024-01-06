@@ -26,7 +26,7 @@ BSD-2-Clause
 * [Go](https://go.dev/) 1.21.5+
 * [Node.js](https://www.npmjs.com/) 20.10.0+
 * [Python](https://www.python.org/) 3.12.1+
-* [Rust](https://www.rust-lang.org/en-US/) 1.68.2+
+* [Rust](https://www.rust-lang.org/en-US/) 1.75.0+
 * [GNU findutils](https://www.gnu.org/software/findutils/)
 * [GNU grep](https://www.gnu.org/software/grep/)
 * a POSIX compliant [make](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/make.html) implementation (e.g. GNU make, BSD make, etc.)
