@@ -6,7 +6,7 @@
 
 ## Recommended
 
-* [snyk](https://www.npmjs.com/package/snyk) 1.893.0 (`npm install -g snyk@1.893.0`)
+* [snyk](https://www.npmjs.com/package/snyk) 1.893.0 (`npm install -g snyk1.893.0`)
 
 # SECURITY AUDIT
 

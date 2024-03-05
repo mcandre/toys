@@ -14,7 +14,7 @@ $ bin/lambdatest
 
 * [OpenJDK](https://openjdk.org/) 18.0.2.1+
 * [Gradle](https://gradle.org/) 7.5.1+
-* [Node.js](https://nodejs.org/en) 16.14.2+ with `npm install -g snyk@1.996.0`
+* [Node.js](https://nodejs.org/en) 16.14.2+ with `npm install -g snyk1.996.0`
 
 ## Recommended
 
